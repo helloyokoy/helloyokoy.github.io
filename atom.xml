@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-08T17:50:48+08:00</updated>
+  <updated>2015-08-08T18:20:05+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,14 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[新文章名称]]></title>
+    <link href="http://helloyokoy.github.io/blog/2015/08/08/xin-wen-zhang-ming-cheng/"/>
+    <updated>2015-08-08T18:08:31+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/2015/08/08/xin-wen-zhang-ming-cheng</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
 </feed>
