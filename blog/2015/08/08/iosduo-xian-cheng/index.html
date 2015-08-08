@@ -1,24 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[BryanFu Blog]]></title>
-  <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
-  <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-08T23:07:23+08:00</updated>
-  <id>http://helloyokoy.github.io/</id>
-  <author>
-    <name><![CDATA[BryanFu]]></name>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>IOS多线程 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let&rsquo;t begin! &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript">
+
+function addBlankTargetForLinks () {
+
+  $('a[href^="http"]').each(function(){
+
+      $(this).attr('target', '_blank');
+
+  });
+
+}
+
+$(document).bind('DOMNodeInserted', function(event) {
+
+  addBlankTargetForLinks();
+
+});
+
+</script>
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
     
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
 
-  
-  <entry>
-    <title type="html"><![CDATA[IOS多线程]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/iosduo-xian-cheng/"/>
-    <updated>2015-08-08T22:25:55+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/iosduo-xian-cheng</id>
-    <content type="html"><![CDATA[<blockquote><p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let&rsquo;t begin!</p></blockquote>
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">IOS多线程</h2>
+	<div class="entry-content"><blockquote><p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let&rsquo;t begin!</p></blockquote>
 
 <h2>概述</h2>
 
@@ -815,476 +890,96 @@ dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
 NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 }
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[知名ios应用背后的第三方项目]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/"/>
-    <updated>2015-08-08T22:17:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu</id>
-    <content type="html"><![CDATA[<blockquote><p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx&rsquo;s blog中详细介绍了Facebook Paper使用的第三方库。</p></blockquote>
+</div>
 
-<h3>Instagram</h3>
 
-<hr />
+<div class="meta">
+	<div class="date">
 
-<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
 
-<p>Appirater: 提醒用户打分。</p>
 
-<p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
 
-<p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
+Aug 8th, 2015</div>
+	<div class="tags">
 
-<p><em>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
 
-<p><em>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</em></p>
+	<a class='category' href='/blog/categories/ios/'>ios</a>
 
-<p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
 
-<p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
+</div>
+	
+	<div class="comments"><a href="#disqus_thread">Comments</a></div>
+	
+</div>
+</article>
 
-<p>SocketRocket: Objective-C WebSocket客户端库。 <a href="https://github.com/square/SocketRocket">https://github.com/square/SocketRocket</a></p>
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
 
-<p><em>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</em></p>
+		
+	
+      		<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+	<span class="jiathis_txt">分享到：</span>
+	<a class="jiathis_button_tools_1"></a>
+	<a class="jiathis_button_tools_2"></a>
+	<a class="jiathis_button_tools_3"></a>
+	<a class="jiathis_button_tools_4"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+	</div>
+	
+</div>
 
-<h3>Foursquare</h3>
 
-<hr />
 
-<p>Facebook SDK for iOS: 集成Facebook,构建强大的社交app。</p>
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
-<p>FSNetworking: Foursquare iOS网络库。</p>
+    BryanFu
 
-<p>kingpin: MapKit/MKAnnotation pin 聚合库，主要用来在地图上面添加锚点。</p>
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
 
-<p><em>AFNetworking:适用于iOS和OS X的网络框架。</em></p>
 
-<p>SKBounceAnimation: CAKeyframeAnimation子类，可快速简单地设置弹动的数量，开始和结束的值，以及创建动画。</p>
+<script type="text/javascript">
+      var disqus_shortname = 'helloyokoy';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://helloyokoy.github.io/blog/2015/08/08/iosduo-xian-cheng/';
+        var disqus_url = 'http://helloyokoy.github.io/blog/2015/08/08/iosduo-xian-cheng/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
-<p>DB5: 通过Plist配置文件。</p>
 
-<h3>LinkedIn</h3>
 
-<hr />
 
-<p><em>BlocksKit: blocks工具包。</em></p>
 
-<p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
-
-<p>DTCOreText:文字效果代码类库。在UITextView上实现丰富的文字效果，比如文字大小、颜色、字体、下划线，链接，给文字加上图片、视频，文字任意间距等等。实现类似于CSS网页的文字效果。</p>
-
-<h3>Shazam</h3>
-
-<hr />
-
-<p>AudioStreamer:Mac OS X和iPhone上适用的流媒体音频播放器，可播放来自网络上的音乐。</p>
-
-<p>ColorArt: iTunes 11风格的颜色匹配代码。</p>
-
-<p>objc-geohash: Objective-C GeoHash库，通过经纬度获得哈希表。</p>
-
-<p>FormatterKit: 收集了精心构思的NSFormatter子类。</p>
-
-<p>UIView+Glow: UIView的一个类别，可添加对制作发光视图的支持，以突出屏幕上重要的部分，方便用户与之进行交互。</p>
-
-<p><em>WEbViewJavascriptBridge: 在使用UIWebView时，它优雅地实现了JS与ios 的ObjC 原生代码之间的互调，支持消息发送、接收、消息处理器的注册与调用以及设置消息处理的回调。</em></p>
-
-<h3>Skype</h3>
-
-<hr />
-
-<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
-
-<p>Hockey SDK: HockeyApp service官方iOS SDK。</p>
-
-<p>PLCrashReporter (Github mirror): 进程内的崩溃报告框架。</p>
-
-<p><em>TTTAttributedLabel是一个文字视图开源组件，是UILabel的替代元件，可以以简单的方式展现渲染的属性字符串。另外，还支持链接植入，不管是手动还是使用UIDataDetectorTypes自动把电话号码、事件、地址以及其他信息变成链接。</em></p>
-
-<p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
-
-<p><em>Cocoa Lumberjack: 适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
-
-<p>MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添加标题和选择多个图片。照片浏览器效果类似iOS原生的照片应用,可显示来自手机的图片或者是网络图片，也可自动从网络下载图片并进行缓存，还可图片进行缩放等。</p>
-
-<p>BlocksKit: Objective-C blocks工具包。</p>
-
-<h3>Spotify</h3>
-
-<hr />
-
-<p><em>FMDB: SQLite API封装库。</em></p>
-
-<p>MAObjCRuntime:将运行时API封装成ObjC。</p>
-
-<p>Nu: 编程语言。</p>
-
-<p>PLCrashReporter (Github mirror):进程内崩溃报告框架。</p>
-
-<p>SBJSON:Objective-C 实现的一个严格的JSON 解析器和生成器。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[IOS第三方库和插件]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/iosdi-san-fang-ku-he-cha-jian/"/>
-    <updated>2015-08-08T22:04:09+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/iosdi-san-fang-ku-he-cha-jian</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
-
-<hr />
-
-<blockquote><p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p></blockquote>
-
-<p>Xcode基本是Mac/iOS程序员的必备工具(AppCode我没用过 不知道有多少人用?) 但是能说有多好用..这就仁者见仁了(跟Visual Studio是没得比了) 不过在用了插件以后 倒也能让生产力提升一大截</p>
-
-<p>接下来我会介绍一些我本人常用的第三方库和插件 也许不多 但是一定是久经考验 用了一定不会错</p>
-
-<h2>介绍</h2>
-
-<hr />
-
-<h3>第三方库</h3>
-
-<hr />
-
-<h4>CocoaPod</h4>
-
-<p>CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具</p>
-
-<p>在CocoaPod没有出现之前 第三方库的管理是非常痛苦的 尤其是一些大型的库(比如nimbus) 每次对库进行更新 都可能会非常的痛苦</p>
-
-<p>CocoaPod的出现解决了这些问题 以Framework的方式引入第三方库 极大的节约了集成的时间 而且通吃Objective-C和Swift(Swift上的Cathatage我没有实际用过 但是它的那种集成方式还是比CocoaPod麻烦点)</p>
-
-<h4>iCarousel</h4>
-
-<p>在iOS 4.x的时代(我也是从4.0开始接触iOS开发的) Coverflow的效果可谓是风靡一时 初出茅庐的我当年对如何实现几乎是束手无策(当年所有的电影资讯类的APP 如布丁爱生活等 都需要实现Coverflow选片的效果 碰巧我也要做一个) iCarousel的出现替我解决了一个大的难题</p>
-
-<p>从此iCarousel成为了我每个项目的必备良药(也是我最喜欢的库) 不管是Coverflow还是轮播广告 都能轻描淡写的搞定 其内置的十来种显示类型 基本可以解决90%的UI需求 而其强大的自定义功能 则可以解决剩余的10% :)</p>
-
-<p>不熟悉的朋友可以尝试一下其精美的demo(pod try iCarousel) 所有的功能都在demo中一览无余</p>
-
-<p>作者nicklockwood也是一个高产的大神 同时维护着数量众多且优质的开源库(比如iVersion iRate) 大家不妨去看一看 淘一淘</p>
-
-<h4>AFNetworking/Alamofire</h4>
-
-<p>HTTP框架的龙头老大 当年在与ASIHTTPRequest的竞争中笑到了最后(当然也是因为ASIHTTPRequest的作者不维护了 不过国内很多公司 因为历史原因都在自行维护) 由于及时维护和拥抱语言的新特性 迅速被大家所接受和喜爱</p>
-
-<p>相信每个人都用过 这里就不赘述了</p>
-
-<h4>MKNetworkKit</h4>
-
-<p>如果说AFNetworking是老大 那么MKNetworkKit可以说是小弟了 不过也因为比AFNetworking轻量的原因 也获得了许多开发者的青睐</p>
-
-<p>当年因为ASIHTTPRequest停止维护了 在机缘巧合之下 我在AFNetworking和MKNetworkKit之间选择了后者 并在很多项目中进行了使用</p>
-
-<p>不过也许是因为AFNetworking发展得更快更迅速 而作者本人是单兵作战的原因 作者也基本放弃了更新(版本号在停留在0.8x) 十分可惜</p>
-
-<h4>SDWebImage</h4>
-
-<p>图片异步下载和缓存管理的集大成者 UITableView的黄金搭档 其代码被开发者研究分享过无数次喵大的Kingfisher(可以说是Swift版的SDWebImage)也是深受其影响</p>
-
-<p>异步下载AFNetworking和MKNetworkKit都有实现 数据缓存也有FastImageCache与TMCache等 但是将其融会贯通的 唯有SDWebImage了</p>
-
-<p>除了简单的使用sd_setImageWithURL之外 SDImageCache也是可以独立使用的 功能也相当之强大</p>
-
-<h4>ZXingObjC</h4>
-
-<p>zxing是Google出品的二维码扫描组件 原本是Java编写的 现在也有了各种语言的移植版 而ZXingObjC就是其中之一</p>
-
-<p>zxing支持各种主流的一维码二维码扫描 简单易用 小厂如果要实现二维码扫描这个功能 基本都会选择zxing</p>
-
-<p>不过iOS7已内置了二维码摄像头扫描 而iOS8也已内置了二维码静态图扫描 以后可能再也不需要用到ZXing了 :(</p>
-
-<h4>MBProgressHUD</h4>
-
-<p>简单易用且稳定的HUD组件 半透明黑底白字的风格也经久不衰 loading提示的最佳选择</p>
-
-<p>Masonry/SnapKit</p>
-
-<p>最好用的Autolayout手写库(Cartography也不错啦 但是还是用不惯) 帮助我轻易的跨越了Autolayout这道坎</p>
-
-<p>我也曾多次在文章中提到过关于Masonry的使用方法 如果还没有用过的朋友 不妨看一看</p>
-
-<h4>pop</h4>
-
-<p>Facebook的工程师一直是神一般的存在 对开源社区的贡献也是巨大的 极大的推动了各种变成语言的发展 比如HipHop之于PHP react之于JavaScript pop之于Objective-C等等</p>
-
-<p>不管是HipHop react Facebook的工程师总是抱着颠覆的态度来开源 pop也不例外 这点之前我也简单介绍过 而以pop为基础的paper一发布就震惊整个APP届 在这点上pop也是厥功甚伟</p>
-
-<p>pop对自定义动画也支持得很好 我也以pop的自定义动画为基础写过MMTweanAnimation</p>
-
-<h4>ReactiveCocoa</h4>
-
-<p>说起来惭愧 大名鼎鼎的RAC 我只使用了点皮毛(只拿来做输入验证了)</p>
-
-<p>暂时还没有进行深层次的使用 对RAC的理解也停留在表面阶段 不过这篇文章介绍得非常详细 值得一看</p>
-
-<h4>GPUImage</h4>
-
-<p>如果你要做图像(照片或者视频)的相关处理 或者只是简单的想做个像Camera360一样的拍照滤镜 那么你一定要研究一下GPUImage</p>
-
-<p>如它的名字所述 GPUImage是基于GPU的图像处理框架 我们都知道 GPU是提升性能的关键 这也就是GPUImage如此重要 如此受欢迎的原因</p>
-
-<h4>Lumberjack</h4>
-
-<p>log系统是每个项目都应该有的东西 而Lumberjack是log系统中的翘楚</p>
-
-<p>你可以简单的把它当成NSLog的替代品(简单来说 Lumberjack比NSLog速度更快) 或者根据你的需要来打造一个更强大的日志系统</p>
-
-<h4>NSLogger</h4>
-
-<p>从名字可以看出 NSLogger也是一个log系统 其特点是附带了一个功能强大的Desktop Viewer 可以让你方便的查看APP产生的日志(支持分级筛选等等 甚至可以直接log一张图片)</p>
-
-<h4>AwesomeMenu</h4>
-
-<p>当年横空出世的Path 其优美的设计 精彩的动画 不知让多少人嘴巴都合不拢 而最赞的 就是它的弹出菜单 一时成为了每个APP争相模仿的对象</p>
-
-<p>有了AwesomeMenu 你可以轻易的实现它</p>
-
-<h4>MMDrawerController</h4>
-
-<p>普通的侧滑菜单 用MMDrawerController就搞定了</p>
-
-<h4>realm</h4>
-
-<p>作为数据存储的一等公民 CoreData的地位不言而喻 不过也因为使用起来不够方便 才会出现MagicalRecord这种辅助类 甚至fmdb这种基于纯sqlite的库</p>
-
-<p>而realm以挑战者的身份闪亮登场 不仅读取性能更快(据说数倍于CoraData) 接口简单易用(以对象的形式使用数据 这点和leancloud的思路很相似) 并且还跨平台(iOS/Android均可使用 OC/Swift/Java都支持)</p>
-
-<p>如果你习惯使用Mantle之类的Modal转换的话Realm-JSON肯定能讨你欢心</p>
-
-<p>作为YCombinator的孵化项目 其质量还是能得以保证的 至少我试用下来 确实给我以很大的惊喜 不管是API的设计 还是数据对象的定义 就连数据库的版本升级 都非常的方便)</p>
-
-<h3>Xcode插件</h3>
-
-<hr />
-
-<h4>Alcatraz</h4>
-
-<p>与CocoaPod类似 Alcatraz是Xcode的插件管理器 能够让你方便的管理Xcode的插件(不仅可以管理插件 还可以管理主题等等)</p>
-
-<h4>FuzzyAutocomplete</h4>
-
-<p>如果只让我选一个插件留下 那必须是FuzzyAutocomplete 强大的模糊匹配输入 让你写代码的时候再也不用费脑子去记住名字那么长的对象或者函数名了 好用到让你想哭</p>
-
-<h4>XAlign</h4>
-
-<p>作为有洁癖的码农 看到不对齐的代码一定是不能忍的 XAlign可以轻松解决你的烦恼</p>
-
-<h4>VVDocumenter-Xcode</h4>
-
-<p>喵大的又一力作 能够识别当前函数的参数和返回类型 帮助你快速编写符合规范的注释(目前是以Javadoc为标准)</p>
-
-<h4>deriveddata-exterminator</h4>
-
-<p>如果你老是遇到Xcode抽风 提示你要因为某个原因要删除某个目录下的文件 否则编译不过 那你一定会被这个插件感动 因为说明了遇到这个事的人不只你一个</p>
-
-<h4>Xcode-Quick-Localization</h4>
-
-<p>多语言在iOS开发中一直不是很方便 有了它 你可以省不少事</p>
-
-<h4>Backlight-for-XCode</h4>
-
-<p>就如果Xcode默认的80个字的分页提示一样 高亮当前正在编辑的一行 也是一种友好的提示 喜不喜欢也就因人而异了</p>
-
-<h2>小结</h2>
-
-<hr />
-
-<p>以上的介绍 都是从我自身的使用经验触发的 可能大部分大家都用过了 而我也将会持续的更新这份列表 只要有优秀使用的东东 我都会添加进来</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[octopress搭建教程]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/octopressda-jian-jiao-cheng/"/>
-    <updated>2015-08-08T21:00:18+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/octopressda-jian-jiao-cheng</id>
-    <content type="html"><![CDATA[<h2>1.安装Octopress</h2>
-
-<pre><code>git clone git://github.com/imathis/octopress.git octopress
-cd octopress
-bundle update    # 安装依赖的组件
-rake install     # 安装默认的Octopress主题
-</code></pre>
-
-<h2>2.配置Git</h2>
-
-<p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
-
-<pre><code>git remote rm origin
-git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
-git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
-</code></pre>
-
-<h2>3.配置github</h2>
-
-<p>在github上创建一个仓库，注意仓库名称要以下这种格式yourname.github.io，这样代码发布后自动这个url就可以访问了（此处一定要注意哦，我刚开始没注意，死活没得到想要的效果）。</p>
-
-<p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL <a href="http://yourname.github.io/">http://yourname.github.io/</a> (注意不能用 https协议，必须用 http协议)。</p>
-
-<p>设定 GitHub Pages</p>
-
-<pre><code>rake setup_github_pages
-以上执行后会要求 read/write url for repository ：
-</code></pre>
-
-<p>git@github.com:yourname/yourname.github.io.git</p>
-
-<pre><code>rake generate
-rake deploy
-</code></pre>
-
-<h2>4.将 source 也加入 git</h2>
-
-<pre><code>git add .
-git commit -m 'initial source commit'
-git push origin source
-</code></pre>
-
-<h2>5.更新 Octopress</h2>
-
-<pre><code>git remote add octopress git://github.com/imathis/  octopress.git
-git pull octopress master     # Get the latest Octopress
-bundle install                # Keep gems updated
-rake update_source            # update the template's   source
-rake update_style             # update the template's style
-</code></pre>
-
-<h2>6.发表新文章</h2>
-
-<pre><code>rake new_post["新文章名称"]
-rake preview
-用浏览器打开 http://localhost:4000 就可以看到效果了。
-</code></pre>
-
-<h2>7.发布</h2>
-
-<pre><code>rake gen_deploy
-rake deploy                 #若发布后无效果可试试此命令
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[markdown简介]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/xin-wen-zhang-ming-cheng/"/>
-    <updated>2015-08-08T18:08:31+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/xin-wen-zhang-ming-cheng</id>
-    <content type="html"><![CDATA[<h3>1. 标题设置（让字体变大，和word的标题意思一样）</h3>
-
-<hr />
-
-<p>在Markdown当中设置标题，有两种方式：</p>
-
-<p>第一种：通过在文字下方添加“=”和“-”，他们分别表示一级标题和二级标题。</p>
-
-<p>第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大）</p>
-
-<h3>2. 块注释（blockquote）</h3>
-
-<hr />
-
-<p>通过在文字开头添加“>”表示块注释。（当>和文字之间添加五个blank时，块注释的文字会有变化。）</p>
-
-<h3>3. 斜体</h3>
-
-<hr />
-
-<p>将需要设置为斜体的文字两端使用1个“*”或者“_”夹起来</p>
-
-<h3>4. 粗体</h3>
-
-<hr />
-
-<p>将需要设置为斜体的文字两端使用2个“*”或者“_”夹起来</p>
-
-<h3>5. 无序列表</h3>
-
-<hr />
-
-<p>在文字开头添加(<em>, +, and -)实现无序列表。但是要注意在(</em>, +, and -)和文字之间需要添加空格。（建议：一个文档中只是用一种无序列表的表示方式）</p>
-
-<h3>6. 有序列表</h3>
-
-<hr />
-
-<p>使用数字后面跟上句号。（还要有空格）</p>
-
-<h3>7. 链接（Links）</h3>
-
-<hr />
-
-<p>Markdown中有两种方式，实现链接，分别为内联方式和引用方式。</p>
-
-<p>内联方式：</p>
-
-<pre><code>This is an [example link](http://example.com/).
-</code></pre>
-
-<p>引用方式：</p>
-
-<pre><code>I get 10 times more traffic from [Google][1] than from [Yahoo][2] or [MSN][3].  
-
-[1]: http://google.com/        "Google" 
-[2]: http://search.yahoo.com/  "Yahoo Search" 
-[3]: http://search.msn.com/    "MSN Search"
-</code></pre>
-
-<h3>8. 图片（Images）</h3>
-
-<hr />
-
-<p>图片的处理方式和链接的处理方式，非常的类似。</p>
-
-<p>内联方式：</p>
-
-<pre><code>    ![alt text](/path/to/img.jpg "Title")
-</code></pre>
-
-<p>引用方式：</p>
-
-<pre><code>    ![alt text][id] 
-
-    [id]: /path/to/img.jpg "Title"
-</code></pre>
-
-<h3>9. 代码（HTML中所谓的Code）</h3>
-
-<hr />
-
-<p>实现方式有两种：</p>
-
-<p>第一种：简单文字出现一个代码框。</p>
-
-<pre><code>`&lt;blockquote&gt;`。（`不是单引号而是左上角的ESC下面~中的`）
-</code></pre>
-
-<p>第二种：大片文字需要实现代码框。</p>
-
-<pre><code>使用Tab和四个空格。
-</code></pre>
-
-<h3>10. 脚注（footnote）</h3>
-
-<hr />
-
-<p>实现方式如下：</p>
-
-<pre><code>hello[^hello]
-
-[^hello]: hi
-</code></pre>
-
-<h3>11. 下划线</h3>
-
-<hr />
-
-<p>在空白行下方添加三条“-”横线。（前面讲过在文字下方添加“-”，实现的2级标题）</p>
-]]></content>
-  </entry>
-  
-</feed>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | BryanFu Blog]]></title>
+  <link href="http://helloyokoy.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://helloyokoy.github.io/"/>
+  <updated>2015-08-08T23:07:23+08:00</updated>
+  <id>http://helloyokoy.github.io/</id>
+  <author>
+    <name><![CDATA[BryanFu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[octopress搭建教程]]></title>
+    <link href="http://helloyokoy.github.io/blog/2015/08/08/octopressda-jian-jiao-cheng/"/>
+    <updated>2015-08-08T21:00:18+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/2015/08/08/octopressda-jian-jiao-cheng</id>
+    <content type="html"><![CDATA[<h2>1.安装Octopress</h2>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress
+bundle update    # 安装依赖的组件
+rake install     # 安装默认的Octopress主题
+</code></pre>
+
+<h2>2.配置Git</h2>
+
+<p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
+
+<pre><code>git remote rm origin
+git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
+git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
+</code></pre>
+
+<h2>3.配置github</h2>
+
+<p>在github上创建一个仓库，注意仓库名称要以下这种格式yourname.github.io，这样代码发布后自动这个url就可以访问了（此处一定要注意哦，我刚开始没注意，死活没得到想要的效果）。</p>
+
+<p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL <a href="http://yourname.github.io/">http://yourname.github.io/</a> (注意不能用 https协议，必须用 http协议)。</p>
+
+<p>设定 GitHub Pages</p>
+
+<pre><code>rake setup_github_pages
+以上执行后会要求 read/write url for repository ：
+</code></pre>
+
+<p>git@github.com:yourname/yourname.github.io.git</p>
+
+<pre><code>rake generate
+rake deploy
+</code></pre>
+
+<h2>4.将 source 也加入 git</h2>
+
+<pre><code>git add .
+git commit -m 'initial source commit'
+git push origin source
+</code></pre>
+
+<h2>5.更新 Octopress</h2>
+
+<pre><code>git remote add octopress git://github.com/imathis/  octopress.git
+git pull octopress master     # Get the latest Octopress
+bundle install                # Keep gems updated
+rake update_source            # update the template's   source
+rake update_style             # update the template's style
+</code></pre>
+
+<h2>6.发表新文章</h2>
+
+<pre><code>rake new_post["新文章名称"]
+rake preview
+用浏览器打开 http://localhost:4000 就可以看到效果了。
+</code></pre>
+
+<h2>7.发布</h2>
+
+<pre><code>rake gen_deploy
+rake deploy                 #若发布后无效果可试试此命令
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
