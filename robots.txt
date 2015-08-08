@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://helloyokoy.github.io/sitemap.xml 
