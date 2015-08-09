@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-09T15:00:37+08:00</updated>
+  <updated>2015-08-09T15:10:21+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,244 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[ruby语法]]></title>
-    <link href="http://helloyokoy.github.io/blog/rubyyu-fa/"/>
-    <updated>2015-08-09T14:08:03+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/rubyyu-fa</id>
-    <content type="html"><![CDATA[<h3 id="section">语法</h3>
-<p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
-
-<p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
-
-<p>Ruby中的局部变量名首字母的约定是小写。</p>
-
-<p>Ruby中的构造函数名称为initialize。</p>
-
-<p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
-
-<p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
-attr_accessor是可读也可写</p>
-
-<p>Ruby中的全局变量前导$符。</p>
-
-<p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
-
-<p>Ruby中任何的表达式都会返回值，
-<!--more--></p>
-
-<p>sample</p>
-
-<pre><code>class Rectangle
-  		def initialize(wdth, hgt)
-	@width = wdth
-	@height = hgt
-  		end
-  		def width=(wdth)
-	@width = wdth
-  		end
-  
-end
-
-r = Rectangle.new(2,3)
-puts r.width = 5 #output 5
-puts r.width # error! because the width not support read
-继续补充下attr_accessor的使用，sample
-
-class Rectangle
-  		attr_accessor :width
-  		attr_accessor :height
-  		attr_accessor :width2
-  		attr_accessor :height2
-</code></pre>
-
-  	def initialize(wdth, hgt)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-</code></pre>
-
-  	def area2()
-<pre><code>	return @width2 * @height2
-  	end
-  
-  
-end
-
-r = Rectangle.new(2,3)
-r.width = 5 # give samename's variable value
-r.height = 5 
-puts r.area() #outputs is 25  
-
-r.width2 = 6 # not samename's variable  create
-r.height2 = 6 
-puts r.area2() # outputs is 36
-</code></pre>
-
-<p>上面的代码说明了，在使用attr_accessor的时候，会寻找是否有同名的成员变量，如果有则访问同名成员变量，如果没有会默认创建一个前导@的成员变量</p>
-
-<h3 id="section-1">神奇的操作符重载</h3>
-
-<p>Ruby支持操作符重载，而且很神奇！</p>
-
-<pre><code>class Rectangle
-  	attr_accessor :width
-  	attr_accessor :height
-</code></pre>
-
-  	def initialize(wdth, hgt)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-</code></pre>
-
-  	def +(addRectangle)
-<pre><code>	return self.area + addRectangle.area
-  	end
-
-end
-
-r1 = Rectangle.new(2,2)
-r2 = Rectangle.new(3,3)
-puts r1+r2 # operator override
-puts r1+(r2)
-puts r1.+(r2) # standard function calling format
-</code></pre>
-
-<p>神奇吧，其实把+号理解为一个函数的名字最好不过了，就像最后一个写法，哈哈。</p>
-
-<h3 id="section-2">参数的传递</h3>
-
-<p>参数的传递中有默认值与可变长参数两个比较有特点的地方，其他语言有的，ruby也有。</p>
-
-<ol>
-  <li>参数的默认值
-默认值的设置很简单，与其他语言一样，</li>
-</ol>
-
-<p>sample</p>
-
-<pre><code>class Rectangle
-  	attr_accessor :width
-  	attr_accessor :height
-</code></pre>
-
-  	def initialize(wdth = 2, hgt = 2)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-
-end
-
-r1 = Rectangle.new
-puts r1.area 看到了吧，使用默认值了
-</code></pre>
-
-<ol>
-  <li>可选参数，可变长参数</li>
-</ol>
-
-<p>sample</p>
-
-<pre><code>class ParamSample
-  	def sayHello(*names)
-  puts names.class
-  puts "Hello #{names.join(",")}!"
-  	end
-  
-end
-
-ps = ParamSample.new
-ps.sayHello #output Array Hello !
-ps.sayHello("lee","snake") #output Array Hello lee,snake! 可以看出，可变长参数前缀*号，可变长参数的实质是一个Array，呵呵。
-</code></pre>
-
-<h3 id="section-3">类变量以及类方法</h3>
-
-<p>sample code</p>
-
-<pre><code>class BankAccount
-  	@@interestRate = 6.5
-  	def BankAccount.getInterestRate()
-   		@@interestRate
-  	end
-  	attr_accessor :balance
-  	def initialize(bal)
-	@balance = bal
-  	end
-end
-
-puts BankAccount.getInterestRate() 以上代码中描述了如何定义类变量以及如何访问类变量
-</code></pre>
-
-<p>Ruby的成员访问修饰关键字分为三种，与c#一样。</p>
-
-<ol>
-  <li>
-    <p>private 只能为该对象所调用的方法</p>
-  </li>
-  <li>
-    <p>protected 只能为该对象及其子对象所调用的方法</p>
-  </li>
-  <li>
-    <p>public 可以让任何对象所调用的方法
-与c#不同的是，ruby的访问修饰符从定义处开始起作用，直到下一个访问修饰符出现时终止，</p>
-  </li>
-</ol>
-
-<p>比如</p>
-
-<pre><code>class Greeter
-  	def initialize
-  	end
-</code></pre>
-
-  	private
-  	def sayhi()
-<pre><code>	puts "hi"
-  	end
-</code></pre>
-
-  	def saybye()
-<pre><code>	puts "bye"
-  	end
-</code></pre>
-
-  	public
-  	def say()
-<pre><code>	sayhi
-	saybye
-  	end
-  
-end
-
-g = Greeter.new
-g.say # output hi bye
-g.sayhi # error because the sayhi isn't publics member
-</code></pre>
-
-<p>initialize默认就是private的</p>
-
-<p>其他方法默认是public的 成员变量和类变量默认是private的 要用attr_reader或attr_accessor来增加读写控制</p>
-
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[IOS多线程]]></title>
@@ -1249,77 +1011,248 @@ MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添�
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[octopress搭建教程]]></title>
-    <link href="http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/"/>
-    <updated>2015-08-08T21:00:18+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng</id>
-    <content type="html"><![CDATA[<h2 id="octopress">1.安装Octopress</h2>
-<pre><code>git clone git://github.com/imathis/octopress.git octopress
-cd octopress
-bundle update    # 安装依赖的组件
-rake install     # 安装默认的Octopress主题
+    <title type="html"><![CDATA[ruby语法]]></title>
+    <link href="http://helloyokoy.github.io/blog/rubyyu-fa/"/>
+    <updated>2014-08-09T14:08:03+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/rubyyu-fa</id>
+    <content type="html"><![CDATA[<h3 id="section">语法</h3>
+<p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
+
+<p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
+
+<p>Ruby中的局部变量名首字母的约定是小写。</p>
+
+<p>Ruby中的构造函数名称为initialize。</p>
+
+<p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
+
+<p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
+attr_accessor是可读也可写</p>
+
+<p>Ruby中的全局变量前导$符。</p>
+
+<p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
+
+<p>Ruby中任何的表达式都会返回值，
+<!--more--></p>
+
+<p>sample</p>
+
+<pre><code>class Rectangle
+  		def initialize(wdth, hgt)
+	@width = wdth
+	@height = hgt
+  		end
+  		def width=(wdth)
+	@width = wdth
+  		end
+  
+end
+
+r = Rectangle.new(2,3)
+puts r.width = 5 #output 5
+puts r.width # error! because the width not support read
+继续补充下attr_accessor的使用，sample
+
+class Rectangle
+  		attr_accessor :width
+  		attr_accessor :height
+  		attr_accessor :width2
+  		attr_accessor :height2
 </code></pre>
 
-<h2 id="git">2.配置Git</h2>
-<p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
-
-<pre><code>git remote rm origin
-git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
-git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
+  	def initialize(wdth, hgt)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
 </code></pre>
 
-<!--more-->
-
-<h2 id="github">3.配置github</h2>
-<p>在github上创建一个仓库，注意仓库名称要以下这种格式yourname.github.io，这样代码发布后自动这个url就可以访问了（此处一定要注意哦，我刚开始没注意，死活没得到想要的效果）。</p>
-
-<p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL http://yourname.github.io/ (注意不能用 https协议，必须用 http协议)。</p>
-
-<p>设定 GitHub Pages</p>
-
-<pre><code>rake setup_github_pages
-以上执行后会要求 read/write url for repository ：
+  	def area()
+<pre><code>	return @width * @height
+  	end
 </code></pre>
 
-<p>git@github.com:yourname/yourname.github.io.git</p>
+  	def area2()
+<pre><code>	return @width2 * @height2
+  	end
+  
+  
+end
 
-<pre><code>rake generate
-rake deploy
+r = Rectangle.new(2,3)
+r.width = 5 # give samename's variable value
+r.height = 5 
+puts r.area() #outputs is 25  
+
+r.width2 = 6 # not samename's variable  create
+r.height2 = 6 
+puts r.area2() # outputs is 36
 </code></pre>
 
-<h2 id="source--git">4.将 source 也加入 git</h2>
-<pre><code>git add .
-git commit -m 'initial source commit'
-git push origin source
+<p>上面的代码说明了，在使用attr_accessor的时候，会寻找是否有同名的成员变量，如果有则访问同名成员变量，如果没有会默认创建一个前导@的成员变量</p>
+
+<h3 id="section-1">神奇的操作符重载</h3>
+
+<p>Ruby支持操作符重载，而且很神奇！</p>
+
+<pre><code>class Rectangle
+  	attr_accessor :width
+  	attr_accessor :height
 </code></pre>
 
-<h2 id="octopress-1">5.更新 Octopress</h2>
-<pre><code>git remote add octopress git://github.com/imathis/	octopress.git
-git pull octopress master     # Get the latest Octopress
-bundle install                # Keep gems updated
-rake update_source            # update the template's 	source
-rake update_style             # update the template's style
+  	def initialize(wdth, hgt)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
 </code></pre>
 
-<h2 id="section">6.发表新文章</h2>
-<pre><code>rake new_post["新文章名称"]
-rake preview
-用浏览器打开 http://localhost:4000 就可以看到效果了。
+  	def area()
+<pre><code>	return @width * @height
+  	end
 </code></pre>
 
-<h2 id="section-1">7.发布</h2>
+  	def +(addRectangle)
+<pre><code>	return self.area + addRectangle.area
+  	end
 
-<pre><code>rake gen_deploy
-rake deploy                 #若发布后无效果可试试此命令
+end
+
+r1 = Rectangle.new(2,2)
+r2 = Rectangle.new(3,3)
+puts r1+r2 # operator override
+puts r1+(r2)
+puts r1.+(r2) # standard function calling format
 </code></pre>
+
+<p>神奇吧，其实把+号理解为一个函数的名字最好不过了，就像最后一个写法，哈哈。</p>
+
+<h3 id="section-2">参数的传递</h3>
+
+<p>参数的传递中有默认值与可变长参数两个比较有特点的地方，其他语言有的，ruby也有。</p>
+
+<ol>
+  <li>参数的默认值
+默认值的设置很简单，与其他语言一样，</li>
+</ol>
+
+<p>sample</p>
+
+<pre><code>class Rectangle
+  	attr_accessor :width
+  	attr_accessor :height
+</code></pre>
+
+  	def initialize(wdth = 2, hgt = 2)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
+</code></pre>
+
+  	def area()
+<pre><code>	return @width * @height
+  	end
+
+end
+
+r1 = Rectangle.new
+puts r1.area 看到了吧，使用默认值了
+</code></pre>
+
+<ol>
+  <li>可选参数，可变长参数</li>
+</ol>
+
+<p>sample</p>
+
+<pre><code>class ParamSample
+  	def sayHello(*names)
+  puts names.class
+  puts "Hello #{names.join(",")}!"
+  	end
+  
+end
+
+ps = ParamSample.new
+ps.sayHello #output Array Hello !
+ps.sayHello("lee","snake") #output Array Hello lee,snake! 可以看出，可变长参数前缀*号，可变长参数的实质是一个Array，呵呵。
+</code></pre>
+
+<h3 id="section-3">类变量以及类方法</h3>
+
+<p>sample code</p>
+
+<pre><code>class BankAccount
+  	@@interestRate = 6.5
+  	def BankAccount.getInterestRate()
+   		@@interestRate
+  	end
+  	attr_accessor :balance
+  	def initialize(bal)
+	@balance = bal
+  	end
+end
+
+puts BankAccount.getInterestRate() 以上代码中描述了如何定义类变量以及如何访问类变量
+</code></pre>
+
+<p>Ruby的成员访问修饰关键字分为三种，与c#一样。</p>
+
+<ol>
+  <li>
+    <p>private 只能为该对象所调用的方法</p>
+  </li>
+  <li>
+    <p>protected 只能为该对象及其子对象所调用的方法</p>
+  </li>
+  <li>
+    <p>public 可以让任何对象所调用的方法
+与c#不同的是，ruby的访问修饰符从定义处开始起作用，直到下一个访问修饰符出现时终止，</p>
+  </li>
+</ol>
+
+<p>比如</p>
+
+<pre><code>class Greeter
+  	def initialize
+  	end
+</code></pre>
+
+  	private
+  	def sayhi()
+<pre><code>	puts "hi"
+  	end
+</code></pre>
+
+  	def saybye()
+<pre><code>	puts "bye"
+  	end
+</code></pre>
+
+  	public
+  	def say()
+<pre><code>	sayhi
+	saybye
+  	end
+  
+end
+
+g = Greeter.new
+g.say # output hi bye
+g.sayhi # error because the sayhi isn't publics member
+</code></pre>
+
+<p>initialize默认就是private的</p>
+
+<p>其他方法默认是public的 成员变量和类变量默认是private的 要用attr_reader或attr_accessor来增加读写控制</p>
+
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[markdown简介]]></title>
-    <link href="http://helloyokoy.github.io/blog/xin-wen-zhang-ming-cheng/"/>
-    <updated>2015-08-08T18:08:31+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/xin-wen-zhang-ming-cheng</id>
+    <title type="html"><![CDATA[markdown语法]]></title>
+    <link href="http://helloyokoy.github.io/blog/markdownyu-fa/"/>
+    <updated>2014-06-09T15:07:14+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/markdownyu-fa</id>
     <content type="html"><![CDATA[<h3 id="word">1. 标题设置（让字体变大，和word的标题意思一样）</h3>
 <hr />
 
@@ -1415,6 +1348,73 @@ rake deploy                 #若发布后无效果可试试此命令
 
 <p>在空白行下方添加三条“-”横线。（前面讲过在文字下方添加“-”，实现的2级标题）</p>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[octopress搭建教程]]></title>
+    <link href="http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/"/>
+    <updated>2014-06-08T21:00:18+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng</id>
+    <content type="html"><![CDATA[<h2 id="octopress">1.安装Octopress</h2>
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress
+bundle update    # 安装依赖的组件
+rake install     # 安装默认的Octopress主题
+</code></pre>
+
+<h2 id="git">2.配置Git</h2>
+<p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
+
+<pre><code>git remote rm origin
+git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
+git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
+</code></pre>
+
+<!--more-->
+
+<h2 id="github">3.配置github</h2>
+<p>在github上创建一个仓库，注意仓库名称要以下这种格式yourname.github.io，这样代码发布后自动这个url就可以访问了（此处一定要注意哦，我刚开始没注意，死活没得到想要的效果）。</p>
+
+<p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL http://yourname.github.io/ (注意不能用 https协议，必须用 http协议)。</p>
+
+<p>设定 GitHub Pages</p>
+
+<pre><code>rake setup_github_pages
+以上执行后会要求 read/write url for repository ：
+</code></pre>
+
+<p>git@github.com:yourname/yourname.github.io.git</p>
+
+<pre><code>rake generate
+rake deploy
+</code></pre>
+
+<h2 id="source--git">4.将 source 也加入 git</h2>
+<pre><code>git add .
+git commit -m 'initial source commit'
+git push origin source
+</code></pre>
+
+<h2 id="octopress-1">5.更新 Octopress</h2>
+<pre><code>git remote add octopress git://github.com/imathis/	octopress.git
+git pull octopress master     # Get the latest Octopress
+bundle install                # Keep gems updated
+rake update_source            # update the template's 	source
+rake update_style             # update the template's style
+</code></pre>
+
+<h2 id="section">6.发表新文章</h2>
+<pre><code>rake new_post["新文章名称"]
+rake preview
+用浏览器打开 http://localhost:4000 就可以看到效果了。
+</code></pre>
+
+<h2 id="section-1">7.发布</h2>
+
+<pre><code>rake gen_deploy
+rake deploy                 #若发布后无效果可试试此命令
+</code></pre>
 ]]></content>
   </entry>
   

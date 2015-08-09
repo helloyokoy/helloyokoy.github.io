@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://helloyokoy.github.io/blog/rubyyu-fa/</loc>
-    <lastmod>2015-08-09T14:08:03+08:00</lastmod>
-  </url>
-  <url>
     <loc>http://helloyokoy.github.io/blog/iosduo-xian-cheng/</loc>
     <lastmod>2015-08-08T22:25:55+08:00</lastmod>
   </url>
@@ -17,12 +13,16 @@
     <lastmod>2015-08-08T22:04:09+08:00</lastmod>
   </url>
   <url>
-    <loc>http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/</loc>
-    <lastmod>2015-08-08T21:00:18+08:00</lastmod>
+    <loc>http://helloyokoy.github.io/blog/rubyyu-fa/</loc>
+    <lastmod>2014-08-09T14:08:03+08:00</lastmod>
   </url>
   <url>
-    <loc>http://helloyokoy.github.io/blog/xin-wen-zhang-ming-cheng/</loc>
-    <lastmod>2015-08-08T18:08:31+08:00</lastmod>
+    <loc>http://helloyokoy.github.io/blog/markdownyu-fa/</loc>
+    <lastmod>2014-06-09T15:07:14+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/</loc>
+    <lastmod>2014-06-08T21:00:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://helloyokoy.github.io/404.html</loc>
@@ -43,15 +43,18 @@
     <loc>http://helloyokoy.github.io/about/</loc>
   </url>
   <url>
-    <loc>http://helloyokoy.github.io/blog/categories/markdown/</loc>
+    <loc>http://helloyokoy.github.io/blog/categories/octopress/</loc>
   </url>
   <url>
-    <loc>http://helloyokoy.github.io/blog/categories/octopress/</loc>
+    <loc>http://helloyokoy.github.io/blog/categories/ruby/</loc>
   </url>
   <url>
     <loc>http://helloyokoy.github.io/blog/categories/ios/</loc>
   </url>
   <url>
-    <loc>http://helloyokoy.github.io/blog/categories/ruby/</loc>
+    <loc>http://helloyokoy.github.io/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/posts/3/</loc>
   </url>
 </urlset>
