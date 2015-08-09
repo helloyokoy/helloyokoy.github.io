@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-09T17:28:39+08:00</updated>
+  <updated>2015-08-09T18:39:53+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -30,14 +30,16 @@
 <!--more-->
 
 <h3 id="section">特性</h3>
-<p>####内存管理
-解压后的图片，即Android中的Bitmap，占用大量的内存。大的内存占用势必引发更加频繁的GC。在5.0以下，GC将会显著地引发界面卡顿。</p>
+
+<h4 id="section-1">内存管理</h4>
+
+<p>解压后的图片，即Android中的Bitmap，占用大量的内存。大的内存占用势必引发更加频繁的GC。在5.0以下，GC将会显著地引发界面卡顿。</p>
 
 <p>在5.0以下系统，Fresco将图片放到一个特别的内存区域。当然，在图片不显示的时候，占用的内存会自动被释放。这会使得APP更加流畅，减少因图片内存占用而引发的OOM。</p>
 
 <p>Fresco 在低端机器上表现一样出色，你再也不用因图片内存占用而思前想后。</p>
 
-<h4 id="section-1">图片的渐进式呈现</h4>
+<h4 id="section-2">图片的渐进式呈现</h4>
 <p>渐进式的JPEG图片格式已经流行数年了，渐进式图片格式先呈现大致的图片轮廓，然后随着图片下载的继续，呈现逐渐清晰的图片，这对于移动设备，尤其是慢网络有极大的利好，可带来更好的用户体验。</p>
 
 <p>Android 本身的图片库不支持此格式，但是Fresco支持。使用时，和往常一样，仅仅需要提供一个图片的URI即可，剩下的事情，Fresco会处理。</p>
@@ -45,7 +47,7 @@
 <h4 id="gifwebp">Gif图和WebP格式</h4>
 <p>是的，支持加载Gif图，支持WebP格式。</p>
 
-<h4 id="section-2">图像的呈现</h4>
+<h4 id="section-3">图像的呈现</h4>
 <p>Fresco 的 Drawees 设计，带来一些有用的特性：</p>
 
 <ul>
@@ -56,7 +58,7 @@
   <li>指定用户按压时的overlay</li>
 </ul>
 
-<h4 id="section-3">图像的加载</h4>
+<h4 id="section-4">图像的加载</h4>
 <p>Fresco 的 image pipeline 设计，允许用户在多方面控制图片的加载：</p>
 
 <ul>
@@ -66,13 +68,420 @@
   <li>对于本地图，如有EXIF缩略图，在大图加载完成之前，可先显示缩略图</li>
   <li>缩放或者旋转图片</li>
   <li>处理已下载的图片</li>
-  <li>WebP 支持
-###了解更多</li>
+  <li>WebP 支持</li>
+</ul>
+
+<h3 id="section-5">了解更多</h3>
+<ul>
   <li>相关博客: <a href="https://code.facebook.com/posts/366199913563917" title="Title">Fresco的发布</a></li>
   <li><a href="http://www.fresco-cn.org/docs/download-fresco.html" title="Title">下载</a>Fresco</li>
   <li><a href="http://www.fresco-cn.org/docs/index.html" title="Title">文档</a></li>
   <li><a href="https://github.com/facebook/fresco" title="Title">GitHub</a>的源码</li>
 </ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[android开源框架]]></title>
+    <link href="http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia/"/>
+    <updated>2015-05-09T17:42:35+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia</id>
+    <content type="html"><![CDATA[<h3 id="volley">1、volley</h3>
+
+<p>项目地址 https://github.com/smanikandan14/Volley-demo</p>
+
+<ol>
+  <li>JSON，图像等的异步下载；</li>
+  <li>网络请求的排序（scheduling）</li>
+  <li>网络请求的优先级处理</li>
+  <li>缓存</li>
+  <li>多级别取消请求</li>
+  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
+</ol>
+
+<h3 id="android-async-http">2、android-async-http</h3>
+
+<p>项目地址：https://github.com/loopj/android-async-http</p>
+
+<p>文档介绍：http://loopj.com/android-async-http/</p>
+
+<ol>
+  <li>在匿名回调中处理请求结果</li>
+  <li>在UI线程外进行http请求</li>
+  <li>文件断点上传</li>
+  <li>智能重试</li>
+  <li>默认gzip压缩</li>
+  <li>支持解析成Json格式</li>
+  <li>可将Cookies持久化到SharedPreferences
+<!--more-->
+###3、Afinal框架</li>
+</ol>
+
+<p>项目地址：https://github.com/yangfuhai/afinal</p>
+
+<p>主要有四大模块：</p>
+
+<ol>
+  <li>数据库模块：android中的orm框架，使用了线程池对sqlite进行操作。</li>
+  <li>注解模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</li>
+  <li>网络模块：通过httpclient进行封装http数据请求，支持ajax方式加载，支持下载、上传文件功能。</li>
+  <li>图片缓存模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</li>
+  <li>
+    <h3 id="xutils">4、xUtils框架</h3>
+  </li>
+</ol>
+
+<p>项目地址：https://github.com/wyouflf/xUtils</p>
+
+<p>主要有四大模块：</p>
+
+<ol>
+  <li>数据库模块：android中的orm框架，一行代码就可以进行增删改查；
+         支持事务，默认关闭；
+         可通过注解自定义表名，列名，外键，唯一性约束，NOT NULL约束，CHECK约束等（需要混淆的时候请注解表名和列名）；
+         支持绑定外键，保存实体时外键关联实体自动保存或更新；
+         自动加载外键关联实体，支持延时加载；
+         支持链式表达查询，更直观的查询语义，参考下面的介绍或sample中的例子。</li>
+  <li>注解模块：android中的ioc框架，完全注解方式就可以进行UI，资源和事件绑定；
+         新的事件绑定方式，使用混淆工具混淆后仍可正常工作；
+         目前支持常用的20种事件绑定，参见ViewCommonEventListener类和包com.lidroid.xutils.view.annotation.event。</li>
+  <li>网络模块：支持同步，异步方式的请求；
+         支持大文件上传，上传大文件不会oom；
+         支持GET，POST，PUT，MOVE，COPY，DELETE，HEAD，OPTIONS，TRACE，CONNECT请求；
+         下载支持301/302重定向，支持设置是否根据Content-Disposition重命名下载的文件；
+         返回文本内容的请求(默认只启用了GET请求)支持缓存，可设置默认过期时间和针对当前请求的过期时间。</li>
+  <li>图片缓存模块：加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象；
+         支持加载网络图片和本地图片；
+         内存管理使用lru算法，更好的管理bitmap内存；
+         可配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等…</li>
+</ol>
+
+<h3 id="thinkandroid">5、ThinkAndroid</h3>
+
+<p>项目地址：https://github.com/white-cat/ThinkAndroid</p>
+
+<p>主要有以下模块：</p>
+
+<ol>
+  <li>MVC模块：实现视图与模型的分离。</li>
+  <li>ioc模块：android中的ioc模块，完全注解方式就可以进行UI绑定、res中的资源的读取、以及对象的初始化。</li>
+  <li>数据库模块：android中的orm框架，使用了线程池对sqlite进行操作。</li>
+  <li>http模块：通过httpclient进行封装http数据请求，支持异步及同步方式加载。</li>
+  <li>缓存模块：通过简单的配置及设计可以很好的实现缓存，对缓存可以随意的配置</li>
+  <li>图片缓存模块：imageview加载图片的时候无需考虑图片加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。</li>
+  <li>配置器模块：可以对简易的实现配对配置的操作，目前配置文件可以支持Preference、Properties对配置进行存取。</li>
+  <li>日志打印模块：可以较快的轻易的是实现日志打印，支持日志打印的扩展，目前支持对sdcard写入本地打印、以及控制台打印</li>
+  <li>下载器模块:可以简单的实现多线程下载、后台下载、断点续传、对下载进行控制、如开始、暂停、删除等等。</li>
+  <li>网络状态检测模块：当网络状态改变时，对其进行检</li>
+</ol>
+
+<h3 id="loonandroid">6、LoonAndroid</h3>
+
+<p>项目地址：https://github.com/gdpancheng/LoonAndroid</p>
+
+<p>主要有以下模块：</p>
+
+<ol>
+  <li>自动注入框架（只需要继承框架内的application既可）</li>
+  <li>图片加载框架（多重缓存，自动回收，最大限度保证内存的安全性）</li>
+  <li>网络请求模块（继承了基本上现在所有的http请求）</li>
+  <li>eventbus（集成一个开源的框架）</li>
+  <li>验证框架（集成开源框架）</li>
+  <li>json解析（支持解析成集合或者对象）</li>
+  <li>数据库（不知道是哪位写的 忘记了）</li>
+  <li>多线程断点下载（自动判断是否支持多线程，判断是否是重定向）</li>
+  <li>自动更新模块</li>
+  <li>一系列工具类</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[leakCan内泄露检测]]></title>
+    <link href="http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/"/>
+    <updated>2015-04-11T17:53:41+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce</id>
+    <content type="html"><![CDATA[<h2 id="leakcanary">LeakCanary</h2>
+
+<p>Android 和 Java 内存泄露检测。</p>
+
+<blockquote>
+  <p>“A small leak will sink a great ship.” - Benjamin Franklin</p>
+</blockquote>
+
+<blockquote>
+  <p>千里之堤， 毁于蚁穴。 – 《韩非子·喻老》</p>
+</blockquote>
+
+<p><img src="https://raw.githubusercontent.com/liaohuqiu/leakcanary/master/assets/screenshot.png" alt="alt text" title="Title" /></p>
+
+<h4 id="demo">demo</h4>
+
+<p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
+
+<!--more-->
+
+<h3 id="section">开始使用</h3>
+
+<p>在 build.gradle 中加入引用，不同的编译使用不同的引用：</p>
+
+<pre><code>dependencies {
+   			 debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
+   			 releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+ 	}
+</code></pre>
+
+<p>在 Application 中：</p>
+
+<pre><code>public class ExampleApplication extends Application {
+	@Override public void onCreate() {
+	super.onCreate();
+	LeakCanary.install(this);
+  		}
+}
+</code></pre>
+
+<p>这样，就万事俱备了！ 在 debug build 中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
+
+<h4 id="leakcanary-1">为什么需要使用 LeakCanary？</h4>
+<p>问得好，看这个文章LeakCanary: <a href="http://www.liaohuqiu.net/cn/posts/leak-canary/" title="Title">让内存泄露无所遁形</a></p>
+
+<h3 id="section-1">如何使用</h3>
+
+<p>使用 RefWatcher 监控那些本该被回收的对象。</p>
+
+<pre><code>RefWatcher refWatcher = {...};
+
+// 监控
+refWatcher.watch(schrodingerCat);
+LeakCanary.install() 会返回一个预定义的 RefWatcher，同时也会启用一个 	ActivityRefWatcher，用于自动监控调用 Activity.onDestroy() 之后泄露的 activity。
+
+public class ExampleApplication extends Application {
+</code></pre>
+
+  	public static RefWatcher getRefWatcher(Context context) {
+<pre><code>	ExampleApplication application = (ExampleApplication) 	context.getApplicationContext();
+return application.refWatcher;
+  	}
+</code></pre>
+
+  	private RefWatcher refWatcher;
+
+  	@Override public void onCreate() {
+<pre><code>	super.onCreate();
+	refWatcher = LeakCanary.install(this);
+  	}
+} 使用 RefWatcher 监控 Fragment：
+
+public abstract class BaseFragment extends Fragment {
+</code></pre>
+
+  	@Override public void onDestroy() {
+<pre><code>	super.onDestroy();
+	RefWatcher refWatcher = ExampleApplication.getRefWatcher(getActivity());
+	refWatcher.watch(this);
+  	}
+} ###工作机制
+</code></pre>
+
+<ol>
+  <li>
+    <p>RefWatcher.watch() 创建一个 KeyedWeakReference 到要被监控的对象。</p>
+  </li>
+  <li>
+    <p>然后在后台线程检查引用是否被清除，如果没有，调用GC。</p>
+  </li>
+  <li>
+    <p>如果引用还是未被清除，把 heap 内存 dump 到 APP 对应的文件系统中的一个 .hprof 文件中。</p>
+  </li>
+  <li>
+    <p>在另外一个进程中的 HeapAnalyzerService 有一个 HeapAnalyzer 使用HAHA 解析这个文件。</p>
+  </li>
+  <li>
+    <p>得益于唯一的 reference key, HeapAnalyzer 找到 KeyedWeakReference，定位内存泄露。</p>
+  </li>
+  <li>
+    <p>HeapAnalyzer 计算 到 GC roots 的最短强引用路径，并确定是否是泄露。如果是的话，建立导致泄露的引用链。</p>
+  </li>
+  <li>
+    <p>引用链传递到 APP 进程中的 DisplayLeakService， 并以通知的形式展示出来。</p>
+  </li>
+</ol>
+
+<h3 id="leak-trace">如何复制 leak trace？</h3>
+
+<p>在 Logcat 中，你可以看到类似这样的 leak trace：</p>
+
+<pre><code>In com.example.leakcanary:1.0:1 com.example.leakcanary.MainActivity has leaked:
+
+* GC ROOT thread java.lang.Thread.&lt;Java Local&gt; (named 'AsyncTask #1')
+* references com.example.leakcanary.MainActivity$3.this$0 (anonymous class extends android.os.AsyncTask)
+* leaks com.example.leakcanary.MainActivity instance
+
+* Reference Key: e71f3bf5-d786-4145-8539-584afaecad1d
+* Device: Genymotion generic Google Nexus 6 - 5.1.0 - API 22 - 1440x2560 vbox86p
+* Android Version: 5.1 API: 22
+* Durations: watch=5086ms, gc=110ms, heap dump=435ms, analysis=2086ms 你甚至可以通过分享按钮把这些东西分享出去。
+</code></pre>
+
+<h3 id="sdk-">SDK 导致的内存泄露</h3>
+
+<p>随着时间的推移，很多SDK 和厂商 ROM 中的内存泄露问题已经被尽快修复了。但是，当这样的问题发生时，一般的开发者能做的事情很有限。</p>
+
+<p>LeakCanary 有一个已知问题的忽略列表，AndroidExcludedRefs.java，如果你发现了一个新的问题，请提一个 issue 并附上 leak trace, reference key, 机器型号和 SDK 版本。如果可以附带上 dump 文件的 链接那就再好不过了。</p>
+
+<p>对于最新发布的 Android，这点尤其重要。你有机会在帮助在早期发现新的内存泄露，这对整个 Android 社区都有极大的益处。</p>
+
+<p>开发版本的 Snapshots 包在这里： Sonatype’s snapshots repository。</p>
+
+<h3 id="leak-trace-">leak trace 之外</h3>
+
+<p>有时，leak trace 不够，你需要通过 MAT 或者 YourKit 深挖 dump 文件。</p>
+
+<p>通过以下方法，你能找到问题所在：</p>
+
+<ol>
+  <li>查找所有的 com.squareup.leakcanary.KeyedWeakReference 实例。</li>
+  <li>检查 key 字段</li>
+  <li>Find the KeyedWeakReference that has a key field equal to the reference key reported by LeakCanary.</li>
+  <li>找到 key 和 和 logcat 输出的 key 值一样的 KeyedWeakReference。</li>
+  <li>referent 字段对应的就是泄露的对象。</li>
+  <li>剩下的，就是动手修复了。最好是检查到 GC root 的最短强引用路径开始。</li>
+</ol>
+
+<h3 id="section-2">自定义</h3>
+
+<h4 id="ui-">UI 样式</h4>
+
+<p>DisplayLeakActivity 有一个默认的图标和标签，你只要在你自己的 APP 资源中，替换以下资源就可。</p>
+
+<pre><code>res/
+  	drawable-hdpi/
+__leak_canary_icon.png
+  	drawable-mdpi/
+__leak_canary_icon.png
+  	drawable-xhdpi/
+__leak_canary_icon.png
+  	drawable-xxhdpi/
+__leak_canary_icon.png
+  	drawable-xxxhdpi/
+__leak_canary_icon.png
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+  	&lt;string name="__leak_canary_display_activity_label"&gt;MyLeaks&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<h3 id="leak-trace-1">保存 leak trace</h3>
+
+<pre><code>DisplayLeakActivity saves up to 7 heap dumps &amp; leak traces in the app directory. You can change that number by providing R.integer.__leak_canary_max_stored_leaks in your app:
+</code></pre>
+
+<p>在 APP 的目录中，DisplayLeakActivity 保存了 7 个 dump 文件和 leak trace。你可以在你的 APP 中，定义 R.integer.__leak_canary_max_stored_leaks 来覆盖类库的默认值。</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+  	&lt;integer name="__leak_canary_max_stored_leaks"&gt;20&lt;/integer&gt;
+&lt;/resources&gt; ###上传 leak trace 到服务器
+</code></pre>
+
+<p>你可以改变处理完成的默认行为，将 leak trace 和 heap dump 上传到你的服务器以便统计分析。</p>
+
+<p>创建一个 LeakUploadService， 最简单的就是继承 DisplayLeakService ：</p>
+
+<pre><code>public class LeakUploadService extends DisplayLeakService {
+  	@Override
+  	protected void afterDefaultHandling(HeapDump heapDump, AnalysisResult result, 	String leakInfo) {
+	if (!result.leakFound || result.excludedLeak) {
+  	return;
+	}
+	myServer.uploadLeakBlocking(heapDump.heapDumpFile, leakInfo);
+  	}
+} 请确认 release 版本 使用 RefWatcher.DISABLED：
+
+public class ExampleApplication extends Application {
+</code></pre>
+
+  	public static RefWatcher getRefWatcher(Context context) {
+<pre><code>	ExampleApplication application = (ExampleApplication) context.getApplicationContext();
+	return application.refWatcher;
+  	}
+</code></pre>
+
+  	private RefWatcher refWatcher;
+
+  	@Override public void onCreate() {
+<pre><code>	super.onCreate();
+	refWatcher = installLeakCanary();
+  	}
+</code></pre>
+
+  	protected RefWatcher installLeakCanary() {
+<pre><code>	return RefWatcher.DISABLED;
+  	}
+}
+</code></pre>
+
+<p>自定义 RefWatcher：</p>
+
+<pre><code>public class DebugExampleApplication extends ExampleApplication {
+  	protected RefWatcher installLeakCanary() {
+	return LeakCanary.install(app, LeakUploadService.class);
+  	}
+}
+</code></pre>
+
+<p>别忘了注册 service：</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+&gt;
+  	&lt;application android:name="com.example.DebugExampleApplication"&gt;
+	&lt;service android:name="com.example.LeakUploadService" /&gt;
+  	&lt;/application&gt;
+&lt;/manifest&gt;
+</code></pre>
+
+<p><img src="https://github.com/liaohuqiu/leakcanary/raw/master/assets/icon_512.png" alt="alt text" title="Title" /></p>
+
+<p>本文转载自  <a href="http://www.liaohuqiu.net/cn/posts/leak-canary-read-me/" title="Title">srain博客</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[android学习资料]]></title>
+    <link href="http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/"/>
+    <updated>2015-03-11T17:30:37+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/androidxue-xi-zi-liao</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <p>博客</p>
+
+    <pre><code>  http://stormzhang.com/
+</code></pre>
+  </li>
+  <li>
+    <p>知乎回答</p>
+
+    <pre><code>  http://www.zhihu.com/question/33993035
+</code></pre>
+  </li>
+  <li>
+    <p>google Android官网</p>
+
+    <pre><code>  http://developer.android.com/
+</code></pre>
+  </li>
+  <li>
+    <p>stackoverflow  tag android</p>
+
+    <pre><code>  http://stackoverflow.com/questions/tagged/android
+</code></pre>
+  </li>
+</ul>
+
 ]]></content>
   </entry>
   

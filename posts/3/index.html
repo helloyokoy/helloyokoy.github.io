@@ -67,6 +67,7 @@
 	<li><a href="/">首页</a></li>
 	<li><a href="/blog/archives">文章列表</a></li>
 	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
 	<li><a href="/blog/categories/ruby">Ruby</a></li>
 	<li><a href="/about">关于</a></li>
 </ul>
@@ -78,6 +79,7 @@
 	<li><a href="/">首页</a></li>
 	<li><a href="/blog/archives">文章列表</a></li>
 	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
 	<li><a href="/blog/categories/ruby">Ruby</a></li>
 	<li><a href="/about">关于</a></li>
 </ul>
@@ -178,29 +180,41 @@ NSOperation &amp; NSOperationQueue
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/huan-jing-da-jian/">
+		<a href="/blog/androidkai-yuan-kuang-jia/">
 		
-			Rails 环境搭建</a>
+			Android开源框架</a>
 	</h2>
 	<div class="entry-content">
-		<blockquote>
-  <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
-次安装方法同样适用于产品环境！</p>
-</blockquote>
+		<h3 id="volley">1、volley</h3>
 
-<h3 id="section">系统需求</h3>
-<hr />
+<p>项目地址 https://github.com/smanikandan14/Volley-demo</p>
 
-<p>首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用:</p>
+<ol>
+  <li>JSON，图像等的异步下载；</li>
+  <li>网络请求的排序（scheduling）</li>
+  <li>网络请求的优先级处理</li>
+  <li>缓存</li>
+  <li>多级别取消请求</li>
+  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
+</ol>
 
-<p>Mac OS X
-任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux …)
-强烈新手使用 Ubuntu 省掉不必要的麻烦！
-以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $ 符号）</p>
+<h3 id="android-async-http">2、android-async-http</h3>
 
+<p>项目地址：https://github.com/loopj/android-async-http</p>
+
+<p>文档介绍：http://loopj.com/android-async-http/</p>
+
+<ol>
+  <li>在匿名回调中处理请求结果</li>
+  <li>在UI线程外进行http请求</li>
+  <li>文件断点上传</li>
+  <li>智能重试</li>
+  <li>默认gzip压缩</li>
+  <li>支持解析成Json格式</li>
+  <li>可将Cookies持久化到SharedPreferences
 
 		
-		<a href="/blog/huan-jing-da-jian/" class="more-link">阅读全文</a>
+		<a href="/blog/androidkai-yuan-kuang-jia/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -210,16 +224,16 @@ NSOperation &amp; NSOperationQueue
 
 
 
-2014 年11 月9 日</div>
+2015 年5 月9 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>
 	
-	<div class="comments"><a href="/blog/huan-jing-da-jian/#disqus_thread">评论</a></div>
+	<div class="comments"><a href="/blog/androidkai-yuan-kuang-jia/#disqus_thread">评论</a></div>
 	
 </div>
 </article>
@@ -227,7 +241,7 @@ NSOperation &amp; NSOperationQueue
 <nav id="pagenavi">
     
         
-            <a href="/posts/2" class="prev">Prev</a>
+            <a href="/posts/2" class="prev">上一页</a>
         
     
     

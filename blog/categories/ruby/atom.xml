@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-09T17:28:39+08:00</updated>
+  <updated>2015-08-09T18:39:53+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -56,10 +56,11 @@
 <p>Mac OS X
 任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux …)
 强烈新手使用 Ubuntu 省掉不必要的麻烦！
-以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $ 符号）</p>
+以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $  符号）</p>
 
 <!--more-->
-<p>####步骤0 － 安装系统需要的包</p>
+
+<h4 id="section-1">步骤0 － 安装系统需要的包</h4>
 
 <p>For Mac</p>
 
@@ -129,25 +130,38 @@ Rails 3.2.13 然后开始你的 Ruby，Rails 之旅吧。 欢迎来到 Ruby 的�
     <updated>2014-08-09T14:08:03+08:00</updated>
     <id>http://helloyokoy.github.io/blog/rubyyu-fa</id>
     <content type="html"><![CDATA[<h3 id="section">语法</h3>
-<p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
-
-<p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
-
-<p>Ruby中的局部变量名首字母的约定是小写。</p>
-
-<p>Ruby中的构造函数名称为initialize。</p>
-
-<p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
-
-<p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
+<ul>
+  <li>
+    <p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
+  </li>
+  <li>
+    <p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
+  </li>
+  <li>
+    <p>Ruby中的局部变量名首字母的约定是小写。</p>
+  </li>
+  <li>
+    <p>Ruby中的构造函数名称为initialize。</p>
+  </li>
+  <li>
+    <p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
+  </li>
+  <li>
+    <p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
 attr_accessor是可读也可写</p>
+  </li>
+  <li>
+    <p>Ruby中的全局变量前导$符。</p>
+  </li>
+  <li>
+    <p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
+  </li>
+  <li>
+    <p>Ruby中任何的表达式都会返回值，</p>
+  </li>
+</ul>
 
-<p>Ruby中的全局变量前导$符。</p>
-
-<p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
-
-<p>Ruby中任何的表达式都会返回值，
-<!--more--></p>
+<!--more-->
 
 <p>sample</p>
 
@@ -243,10 +257,10 @@ puts r1.+(r2) # standard function calling format
 
 <p>参数的传递中有默认值与可变长参数两个比较有特点的地方，其他语言有的，ruby也有。</p>
 
-<ol>
+<ul>
   <li>参数的默认值
 默认值的设置很简单，与其他语言一样，</li>
-</ol>
+</ul>
 
 <p>sample</p>
 
@@ -271,9 +285,9 @@ r1 = Rectangle.new
 puts r1.area 看到了吧，使用默认值了
 </code></pre>
 
-<ol>
+<ul>
   <li>可选参数，可变长参数</li>
-</ol>
+</ul>
 
 <p>sample</p>
 

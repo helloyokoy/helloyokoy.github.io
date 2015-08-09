@@ -1,0 +1,460 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>leakCan内泄露检测 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="LeakCanary Android 和 Java 内存泄露检测。 “A small leak will sink a great ship.” - Benjamin Franklin 千里之堤， 毁于蚁穴。 – 《韩非子·喻老》 demo 一个非常简单的 LeakCanary demo: &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">leakCan内泄露检测</h2>
+	<div class="entry-content"><h2 id="leakcanary">LeakCanary</h2>
+
+<p>Android 和 Java 内存泄露检测。</p>
+
+<blockquote>
+  <p>“A small leak will sink a great ship.” - Benjamin Franklin</p>
+</blockquote>
+
+<blockquote>
+  <p>千里之堤， 毁于蚁穴。 – 《韩非子·喻老》</p>
+</blockquote>
+
+<p><img src="https://raw.githubusercontent.com/liaohuqiu/leakcanary/master/assets/screenshot.png" alt="alt text" title="Title" /></p>
+
+<h4 id="demo">demo</h4>
+
+<p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
+
+<!--more-->
+
+<h3 id="section">开始使用</h3>
+
+<p>在 build.gradle 中加入引用，不同的编译使用不同的引用：</p>
+
+<pre><code>dependencies {
+   			 debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
+   			 releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+ 	}
+</code></pre>
+
+<p>在 Application 中：</p>
+
+<pre><code>public class ExampleApplication extends Application {
+	@Override public void onCreate() {
+	super.onCreate();
+	LeakCanary.install(this);
+  		}
+}
+</code></pre>
+
+<p>这样，就万事俱备了！ 在 debug build 中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
+
+<h4 id="leakcanary-1">为什么需要使用 LeakCanary？</h4>
+<p>问得好，看这个文章LeakCanary: <a href="http://www.liaohuqiu.net/cn/posts/leak-canary/" title="Title">让内存泄露无所遁形</a></p>
+
+<h3 id="section-1">如何使用</h3>
+
+<p>使用 RefWatcher 监控那些本该被回收的对象。</p>
+
+<pre><code>RefWatcher refWatcher = {...};
+
+// 监控
+refWatcher.watch(schrodingerCat);
+LeakCanary.install() 会返回一个预定义的 RefWatcher，同时也会启用一个 	ActivityRefWatcher，用于自动监控调用 Activity.onDestroy() 之后泄露的 activity。
+
+public class ExampleApplication extends Application {
+</code></pre>
+
+  	public static RefWatcher getRefWatcher(Context context) {
+<pre><code>	ExampleApplication application = (ExampleApplication) 	context.getApplicationContext();
+return application.refWatcher;
+  	}
+</code></pre>
+
+  	private RefWatcher refWatcher;
+
+  	@Override public void onCreate() {
+<pre><code>	super.onCreate();
+	refWatcher = LeakCanary.install(this);
+  	}
+} 使用 RefWatcher 监控 Fragment：
+
+public abstract class BaseFragment extends Fragment {
+</code></pre>
+
+  	@Override public void onDestroy() {
+<pre><code>	super.onDestroy();
+	RefWatcher refWatcher = ExampleApplication.getRefWatcher(getActivity());
+	refWatcher.watch(this);
+  	}
+} ###工作机制
+</code></pre>
+
+<ol>
+  <li>
+    <p>RefWatcher.watch() 创建一个 KeyedWeakReference 到要被监控的对象。</p>
+  </li>
+  <li>
+    <p>然后在后台线程检查引用是否被清除，如果没有，调用GC。</p>
+  </li>
+  <li>
+    <p>如果引用还是未被清除，把 heap 内存 dump 到 APP 对应的文件系统中的一个 .hprof 文件中。</p>
+  </li>
+  <li>
+    <p>在另外一个进程中的 HeapAnalyzerService 有一个 HeapAnalyzer 使用HAHA 解析这个文件。</p>
+  </li>
+  <li>
+    <p>得益于唯一的 reference key, HeapAnalyzer 找到 KeyedWeakReference，定位内存泄露。</p>
+  </li>
+  <li>
+    <p>HeapAnalyzer 计算 到 GC roots 的最短强引用路径，并确定是否是泄露。如果是的话，建立导致泄露的引用链。</p>
+  </li>
+  <li>
+    <p>引用链传递到 APP 进程中的 DisplayLeakService， 并以通知的形式展示出来。</p>
+  </li>
+</ol>
+
+<h3 id="leak-trace">如何复制 leak trace？</h3>
+
+<p>在 Logcat 中，你可以看到类似这样的 leak trace：</p>
+
+<pre><code>In com.example.leakcanary:1.0:1 com.example.leakcanary.MainActivity has leaked:
+
+* GC ROOT thread java.lang.Thread.&lt;Java Local&gt; (named 'AsyncTask #1')
+* references com.example.leakcanary.MainActivity$3.this$0 (anonymous class extends android.os.AsyncTask)
+* leaks com.example.leakcanary.MainActivity instance
+
+* Reference Key: e71f3bf5-d786-4145-8539-584afaecad1d
+* Device: Genymotion generic Google Nexus 6 - 5.1.0 - API 22 - 1440x2560 vbox86p
+* Android Version: 5.1 API: 22
+* Durations: watch=5086ms, gc=110ms, heap dump=435ms, analysis=2086ms 你甚至可以通过分享按钮把这些东西分享出去。
+</code></pre>
+
+<h3 id="sdk-">SDK 导致的内存泄露</h3>
+
+<p>随着时间的推移，很多SDK 和厂商 ROM 中的内存泄露问题已经被尽快修复了。但是，当这样的问题发生时，一般的开发者能做的事情很有限。</p>
+
+<p>LeakCanary 有一个已知问题的忽略列表，AndroidExcludedRefs.java，如果你发现了一个新的问题，请提一个 issue 并附上 leak trace, reference key, 机器型号和 SDK 版本。如果可以附带上 dump 文件的 链接那就再好不过了。</p>
+
+<p>对于最新发布的 Android，这点尤其重要。你有机会在帮助在早期发现新的内存泄露，这对整个 Android 社区都有极大的益处。</p>
+
+<p>开发版本的 Snapshots 包在这里： Sonatype’s snapshots repository。</p>
+
+<h3 id="leak-trace-">leak trace 之外</h3>
+
+<p>有时，leak trace 不够，你需要通过 MAT 或者 YourKit 深挖 dump 文件。</p>
+
+<p>通过以下方法，你能找到问题所在：</p>
+
+<ol>
+  <li>查找所有的 com.squareup.leakcanary.KeyedWeakReference 实例。</li>
+  <li>检查 key 字段</li>
+  <li>Find the KeyedWeakReference that has a key field equal to the reference key reported by LeakCanary.</li>
+  <li>找到 key 和 和 logcat 输出的 key 值一样的 KeyedWeakReference。</li>
+  <li>referent 字段对应的就是泄露的对象。</li>
+  <li>剩下的，就是动手修复了。最好是检查到 GC root 的最短强引用路径开始。</li>
+</ol>
+
+<h3 id="section-2">自定义</h3>
+
+<h4 id="ui-">UI 样式</h4>
+
+<p>DisplayLeakActivity 有一个默认的图标和标签，你只要在你自己的 APP 资源中，替换以下资源就可。</p>
+
+<pre><code>res/
+  	drawable-hdpi/
+__leak_canary_icon.png
+  	drawable-mdpi/
+__leak_canary_icon.png
+  	drawable-xhdpi/
+__leak_canary_icon.png
+  	drawable-xxhdpi/
+__leak_canary_icon.png
+  	drawable-xxxhdpi/
+__leak_canary_icon.png
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+  	&lt;string name="__leak_canary_display_activity_label"&gt;MyLeaks&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre>
+
+<h3 id="leak-trace-1">保存 leak trace</h3>
+
+<pre><code>DisplayLeakActivity saves up to 7 heap dumps &amp; leak traces in the app directory. You can change that number by providing R.integer.__leak_canary_max_stored_leaks in your app:
+</code></pre>
+
+<p>在 APP 的目录中，DisplayLeakActivity 保存了 7 个 dump 文件和 leak trace。你可以在你的 APP 中，定义 R.integer.__leak_canary_max_stored_leaks 来覆盖类库的默认值。</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+  	&lt;integer name="__leak_canary_max_stored_leaks"&gt;20&lt;/integer&gt;
+&lt;/resources&gt; ###上传 leak trace 到服务器
+</code></pre>
+
+<p>你可以改变处理完成的默认行为，将 leak trace 和 heap dump 上传到你的服务器以便统计分析。</p>
+
+<p>创建一个 LeakUploadService， 最简单的就是继承 DisplayLeakService ：</p>
+
+<pre><code>public class LeakUploadService extends DisplayLeakService {
+  	@Override
+  	protected void afterDefaultHandling(HeapDump heapDump, AnalysisResult result, 	String leakInfo) {
+	if (!result.leakFound || result.excludedLeak) {
+  	return;
+	}
+	myServer.uploadLeakBlocking(heapDump.heapDumpFile, leakInfo);
+  	}
+} 请确认 release 版本 使用 RefWatcher.DISABLED：
+
+public class ExampleApplication extends Application {
+</code></pre>
+
+  	public static RefWatcher getRefWatcher(Context context) {
+<pre><code>	ExampleApplication application = (ExampleApplication) context.getApplicationContext();
+	return application.refWatcher;
+  	}
+</code></pre>
+
+  	private RefWatcher refWatcher;
+
+  	@Override public void onCreate() {
+<pre><code>	super.onCreate();
+	refWatcher = installLeakCanary();
+  	}
+</code></pre>
+
+  	protected RefWatcher installLeakCanary() {
+<pre><code>	return RefWatcher.DISABLED;
+  	}
+}
+</code></pre>
+
+<p>自定义 RefWatcher：</p>
+
+<pre><code>public class DebugExampleApplication extends ExampleApplication {
+  	protected RefWatcher installLeakCanary() {
+	return LeakCanary.install(app, LeakUploadService.class);
+  	}
+}
+</code></pre>
+
+<p>别忘了注册 service：</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+&gt;
+  	&lt;application android:name="com.example.DebugExampleApplication"&gt;
+	&lt;service android:name="com.example.LeakUploadService" /&gt;
+  	&lt;/application&gt;
+&lt;/manifest&gt;
+</code></pre>
+
+<p><img src="https://github.com/liaohuqiu/leakcanary/raw/master/assets/icon_512.png" alt="alt text" title="Title" /></p>
+
+<p>本文转载自  <a href="http://www.liaohuqiu.net/cn/posts/leak-canary-read-me/" title="Title">srain博客</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年4 月11 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+	<div class="comments"><a href="#disqus_thread">评论</a></div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'helloyokoy';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/';
+        var disqus_url = 'http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>ruby语法 - BryanFu Blog</title>
+	<title>android学习资料 - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="语法 Ruby中的类以class开始 以end结束，类名首字母的约定是大写。 Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。 Ruby中的局部变量名首字母的约定是小写。 Ruby中的构造函数名称为initialize。 Ruby中的成员变量(实例变量)前导@符， &hellip;">
+	<meta name="description" content="博客 http://stormzhang.com/ 知乎回答 http://www.zhihu.com/question/33993035 google Android官网 http://developer.android.com/ stackoverflow tag android http &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -122,249 +122,33 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">Ruby语法</h2>
-	<div class="entry-content"><h3 id="section">语法</h3>
-<ul>
+	<h2 class="title">Android学习资料</h2>
+	<div class="entry-content"><ul>
   <li>
-    <p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
+    <p>博客</p>
+
+    <pre><code>  http://stormzhang.com/
+</code></pre>
   </li>
   <li>
-    <p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
+    <p>知乎回答</p>
+
+    <pre><code>  http://www.zhihu.com/question/33993035
+</code></pre>
   </li>
   <li>
-    <p>Ruby中的局部变量名首字母的约定是小写。</p>
+    <p>google Android官网</p>
+
+    <pre><code>  http://developer.android.com/
+</code></pre>
   </li>
   <li>
-    <p>Ruby中的构造函数名称为initialize。</p>
-  </li>
-  <li>
-    <p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
-  </li>
-  <li>
-    <p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
-attr_accessor是可读也可写</p>
-  </li>
-  <li>
-    <p>Ruby中的全局变量前导$符。</p>
-  </li>
-  <li>
-    <p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
-  </li>
-  <li>
-    <p>Ruby中任何的表达式都会返回值，</p>
+    <p>stackoverflow  tag android</p>
+
+    <pre><code>  http://stackoverflow.com/questions/tagged/android
+</code></pre>
   </li>
 </ul>
-
-<!--more-->
-
-<p>sample</p>
-
-<pre><code>class Rectangle
-  		def initialize(wdth, hgt)
-	@width = wdth
-	@height = hgt
-  		end
-  		def width=(wdth)
-	@width = wdth
-  		end
-  
-end
-
-r = Rectangle.new(2,3)
-puts r.width = 5 #output 5
-puts r.width # error! because the width not support read
-继续补充下attr_accessor的使用，sample
-
-class Rectangle
-  		attr_accessor :width
-  		attr_accessor :height
-  		attr_accessor :width2
-  		attr_accessor :height2
-</code></pre>
-
-  	def initialize(wdth, hgt)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-</code></pre>
-
-  	def area2()
-<pre><code>	return @width2 * @height2
-  	end
-  
-  
-end
-
-r = Rectangle.new(2,3)
-r.width = 5 # give samename's variable value
-r.height = 5 
-puts r.area() #outputs is 25  
-
-r.width2 = 6 # not samename's variable  create
-r.height2 = 6 
-puts r.area2() # outputs is 36
-</code></pre>
-
-<p>上面的代码说明了，在使用attr_accessor的时候，会寻找是否有同名的成员变量，如果有则访问同名成员变量，如果没有会默认创建一个前导@的成员变量</p>
-
-<h3 id="section-1">神奇的操作符重载</h3>
-
-<p>Ruby支持操作符重载，而且很神奇！</p>
-
-<pre><code>class Rectangle
-  	attr_accessor :width
-  	attr_accessor :height
-</code></pre>
-
-  	def initialize(wdth, hgt)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-</code></pre>
-
-  	def +(addRectangle)
-<pre><code>	return self.area + addRectangle.area
-  	end
-
-end
-
-r1 = Rectangle.new(2,2)
-r2 = Rectangle.new(3,3)
-puts r1+r2 # operator override
-puts r1+(r2)
-puts r1.+(r2) # standard function calling format
-</code></pre>
-
-<p>神奇吧，其实把+号理解为一个函数的名字最好不过了，就像最后一个写法，哈哈。</p>
-
-<h3 id="section-2">参数的传递</h3>
-
-<p>参数的传递中有默认值与可变长参数两个比较有特点的地方，其他语言有的，ruby也有。</p>
-
-<ul>
-  <li>参数的默认值
-默认值的设置很简单，与其他语言一样，</li>
-</ul>
-
-<p>sample</p>
-
-<pre><code>class Rectangle
-  	attr_accessor :width
-  	attr_accessor :height
-</code></pre>
-
-  	def initialize(wdth = 2, hgt = 2)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-
-end
-
-r1 = Rectangle.new
-puts r1.area 看到了吧，使用默认值了
-</code></pre>
-
-<ul>
-  <li>可选参数，可变长参数</li>
-</ul>
-
-<p>sample</p>
-
-<pre><code>class ParamSample
-  	def sayHello(*names)
-  puts names.class
-  puts "Hello #{names.join(",")}!"
-  	end
-  
-end
-
-ps = ParamSample.new
-ps.sayHello #output Array Hello !
-ps.sayHello("lee","snake") #output Array Hello lee,snake! 可以看出，可变长参数前缀*号，可变长参数的实质是一个Array，呵呵。
-</code></pre>
-
-<h3 id="section-3">类变量以及类方法</h3>
-
-<p>sample code</p>
-
-<pre><code>class BankAccount
-  	@@interestRate = 6.5
-  	def BankAccount.getInterestRate()
-   		@@interestRate
-  	end
-  	attr_accessor :balance
-  	def initialize(bal)
-	@balance = bal
-  	end
-end
-
-puts BankAccount.getInterestRate() 以上代码中描述了如何定义类变量以及如何访问类变量
-</code></pre>
-
-<p>Ruby的成员访问修饰关键字分为三种，与c#一样。</p>
-
-<ol>
-  <li>
-    <p>private 只能为该对象所调用的方法</p>
-  </li>
-  <li>
-    <p>protected 只能为该对象及其子对象所调用的方法</p>
-  </li>
-  <li>
-    <p>public 可以让任何对象所调用的方法
-与c#不同的是，ruby的访问修饰符从定义处开始起作用，直到下一个访问修饰符出现时终止，</p>
-  </li>
-</ol>
-
-<p>比如</p>
-
-<pre><code>class Greeter
-  	def initialize
-  	end
-</code></pre>
-
-  	private
-  	def sayhi()
-<pre><code>	puts "hi"
-  	end
-</code></pre>
-
-  	def saybye()
-<pre><code>	puts "bye"
-  	end
-</code></pre>
-
-  	public
-  	def say()
-<pre><code>	sayhi
-	saybye
-  	end
-  
-end
-
-g = Greeter.new
-g.say # output hi bye
-g.sayhi # error because the sayhi isn't publics member
-</code></pre>
-
-<p>initialize默认就是private的</p>
-
-<p>其他方法默认是public的 成员变量和类变量默认是private的 要用attr_reader或attr_accessor来增加读写控制</p>
 
 </div>
 
@@ -375,11 +159,11 @@ g.sayhi # error because the sayhi isn't publics member
 
 
 
-2014 年8 月9 日</div>
+2015 年3 月11 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>
@@ -427,8 +211,8 @@ g.sayhi # error because the sayhi isn't publics member
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://helloyokoy.github.io/blog/rubyyu-fa/';
-        var disqus_url = 'http://helloyokoy.github.io/blog/rubyyu-fa/';
+        var disqus_identifier = 'http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/';
+        var disqus_url = 'http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/';
         var disqus_script = 'embed.js';
       
     (function () {
