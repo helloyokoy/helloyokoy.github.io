@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "octopress搭建教程"
-date: 2015-08-08 21:00:18 +0800
+date: 2014-06-08 21:00:18 +0800
 comments: true
 categories: octopress
 ---

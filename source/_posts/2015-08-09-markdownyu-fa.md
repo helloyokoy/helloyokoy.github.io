@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "markdown简介"
-date: 2015-08-08 18:08:31 +0800
+title: "markdown语法"
+date: 2014-06-09 15:07:14 +0800
 comments: true
-categories: markdown
+categories: octopress
 ---
 
 
