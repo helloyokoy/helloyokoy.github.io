@@ -12,7 +12,7 @@ layout: default
         {% if paginator.previous_page == 1 %}
             <a href="{{ root_url }}/" class="prev">上一页</a>
         {% else %}
-            <a href="{{ root_url }}/posts/{{paginator.previous_page}}" class="prev">Prev</a>
+            <a href="{{ root_url }}/posts/{{paginator.previous_page}}" class="prev">上一页</a>
         {% endif %}
     {% endif %}
     {% if paginator.next_page %}

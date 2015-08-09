@@ -18,9 +18,12 @@ categories: ruby
 Mac OS X
 任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux ...)
 强烈新手使用 Ubuntu 省掉不必要的麻烦！
-以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $ 符号）
+以下代码区域，带有 \$ 打头的表示需要在控制台（终端）下面执行（不包括 \$  符号）
+
 
 <!--more-->
+
+
 ####步骤0 － 安装系统需要的包
 
 For Mac 
