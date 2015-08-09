@@ -12,6 +12,11 @@
 		{% if site.addthis_button %}
 		<a class="addthis_counter addthis_pill_style"></a>
 		{% endif %}
+
+		{% if site.weibo_share %}
+			{% include post/weibo.html %}
+		{% endif %}
+ 		
 	</div>
 	{% if site.addthis_button %}
 	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid={{ site.addthis_profile_id }}"></script>

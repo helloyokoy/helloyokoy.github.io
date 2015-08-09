@@ -17,3 +17,9 @@ layout: default
     <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
 </section>
 {% endif %}
+
+{% if  page.comments == true %}
+<section>
+ {% include post/duoshuo.html %}
+  </section>
+{% endif %}

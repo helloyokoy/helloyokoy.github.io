@@ -4,6 +4,7 @@ single: true
 ---
 
 <article class="post">{% include article.html %}</article>
+
 {% unless page.sharing == false %}
 	{% include post/sharing.html %}
 {% endunless %}
@@ -13,3 +14,9 @@ single: true
     <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
 </section>
 {% endif %}
+
+{% if page.comments == true %}
+  <section>
+   {% include post/duoshuo.html %}
+  </section>
+ {% endif %}
