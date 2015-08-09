@@ -7,7 +7,8 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="1. 标题设置（让字体变大，和word的标题意思一样） 在Markdown当中设置标题，有两种方式： 第一种：通过在文字下方添加“=”和“-”，他们分别表示一级标题和二级标题。 第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大） 2. 块注释（ &hellip;">
+	<meta name="description" content="语法
+Ruby中的类以class开始 以end结束，类名首字母的约定是大写。 Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。 Ruby中的局部变量名首字母的约定是小写。 Ruby中的构造函数名称为initialize。 Ruby中的成员变量(实例变量)前导@符， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -125,6 +126,60 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/rubyyu-fa/">
+		
+			Ruby语法</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="section">语法</h3>
+<p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
+
+<p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
+
+<p>Ruby中的局部变量名首字母的约定是小写。</p>
+
+<p>Ruby中的构造函数名称为initialize。</p>
+
+<p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
+
+<p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
+attr_accessor是可读也可写</p>
+
+<p>Ruby中的全局变量前导$符。</p>
+
+<p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
+
+<p>Ruby中任何的表达式都会返回值，
+
+		
+		<a href="/blog/rubyyu-fa/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年8 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/rubyyu-fa/#disqus_thread">评论</a></div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/markdownyu-fa/">
 		
 			Markdown语法</a>
@@ -174,62 +229,14 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/octopressda-jian-jiao-cheng/">
-		
-			Octopress搭建教程</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="octopress">1.安装Octopress</h2>
-<pre><code>git clone git://github.com/imathis/octopress.git octopress
-cd octopress
-bundle update    # 安装依赖的组件
-rake install     # 安装默认的Octopress主题
-</code></pre>
-
-<h2 id="git">2.配置Git</h2>
-<p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
-
-<pre><code>git remote rm origin
-git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
-git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
-</code></pre>
-
-
-		
-		<a href="/blog/octopressda-jian-jiao-cheng/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年6 月8 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/octopress/'>octopress</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/octopressda-jian-jiao-cheng/#disqus_thread">评论</a></div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
         
             <a href="/posts/3" class="prev">Prev</a>
         
     
+    
+        <a href="/posts/5" class="next">下一页</a>
     
     <div class="center"><a href="/blog/archives">文章列表</a></div>
 </nav>

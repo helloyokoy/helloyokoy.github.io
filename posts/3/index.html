@@ -7,8 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
-次安装方法同样适用于产品环境！ 系统需求 首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用: Mac OS &hellip;">
+	<meta name="description" content="在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin! 概述 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -126,6 +125,59 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/iosduo-xian-cheng/">
+		
+			IOS多线程</a>
+	</h2>
+	<div class="entry-content">
+		<blockquote>
+  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
+</blockquote>
+
+<h2 id="section">概述</h2>
+<hr />
+<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
+
+<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
+
+<pre><code>Pthreads
+NSThread
+GCD
+NSOperation &amp; NSOperationQueue
+</code></pre>
+
+<p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
+
+
+		
+		<a href="/blog/iosduo-xian-cheng/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年6 月18 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/iosduo-xian-cheng/#disqus_thread">评论</a></div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/huan-jing-da-jian/">
 		
 			Rails 环境搭建</a>
@@ -168,60 +220,6 @@
 </div>
 	
 	<div class="comments"><a href="/blog/huan-jing-da-jian/#disqus_thread">评论</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/rubyyu-fa/">
-		
-			Ruby语法</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">语法</h3>
-<p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
-
-<p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
-
-<p>Ruby中的局部变量名首字母的约定是小写。</p>
-
-<p>Ruby中的构造函数名称为initialize。</p>
-
-<p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
-
-<p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
-attr_accessor是可读也可写</p>
-
-<p>Ruby中的全局变量前导$符。</p>
-
-<p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
-
-<p>Ruby中任何的表达式都会返回值，
-
-		
-		<a href="/blog/rubyyu-fa/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年8 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/rubyyu-fa/#disqus_thread">评论</a></div>
 	
 </div>
 </article>
