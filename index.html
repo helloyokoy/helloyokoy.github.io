@@ -7,8 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
-次安装方法同样适用于产品环境！ 系统需求 首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用: Mac OS &hellip;">
+	<meta name="description" content="知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -114,82 +113,40 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/huan-jing-da-jian/">
+		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">
 		
-			Rails 环境搭建</a>
+			知名ios应用背后的第三方项目</a>
 	</h2>
 	<div class="entry-content">
 		<blockquote>
-  <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
-次安装方法同样适用于产品环境！</p>
+  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
 </blockquote>
 
-<h3 id="section">系统需求</h3>
+<h3 id="instagram">Instagram</h3>
 <hr />
+<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
 
-<p>首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用:</p>
+<p>Appirater: 提醒用户打分。</p>
 
-<p>Mac OS X
-任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux …)
-强烈新手使用 Ubuntu 省掉不必要的麻烦！
-以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $ 符号）</p>
+<p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
 
+<p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
 
+<p><em>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
+
+<p><em>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</em></p>
+
+<p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
+
+<p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
+
+<p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
+
+<p><em>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</em></p>
+
+<p>
 		
-		<a href="/blog/huan-jing-da-jian/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-	<div class="comments"><a href="/blog/huan-jing-da-jian/#disqus_thread">评论</a></div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/iosduo-xian-cheng/">
-		
-			IOS多线程</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
-  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
-</blockquote>
-
-<h2 id="section">概述</h2>
-<hr />
-<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
-
-<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
-
-<pre><code>Pthreads
-NSThread
-GCD
-NSOperation &amp; NSOperationQueue
-</code></pre>
-
-<p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
-
-
-		
-		<a href="/blog/iosduo-xian-cheng/" class="more-link">阅读全文</a>
+		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -208,7 +165,57 @@ NSOperation &amp; NSOperationQueue
 
 </div>
 	
-	<div class="comments"><a href="/blog/iosduo-xian-cheng/#disqus_thread">评论</a></div>
+	<div class="comments"><a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/#disqus_thread">评论</a></div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/rubyzhao-pin/">
+		
+			Ruby招聘</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/9d7da2a7d66050e201486c8168f269a5.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/ac3ec0fc602bff211e45a87e87d02a13.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/68f11d523efd63d722aa71cd109e3308.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/cf83aeab19c568f2448e80ba517d4891.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/30831a38a59aaabd2618494454670792.jpg" alt="alt text" title="Title" /></p>
+
+<p>有意者请发送简历至： <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#105;&#110;&#046;&#103;&#111;&#110;&#103;&#064;&#100;&#106;&#105;&#046;&#099;&#111;&#109;">&#109;&#105;&#110;&#046;&#103;&#111;&#110;&#103;&#064;&#100;&#106;&#105;&#046;&#099;&#111;&#109;</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年7 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+	<div class="comments"><a href="/blog/rubyzhao-pin/#disqus_thread">评论</a></div>
 	
 </div>
 </article>

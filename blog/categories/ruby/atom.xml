@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-09T16:15:29+08:00</updated>
+  <updated>2015-08-09T16:33:44+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -14,9 +14,32 @@
 
   
   <entry>
+    <title type="html"><![CDATA[ruby招聘]]></title>
+    <link href="http://helloyokoy.github.io/blog/rubyzhao-pin/"/>
+    <updated>2015-07-09T16:24:29+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/rubyzhao-pin</id>
+    <content type="html"><![CDATA[<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/9d7da2a7d66050e201486c8168f269a5.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/ac3ec0fc602bff211e45a87e87d02a13.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/68f11d523efd63d722aa71cd109e3308.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/cf83aeab19c568f2448e80ba517d4891.jpg" alt="alt text" title="Title" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/30831a38a59aaabd2618494454670792.jpg" alt="alt text" title="Title" /></p>
+
+<p>有意者请发送简历至： <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#105;&#110;&#046;&#103;&#111;&#110;&#103;&#064;&#100;&#106;&#105;&#046;&#099;&#111;&#109;">&#109;&#105;&#110;&#046;&#103;&#111;&#110;&#103;&#064;&#100;&#106;&#105;&#046;&#099;&#111;&#109;</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[rails 环境搭建]]></title>
     <link href="http://helloyokoy.github.io/blog/huan-jing-da-jian/"/>
-    <updated>2015-08-09T16:05:07+08:00</updated>
+    <updated>2014-11-09T16:05:07+08:00</updated>
     <id>http://helloyokoy.github.io/blog/huan-jing-da-jian</id>
     <content type="html"><![CDATA[<blockquote>
   <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
