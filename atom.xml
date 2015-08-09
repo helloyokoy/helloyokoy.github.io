@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-08T23:07:23+08:00</updated>
+  <updated>2015-08-09T15:00:37+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -14,16 +14,254 @@
 
   
   <entry>
+    <title type="html"><![CDATA[ruby语法]]></title>
+    <link href="http://helloyokoy.github.io/blog/rubyyu-fa/"/>
+    <updated>2015-08-09T14:08:03+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/rubyyu-fa</id>
+    <content type="html"><![CDATA[<h3 id="section">语法</h3>
+<p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
+
+<p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
+
+<p>Ruby中的局部变量名首字母的约定是小写。</p>
+
+<p>Ruby中的构造函数名称为initialize。</p>
+
+<p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
+
+<p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
+attr_accessor是可读也可写</p>
+
+<p>Ruby中的全局变量前导$符。</p>
+
+<p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
+
+<p>Ruby中任何的表达式都会返回值，
+<!--more--></p>
+
+<p>sample</p>
+
+<pre><code>class Rectangle
+  		def initialize(wdth, hgt)
+	@width = wdth
+	@height = hgt
+  		end
+  		def width=(wdth)
+	@width = wdth
+  		end
+  
+end
+
+r = Rectangle.new(2,3)
+puts r.width = 5 #output 5
+puts r.width # error! because the width not support read
+继续补充下attr_accessor的使用，sample
+
+class Rectangle
+  		attr_accessor :width
+  		attr_accessor :height
+  		attr_accessor :width2
+  		attr_accessor :height2
+</code></pre>
+
+  	def initialize(wdth, hgt)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
+</code></pre>
+
+  	def area()
+<pre><code>	return @width * @height
+  	end
+</code></pre>
+
+  	def area2()
+<pre><code>	return @width2 * @height2
+  	end
+  
+  
+end
+
+r = Rectangle.new(2,3)
+r.width = 5 # give samename's variable value
+r.height = 5 
+puts r.area() #outputs is 25  
+
+r.width2 = 6 # not samename's variable  create
+r.height2 = 6 
+puts r.area2() # outputs is 36
+</code></pre>
+
+<p>上面的代码说明了，在使用attr_accessor的时候，会寻找是否有同名的成员变量，如果有则访问同名成员变量，如果没有会默认创建一个前导@的成员变量</p>
+
+<h3 id="section-1">神奇的操作符重载</h3>
+
+<p>Ruby支持操作符重载，而且很神奇！</p>
+
+<pre><code>class Rectangle
+  	attr_accessor :width
+  	attr_accessor :height
+</code></pre>
+
+  	def initialize(wdth, hgt)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
+</code></pre>
+
+  	def area()
+<pre><code>	return @width * @height
+  	end
+</code></pre>
+
+  	def +(addRectangle)
+<pre><code>	return self.area + addRectangle.area
+  	end
+
+end
+
+r1 = Rectangle.new(2,2)
+r2 = Rectangle.new(3,3)
+puts r1+r2 # operator override
+puts r1+(r2)
+puts r1.+(r2) # standard function calling format
+</code></pre>
+
+<p>神奇吧，其实把+号理解为一个函数的名字最好不过了，就像最后一个写法，哈哈。</p>
+
+<h3 id="section-2">参数的传递</h3>
+
+<p>参数的传递中有默认值与可变长参数两个比较有特点的地方，其他语言有的，ruby也有。</p>
+
+<ol>
+  <li>参数的默认值
+默认值的设置很简单，与其他语言一样，</li>
+</ol>
+
+<p>sample</p>
+
+<pre><code>class Rectangle
+  	attr_accessor :width
+  	attr_accessor :height
+</code></pre>
+
+  	def initialize(wdth = 2, hgt = 2)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
+</code></pre>
+
+  	def area()
+<pre><code>	return @width * @height
+  	end
+
+end
+
+r1 = Rectangle.new
+puts r1.area 看到了吧，使用默认值了
+</code></pre>
+
+<ol>
+  <li>可选参数，可变长参数</li>
+</ol>
+
+<p>sample</p>
+
+<pre><code>class ParamSample
+  	def sayHello(*names)
+  puts names.class
+  puts "Hello #{names.join(",")}!"
+  	end
+  
+end
+
+ps = ParamSample.new
+ps.sayHello #output Array Hello !
+ps.sayHello("lee","snake") #output Array Hello lee,snake! 可以看出，可变长参数前缀*号，可变长参数的实质是一个Array，呵呵。
+</code></pre>
+
+<h3 id="section-3">类变量以及类方法</h3>
+
+<p>sample code</p>
+
+<pre><code>class BankAccount
+  	@@interestRate = 6.5
+  	def BankAccount.getInterestRate()
+   		@@interestRate
+  	end
+  	attr_accessor :balance
+  	def initialize(bal)
+	@balance = bal
+  	end
+end
+
+puts BankAccount.getInterestRate() 以上代码中描述了如何定义类变量以及如何访问类变量
+</code></pre>
+
+<p>Ruby的成员访问修饰关键字分为三种，与c#一样。</p>
+
+<ol>
+  <li>
+    <p>private 只能为该对象所调用的方法</p>
+  </li>
+  <li>
+    <p>protected 只能为该对象及其子对象所调用的方法</p>
+  </li>
+  <li>
+    <p>public 可以让任何对象所调用的方法
+与c#不同的是，ruby的访问修饰符从定义处开始起作用，直到下一个访问修饰符出现时终止，</p>
+  </li>
+</ol>
+
+<p>比如</p>
+
+<pre><code>class Greeter
+  	def initialize
+  	end
+</code></pre>
+
+  	private
+  	def sayhi()
+<pre><code>	puts "hi"
+  	end
+</code></pre>
+
+  	def saybye()
+<pre><code>	puts "bye"
+  	end
+</code></pre>
+
+  	public
+  	def say()
+<pre><code>	sayhi
+	saybye
+  	end
+  
+end
+
+g = Greeter.new
+g.say # output hi bye
+g.sayhi # error because the sayhi isn't publics member
+</code></pre>
+
+<p>initialize默认就是private的</p>
+
+<p>其他方法默认是public的 成员变量和类变量默认是private的 要用attr_reader或attr_accessor来增加读写控制</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[IOS多线程]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/iosduo-xian-cheng/"/>
+    <link href="http://helloyokoy.github.io/blog/iosduo-xian-cheng/"/>
     <updated>2015-08-08T22:25:55+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/iosduo-xian-cheng</id>
-    <content type="html"><![CDATA[<blockquote><p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let&rsquo;t begin!</p></blockquote>
+    <id>http://helloyokoy.github.io/blog/iosduo-xian-cheng</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
+</blockquote>
 
-<h2>概述</h2>
-
+<h2 id="section">概述</h2>
 <hr />
-
 <p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
 
 <p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
@@ -36,7 +274,9 @@ NSOperation &amp; NSOperationQueue
 
 <p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
 
-<h3>Pthreads</h3>
+<!--more-->
+
+<h3 id="pthreads">Pthreads</h3>
 
 <p>其实这个方案不用说的，只是拿来充个数，为了让大家了解一下就好了。百度百科里是这么说的：</p>
 
@@ -61,64 +301,52 @@ pthread_create(&amp;thread, NULL, start, NULL);
 void *start(void *data) {
 NSLog(@"%@", [NSThread currentThread]);
 return NULL;
-}
+} 打印输出：
+
+
+2015-07-27 23:57:21.689 testThread[10616:2644653] {number = 2, name = (null)} 看代码就会发现他需要 c语言函数，这是比较蛋疼的，更蛋疼的是你需要手动处理线程的各个状态的转换即管理生命周期，比如，这段代码虽然创建了一个线程，但并没有销毁。
 </code></pre>
-
-<p>打印输出：</p>
-
-<pre><code>2015-07-27 23:57:21.689 testThread[10616:2644653] {number = 2, name = (null)}
-</code></pre>
-
-<p>看代码就会发现他需要 c语言函数，这是比较蛋疼的，更蛋疼的是你需要手动处理线程的各个状态的转换即管理生命周期，比如，这段代码虽然创建了一个线程，但并没有销毁。</p>
 
 <p>SWIFT</p>
 
-<p>很遗憾，在我目前的 swift1.2 中无法执行这套方法，原因是这个函数需要传入一个函数指针 CFunctionPointer类型，但是目前 swift 无法将方法转换成此类型。听说 swift 2.0 引入一个新特性 @convention&copy;, 可以完成 Swift 方法转换成 c 语言指针的。在这里可以看到</p>
+<p>很遗憾，在我目前的 swift1.2 中无法执行这套方法，原因是这个函数需要传入一个函数指针 CFunctionPointer类型，但是目前 swift 无法将方法转换成此类型。听说 swift 2.0 引入一个新特性 @convention(c), 可以完成 Swift 方法转换成 c 语言指针的。在这里可以看到</p>
 
 <p>那么，Pthreads 方案的多线程我就介绍这么多，毕竟做 iOS 开发几乎不可能用到。但是如果你感兴趣的话，或者说想要自己实现一套多线程方案，从底层开始定制，那么可以去搜一下相关资料。</p>
 
-<h3>NSThread</h3>
+<h3 id="nsthread">NSThread</h3>
 
 <p>这套方案是经过苹果封装后的，并且完全面向对象的。所以你可以直接操控线程对象，非常直观和方便。但是，它的生命周期还是需要我们手动管理，所以这套方案也是偶尔用用，比如 [NSThread currentThread]，它可以获取当前线程类，你就可以知道当前线程的各种属性，用于调试十分方便。下面来看看它的一些用法。</p>
 
-<h5>创建并启动</h5>
+<h5 id="section-1">创建并启动</h5>
 
 <p>先创建线程类，再启动
 OBJECTIVE-C</p>
 
-<pre><code>// 创建
-NSThread *thread = [[NSThread alloc] initWithTarget:self    selector:@selector(run:) object:nil];
-// 启动
-[thread start];
-</code></pre>
+  	// 创建
+  	NSThread *thread = [[NSThread alloc] initWithTarget:self 	selector:@selector(run:) object:nil];
+  	// 启动
+  	[thread start];
 
 <p>SWIFT</p>
 
-<pre><code>//创建
-let thread = NSThread(target: self, selector: "run:", object: nil)
-//启动
-thread.start()
-</code></pre>
+  	//创建
+  	let thread = NSThread(target: self, selector: “run:”, object: nil)
+  	//启动
+  	thread.start()
 
-<h5>创建并自动启动</h5>
+<h5 id="section-2">创建并自动启动</h5>
 
 <p>OBJECTIVE-C</p>
 
-<pre><code>[NSThread detachNewThreadSelector:@selector(run:) toTarget:self withObject:nil];
-</code></pre>
-
+  	[NSThread detachNewThreadSelector:@selector(run:) toTarget:self withObject:nil];
 <p>SWIFT</p>
 
-<pre><code>NSThread.detachNewThreadSelector("run:", toTarget: self, withObject: nil)
-</code></pre>
-
+  	NSThread.detachNewThreadSelector(“run:”, toTarget: self, withObject: nil)
 <p>使用 NSObject 的方法创建并自动启动</p>
 
 <p>OBJECTIVE-C</p>
 
-<pre><code>[self performSelectorInBackground:@selector(run:) withObject:nil];
-</code></pre>
-
+  	[self performSelectorInBackground:@selector(run:) withObject:nil];
 <p>SWIFT</p>
 
 <p>很遗憾 too! 苹果认为 performSelector: 不安全，所以在 Swift 去掉了这个方法。</p>
@@ -126,7 +354,7 @@ thread.start()
 <pre><code>Note: The performSelector: method and related selector-invoking methods are not imported in Swift because they are inherently unsafe.
 </code></pre>
 
-<h5>其他方法</h5>
+<h5 id="section-3">其他方法</h5>
 
 <p>除了创建启动外，NSThread 还以很多方法，下面我列举一些常见的方法，当然我列举的并不完整，更多方法大家可以去类的定义里去看。</p>
 
@@ -149,20 +377,18 @@ thread.start()
 + (NSThread *)mainThread;
 //使当前线程暂停一段时间，或者暂停到某个时刻
 + (void)sleepForTimeInterval:(NSTimeInterval)time;
-+ (void)sleepUntilDate:(NSDate *)date;
++ (void)sleepUntilDate:(NSDate *)date; SWIFT
 </code></pre>
-
-<p>SWIFT</p>
 
 <p>Swift的方法名字和OC的方法名都一样，我就不浪费空间列举出来了。</p>
 
 <p>其实，NSThread 用起来也挺简单的，因为它就那几种方法。同时，我们也只有在一些非常简单的场景才会用 NSThread, 毕竟它还不够智能，不能优雅地处理多线程中的其他高级概念。所以接下来要说的内容才是重点。</p>
 
-<h3>GCD</h3>
+<h3 id="gcd">GCD</h3>
 
 <p>Grand Central Dispatch，听名字就霸气。它是苹果为多核的并行运算提出的解决方案，所以会自动合理地利用更多的CPU内核（比如双核、四核），最重要的是它会自动管理线程的生命周期（创建线程、调度任务、销毁线程），完全不需要我们管理，我们只需要告诉干什么就行。同时它使用的也是 c语言，不过由于使用了 Block（Swift里叫做闭包），使得使用起来更加方便，而且灵活。所以基本上大家都使用 GCD 这套方案，老少咸宜，实在是居家旅行、杀人灭口，必备良药。不好意思，有点中二，咱们继续。</p>
 
-<h5>任务和队列</h5>
+<h5 id="section-4">任务和队列</h5>
 
 <p>在 GCD 中，加入了两个非常重要的概念： 任务 和 队列。</p>
 
@@ -188,11 +414,11 @@ thread.start()
 
 <p>更新：放到串行队列的任务，GCD 也会 FIFO的取出来，但不同的是，它取出来一个就会放到别的线程，然后再取出来一个又放到另一个的线程。这样由于取的动作很快，忽略不计，看起来，所有的任务都是一起执行的。不过需要注意，GCD 会根据系统资源控制并行的数量，所以如果任务很多，它并不会让所有任务同时执行。</p>
 
-<h5>创建队列</h5>
+<h5 id="section-5">创建队列</h5>
 
 <p>主队列：这是一个特殊的 串行队列。什么是主队列，大家都知道吧，它用于刷新 UI，任何需要刷新 UI 的工作都要在主队列执行，所以一般耗时的任务都要放到别的线程执行。</p>
 
-<p>  //OBJECTIVE-C
+<p>//OBJECTIVE-C
   dispatch_queue_t queue = ispatch_get_main_queue();
   //SWIFT
   let queue = ispatch_get_main_queue()
@@ -200,56 +426,47 @@ thread.start()
 更新：自己可以创建 串行队列, 也可以创建 并行队列。看下面的代码（代码已更新），它有两个参数，第一个上面已经说了，第二个才是最重要的。
 第二个参数用来表示创建的队列是串行的还是并行的，传入 DISPATCH_QUEUE_SERIAL 或 NULL 表示创建串行队列。传入 DISPATCH_QUEUE_CONCURRENT 表示创建并行队列。</p>
 
-<pre><code>//OBJECTIVE-C
-dispatch_queue_t queue = dispatch_queue_create("tk.bourne.testQueue", NULL);
-//SWIFT
-let queue = dispatch_queue_create("tk.bourne.testQueue", nil);
-</code></pre>
-
+   	//OBJECTIVE-C
+  	dispatch_queue_t queue = dispatch_queue_create(“tk.bourne.testQueue”, NULL);
+  	//SWIFT
+  	let queue = dispatch_queue_create(“tk.bourne.testQueue”, nil);
 <p>全局并行队列：这应该是唯一一个并行队列，只要是并行任务一般都加入到这个队列。</p>
 
-<pre><code>//OBJECTIVE-C
-dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//SWIFT
-let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-</code></pre>
+  	//OBJECTIVE-C
+  	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+  	//SWIFT
+  	let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
-<h5>创建任务</h5>
+<h5 id="section-6">创建任务</h5>
 
 <p>同步任务：不会另开线程 (SYNC)</p>
 
 <p>OBJECTIVE-C</p>
 
-<pre><code>dispatch_sync(, ^{
-  //code here
+  	dispatch_sync(, ^{
+<pre><code>  //code here
   NSLog(@"%@", [NSThread currentThread]);
-});
+  	}); SWIFT
 </code></pre>
 
-<p>SWIFT</p>
-
-<pre><code>dispatch_sync(, { () -&gt; Void in
-  //code here
+  	dispatch_sync(, { () -&gt; Void in
+<pre><code>  //code here
   println(NSThread.currentThread())
-})
+  	}) 异步任务：会另开线程 (ASYNC)
 </code></pre>
-
-<p>异步任务：会另开线程 (ASYNC)</p>
 
 <p>OBJECTIVE-C</p>
 
-<pre><code>dispatch_async(, ^{
-  //code here
+  	dispatch_async(, ^{
+<pre><code>  //code here
   NSLog(@"%@", [NSThread currentThread]);
-});
+  	}); SWIFT
 </code></pre>
 
-<p>SWIFT</p>
-
-<pre><code>dispatch_async(, { () -&gt; Void in
-  //code here
+  	dispatch_async(, { () -&gt; Void in
+<pre><code>  //code here
   println(NSThread.currentThread())
-})
+  	})
 </code></pre>
 
 <p>更新：</p>
@@ -264,10 +481,8 @@ let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 dispatch_sync(dispatch_get_main_queue(), { () -&gt; Void in 
     NSLog("sync - %@", NSThread.currentThread())
 })
-NSLog("之后 - %@", NSThread.currentThread())
+NSLog("之后 - %@", NSThread.currentThread()) 答案：
 </code></pre>
-
-<p>答案：</p>
 
 <p>只会打印第一句：之前 - {number = 1, name = main} ，然后主线程就卡死了，你可以在界面上放一个按钮，你就会发现点不了了。</p>
 
@@ -282,20 +497,17 @@ NSLog("之后 - %@", NSThread.currentThread())
 <p>以下代码会产生什么结果？</p>
 
 <pre><code>let queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
-    NSLog("之前 - %@", NSThread.currentThread())
-    dispatch_async(queue, { () -&gt; Void in
+   		NSLog("之前 - %@", NSThread.currentThread())
+	dispatch_async(queue, { () -&gt; Void in
     NSLog("sync之前 - %@", NSThread.currentThread())
     dispatch_sync(queue, { () -&gt; Void in
          NSLog("sync - %@", NSThread.currentThread())
     })
     NSLog("sync之后 - %@", NSThread.currentThread())
-    })
-NSLog("之后 - %@", NSThread.currentThread())
-</code></pre>
+   		})
+  	NSLog("之后 - %@", NSThread.currentThread()) 答案：
 
-<p>答案：</p>
-
-<pre><code>2015-07-30 02:06:51.058 test[33329:8793087] 之前 - {number = 1, name = main}
+2015-07-30 02:06:51.058 test[33329:8793087] 之前 - {number = 1, name = main}
 
 2015-07-30 02:06:51.059 test[33329:8793356] sync之前 - {number = 2, name = (null)}
 
@@ -322,7 +534,7 @@ dispatch_async 异步执行，所以当前线程不会被阻塞，于是有了�
 <pre><code>//1.创建队列组
 dispatch_group_t group = dispatch_group_create();
 //2.创建队列
-dispatch_queue_t queue =    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_queue_t queue = 	dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 //3.多次使用队列组的方法执行任务, 只有异步方法
 //3.1.执行3次循环
 dispatch_group_async(group, queue, ^{
@@ -345,12 +557,10 @@ for (NSInteger i = 0; i &lt; 5; i++) {
 //4.都完成后会自动通知
 dispatch_group_notify(group, dispatch_get_main_queue(), ^{
 NSLog(@"完成 - %@", [NSThread currentThread]);
-});
-</code></pre>
+}); SWIFT
 
-<p>SWIFT</p>
 
-<pre><code>//1.创建队列组
+//1.创建队列组
 let group = dispatch_group_create()
 //2.创建队列
 let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
@@ -361,12 +571,10 @@ for _ in 0.. Void in
 for _ in 0.. Void in
 for _ in 0.. Void in
 NSLog("完成 - %@", NSThread.currentThread())
-}
-</code></pre>
+} 打印结果
 
-<p>打印结果</p>
 
-<pre><code>2015-07-28 03:40:34.277 test[12540:3319271] group-03 - {number = 3, name = (null)}
+2015-07-28 03:40:34.277 test[12540:3319271] group-03 - {number = 3, name = (null)}
 2015-07-28 03:40:34.277 test[12540:3319146] group-02 - {number = 1, name = main}
 2015-07-28 03:40:34.277 test[12540:3319146] group-02 - {number = 1, name = main}
 2015-07-28 03:40:34.277 test[12540:3319271] group-03 - {number = 3, name = (null)}
@@ -382,10 +590,8 @@ NSLog("完成 - %@", NSThread.currentThread())
 2015-07-28 03:40:34.278 test[12540:3319273] group-01 - {number = 2, name = (null)}
 2015-07-28 03:40:34.279 test[12540:3319146] group-02 - {number = 1, name = main}
 2015-07-28 03:40:34.279 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.279 test[12540:3319146] 完成 - {number = 1, name = main}
+2015-07-28 03:40:34.279 test[12540:3319146] 完成 - {number = 1, name = main} 这些就是 GCD 的基本功能，但是它的能力远不止这些，等讲完 NSOperation 后，我们再来看看它的一些其他方面用途。而且，只要你想象力够丰富，你可以组合出更好的用法。
 </code></pre>
-
-<p>这些就是 GCD 的基本功能，但是它的能力远不止这些，等讲完 NSOperation 后，我们再来看看它的一些其他方面用途。而且，只要你想象力够丰富，你可以组合出更好的用法。</p>
 
 <p>更新：关于GCD，还有两个需要说的：</p>
 
@@ -403,7 +609,7 @@ NSLog("完成 - %@", NSThread.currentThread())
 
 <p>如果你传入的是其他的 queue, 那么它就和 dispatch_sync 一样了。</p>
 
-<h3>NSOperation和NSOperationQueue</h3>
+<h3 id="nsoperationnsoperationqueue">NSOperation和NSOperationQueue</h3>
 
 <p>NSOperation 是苹果公司对 GCD 的封装，完全面向对象，所以使用起来更好理解。 大家可以看到 NSOperation 和 NSOperationQueue 分别对应 GCD 的 任务 和 队列 。操作步骤也很好理解：</p>
 
@@ -411,7 +617,7 @@ NSLog("完成 - %@", NSThread.currentThread())
 将此任务添加到一个 NSOperationQueue 对象中。
 然后系统就会自动在执行任务。至于同步还是异步、串行还是并行请继续往下看：</p>
 
-<h5>添加任务</h5>
+<h5 id="section-7">添加任务</h5>
 
 <p>值得说明的是，NSOperation 只是一个抽象类，所以不能封装任务。但它有 2 个子类用于封装任务。分别是：NSInvocationOperation 和 NSBlockOperation 。创建一个 Operation 后，需要调用 start 方法来启动任务，它会 默认在当前队列同步执行。当然你也可以在中途取消一个任务，只需要调用其 cancel 方法即可。</p>
 
@@ -419,11 +625,9 @@ NSLog("完成 - %@", NSThread.currentThread())
 
 <p>OBJECTIVE-C</p>
 
-<pre><code>//1.创建NSInvocationOperation对象
-NSInvocationOperation *operation = [[NSInvocationOperation alloc]   initWithTarget:self selector:@selector(run) object:nil];
-</code></pre>
-
-<p>  //2.开始执行
+  	//1.创建NSInvocationOperation对象
+  	NSInvocationOperation *operation = [[NSInvocationOperation alloc] 	initWithTarget:self selector:@selector(run) object:nil];
+<p>//2.开始执行
   [operation start];
 SWIFT</p>
 
@@ -432,25 +636,21 @@ SWIFT</p>
 <p>NSBlockOperation
 OBJECTIVE-C</p>
 
-<pre><code>//1.创建NSBlockOperation对象
-NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-  NSLog(@"%@", [NSThread currentThread]);
-}];
-//2.开始任务
-[operation start];
+  	//1.创建NSBlockOperation对象
+  	NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+<pre><code>  NSLog(@"%@", [NSThread currentThread]);
+  	}];
+  	//2.开始任务
+  	[operation start]; SWIFT
 </code></pre>
 
-<p>SWIFT</p>
-
-<pre><code>//1.创建NSBlockOperation对象
-let operation = NSBlockOperation { () -&gt; Void in
-  println(NSThread.currentThread())
-}
-//2.开始任务
-operation.start()
+  	//1.创建NSBlockOperation对象
+  	let operation = NSBlockOperation { () -&gt; Void in
+<pre><code>  println(NSThread.currentThread())
+  	}
+  	//2.开始任务
+  	operation.start() 之前说过这样的任务，默认会在当前线程执行。但是 NSBlockOperation 还有一个方法：addExecutionBlock: ，通过这个方法可以给 Operation 添加多个执行 Block。这样 Operation 中的任务 会并发执行，它会 在主线程和其它的多个线程 执行这些任务，注意下面的打印结果：
 </code></pre>
-
-<p>之前说过这样的任务，默认会在当前线程执行。但是 NSBlockOperation 还有一个方法：addExecutionBlock: ，通过这个方法可以给 Operation 添加多个执行 Block。这样 Operation 中的任务 会并发执行，它会 在主线程和其它的多个线程 执行这些任务，注意下面的打印结果：</p>
 
 <p>OBJECTIVE-C</p>
 
@@ -465,12 +665,10 @@ operation.start()
       }];
   }
   //2.开始任务
-  [operation start];
-</code></pre>
+  [operation start]; SWIFT
 
-<p>SWIFT</p>
 
-<pre><code>    //1.创建NSBlockOperation对象
+    //1.创建NSBlockOperation对象
     let operation = NSBlockOperation { () -&gt; Void in
         NSLog("%@", NSThread.currentThread())
     }
@@ -480,31 +678,25 @@ operation.start()
         }
     }
     //2.开始任务
-    operation.start()
-</code></pre>
+    operation.start() 打印输出
 
-<p>打印输出</p>
-
-<pre><code>2015-07-28 17:50:16.585 test[17527:4095467] 第2次 -{number = 1, name = main}
+2015-07-28 17:50:16.585 test[17527:4095467] 第2次 -{number = 1, name = main}
 2015-07-28 17:50:16.585 test[17527:4095666] 第1次 -{number = 4, name = (null)}
 2015-07-28 17:50:16.585 test[17527:4095665]{number = 3, name = (null)}
 2015-07-28 17:50:16.585 test[17527:4095662] 第0次 -{number = 2, name = (null)}
 2015-07-28 17:50:16.586 test[17527:4095666] 第3次 -{number = 4, name = (null)}
-2015-07-28 17:50:16.586 test[17527:4095467] 第4次 -{number = 1, name = main}
-</code></pre>
+2015-07-28 17:50:16.586 test[17527:4095467] 第4次 -{number = 1, name = main} NOTE：addExecutionBlock 方法必须在 start() 方法之前执行，否则就会报错：
 
-<p>NOTE：addExecutionBlock 方法必须在 start() 方法之前执行，否则就会报错：</p>
-
-<pre><code>‘*** -[NSBlockOperation addExecutionBlock:]: blocks cannot be added after the operation has started executing or finished'
+‘*** -[NSBlockOperation addExecutionBlock:]: blocks cannot be added after the operation has started executing or finished'
 </code></pre>
 
 <p>NOTE：大家可能发现了一个问题，为什么我在 Swift 里打印输出使用 NSLog() 而不是 println() 呢？原因是使用 print() / println() 输出的话，它会简单地使用 流（stream） 的概念，学过 C++ 的都知道。它会把需要输出的每个字符一个一个的输出到控制台。普通使用并没有问题，可是当多线程同步输出的时候问题就来了，由于很多 println() 同时打印，就会导致控制台上的字符混乱的堆在一起，而NSLog() 就没有这个问题。到底是什么样子的呢？你可以把上面 NSLog() 改为 println() ，然后一试便知。</p>
 
-<h5>自定义Operation</h5>
+<h5 id="operation">自定义Operation</h5>
 
 <p>除了上面的两种 Operation 以外，我们还可以自定义 Operation。自定义 Operation 需要继承 NSOperation 类，并实现其 main() 方法，因为在调用 start() 方法的时候，内部会调用 main() 方法完成相关逻辑。所以如果以上的两个类无法满足你的欲望的时候，你就需要自定义了。你想要实现什么功能都可以写在里面。除此之外，你还需要实现 cancel() 在内的各种方法。所以这个功能提供给高级玩家，我在这里就不说了，等我需要用到时在研究它，到时候可能会再做更新。</p>
 
-<h5>创建队列</h5>
+<h5 id="section-8">创建队列</h5>
 
 <p>看过上面的内容就知道，我们可以调用一个 NSOperation 对象的 start() 方法来启动这个任务，但是这样做他们默认是 同步执行 的。就算是 addExecutionBlock 方法，也会在 当前线程和其他线程 中执行，也就是说还是会占用当前线程。这是就要用到队列 NSOperationQueue 了。而且，按类型来说的话一共有两种类型：主队列、其他队列。只要添加到队列，会自动调用任务的 start() 方法</p>
 
@@ -515,11 +707,8 @@ operation.start()
 <pre><code>//OBJECTIVE-C
 NSOperationQueue *queue = [NSOperationQueue mainQueue];
 //SWIFT
-let queue = NSOperationQueue.mainQueue()
+let queue = NSOperationQueue.mainQueue() 其他队列 因为主队列比较特殊，所以会单独有一个类方法来获得主队列。那么通过初始化产生的队列就是其他队列了，因为只有这两种队列，除了主队列，其他队列就不需要名字了。
 </code></pre>
-
-<p>其他队列
-因为主队列比较特殊，所以会单独有一个类方法来获得主队列。那么通过初始化产生的队列就是其他队列了，因为只有这两种队列，除了主队列，其他队列就不需要名字了。</p>
 
 <p>注意：其他队列的任务会在其他线程并行执行。</p>
 
@@ -538,12 +727,9 @@ for (NSInteger i = 0; i &lt; 5; i++) {
 }];
 }
 //4.队列添加任务
-[queue addOperation:operation];
-</code></pre>
+[queue addOperation:operation]; SWIFT
 
-<p>SWIFT</p>
-
-<pre><code>//1.创建其他队列
+//1.创建其他队列
 let queue = NSOperationQueue()
 //2.创建NSBlockOperation对象
 let operation = NSBlockOperation { () -&gt; Void in
@@ -555,20 +741,16 @@ for i in 0.. Void in
 }
 }
 //4.队列添加任务
-queue.addOperation(operation)
-</code></pre>
+queue.addOperation(operation) 打印输出
 
-<p>打印输出</p>
 
-<pre><code>2015-07-28 20:26:28.463 test[18622:4443534]{number = 5, name = (null)}
+2015-07-28 20:26:28.463 test[18622:4443534]{number = 5, name = (null)}
 2015-07-28 20:26:28.463 test[18622:4443536] 第2次 -{number = 2, name = (null)}
 2015-07-28 20:26:28.463 test[18622:4443535] 第0次 -{number = 4, name = (null)}
 2015-07-28 20:26:28.463 test[18622:4443533] 第1次 -{number = 3, name = (null)}
 2015-07-28 20:26:28.463 test[18622:4443534] 第3次 -{number = 5, name = (null)}
-2015-07-28 20:26:28.463 test[18622:4443536] 第4次 -{number = 2, name = (null)}
+2015-07-28 20:26:28.463 test[18622:4443536] 第4次 -{number = 2, name = (null)} OK, 这时应该发问了，大家将 NSOperationQueue 与 GCD的队列 相比较就会发现，这里没有并行队列，那如果我想要10个任务在其他线程串行的执行怎么办？
 </code></pre>
-
-<p>OK, 这时应该发问了，大家将 NSOperationQueue 与 GCD的队列 相比较就会发现，这里没有并行队列，那如果我想要10个任务在其他线程串行的执行怎么办？</p>
 
 <p>这就是苹果封装的妙处，你不用管串行、并行、同步、异步这些名词。NSOperationQueue 有一个参数 maxConcurrentOperationCount 最大并发数，用来设置最多可以让多少个任务同时执行。当你把它设置为 1 的时候，他不就是串行了嘛！</p>
 
@@ -598,12 +780,10 @@ NSLog(@"上传图片 - %@", [NSThread currentThread]);
 [operation3 addDependency:operation2];      //任务三依赖任务二
 //5.创建队列并加入任务
 NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-[queue addOperations:@[operation3, operation2, operation1]  waitUntilFinished:NO];
-</code></pre>
+[queue addOperations:@[operation3, operation2, operation1] 	waitUntilFinished:NO]; SWIFT
 
-<p>SWIFT</p>
 
-<pre><code>//1.任务一：下载图片
+//1.任务一：下载图片
 let operation1 = NSBlockOperation { () -&gt; Void in
 NSLog("下载图片 - %@", NSThread.currentThread())
 NSThread.sleepForTimeInterval(1.0)
@@ -623,20 +803,14 @@ operation2.addDependency(operation1)    //任务二依赖任务一
 operation3.addDependency(operation2)    //任务三依赖任务二
 //5.创建队列并加入任务
 let queue = NSOperationQueue()
-queue.addOperations([operation3, operation2, operation1],   waitUntilFinished: false)
-</code></pre>
+queue.addOperations([operation3, operation2, operation1], 	waitUntilFinished: false) 打印结果
 
-<p>打印结果</p>
 
-<pre><code>2015-07-28 21:24:28.622 test[19392:4637517] 下载图片 -{number = 2, name = (null)}
+
+2015-07-28 21:24:28.622 test[19392:4637517] 下载图片 -{number = 2, name = (null)}
 2015-07-28 21:24:29.622 test[19392:4637515] 打水印 -{number = 3, name = (null)}
-2015-07-28 21:24:30.627 test[19392:4637515] 上传图片 -{number = 3, name = (null)}
+2015-07-28 21:24:30.627 test[19392:4637515] 上传图片 -{number = 3, name = (null)} 注意：不能添加相互依赖，会死锁，比如 A依赖B，B依赖A。 可以使用 removeDependency 来解除依赖关系。 可以在不同的队列之间依赖，反正就是这个依赖是添加到任务身上的，和队列没关系。 其他方法
 </code></pre>
-
-<p>注意：不能添加相互依赖，会死锁，比如 A依赖B，B依赖A。
-可以使用 removeDependency 来解除依赖关系。
-可以在不同的队列之间依赖，反正就是这个依赖是添加到任务身上的，和队列没关系。
-其他方法</p>
 
 <p>以上就是一些主要方法, 下面还有一些常用方法需要大家注意：</p>
 
@@ -653,16 +827,14 @@ NSUInteger operationCount; //获取队列的任务数
 - (void)cancelAllOperations; //取消队列中所有的任务
 - (void)waitUntilAllOperationsAreFinished; //阻塞当前线程直到此队列中的所有任务执行完毕
 [queue setSuspended:YES]; // 暂停queue
-[queue setSuspended:NO]; // 继续queue
+[queue setSuspended:NO]; // 继续queue 好啦，到这里差不多就讲完了。当然，我讲的并不完整，可能有一些知识我并没有讲到，但作为常用方法，这些已经足够了。不过我在这里只是告诉你了一些方法的功能，只是怎么把他们用到合适的地方，就需要多多实践了。下面我会说一些关于多线程的案例，是大家更加什么地了解。
 </code></pre>
 
-<p>好啦，到这里差不多就讲完了。当然，我讲的并不完整，可能有一些知识我并没有讲到，但作为常用方法，这些已经足够了。不过我在这里只是告诉你了一些方法的功能，只是怎么把他们用到合适的地方，就需要多多实践了。下面我会说一些关于多线程的案例，是大家更加什么地了解。</p>
-
-<h3>其他用法</h3>
+<h3 id="section-9">其他用法</h3>
 
 <p>在这部分，我会说一些和多线程知识相关的案例，可能有些很简单，大家早都知道的，不过因为这篇文章讲的是多线程嘛，所以应该尽可能的全面嘛。还有就是，我会尽可能的使用多种方法实现，让大家看看其中的区别。</p>
 
-<h5>线程同步</h5>
+<h5 id="section-10">线程同步</h5>
 
 <p>所谓线程同步就是为了防止多个线程抢夺同一个资源造成的数据安全问题，所采取的一种措施。当然也有很多实现方法，请往下看：</p>
 
@@ -683,67 +855,62 @@ objc_sync_exit(self)
 <p>同步执行 ：我们可以使用多线程的知识，把多个线程都要执行此段代码添加到同一个串行队列，这样就实现了线程同步的概念。当然这里可以使用 GCD 和 NSOperation 两种方案，我都写出来。
 OBJECTIVE-C</p>
 
-<pre><code>//GCD
-//需要一个全局变量queue，要让所有线程的这个操作都加到一个queue中
-dispatch_sync(queue, ^{
-  NSInteger ticket = lastTicket;
+  	//GCD
+  	//需要一个全局变量queue，要让所有线程的这个操作都加到一个queue中
+  	dispatch_sync(queue, ^{
+<pre><code>  NSInteger ticket = lastTicket;
   [NSThread sleepForTimeInterval:0.1];
   NSLog(@"%ld - %@",ticket, [NSThread currentThread]);
   ticket -= 1;
   lastTicket = ticket;
-});
-//NSOperation &amp; NSOperationQueue
-//重点：1. 全局的 NSOperationQueue, 所有的操作添加到同一个queue中
-//       2. 设置 queue 的 maxConcurrentOperationCount 为 1
-//       3. 如果后续操作需要Block中的结果，就需要调用每个操作的  waitUntilFinished，阻塞当前线程，一直等到当前操作完成，才允许执行后面的。   waitUntilFinished 要在添加到队列之后！
- NSBlockOperation *operation = [NSBlockOperation    blockOperationWithBlock:^{
+  	});
+  	//NSOperation &amp; NSOperationQueue
+  	//重点：1. 全局的 NSOperationQueue, 所有的操作添加到同一个queue中
+  	//       2. 设置 queue 的 maxConcurrentOperationCount 为 1
+  	//       3. 如果后续操作需要Block中的结果，就需要调用每个操作的	waitUntilFinished，阻塞当前线程，一直等到当前操作完成，才允许执行后面的。	waitUntilFinished 要在添加到队列之后！
+ 	 NSBlockOperation *operation = [NSBlockOperation 	blockOperationWithBlock:^{
   NSInteger ticket = lastTicket;
   [NSThread sleepForTimeInterval:1];
   NSLog(@"%ld - %@",ticket, [NSThread currentThread]);
   ticket -= 1;
   lastTicket = ticket;
-}];
-[queue addOperation:operation];
-[operation waitUntilFinished];
-//后续要做的事
+  	}];
+  	[queue addOperation:operation];
+  	[operation waitUntilFinished];
+  	//后续要做的事 SWIFT
 </code></pre>
-
-<p>SWIFT</p>
 
 <p>这里的 swift 代码，我就不写了，因为每句都一样，只是语法不同而已，照着 OC 的代码就能写出 Swift 的。这篇文章已经老长老长了，我就不浪费篇幅了，又不是高中写作文。</p>
 
-<h5>延迟执行</h5>
+<h5 id="section-11">延迟执行</h5>
 
 <p>所谓延迟执行就是延时一段时间再执行某段代码。下面说一些常用方法。</p>
 
-<h6>perform</h6>
+<h6 id="perform">perform</h6>
 
 <p>OBJECTIVE-C</p>
 
-<pre><code> // 3秒后自动调用self的run:方法，并且传递参数：@"abc"
-[self performSelector:@selector(run:) withObject:@"abc" afterDelay:3];
-</code></pre>
+ 	 // 3秒后自动调用self的run:方法，并且传递参数：@”abc”
+  	[self performSelector:@selector(run:) withObject:@”abc” afterDelay:3];
 
 <p>SWIFT</p>
 
 <p>之前就已经说过，Swift 里去掉了这个方法。</p>
 
-<h6>GCD</h6>
+<h6 id="gcd-1">GCD</h6>
 
 <p>可以使用 GCD 中的 dispatch_after 方法，OC 和 Swift 都可以使用，这里只写 OC 的，Swift 的是一样的。</p>
 
 <p>OBJECTIVE-C</p>
 
 <pre><code>// 创建队列
-dispatch_queue_t queue =    dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+dispatch_queue_t queue = 	dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 // 设置延时，单位秒
 double delay = 3; 
 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, ^{
 // 3秒后需要执行的任务
-});
+}); ######NSTimer
 </code></pre>
-
-<h6>NSTimer</h6>
 
 <p>NSTimer 是iOS中的一个计时器类，除了延迟执行还有很多用法，不过这里直说延迟执行的用法。同样只写 OC 版的，Swift 也是相同的。</p>
 
@@ -752,7 +919,7 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC))
 <pre><code>[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(run:) userInfo:@"abc" repeats:NO];
 </code></pre>
 
-<h5>单例模式</h5>
+<h5 id="section-12">单例模式</h5>
 
 <p>至于什么是单例模式，我也不多说，我只说说一般怎么实现。在 Objective-C 中，实现单例的方法已经很具体了，虽然有别的方法，但是一般都是用一个标准的方法了，下面来看看。</p>
 
@@ -770,10 +937,8 @@ dispatch_once(&amp;onceToken, ^{
 });
 return _instance;
 }
-@end
+@end 这里之所以将单例模式，是因为其中用到了 GCD 的 dispatch_once 方法。下面看 Swift 中的单例模式，在Swift中单例模式非常简单！想知道怎么从 OC 那么复杂的方法变成下面的写法的，请看这里
 </code></pre>
-
-<p>这里之所以将单例模式，是因为其中用到了 GCD 的 dispatch_once 方法。下面看 Swift 中的单例模式，在Swift中单例模式非常简单！想知道怎么从 OC 那么复杂的方法变成下面的写法的，请看这里</p>
 
 <p>SWIFT</p>
 
@@ -781,10 +946,8 @@ return _instance;
 static let sharedTool = Tool()
 // 私有化构造方法，阻止其他对象使用这个类的默认的'()'构造方法
 private override init() {}
-}
+} #####从其他线程回到主线程的方法
 </code></pre>
-
-<h5>从其他线程回到主线程的方法</h5>
 
 <p>我们都知道在其他线程操作完成后必须到主线程更新UI。所以，介绍完所有的多线程方案后，我们来看看有哪些方法可以回到主线程。</p>
 
@@ -793,22 +956,16 @@ private override init() {}
 <pre><code>//Objective-C
 [self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
 //Swift
-//swift 取消了 performSelector 方法。
-</code></pre>
+//swift 取消了 performSelector 方法。 GCD
 
-<p>GCD</p>
-
-<pre><code>//Objective-C
+//Objective-C
 dispatch_async(dispatch_get_main_queue(), ^{
 });
 //Swift
 dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
-})
-</code></pre>
+}) NSOperationQueue
 
-<p>NSOperationQueue</p>
-
-<pre><code>//Objective-C
+//Objective-C
 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 }];
 //Swift
@@ -820,16 +977,16 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
   
   <entry>
     <title type="html"><![CDATA[知名ios应用背后的第三方项目]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/"/>
+    <link href="http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/"/>
     <updated>2015-08-08T22:17:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu</id>
-    <content type="html"><![CDATA[<blockquote><p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx&rsquo;s blog中详细介绍了Facebook Paper使用的第三方库。</p></blockquote>
+    <id>http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
+</blockquote>
 
-<h3>Instagram</h3>
-
+<h3 id="instagram">Instagram</h3>
 <hr />
-
-<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
+<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
 
 <p>Appirater: 提醒用户打分。</p>
 
@@ -837,7 +994,7 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
 
-<p><em>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
+<p><em>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
 
 <p><em>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</em></p>
 
@@ -845,45 +1002,41 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
 
-<p>SocketRocket: Objective-C WebSocket客户端库。 <a href="https://github.com/square/SocketRocket">https://github.com/square/SocketRocket</a></p>
+<p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
 
-<p><em>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</em></p>
+<p><em>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</em></p>
 
-<h3>Foursquare</h3>
+<p><!--more--></p>
 
+<h3 id="foursquare">Foursquare</h3>
 <hr />
-
 <p>Facebook SDK for iOS: 集成Facebook,构建强大的社交app。</p>
 
 <p>FSNetworking: Foursquare iOS网络库。</p>
 
 <p>kingpin: MapKit/MKAnnotation pin 聚合库，主要用来在地图上面添加锚点。</p>
 
-<p><em>AFNetworking:适用于iOS和OS X的网络框架。</em></p>
+<p><em>AFNetworking:适用于iOS和OS X的网络框架。</em></p>
 
 <p>SKBounceAnimation: CAKeyframeAnimation子类，可快速简单地设置弹动的数量，开始和结束的值，以及创建动画。</p>
 
 <p>DB5: 通过Plist配置文件。</p>
 
-<h3>LinkedIn</h3>
-
+<h3 id="linkedin">LinkedIn</h3>
 <hr />
-
 <p><em>BlocksKit: blocks工具包。</em></p>
 
 <p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
 
 <p>DTCOreText:文字效果代码类库。在UITextView上实现丰富的文字效果，比如文字大小、颜色、字体、下划线，链接，给文字加上图片、视频，文字任意间距等等。实现类似于CSS网页的文字效果。</p>
 
-<h3>Shazam</h3>
-
+<h3 id="shazam">Shazam</h3>
 <hr />
-
 <p>AudioStreamer:Mac OS X和iPhone上适用的流媒体音频播放器，可播放来自网络上的音乐。</p>
 
-<p>ColorArt: iTunes 11风格的颜色匹配代码。</p>
+<p>ColorArt: iTunes 11风格的颜色匹配代码。</p>
 
-<p>objc-geohash: Objective-C GeoHash库，通过经纬度获得哈希表。</p>
+<p>objc-geohash: Objective-C GeoHash库，通过经纬度获得哈希表。</p>
 
 <p>FormatterKit: 收集了精心构思的NSFormatter子类。</p>
 
@@ -891,11 +1044,9 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p><em>WEbViewJavascriptBridge: 在使用UIWebView时，它优雅地实现了JS与ios 的ObjC 原生代码之间的互调，支持消息发送、接收、消息处理器的注册与调用以及设置消息处理的回调。</em></p>
 
-<h3>Skype</h3>
-
+<h3 id="skype">Skype</h3>
 <hr />
-
-<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
+<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
 
 <p>Hockey SDK: HockeyApp service官方iOS SDK。</p>
 
@@ -905,23 +1056,21 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
 
-<p><em>Cocoa Lumberjack: 适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
-
-<p>MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添加标题和选择多个图片。照片浏览器效果类似iOS原生的照片应用,可显示来自手机的图片或者是网络图片，也可自动从网络下载图片并进行缓存，还可图片进行缩放等。</p>
+<p><em>Cocoa Lumberjack: 适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em>
+
+MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添加标题和选择多个图片。照片浏览器效果类似iOS原生的照片应用,可显示来自手机的图片或者是网络图片，也可自动从网络下载图片并进行缓存，还可图片进行缩放等。</p>
 
 <p>BlocksKit: Objective-C blocks工具包。</p>
 
-<h3>Spotify</h3>
-
+<h3 id="spotify">Spotify</h3>
 <hr />
-
 <p><em>FMDB: SQLite API封装库。</em></p>
 
 <p>MAObjCRuntime:将运行时API封装成ObjC。</p>
 
 <p>Nu: 编程语言。</p>
 
-<p>PLCrashReporter (Github mirror):进程内崩溃报告框架。</p>
+<p>PLCrashReporter (Github mirror):进程内崩溃报告框架。</p>
 
 <p>SBJSON:Objective-C 实现的一个严格的JSON 解析器和生成器。</p>
 ]]></content>
@@ -929,28 +1078,29 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
   
   <entry>
     <title type="html"><![CDATA[IOS第三方库和插件]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/iosdi-san-fang-ku-he-cha-jian/"/>
+    <link href="http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian/"/>
     <updated>2015-08-08T22:04:09+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/iosdi-san-fang-ku-he-cha-jian</id>
-    <content type="html"><![CDATA[<h2>前言</h2>
-
+    <id>http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian</id>
+    <content type="html"><![CDATA[<h2 id="section">前言</h2>
 <hr />
 
-<blockquote><p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p></blockquote>
+<blockquote>
+  <p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p>
+</blockquote>
 
 <p>Xcode基本是Mac/iOS程序员的必备工具(AppCode我没用过 不知道有多少人用?) 但是能说有多好用..这就仁者见仁了(跟Visual Studio是没得比了) 不过在用了插件以后 倒也能让生产力提升一大截</p>
 
 <p>接下来我会介绍一些我本人常用的第三方库和插件 也许不多 但是一定是久经考验 用了一定不会错</p>
 
-<h2>介绍</h2>
+<!--more-->
 
+<h2 id="section-1">介绍</h2>
 <hr />
 
-<h3>第三方库</h3>
-
+<h3 id="section-2">第三方库</h3>
 <hr />
 
-<h4>CocoaPod</h4>
+<h4 id="cocoapod">CocoaPod</h4>
 
 <p>CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具</p>
 
@@ -958,7 +1108,7 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>CocoaPod的出现解决了这些问题 以Framework的方式引入第三方库 极大的节约了集成的时间 而且通吃Objective-C和Swift(Swift上的Cathatage我没有实际用过 但是它的那种集成方式还是比CocoaPod麻烦点)</p>
 
-<h4>iCarousel</h4>
+<h4 id="icarousel">iCarousel</h4>
 
 <p>在iOS 4.x的时代(我也是从4.0开始接触iOS开发的) Coverflow的效果可谓是风靡一时 初出茅庐的我当年对如何实现几乎是束手无策(当年所有的电影资讯类的APP 如布丁爱生活等 都需要实现Coverflow选片的效果 碰巧我也要做一个) iCarousel的出现替我解决了一个大的难题</p>
 
@@ -968,13 +1118,15 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>作者nicklockwood也是一个高产的大神 同时维护着数量众多且优质的开源库(比如iVersion iRate) 大家不妨去看一看 淘一淘</p>
 
-<h4>AFNetworking/Alamofire</h4>
+<!--more-->
+
+<h4 id="afnetworkingalamofire">AFNetworking/Alamofire</h4>
 
 <p>HTTP框架的龙头老大 当年在与ASIHTTPRequest的竞争中笑到了最后(当然也是因为ASIHTTPRequest的作者不维护了 不过国内很多公司 因为历史原因都在自行维护) 由于及时维护和拥抱语言的新特性 迅速被大家所接受和喜爱</p>
 
 <p>相信每个人都用过 这里就不赘述了</p>
 
-<h4>MKNetworkKit</h4>
+<h4 id="mknetworkkit">MKNetworkKit</h4>
 
 <p>如果说AFNetworking是老大 那么MKNetworkKit可以说是小弟了 不过也因为比AFNetworking轻量的原因 也获得了许多开发者的青睐</p>
 
@@ -982,7 +1134,7 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>不过也许是因为AFNetworking发展得更快更迅速 而作者本人是单兵作战的原因 作者也基本放弃了更新(版本号在停留在0.8x) 十分可惜</p>
 
-<h4>SDWebImage</h4>
+<h4 id="sdwebimage">SDWebImage</h4>
 
 <p>图片异步下载和缓存管理的集大成者 UITableView的黄金搭档 其代码被开发者研究分享过无数次喵大的Kingfisher(可以说是Swift版的SDWebImage)也是深受其影响</p>
 
@@ -990,7 +1142,7 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>除了简单的使用sd_setImageWithURL之外 SDImageCache也是可以独立使用的 功能也相当之强大</p>
 
-<h4>ZXingObjC</h4>
+<h4 id="zxingobjc">ZXingObjC</h4>
 
 <p>zxing是Google出品的二维码扫描组件 原本是Java编写的 现在也有了各种语言的移植版 而ZXingObjC就是其中之一</p>
 
@@ -998,7 +1150,7 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>不过iOS7已内置了二维码摄像头扫描 而iOS8也已内置了二维码静态图扫描 以后可能再也不需要用到ZXing了 :(</p>
 
-<h4>MBProgressHUD</h4>
+<h4 id="mbprogresshud">MBProgressHUD</h4>
 
 <p>简单易用且稳定的HUD组件 半透明黑底白字的风格也经久不衰 loading提示的最佳选择</p>
 
@@ -1008,7 +1160,7 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>我也曾多次在文章中提到过关于Masonry的使用方法 如果还没有用过的朋友 不妨看一看</p>
 
-<h4>pop</h4>
+<h4 id="pop">pop</h4>
 
 <p>Facebook的工程师一直是神一般的存在 对开源社区的贡献也是巨大的 极大的推动了各种变成语言的发展 比如HipHop之于PHP react之于JavaScript pop之于Objective-C等等</p>
 
@@ -1016,39 +1168,39 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>pop对自定义动画也支持得很好 我也以pop的自定义动画为基础写过MMTweanAnimation</p>
 
-<h4>ReactiveCocoa</h4>
+<h4 id="reactivecocoa">ReactiveCocoa</h4>
 
 <p>说起来惭愧 大名鼎鼎的RAC 我只使用了点皮毛(只拿来做输入验证了)</p>
 
 <p>暂时还没有进行深层次的使用 对RAC的理解也停留在表面阶段 不过这篇文章介绍得非常详细 值得一看</p>
 
-<h4>GPUImage</h4>
+<h4 id="gpuimage">GPUImage</h4>
 
 <p>如果你要做图像(照片或者视频)的相关处理 或者只是简单的想做个像Camera360一样的拍照滤镜 那么你一定要研究一下GPUImage</p>
 
 <p>如它的名字所述 GPUImage是基于GPU的图像处理框架 我们都知道 GPU是提升性能的关键 这也就是GPUImage如此重要 如此受欢迎的原因</p>
 
-<h4>Lumberjack</h4>
+<h4 id="lumberjack">Lumberjack</h4>
 
 <p>log系统是每个项目都应该有的东西 而Lumberjack是log系统中的翘楚</p>
 
 <p>你可以简单的把它当成NSLog的替代品(简单来说 Lumberjack比NSLog速度更快) 或者根据你的需要来打造一个更强大的日志系统</p>
 
-<h4>NSLogger</h4>
+<h4 id="nslogger">NSLogger</h4>
 
 <p>从名字可以看出 NSLogger也是一个log系统 其特点是附带了一个功能强大的Desktop Viewer 可以让你方便的查看APP产生的日志(支持分级筛选等等 甚至可以直接log一张图片)</p>
 
-<h4>AwesomeMenu</h4>
+<h4 id="awesomemenu">AwesomeMenu</h4>
 
 <p>当年横空出世的Path 其优美的设计 精彩的动画 不知让多少人嘴巴都合不拢 而最赞的 就是它的弹出菜单 一时成为了每个APP争相模仿的对象</p>
 
 <p>有了AwesomeMenu 你可以轻易的实现它</p>
 
-<h4>MMDrawerController</h4>
+<h4 id="mmdrawercontroller">MMDrawerController</h4>
 
 <p>普通的侧滑菜单 用MMDrawerController就搞定了</p>
 
-<h4>realm</h4>
+<h4 id="realm">realm</h4>
 
 <p>作为数据存储的一等公民 CoreData的地位不言而喻 不过也因为使用起来不够方便 才会出现MagicalRecord这种辅助类 甚至fmdb这种基于纯sqlite的库</p>
 
@@ -1058,40 +1210,38 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>作为YCombinator的孵化项目 其质量还是能得以保证的 至少我试用下来 确实给我以很大的惊喜 不管是API的设计 还是数据对象的定义 就连数据库的版本升级 都非常的方便)</p>
 
-<h3>Xcode插件</h3>
-
+<h3 id="xcode">Xcode插件</h3>
 <hr />
 
-<h4>Alcatraz</h4>
+<h4 id="alcatraz">Alcatraz</h4>
 
 <p>与CocoaPod类似 Alcatraz是Xcode的插件管理器 能够让你方便的管理Xcode的插件(不仅可以管理插件 还可以管理主题等等)</p>
 
-<h4>FuzzyAutocomplete</h4>
+<h4 id="fuzzyautocomplete">FuzzyAutocomplete</h4>
 
 <p>如果只让我选一个插件留下 那必须是FuzzyAutocomplete 强大的模糊匹配输入 让你写代码的时候再也不用费脑子去记住名字那么长的对象或者函数名了 好用到让你想哭</p>
 
-<h4>XAlign</h4>
+<h4 id="xalign">XAlign</h4>
 
 <p>作为有洁癖的码农 看到不对齐的代码一定是不能忍的 XAlign可以轻松解决你的烦恼</p>
 
-<h4>VVDocumenter-Xcode</h4>
+<h4 id="vvdocumenter-xcode">VVDocumenter-Xcode</h4>
 
 <p>喵大的又一力作 能够识别当前函数的参数和返回类型 帮助你快速编写符合规范的注释(目前是以Javadoc为标准)</p>
 
-<h4>deriveddata-exterminator</h4>
+<h4 id="deriveddata-exterminator">deriveddata-exterminator</h4>
 
 <p>如果你老是遇到Xcode抽风 提示你要因为某个原因要删除某个目录下的文件 否则编译不过 那你一定会被这个插件感动 因为说明了遇到这个事的人不只你一个</p>
 
-<h4>Xcode-Quick-Localization</h4>
+<h4 id="xcode-quick-localization">Xcode-Quick-Localization</h4>
 
 <p>多语言在iOS开发中一直不是很方便 有了它 你可以省不少事</p>
 
-<h4>Backlight-for-XCode</h4>
+<h4 id="backlight-for-xcode">Backlight-for-XCode</h4>
 
 <p>就如果Xcode默认的80个字的分页提示一样 高亮当前正在编辑的一行 也是一种友好的提示 喜不喜欢也就因人而异了</p>
 
-<h2>小结</h2>
-
+<h2 id="section-3">小结</h2>
 <hr />
 
 <p>以上的介绍 都是从我自身的使用经验触发的 可能大部分大家都用过了 而我也将会持续的更新这份列表 只要有优秀使用的东东 我都会添加进来</p>
@@ -1100,19 +1250,17 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
   
   <entry>
     <title type="html"><![CDATA[octopress搭建教程]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/octopressda-jian-jiao-cheng/"/>
+    <link href="http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/"/>
     <updated>2015-08-08T21:00:18+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/octopressda-jian-jiao-cheng</id>
-    <content type="html"><![CDATA[<h2>1.安装Octopress</h2>
-
+    <id>http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng</id>
+    <content type="html"><![CDATA[<h2 id="octopress">1.安装Octopress</h2>
 <pre><code>git clone git://github.com/imathis/octopress.git octopress
 cd octopress
 bundle update    # 安装依赖的组件
 rake install     # 安装默认的Octopress主题
 </code></pre>
 
-<h2>2.配置Git</h2>
-
+<h2 id="git">2.配置Git</h2>
 <p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
 
 <pre><code>git remote rm origin
@@ -1120,11 +1268,12 @@ git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
 git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
 </code></pre>
 
-<h2>3.配置github</h2>
+<!--more-->
 
+<h2 id="github">3.配置github</h2>
 <p>在github上创建一个仓库，注意仓库名称要以下这种格式yourname.github.io，这样代码发布后自动这个url就可以访问了（此处一定要注意哦，我刚开始没注意，死活没得到想要的效果）。</p>
 
-<p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL <a href="http://yourname.github.io/">http://yourname.github.io/</a> (注意不能用 https协议，必须用 http协议)。</p>
+<p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL http://yourname.github.io/ (注意不能用 https协议，必须用 http协议)。</p>
 
 <p>设定 GitHub Pages</p>
 
@@ -1138,30 +1287,27 @@ git remote add octopress git://github.com/imathis/octopress.git  # 为了octopre
 rake deploy
 </code></pre>
 
-<h2>4.将 source 也加入 git</h2>
-
+<h2 id="source--git">4.将 source 也加入 git</h2>
 <pre><code>git add .
 git commit -m 'initial source commit'
 git push origin source
 </code></pre>
 
-<h2>5.更新 Octopress</h2>
-
-<pre><code>git remote add octopress git://github.com/imathis/  octopress.git
+<h2 id="octopress-1">5.更新 Octopress</h2>
+<pre><code>git remote add octopress git://github.com/imathis/	octopress.git
 git pull octopress master     # Get the latest Octopress
 bundle install                # Keep gems updated
-rake update_source            # update the template's   source
+rake update_source            # update the template's 	source
 rake update_style             # update the template's style
 </code></pre>
 
-<h2>6.发表新文章</h2>
-
+<h2 id="section">6.发表新文章</h2>
 <pre><code>rake new_post["新文章名称"]
 rake preview
 用浏览器打开 http://localhost:4000 就可以看到效果了。
 </code></pre>
 
-<h2>7.发布</h2>
+<h2 id="section-1">7.发布</h2>
 
 <pre><code>rake gen_deploy
 rake deploy                 #若发布后无效果可试试此命令
@@ -1171,11 +1317,10 @@ rake deploy                 #若发布后无效果可试试此命令
   
   <entry>
     <title type="html"><![CDATA[markdown简介]]></title>
-    <link href="http://helloyokoy.github.io/blog/2015/08/08/xin-wen-zhang-ming-cheng/"/>
+    <link href="http://helloyokoy.github.io/blog/xin-wen-zhang-ming-cheng/"/>
     <updated>2015-08-08T18:08:31+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/2015/08/08/xin-wen-zhang-ming-cheng</id>
-    <content type="html"><![CDATA[<h3>1. 标题设置（让字体变大，和word的标题意思一样）</h3>
-
+    <id>http://helloyokoy.github.io/blog/xin-wen-zhang-ming-cheng</id>
+    <content type="html"><![CDATA[<h3 id="word">1. 标题设置（让字体变大，和word的标题意思一样）</h3>
 <hr />
 
 <p>在Markdown当中设置标题，有两种方式：</p>
@@ -1184,40 +1329,31 @@ rake deploy                 #若发布后无效果可试试此命令
 
 <p>第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大）</p>
 
-<h3>2. 块注释（blockquote）</h3>
-
+<h3 id="blockquote">2. 块注释（blockquote）</h3>
 <hr />
 
-<p>通过在文字开头添加“>”表示块注释。（当>和文字之间添加五个blank时，块注释的文字会有变化。）</p>
+<p>通过在文字开头添加“&gt;”表示块注释。（当&gt;和文字之间添加五个blank时，块注释的文字会有变化。）</p>
 
-<h3>3. 斜体</h3>
-
+<h3 id="section">3. 斜体</h3>
 <hr />
-
 <p>将需要设置为斜体的文字两端使用1个“*”或者“_”夹起来</p>
 
-<h3>4. 粗体</h3>
+<!--more-->
 
+<h3 id="section-1">4. 粗体</h3>
 <hr />
-
 <p>将需要设置为斜体的文字两端使用2个“*”或者“_”夹起来</p>
 
-<h3>5. 无序列表</h3>
-
+<h3 id="section-2">5. 无序列表</h3>
 <hr />
-
 <p>在文字开头添加(<em>, +, and -)实现无序列表。但是要注意在(</em>, +, and -)和文字之间需要添加空格。（建议：一个文档中只是用一种无序列表的表示方式）</p>
 
-<h3>6. 有序列表</h3>
-
+<h3 id="section-3">6. 有序列表</h3>
 <hr />
-
 <p>使用数字后面跟上句号。（还要有空格）</p>
 
-<h3>7. 链接（Links）</h3>
-
+<h3 id="links">7. 链接（Links）</h3>
 <hr />
-
 <p>Markdown中有两种方式，实现链接，分别为内联方式和引用方式。</p>
 
 <p>内联方式：</p>
@@ -1234,28 +1370,24 @@ rake deploy                 #若发布后无效果可试试此命令
 [3]: http://search.msn.com/    "MSN Search"
 </code></pre>
 
-<h3>8. 图片（Images）</h3>
-
+<h3 id="images">8. 图片（Images）</h3>
 <hr />
-
 <p>图片的处理方式和链接的处理方式，非常的类似。</p>
 
 <p>内联方式：</p>
 
-<pre><code>    ![alt text](/path/to/img.jpg "Title")
+<pre><code>	![alt text](/path/to/img.jpg "Title")
 </code></pre>
 
 <p>引用方式：</p>
 
-<pre><code>    ![alt text][id] 
+<pre><code>	![alt text][id] 
 
-    [id]: /path/to/img.jpg "Title"
+	[id]: /path/to/img.jpg "Title"
 </code></pre>
 
-<h3>9. 代码（HTML中所谓的Code）</h3>
-
+<h3 id="htmlcode">9. 代码（HTML中所谓的Code）</h3>
 <hr />
-
 <p>实现方式有两种：</p>
 
 <p>第一种：简单文字出现一个代码框。</p>
@@ -1268,8 +1400,7 @@ rake deploy                 #若发布后无效果可试试此命令
 <pre><code>使用Tab和四个空格。
 </code></pre>
 
-<h3>10. 脚注（footnote）</h3>
-
+<h3 id="footnote">10. 脚注（footnote）</h3>
 <hr />
 
 <p>实现方式如下：</p>
@@ -1279,11 +1410,11 @@ rake deploy                 #若发布后无效果可试试此命令
 [^hello]: hi
 </code></pre>
 
-<h3>11. 下划线</h3>
-
+<h3 id="section-4">11. 下划线</h3>
 <hr />
 
 <p>在空白行下方添加三条“-”横线。（前面讲过在文字下方添加“-”，实现的2级标题）</p>
+
 ]]></content>
   </entry>
   

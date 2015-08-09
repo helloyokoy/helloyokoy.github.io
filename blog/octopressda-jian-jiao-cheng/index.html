@@ -7,7 +7,8 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="1.安装Octopress git clone git://github.com/imathis/octopress.git octopress
+	<meta name="description" content="1.安装Octopress
+git clone git://github.com/imathis/octopress.git octopress
 cd octopress
 bundle update # 安装依赖的组件
 rake install # 安装默认的Octopress主题 2.配置Git &hellip;">
@@ -20,41 +21,55 @@ rake install # 安装默认的Octopress主题 2.配置Git &hellip;">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript">
-
-function addBlankTargetForLinks () {
-
-  $('a[href^="http"]').each(function(){
-
-      $(this).attr('target', '_blank');
-
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
   });
-
-}
-
-$(document).bind('DOMNodeInserted', function(event) {
-
-  addBlankTargetForLinks();
-
-});
-
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 </head>
 
 
 <body>
 	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
 <nav id="main-nav"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/about">关于</a></li>
 </ul>
 </nav>
 <nav id="mobile-nav">
 	<div class="alignleft menu">
 		<a class="button">Menu</a>
 		<div class="container"><ul class="main">
-	<li><a href="/">Blog</a></li>
-	<li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/about">关于</a></li>
 </ul>
 </div>
 	</div>
@@ -96,16 +111,14 @@ $(document).bind('DOMNodeInserted', function(event) {
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Octopress搭建教程</h2>
-	<div class="entry-content"><h2>1.安装Octopress</h2>
-
+	<div class="entry-content"><h2 id="octopress">1.安装Octopress</h2>
 <pre><code>git clone git://github.com/imathis/octopress.git octopress
 cd octopress
 bundle update    # 安装依赖的组件
 rake install     # 安装默认的Octopress主题
 </code></pre>
 
-<h2>2.配置Git</h2>
-
+<h2 id="git">2.配置Git</h2>
 <p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
 
 <pre><code>git remote rm origin
@@ -113,11 +126,12 @@ git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
 git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
 </code></pre>
 
-<h2>3.配置github</h2>
+<!--more-->
 
+<h2 id="github">3.配置github</h2>
 <p>在github上创建一个仓库，注意仓库名称要以下这种格式yourname.github.io，这样代码发布后自动这个url就可以访问了（此处一定要注意哦，我刚开始没注意，死活没得到想要的效果）。</p>
 
-<p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL <a href="http://yourname.github.io/">http://yourname.github.io/</a> (注意不能用 https协议，必须用 http协议)。</p>
+<p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL http://yourname.github.io/ (注意不能用 https协议，必须用 http协议)。</p>
 
 <p>设定 GitHub Pages</p>
 
@@ -131,30 +145,27 @@ git remote add octopress git://github.com/imathis/octopress.git  # 为了octopre
 rake deploy
 </code></pre>
 
-<h2>4.将 source 也加入 git</h2>
-
+<h2 id="source--git">4.将 source 也加入 git</h2>
 <pre><code>git add .
 git commit -m 'initial source commit'
 git push origin source
 </code></pre>
 
-<h2>5.更新 Octopress</h2>
-
-<pre><code>git remote add octopress git://github.com/imathis/  octopress.git
+<h2 id="octopress-1">5.更新 Octopress</h2>
+<pre><code>git remote add octopress git://github.com/imathis/	octopress.git
 git pull octopress master     # Get the latest Octopress
 bundle install                # Keep gems updated
-rake update_source            # update the template's   source
+rake update_source            # update the template's 	source
 rake update_style             # update the template's style
 </code></pre>
 
-<h2>6.发表新文章</h2>
-
+<h2 id="section">6.发表新文章</h2>
 <pre><code>rake new_post["新文章名称"]
 rake preview
 用浏览器打开 http://localhost:4000 就可以看到效果了。
 </code></pre>
 
-<h2>7.发布</h2>
+<h2 id="section-1">7.发布</h2>
 
 <pre><code>rake gen_deploy
 rake deploy                 #若发布后无效果可试试此命令
@@ -168,7 +179,7 @@ rake deploy                 #若发布后无效果可试试此命令
 
 
 
-Aug 8th, 2015</div>
+2015 年8 月8 日</div>
 	<div class="tags">
 
 
@@ -177,7 +188,7 @@ Aug 8th, 2015</div>
 
 </div>
 	
-	<div class="comments"><a href="#disqus_thread">Comments</a></div>
+	<div class="comments"><a href="#disqus_thread">评论</a></div>
 	
 </div>
 </article>
@@ -188,22 +199,6 @@ Aug 8th, 2015</div>
 		
 		
 		
-
-		
-	
-      		<!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-	<span class="jiathis_txt">分享到：</span>
-	<a class="jiathis_button_tools_1"></a>
-	<a class="jiathis_button_tools_2"></a>
-	<a class="jiathis_button_tools_3"></a>
-	<a class="jiathis_button_tools_4"></a>
-	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-	<a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-      
 	</div>
 	
 </div>
@@ -235,8 +230,8 @@ Aug 8th, 2015</div>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://helloyokoy.github.io/blog/2015/08/08/octopressda-jian-jiao-cheng/';
-        var disqus_url = 'http://helloyokoy.github.io/blog/2015/08/08/octopressda-jian-jiao-cheng/';
+        var disqus_identifier = 'http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/';
+        var disqus_url = 'http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/';
         var disqus_script = 'embed.js';
       
     (function () {

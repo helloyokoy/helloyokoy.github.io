@@ -1,0 +1,417 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ruby语法 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="语法
+Ruby中的类以class开始 以end结束，类名首字母的约定是大写。 Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。 Ruby中的局部变量名首字母的约定是小写。 Ruby中的构造函数名称为initialize。 Ruby中的成员变量(实例变量)前导@符， &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Ruby语法</h2>
+	<div class="entry-content"><h3 id="section">语法</h3>
+<p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
+
+<p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
+
+<p>Ruby中的局部变量名首字母的约定是小写。</p>
+
+<p>Ruby中的构造函数名称为initialize。</p>
+
+<p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
+
+<p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
+attr_accessor是可读也可写</p>
+
+<p>Ruby中的全局变量前导$符。</p>
+
+<p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
+
+<p>Ruby中任何的表达式都会返回值，
+<!--more--></p>
+
+<p>sample</p>
+
+<pre><code>class Rectangle
+  		def initialize(wdth, hgt)
+	@width = wdth
+	@height = hgt
+  		end
+  		def width=(wdth)
+	@width = wdth
+  		end
+  
+end
+
+r = Rectangle.new(2,3)
+puts r.width = 5 #output 5
+puts r.width # error! because the width not support read
+继续补充下attr_accessor的使用，sample
+
+class Rectangle
+  		attr_accessor :width
+  		attr_accessor :height
+  		attr_accessor :width2
+  		attr_accessor :height2
+</code></pre>
+
+  	def initialize(wdth, hgt)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
+</code></pre>
+
+  	def area()
+<pre><code>	return @width * @height
+  	end
+</code></pre>
+
+  	def area2()
+<pre><code>	return @width2 * @height2
+  	end
+  
+  
+end
+
+r = Rectangle.new(2,3)
+r.width = 5 # give samename's variable value
+r.height = 5 
+puts r.area() #outputs is 25  
+
+r.width2 = 6 # not samename's variable  create
+r.height2 = 6 
+puts r.area2() # outputs is 36
+</code></pre>
+
+<p>上面的代码说明了，在使用attr_accessor的时候，会寻找是否有同名的成员变量，如果有则访问同名成员变量，如果没有会默认创建一个前导@的成员变量</p>
+
+<h3 id="section-1">神奇的操作符重载</h3>
+
+<p>Ruby支持操作符重载，而且很神奇！</p>
+
+<pre><code>class Rectangle
+  	attr_accessor :width
+  	attr_accessor :height
+</code></pre>
+
+  	def initialize(wdth, hgt)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
+</code></pre>
+
+  	def area()
+<pre><code>	return @width * @height
+  	end
+</code></pre>
+
+  	def +(addRectangle)
+<pre><code>	return self.area + addRectangle.area
+  	end
+
+end
+
+r1 = Rectangle.new(2,2)
+r2 = Rectangle.new(3,3)
+puts r1+r2 # operator override
+puts r1+(r2)
+puts r1.+(r2) # standard function calling format
+</code></pre>
+
+<p>神奇吧，其实把+号理解为一个函数的名字最好不过了，就像最后一个写法，哈哈。</p>
+
+<h3 id="section-2">参数的传递</h3>
+
+<p>参数的传递中有默认值与可变长参数两个比较有特点的地方，其他语言有的，ruby也有。</p>
+
+<ol>
+  <li>参数的默认值
+默认值的设置很简单，与其他语言一样，</li>
+</ol>
+
+<p>sample</p>
+
+<pre><code>class Rectangle
+  	attr_accessor :width
+  	attr_accessor :height
+</code></pre>
+
+  	def initialize(wdth = 2, hgt = 2)
+<pre><code>	@width = wdth
+	@height = hgt
+  	end
+</code></pre>
+
+  	def area()
+<pre><code>	return @width * @height
+  	end
+
+end
+
+r1 = Rectangle.new
+puts r1.area 看到了吧，使用默认值了
+</code></pre>
+
+<ol>
+  <li>可选参数，可变长参数</li>
+</ol>
+
+<p>sample</p>
+
+<pre><code>class ParamSample
+  	def sayHello(*names)
+  puts names.class
+  puts "Hello #{names.join(",")}!"
+  	end
+  
+end
+
+ps = ParamSample.new
+ps.sayHello #output Array Hello !
+ps.sayHello("lee","snake") #output Array Hello lee,snake! 可以看出，可变长参数前缀*号，可变长参数的实质是一个Array，呵呵。
+</code></pre>
+
+<h3 id="section-3">类变量以及类方法</h3>
+
+<p>sample code</p>
+
+<pre><code>class BankAccount
+  	@@interestRate = 6.5
+  	def BankAccount.getInterestRate()
+   		@@interestRate
+  	end
+  	attr_accessor :balance
+  	def initialize(bal)
+	@balance = bal
+  	end
+end
+
+puts BankAccount.getInterestRate() 以上代码中描述了如何定义类变量以及如何访问类变量
+</code></pre>
+
+<p>Ruby的成员访问修饰关键字分为三种，与c#一样。</p>
+
+<ol>
+  <li>
+    <p>private 只能为该对象所调用的方法</p>
+  </li>
+  <li>
+    <p>protected 只能为该对象及其子对象所调用的方法</p>
+  </li>
+  <li>
+    <p>public 可以让任何对象所调用的方法
+与c#不同的是，ruby的访问修饰符从定义处开始起作用，直到下一个访问修饰符出现时终止，</p>
+  </li>
+</ol>
+
+<p>比如</p>
+
+<pre><code>class Greeter
+  	def initialize
+  	end
+</code></pre>
+
+  	private
+  	def sayhi()
+<pre><code>	puts "hi"
+  	end
+</code></pre>
+
+  	def saybye()
+<pre><code>	puts "bye"
+  	end
+</code></pre>
+
+  	public
+  	def say()
+<pre><code>	sayhi
+	saybye
+  	end
+  
+end
+
+g = Greeter.new
+g.say # output hi bye
+g.sayhi # error because the sayhi isn't publics member
+</code></pre>
+
+<p>initialize默认就是private的</p>
+
+<p>其他方法默认是public的 成员变量和类变量默认是private的 要用attr_reader或attr_accessor来增加读写控制</p>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年8 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+	<div class="comments"><a href="#disqus_thread">评论</a></div>
+	
+</div>
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+	</div>
+	
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'helloyokoy';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://helloyokoy.github.io/blog/rubyyu-fa/';
+        var disqus_url = 'http://helloyokoy.github.io/blog/rubyyu-fa/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//go.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+</body>
+</html>
