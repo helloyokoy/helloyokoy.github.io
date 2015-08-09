@@ -104,7 +104,7 @@ disqus_short_name: helloyokoy
 disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-66019285-2
 
 # Facebook Like
 facebook_like: false
