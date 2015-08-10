@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-10T12:09:54+08:00</updated>
+  <updated>2015-08-10T12:25:50+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -2094,6 +2094,109 @@ fb.display(iv,Images.imageUrls[position]);
 <h4 id="httpblogcsdnnetdongtaochen2039articledetails40376197httpblogcsdnnetdongtaochen2039articledetails40376197-title">详细教程地址: <a href="http://blog.csdn.net/dongtaochen2039/article/details/40376197" title="Title">http://blog.csdn.net/dongtaochen2039/article/details/40376197</a></h4>
 
 <h4 id="github-magicrecordhttpsgithubcommagicalpandamagicalrecord-title"><a href="https://github.com/magicalpanda/MagicalRecord" title="Title">GitHub MagicRecord</a></h4>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CTAssetsPickerController]]></title>
+    <link href="http://helloyokoy.github.io/blog/ctassetspickercontroller/"/>
+    <updated>2014-12-03T12:14:48+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/ctassetspickercontroller</id>
+    <content type="html"><![CDATA[<p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_19/19_98590_315f8ebbd058f7e.png" alt="image" title="image" /></p>
+
+<h3 id="section">特色</h3>
+<ol>
+  <li>用用户的相册中选择多张图片以及视频</li>
+  <li>有过滤的设置，只选择图片或只选择视频</li>
+  <li>可以设置选择图片以及视频的最大数量</li>
+  <li>平均5x fps</li>
+  <li>遵从UIAccessibility协议</li>
+</ol>
+
+<h3 id="section-1">需要</h3>
+<p>Xcode 5，iOS6及以上</p>
+
+<h3 id="section-2">安装</h3>
+
+<ol>
+  <li>导入CTAssetsPickerController.h文件</li>
+  <li>
+    <p>创建并显示CTAssetsPickerController</p>
+
+    <pre><code> CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
+ picker.delegate = self;
+ [self presentViewController:picker animated:YES completion:NULL];
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="section-3">定制</h3>
+<p>你可以设置最大选择文件的数量：</p>
+
+<pre><code>picker.maximumNumberOfSelection = 10;
+</code></pre>
+
+<p>如果你希望只选择图片或者视频，创建ALAssetsFilter 并把它分配给assetsFilter</p>
+
+<pre><code>picker.assetsFilter = [ALAssetsFilter allPhotos]; // 只选择图片
+</code></pre>
+
+<p>如果选择器是以弹窗的形式显示，可以去掉选择按钮</p>
+
+<pre><code>picker.showsCancelButton = NO;
+</code></pre>
+
+<h4 id="ctassetspickercontrollerdelegate">实现CTAssetsPickerControllerDelegate</h4>
+<p>用户选择完成：</p>
+
+<pre><code>- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+// assets contains ALAsset objects.
+</code></pre>
+
+<p>用户取消选择：</p>
+
+<pre><code>- (void)assetsPickerControllerDidCancel:(CTAssetsPickerController *)picker;
+</code></pre>
+
+<h4 id="section-4">注意</h4>
+<p>CTAssetsPickerController并不会压缩所选择的图片和视频。但是你可以通过defaultRepresentation 属性来处理选择的对象。</p>
+
+<p>例如：如果选择的是图片的话，可以像这样创建一个UIImage</p>
+
+<pre><code>ALAssetRepresentation *representation = alAsset.defaultRepresentation;
+
+UIImage *fullResolutionImage =
+[UIImage imageWithCGImage:representation.fullResolutionImage
+                    scale:1.0f
+              orientation:(UIImageOrientation)representation.orientation];
+</code></pre>
+
+<p>如果选择的是视频，则创建一个NSData：</p>
+
+<pre><code>ALAssetRepresentation *representation = alAsset.defaultRepresentation;
+
+NSURL *url          = representation.url;
+AVAsset *asset      = [AVURLAsset URLAssetWithURL:url options:nil];
+
+AVAssetExportSession *session =
+[AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetLowQuality];
+
+session.outputFileType  = AVFileTypeQuickTimeMovie;
+session.outputURL       = VIDEO_EXPORTING_URL;
+
+[session exportAsynchronouslyWithCompletionHandler:^{
+
+    if (session.status == AVAssetExportSessionStatusCompleted)
+    {
+        NSData *data    = [NSData dataWithContentsOfURL:session.outputURL];
+    }
+
+}];
+</code></pre>
+
+<p>请参考ALAssetRepresentation和AVAssetExportSession的文档</p>
+
+<p>GitHub地址 <a href="https://github.com/chiunam/CTAssetsPickerController" title="url">https://github.com/chiunam/CTAssetsPickerController</a></p>
 ]]></content>
   </entry>
   
