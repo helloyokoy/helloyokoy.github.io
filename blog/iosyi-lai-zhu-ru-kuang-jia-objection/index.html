@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>BryanFu Blog</title>
+	<title>ios依赖注入框架objection - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
@@ -121,18 +121,9 @@
 	
 		
 	
-	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
-		
-			Ios依赖注入框架objection</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Ios依赖注入框架objection</h2>
+	<div class="entry-content"><blockquote>
   <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
 </blockquote>
 
@@ -155,10 +146,70 @@
 
 <p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
 
+<!--more-->
 
-		
-		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" class="more-link">阅读全文</a>
-	</div>
+<p>实现方法是：先定义一个协议(protocol)，然后通过objection来注册这个协议对应的class，需要的时候，可以获取该协议对应的object。对于使用方无需关心到底使用的是哪个Class，反正该有的方法、属性都有了(在协议中指定)。这样就去除了对某个特定Class的依赖。也就是通常所说的「面向接口编程」。</p>
+
+<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
+UIViewController &lt;ViewControllerAProtocol&gt; *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
+vc.backgroundColor = [UIColor lightGrayColor]; // [3]
+UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+self.window.rootViewController = nc;
+</code></pre>
+
+<ol>
+  <li>获取默认的injector，这个injector已经注册过ViewControllerAProtocol了。</li>
+  <li>获取ViewControllerAProtocol对应的Object。</li>
+  <li>拿到VC后，设置它的某些属性，比如这里的backgroundColor，因为在ViewControllerAProtocol里有定义这个属性，所以不会有warning。</li>
+</ol>
+
+<p>可以看到这里没有引用ViewControllerA。再来看看这个ViewControllerAProtocol是如何注册到injector中的，这里涉及到了Module，对Protocol的注册都是在Module中完成的。Module只要继承JSObjectionModule这个Class即可。</p>
+
+<pre><code>@interface ViewControllerAModule : JSObjectionModule
+@end
+ 
+@implementation ViewControllerAModule
+- (void)configure
+{
+	[self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
+}
+@end
+</code></pre>
+
+<p>绑定操作是在configure方法里进行的，这个方法在被添加到injector里时会被自动触发。</p>
+
+<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
+injector = injector ? : [JSObjection createInjector]; // [2]
+injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
+[JSObjection setDefaultInjector:injector]; // [4]
+</code></pre>
+
+<ol>
+  <li>获取默认的 injector</li>
+  <li>如果默认的 injector 不存在，就新建一个</li>
+  <li>往这个 injector 里注册我们的 Module</li>
+  <li>设置该 injector 为默认的 injector</li>
+</ol>
+
+<p>这段代码可以直接放到 + (void)load里执行，这样就可以避免在AppDelegate里import各种Module。</p>
+
+<p>因为我们无法直接获得对应的Class，所以必须要在协议里定义好对外暴露的方法和属性，然后该Class也要实现该协议。</p>
+
+<pre><code>@protocol ViewControllerAProtocol &lt;NSObject&gt;
+@property (nonatomic) NSUInteger currentIndex;
+@property (nonatomic) UIColor *backgroundColor;
+@end
+ 
+@interface ViewControllerA : UIViewController &lt;ViewControllerAProtocol&gt;
+@end
+</code></pre>
+
+<p>通过objection实现依赖注入后，就能更好地实现SRP(Single Responsibility Principle)，代码更简洁，心情更舒畅，生活更美好。</p>
+
+<p>github地址: <a href="https://github.com/atomicobject/objection" title="url">https://github.com/atomicobject/objection</a></p>
+
+<p>demo地址: <a href="https://github.com/helloyokoy/bizhi" title="url">https://github.com/helloyokoy/bizhi</a></p>
+</div>
 
 
 <div class="meta">
@@ -180,54 +231,50 @@
 </article>
 
 
-    <article class="post">
-	<h2 class="title">
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 		
-		<a href="/blog/rubyzhao-pin/">
 		
-			Ruby招聘</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
-
+		
+		
 
 		
-		<a href="/blog/rubyzhao-pin/" class="more-link">阅读全文</a>
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
 	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
 	
 </div>
-</article>
 
-<nav id="pagenavi">
-    
-        
-            <a href="/" class="prev">上一页</a>
-        
-    
-    
-        <a href="/posts/3" class="next">下一页</a>
-    
-    <div class="center"><a href="/blog/archives">文章列表</a></div>
-</nav>
-</div>
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/iosyi-lai-zhu-ru-kuang-jia-objection" data-title="ios依赖注入框架objection" data-url="http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
 	<footer id="footer" class="inner">Copyright &copy; 2015
 
     BryanFu

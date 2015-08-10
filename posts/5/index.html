@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。 为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。 也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。 &hellip;">
+	<meta name="description" content="Afinal简介 Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用； 使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +127,336 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/afinaljie-shao/">
+		
+			Afinal介绍</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
+
+<h3 id="afinal">Afinal简介</h3>
+<hr />
+<ul>
+  <li>
+    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
+  </li>
+  <li>
+    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
+  </li>
+  <li>
+    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
+  </li>
+</ul>
+
+<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
+<hr />
+
+<ul>
+  <li>
+    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
+  </li>
+  <li>
+    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
+  </li>
+  <li>
+    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
+  </li>
+  <li>
+    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
+  </li>
+</ul>
+
+<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
+
+<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。 * 
+</code></pre>
+
+<h3 id="finaldb">FinalDB使用方法：</h3>
+<hr />
+<p>关于finalDb的更多介绍，请点击<a href="http://my.oschina.net/yangfuhai/blog/87459" title="Title">这里</a></p>
+
+<pre><code>FinalDb db = FinalDb.create(this);
+User user = new User(); //这里需要注意的是User对象必须有id属性，或者有通过@ID注解的属性
+user.setEmail("mail@tsz.net");
+user.setName("michael yang");
+db.save(user);
+</code></pre>
+
+<h4 id="finaldb-onetomany">FinalDB OneToMany懒加载使用方法：</h4>
+
+<p>模型定义：</p>
+
+<pre><code>public class Parent{
+private int id;
+@OneToMany(manyColumn = "parentId")
+private OneToManyLazyLoader&lt;Parent ,Child&gt; children;
+/*....*/
+}
+public class Child{
+private int id;
+private String text;
+@ManyToOne(column = "parentId")
+private  Parent  parent;
+/*....*/
+} 使用：
+
+List&lt;Parent&gt; all = db.findAll(Parent.class);
+    for( Parent  item : all){
+        if(item.getChildren ().getList().size()&gt;0)
+            Toast.makeText(this,item.getText() + item.getChildren().getList().get(0).getText(),Toast.LENGTH_LONG).show();
+    }
+</code></pre>
+
+<h3 id="finalactivity">FinalActivity使用方法：</h3>
+
+<ul>
+  <li>完全注解方式就可以进行UI绑定和事件绑定</li>
+  <li>
+    <p>无需findViewById和setClickListener等</p>
+
+    <pre><code>  public class AfinalDemoActivity extends FinalActivity {
+</code></pre>
+
+  	//无需调用findViewById和setOnclickListener等
+  	@ViewInject(id=R.id.button,click=”btnClick”) Button button;
+  	@ViewInject(id=R.id.textView) TextView textView;
+
+  	public void onCreate(Bundle savedInstanceState) {
+    <pre><code> 	super.onCreate(savedInstanceState);
+ 	setContentView(R.layout.main);
+  	}
+</code></pre>
+
+  	public void btnClick(View v){
+    <pre><code> 		textView.setText("text set form button");
+  	}
+  }
+</code></pre>
+  </li>
+  <li>
+    <p>在其他侵入式框架下使用（如ActionBarShelock）</p>
+
+   	protected void onCreate(Bundle savedInstanceState) {
+    <pre><code> 		super.onCreate(savedInstanceState);
+  	setContentView(view);
+  	FinalActivity.initInjectedView(this);
+   	}
+</code></pre>
+  </li>
+  <li>
+    <p>在Fragment中使用</p>
+
+   	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    <pre><code>    Bundle savedInstanceState) {
+ 		View viewRoot = inflater.inflate(R.layout.map_frame, container, false);
+ 		FinalActivity.initInjectedView(this,viewRoot);
+ 	 	}
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="finalhttp">FinalHttp使用方法：</h3>
+
+<h4 id="get">普通get方法</h4>
+
+<pre><code>FinalHttp fh = new FinalHttp();
+fh.get("http://www.yangfuhai.com", new AjaxCallBack(){
+
+@Override
+public void onLoading(long count, long current) { //每1秒钟自动被回调一次
+        textView.setText(current+"/"+count);
+}
+
+@Override
+public void onSuccess(String t) {
+        textView.setText(t==null?"null":t);
+}
+
+@Override
+public void onStart() {
+    //开始http请求的时候回调
+}
+
+@Override
+public void onFailure(Throwable t, String strMsg) {
+    //加载失败的时候回调
+}
+}); ####使用FinalHttp上传文件 或者 提交数据 到服务器（post方法）
+</code></pre>
+
+<p>文件上传到服务器，服务器如何接收，请查看<a href="http://www.oschina.net/question/105836_85825" title="Title">这里</a></p>
+
+<pre><code>AjaxParams params = new AjaxParams();
+params.put("username", "michael yang");
+params.put("password", "123456");
+params.put("email", "test@tsz.net");
+params.put("profile_picture", new File("/mnt/sdcard/pic.jpg")); // 上传文件
+params.put("profile_picture2", inputStream); // 上传数据流
+params.put("profile_picture3", new ByteArrayInputStream(bytes)); // 提交字节流
+
+FinalHttp fh = new FinalHttp();
+fh.post("http://www.yangfuhai.com", params, new AjaxCallBack(){
+@Override
+public void onLoading(long count, long current) {
+            textView.setText(current+"/"+count);
+}
+
+@Override
+    public void onSuccess(String t) {
+        textView.setText(t==null?"null":t);
+    }
+    });
+</code></pre>
+
+<h4 id="finalhttp-1">使用FinalHttp下载文件：</h4>
+
+<p>支持断点续传，随时停止下载任务 或者 开始任务</p>
+
+<pre><code>		FinalHttp fh = new FinalHttp();  
+		//调用download方法开始下载
+		HttpHandler handler = fh.download("http://www.xxx.com/下载路径/xxx.apk", //这里是下载的路径
+		true,//true:断点续传 false:不断点续传（全新下载）
+		"/mnt/sdcard/testapk.apk", //这是保存到本地的路径
+		new AjaxCallBack() {  
+            @Override  
+            public void onLoading(long count, long current) {  
+                 textView.setText("下载进度："+current+"/"+count);  
+            }  
+
+            @Override  
+            public void onSuccess(File t) {  
+                		textView.setText(t==null?"null":t.getAbsoluteFile().toString());  
+            }  
+
+        });  
+	//调用stop()方法停止下载
+	handler.stop();
+</code></pre>
+
+<h3 id="finalbitmap-">FinalBitmap 使用方法</h3>
+
+<p>加载网络图片就一行代码 fb.display(imageView,url) ,更多的display重载请看帮助文档</p>
+
+<pre><code>private GridView gridView;
+private FinalBitmap fb;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.images);
+
+    gridView = (GridView) findViewById(R.id.gridView);
+    gridView.setAdapter(mAdapter);
+
+    fb = FinalBitmap.create(this);//初始化FinalBitmap模块
+    fb.configLoadingImage(R.drawable.downloading);
+    //这里可以进行其他十几项的配置，也可以不用配置，配置之后必须调用init()函数,才生效
+    //fb.configBitmapLoadThreadSize(int size)
+    //fb.configBitmapMaxHeight(bitmapHeight)
+}
+
+
+///////////////////////////adapter getView////////////////////////////////////////////
+
+public View getView(int position, View convertView, ViewGroup parent) {
+ImageView iv;
+if(convertView == null){
+    convertView = View.inflate(BitmapCacheActivity.this,R.layout.image_item, null);
+    iv = (ImageView) convertView.findViewById(R.id.imageView);
+    iv.setScaleType(ScaleType.CENTER_CROP);
+    convertView.setTag(iv);
+}else{
+    iv = (ImageView) convertView.getTag();
+}
+//bitmap加载就这一行代码，display还有其他重载，详情查看源码
+fb.display(iv,Images.imageUrls[position]);
+</code></pre>
+
+<h3 id="android-library-project">配置成Android Library Project</h3>
+
+<p>解决需求:有多个项目依赖afinal,并且想修改afinal源码</p>
+
+<ul>
+  <li>clone到本地</li>
+  <li>
+    <p>添加AndroidManifest.xml文件:</p>
+
+    <pre><code>  &lt;?xml version="1.0" encoding="utf-8"?&gt;
+  &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  	package="net.tsz.afinal" &gt;
+  	&lt;uses-sdk
+  android:minSdkVersion="5"
+  android:targetSdkVersion="7" /&gt;
+  &lt;/manifest&gt;
+</code></pre>
+  </li>
+  <li>
+    <p>导入到 Eclipse:</p>
+
+    <pre><code>  Import =&gt; Android =&gt; Existing Android Code Into Workspace
+</code></pre>
+  </li>
+  <li>工程上按右键 =&gt; Properties =&gt; Android =&gt; √ Is Library</li>
+  <li>完成,你的项目可以引用这个afinal Library了.</li>
+</ul>
+
+<h3 id="git">排除不需要Git管理的文件</h3>
+
+<p>解决需求:想修改源码,但不想让Eclipse把工程弄脏</p>
+
+<ul>
+  <li>
+    <p>忽略已经被Git管理的./bin目录:
+导入Eclipse前执行: git update-index –assume-unchanged ./bin/*</p>
+  </li>
+  <li>
+    <p>忽略未被Git管理的文件和目录: 添加/.gitignore 文件:</p>
+
+    <pre><code>  /gen
+  /assets
+  /bin
+  /res
+  /.classpath
+  /.project
+  /AndroidManifest.xml
+  /project.properties
+  /.gitignore
+</code></pre>
+  </li>
+  <li>
+    <p>导入到Eclipse,git status可见Repository依旧干净.</p>
+  </li>
+</ul>
+
+<p>GitHub地址: <a href="https://github.com/yangfuhai/afinal" title="url">https://github.com/yangfuhai/afinal</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年3 月10 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/magicrecordjie-shao/">
 		
 			MagicRecord介绍</a>
@@ -159,134 +489,6 @@
 
 
 2015 年2 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ctassetspickercontroller/">
-		
-			CTAssetsPickerController</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_19/19_98590_315f8ebbd058f7e.png" alt="image" title="image" /></p>
-
-<h3 id="section">特色</h3>
-<ol>
-  <li>用用户的相册中选择多张图片以及视频</li>
-  <li>有过滤的设置，只选择图片或只选择视频</li>
-  <li>可以设置选择图片以及视频的最大数量</li>
-  <li>平均5x fps</li>
-  <li>遵从UIAccessibility协议</li>
-</ol>
-
-<h3 id="section-1">需要</h3>
-<p>Xcode 5，iOS6及以上</p>
-
-<h3 id="section-2">安装</h3>
-
-<ol>
-  <li>导入CTAssetsPickerController.h文件</li>
-  <li>
-    <p>创建并显示CTAssetsPickerController</p>
-
-    <pre><code> CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
- picker.delegate = self;
- [self presentViewController:picker animated:YES completion:NULL];
-</code></pre>
-  </li>
-</ol>
-
-<h3 id="section-3">定制</h3>
-<p>你可以设置最大选择文件的数量：</p>
-
-<pre><code>picker.maximumNumberOfSelection = 10;
-</code></pre>
-
-<p>如果你希望只选择图片或者视频，创建ALAssetsFilter 并把它分配给assetsFilter</p>
-
-<pre><code>picker.assetsFilter = [ALAssetsFilter allPhotos]; // 只选择图片
-</code></pre>
-
-<p>如果选择器是以弹窗的形式显示，可以去掉选择按钮</p>
-
-<pre><code>picker.showsCancelButton = NO;
-</code></pre>
-
-<h4 id="ctassetspickercontrollerdelegate">实现CTAssetsPickerControllerDelegate</h4>
-<p>用户选择完成：</p>
-
-<pre><code>- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
-// assets contains ALAsset objects.
-</code></pre>
-
-<p>用户取消选择：</p>
-
-<pre><code>- (void)assetsPickerControllerDidCancel:(CTAssetsPickerController *)picker;
-</code></pre>
-
-<h4 id="section-4">注意</h4>
-<p>CTAssetsPickerController并不会压缩所选择的图片和视频。但是你可以通过defaultRepresentation 属性来处理选择的对象。</p>
-
-<p>例如：如果选择的是图片的话，可以像这样创建一个UIImage</p>
-
-<pre><code>ALAssetRepresentation *representation = alAsset.defaultRepresentation;
-
-UIImage *fullResolutionImage =
-[UIImage imageWithCGImage:representation.fullResolutionImage
-                    scale:1.0f
-              orientation:(UIImageOrientation)representation.orientation];
-</code></pre>
-
-<p>如果选择的是视频，则创建一个NSData：</p>
-
-<pre><code>ALAssetRepresentation *representation = alAsset.defaultRepresentation;
-
-NSURL *url          = representation.url;
-AVAsset *asset      = [AVURLAsset URLAssetWithURL:url options:nil];
-
-AVAssetExportSession *session =
-[AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetLowQuality];
-
-session.outputFileType  = AVFileTypeQuickTimeMovie;
-session.outputURL       = VIDEO_EXPORTING_URL;
-
-[session exportAsynchronouslyWithCompletionHandler:^{
-
-    if (session.status == AVAssetExportSessionStatusCompleted)
-    {
-        NSData *data    = [NSData dataWithContentsOfURL:session.outputURL];
-    }
-
-}];
-</code></pre>
-
-<p>请参考ALAssetRepresentation和AVAssetExportSession的文档</p>
-
-<p>GitHub地址 <a href="https://github.com/chiunam/CTAssetsPickerController" title="url">https://github.com/chiunam/CTAssetsPickerController</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年12 月3 日</div>
 	<div class="tags">
 
 

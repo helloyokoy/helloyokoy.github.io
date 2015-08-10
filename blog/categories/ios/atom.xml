@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-10T21:50:05+08:00</updated>
+  <updated>2015-08-10T22:05:24+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -574,6 +574,100 @@ NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, boo
   <li>Please reference to NSObject+MJKeyValue.h and NSObject+MJCoding.h</li>
   <li><a href="https://github.com/CoderMJLee/MJExtension" title="url">github地址</a></li>
 </ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ios依赖注入框架objection]]></title>
+    <link href="http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/"/>
+    <updated>2015-07-10T21:52:44+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
+</blockquote>
+
+<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
+
+<pre><code>- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+	button.frame = CGRectMake(100, 100, 100, 30);
+	[self.view addSubview:button];
+}
+ 
+- (void)buttonTapped
+{
+	ViewControllerB *vc = [[ViewControllerB alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
+}
+</code></pre>
+
+<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
+
+<!--more-->
+
+<p>实现方法是：先定义一个协议(protocol)，然后通过objection来注册这个协议对应的class，需要的时候，可以获取该协议对应的object。对于使用方无需关心到底使用的是哪个Class，反正该有的方法、属性都有了(在协议中指定)。这样就去除了对某个特定Class的依赖。也就是通常所说的「面向接口编程」。</p>
+
+<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
+UIViewController &lt;ViewControllerAProtocol&gt; *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
+vc.backgroundColor = [UIColor lightGrayColor]; // [3]
+UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+self.window.rootViewController = nc;
+</code></pre>
+
+<ol>
+  <li>获取默认的injector，这个injector已经注册过ViewControllerAProtocol了。</li>
+  <li>获取ViewControllerAProtocol对应的Object。</li>
+  <li>拿到VC后，设置它的某些属性，比如这里的backgroundColor，因为在ViewControllerAProtocol里有定义这个属性，所以不会有warning。</li>
+</ol>
+
+<p>可以看到这里没有引用ViewControllerA。再来看看这个ViewControllerAProtocol是如何注册到injector中的，这里涉及到了Module，对Protocol的注册都是在Module中完成的。Module只要继承JSObjectionModule这个Class即可。</p>
+
+<pre><code>@interface ViewControllerAModule : JSObjectionModule
+@end
+ 
+@implementation ViewControllerAModule
+- (void)configure
+{
+	[self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
+}
+@end
+</code></pre>
+
+<p>绑定操作是在configure方法里进行的，这个方法在被添加到injector里时会被自动触发。</p>
+
+<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
+injector = injector ? : [JSObjection createInjector]; // [2]
+injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
+[JSObjection setDefaultInjector:injector]; // [4]
+</code></pre>
+
+<ol>
+  <li>获取默认的 injector</li>
+  <li>如果默认的 injector 不存在，就新建一个</li>
+  <li>往这个 injector 里注册我们的 Module</li>
+  <li>设置该 injector 为默认的 injector</li>
+</ol>
+
+<p>这段代码可以直接放到 + (void)load里执行，这样就可以避免在AppDelegate里import各种Module。</p>
+
+<p>因为我们无法直接获得对应的Class，所以必须要在协议里定义好对外暴露的方法和属性，然后该Class也要实现该协议。</p>
+
+<pre><code>@protocol ViewControllerAProtocol &lt;NSObject&gt;
+@property (nonatomic) NSUInteger currentIndex;
+@property (nonatomic) UIColor *backgroundColor;
+@end
+ 
+@interface ViewControllerA : UIViewController &lt;ViewControllerAProtocol&gt;
+@end
+</code></pre>
+
+<p>通过objection实现依赖注入后，就能更好地实现SRP(Single Responsibility Principle)，代码更简洁，心情更舒畅，生活更美好。</p>
+
+<p>github地址: <a href="https://github.com/atomicobject/objection" title="url">https://github.com/atomicobject/objection</a></p>
+
+<p>demo地址: <a href="https://github.com/helloyokoy/bizhi" title="url">https://github.com/helloyokoy/bizhi</a></p>
 ]]></content>
   </entry>
   
@@ -1428,107 +1522,6 @@ session.outputURL       = VIDEO_EXPORTING_URL;
 <p>请参考ALAssetRepresentation和AVAssetExportSession的文档</p>
 
 <p>GitHub地址 <a href="https://github.com/chiunam/CTAssetsPickerController" title="url">https://github.com/chiunam/CTAssetsPickerController</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[知名ios应用背后的第三方项目]]></title>
-    <link href="http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/"/>
-    <updated>2014-10-28T22:17:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
-</blockquote>
-
-<h3 id="instagram">Instagram</h3>
-<hr />
-<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
-
-<p>Appirater: 提醒用户打分。</p>
-
-<p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
-
-<p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
-
-<p><em>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
-
-<p><em>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</em></p>
-
-<p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
-
-<p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
-
-<p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
-
-<p><em>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</em></p>
-
-<p><!--more--></p>
-
-<h3 id="foursquare">Foursquare</h3>
-<hr />
-<p>Facebook SDK for iOS: 集成Facebook,构建强大的社交app。</p>
-
-<p>FSNetworking: Foursquare iOS网络库。</p>
-
-<p>kingpin: MapKit/MKAnnotation pin 聚合库，主要用来在地图上面添加锚点。</p>
-
-<p><em>AFNetworking:适用于iOS和OS X的网络框架。</em></p>
-
-<p>SKBounceAnimation: CAKeyframeAnimation子类，可快速简单地设置弹动的数量，开始和结束的值，以及创建动画。</p>
-
-<p>DB5: 通过Plist配置文件。</p>
-
-<h3 id="linkedin">LinkedIn</h3>
-<hr />
-<p><em>BlocksKit: blocks工具包。</em></p>
-
-<p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
-
-<p>DTCOreText:文字效果代码类库。在UITextView上实现丰富的文字效果，比如文字大小、颜色、字体、下划线，链接，给文字加上图片、视频，文字任意间距等等。实现类似于CSS网页的文字效果。</p>
-
-<h3 id="shazam">Shazam</h3>
-<hr />
-<p>AudioStreamer:Mac OS X和iPhone上适用的流媒体音频播放器，可播放来自网络上的音乐。</p>
-
-<p>ColorArt: iTunes 11风格的颜色匹配代码。</p>
-
-<p>objc-geohash: Objective-C GeoHash库，通过经纬度获得哈希表。</p>
-
-<p>FormatterKit: 收集了精心构思的NSFormatter子类。</p>
-
-<p>UIView+Glow: UIView的一个类别，可添加对制作发光视图的支持，以突出屏幕上重要的部分，方便用户与之进行交互。</p>
-
-<p><em>WEbViewJavascriptBridge: 在使用UIWebView时，它优雅地实现了JS与ios 的ObjC 原生代码之间的互调，支持消息发送、接收、消息处理器的注册与调用以及设置消息处理的回调。</em></p>
-
-<h3 id="skype">Skype</h3>
-<hr />
-<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
-
-<p>Hockey SDK: HockeyApp service官方iOS SDK。</p>
-
-<p>PLCrashReporter (Github mirror): 进程内的崩溃报告框架。</p>
-
-<p><em>TTTAttributedLabel是一个文字视图开源组件，是UILabel的替代元件，可以以简单的方式展现渲染的属性字符串。另外，还支持链接植入，不管是手动还是使用UIDataDetectorTypes自动把电话号码、事件、地址以及其他信息变成链接。</em></p>
-
-<p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
-
-<p><em>Cocoa Lumberjack: 适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em>
-
-MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添加标题和选择多个图片。照片浏览器效果类似iOS原生的照片应用,可显示来自手机的图片或者是网络图片，也可自动从网络下载图片并进行缓存，还可图片进行缩放等。</p>
-
-<p>BlocksKit: Objective-C blocks工具包。</p>
-
-<h3 id="spotify">Spotify</h3>
-<hr />
-<p><em>FMDB: SQLite API封装库。</em></p>
-
-<p>MAObjCRuntime:将运行时API封装成ObjC。</p>
-
-<p>Nu: 编程语言。</p>
-
-<p>PLCrashReporter (Github mirror):进程内崩溃报告框架。</p>
-
-<p>SBJSON:Objective-C 实现的一个严格的JSON 解析器和生成器。</p>
 ]]></content>
   </entry>
   
