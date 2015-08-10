@@ -7,7 +7,11 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="博客 http://stormzhang.com/ 知乎回答 http://www.zhihu.com/question/33993035 google Android官网 http://developer.android.com/ stackoverflow tag android http &hellip;">
+	<meta name="description" content="1.安装Octopress
+git clone git://github.com/imathis/octopress.git octopress
+cd octopress
+bundle update # 安装依赖的组件
+rake install # 安装默认的Octopress主题 2. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,41 +131,29 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/androidxue-xi-zi-liao/">
+		<a href="/blog/octopressda-jian-jiao-cheng/">
 		
-			Android学习资料</a>
+			Octopress搭建教程</a>
 	</h2>
 	<div class="entry-content">
-		<ul>
-  <li>
-    <p>博客</p>
-
-    <pre><code>  http://stormzhang.com/
+		<h2 id="octopress">1.安装Octopress</h2>
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress
+bundle update    # 安装依赖的组件
+rake install     # 安装默认的Octopress主题
 </code></pre>
-  </li>
-  <li>
-    <p>知乎回答</p>
 
-    <pre><code>  http://www.zhihu.com/question/33993035
-</code></pre>
-  </li>
-  <li>
-    <p>google Android官网</p>
+<h2 id="git">2.配置Git</h2>
+<p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
 
-    <pre><code>  http://developer.android.com/
+<pre><code>git remote rm origin
+git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
+git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
 </code></pre>
-  </li>
-  <li>
-    <p>stackoverflow  tag android</p>
-
-    <pre><code>  http://stackoverflow.com/questions/tagged/android
-</code></pre>
-  </li>
-</ul>
 
 
 		
-		
+		<a href="/blog/octopressda-jian-jiao-cheng/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -171,76 +163,11 @@
 
 
 
-2014 年9 月11 日</div>
+2014 年6 月8 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/rubyyu-fa/">
-		
-			Ruby语法</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">语法</h3>
-<ul>
-  <li>
-    <p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
-  </li>
-  <li>
-    <p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
-  </li>
-  <li>
-    <p>Ruby中的局部变量名首字母的约定是小写。</p>
-  </li>
-  <li>
-    <p>Ruby中的构造函数名称为initialize。</p>
-  </li>
-  <li>
-    <p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
-  </li>
-  <li>
-    <p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
-attr_accessor是可读也可写</p>
-  </li>
-  <li>
-    <p>Ruby中的全局变量前导$符。</p>
-  </li>
-  <li>
-    <p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
-  </li>
-  <li>
-    <p>Ruby中任何的表达式都会返回值，</p>
-  </li>
-</ul>
-
-
-		
-		<a href="/blog/rubyyu-fa/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年8 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/octopress/'>octopress</a>
 
 
 </div>
@@ -251,11 +178,9 @@ attr_accessor是可读也可写</p>
 <nav id="pagenavi">
     
         
-            <a href="/posts/7" class="prev">上一页</a>
+            <a href="/posts/9" class="prev">上一页</a>
         
     
-    
-        <a href="/posts/9" class="next">下一页</a>
     
     <div class="center"><a href="/blog/archives">文章列表</a></div>
 </nav>
