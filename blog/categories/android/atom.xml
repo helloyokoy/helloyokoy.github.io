@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-10T12:25:50+08:00</updated>
+  <updated>2015-08-10T21:50:05+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -80,6 +80,65 @@
   <li><a href="http://www.fresco-cn.org/docs/index.html" title="Title">文档</a></li>
   <li><a href="https://github.com/facebook/fresco" title="Title">GitHub</a>的源码</li>
 </ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[eventbus介绍]]></title>
+    <link href="http://helloyokoy.github.io/blog/eventbusjie-shao/"/>
+    <updated>2015-05-10T21:37:33+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/eventbusjie-shao</id>
+    <content type="html"><![CDATA[<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
+
+<blockquote>
+  <p>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。</p>
+</blockquote>
+
+<h3 id="eventbus">1.下载EventBus的类库</h3>
+
+<p>源码：<a href="https://github.com/greenrobot/EventBus" title="url">https://github.com/greenrobot/EventBus</a></p>
+
+<!--more-->
+
+<h3 id="section">2.基本使用</h3>
+
+<ol>
+  <li>
+    <p>自定义一个类，可以是空类，比如：</p>
+
+    <pre><code> public class AnyEventType {  
+     public AnyEventType(){}  
+ }  
+</code></pre>
+  </li>
+  <li>
+    <p>在要接收消息的页面注册：</p>
+
+    <pre><code> eventBus.register(this);  
+</code></pre>
+  </li>
+  <li>
+    <p>发送消息</p>
+
+    <pre><code> eventBus.post(new AnyEventType event);  
+</code></pre>
+  </li>
+  <li>
+    <p>接受消息的页面实现(共有四个函数，各功能不同，这是其中之一，可以选择性的实现，这里先实现一个)：</p>
+
+    <pre><code> public void onEvent(AnyEventType event) {}  
+</code></pre>
+  </li>
+  <li>
+    <p>解除注册</p>
+
+    <pre><code> eventBus.unregister(this);  
+</code></pre>
+  </li>
+</ol>
+
+<p>详细教程: <a href="http://blog.csdn.net/harvic880925/article/details/40660137" title="url">http://blog.csdn.net/harvic880925/article/details/40660137</a></p>
+
 ]]></content>
   </entry>
   
@@ -754,41 +813,6 @@ fb.display(iv,Images.imageUrls[position]);
 </ul>
 
 <p>GitHub地址: <a href="https://github.com/yangfuhai/afinal" title="url">https://github.com/yangfuhai/afinal</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[android学习资料]]></title>
-    <link href="http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/"/>
-    <updated>2014-09-11T17:30:37+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/androidxue-xi-zi-liao</id>
-    <content type="html"><![CDATA[<ul>
-  <li>
-    <p>博客</p>
-
-    <pre><code>  http://stormzhang.com/
-</code></pre>
-  </li>
-  <li>
-    <p>知乎回答</p>
-
-    <pre><code>  http://www.zhihu.com/question/33993035
-</code></pre>
-  </li>
-  <li>
-    <p>google Android官网</p>
-
-    <pre><code>  http://developer.android.com/
-</code></pre>
-  </li>
-  <li>
-    <p>stackoverflow  tag android</p>
-
-    <pre><code>  http://stackoverflow.com/questions/tagged/android
-</code></pre>
-  </li>
-</ul>
-
 ]]></content>
   </entry>
   
