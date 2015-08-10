@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-09T19:54:44+08:00</updated>
+  <updated>2015-08-10T11:16:06+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -14,275 +14,566 @@
 
   
   <entry>
-    <title type="html"><![CDATA[知名ios应用背后的第三方项目]]></title>
-    <link href="http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/"/>
-    <updated>2015-08-08T22:17:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
-</blockquote>
+    <title type="html"><![CDATA[MJExtension介绍]]></title>
+    <link href="http://helloyokoy.github.io/blog/mjextensionjie-shao/"/>
+    <updated>2015-08-10T10:35:13+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/mjextensionjie-shao</id>
+    <content type="html"><![CDATA[<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
 
-<h3 id="instagram">Instagram</h3>
-<hr />
-<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
-
-<p>Appirater: 提醒用户打分。</p>
-
-<p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
-
-<p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
-
-<p><em>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
-
-<p><em>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</em></p>
-
-<p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
-
-<p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
-
-<p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
-
-<p><em>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</em></p>
-
-<p><!--more--></p>
-
-<h3 id="foursquare">Foursquare</h3>
-<hr />
-<p>Facebook SDK for iOS: 集成Facebook,构建强大的社交app。</p>
-
-<p>FSNetworking: Foursquare iOS网络库。</p>
-
-<p>kingpin: MapKit/MKAnnotation pin 聚合库，主要用来在地图上面添加锚点。</p>
-
-<p><em>AFNetworking:适用于iOS和OS X的网络框架。</em></p>
-
-<p>SKBounceAnimation: CAKeyframeAnimation子类，可快速简单地设置弹动的数量，开始和结束的值，以及创建动画。</p>
-
-<p>DB5: 通过Plist配置文件。</p>
-
-<h3 id="linkedin">LinkedIn</h3>
-<hr />
-<p><em>BlocksKit: blocks工具包。</em></p>
-
-<p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
-
-<p>DTCOreText:文字效果代码类库。在UITextView上实现丰富的文字效果，比如文字大小、颜色、字体、下划线，链接，给文字加上图片、视频，文字任意间距等等。实现类似于CSS网页的文字效果。</p>
-
-<h3 id="shazam">Shazam</h3>
-<hr />
-<p>AudioStreamer:Mac OS X和iPhone上适用的流媒体音频播放器，可播放来自网络上的音乐。</p>
-
-<p>ColorArt: iTunes 11风格的颜色匹配代码。</p>
-
-<p>objc-geohash: Objective-C GeoHash库，通过经纬度获得哈希表。</p>
-
-<p>FormatterKit: 收集了精心构思的NSFormatter子类。</p>
-
-<p>UIView+Glow: UIView的一个类别，可添加对制作发光视图的支持，以突出屏幕上重要的部分，方便用户与之进行交互。</p>
-
-<p><em>WEbViewJavascriptBridge: 在使用UIWebView时，它优雅地实现了JS与ios 的ObjC 原生代码之间的互调，支持消息发送、接收、消息处理器的注册与调用以及设置消息处理的回调。</em></p>
-
-<h3 id="skype">Skype</h3>
-<hr />
-<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
-
-<p>Hockey SDK: HockeyApp service官方iOS SDK。</p>
-
-<p>PLCrashReporter (Github mirror): 进程内的崩溃报告框架。</p>
-
-<p><em>TTTAttributedLabel是一个文字视图开源组件，是UILabel的替代元件，可以以简单的方式展现渲染的属性字符串。另外，还支持链接植入，不管是手动还是使用UIDataDetectorTypes自动把电话号码、事件、地址以及其他信息变成链接。</em></p>
-
-<p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
-
-<p><em>Cocoa Lumberjack: 适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em>
-
-MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添加标题和选择多个图片。照片浏览器效果类似iOS原生的照片应用,可显示来自手机的图片或者是网络图片，也可自动从网络下载图片并进行缓存，还可图片进行缩放等。</p>
-
-<p>BlocksKit: Objective-C blocks工具包。</p>
-
-<h3 id="spotify">Spotify</h3>
-<hr />
-<p><em>FMDB: SQLite API封装库。</em></p>
-
-<p>MAObjCRuntime:将运行时API封装成ObjC。</p>
-
-<p>Nu: 编程语言。</p>
-
-<p>PLCrashReporter (Github mirror):进程内崩溃报告框架。</p>
-
-<p>SBJSON:Objective-C 实现的一个严格的JSON 解析器和生成器。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[IOS第三方库和插件]]></title>
-    <link href="http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian/"/>
-    <updated>2015-07-08T22:04:09+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian</id>
-    <content type="html"><![CDATA[<h2 id="section">前言</h2>
+<h3 id="mjextension">MJExtension</h3>
 <hr />
 
-<blockquote>
-  <p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p>
-</blockquote>
+<p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
 
-<p>Xcode基本是Mac/iOS程序员的必备工具(AppCode我没用过 不知道有多少人用?) 但是能说有多好用..这就仁者见仁了(跟Visual Studio是没得比了) 不过在用了插件以后 倒也能让生产力提升一大截</p>
+<p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
 
-<p>接下来我会介绍一些我本人常用的第三方库和插件 也许不多 但是一定是久经考验 用了一定不会错</p>
+<p>GitHub：CoderMJLee ｜ Blog：mjios(Chinese) ｜ PR is welcome，or feedback</p>
+
+<h3 id="getting-started">Getting Started【开始使用】</h3>
+<hr />
+<p>####Features【能做什么】</p>
+
+<ul>
+  <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
+  <li>JSON –&gt; Model、Core Data Model</li>
+  <li>JSONString –&gt; Model、Core Data Model</li>
+  <li>Model、Core Data Model –&gt; JSON</li>
+  <li>JSON Array –&gt; Model Array、Core Data Model Array</li>
+  <li>JSONString –&gt; Model Array、Core Data Model Array</li>
+  <li>Model Array、Core Data Model Array –&gt; JSON Array</li>
+  <li>Coding all properties of model in one line code.</li>
+  <li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
+</ul>
 
 <!--more-->
 
-<h2 id="section-1">介绍</h2>
+<h4 id="why-use-mjextension-why-not-use-jsonmodel-or-mantle">Why use MJExtension, why not use JSONModel or Mantle</h4>
+
+<h5 id="mjextension-is-faster-than-jsonmodel-and-mantle">MJExtension is faster than JSONModel and Mantle【转换速率】</h5>
+
+<ul>
+  <li>MJExtension &gt; JSONModel &gt; Mantle (Feel free to test it yourself)</li>
+  <li>各位开发者也可以自行测试</li>
+</ul>
+
+<h5 id="mjextension-is-more-easy-to-gomjextension">MJExtension is more easy to go【MJExtension更加容易使用】</h5>
+
+<ul>
+  <li>
+    <p>JSONModel</p>
+
+    <ul>
+      <li>You must let all model class extend JSONModel class</li>
+      <li>要求所有模型类必须继承自JSONModel基类</li>
+    </ul>
+  </li>
+  <li>
+    <p>Mantle</p>
+
+    <ul>
+      <li>You must let all model class extend MTModel class.</li>
+      <li>要求所有模型类必须继承自MTModel基类</li>
+    </ul>
+  </li>
+  <li>
+    <p>MJExtension</p>
+
+    <ul>
+      <li>Your model class doesn’t need to extend another base class. You don’t need to modify any model file. Nonintrusive, convenient.</li>
+      <li>不需要你的模型类继承任何特殊基类，也不需要修改任何模型代码，毫无污染，毫无侵入性</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="installation">Installation【安装】</h3>
+<hr />
+<p>####From CocoaPods【使用CocoaPods】</p>
+
+<pre><code>pod 'MJExtension'
+</code></pre>
+
+<h4 id="manually">Manually【手动导入】</h4>
+
+<ul>
+  <li>Drag all source files under floder MJExtension to your project.【将MJExtension文件夹中的所有源代码拽入项目中】</li>
+  <li>
+    <p>Import the main header file：#import “MJExtension.h”【导入主头文件：#import “MJExtension.h”】</p>
+
+    <pre><code>  MJExtension.h
+  MJConst.h               MJConst.m
+  MJFoundation.h          MJFoundation.m
+  MJProperty.h            MJProperty.m
+  MJType.h                MJType.m
+  NSObject+MJCoding.h     NSObject+MJCoding.m
+  NSObject+MJProperty.h   NSObject+MJProperty.m
+  NSObject+MJKeyValue.h   NSObject+MJKeyValue.m
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="examples">Examples【示例】</h3>
 <hr />
 
-<h3 id="section-2">第三方库</h3>
-<hr />
-
-<h4 id="cocoapod">CocoaPod</h4>
-
-<p>CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具</p>
-
-<p>在CocoaPod没有出现之前 第三方库的管理是非常痛苦的 尤其是一些大型的库(比如nimbus) 每次对库进行更新 都可能会非常的痛苦</p>
-
-<p>CocoaPod的出现解决了这些问题 以Framework的方式引入第三方库 极大的节约了集成的时间 而且通吃Objective-C和Swift(Swift上的Cathatage我没有实际用过 但是它的那种集成方式还是比CocoaPod麻烦点)</p>
-
-<h4 id="icarousel">iCarousel</h4>
-
-<p>在iOS 4.x的时代(我也是从4.0开始接触iOS开发的) Coverflow的效果可谓是风靡一时 初出茅庐的我当年对如何实现几乎是束手无策(当年所有的电影资讯类的APP 如布丁爱生活等 都需要实现Coverflow选片的效果 碰巧我也要做一个) iCarousel的出现替我解决了一个大的难题</p>
-
-<p>从此iCarousel成为了我每个项目的必备良药(也是我最喜欢的库) 不管是Coverflow还是轮播广告 都能轻描淡写的搞定 其内置的十来种显示类型 基本可以解决90%的UI需求 而其强大的自定义功能 则可以解决剩余的10% :)</p>
-
-<p>不熟悉的朋友可以尝试一下其精美的demo(pod try iCarousel) 所有的功能都在demo中一览无余</p>
-
-<p>作者nicklockwood也是一个高产的大神 同时维护着数量众多且优质的开源库(比如iVersion iRate) 大家不妨去看一看 淘一淘</p>
-
-<!--more-->
-
-<h4 id="afnetworkingalamofire">AFNetworking/Alamofire</h4>
-
-<p>HTTP框架的龙头老大 当年在与ASIHTTPRequest的竞争中笑到了最后(当然也是因为ASIHTTPRequest的作者不维护了 不过国内很多公司 因为历史原因都在自行维护) 由于及时维护和拥抱语言的新特性 迅速被大家所接受和喜爱</p>
-
-<p>相信每个人都用过 这里就不赘述了</p>
-
-<h4 id="mknetworkkit">MKNetworkKit</h4>
-
-<p>如果说AFNetworking是老大 那么MKNetworkKit可以说是小弟了 不过也因为比AFNetworking轻量的原因 也获得了许多开发者的青睐</p>
-
-<p>当年因为ASIHTTPRequest停止维护了 在机缘巧合之下 我在AFNetworking和MKNetworkKit之间选择了后者 并在很多项目中进行了使用</p>
-
-<p>不过也许是因为AFNetworking发展得更快更迅速 而作者本人是单兵作战的原因 作者也基本放弃了更新(版本号在停留在0.8x) 十分可惜</p>
-
-<h4 id="sdwebimage">SDWebImage</h4>
-
-<p>图片异步下载和缓存管理的集大成者 UITableView的黄金搭档 其代码被开发者研究分享过无数次喵大的Kingfisher(可以说是Swift版的SDWebImage)也是深受其影响</p>
-
-<p>异步下载AFNetworking和MKNetworkKit都有实现 数据缓存也有FastImageCache与TMCache等 但是将其融会贯通的 唯有SDWebImage了</p>
-
-<p>除了简单的使用sd_setImageWithURL之外 SDImageCache也是可以独立使用的 功能也相当之强大</p>
-
-<h4 id="zxingobjc">ZXingObjC</h4>
-
-<p>zxing是Google出品的二维码扫描组件 原本是Java编写的 现在也有了各种语言的移植版 而ZXingObjC就是其中之一</p>
-
-<p>zxing支持各种主流的一维码二维码扫描 简单易用 小厂如果要实现二维码扫描这个功能 基本都会选择zxing</p>
-
-<p>不过iOS7已内置了二维码摄像头扫描 而iOS8也已内置了二维码静态图扫描 以后可能再也不需要用到ZXing了 :(</p>
-
-<h4 id="mbprogresshud">MBProgressHUD</h4>
-
-<p>简单易用且稳定的HUD组件 半透明黑底白字的风格也经久不衰 loading提示的最佳选择</p>
-
-<p>Masonry/SnapKit</p>
-
-<p>最好用的Autolayout手写库(Cartography也不错啦 但是还是用不惯) 帮助我轻易的跨越了Autolayout这道坎</p>
-
-<p>我也曾多次在文章中提到过关于Masonry的使用方法 如果还没有用过的朋友 不妨看一看</p>
-
-<h4 id="pop">pop</h4>
-
-<p>Facebook的工程师一直是神一般的存在 对开源社区的贡献也是巨大的 极大的推动了各种变成语言的发展 比如HipHop之于PHP react之于JavaScript pop之于Objective-C等等</p>
-
-<p>不管是HipHop react Facebook的工程师总是抱着颠覆的态度来开源 pop也不例外 这点之前我也简单介绍过 而以pop为基础的paper一发布就震惊整个APP届 在这点上pop也是厥功甚伟</p>
-
-<p>pop对自定义动画也支持得很好 我也以pop的自定义动画为基础写过MMTweanAnimation</p>
-
-<h4 id="reactivecocoa">ReactiveCocoa</h4>
-
-<p>说起来惭愧 大名鼎鼎的RAC 我只使用了点皮毛(只拿来做输入验证了)</p>
-
-<p>暂时还没有进行深层次的使用 对RAC的理解也停留在表面阶段 不过这篇文章介绍得非常详细 值得一看</p>
-
-<h4 id="gpuimage">GPUImage</h4>
-
-<p>如果你要做图像(照片或者视频)的相关处理 或者只是简单的想做个像Camera360一样的拍照滤镜 那么你一定要研究一下GPUImage</p>
-
-<p>如它的名字所述 GPUImage是基于GPU的图像处理框架 我们都知道 GPU是提升性能的关键 这也就是GPUImage如此重要 如此受欢迎的原因</p>
-
-<h4 id="lumberjack">Lumberjack</h4>
-
-<p>log系统是每个项目都应该有的东西 而Lumberjack是log系统中的翘楚</p>
-
-<p>你可以简单的把它当成NSLog的替代品(简单来说 Lumberjack比NSLog速度更快) 或者根据你的需要来打造一个更强大的日志系统</p>
-
-<h4 id="nslogger">NSLogger</h4>
-
-<p>从名字可以看出 NSLogger也是一个log系统 其特点是附带了一个功能强大的Desktop Viewer 可以让你方便的查看APP产生的日志(支持分级筛选等等 甚至可以直接log一张图片)</p>
-
-<h4 id="awesomemenu">AwesomeMenu</h4>
-
-<p>当年横空出世的Path 其优美的设计 精彩的动画 不知让多少人嘴巴都合不拢 而最赞的 就是它的弹出菜单 一时成为了每个APP争相模仿的对象</p>
-
-<p>有了AwesomeMenu 你可以轻易的实现它</p>
-
-<h4 id="mmdrawercontroller">MMDrawerController</h4>
-
-<p>普通的侧滑菜单 用MMDrawerController就搞定了</p>
-
-<h4 id="realm">realm</h4>
-
-<p>作为数据存储的一等公民 CoreData的地位不言而喻 不过也因为使用起来不够方便 才会出现MagicalRecord这种辅助类 甚至fmdb这种基于纯sqlite的库</p>
-
-<p>而realm以挑战者的身份闪亮登场 不仅读取性能更快(据说数倍于CoraData) 接口简单易用(以对象的形式使用数据 这点和leancloud的思路很相似) 并且还跨平台(iOS/Android均可使用 OC/Swift/Java都支持)</p>
-
-<p>如果你习惯使用Mantle之类的Modal转换的话Realm-JSON肯定能讨你欢心</p>
-
-<p>作为YCombinator的孵化项目 其质量还是能得以保证的 至少我试用下来 确实给我以很大的惊喜 不管是API的设计 还是数据对象的定义 就连数据库的版本升级 都非常的方便)</p>
-
-<h3 id="xcode">Xcode插件</h3>
-<hr />
-
-<h4 id="alcatraz">Alcatraz</h4>
-
-<p>与CocoaPod类似 Alcatraz是Xcode的插件管理器 能够让你方便的管理Xcode的插件(不仅可以管理插件 还可以管理主题等等)</p>
-
-<h4 id="fuzzyautocomplete">FuzzyAutocomplete</h4>
-
-<p>如果只让我选一个插件留下 那必须是FuzzyAutocomplete 强大的模糊匹配输入 让你写代码的时候再也不用费脑子去记住名字那么长的对象或者函数名了 好用到让你想哭</p>
-
-<h4 id="xalign">XAlign</h4>
-
-<p>作为有洁癖的码农 看到不对齐的代码一定是不能忍的 XAlign可以轻松解决你的烦恼</p>
-
-<h4 id="vvdocumenter-xcode">VVDocumenter-Xcode</h4>
-
-<p>喵大的又一力作 能够识别当前函数的参数和返回类型 帮助你快速编写符合规范的注释(目前是以Javadoc为标准)</p>
-
-<h4 id="deriveddata-exterminator">deriveddata-exterminator</h4>
-
-<p>如果你老是遇到Xcode抽风 提示你要因为某个原因要删除某个目录下的文件 否则编译不过 那你一定会被这个插件感动 因为说明了遇到这个事的人不只你一个</p>
-
-<h4 id="xcode-quick-localization">Xcode-Quick-Localization</h4>
-
-<p>多语言在iOS开发中一直不是很方便 有了它 你可以省不少事</p>
-
-<h4 id="backlight-for-xcode">Backlight-for-XCode</h4>
-
-<p>就如果Xcode默认的80个字的分页提示一样 高亮当前正在编辑的一行 也是一种友好的提示 喜不喜欢也就因人而异了</p>
-
-<h2 id="section-3">小结</h2>
-<hr />
-
-<p>以上的介绍 都是从我自身的使用经验触发的 可能大部分大家都用过了 而我也将会持续的更新这份列表 只要有优秀使用的东东 我都会添加进来</p>
+<h4 id="the-most-simple-json---model">The most simple JSON -&gt; Model【最简单的字典转模型】</h4>
+
+<pre><code>typedef enum {
+SexMale,
+SexFemale
+} Sex;
+
+@interface User : NSObject
+@property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *icon;
+@property (assign, nonatomic) unsigned int age;
+@property (copy, nonatomic) NSString *height;
+@property (strong, nonatomic) NSNumber *money;
+@property (assign, nonatomic) Sex sex;
+@property (assign, nonatomic, getter=isGay) BOOL gay;
+@end
+
+/***********************************************/
+
+NSDictionary *dict = @{
+@"name" : @"Jack",
+@"icon" : @"lufy.png",
+@"age" : @20,
+@"height" : @"1.55",
+@"money" : @100.9,
+@"sex" : @(SexFemale),
+@"gay" : @"true"
+//   @"gay" : @"1"
+//   @"gay" : @"NO"
+};
+
+// JSON -&gt; User
+User *user = [User objectWithKeyValues:dict];
+
+NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
+// name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1
+</code></pre>
+
+<h4 id="jsonstring---modeljson">JSONString -&gt; Model【JSON字符串转模型】</h4>
+
+<pre><code>// 1.Define a JSONString
+NSString *jsonString = @"{\"name\":\"Jack\", \"icon\":\"lufy.png\", \"age\":20}";
+
+// 2.JSONString -&gt; User
+User *user = [User objectWithKeyValues:jsonString];
+
+// 3.Print user's properties
+NSLog(@"name=%@, icon=%@, age=%d", user.name, user.icon, user.age);
+// name=Jack, icon=lufy.png, age=20
+</code></pre>
+
+<h4 id="model-contains-model">Model contains model【模型中嵌套模型】</h4>
+
+<pre><code>@interface Status : NSObject
+@property (copy, nonatomic) NSString *text;
+@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) Status *retweetedStatus;
+@end
+
+/***********************************************/
+
+NSDictionary *dict = @{
+@"text" : @"Agree!Nice weather!",
+@"user" : @{
+    @"name" : @"Jack",
+    @"icon" : @"lufy.png"
+},
+@"retweetedStatus" : @{
+    @"text" : @"Nice weather!",
+    @"user" : @{
+        @"name" : @"Rose",
+        @"icon" : @"nami.png"
+    }
+}
+};
+
+// JSON -&gt; Status
+Status *status = [Status objectWithKeyValues:dict];
+
+NSString *text = status.text;
+NSString *name = status.user.name;
+NSString *icon = status.user.icon;
+NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+// text=Agree!Nice weather!, name=Jack, icon=lufy.png
+
+NSString *text2 = status.retweetedStatus.text;
+NSString *name2 = status.retweetedStatus.user.name;
+NSString *icon2 = status.retweetedStatus.user.icon;
+NSLog(@"text2=%@, name2=%@, icon2=%@", text2, name2, icon2);
+// text2=Nice weather!, name2=Rose, icon2=nami.png
+</code></pre>
+
+<h4 id="model-contains-model-array">Model contains model-array【模型中有个数组属性，数组里面又要装着其他模型】</h4>
+
+<pre><code>@interface Ad : NSObject
+@property (copy, nonatomic) NSString *image;
+@property (copy, nonatomic) NSString *url;
+@end
+
+@interface StatusResult : NSObject
+/** Contatins status model */
+@property (strong, nonatomic) NSMutableArray *statuses;
+/** Contatins ad model */
+@property (strong, nonatomic) NSArray *ads;
+@property (strong, nonatomic) NSNumber *totalNumber;
+@end
+
+/***********************************************/
+
+// Tell MJExtension what type model will be contained in statuses and ads.
+[StatusResult setupObjectClassInArray:^NSDictionary *{
+return @{
+           @"statuses" : @"Status",
+           // @"statuses" : [Status class],
+           @"ads" : @"Ad"
+           // @"ads" : [Ad class]
+       };
+}];
+// Equals: StatusResult.m implements +objectClassInArray method.
+
+NSDictionary *dict = @{
+@"statuses" : @[
+                  @{
+                      @"text" : @"Nice weather!",
+                      @"user" : @{
+                          @"name" : @"Rose",
+                          @"icon" : @"nami.png"
+                      }
+                  },
+                  @{
+                      @"text" : @"Go camping tomorrow!",
+                      @"user" : @{
+                          @"name" : @"Jack",
+                          @"icon" : @"lufy.png"
+                      }
+                  }
+              ],
+@"ads" : @[
+             @{
+                 @"image" : @"ad01.png",
+                 @"url" : @"http://www.ad01.com"
+             },
+             @{
+                 @"image" : @"ad02.png",
+                 @"url" : @"http://www.ad02.com"
+             }
+         ],
+@"totalNumber" : @"2014"
+};
+
+// JSON -&gt; StatusResult
+StatusResult *result = [StatusResult objectWithKeyValues:dict];
+
+NSLog(@"totalNumber=%@", result.totalNumber);
+// totalNumber=2014
+
+// Printing
+for (Status *status in result.statuses) {
+NSString *text = status.text;
+NSString *name = status.user.name;
+NSString *icon = status.user.icon;
+NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+}
+// text=Nice weather!, name=Rose, icon=nami.png
+// text=Go camping tomorrow!, name=Jack, icon=lufy.png
+
+// Printing
+for (Ad *ad in result.ads) {
+NSLog(@"image=%@, url=%@", ad.image, ad.url);
+}
+// image=ad01.png, url=http://www.ad01.com
+// image=ad02.png, url=http://www.ad02.com
+</code></pre>
+
+<h4 id="model-name---json-key-mappingkey">Model name - JSON key mapping【模型中的属性名和字典中的key不相同(或者需要多级映射)】</h4>
+
+<pre><code>@interface Bag : NSObject
+@property (copy, nonatomic) NSString *name;
+@property (assign, nonatomic) double price;
+@end
+
+@interface Student : NSObject
+@property (copy, nonatomic) NSString *ID;
+@property (copy, nonatomic) NSString *desc;
+@property (copy, nonatomic) NSString *nowName;
+@property (copy, nonatomic) NSString *oldName;
+@property (copy, nonatomic) NSString *nameChangedTime;
+@property (strong, nonatomic) Bag *bag;
+@end
+
+/***********************************************/
+
+// How to map
+[Student setupReplacedKeyFromPropertyName:^NSDictionary *{
+return @{
+           @"ID" : @"id",
+           @"desc" : @"desciption",
+           @"oldName" : @"name.oldName",
+           @"nowName" : @"name.newName",
+           @"nameChangedTime" : @"name.info[1].nameChangedTime",
+           @"bag" : @"other.bag"
+       };
+}];
+// Equals: Student.m implements +replacedKeyFromPropertyName method.
+
+NSDictionary *dict = @{
+@"id" : @"20",
+@"desciption" : @"kids",
+@"name" : @{
+    @"newName" : @"lufy",
+    @"oldName" : @"kitty",
+    @"info" : @[
+             @"test-data",
+             @{
+                         @"nameChangedTime" : @"2013-08"
+                     }
+              ]
+},
+@"other" : @{
+    @"bag" : @{
+        @"name" : @"a red bag",
+        @"price" : @100.7
+    }
+}
+};
+
+// JSON -&gt; Student
+Student *stu = [Student objectWithKeyValues:dict];
+
+// Printing
+NSLog(@"ID=%@, desc=%@, oldName=%@, nowName=%@, nameChangedTime=%@",
+  stu.ID, stu.desc, stu.oldName, stu.nowName, stu.nameChangedTime);
+// ID=20, desc=kids, oldName=kitty, nowName=lufy, nameChangedTime=2013-08
+NSLog(@"bagName=%@, bagPrice=%f", stu.bag.name, stu.bag.price);
+// bagName=a red bag, bagPrice=100.700000
+</code></pre>
+
+<h4 id="json-array---model-array">JSON array -&gt; model array【将一个字典数组转成模型数组】</h4>
+
+<pre><code>NSArray *dictArray = @[
+                     @{
+                         @"name" : @"Jack",
+                         @"icon" : @"lufy.png"
+                     },
+                     @{
+                         @"name" : @"Rose",
+                         @"icon" : @"nami.png"
+                     }
+                 ];
+
+// JSON array -&gt; User array
+NSArray *userArray = [User objectArrayWithKeyValuesArray:dictArray];
+
+// Printing
+for (User *user in userArray) {
+NSLog(@"name=%@, icon=%@", user.name, user.icon);
+}
+// name=Jack, icon=lufy.png
+// name=Rose, icon=nami.png
+</code></pre>
+
+<h4 id="model---json">Model -&gt; JSON【将一个模型转成字典】</h4>
+
+<pre><code>// New model
+User *user = [[User alloc] init];
+user.name = @"Jack";
+user.icon = @"lufy.png";
+
+Status *status = [[Status alloc] init];
+status.user = user;
+status.text = @"Nice mood!";
+
+// Status -&gt; JSON
+NSDictionary *statusDict = status.keyValues;
+NSLog(@"%@", statusDict);
+/*
+ 	{
+ 		text = "Nice mood!";
+ 		user =     {
+ 		icon = "lufy.png";
+ 		name = Jack;
+ 		};
+ 	}
+ 	*/
+
+// More complex situation
+Student *stu = [[Student alloc] init];
+stu.ID = @"123";
+stu.oldName = @"rose";
+stu.nowName = @"jack";
+stu.desc = @"handsome";
+stu.nameChangedTime = @"2018-09-08";
+
+Bag *bag = [[Bag alloc] init];
+bag.name = @"a red bag";
+bag.price = 205;
+stu.bag = bag;
+
+NSDictionary *stuDict = stu.keyValues;
+NSLog(@"%@", stuDict);
+/*
+{
+ID = 123;
+bag =     {
+    name = "\U5c0f\U4e66\U5305";
+    price = 205;
+};
+desc = handsome;
+nameChangedTime = "2018-09-08";
+nowName = jack;
+oldName = rose;
+}
+ */
+</code></pre>
+
+<h4 id="model-array---json-array">Model array -&gt; JSON array【将一个模型数组转成字典数组】</h4>
+
+<pre><code>// New model array
+User *user1 = [[User alloc] init];
+user1.name = @"Jack";
+user1.icon = @"lufy.png";
+
+User *user2 = [[User alloc] init];
+user2.name = @"Rose";
+user2.icon = @"nami.png";
+
+NSArray *userArray = @[user1, user2];
+
+// Model array -&gt; JSON array
+NSArray *dictArray = [User keyValuesArrayWithObjectArray:userArray];
+NSLog(@"%@", dictArray);
+/*
+ 	(
+ 	{
+ 	icon = "lufy.png";
+ name = Jack;
+ },
+ 	{
+ 	icon = "nami.png";
+ 	name = Rose;
+ 	}
+ )
+ 	*/
+</code></pre>
+
+<h4 id="core-data">Core Data</h4>
+
+<pre><code>NSDictionary *dict = @{
+                     @"name" : @"Jack",
+                     @"icon" : @"lufy.png",
+                     @"age" : @20,
+                     @"height" : @1.55,
+                     @"money" : @"100.9",
+                     @"sex" : @(SexFemale),
+                     @"gay" : @"true"
+                 };
+
+// This demo just provide simple steps
+NSManagedObjectContext *context = nil;
+User *user = [User objectWithKeyValues:dict context:context];
+
+[context save:nil];
+</code></pre>
+
+<h4 id="coding">Coding</h4>
+
+<pre><code>#import "MJExtension.h"
+
+@implementation Bag
+// NSCoding Implementation
+MJCodingImplementation
+@end
+
+/***********************************************/
+
+// what properties not to be coded
+[Bag setupIgnoredCodingPropertyNames:^NSArray *{
+return @[@"name"];
+}];
+// Equals: Bag.m implements +ignoredCodingPropertyNames method.
+
+// Create model
+Bag *bag = [[Bag alloc] init];
+bag.name = @"Red bag";
+bag.price = 200.8;
+
+NSString *file = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/	bag.data"];
+// Encoding
+[NSKeyedArchiver archiveRootObject:bag toFile:file];
+
+// Decoding
+Bag *decodedBag = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+NSLog(@"name=%@, price=%f", decodedBag.name, decodedBag.price);
+// name=(null), price=200.800000
+</code></pre>
+
+<h4 id="camel---underline">Camel -&gt; underline【统一转换属性名（比如驼峰转下划线）】</h4>
+
+<pre><code>// Dog
+#import "MJExtension.h"
+
+@implementation Dog
++ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName
+{
+// nickName -&gt; nick_name
+return [propertyName underlineFromCamel];
+}
+@end
+
+// NSDictionary
+NSDictionary *dict = @{
+                   @"nick_name" : @"旺财",
+                   @"sale_price" : @"10.5",
+                   @"run_speed" : @"100.9"
+                   };
+// NSDictionary -&gt; Dog
+Dog *dog = [Dog objectWithKeyValues:dict];
+
+// printing
+NSLog(@"nickName=%@, scalePrice=%f runSpeed=%f", dog.nickName, dog.salePrice, dog.runSpeed);
+</code></pre>
+
+<h4 id="nsstring---nsdate-nil---nsdatenil">NSString -&gt; NSDate, nil -&gt; @”“【过滤字典的值（比如字符串日期处理为NSDate、字符串nil处理为@”“）】</h4>
+
+<pre><code>// Book
+#import "MJExtension.h"
+
+@implementation Book
+- (id)newValueFromOldValue:(id)oldValue property:(MJProperty *)property
+{
+if ([property.name isEqualToString:@"publisher"]) {
+    if (oldValue == nil) return @"";
+} else if (property.type.typeClass == [NSDate class]) {
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    return [fmt dateFromString:oldValue];
+}
+
+return oldValue;
+}
+@end
+
+// NSDictionary
+NSDictionary *dict = @{
+                   @"name" : @"5分钟突破iOS开发",
+                   @"publishedTime" : @"2011-09-10"
+                   };
+// NSDictionary -&gt; Book
+Book *book = [Book objectWithKeyValues:dict];
+
+// printing
+NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, book.publishedTime);
+</code></pre>
+
+<h4 id="more-use-cases">More use cases【更多用法】</h4>
+
+<ul>
+  <li>Please reference to NSObject+MJKeyValue.h and NSObject+MJCoding.h</li>
+  <li><a href="https://github.com/CoderMJLee/MJExtension" title="url">github地址</a></li>
+</ul>
 ]]></content>
   </entry>
   
@@ -1007,6 +1298,306 @@ dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
 NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 }
 </code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MagicRecord介绍]]></title>
+    <link href="http://helloyokoy.github.io/blog/magicrecordjie-shao/"/>
+    <updated>2015-02-10T10:26:16+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/magicrecordjie-shao</id>
+    <content type="html"><![CDATA[<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
+
+<p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
+
+<p>也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。</p>
+
+<p>即使你会使用CoreData，每天重复性枯燥的使用CoreData也会变得很笨重，MagicalPanda创建的一个第三方库为这种工作带来了好消息。</p>
+
+<p>MagicalRecord 致力于更快捷和容易的使用CoreData。</p>
+
+<p>MagicalRecord 使用方便，特别流行。正如作者所说，MagicalRecord 致力于使CoreData的代码更简洁，更简单的获取数据，并且使用最优化的操作。</p>
+
+<p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
+
+<!--more-->
+
+<h4 id="httpblogcsdnnetdongtaochen2039articledetails40376197httpblogcsdnnetdongtaochen2039articledetails40376197-title">详细教程地址: <a href="http://blog.csdn.net/dongtaochen2039/article/details/40376197" title="Title">http://blog.csdn.net/dongtaochen2039/article/details/40376197</a></h4>
+
+<h4 id="github-magicrecordhttpsgithubcommagicalpandamagicalrecord-title"><a href="https://github.com/magicalpanda/MagicalRecord" title="Title">GitHub MagicRecord</a></h4>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[知名ios应用背后的第三方项目]]></title>
+    <link href="http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/"/>
+    <updated>2014-10-28T22:17:44+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
+</blockquote>
+
+<h3 id="instagram">Instagram</h3>
+<hr />
+<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
+
+<p>Appirater: 提醒用户打分。</p>
+
+<p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
+
+<p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
+
+<p><em>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em></p>
+
+<p><em>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</em></p>
+
+<p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
+
+<p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
+
+<p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
+
+<p><em>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</em></p>
+
+<p><!--more--></p>
+
+<h3 id="foursquare">Foursquare</h3>
+<hr />
+<p>Facebook SDK for iOS: 集成Facebook,构建强大的社交app。</p>
+
+<p>FSNetworking: Foursquare iOS网络库。</p>
+
+<p>kingpin: MapKit/MKAnnotation pin 聚合库，主要用来在地图上面添加锚点。</p>
+
+<p><em>AFNetworking:适用于iOS和OS X的网络框架。</em></p>
+
+<p>SKBounceAnimation: CAKeyframeAnimation子类，可快速简单地设置弹动的数量，开始和结束的值，以及创建动画。</p>
+
+<p>DB5: 通过Plist配置文件。</p>
+
+<h3 id="linkedin">LinkedIn</h3>
+<hr />
+<p><em>BlocksKit: blocks工具包。</em></p>
+
+<p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
+
+<p>DTCOreText:文字效果代码类库。在UITextView上实现丰富的文字效果，比如文字大小、颜色、字体、下划线，链接，给文字加上图片、视频，文字任意间距等等。实现类似于CSS网页的文字效果。</p>
+
+<h3 id="shazam">Shazam</h3>
+<hr />
+<p>AudioStreamer:Mac OS X和iPhone上适用的流媒体音频播放器，可播放来自网络上的音乐。</p>
+
+<p>ColorArt: iTunes 11风格的颜色匹配代码。</p>
+
+<p>objc-geohash: Objective-C GeoHash库，通过经纬度获得哈希表。</p>
+
+<p>FormatterKit: 收集了精心构思的NSFormatter子类。</p>
+
+<p>UIView+Glow: UIView的一个类别，可添加对制作发光视图的支持，以突出屏幕上重要的部分，方便用户与之进行交互。</p>
+
+<p><em>WEbViewJavascriptBridge: 在使用UIWebView时，它优雅地实现了JS与ios 的ObjC 原生代码之间的互调，支持消息发送、接收、消息处理器的注册与调用以及设置消息处理的回调。</em></p>
+
+<h3 id="skype">Skype</h3>
+<hr />
+<p><em>AFNetworking: 适用于iOS和OS X的网络框架。</em></p>
+
+<p>Hockey SDK: HockeyApp service官方iOS SDK。</p>
+
+<p>PLCrashReporter (Github mirror): 进程内的崩溃报告框架。</p>
+
+<p><em>TTTAttributedLabel是一个文字视图开源组件，是UILabel的替代元件，可以以简单的方式展现渲染的属性字符串。另外，还支持链接植入，不管是手动还是使用UIDataDetectorTypes自动把电话号码、事件、地址以及其他信息变成链接。</em></p>
+
+<p><em>SDWebImage: 提供一个UIImageVIew类以支持远程加载网络图片。具有缓存管理、异步图片下载等功能，支持GIF动画，使用GCD和ARC。</em></p>
+
+<p><em>Cocoa Lumberjack: 适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</em>
+
+MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添加标题和选择多个图片。照片浏览器效果类似iOS原生的照片应用,可显示来自手机的图片或者是网络图片，也可自动从网络下载图片并进行缓存，还可图片进行缩放等。</p>
+
+<p>BlocksKit: Objective-C blocks工具包。</p>
+
+<h3 id="spotify">Spotify</h3>
+<hr />
+<p><em>FMDB: SQLite API封装库。</em></p>
+
+<p>MAObjCRuntime:将运行时API封装成ObjC。</p>
+
+<p>Nu: 编程语言。</p>
+
+<p>PLCrashReporter (Github mirror):进程内崩溃报告框架。</p>
+
+<p>SBJSON:Objective-C 实现的一个严格的JSON 解析器和生成器。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[IOS第三方库和插件]]></title>
+    <link href="http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian/"/>
+    <updated>2014-07-08T22:04:09+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian</id>
+    <content type="html"><![CDATA[<h2 id="section">前言</h2>
+<hr />
+
+<blockquote>
+  <p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p>
+</blockquote>
+
+<p>Xcode基本是Mac/iOS程序员的必备工具(AppCode我没用过 不知道有多少人用?) 但是能说有多好用..这就仁者见仁了(跟Visual Studio是没得比了) 不过在用了插件以后 倒也能让生产力提升一大截</p>
+
+<p>接下来我会介绍一些我本人常用的第三方库和插件 也许不多 但是一定是久经考验 用了一定不会错</p>
+
+<!--more-->
+
+<h2 id="section-1">介绍</h2>
+<hr />
+
+<h3 id="section-2">第三方库</h3>
+<hr />
+
+<h4 id="cocoapod">CocoaPod</h4>
+
+<p>CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具</p>
+
+<p>在CocoaPod没有出现之前 第三方库的管理是非常痛苦的 尤其是一些大型的库(比如nimbus) 每次对库进行更新 都可能会非常的痛苦</p>
+
+<p>CocoaPod的出现解决了这些问题 以Framework的方式引入第三方库 极大的节约了集成的时间 而且通吃Objective-C和Swift(Swift上的Cathatage我没有实际用过 但是它的那种集成方式还是比CocoaPod麻烦点)</p>
+
+<h4 id="icarousel">iCarousel</h4>
+
+<p>在iOS 4.x的时代(我也是从4.0开始接触iOS开发的) Coverflow的效果可谓是风靡一时 初出茅庐的我当年对如何实现几乎是束手无策(当年所有的电影资讯类的APP 如布丁爱生活等 都需要实现Coverflow选片的效果 碰巧我也要做一个) iCarousel的出现替我解决了一个大的难题</p>
+
+<p>从此iCarousel成为了我每个项目的必备良药(也是我最喜欢的库) 不管是Coverflow还是轮播广告 都能轻描淡写的搞定 其内置的十来种显示类型 基本可以解决90%的UI需求 而其强大的自定义功能 则可以解决剩余的10% :)</p>
+
+<p>不熟悉的朋友可以尝试一下其精美的demo(pod try iCarousel) 所有的功能都在demo中一览无余</p>
+
+<p>作者nicklockwood也是一个高产的大神 同时维护着数量众多且优质的开源库(比如iVersion iRate) 大家不妨去看一看 淘一淘</p>
+
+<!--more-->
+
+<h4 id="afnetworkingalamofire">AFNetworking/Alamofire</h4>
+
+<p>HTTP框架的龙头老大 当年在与ASIHTTPRequest的竞争中笑到了最后(当然也是因为ASIHTTPRequest的作者不维护了 不过国内很多公司 因为历史原因都在自行维护) 由于及时维护和拥抱语言的新特性 迅速被大家所接受和喜爱</p>
+
+<p>相信每个人都用过 这里就不赘述了</p>
+
+<h4 id="mknetworkkit">MKNetworkKit</h4>
+
+<p>如果说AFNetworking是老大 那么MKNetworkKit可以说是小弟了 不过也因为比AFNetworking轻量的原因 也获得了许多开发者的青睐</p>
+
+<p>当年因为ASIHTTPRequest停止维护了 在机缘巧合之下 我在AFNetworking和MKNetworkKit之间选择了后者 并在很多项目中进行了使用</p>
+
+<p>不过也许是因为AFNetworking发展得更快更迅速 而作者本人是单兵作战的原因 作者也基本放弃了更新(版本号在停留在0.8x) 十分可惜</p>
+
+<h4 id="sdwebimage">SDWebImage</h4>
+
+<p>图片异步下载和缓存管理的集大成者 UITableView的黄金搭档 其代码被开发者研究分享过无数次喵大的Kingfisher(可以说是Swift版的SDWebImage)也是深受其影响</p>
+
+<p>异步下载AFNetworking和MKNetworkKit都有实现 数据缓存也有FastImageCache与TMCache等 但是将其融会贯通的 唯有SDWebImage了</p>
+
+<p>除了简单的使用sd_setImageWithURL之外 SDImageCache也是可以独立使用的 功能也相当之强大</p>
+
+<h4 id="zxingobjc">ZXingObjC</h4>
+
+<p>zxing是Google出品的二维码扫描组件 原本是Java编写的 现在也有了各种语言的移植版 而ZXingObjC就是其中之一</p>
+
+<p>zxing支持各种主流的一维码二维码扫描 简单易用 小厂如果要实现二维码扫描这个功能 基本都会选择zxing</p>
+
+<p>不过iOS7已内置了二维码摄像头扫描 而iOS8也已内置了二维码静态图扫描 以后可能再也不需要用到ZXing了 :(</p>
+
+<h4 id="mbprogresshud">MBProgressHUD</h4>
+
+<p>简单易用且稳定的HUD组件 半透明黑底白字的风格也经久不衰 loading提示的最佳选择</p>
+
+<p>Masonry/SnapKit</p>
+
+<p>最好用的Autolayout手写库(Cartography也不错啦 但是还是用不惯) 帮助我轻易的跨越了Autolayout这道坎</p>
+
+<p>我也曾多次在文章中提到过关于Masonry的使用方法 如果还没有用过的朋友 不妨看一看</p>
+
+<h4 id="pop">pop</h4>
+
+<p>Facebook的工程师一直是神一般的存在 对开源社区的贡献也是巨大的 极大的推动了各种变成语言的发展 比如HipHop之于PHP react之于JavaScript pop之于Objective-C等等</p>
+
+<p>不管是HipHop react Facebook的工程师总是抱着颠覆的态度来开源 pop也不例外 这点之前我也简单介绍过 而以pop为基础的paper一发布就震惊整个APP届 在这点上pop也是厥功甚伟</p>
+
+<p>pop对自定义动画也支持得很好 我也以pop的自定义动画为基础写过MMTweanAnimation</p>
+
+<h4 id="reactivecocoa">ReactiveCocoa</h4>
+
+<p>说起来惭愧 大名鼎鼎的RAC 我只使用了点皮毛(只拿来做输入验证了)</p>
+
+<p>暂时还没有进行深层次的使用 对RAC的理解也停留在表面阶段 不过这篇文章介绍得非常详细 值得一看</p>
+
+<h4 id="gpuimage">GPUImage</h4>
+
+<p>如果你要做图像(照片或者视频)的相关处理 或者只是简单的想做个像Camera360一样的拍照滤镜 那么你一定要研究一下GPUImage</p>
+
+<p>如它的名字所述 GPUImage是基于GPU的图像处理框架 我们都知道 GPU是提升性能的关键 这也就是GPUImage如此重要 如此受欢迎的原因</p>
+
+<h4 id="lumberjack">Lumberjack</h4>
+
+<p>log系统是每个项目都应该有的东西 而Lumberjack是log系统中的翘楚</p>
+
+<p>你可以简单的把它当成NSLog的替代品(简单来说 Lumberjack比NSLog速度更快) 或者根据你的需要来打造一个更强大的日志系统</p>
+
+<h4 id="nslogger">NSLogger</h4>
+
+<p>从名字可以看出 NSLogger也是一个log系统 其特点是附带了一个功能强大的Desktop Viewer 可以让你方便的查看APP产生的日志(支持分级筛选等等 甚至可以直接log一张图片)</p>
+
+<h4 id="awesomemenu">AwesomeMenu</h4>
+
+<p>当年横空出世的Path 其优美的设计 精彩的动画 不知让多少人嘴巴都合不拢 而最赞的 就是它的弹出菜单 一时成为了每个APP争相模仿的对象</p>
+
+<p>有了AwesomeMenu 你可以轻易的实现它</p>
+
+<h4 id="mmdrawercontroller">MMDrawerController</h4>
+
+<p>普通的侧滑菜单 用MMDrawerController就搞定了</p>
+
+<h4 id="realm">realm</h4>
+
+<p>作为数据存储的一等公民 CoreData的地位不言而喻 不过也因为使用起来不够方便 才会出现MagicalRecord这种辅助类 甚至fmdb这种基于纯sqlite的库</p>
+
+<p>而realm以挑战者的身份闪亮登场 不仅读取性能更快(据说数倍于CoraData) 接口简单易用(以对象的形式使用数据 这点和leancloud的思路很相似) 并且还跨平台(iOS/Android均可使用 OC/Swift/Java都支持)</p>
+
+<p>如果你习惯使用Mantle之类的Modal转换的话Realm-JSON肯定能讨你欢心</p>
+
+<p>作为YCombinator的孵化项目 其质量还是能得以保证的 至少我试用下来 确实给我以很大的惊喜 不管是API的设计 还是数据对象的定义 就连数据库的版本升级 都非常的方便)</p>
+
+<h3 id="xcode">Xcode插件</h3>
+<hr />
+
+<h4 id="alcatraz">Alcatraz</h4>
+
+<p>与CocoaPod类似 Alcatraz是Xcode的插件管理器 能够让你方便的管理Xcode的插件(不仅可以管理插件 还可以管理主题等等)</p>
+
+<h4 id="fuzzyautocomplete">FuzzyAutocomplete</h4>
+
+<p>如果只让我选一个插件留下 那必须是FuzzyAutocomplete 强大的模糊匹配输入 让你写代码的时候再也不用费脑子去记住名字那么长的对象或者函数名了 好用到让你想哭</p>
+
+<h4 id="xalign">XAlign</h4>
+
+<p>作为有洁癖的码农 看到不对齐的代码一定是不能忍的 XAlign可以轻松解决你的烦恼</p>
+
+<h4 id="vvdocumenter-xcode">VVDocumenter-Xcode</h4>
+
+<p>喵大的又一力作 能够识别当前函数的参数和返回类型 帮助你快速编写符合规范的注释(目前是以Javadoc为标准)</p>
+
+<h4 id="deriveddata-exterminator">deriveddata-exterminator</h4>
+
+<p>如果你老是遇到Xcode抽风 提示你要因为某个原因要删除某个目录下的文件 否则编译不过 那你一定会被这个插件感动 因为说明了遇到这个事的人不只你一个</p>
+
+<h4 id="xcode-quick-localization">Xcode-Quick-Localization</h4>
+
+<p>多语言在iOS开发中一直不是很方便 有了它 你可以省不少事</p>
+
+<h4 id="backlight-for-xcode">Backlight-for-XCode</h4>
+
+<p>就如果Xcode默认的80个字的分页提示一样 高亮当前正在编辑的一行 也是一种友好的提示 喜不喜欢也就因人而异了</p>
+
+<h2 id="section-3">小结</h2>
+<hr />
+
+<p>以上的介绍 都是从我自身的使用经验触发的 可能大部分大家都用过了 而我也将会持续的更新这份列表 只要有优秀使用的东东 我都会添加进来</p>
 ]]></content>
   </entry>
   

@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin! 概述 &hellip;">
+	<meta name="description" content="1、volley 项目地址 https://github.com/smanikandan14/Volley-demo JSON，图像等的异步下载； 网络请求的排序（scheduling） 网络请求的优先级处理 缓存 多级别取消请求 和Activity和生命周期的联动（ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,57 +127,6 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/iosduo-xian-cheng/">
-		
-			IOS多线程</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
-  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
-</blockquote>
-
-<h2 id="section">概述</h2>
-<hr />
-<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
-
-<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
-
-<pre><code>Pthreads
-NSThread
-GCD
-NSOperation &amp; NSOperationQueue
-</code></pre>
-
-<p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
-
-
-		
-		<a href="/blog/iosduo-xian-cheng/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年6 月18 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
 		<a href="/blog/androidkai-yuan-kuang-jia/">
 		
 			Android开源框架</a>
@@ -223,6 +172,57 @@ NSOperation &amp; NSOperationQueue
 
 
 2015 年5 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/leakcannei-xie-lu-jian-ce/">
+		
+			leakCanary内寸泄露检测</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="leakcanary">LeakCanary</h2>
+
+<p>Android 和 Java 内存泄露检测。</p>
+
+<blockquote>
+  <p>“A small leak will sink a great ship.” - Benjamin Franklin</p>
+</blockquote>
+
+<blockquote>
+  <p>千里之堤， 毁于蚁穴。 – 《韩非子·喻老》</p>
+</blockquote>
+
+<p><img src="https://raw.githubusercontent.com/liaohuqiu/leakcanary/master/assets/screenshot.png" alt="alt text" title="Title" /></p>
+
+<h4 id="demo">demo</h4>
+
+<p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
+
+
+		
+		<a href="/blog/leakcannei-xie-lu-jian-ce/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年4 月11 日</div>
 	<div class="tags">
 
 

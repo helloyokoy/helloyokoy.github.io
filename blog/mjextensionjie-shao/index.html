@@ -1,0 +1,780 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>MJExtension介绍 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="MJExtension The fastest, most convenient and most nonintrusive conversion between JSON and model. 世界上转换速度最快、使用最简单方便的字典转模型框架 GitHub：CoderMJLee ｜ Blog &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">MJExtension介绍</h2>
+	<div class="entry-content"><p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
+
+<h3 id="mjextension">MJExtension</h3>
+<hr />
+
+<p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
+
+<p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
+
+<p>GitHub：CoderMJLee ｜ Blog：mjios(Chinese) ｜ PR is welcome，or feedback</p>
+
+<h3 id="getting-started">Getting Started【开始使用】</h3>
+<hr />
+<p>####Features【能做什么】</p>
+
+<ul>
+  <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
+  <li>JSON –&gt; Model、Core Data Model</li>
+  <li>JSONString –&gt; Model、Core Data Model</li>
+  <li>Model、Core Data Model –&gt; JSON</li>
+  <li>JSON Array –&gt; Model Array、Core Data Model Array</li>
+  <li>JSONString –&gt; Model Array、Core Data Model Array</li>
+  <li>Model Array、Core Data Model Array –&gt; JSON Array</li>
+  <li>Coding all properties of model in one line code.</li>
+  <li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
+</ul>
+
+<!--more-->
+
+<h4 id="why-use-mjextension-why-not-use-jsonmodel-or-mantle">Why use MJExtension, why not use JSONModel or Mantle</h4>
+
+<h5 id="mjextension-is-faster-than-jsonmodel-and-mantle">MJExtension is faster than JSONModel and Mantle【转换速率】</h5>
+
+<ul>
+  <li>MJExtension &gt; JSONModel &gt; Mantle (Feel free to test it yourself)</li>
+  <li>各位开发者也可以自行测试</li>
+</ul>
+
+<h5 id="mjextension-is-more-easy-to-gomjextension">MJExtension is more easy to go【MJExtension更加容易使用】</h5>
+
+<ul>
+  <li>
+    <p>JSONModel</p>
+
+    <ul>
+      <li>You must let all model class extend JSONModel class</li>
+      <li>要求所有模型类必须继承自JSONModel基类</li>
+    </ul>
+  </li>
+  <li>
+    <p>Mantle</p>
+
+    <ul>
+      <li>You must let all model class extend MTModel class.</li>
+      <li>要求所有模型类必须继承自MTModel基类</li>
+    </ul>
+  </li>
+  <li>
+    <p>MJExtension</p>
+
+    <ul>
+      <li>Your model class doesn’t need to extend another base class. You don’t need to modify any model file. Nonintrusive, convenient.</li>
+      <li>不需要你的模型类继承任何特殊基类，也不需要修改任何模型代码，毫无污染，毫无侵入性</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="installation">Installation【安装】</h3>
+<hr />
+<p>####From CocoaPods【使用CocoaPods】</p>
+
+<pre><code>pod 'MJExtension'
+</code></pre>
+
+<h4 id="manually">Manually【手动导入】</h4>
+
+<ul>
+  <li>Drag all source files under floder MJExtension to your project.【将MJExtension文件夹中的所有源代码拽入项目中】</li>
+  <li>
+    <p>Import the main header file：#import “MJExtension.h”【导入主头文件：#import “MJExtension.h”】</p>
+
+    <pre><code>  MJExtension.h
+  MJConst.h               MJConst.m
+  MJFoundation.h          MJFoundation.m
+  MJProperty.h            MJProperty.m
+  MJType.h                MJType.m
+  NSObject+MJCoding.h     NSObject+MJCoding.m
+  NSObject+MJProperty.h   NSObject+MJProperty.m
+  NSObject+MJKeyValue.h   NSObject+MJKeyValue.m
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="examples">Examples【示例】</h3>
+<hr />
+
+<h4 id="the-most-simple-json---model">The most simple JSON -&gt; Model【最简单的字典转模型】</h4>
+
+<pre><code>typedef enum {
+SexMale,
+SexFemale
+} Sex;
+
+@interface User : NSObject
+@property (copy, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *icon;
+@property (assign, nonatomic) unsigned int age;
+@property (copy, nonatomic) NSString *height;
+@property (strong, nonatomic) NSNumber *money;
+@property (assign, nonatomic) Sex sex;
+@property (assign, nonatomic, getter=isGay) BOOL gay;
+@end
+
+/***********************************************/
+
+NSDictionary *dict = @{
+@"name" : @"Jack",
+@"icon" : @"lufy.png",
+@"age" : @20,
+@"height" : @"1.55",
+@"money" : @100.9,
+@"sex" : @(SexFemale),
+@"gay" : @"true"
+//   @"gay" : @"1"
+//   @"gay" : @"NO"
+};
+
+// JSON -&gt; User
+User *user = [User objectWithKeyValues:dict];
+
+NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
+// name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1
+</code></pre>
+
+<h4 id="jsonstring---modeljson">JSONString -&gt; Model【JSON字符串转模型】</h4>
+
+<pre><code>// 1.Define a JSONString
+NSString *jsonString = @"{\"name\":\"Jack\", \"icon\":\"lufy.png\", \"age\":20}";
+
+// 2.JSONString -&gt; User
+User *user = [User objectWithKeyValues:jsonString];
+
+// 3.Print user's properties
+NSLog(@"name=%@, icon=%@, age=%d", user.name, user.icon, user.age);
+// name=Jack, icon=lufy.png, age=20
+</code></pre>
+
+<h4 id="model-contains-model">Model contains model【模型中嵌套模型】</h4>
+
+<pre><code>@interface Status : NSObject
+@property (copy, nonatomic) NSString *text;
+@property (strong, nonatomic) User *user;
+@property (strong, nonatomic) Status *retweetedStatus;
+@end
+
+/***********************************************/
+
+NSDictionary *dict = @{
+@"text" : @"Agree!Nice weather!",
+@"user" : @{
+    @"name" : @"Jack",
+    @"icon" : @"lufy.png"
+},
+@"retweetedStatus" : @{
+    @"text" : @"Nice weather!",
+    @"user" : @{
+        @"name" : @"Rose",
+        @"icon" : @"nami.png"
+    }
+}
+};
+
+// JSON -&gt; Status
+Status *status = [Status objectWithKeyValues:dict];
+
+NSString *text = status.text;
+NSString *name = status.user.name;
+NSString *icon = status.user.icon;
+NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+// text=Agree!Nice weather!, name=Jack, icon=lufy.png
+
+NSString *text2 = status.retweetedStatus.text;
+NSString *name2 = status.retweetedStatus.user.name;
+NSString *icon2 = status.retweetedStatus.user.icon;
+NSLog(@"text2=%@, name2=%@, icon2=%@", text2, name2, icon2);
+// text2=Nice weather!, name2=Rose, icon2=nami.png
+</code></pre>
+
+<h4 id="model-contains-model-array">Model contains model-array【模型中有个数组属性，数组里面又要装着其他模型】</h4>
+
+<pre><code>@interface Ad : NSObject
+@property (copy, nonatomic) NSString *image;
+@property (copy, nonatomic) NSString *url;
+@end
+
+@interface StatusResult : NSObject
+/** Contatins status model */
+@property (strong, nonatomic) NSMutableArray *statuses;
+/** Contatins ad model */
+@property (strong, nonatomic) NSArray *ads;
+@property (strong, nonatomic) NSNumber *totalNumber;
+@end
+
+/***********************************************/
+
+// Tell MJExtension what type model will be contained in statuses and ads.
+[StatusResult setupObjectClassInArray:^NSDictionary *{
+return @{
+           @"statuses" : @"Status",
+           // @"statuses" : [Status class],
+           @"ads" : @"Ad"
+           // @"ads" : [Ad class]
+       };
+}];
+// Equals: StatusResult.m implements +objectClassInArray method.
+
+NSDictionary *dict = @{
+@"statuses" : @[
+                  @{
+                      @"text" : @"Nice weather!",
+                      @"user" : @{
+                          @"name" : @"Rose",
+                          @"icon" : @"nami.png"
+                      }
+                  },
+                  @{
+                      @"text" : @"Go camping tomorrow!",
+                      @"user" : @{
+                          @"name" : @"Jack",
+                          @"icon" : @"lufy.png"
+                      }
+                  }
+              ],
+@"ads" : @[
+             @{
+                 @"image" : @"ad01.png",
+                 @"url" : @"http://www.ad01.com"
+             },
+             @{
+                 @"image" : @"ad02.png",
+                 @"url" : @"http://www.ad02.com"
+             }
+         ],
+@"totalNumber" : @"2014"
+};
+
+// JSON -&gt; StatusResult
+StatusResult *result = [StatusResult objectWithKeyValues:dict];
+
+NSLog(@"totalNumber=%@", result.totalNumber);
+// totalNumber=2014
+
+// Printing
+for (Status *status in result.statuses) {
+NSString *text = status.text;
+NSString *name = status.user.name;
+NSString *icon = status.user.icon;
+NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+}
+// text=Nice weather!, name=Rose, icon=nami.png
+// text=Go camping tomorrow!, name=Jack, icon=lufy.png
+
+// Printing
+for (Ad *ad in result.ads) {
+NSLog(@"image=%@, url=%@", ad.image, ad.url);
+}
+// image=ad01.png, url=http://www.ad01.com
+// image=ad02.png, url=http://www.ad02.com
+</code></pre>
+
+<h4 id="model-name---json-key-mappingkey">Model name - JSON key mapping【模型中的属性名和字典中的key不相同(或者需要多级映射)】</h4>
+
+<pre><code>@interface Bag : NSObject
+@property (copy, nonatomic) NSString *name;
+@property (assign, nonatomic) double price;
+@end
+
+@interface Student : NSObject
+@property (copy, nonatomic) NSString *ID;
+@property (copy, nonatomic) NSString *desc;
+@property (copy, nonatomic) NSString *nowName;
+@property (copy, nonatomic) NSString *oldName;
+@property (copy, nonatomic) NSString *nameChangedTime;
+@property (strong, nonatomic) Bag *bag;
+@end
+
+/***********************************************/
+
+// How to map
+[Student setupReplacedKeyFromPropertyName:^NSDictionary *{
+return @{
+           @"ID" : @"id",
+           @"desc" : @"desciption",
+           @"oldName" : @"name.oldName",
+           @"nowName" : @"name.newName",
+           @"nameChangedTime" : @"name.info[1].nameChangedTime",
+           @"bag" : @"other.bag"
+       };
+}];
+// Equals: Student.m implements +replacedKeyFromPropertyName method.
+
+NSDictionary *dict = @{
+@"id" : @"20",
+@"desciption" : @"kids",
+@"name" : @{
+    @"newName" : @"lufy",
+    @"oldName" : @"kitty",
+    @"info" : @[
+             @"test-data",
+             @{
+                         @"nameChangedTime" : @"2013-08"
+                     }
+              ]
+},
+@"other" : @{
+    @"bag" : @{
+        @"name" : @"a red bag",
+        @"price" : @100.7
+    }
+}
+};
+
+// JSON -&gt; Student
+Student *stu = [Student objectWithKeyValues:dict];
+
+// Printing
+NSLog(@"ID=%@, desc=%@, oldName=%@, nowName=%@, nameChangedTime=%@",
+  stu.ID, stu.desc, stu.oldName, stu.nowName, stu.nameChangedTime);
+// ID=20, desc=kids, oldName=kitty, nowName=lufy, nameChangedTime=2013-08
+NSLog(@"bagName=%@, bagPrice=%f", stu.bag.name, stu.bag.price);
+// bagName=a red bag, bagPrice=100.700000
+</code></pre>
+
+<h4 id="json-array---model-array">JSON array -&gt; model array【将一个字典数组转成模型数组】</h4>
+
+<pre><code>NSArray *dictArray = @[
+                     @{
+                         @"name" : @"Jack",
+                         @"icon" : @"lufy.png"
+                     },
+                     @{
+                         @"name" : @"Rose",
+                         @"icon" : @"nami.png"
+                     }
+                 ];
+
+// JSON array -&gt; User array
+NSArray *userArray = [User objectArrayWithKeyValuesArray:dictArray];
+
+// Printing
+for (User *user in userArray) {
+NSLog(@"name=%@, icon=%@", user.name, user.icon);
+}
+// name=Jack, icon=lufy.png
+// name=Rose, icon=nami.png
+</code></pre>
+
+<h4 id="model---json">Model -&gt; JSON【将一个模型转成字典】</h4>
+
+<pre><code>// New model
+User *user = [[User alloc] init];
+user.name = @"Jack";
+user.icon = @"lufy.png";
+
+Status *status = [[Status alloc] init];
+status.user = user;
+status.text = @"Nice mood!";
+
+// Status -&gt; JSON
+NSDictionary *statusDict = status.keyValues;
+NSLog(@"%@", statusDict);
+/*
+ 	{
+ 		text = "Nice mood!";
+ 		user =     {
+ 		icon = "lufy.png";
+ 		name = Jack;
+ 		};
+ 	}
+ 	*/
+
+// More complex situation
+Student *stu = [[Student alloc] init];
+stu.ID = @"123";
+stu.oldName = @"rose";
+stu.nowName = @"jack";
+stu.desc = @"handsome";
+stu.nameChangedTime = @"2018-09-08";
+
+Bag *bag = [[Bag alloc] init];
+bag.name = @"a red bag";
+bag.price = 205;
+stu.bag = bag;
+
+NSDictionary *stuDict = stu.keyValues;
+NSLog(@"%@", stuDict);
+/*
+{
+ID = 123;
+bag =     {
+    name = "\U5c0f\U4e66\U5305";
+    price = 205;
+};
+desc = handsome;
+nameChangedTime = "2018-09-08";
+nowName = jack;
+oldName = rose;
+}
+ */
+</code></pre>
+
+<h4 id="model-array---json-array">Model array -&gt; JSON array【将一个模型数组转成字典数组】</h4>
+
+<pre><code>// New model array
+User *user1 = [[User alloc] init];
+user1.name = @"Jack";
+user1.icon = @"lufy.png";
+
+User *user2 = [[User alloc] init];
+user2.name = @"Rose";
+user2.icon = @"nami.png";
+
+NSArray *userArray = @[user1, user2];
+
+// Model array -&gt; JSON array
+NSArray *dictArray = [User keyValuesArrayWithObjectArray:userArray];
+NSLog(@"%@", dictArray);
+/*
+ 	(
+ 	{
+ 	icon = "lufy.png";
+ name = Jack;
+ },
+ 	{
+ 	icon = "nami.png";
+ 	name = Rose;
+ 	}
+ )
+ 	*/
+</code></pre>
+
+<h4 id="core-data">Core Data</h4>
+
+<pre><code>NSDictionary *dict = @{
+                     @"name" : @"Jack",
+                     @"icon" : @"lufy.png",
+                     @"age" : @20,
+                     @"height" : @1.55,
+                     @"money" : @"100.9",
+                     @"sex" : @(SexFemale),
+                     @"gay" : @"true"
+                 };
+
+// This demo just provide simple steps
+NSManagedObjectContext *context = nil;
+User *user = [User objectWithKeyValues:dict context:context];
+
+[context save:nil];
+</code></pre>
+
+<h4 id="coding">Coding</h4>
+
+<pre><code>#import "MJExtension.h"
+
+@implementation Bag
+// NSCoding Implementation
+MJCodingImplementation
+@end
+
+/***********************************************/
+
+// what properties not to be coded
+[Bag setupIgnoredCodingPropertyNames:^NSArray *{
+return @[@"name"];
+}];
+// Equals: Bag.m implements +ignoredCodingPropertyNames method.
+
+// Create model
+Bag *bag = [[Bag alloc] init];
+bag.name = @"Red bag";
+bag.price = 200.8;
+
+NSString *file = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/	bag.data"];
+// Encoding
+[NSKeyedArchiver archiveRootObject:bag toFile:file];
+
+// Decoding
+Bag *decodedBag = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+NSLog(@"name=%@, price=%f", decodedBag.name, decodedBag.price);
+// name=(null), price=200.800000
+</code></pre>
+
+<h4 id="camel---underline">Camel -&gt; underline【统一转换属性名（比如驼峰转下划线）】</h4>
+
+<pre><code>// Dog
+#import "MJExtension.h"
+
+@implementation Dog
++ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName
+{
+// nickName -&gt; nick_name
+return [propertyName underlineFromCamel];
+}
+@end
+
+// NSDictionary
+NSDictionary *dict = @{
+                   @"nick_name" : @"旺财",
+                   @"sale_price" : @"10.5",
+                   @"run_speed" : @"100.9"
+                   };
+// NSDictionary -&gt; Dog
+Dog *dog = [Dog objectWithKeyValues:dict];
+
+// printing
+NSLog(@"nickName=%@, scalePrice=%f runSpeed=%f", dog.nickName, dog.salePrice, dog.runSpeed);
+</code></pre>
+
+<h4 id="nsstring---nsdate-nil---nsdatenil">NSString -&gt; NSDate, nil -&gt; @”“【过滤字典的值（比如字符串日期处理为NSDate、字符串nil处理为@”“）】</h4>
+
+<pre><code>// Book
+#import "MJExtension.h"
+
+@implementation Book
+- (id)newValueFromOldValue:(id)oldValue property:(MJProperty *)property
+{
+if ([property.name isEqualToString:@"publisher"]) {
+    if (oldValue == nil) return @"";
+} else if (property.type.typeClass == [NSDate class]) {
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.dateFormat = @"yyyy-MM-dd";
+    return [fmt dateFromString:oldValue];
+}
+
+return oldValue;
+}
+@end
+
+// NSDictionary
+NSDictionary *dict = @{
+                   @"name" : @"5分钟突破iOS开发",
+                   @"publishedTime" : @"2011-09-10"
+                   };
+// NSDictionary -&gt; Book
+Book *book = [Book objectWithKeyValues:dict];
+
+// printing
+NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, book.publishedTime);
+</code></pre>
+
+<h4 id="more-use-cases">More use cases【更多用法】</h4>
+
+<ul>
+  <li>Please reference to NSObject+MJKeyValue.h and NSObject+MJCoding.h</li>
+  <li><a href="https://github.com/CoderMJLee/MJExtension" title="url">github地址</a></li>
+</ul>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年8 月10 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/mjextensionjie-shao" data-title="MJExtension介绍" data-url="http://helloyokoy.github.io/blog/mjextensionjie-shao/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
