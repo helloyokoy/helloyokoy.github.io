@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-10T11:16:06+08:00</updated>
+  <updated>2015-08-10T11:24:37+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -455,7 +455,7 @@ public class ExampleApplication extends Application {
   <entry>
     <title type="html"><![CDATA[android学习资料]]></title>
     <link href="http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/"/>
-    <updated>2015-03-11T17:30:37+08:00</updated>
+    <updated>2014-09-11T17:30:37+08:00</updated>
     <id>http://helloyokoy.github.io/blog/androidxue-xi-zi-liao</id>
     <content type="html"><![CDATA[<ul>
   <li>

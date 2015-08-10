@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-08-10T11:16:06+08:00</updated>
+  <updated>2015-08-10T11:24:37+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -1766,41 +1766,6 @@ public class ExampleApplication extends Application {
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[android学习资料]]></title>
-    <link href="http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/"/>
-    <updated>2015-03-11T17:30:37+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/androidxue-xi-zi-liao</id>
-    <content type="html"><![CDATA[<ul>
-  <li>
-    <p>博客</p>
-
-    <pre><code>  http://stormzhang.com/
-</code></pre>
-  </li>
-  <li>
-    <p>知乎回答</p>
-
-    <pre><code>  http://www.zhihu.com/question/33993035
-</code></pre>
-  </li>
-  <li>
-    <p>google Android官网</p>
-
-    <pre><code>  http://developer.android.com/
-</code></pre>
-  </li>
-  <li>
-    <p>stackoverflow  tag android</p>
-
-    <pre><code>  http://stackoverflow.com/questions/tagged/android
-</code></pre>
-  </li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[MagicRecord介绍]]></title>
     <link href="http://helloyokoy.github.io/blog/magicrecordjie-shao/"/>
     <updated>2015-02-10T10:26:16+08:00</updated>
@@ -2011,6 +1976,41 @@ MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添�
 <p>PLCrashReporter (Github mirror):进程内崩溃报告框架。</p>
 
 <p>SBJSON:Objective-C 实现的一个严格的JSON 解析器和生成器。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[android学习资料]]></title>
+    <link href="http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/"/>
+    <updated>2014-09-11T17:30:37+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/androidxue-xi-zi-liao</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <p>博客</p>
+
+    <pre><code>  http://stormzhang.com/
+</code></pre>
+  </li>
+  <li>
+    <p>知乎回答</p>
+
+    <pre><code>  http://www.zhihu.com/question/33993035
+</code></pre>
+  </li>
+  <li>
+    <p>google Android官网</p>
+
+    <pre><code>  http://developer.android.com/
+</code></pre>
+  </li>
+  <li>
+    <p>stackoverflow  tag android</p>
+
+    <pre><code>  http://stackoverflow.com/questions/tagged/android
+</code></pre>
+  </li>
+</ul>
+
 ]]></content>
   </entry>
   
