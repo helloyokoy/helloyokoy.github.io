@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "leakCan内泄露检测"
+title: "leakCanary内寸泄露检测"
 date: 2015-04-11 17:53:41 +0800
 comments: true
 categories: android

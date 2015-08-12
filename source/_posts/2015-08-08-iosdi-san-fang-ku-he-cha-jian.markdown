@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "IOS第三方库和插件"
-date: 2015-07-08 22:04:09 +0800
+date: 2014-07-08 22:04:09 +0800
 comments: true
 categories: IOS
 ---

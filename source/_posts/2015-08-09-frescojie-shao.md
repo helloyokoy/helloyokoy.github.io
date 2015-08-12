@@ -6,6 +6,7 @@ comments: true
 categories: android
 ---
 
+![icon](http://frescolib.org/static/fresco-logo.png "icon")
 
 ###关于 Fresco
 Fresco 是一个强大的图片加载组件。
