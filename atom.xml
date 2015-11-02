@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-02T15:04:54+08:00</updated>
+  <updated>2015-11-02T16:02:49+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -2354,6 +2354,48 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 </ul>
 
 <p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RubyMotion简介]]></title>
+    <link href="http://helloyokoy.github.io/blog/rubymotion/"/>
+    <updated>2015-10-15T15:52:38+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/rubymotion</id>
+    <content type="html"><![CDATA[<h2 id="rubymotion-">RubyMotion 是什么</h2>
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2015/aa191c47356e1b30b1f1a7d7e82fea3c.gif" alt="icon" /></p>
+
+<h2 id="section">统一的运行时环境</h2>
+<p>在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java Runtime，Dalvik 以及 ART 实现了 Ruby 语言。由于这种异常紧密的集成，Ruby 可以自如的调用各平台的接口而不会产生任何性能损失。你可以轻松自如的混编 Ruby 和 Objective-C 或者 Ruby 和 Java，自由的访问各平台提供的最新的 API，自由调用各种第三方库。</p>
+
+<h2 id="section-1">完全编译</h2>
+
+<p>RubyMotion 使用基于 LLVM 构建(参见原理)的革命性的、先进的预编译器（AOT Complier）将项目中的 Ruby 代码编译成经过优化的机器代码。在 iOS 以及 Android 项目，编译器可以生成 32 位和 64 位的 ARM 目标代码，在 OS X 项目则可以生成 32 位和 64 位的 Intel 目标代码。原始的 Ruby 代码不会出现在程序中，也不会在运行期间被解释执行。RubyMotion 的典型项目的程序包大小在 1MB 以下。</p>
+
+<h2 id="section-2">自动管理内存</h2>
+
+<p>在 Ruby 语言中，你无需考虑内存管理事宜。因为，RubyMotion 会自动释放内存中那些你创建的但是却不再会被使用的对象。针对 iOS 和 OS X 平台，我们提供了一个自定义的内存模型，在设计上类似 Objective-C 的 ARC 机制。这个模型无需再使用额外内存或者代码来处理不再使用的对象的声明和回收。针对 Android 平台，我们使用 Java 运行时环境的 GC 来管理内存。</p>
+
+<!--more-->
+
+<h2 id="section-3">支持并行</h2>
+
+<p>绝大斗数 Android 设备以及最新的 iOS 和 OS X 硬件都支持多核处理器。所以在设计应用程序时，考虑到支持并发是非常重要的。RubyMotion 被设计成没有全局锁且是可重入的（re-entrant），主要目的就是可以让代码并行的执行。针对 iOS 和 OS X 平台，RubyMotion 为 Grand Central Dispatch 提供了方便的接口，你可以自如的使用 CPU 核心来平衡需要大量计算的任务。</p>
+
+<h2 id="rubymotion">要不要选择 RubyMotion</h2>
+
+<p>如果你喜欢 Ruby，当然你需要来尝试 RubyMotion，并且你会爱上他。并且，选择 RubyMotion 意味着你可以像开发 Rails 应用一样使用 Rake 工具链，同时又不会放弃 AutoLayout 等原生开发时必须的技术。你可以使用来自人类希望的 JetBrains 出品的 RubyMine，也可以使用 SublimeText 或者 VIM(Emacs)。你会看到类似 Rails 的文件组织结构。作为一个 Rails 开发者，你会感到所有的开发环境都是如此的令人感到熟悉。一个人，凭借 Ruby 实现真正意义上的全端全栈，似乎指日可待啊～</p>
+
+<h2 id="section-4">社区发展</h2>
+
+<p>RubyMotion 存在已经第四个年头，所以目前是一个稳定的项目。由于之前没有提供免费试用版，所以造成好多人想去学习，却因为感觉到相对昂贵的价格而止步不前。现在不用了，快去 <a href="http://www.rubymotion.com/download/">http://www.rubymotion.com/download/</a> 下载免费版把玩吧……</p>
+
+<p>在社区发展方面，社区贡献了非常多的 Gems。得益于 Ruby 强大的 DSL 生成能力和元编程特性，非常多的 Gems 对原生开发冗余的编程模型和繁杂的 API 调用做了非常好的封装。<a href="http://motion-toolbox.com/">http://motion-toolbox.com/</a> 里面收录了绝大多数优质的 RubyMotion 的 Gems。</p>
+
+<h2 id="section-5">相关资料</h2>
+
+<p><a href="https://ruby-china.org/topics/22416">RubyMotion Workshop Beijing 资料总结</a>
+<a href="http://www.rubymotion.com/download/">RubyMotion 官网</a></p>
 ]]></content>
   </entry>
   
@@ -5262,92 +5304,6 @@ session.outputURL       = VIDEO_EXPORTING_URL;
 <p>请参考ALAssetRepresentation和AVAssetExportSession的文档</p>
 
 <p>GitHub地址 <a href="https://github.com/chiunam/CTAssetsPickerController" title="url">https://github.com/chiunam/CTAssetsPickerController</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rails 环境搭建]]></title>
-    <link href="http://helloyokoy.github.io/blog/huan-jing-da-jian/"/>
-    <updated>2014-11-09T16:05:07+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/huan-jing-da-jian</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
-次安装方法同样适用于产品环境！</p>
-</blockquote>
-
-<h3 id="section">系统需求</h3>
-<hr />
-
-<p>首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用:</p>
-
-<p>Mac OS X
-任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux …)
-强烈新手使用 Ubuntu 省掉不必要的麻烦！
-以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $  符号）</p>
-
-<!--more-->
-
-<h4 id="section-1">步骤0 － 安装系统需要的包</h4>
-
-<p>For Mac</p>
-
-<p>先安装 <a href="http://developer.apple.com/xcode/">Xcode</a> 开发工具，它将帮你安装好 Unix 环境需要的开发包</p>
-
-<p>然后安装 <a href="http://brew.sh">Homebrew</a></p>
-
-<pre><code>ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
-</code></pre>
-
-<h4 id="rvm">步骤1 － 安装 RVM</h4>
-
-<p>RVM 是干什么的这里就不解释了，后面你将会慢慢搞明白。</p>
-
-<pre><code>$ curl -L https://get.rvm.io | bash -s stable 期间可能会问你sudo管理员密码，以及自动通过homebrew安装依赖包，等待一段时间后就可以成功安装好 RVM。
-</code></pre>
-
-<p>然后，载入 RVM 环境（新开 Termal 就不用这么做了，会自动重新载入的）</p>
-
-<pre><code>$ source ~/.rvm/scripts/rvm 检查一下是否安装正确
-
-$ rvm -v
-rvm 1.22.17 (stable) by Wayne E. Seguin &lt;wayneeseguin@gmail.com&gt;, Michal Papis &lt;mpapis@gmail.com&gt; [https://rvm.io/]
-</code></pre>
-
-<h4 id="rvm--ruby-">步骤2 － 用 RVM 安装 Ruby 环境</h4>
-
-<pre><code>$ rvm install 2.0.0 同样继续等待漫长的下载，编译过程，完成以后，Ruby, Ruby Gems 就安装好了。
-</code></pre>
-
-<h4 id="ruby-">步骤3 － 设置 Ruby 版本</h4>
-
-<p>RVM 装好以后，需要执行下面的命令将指定版本的 Ruby 设置为系统默认版本</p>
-
-<pre><code>$ rvm 2.0.0 --default 同样，也可以用其他版本号，前提是你有用 rvm install 安装过那个版本
-</code></pre>
-
-<p>这个时候你可以测试是否正确</p>
-
-<pre><code>$ ruby -v
-ruby 2.0.0p247 (2013-06-27 revision 41674) [x86_64-darwin13.0.0]
-
-$ gem -v
-2.1.6
-
-$ gem source -r https://rubygems.org/
-$ gem source -a https://ruby.taobao.org
-</code></pre>
-
-<h4 id="rails-">步骤4 － 安装 Rails 环境</h4>
-
-<p>上面 3 个步骤过后，Ruby 环境就安装好了，接下来安装 Rails</p>
-
-<pre><code>$ gem install rails 然后测试安装是否正确
-
-$ rails -v
-Rails 3.2.13 然后开始你的 Ruby，Rails 之旅吧。 欢迎来到 Ruby 的世界！
-</code></pre>
-
-<p>转载自  <a href="https://ruby-china.org/wiki/install_ruby_guide">ruby-china</a></p>
 ]]></content>
   </entry>
   

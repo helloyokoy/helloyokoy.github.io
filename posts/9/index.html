@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="Afinal简介 Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用； 使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。 &hellip;">
+	<meta name="description" content="前言 第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库 Xcode基本是Mac/iOS程序员的必备工具(AppCode我没用过 不知道有多少人用?) 但是能说有多好用..这就仁者见仁了(跟Visual Studio是没得比了) &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,54 +127,25 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/afinaljie-shao/">
+		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/">
 		
-			Afinal介绍</a>
+			IOS第三方库和插件</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
-
-<h3 id="afinal">Afinal简介</h3>
-<hr />
-<ul>
-  <li>
-    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
-  </li>
-  <li>
-    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
-  </li>
-  <li>
-    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
-  </li>
-</ul>
-
-<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
+		<h2 id="section">前言</h2>
 <hr />
 
-<ul>
-  <li>
-    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
-  </li>
-  <li>
-    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
-  </li>
-  <li>
-    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
-  </li>
-  <li>
-    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
-  </li>
-</ul>
+<blockquote>
+  <p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p>
+</blockquote>
 
-<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
+<p>Xcode基本是Mac/iOS程序员的必备工具(AppCode我没用过 不知道有多少人用?) 但是能说有多好用..这就仁者见仁了(跟Visual Studio是没得比了) 不过在用了插件以后 倒也能让生产力提升一大截</p>
 
-<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
-&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
-</code></pre>
+<p>接下来我会介绍一些我本人常用的第三方库和插件 也许不多 但是一定是久经考验 用了一定不会错</p>
 
 
 		
-		<a href="/blog/afinaljie-shao/" class="more-link">阅读全文</a>
+		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -184,11 +155,11 @@
 
 
 
-2015 年3 月10 日</div>
+2014 年7 月8 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/android/'>android</a>
+	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>
@@ -200,28 +171,32 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/magicrecordjie-shao/">
+		<a href="/blog/markdownyu-fa/">
 		
-			MagicRecord介绍</a>
+			Markdown语法</a>
 	</h2>
 	<div class="entry-content">
-		<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
+		<h3 id="word">1. 标题设置（让字体变大，和word的标题意思一样）</h3>
+<hr />
 
-<p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
+<p>在Markdown当中设置标题，有两种方式：</p>
 
-<p>也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。</p>
+<p>第一种：通过在文字下方添加“=”和“-”，他们分别表示一级标题和二级标题。</p>
 
-<p>即使你会使用CoreData，每天重复性枯燥的使用CoreData也会变得很笨重，MagicalPanda创建的一个第三方库为这种工作带来了好消息。</p>
+<p>第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大）</p>
 
-<p>MagicalRecord 致力于更快捷和容易的使用CoreData。</p>
+<h3 id="blockquote">2. 块注释（blockquote）</h3>
+<hr />
 
-<p>MagicalRecord 使用方便，特别流行。正如作者所说，MagicalRecord 致力于使CoreData的代码更简洁，更简单的获取数据，并且使用最优化的操作。</p>
+<p>通过在文字开头添加“&gt;”表示块注释。（当&gt;和文字之间添加五个blank时，块注释的文字会有变化。）</p>
 
-<p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
+<h3 id="section">3. 斜体</h3>
+<hr />
+<p>将需要设置为斜体的文字两端使用1个“*”或者“_”夹起来</p>
 
 
 		
-		<a href="/blog/magicrecordjie-shao/" class="more-link">阅读全文</a>
+		<a href="/blog/markdownyu-fa/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -231,11 +206,59 @@
 
 
 
-2015 年2 月10 日</div>
+2014 年6 月9 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ios/'>ios</a>
+	<a class='category' href='/blog/categories/octopress/'>octopress</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/octopressda-jian-jiao-cheng/">
+		
+			Octopress搭建教程</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="octopress">1.安装Octopress</h2>
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress
+bundle update    # 安装依赖的组件
+rake install     # 安装默认的Octopress主题
+</code></pre>
+
+<h2 id="git">2.配置Git</h2>
+<p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
+
+<pre><code>git remote rm origin
+git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
+git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
+</code></pre>
+
+
+		
+		<a href="/blog/octopressda-jian-jiao-cheng/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年6 月8 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/octopress/'>octopress</a>
 
 
 </div>
@@ -249,8 +272,6 @@
             <a href="/posts/8" class="prev">上一页</a>
         
     
-    
-        <a href="/posts/10" class="next">下一页</a>
     
     <div class="center"><a href="/blog/archives">文章列表</a></div>
 </nav>
