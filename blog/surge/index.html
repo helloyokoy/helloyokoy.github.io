@@ -1,0 +1,323 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Surge - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重… 那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态， &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Surge</h2>
+	<div class="entry-content"><p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
+
+<p><img src="https://g.owind.com/content/images/2015/10/surgelogo.jpg" alt="alt text" title="surge" /></p>
+
+<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
+
+<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
+
+<!--more-->
+
+<p>简单的开始可以直接导入一份 conf 文件（URL 或者 iTunes），例如<a href="https://gist.github.com/janlay/b57476c72a93b7e622a6" title="link">这里</a>的，对于不求甚解的用户来说你可以直接使用完事（但是你还是要改改服务器地址用户名什么的。。或者直接从供应商处获取导入 URL）。</p>
+
+<p>配置的结构大概是这样，对于专业用户来说，理解应该不难</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (rules)</span> <a href="/downloads/code/rules">download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"><span class="k">[General]</span>
+</span><span class="line"><span class="c1"># warning, notify, info, verbose</span>
+</span><span class="line"><span class="na">loglevel</span> <span class="o">=</span> <span class="s">notify</span>
+</span><span class="line">
+</span><span class="line"><span class="k">[Proxy]</span>
+</span><span class="line"><span class="c1"># http, https, socks5</span>
+</span><span class="line"><span class="c1"># SSLedge 使用 https，老式 APNp 用 http</span>
+</span><span class="line"><span class="na">Proxy</span> <span class="o">=</span> <span class="s">https, server, port, username, password, ciphers </span>
+</span><span class="line">
+</span><span class="line"><span class="k">[Rule]</span>
+</span><span class="line"><span class="c1"># 域名关键字，干掉不想要的请求</span>
+</span><span class="line"><span class="err">DOMAIN-KEYWORD,umeng.co,REJECT</span>
+</span><span class="line"><span class="err">...</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># 常用网站优先匹配，加快速度。使用代理转发，完全没有 CDN 被干扰的问题~</span>
+</span><span class="line"><span class="err">DOMAIN-SUFFIX,cn,DIRECT</span>
+</span><span class="line"><span class="err">DOMAIN-SUFFIX,qq.com,DIRECT</span>
+</span><span class="line"><span class="err">DOMAIN-SUFFIX,ls.apple.com,DIRECT</span>
+</span><span class="line"><span class="err">DOMAIN-SUFFIX,apple.com,Proxy</span>
+</span><span class="line"><span class="err">...</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># 强制这些不尊重系统代理的请求走 packet-tunnel-provider，解决 Twitter.app 和 Mail.app 收发邮件问题</span>
+</span><span class="line"><span class="err">DOMAIN-KEYWORD,twitter,Proxy,force-remote-dns</span>
+</span><span class="line"><span class="err">DOMAIN-KEYWORD,gmail,Proxy,force-remote-dns</span>
+</span><span class="line"><span class="c1"># instagram.app 也没问题</span>
+</span><span class="line"><span class="err">DOMAIN-KEYWORD,instagram,Proxy,force-remote-dns</span>
+</span><span class="line"><span class="c1"># Telegram.app 也没问题</span>
+</span><span class="line"><span class="err">IP-CIDR,91.108.56.0/22,Proxy,force-remote-dns</span>
+</span><span class="line"><span class="err">...</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># LAN</span>
+</span><span class="line"><span class="err">IP-CIDR,192.168.0.0/16,DIRECT</span>
+</span><span class="line"><span class="err">...</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># 其余的请求使用 GEOIP 判断服务器所在地，如果是国内的，走直连，搞定</span>
+</span><span class="line"><span class="err">GEOIP,CN,DIRECT</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># 最后 Matchall，丢给代理</span>
+</span><span class="line"><span class="err">FINAL,Proxy</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>通过规则定义和组合，必然可以满足专业用户的需求，非常强大。配置可以使用 app 自带的 GUI，当然也有文本编辑方式。</p>
+
+<p>由于 Surge 的核心和是个 http proxy，有些处理不了的请求我们可以强制 bypass 掉，走系统接口，这个可以在代理设置-高级处设置，如果你不太懂，请不要随意设置。</p>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月2 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/surge" data-title="Surge" data-url="http://helloyokoy.github.io/blog/surge/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

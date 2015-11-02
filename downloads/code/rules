@@ -1,0 +1,39 @@
+[General]
+# warning, notify, info, verbose
+loglevel = notify
+
+[Proxy]
+# http, https, socks5
+# SSLedge 使用 https，老式 APNp 用 http
+Proxy = https, server, port, username, password, ciphers 
+
+[Rule]
+# 域名关键字，干掉不想要的请求
+DOMAIN-KEYWORD,umeng.co,REJECT  
+...
+
+# 常用网站优先匹配，加快速度。使用代理转发，完全没有 CDN 被干扰的问题~
+DOMAIN-SUFFIX,cn,DIRECT  
+DOMAIN-SUFFIX,qq.com,DIRECT  
+DOMAIN-SUFFIX,ls.apple.com,DIRECT  
+DOMAIN-SUFFIX,apple.com,Proxy  
+...
+
+# 强制这些不尊重系统代理的请求走 packet-tunnel-provider，解决 Twitter.app 和 Mail.app 收发邮件问题
+DOMAIN-KEYWORD,twitter,Proxy,force-remote-dns  
+DOMAIN-KEYWORD,gmail,Proxy,force-remote-dns  
+# instagram.app 也没问题
+DOMAIN-KEYWORD,instagram,Proxy,force-remote-dns  
+# Telegram.app 也没问题
+IP-CIDR,91.108.56.0/22,Proxy,force-remote-dns  
+...
+
+# LAN
+IP-CIDR,192.168.0.0/16,DIRECT  
+...
+
+# 其余的请求使用 GEOIP 判断服务器所在地，如果是国内的，走直连，搞定
+GEOIP,CN,DIRECT
+
+# 最后 Matchall，丢给代理
+FINAL,Proxy  
