@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-02T13:58:21+08:00</updated>
+  <updated>2015-11-02T14:45:31+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[android 开发遇到的坑]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-mistake/"/>
+    <updated>2015-10-12T14:21:57+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/android-mistake</id>
+    <content type="html"><![CDATA[<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
+
+<ul>
+  <li>
+    <p>在Android library中不能使用switch-case语句访问资源ID：
+<a href="http://zmywly8866.github.io/2014/12/24/android-can-not-use-switch-to-load-resource-in-libproject-solution.html">在Android library中不能使用switch-case语句访问资源ID的原因分析及解决方案</a></p>
+  </li>
+  <li>
+    <p>不能在Activity没有完全显示时显示PopupWindow和Dialog：<a href="http://stackoverflow.com/questions/4187673/problems-creating-a-popup-window-in-android-activity">popupwindow - Problems creating a Popup Window in Android Activity</a></p>
+  </li>
+  <li>
+    <p>在多进程之间不要用SharedPreferences共享数据，虽然可以（MODE_MULTI_PROCESS），但极不稳定：<a href="http://stackoverflow.com/questions/22129717/mode-multi-process-for-sharedpreferences-isnt-working">android - MODE_MULTI_PROCESS for SharedPreferences isn’t working</a></p>
+  </li>
+</ul>
+
+<!--more-->
+
+<ul>
+  <li>
+    <p>有些时候不能使用Application的Context，不然会报错（比如启动Activity，显示Dialog等）：
+<img src="https://pic3.zhimg.com/e3f3236cbd96c69cdea10d014bacbeae_b.png" alt="icon" /></p>
+  </li>
+  <li>
+    <p>同一个应用的JNI代码，不要轻易换NDK编译的版本，否则会有很多问题（主要是一些方法实现不一样，并且高版本对代码的检测更严格），比如r8没有问题，但到r9就有问题了，这是个大坑；</p>
+  </li>
+  <li>
+    <p>Android的JNI代码中，有返回类型的函数没有返回值编译的时候也不会报错；</p>
+  </li>
+  <li>
+    <p>当前Activity的onPause方法执行结束后才会执行下一个Activity的onCreate方法，所以在onPause方法中不适合做耗时较长的工作，这会影响到页面之间的跳转效率；</p>
+  </li>
+  <li>
+    <p>谨慎使用Android的透明主题，透明主题会导致很多问题，比如：如果新的Activity采用了透明主题，那么当前Activity的onStop方法不会被调用；在设置为透明主题的Activity界面按Home键时，可能会导致刷屏不干净的问题；进入主题为透明主题的界面会有明显的延时感；</p>
+  </li>
+  <li>
+    <p>不要在非UI线程中初始化ViewStub，否则会返回null；</p>
+  </li>
+  <li>
+    <p>公共接口一定要考虑到代码重入的情况，能设计为单例就尽量用单例；</p>
+  </li>
+  <li>
+    <p>不要通过Bundle传递大块的数据，否则会报TransactionTooLargeException异常：<a href="http://stackoverflow.com/questions/12819617/issue-passing-large-data-to-second-activity">java - Issue: Passing large data to second Activity</a></p>
+  </li>
+  <li>
+    <p>尽量不要通过Application缓存数据，这不稳定：
+<a href="http://zmywly8866.github.io/2014/12/26/android-do-not-store-data-in-the-application-object.html">不要在Android的Application对象中缓存数据!</a></p>
+  </li>
+  <li>
+    <p>尽量不要使用AnimationDrawable，它在初始化的时候就将所有图片加载到内存中，特别占内存，并且还不能释放，释放之后下次进入再次加载时会报错；</p>
+  </li>
+  <li>
+    <p>9图不能通过tinypng压缩，不然会有问题；</p>
+  </li>
+  <li>
+    <p>genymotion模拟器快是因为它是基于x86架构的，如果你的应用中用到了so，但没有x86架构的so，只能放弃使用它；Android Studio的模拟器也一样；</p>
+  </li>
+  <li>
+    <p>Eclipse的Android开发环境配置好后不要轻易升级ADT和build tools，不然会浪费你很多时间，还有就是一个workspace中的工程不要太多，不然每次启动都会很慢；</p>
+  </li>
+  <li>
+    <p>Android studio每个版本、gradle每个版本差别都比较大（我是这样认为的），对于jni代码的编译建议在Eclipse中进行，如果在Android studio中开发jni会浪费很多时间，主要是编译脚本的配置比较麻烦；</p>
+  </li>
+  <li>
+    <p>Eclipse中的Lint太不靠谱，特别是主工程中依赖library的时候，很多提示都是有问题的，建议使用Android Studio的工程清理工具，特别推荐；</p>
+  </li>
+  <li>
+    <p>AsyncTask默认自己维护一个静态的线程池，而该线程池只允许同时执行一个线程，也就是说，不管多少个AsyncTask,只要是调用execute()方法，都是共享这个默认进程池的，你的任务必须在之前的任务执行完以后，才能执行。<a href="http://zmywly8866.github.io/2015/09/29/android-call-asynctask-excute-not-run.html">调用AsyncTask的excute方法不能立即执行程序的原因分析及改善方案</a></p>
+  </li>
+</ul>
+
+<hr />
+<p>著作权归作者所有。</p>
+
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>作者：张明云</p>
+
+<p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
+
+<p>来源：知乎</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[android https请求no peer certificate解决方案]]></title>
@@ -420,259 +508,6 @@ public Socket createSocket() throws IOException {
   <li>一系列工具类</li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[leakCanary内寸泄露检测]]></title>
-    <link href="http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/"/>
-    <updated>2015-04-11T17:53:41+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce</id>
-    <content type="html"><![CDATA[<h2 id="leakcanary">LeakCanary</h2>
-
-<p>Android 和 Java 内存泄露检测。</p>
-
-<blockquote>
-  <p>“A small leak will sink a great ship.” - Benjamin Franklin</p>
-</blockquote>
-
-<blockquote>
-  <p>千里之堤， 毁于蚁穴。 – 《韩非子·喻老》</p>
-</blockquote>
-
-<p><img src="https://raw.githubusercontent.com/liaohuqiu/leakcanary/master/assets/screenshot.png" alt="alt text" title="Title" /></p>
-
-<h4 id="demo">demo</h4>
-
-<p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
-
-<!--more-->
-
-<h3 id="section">开始使用</h3>
-
-<p>在 build.gradle 中加入引用，不同的编译使用不同的引用：</p>
-
-<pre><code>dependencies {
-   			 debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
-   			 releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
- 	}
-</code></pre>
-
-<p>在 Application 中：</p>
-
-<pre><code>public class ExampleApplication extends Application {
-	@Override public void onCreate() {
-	super.onCreate();
-	LeakCanary.install(this);
-  		}
-}
-</code></pre>
-
-<p>这样，就万事俱备了！ 在 debug build 中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
-
-<h4 id="leakcanary-1">为什么需要使用 LeakCanary？</h4>
-<p>问得好，看这个文章LeakCanary: <a href="http://www.liaohuqiu.net/cn/posts/leak-canary/" title="Title">让内存泄露无所遁形</a></p>
-
-<h3 id="section-1">如何使用</h3>
-
-<p>使用 RefWatcher 监控那些本该被回收的对象。</p>
-
-<pre><code>RefWatcher refWatcher = {...};
-
-// 监控
-refWatcher.watch(schrodingerCat);
-LeakCanary.install() 会返回一个预定义的 RefWatcher，同时也会启用一个 	ActivityRefWatcher，用于自动监控调用 Activity.onDestroy() 之后泄露的 activity。
-
-public class ExampleApplication extends Application {
-</code></pre>
-
-  	public static RefWatcher getRefWatcher(Context context) {
-<pre><code>	ExampleApplication application = (ExampleApplication) 	context.getApplicationContext();
-return application.refWatcher;
-  	}
-</code></pre>
-
-  	private RefWatcher refWatcher;
-
-  	@Override public void onCreate() {
-<pre><code>	super.onCreate();
-	refWatcher = LeakCanary.install(this);
-  	}
-} 使用 RefWatcher 监控 Fragment：
-
-public abstract class BaseFragment extends Fragment {
-</code></pre>
-
-  	@Override public void onDestroy() {
-<pre><code>	super.onDestroy();
-	RefWatcher refWatcher = ExampleApplication.getRefWatcher(getActivity());
-	refWatcher.watch(this);
-  	}
-} ###工作机制
-</code></pre>
-
-<ol>
-  <li>
-    <p>RefWatcher.watch() 创建一个 KeyedWeakReference 到要被监控的对象。</p>
-  </li>
-  <li>
-    <p>然后在后台线程检查引用是否被清除，如果没有，调用GC。</p>
-  </li>
-  <li>
-    <p>如果引用还是未被清除，把 heap 内存 dump 到 APP 对应的文件系统中的一个 .hprof 文件中。</p>
-  </li>
-  <li>
-    <p>在另外一个进程中的 HeapAnalyzerService 有一个 HeapAnalyzer 使用HAHA 解析这个文件。</p>
-  </li>
-  <li>
-    <p>得益于唯一的 reference key, HeapAnalyzer 找到 KeyedWeakReference，定位内存泄露。</p>
-  </li>
-  <li>
-    <p>HeapAnalyzer 计算 到 GC roots 的最短强引用路径，并确定是否是泄露。如果是的话，建立导致泄露的引用链。</p>
-  </li>
-  <li>
-    <p>引用链传递到 APP 进程中的 DisplayLeakService， 并以通知的形式展示出来。</p>
-  </li>
-</ol>
-
-<h3 id="leak-trace">如何复制 leak trace？</h3>
-
-<p>在 Logcat 中，你可以看到类似这样的 leak trace：</p>
-
-<pre><code>In com.example.leakcanary:1.0:1 com.example.leakcanary.MainActivity has leaked:
-
-* GC ROOT thread java.lang.Thread.&lt;Java Local&gt; (named 'AsyncTask #1')
-* references com.example.leakcanary.MainActivity$3.this$0 (anonymous class extends android.os.AsyncTask)
-* leaks com.example.leakcanary.MainActivity instance
-
-* Reference Key: e71f3bf5-d786-4145-8539-584afaecad1d
-* Device: Genymotion generic Google Nexus 6 - 5.1.0 - API 22 - 1440x2560 vbox86p
-* Android Version: 5.1 API: 22
-* Durations: watch=5086ms, gc=110ms, heap dump=435ms, analysis=2086ms 你甚至可以通过分享按钮把这些东西分享出去。
-</code></pre>
-
-<h3 id="sdk-">SDK 导致的内存泄露</h3>
-
-<p>随着时间的推移，很多SDK 和厂商 ROM 中的内存泄露问题已经被尽快修复了。但是，当这样的问题发生时，一般的开发者能做的事情很有限。</p>
-
-<p>LeakCanary 有一个已知问题的忽略列表，AndroidExcludedRefs.java，如果你发现了一个新的问题，请提一个 issue 并附上 leak trace, reference key, 机器型号和 SDK 版本。如果可以附带上 dump 文件的 链接那就再好不过了。</p>
-
-<p>对于最新发布的 Android，这点尤其重要。你有机会在帮助在早期发现新的内存泄露，这对整个 Android 社区都有极大的益处。</p>
-
-<p>开发版本的 Snapshots 包在这里： Sonatype’s snapshots repository。</p>
-
-<h3 id="leak-trace-">leak trace 之外</h3>
-
-<p>有时，leak trace 不够，你需要通过 MAT 或者 YourKit 深挖 dump 文件。</p>
-
-<p>通过以下方法，你能找到问题所在：</p>
-
-<ol>
-  <li>查找所有的 com.squareup.leakcanary.KeyedWeakReference 实例。</li>
-  <li>检查 key 字段</li>
-  <li>Find the KeyedWeakReference that has a key field equal to the reference key reported by LeakCanary.</li>
-  <li>找到 key 和 和 logcat 输出的 key 值一样的 KeyedWeakReference。</li>
-  <li>referent 字段对应的就是泄露的对象。</li>
-  <li>剩下的，就是动手修复了。最好是检查到 GC root 的最短强引用路径开始。</li>
-</ol>
-
-<h3 id="section-2">自定义</h3>
-
-<h4 id="ui-">UI 样式</h4>
-
-<p>DisplayLeakActivity 有一个默认的图标和标签，你只要在你自己的 APP 资源中，替换以下资源就可。</p>
-
-<pre><code>res/
-  	drawable-hdpi/
-__leak_canary_icon.png
-  	drawable-mdpi/
-__leak_canary_icon.png
-  	drawable-xhdpi/
-__leak_canary_icon.png
-  	drawable-xxhdpi/
-__leak_canary_icon.png
-  	drawable-xxxhdpi/
-__leak_canary_icon.png
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-  	&lt;string name="__leak_canary_display_activity_label"&gt;MyLeaks&lt;/string&gt;
-&lt;/resources&gt;
-</code></pre>
-
-<h3 id="leak-trace-1">保存 leak trace</h3>
-
-<pre><code>DisplayLeakActivity saves up to 7 heap dumps &amp; leak traces in the app directory. You can change that number by providing R.integer.__leak_canary_max_stored_leaks in your app:
-</code></pre>
-
-<p>在 APP 的目录中，DisplayLeakActivity 保存了 7 个 dump 文件和 leak trace。你可以在你的 APP 中，定义 R.integer.__leak_canary_max_stored_leaks 来覆盖类库的默认值。</p>
-
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-  	&lt;integer name="__leak_canary_max_stored_leaks"&gt;20&lt;/integer&gt;
-&lt;/resources&gt; ###上传 leak trace 到服务器
-</code></pre>
-
-<p>你可以改变处理完成的默认行为，将 leak trace 和 heap dump 上传到你的服务器以便统计分析。</p>
-
-<p>创建一个 LeakUploadService， 最简单的就是继承 DisplayLeakService ：</p>
-
-<pre><code>public class LeakUploadService extends DisplayLeakService {
-  	@Override
-  	protected void afterDefaultHandling(HeapDump heapDump, AnalysisResult result, 	String leakInfo) {
-	if (!result.leakFound || result.excludedLeak) {
-  	return;
-	}
-	myServer.uploadLeakBlocking(heapDump.heapDumpFile, leakInfo);
-  	}
-} 请确认 release 版本 使用 RefWatcher.DISABLED：
-
-public class ExampleApplication extends Application {
-</code></pre>
-
-  	public static RefWatcher getRefWatcher(Context context) {
-<pre><code>	ExampleApplication application = (ExampleApplication) context.getApplicationContext();
-	return application.refWatcher;
-  	}
-</code></pre>
-
-  	private RefWatcher refWatcher;
-
-  	@Override public void onCreate() {
-<pre><code>	super.onCreate();
-	refWatcher = installLeakCanary();
-  	}
-</code></pre>
-
-  	protected RefWatcher installLeakCanary() {
-<pre><code>	return RefWatcher.DISABLED;
-  	}
-}
-</code></pre>
-
-<p>自定义 RefWatcher：</p>
-
-<pre><code>public class DebugExampleApplication extends ExampleApplication {
-  	protected RefWatcher installLeakCanary() {
-	return LeakCanary.install(app, LeakUploadService.class);
-  	}
-}
-</code></pre>
-
-<p>别忘了注册 service：</p>
-
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-&gt;
-  	&lt;application android:name="com.example.DebugExampleApplication"&gt;
-	&lt;service android:name="com.example.LeakUploadService" /&gt;
-  	&lt;/application&gt;
-&lt;/manifest&gt;
-</code></pre>
-
-<p><img src="https://github.com/liaohuqiu/leakcanary/raw/master/assets/icon_512.png" alt="alt text" title="Title" /></p>
-
-<p>本文转载自  <a href="http://www.liaohuqiu.net/cn/posts/leak-canary-read-me/" title="Title">srain博客</a></p>
 ]]></content>
   </entry>
   

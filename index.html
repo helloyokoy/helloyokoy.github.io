@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="1. iOS9网络适配_ATS：改用更安全的HTTPS [摘要]为了强制增强数据访问安全， iOS9 默认会把 所有的http请求 所有从NSURLConnection 、 CFURL 、 NSURLSession发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时， &hellip;">
+	<meta name="description" content="iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重… 那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +127,47 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/surge/">
+		
+			Surge</a>
+	</h2>
+	<div class="entry-content">
+		<p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
+
+<p><img src="https://g.owind.com/content/images/2015/10/surgelogo.jpg" alt="alt text" title="surge" /></p>
+
+<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
+
+<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
+
+
+		
+		<a href="/blog/surge/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月2 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/ios9-adaption/">
 		
 			iOS9 适配</a>
@@ -159,31 +200,7 @@
 Invalid certificates result in a hard failure and no connection</p>
 </blockquote>
 
-<p>在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：</p>
 
-<h3 id="section">跟我有毛关系？需要我加班吗？！</h3>
-
-<p>首先咱们来看下业内对Apple这一做法的评论：</p>
-
-<p><img src="https://i.imgur.com/Q17QDG0.png" alt="enter image description here" /></p>
-
-<p>这是某社交App上讨论，看来业内还是吐槽声和肯定声同在。</p>
-
-<p>结论是：</p>
-
-<blockquote>
-  <p>跟你很有关系，加班吧，少年！</p>
-</blockquote>
-
-<p>书归正传【严肃脸】，我们正式讨论下 WHAT，WHY，HOW：</p>
-
-<ol>
-  <li>WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）</li>
-  <li>WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？！Apple是不是又在反人类？）</li>
-  <li>HOW（如何适配？—弱弱地问下：加班要多久？）</li>
-</ol>
-
-<p>
 		
 		<a href="/blog/ios9-adaption/" class="more-link">阅读全文</a>
 	</div>
@@ -195,48 +212,7 @@ Invalid certificates result in a hard failure and no connection</p>
 
 
 
-2015 年11 月2 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/surge/">
-		
-			Surge</a>
-	</h2>
-	<div class="entry-content">
-		<p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
-
-<p><img src="https://g.owind.com/content/images/2015/10/surgelogo.jpg" alt="alt text" title="surge" /></p>
-
-<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
-
-<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
-
-
-		
-		<a href="/blog/surge/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月2 日</div>
+2015 年10 月27 日</div>
 	<div class="tags">
 
 

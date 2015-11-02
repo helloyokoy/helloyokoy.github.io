@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-02T13:58:21+08:00</updated>
+  <updated>2015-11-02T14:45:31+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -14,9 +14,116 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Surge]]></title>
+    <link href="http://helloyokoy.github.io/blog/surge/"/>
+    <updated>2015-11-02T11:24:57+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/surge</id>
+    <content type="html"><![CDATA[<p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
+
+<p><img src="https://g.owind.com/content/images/2015/10/surgelogo.jpg" alt="alt text" title="surge" /></p>
+
+<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
+
+<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
+
+<!--more-->
+
+<p>简单的开始可以直接导入一份 conf 文件（URL 或者 iTunes），例如<a href="https://gist.github.com/janlay/b57476c72a93b7e622a6" title="link">这里</a>的，对于不求甚解的用户来说你可以直接使用完事（但是你还是要改改服务器地址用户名什么的。。或者直接从供应商处获取导入 URL）。</p>
+
+<p>配置的结构大概是这样，对于专业用户来说，理解应该不难</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (rules)</span> <a href="http://helloyokoy.github.io/downloads/code/rules">download</a></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"><span class="k">[General]</span>
+</span><span class="line"><span class="c1"># warning, notify, info, verbose</span>
+</span><span class="line"><span class="na">loglevel</span> <span class="o">=</span> <span class="s">notify</span>
+</span><span class="line">
+</span><span class="line"><span class="k">[Proxy]</span>
+</span><span class="line"><span class="c1"># http, https, socks5</span>
+</span><span class="line"><span class="c1"># SSLedge 使用 https，老式 APNp 用 http</span>
+</span><span class="line"><span class="na">Proxy</span> <span class="o">=</span> <span class="s">https, server, port, username, password, ciphers </span>
+</span><span class="line">
+</span><span class="line"><span class="k">[Rule]</span>
+</span><span class="line"><span class="c1"># 域名关键字，干掉不想要的请求</span>
+</span><span class="line"><span class="err">DOMAIN-KEYWORD,umeng.co,REJECT</span>
+</span><span class="line"><span class="err">...</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># 常用网站优先匹配，加快速度。使用代理转发，完全没有 CDN 被干扰的问题~</span>
+</span><span class="line"><span class="err">DOMAIN-SUFFIX,cn,DIRECT</span>
+</span><span class="line"><span class="err">DOMAIN-SUFFIX,qq.com,DIRECT</span>
+</span><span class="line"><span class="err">DOMAIN-SUFFIX,ls.apple.com,DIRECT</span>
+</span><span class="line"><span class="err">DOMAIN-SUFFIX,apple.com,Proxy</span>
+</span><span class="line"><span class="err">...</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># 强制这些不尊重系统代理的请求走 packet-tunnel-provider，解决 Twitter.app 和 Mail.app 收发邮件问题</span>
+</span><span class="line"><span class="err">DOMAIN-KEYWORD,twitter,Proxy,force-remote-dns</span>
+</span><span class="line"><span class="err">DOMAIN-KEYWORD,gmail,Proxy,force-remote-dns</span>
+</span><span class="line"><span class="c1"># instagram.app 也没问题</span>
+</span><span class="line"><span class="err">DOMAIN-KEYWORD,instagram,Proxy,force-remote-dns</span>
+</span><span class="line"><span class="c1"># Telegram.app 也没问题</span>
+</span><span class="line"><span class="err">IP-CIDR,91.108.56.0/22,Proxy,force-remote-dns</span>
+</span><span class="line"><span class="err">...</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># LAN</span>
+</span><span class="line"><span class="err">IP-CIDR,192.168.0.0/16,DIRECT</span>
+</span><span class="line"><span class="err">...</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># 其余的请求使用 GEOIP 判断服务器所在地，如果是国内的，走直连，搞定</span>
+</span><span class="line"><span class="err">GEOIP,CN,DIRECT</span>
+</span><span class="line">
+</span><span class="line"><span class="c1"># 最后 Matchall，丢给代理</span>
+</span><span class="line"><span class="err">FINAL,Proxy</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>通过规则定义和组合，必然可以满足专业用户的需求，非常强大。配置可以使用 app 自带的 GUI，当然也有文本编辑方式。</p>
+
+<p>由于 Surge 的核心和是个 http proxy，有些处理不了的请求我们可以强制 bypass 掉，走系统接口，这个可以在代理设置-高级处设置，如果你不太懂，请不要随意设置。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[iOS9 适配]]></title>
     <link href="http://helloyokoy.github.io/blog/ios9-adaption/"/>
-    <updated>2015-11-02T12:44:03+08:00</updated>
+    <updated>2015-10-27T12:44:03+08:00</updated>
     <id>http://helloyokoy.github.io/blog/ios9-adaption</id>
     <content type="html"><![CDATA[<h2 id="ios9atshttps">1. iOS9网络适配_ATS：改用更安全的HTTPS</h2>
 
@@ -45,6 +152,8 @@
 Invalid certificates result in a hard failure and no connection</p>
 </blockquote>
 
+<!--more-->
+
 <p>在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：</p>
 
 <h3 id="section">跟我有毛关系？需要我加班吗？！</h3>
@@ -68,8 +177,6 @@ Invalid certificates result in a hard failure and no connection</p>
   <li>WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？！Apple是不是又在反人类？）</li>
   <li>HOW（如何适配？—弱弱地问下：加班要多久？）</li>
 </ol>
-
-<p><!--more--></p>
 
 <h3 id="whatssltlshttphttps">WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）</h3>
 
@@ -2219,109 +2326,90 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Surge]]></title>
-    <link href="http://helloyokoy.github.io/blog/surge/"/>
-    <updated>2015-11-02T11:24:57+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/surge</id>
-    <content type="html"><![CDATA[<p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
+    <title type="html"><![CDATA[android 开发遇到的坑]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-mistake/"/>
+    <updated>2015-10-12T14:21:57+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/android-mistake</id>
+    <content type="html"><![CDATA[<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
 
-<p><img src="https://g.owind.com/content/images/2015/10/surgelogo.jpg" alt="alt text" title="surge" /></p>
-
-<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
-
-<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
+<ul>
+  <li>
+    <p>在Android library中不能使用switch-case语句访问资源ID：
+<a href="http://zmywly8866.github.io/2014/12/24/android-can-not-use-switch-to-load-resource-in-libproject-solution.html">在Android library中不能使用switch-case语句访问资源ID的原因分析及解决方案</a></p>
+  </li>
+  <li>
+    <p>不能在Activity没有完全显示时显示PopupWindow和Dialog：<a href="http://stackoverflow.com/questions/4187673/problems-creating-a-popup-window-in-android-activity">popupwindow - Problems creating a Popup Window in Android Activity</a></p>
+  </li>
+  <li>
+    <p>在多进程之间不要用SharedPreferences共享数据，虽然可以（MODE_MULTI_PROCESS），但极不稳定：<a href="http://stackoverflow.com/questions/22129717/mode-multi-process-for-sharedpreferences-isnt-working">android - MODE_MULTI_PROCESS for SharedPreferences isn’t working</a></p>
+  </li>
+</ul>
 
 <!--more-->
 
-<p>简单的开始可以直接导入一份 conf 文件（URL 或者 iTunes），例如<a href="https://gist.github.com/janlay/b57476c72a93b7e622a6" title="link">这里</a>的，对于不求甚解的用户来说你可以直接使用完事（但是你还是要改改服务器地址用户名什么的。。或者直接从供应商处获取导入 URL）。</p>
+<ul>
+  <li>
+    <p>有些时候不能使用Application的Context，不然会报错（比如启动Activity，显示Dialog等）：
+<img src="https://pic3.zhimg.com/e3f3236cbd96c69cdea10d014bacbeae_b.png" alt="icon" /></p>
+  </li>
+  <li>
+    <p>同一个应用的JNI代码，不要轻易换NDK编译的版本，否则会有很多问题（主要是一些方法实现不一样，并且高版本对代码的检测更严格），比如r8没有问题，但到r9就有问题了，这是个大坑；</p>
+  </li>
+  <li>
+    <p>Android的JNI代码中，有返回类型的函数没有返回值编译的时候也不会报错；</p>
+  </li>
+  <li>
+    <p>当前Activity的onPause方法执行结束后才会执行下一个Activity的onCreate方法，所以在onPause方法中不适合做耗时较长的工作，这会影响到页面之间的跳转效率；</p>
+  </li>
+  <li>
+    <p>谨慎使用Android的透明主题，透明主题会导致很多问题，比如：如果新的Activity采用了透明主题，那么当前Activity的onStop方法不会被调用；在设置为透明主题的Activity界面按Home键时，可能会导致刷屏不干净的问题；进入主题为透明主题的界面会有明显的延时感；</p>
+  </li>
+  <li>
+    <p>不要在非UI线程中初始化ViewStub，否则会返回null；</p>
+  </li>
+  <li>
+    <p>公共接口一定要考虑到代码重入的情况，能设计为单例就尽量用单例；</p>
+  </li>
+  <li>
+    <p>不要通过Bundle传递大块的数据，否则会报TransactionTooLargeException异常：<a href="http://stackoverflow.com/questions/12819617/issue-passing-large-data-to-second-activity">java - Issue: Passing large data to second Activity</a></p>
+  </li>
+  <li>
+    <p>尽量不要通过Application缓存数据，这不稳定：
+<a href="http://zmywly8866.github.io/2014/12/26/android-do-not-store-data-in-the-application-object.html">不要在Android的Application对象中缓存数据!</a></p>
+  </li>
+  <li>
+    <p>尽量不要使用AnimationDrawable，它在初始化的时候就将所有图片加载到内存中，特别占内存，并且还不能释放，释放之后下次进入再次加载时会报错；</p>
+  </li>
+  <li>
+    <p>9图不能通过tinypng压缩，不然会有问题；</p>
+  </li>
+  <li>
+    <p>genymotion模拟器快是因为它是基于x86架构的，如果你的应用中用到了so，但没有x86架构的so，只能放弃使用它；Android Studio的模拟器也一样；</p>
+  </li>
+  <li>
+    <p>Eclipse的Android开发环境配置好后不要轻易升级ADT和build tools，不然会浪费你很多时间，还有就是一个workspace中的工程不要太多，不然每次启动都会很慢；</p>
+  </li>
+  <li>
+    <p>Android studio每个版本、gradle每个版本差别都比较大（我是这样认为的），对于jni代码的编译建议在Eclipse中进行，如果在Android studio中开发jni会浪费很多时间，主要是编译脚本的配置比较麻烦；</p>
+  </li>
+  <li>
+    <p>Eclipse中的Lint太不靠谱，特别是主工程中依赖library的时候，很多提示都是有问题的，建议使用Android Studio的工程清理工具，特别推荐；</p>
+  </li>
+  <li>
+    <p>AsyncTask默认自己维护一个静态的线程池，而该线程池只允许同时执行一个线程，也就是说，不管多少个AsyncTask,只要是调用execute()方法，都是共享这个默认进程池的，你的任务必须在之前的任务执行完以后，才能执行。<a href="http://zmywly8866.github.io/2015/09/29/android-call-asynctask-excute-not-run.html">调用AsyncTask的excute方法不能立即执行程序的原因分析及改善方案</a></p>
+  </li>
+</ul>
 
-<p>配置的结构大概是这样，对于专业用户来说，理解应该不难</p>
+<hr />
+<p>著作权归作者所有。</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span> (rules)</span> <a href="http://helloyokoy.github.io/downloads/code/rules">download</a></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"><span class="k">[General]</span>
-</span><span class="line"><span class="c1"># warning, notify, info, verbose</span>
-</span><span class="line"><span class="na">loglevel</span> <span class="o">=</span> <span class="s">notify</span>
-</span><span class="line">
-</span><span class="line"><span class="k">[Proxy]</span>
-</span><span class="line"><span class="c1"># http, https, socks5</span>
-</span><span class="line"><span class="c1"># SSLedge 使用 https，老式 APNp 用 http</span>
-</span><span class="line"><span class="na">Proxy</span> <span class="o">=</span> <span class="s">https, server, port, username, password, ciphers </span>
-</span><span class="line">
-</span><span class="line"><span class="k">[Rule]</span>
-</span><span class="line"><span class="c1"># 域名关键字，干掉不想要的请求</span>
-</span><span class="line"><span class="err">DOMAIN-KEYWORD,umeng.co,REJECT</span>
-</span><span class="line"><span class="err">...</span>
-</span><span class="line">
-</span><span class="line"><span class="c1"># 常用网站优先匹配，加快速度。使用代理转发，完全没有 CDN 被干扰的问题~</span>
-</span><span class="line"><span class="err">DOMAIN-SUFFIX,cn,DIRECT</span>
-</span><span class="line"><span class="err">DOMAIN-SUFFIX,qq.com,DIRECT</span>
-</span><span class="line"><span class="err">DOMAIN-SUFFIX,ls.apple.com,DIRECT</span>
-</span><span class="line"><span class="err">DOMAIN-SUFFIX,apple.com,Proxy</span>
-</span><span class="line"><span class="err">...</span>
-</span><span class="line">
-</span><span class="line"><span class="c1"># 强制这些不尊重系统代理的请求走 packet-tunnel-provider，解决 Twitter.app 和 Mail.app 收发邮件问题</span>
-</span><span class="line"><span class="err">DOMAIN-KEYWORD,twitter,Proxy,force-remote-dns</span>
-</span><span class="line"><span class="err">DOMAIN-KEYWORD,gmail,Proxy,force-remote-dns</span>
-</span><span class="line"><span class="c1"># instagram.app 也没问题</span>
-</span><span class="line"><span class="err">DOMAIN-KEYWORD,instagram,Proxy,force-remote-dns</span>
-</span><span class="line"><span class="c1"># Telegram.app 也没问题</span>
-</span><span class="line"><span class="err">IP-CIDR,91.108.56.0/22,Proxy,force-remote-dns</span>
-</span><span class="line"><span class="err">...</span>
-</span><span class="line">
-</span><span class="line"><span class="c1"># LAN</span>
-</span><span class="line"><span class="err">IP-CIDR,192.168.0.0/16,DIRECT</span>
-</span><span class="line"><span class="err">...</span>
-</span><span class="line">
-</span><span class="line"><span class="c1"># 其余的请求使用 GEOIP 判断服务器所在地，如果是国内的，走直连，搞定</span>
-</span><span class="line"><span class="err">GEOIP,CN,DIRECT</span>
-</span><span class="line">
-</span><span class="line"><span class="c1"># 最后 Matchall，丢给代理</span>
-</span><span class="line"><span class="err">FINAL,Proxy</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 
-<p>通过规则定义和组合，必然可以满足专业用户的需求，非常强大。配置可以使用 app 自带的 GUI，当然也有文本编辑方式。</p>
+<p>作者：张明云</p>
 
-<p>由于 Surge 的核心和是个 http proxy，有些处理不了的请求我们可以强制 bypass 掉，走系统接口，这个可以在代理设置-高级处设置，如果你不太懂，请不要随意设置。</p>
+<p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
 
+<p>来源：知乎</p>
 ]]></content>
   </entry>
   
@@ -5329,41 +5417,6 @@ MWPhotoBrowser: 一个简单的带有栅格视图的iOS照片浏览器，可添�
 <p>PLCrashReporter (Github mirror):进程内崩溃报告框架。</p>
 
 <p>SBJSON:Objective-C 实现的一个严格的JSON 解析器和生成器。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[android学习资料]]></title>
-    <link href="http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/"/>
-    <updated>2014-09-11T17:30:37+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/androidxue-xi-zi-liao</id>
-    <content type="html"><![CDATA[<ul>
-  <li>
-    <p>博客</p>
-
-    <pre><code>  http://stormzhang.com/
-</code></pre>
-  </li>
-  <li>
-    <p>知乎回答</p>
-
-    <pre><code>  http://www.zhihu.com/question/33993035
-</code></pre>
-  </li>
-  <li>
-    <p>google Android官网</p>
-
-    <pre><code>  http://developer.android.com/
-</code></pre>
-  </li>
-  <li>
-    <p>stackoverflow  tag android</p>
-
-    <pre><code>  http://stackoverflow.com/questions/tagged/android
-</code></pre>
-  </li>
-</ul>
-
 ]]></content>
   </entry>
   

@@ -3,12 +3,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>BryanFu Blog</title>
+	<title>android 开发遇到的坑 - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
 	<meta name="description" content="作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。 在Android library中不能使用switch-case语句访问资源ID：
-在Android &hellip;">
+在Android library中不能使用switch &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -122,18 +122,9 @@
 	
 		
 	
-	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-mistake/">
-		
-			Android 开发遇到的坑</a>
-	</h2>
-	<div class="entry-content">
-		<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Android 开发遇到的坑</h2>
+	<div class="entry-content"><p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
 
 <ul>
   <li>
@@ -148,10 +139,72 @@
   </li>
 </ul>
 
+<!--more-->
 
-		
-		<a href="/blog/android-mistake/" class="more-link">阅读全文</a>
-	</div>
+<ul>
+  <li>
+    <p>有些时候不能使用Application的Context，不然会报错（比如启动Activity，显示Dialog等）：
+<img src="https://pic3.zhimg.com/e3f3236cbd96c69cdea10d014bacbeae_b.png" alt="icon" /></p>
+  </li>
+  <li>
+    <p>同一个应用的JNI代码，不要轻易换NDK编译的版本，否则会有很多问题（主要是一些方法实现不一样，并且高版本对代码的检测更严格），比如r8没有问题，但到r9就有问题了，这是个大坑；</p>
+  </li>
+  <li>
+    <p>Android的JNI代码中，有返回类型的函数没有返回值编译的时候也不会报错；</p>
+  </li>
+  <li>
+    <p>当前Activity的onPause方法执行结束后才会执行下一个Activity的onCreate方法，所以在onPause方法中不适合做耗时较长的工作，这会影响到页面之间的跳转效率；</p>
+  </li>
+  <li>
+    <p>谨慎使用Android的透明主题，透明主题会导致很多问题，比如：如果新的Activity采用了透明主题，那么当前Activity的onStop方法不会被调用；在设置为透明主题的Activity界面按Home键时，可能会导致刷屏不干净的问题；进入主题为透明主题的界面会有明显的延时感；</p>
+  </li>
+  <li>
+    <p>不要在非UI线程中初始化ViewStub，否则会返回null；</p>
+  </li>
+  <li>
+    <p>公共接口一定要考虑到代码重入的情况，能设计为单例就尽量用单例；</p>
+  </li>
+  <li>
+    <p>不要通过Bundle传递大块的数据，否则会报TransactionTooLargeException异常：<a href="http://stackoverflow.com/questions/12819617/issue-passing-large-data-to-second-activity">java - Issue: Passing large data to second Activity</a></p>
+  </li>
+  <li>
+    <p>尽量不要通过Application缓存数据，这不稳定：
+<a href="http://zmywly8866.github.io/2014/12/26/android-do-not-store-data-in-the-application-object.html">不要在Android的Application对象中缓存数据!</a></p>
+  </li>
+  <li>
+    <p>尽量不要使用AnimationDrawable，它在初始化的时候就将所有图片加载到内存中，特别占内存，并且还不能释放，释放之后下次进入再次加载时会报错；</p>
+  </li>
+  <li>
+    <p>9图不能通过tinypng压缩，不然会有问题；</p>
+  </li>
+  <li>
+    <p>genymotion模拟器快是因为它是基于x86架构的，如果你的应用中用到了so，但没有x86架构的so，只能放弃使用它；Android Studio的模拟器也一样；</p>
+  </li>
+  <li>
+    <p>Eclipse的Android开发环境配置好后不要轻易升级ADT和build tools，不然会浪费你很多时间，还有就是一个workspace中的工程不要太多，不然每次启动都会很慢；</p>
+  </li>
+  <li>
+    <p>Android studio每个版本、gradle每个版本差别都比较大（我是这样认为的），对于jni代码的编译建议在Eclipse中进行，如果在Android studio中开发jni会浪费很多时间，主要是编译脚本的配置比较麻烦；</p>
+  </li>
+  <li>
+    <p>Eclipse中的Lint太不靠谱，特别是主工程中依赖library的时候，很多提示都是有问题的，建议使用Android Studio的工程清理工具，特别推荐；</p>
+  </li>
+  <li>
+    <p>AsyncTask默认自己维护一个静态的线程池，而该线程池只允许同时执行一个线程，也就是说，不管多少个AsyncTask,只要是调用execute()方法，都是共享这个默认进程池的，你的任务必须在之前的任务执行完以后，才能执行。<a href="http://zmywly8866.github.io/2015/09/29/android-call-asynctask-excute-not-run.html">调用AsyncTask的excute方法不能立即执行程序的原因分析及改善方案</a></p>
+  </li>
+</ul>
+
+<hr />
+<p>著作权归作者所有。</p>
+
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>作者：张明云</p>
+
+<p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
+
+<p>来源：知乎</p>
+</div>
 
 
 <div class="meta">
@@ -173,68 +226,50 @@
 </article>
 
 
-    <article class="post">
-	<h2 class="title">
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 		
-		<a href="/blog/rails-gems-recomend/">
 		
-			Rails Gems 推荐</a>
-	</h2>
-	<div class="entry-content">
-		<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
-
-<h5 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h5>
-
-<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
-
-<h5 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h5>
-
-<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
-
-<h5 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h5>
-
-<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
-
-<h5 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h5>
-
-<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
-
+		
+		
 
 		
-		<a href="/blog/rails-gems-recomend/" class="more-link">阅读全文</a>
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
 	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年10 月5 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
 	
 </div>
-</article>
 
-<nav id="pagenavi">
-    
-        
-            <a href="/" class="prev">上一页</a>
-        
-    
-    
-        <a href="/posts/3" class="next">下一页</a>
-    
-    <div class="center"><a href="/blog/archives">文章列表</a></div>
-</nav>
-</div>
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/android-mistake" data-title="android 开发遇到的坑" data-url="http://helloyokoy.github.io/blog/android-mistake/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
 	<footer id="footer" class="inner">Copyright &copy; 2015
 
     BryanFu
