@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-02T11:54:15+08:00</updated>
+  <updated>2015-11-02T12:39:24+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -117,6 +117,215 @@
 
 <p>由于 Surge 的核心和是个 http proxy，有些处理不了的请求我们可以强制 bypass 掉，走系统接口，这个可以在代理设置-高级处设置，如果你不太懂，请不要随意设置。</p>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[rails gems 推荐]]></title>
+    <link href="http://helloyokoy.github.io/blog/rails-gems-recomend/"/>
+    <updated>2015-10-05T12:31:27+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/rails-gems-recomend</id>
+    <content type="html"><![CDATA[<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
+
+<h5 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h5>
+
+<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
+
+<h5 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h5>
+
+<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
+
+<h5 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h5>
+
+<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
+
+<h5 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h5>
+
+<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
+
+<!--more-->
+
+<h5 id="paperclippaperclip--rubygemsorg">5.Paperclip（paperclip | RubyGems.org）</h5>
+
+<p>paperclip基本上已经是rails的御用图片上传gem了，功能强大使用方便，但是唯一不太好的就是图片剪裁上面功能比较有限。paperclip依赖于ImageMagic，大部分linux包管理器（如apt yum portage等）中应该都能找到这个软件包。</p>
+
+<h5 id="rmagickrmagick--rubygemsorg">6.rmagick（rmagick | RubyGems.org）</h5>
+
+<p>这个gem弥补了paperclip在图片剪裁上的不足。功能十分十分十分的强大，文档也很齐全，只不过是全英文，中文资料比较少。如果项目有要开发头像剪裁上传，那么用rmagic剪裁，paperclip上传是比较好的解决方案。</p>
+
+<h5 id="friendlyidfriendlyid--rubygemsorg">7.friendly_id（friendly_id | RubyGems.org）</h5>
+
+<p>现在大部分网站都已经是友好的url地址了，如果你的rails项目还用数字作为id进行查询那就太low了。</p>
+
+<h5 id="willpaginatewillpaginate">8.will_paginate（will_paginate）</h5>
+
+<p>老版本的will_paginate分业是基于plugin方式的，新版本的will_paginate已经抛弃了这样的做法，转而使用gem的方式。这样一来安装和使用更加方便，配合一些前端的分页加载库，会让分页加载功能开发非常快捷。</p>
+
+<h5 id="ransackransack--rubygemsorg">9.ransack（ransack | RubyGems.org）</h5>
+
+<p>搜索功能一般分为分词和不分词的，如果你只想做用户和文章标题检索之类的功能，那么不分词的搜索gem比较合适，类似的gem挺多的，我常用的是这个。</p>
+
+<h5 id="sunspotsunspot--rubygemsorg">10.sunspot（sunspot | RubyGems.org）</h5>
+
+<p>接上面，全文搜索的gem也不少，sunspot对于小型项目的话，稍微有些重。如果没有那么多要求的话，sphinx也可以考虑，速度快，占用资源低。</p>
+
+<h5 id="gecodergeocoder--rubygemsorg">11.Gecoder（geocoder | RubyGems.org）</h5>
+
+<p>说实话在web上做定位确实比较乏力，尽量还是用手机客户端吧</p>
+
+<h5 id="pumapumapuma--github">12.puma（puma/puma · GitHub）</h5>
+
+<p>对于想要处理并发请求的web项目，Puma 是和 Unicorn相竞争的 Web 服务器，它能够处理并发请求。Puma 使用线程，以及工作者进程，能够更多的利用可用的 CPU。在 Puma 中，如果整个基础代码是线程安全的，那么你可用利用线程。否则，在使用 Puma 的时候，你只能使用工作者进程进行拓展。Puma的设置也比较简单，官方有详细的使用文档，RubyChina也使用Puma，个人推荐。</p>
+
+<h5 id="emojiwpetersonemoji--github">13.Emoji（wpeterson/emoji · GitHub）</h5>
+
+<p>现在只要涉及社交的项目估计很少有不用表情的了，Emoji是个集成度比较高的Emoji表情转码库，使用方便，当然大部分情况下还是要配合前端使用。</p>
+
+<p>暂时想到这么多，欢迎补充，待续。。。。</p>
+
+<hr />
+<p>著作权归作者所有。</p>
+
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>作者：孙笛</p>
+
+<p>链接：http://www.zhihu.com/question/31083216/answer/50654456</p>
+
+<p>来源：知乎</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ruby on rails 快速学习]]></title>
+    <link href="http://helloyokoy.github.io/blog/ruby-fast-learn/"/>
+    <updated>2015-09-02T12:07:16+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/ruby-fast-learn</id>
+    <content type="html"><![CDATA[<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
+
+<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
+
+<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
+
+<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
+
+<!--more-->
+
+<h4 id="section">起点阶段</h4>
+
+<p>强烈建议至少具备如下知识后再开始Rails开发</p>
+
+<h4 id="html-and-css">Html and CSS</h4>
+
+<p>结构和样式不止是设计人员的事，web开发必须要熟悉Head First HTML与CSS（第2版）虽然已经出版了很久，但依然是最好的Html&amp;CSS入门书</p>
+
+<h4 id="linux">Linux</h4>
+
+<p>几乎所有的开发环境都严重依赖于GNU/Linux为主的命令行环境，因此需要学习linux的基本概念和操作</p>
+
+<p>The Linux Command Line</p>
+
+<p>目前最好的linux command line学习指南，生动，清晰，详细，无论是菜鸟还是多年的老手都能从中受益，远超过之前作为标准教材的practical guide to xx系列。No starch这个出版社既有延续至今的Hacker精神，也懂得如何发掘有趣的作者</p>
+
+<h4 id="http-and-rest">HTTP and Rest</h4>
+
+<p>Web开发对于Http的深入理解是必须的，另外Rails还使用Rest协议作为基本指导原则，所以需要深入理解Http和RestRESTful Web Services中文版 这本是目前为止最好的描述HTTP与Rest的作品，可以让你重新认识Web，更何况其中的示例是Ruby语言(因为这本书合著者是Sam Ruby)</p>
+
+<h4 id="programming">Programming</h4>
+
+<p>程序员修炼之道 这本书告诉你，如何做才能成为一个注重实效的程序员，涉及了非常多的理念和实践，虽然都不深入，但至少让你知道世界是什么样子的，是任何程序员最应该在新手阶段读的书，也是对整个业界影响最大的经典之一</p>
+
+<h4 id="git-and-version-control">Git and Version Control</h4>
+
+<p>版本控制在项目中是一开始就要使用的，不止是开发，一切事情都需要版本控制Pro Git 这本是迄今为止讲解Git最清楚最深入的书，对于新手，不建议看后面的实现原理，先读前几章了解概念和学习日常实践使用是最重要的</p>
+
+<h4 id="ruby">Ruby</h4>
+
+<p>如果只是在Rails中使用的Ruby，可以使用一些免费的快速入门教程，不过，系统地学习Ruby，可以了解到很多面向对象开发或函数式编程的思想，对于熟悉和掌握Rails帮助非常大Programming Ruby 1.9 公认的Ruby入门经典，不过对于新手来说，只推荐前半的入门部分，高阶内容可以稍后再来学习</p>
+
+<h4 id="rails">Rails</h4>
+
+<p>Learn Web Development with the Ruby on Rails Tutorial</p>
+
+<p>最后是Rails自身的学习，这本书的最新版涵盖Rails4，是目前为止最好最完整的Rails入门教程，可以在线看，还有大量的视频搭配</p>
+
+<h4 id="section-1">进阶阶段</h4>
+<p>具备下面的知识，可以让你或多或少地理解Rails Way，并真正开始写出合格的Rails应用</p>
+
+<h4 id="programming-1">Programming</h4>
+
+<p>重构</p>
+
+<p>这本”重构”是当年石破天惊的经典著作，讲解如何持续改进和让代码优雅干净，拥有直到现在还依然适用的价值，尤其为Ruby On Rails社区广泛接受，这本书有将其中的Java语言换成Ruby后的版本(重构(Ruby版) (豆瓣))</p>
+
+<p>UNIX编程艺术</p>
+
+<p>由公认的黑客领袖之一Eric S.Raymond撰写的这本书总结了长久以来的Unix领域中的设计和开发哲学，思想乃至文化体系，是了解Ruby和Rails诞生于其中的Unix黑客文化必不可少的读物</p>
+
+<h4 id="ruby-1">Ruby</h4>
+
+<p>深入理解Ruby，除了上边提到的Programming Ruby 1.9以及重构等通用编程书之外，还有以下几个选择</p>
+
+<p>Ruby编程语言</p>
+
+<p>Ruby之父松本行弘和O’Reilly的王牌作者合作，诞生了这本讲解Ruby最透彻的经典著作</p>
+
+<p>Eloquent Ruby</p>
+
+<p>Ruby社区的编程指南之一，介绍了Ruby社群的文化，品味和编程原则，强烈地反映了Ruby程序员的共同特质: 幽默，健谈，追求乐趣，热爱生活</p>
+
+<h4 id="test">Test</h4>
+
+<p>测试驱动开发(TDD)以及之后进化的行为驱动开发(BDD)是Ruby和Rails社群的核心文化之一，只有彻底理解并运用BDD，才是合格的Rails开发者</p>
+
+<p>The RSpec Book</p>
+
+<p>唯一的也是必读的BDD介绍作品，由RSpec核心成员撰写</p>
+
+<p>Git</p>
+
+<p>可以坚持把Pro Git的后半部分学习完，没有更深入和清楚的书了</p>
+
+<p>CSS</p>
+
+<p>CSS权威指南</p>
+
+<p>Eric Meyer的CSS权威指南至今仍然是CSS2讲解最全面和最深入的参考书</p>
+
+<p>Javascript and jQuery</p>
+
+<p>Web开发的交互性会越来越多，Javascript已经成为了相当严肃的编程语言</p>
+
+<p>JavaScript权威指南</p>
+
+<p>目前最全面最好的Javascript学习书籍</p>
+
+<p>jQuery基础教程 （第4版）</p>
+
+<p>唯一尚可称得上紧跟jQuery发展脚步的学习指南</p>
+
+<h4 id="rails-1">Rails</h4>
+
+<p>Rails发展的实在太快了，最好的方法也许是跟踪在线文档，不过还是推荐这本</p>
+
+<p>The Rails 4 Way</p>
+
+<p>这本书的Rails 3版本讲解Rails的哲学和细节相当到位，不过Rails 4版本还没有出版，非常值得在今年3月份第一时间拿下它。</p>
+
+<p>— More</p>
+
+<p>上边的书籍都读过的话，可能你终于能了解到Rails背后涉及的概念和实践有多么庞大惊人，也了解到了还有多么深的知识鸿沟需要跨越，了解到了一切都还只是开始，不过值得庆幸的是，一切事情都需要个开始</p>
+
+<hr />
+<p>著作权归作者所有。</p>
+
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>作者：李路</p>
+
+<p>链接：http://www.zhihu.com/question/19552402/answer/22336708</p>
+
+<p>来源：知乎</p>
 ]]></content>
   </entry>
   
@@ -3200,281 +3409,6 @@ g.sayhi # error because the sayhi isn't publics member
 <p>initialize默认就是private的</p>
 
 <p>其他方法默认是public的 成员变量和类变量默认是private的 要用attr_reader或attr_accessor来增加读写控制</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[IOS第三方库和插件]]></title>
-    <link href="http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian/"/>
-    <updated>2014-07-08T22:04:09+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian</id>
-    <content type="html"><![CDATA[<h2 id="section">前言</h2>
-<hr />
-
-<blockquote>
-  <p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p>
-</blockquote>
-
-<p>Xcode基本是Mac/iOS程序员的必备工具(AppCode我没用过 不知道有多少人用?) 但是能说有多好用..这就仁者见仁了(跟Visual Studio是没得比了) 不过在用了插件以后 倒也能让生产力提升一大截</p>
-
-<p>接下来我会介绍一些我本人常用的第三方库和插件 也许不多 但是一定是久经考验 用了一定不会错</p>
-
-<!--more-->
-
-<h2 id="section-1">介绍</h2>
-<hr />
-
-<h3 id="section-2">第三方库</h3>
-<hr />
-
-<h4 id="cocoapod">CocoaPod</h4>
-
-<p>CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具</p>
-
-<p>在CocoaPod没有出现之前 第三方库的管理是非常痛苦的 尤其是一些大型的库(比如nimbus) 每次对库进行更新 都可能会非常的痛苦</p>
-
-<p>CocoaPod的出现解决了这些问题 以Framework的方式引入第三方库 极大的节约了集成的时间 而且通吃Objective-C和Swift(Swift上的Cathatage我没有实际用过 但是它的那种集成方式还是比CocoaPod麻烦点)</p>
-
-<h4 id="icarousel">iCarousel</h4>
-
-<p>在iOS 4.x的时代(我也是从4.0开始接触iOS开发的) Coverflow的效果可谓是风靡一时 初出茅庐的我当年对如何实现几乎是束手无策(当年所有的电影资讯类的APP 如布丁爱生活等 都需要实现Coverflow选片的效果 碰巧我也要做一个) iCarousel的出现替我解决了一个大的难题</p>
-
-<p>从此iCarousel成为了我每个项目的必备良药(也是我最喜欢的库) 不管是Coverflow还是轮播广告 都能轻描淡写的搞定 其内置的十来种显示类型 基本可以解决90%的UI需求 而其强大的自定义功能 则可以解决剩余的10% :)</p>
-
-<p>不熟悉的朋友可以尝试一下其精美的demo(pod try iCarousel) 所有的功能都在demo中一览无余</p>
-
-<p>作者nicklockwood也是一个高产的大神 同时维护着数量众多且优质的开源库(比如iVersion iRate) 大家不妨去看一看 淘一淘</p>
-
-<!--more-->
-
-<h4 id="afnetworkingalamofire">AFNetworking/Alamofire</h4>
-
-<p>HTTP框架的龙头老大 当年在与ASIHTTPRequest的竞争中笑到了最后(当然也是因为ASIHTTPRequest的作者不维护了 不过国内很多公司 因为历史原因都在自行维护) 由于及时维护和拥抱语言的新特性 迅速被大家所接受和喜爱</p>
-
-<p>相信每个人都用过 这里就不赘述了</p>
-
-<h4 id="mknetworkkit">MKNetworkKit</h4>
-
-<p>如果说AFNetworking是老大 那么MKNetworkKit可以说是小弟了 不过也因为比AFNetworking轻量的原因 也获得了许多开发者的青睐</p>
-
-<p>当年因为ASIHTTPRequest停止维护了 在机缘巧合之下 我在AFNetworking和MKNetworkKit之间选择了后者 并在很多项目中进行了使用</p>
-
-<p>不过也许是因为AFNetworking发展得更快更迅速 而作者本人是单兵作战的原因 作者也基本放弃了更新(版本号在停留在0.8x) 十分可惜</p>
-
-<h4 id="sdwebimage">SDWebImage</h4>
-
-<p>图片异步下载和缓存管理的集大成者 UITableView的黄金搭档 其代码被开发者研究分享过无数次喵大的Kingfisher(可以说是Swift版的SDWebImage)也是深受其影响</p>
-
-<p>异步下载AFNetworking和MKNetworkKit都有实现 数据缓存也有FastImageCache与TMCache等 但是将其融会贯通的 唯有SDWebImage了</p>
-
-<p>除了简单的使用sd_setImageWithURL之外 SDImageCache也是可以独立使用的 功能也相当之强大</p>
-
-<h4 id="zxingobjc">ZXingObjC</h4>
-
-<p>zxing是Google出品的二维码扫描组件 原本是Java编写的 现在也有了各种语言的移植版 而ZXingObjC就是其中之一</p>
-
-<p>zxing支持各种主流的一维码二维码扫描 简单易用 小厂如果要实现二维码扫描这个功能 基本都会选择zxing</p>
-
-<p>不过iOS7已内置了二维码摄像头扫描 而iOS8也已内置了二维码静态图扫描 以后可能再也不需要用到ZXing了 :(</p>
-
-<h4 id="mbprogresshud">MBProgressHUD</h4>
-
-<p>简单易用且稳定的HUD组件 半透明黑底白字的风格也经久不衰 loading提示的最佳选择</p>
-
-<p>Masonry/SnapKit</p>
-
-<p>最好用的Autolayout手写库(Cartography也不错啦 但是还是用不惯) 帮助我轻易的跨越了Autolayout这道坎</p>
-
-<p>我也曾多次在文章中提到过关于Masonry的使用方法 如果还没有用过的朋友 不妨看一看</p>
-
-<h4 id="pop">pop</h4>
-
-<p>Facebook的工程师一直是神一般的存在 对开源社区的贡献也是巨大的 极大的推动了各种变成语言的发展 比如HipHop之于PHP react之于JavaScript pop之于Objective-C等等</p>
-
-<p>不管是HipHop react Facebook的工程师总是抱着颠覆的态度来开源 pop也不例外 这点之前我也简单介绍过 而以pop为基础的paper一发布就震惊整个APP届 在这点上pop也是厥功甚伟</p>
-
-<p>pop对自定义动画也支持得很好 我也以pop的自定义动画为基础写过MMTweanAnimation</p>
-
-<h4 id="reactivecocoa">ReactiveCocoa</h4>
-
-<p>说起来惭愧 大名鼎鼎的RAC 我只使用了点皮毛(只拿来做输入验证了)</p>
-
-<p>暂时还没有进行深层次的使用 对RAC的理解也停留在表面阶段 不过这篇文章介绍得非常详细 值得一看</p>
-
-<h4 id="gpuimage">GPUImage</h4>
-
-<p>如果你要做图像(照片或者视频)的相关处理 或者只是简单的想做个像Camera360一样的拍照滤镜 那么你一定要研究一下GPUImage</p>
-
-<p>如它的名字所述 GPUImage是基于GPU的图像处理框架 我们都知道 GPU是提升性能的关键 这也就是GPUImage如此重要 如此受欢迎的原因</p>
-
-<h4 id="lumberjack">Lumberjack</h4>
-
-<p>log系统是每个项目都应该有的东西 而Lumberjack是log系统中的翘楚</p>
-
-<p>你可以简单的把它当成NSLog的替代品(简单来说 Lumberjack比NSLog速度更快) 或者根据你的需要来打造一个更强大的日志系统</p>
-
-<h4 id="nslogger">NSLogger</h4>
-
-<p>从名字可以看出 NSLogger也是一个log系统 其特点是附带了一个功能强大的Desktop Viewer 可以让你方便的查看APP产生的日志(支持分级筛选等等 甚至可以直接log一张图片)</p>
-
-<h4 id="awesomemenu">AwesomeMenu</h4>
-
-<p>当年横空出世的Path 其优美的设计 精彩的动画 不知让多少人嘴巴都合不拢 而最赞的 就是它的弹出菜单 一时成为了每个APP争相模仿的对象</p>
-
-<p>有了AwesomeMenu 你可以轻易的实现它</p>
-
-<h4 id="mmdrawercontroller">MMDrawerController</h4>
-
-<p>普通的侧滑菜单 用MMDrawerController就搞定了</p>
-
-<h4 id="realm">realm</h4>
-
-<p>作为数据存储的一等公民 CoreData的地位不言而喻 不过也因为使用起来不够方便 才会出现MagicalRecord这种辅助类 甚至fmdb这种基于纯sqlite的库</p>
-
-<p>而realm以挑战者的身份闪亮登场 不仅读取性能更快(据说数倍于CoraData) 接口简单易用(以对象的形式使用数据 这点和leancloud的思路很相似) 并且还跨平台(iOS/Android均可使用 OC/Swift/Java都支持)</p>
-
-<p>如果你习惯使用Mantle之类的Modal转换的话Realm-JSON肯定能讨你欢心</p>
-
-<p>作为YCombinator的孵化项目 其质量还是能得以保证的 至少我试用下来 确实给我以很大的惊喜 不管是API的设计 还是数据对象的定义 就连数据库的版本升级 都非常的方便)</p>
-
-<h3 id="xcode">Xcode插件</h3>
-<hr />
-
-<h4 id="alcatraz">Alcatraz</h4>
-
-<p>与CocoaPod类似 Alcatraz是Xcode的插件管理器 能够让你方便的管理Xcode的插件(不仅可以管理插件 还可以管理主题等等)</p>
-
-<h4 id="fuzzyautocomplete">FuzzyAutocomplete</h4>
-
-<p>如果只让我选一个插件留下 那必须是FuzzyAutocomplete 强大的模糊匹配输入 让你写代码的时候再也不用费脑子去记住名字那么长的对象或者函数名了 好用到让你想哭</p>
-
-<h4 id="xalign">XAlign</h4>
-
-<p>作为有洁癖的码农 看到不对齐的代码一定是不能忍的 XAlign可以轻松解决你的烦恼</p>
-
-<h4 id="vvdocumenter-xcode">VVDocumenter-Xcode</h4>
-
-<p>喵大的又一力作 能够识别当前函数的参数和返回类型 帮助你快速编写符合规范的注释(目前是以Javadoc为标准)</p>
-
-<h4 id="deriveddata-exterminator">deriveddata-exterminator</h4>
-
-<p>如果你老是遇到Xcode抽风 提示你要因为某个原因要删除某个目录下的文件 否则编译不过 那你一定会被这个插件感动 因为说明了遇到这个事的人不只你一个</p>
-
-<h4 id="xcode-quick-localization">Xcode-Quick-Localization</h4>
-
-<p>多语言在iOS开发中一直不是很方便 有了它 你可以省不少事</p>
-
-<h4 id="backlight-for-xcode">Backlight-for-XCode</h4>
-
-<p>就如果Xcode默认的80个字的分页提示一样 高亮当前正在编辑的一行 也是一种友好的提示 喜不喜欢也就因人而异了</p>
-
-<h2 id="section-3">小结</h2>
-<hr />
-
-<p>以上的介绍 都是从我自身的使用经验触发的 可能大部分大家都用过了 而我也将会持续的更新这份列表 只要有优秀使用的东东 我都会添加进来</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[markdown语法]]></title>
-    <link href="http://helloyokoy.github.io/blog/markdownyu-fa/"/>
-    <updated>2014-06-09T15:07:14+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/markdownyu-fa</id>
-    <content type="html"><![CDATA[<h3 id="word">1. 标题设置（让字体变大，和word的标题意思一样）</h3>
-<hr />
-
-<p>在Markdown当中设置标题，有两种方式：</p>
-
-<p>第一种：通过在文字下方添加“=”和“-”，他们分别表示一级标题和二级标题。</p>
-
-<p>第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大）</p>
-
-<h3 id="blockquote">2. 块注释（blockquote）</h3>
-<hr />
-
-<p>通过在文字开头添加“&gt;”表示块注释。（当&gt;和文字之间添加五个blank时，块注释的文字会有变化。）</p>
-
-<h3 id="section">3. 斜体</h3>
-<hr />
-<p>将需要设置为斜体的文字两端使用1个“*”或者“_”夹起来</p>
-
-<!--more-->
-
-<h3 id="section-1">4. 粗体</h3>
-<hr />
-<p>将需要设置为斜体的文字两端使用2个“*”或者“_”夹起来</p>
-
-<h3 id="section-2">5. 无序列表</h3>
-<hr />
-<p>在文字开头添加(<em>, +, and -)实现无序列表。但是要注意在(</em>, +, and -)和文字之间需要添加空格。（建议：一个文档中只是用一种无序列表的表示方式）</p>
-
-<h3 id="section-3">6. 有序列表</h3>
-<hr />
-<p>使用数字后面跟上句号。（还要有空格）</p>
-
-<h3 id="links">7. 链接（Links）</h3>
-<hr />
-<p>Markdown中有两种方式，实现链接，分别为内联方式和引用方式。</p>
-
-<p>内联方式：</p>
-
-<pre><code>This is an [example link](http://example.com/).
-</code></pre>
-
-<p>引用方式：</p>
-
-<pre><code>I get 10 times more traffic from [Google][1] than from [Yahoo][2] or [MSN][3].  
-
-[1]: http://google.com/        "Google" 
-[2]: http://search.yahoo.com/  "Yahoo Search" 
-[3]: http://search.msn.com/    "MSN Search"
-</code></pre>
-
-<h3 id="images">8. 图片（Images）</h3>
-<hr />
-<p>图片的处理方式和链接的处理方式，非常的类似。</p>
-
-<p>内联方式：</p>
-
-<pre><code>	![alt text](/path/to/img.jpg "Title")
-</code></pre>
-
-<p>引用方式：</p>
-
-<pre><code>	![alt text][id] 
-
-	[id]: /path/to/img.jpg "Title"
-</code></pre>
-
-<h3 id="htmlcode">9. 代码（HTML中所谓的Code）</h3>
-<hr />
-<p>实现方式有两种：</p>
-
-<p>第一种：简单文字出现一个代码框。</p>
-
-<pre><code>`&lt;blockquote&gt;`。（`不是单引号而是左上角的ESC下面~中的`）
-</code></pre>
-
-<p>第二种：大片文字需要实现代码框。</p>
-
-<pre><code>使用Tab和四个空格。
-</code></pre>
-
-<h3 id="footnote">10. 脚注（footnote）</h3>
-<hr />
-
-<p>实现方式如下：</p>
-
-<pre><code>hello[^hello]
-
-[^hello]: hi
-</code></pre>
-
-<h3 id="section-4">11. 下划线</h3>
-<hr />
-
-<p>在空白行下方添加三条“-”横线。（前面讲过在文字下方添加“-”，实现的2级标题）</p>
 
 ]]></content>
   </entry>

@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 &hellip;">
+	<meta name="description" content="MJExtension The fastest, most convenient and most nonintrusive conversion between JSON and model. 世界上转换速度最快、使用最简单方便的字典转模型框架 GitHub：CoderMJLee ｜ Blog &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,37 +127,41 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
+		<a href="/blog/mjextensionjie-shao/">
 		
-			Ios依赖注入框架objection</a>
+			MJExtension介绍</a>
 	</h2>
 	<div class="entry-content">
-		<blockquote>
-  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
-</blockquote>
+		<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
 
-<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
+<h3 id="mjextension">MJExtension</h3>
+<hr />
 
-<pre><code>- (void)viewDidLoad
-{
-	[super viewDidLoad];
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-	button.frame = CGRectMake(100, 100, 100, 30);
-	[self.view addSubview:button];
-}
- 
-- (void)buttonTapped
-{
-	ViewControllerB *vc = [[ViewControllerB alloc] init];
-	[self.navigationController pushViewController:vc animated:YES];
-}
-</code></pre>
+<p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
 
-<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
+<p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
+
+<p>GitHub：CoderMJLee ｜ Blog：mjios(Chinese) ｜ PR is welcome，or feedback</p>
+
+<h3 id="getting-started">Getting Started【开始使用】</h3>
+<hr />
+<p>####Features【能做什么】</p>
+
+<ul>
+  <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
+  <li>JSON –&gt; Model、Core Data Model</li>
+  <li>JSONString –&gt; Model、Core Data Model</li>
+  <li>Model、Core Data Model –&gt; JSON</li>
+  <li>JSON Array –&gt; Model Array、Core Data Model Array</li>
+  <li>JSONString –&gt; Model Array、Core Data Model Array</li>
+  <li>Model Array、Core Data Model Array –&gt; JSON Array</li>
+  <li>Coding all properties of model in one line code.</li>
+  <li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
+</ul>
 
 
 		
-		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" class="more-link">阅读全文</a>
+		<a href="/blog/mjextensionjie-shao/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -167,7 +171,7 @@
 
 
 
-2015 年7 月10 日</div>
+2015 年8 月10 日</div>
 	<div class="tags">
 
 
@@ -183,18 +187,25 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/rubyzhao-pin/">
+		<a href="/blog/frescojie-shao/">
 		
-			Ruby招聘</a>
+			Fresco介绍</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
+		<p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
 
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
+<h3 id="fresco">关于 Fresco</h3>
+<p>Fresco 是一个强大的图片加载组件。</p>
+
+<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
+
+<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
+
+<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
 
 
 		
-		<a href="/blog/rubyzhao-pin/" class="more-link">阅读全文</a>
+		<a href="/blog/frescojie-shao/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -204,11 +215,11 @@
 
 
 
-2015 年7 月9 日</div>
+2015 年8 月9 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

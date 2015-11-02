@@ -1,0 +1,349 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ruby on rails 快速学习 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。 如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Ruby on Rails 快速学习</h2>
+	<div class="entry-content"><p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
+
+<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
+
+<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
+
+<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
+
+<!--more-->
+
+<h4 id="section">起点阶段</h4>
+
+<p>强烈建议至少具备如下知识后再开始Rails开发</p>
+
+<h4 id="html-and-css">Html and CSS</h4>
+
+<p>结构和样式不止是设计人员的事，web开发必须要熟悉Head First HTML与CSS（第2版）虽然已经出版了很久，但依然是最好的Html&amp;CSS入门书</p>
+
+<h4 id="linux">Linux</h4>
+
+<p>几乎所有的开发环境都严重依赖于GNU/Linux为主的命令行环境，因此需要学习linux的基本概念和操作</p>
+
+<p>The Linux Command Line</p>
+
+<p>目前最好的linux command line学习指南，生动，清晰，详细，无论是菜鸟还是多年的老手都能从中受益，远超过之前作为标准教材的practical guide to xx系列。No starch这个出版社既有延续至今的Hacker精神，也懂得如何发掘有趣的作者</p>
+
+<h4 id="http-and-rest">HTTP and Rest</h4>
+
+<p>Web开发对于Http的深入理解是必须的，另外Rails还使用Rest协议作为基本指导原则，所以需要深入理解Http和RestRESTful Web Services中文版 这本是目前为止最好的描述HTTP与Rest的作品，可以让你重新认识Web，更何况其中的示例是Ruby语言(因为这本书合著者是Sam Ruby)</p>
+
+<h4 id="programming">Programming</h4>
+
+<p>程序员修炼之道 这本书告诉你，如何做才能成为一个注重实效的程序员，涉及了非常多的理念和实践，虽然都不深入，但至少让你知道世界是什么样子的，是任何程序员最应该在新手阶段读的书，也是对整个业界影响最大的经典之一</p>
+
+<h4 id="git-and-version-control">Git and Version Control</h4>
+
+<p>版本控制在项目中是一开始就要使用的，不止是开发，一切事情都需要版本控制Pro Git 这本是迄今为止讲解Git最清楚最深入的书，对于新手，不建议看后面的实现原理，先读前几章了解概念和学习日常实践使用是最重要的</p>
+
+<h4 id="ruby">Ruby</h4>
+
+<p>如果只是在Rails中使用的Ruby，可以使用一些免费的快速入门教程，不过，系统地学习Ruby，可以了解到很多面向对象开发或函数式编程的思想，对于熟悉和掌握Rails帮助非常大Programming Ruby 1.9 公认的Ruby入门经典，不过对于新手来说，只推荐前半的入门部分，高阶内容可以稍后再来学习</p>
+
+<h4 id="rails">Rails</h4>
+
+<p>Learn Web Development with the Ruby on Rails Tutorial</p>
+
+<p>最后是Rails自身的学习，这本书的最新版涵盖Rails4，是目前为止最好最完整的Rails入门教程，可以在线看，还有大量的视频搭配</p>
+
+<h4 id="section-1">进阶阶段</h4>
+<p>具备下面的知识，可以让你或多或少地理解Rails Way，并真正开始写出合格的Rails应用</p>
+
+<h4 id="programming-1">Programming</h4>
+
+<p>重构</p>
+
+<p>这本”重构”是当年石破天惊的经典著作，讲解如何持续改进和让代码优雅干净，拥有直到现在还依然适用的价值，尤其为Ruby On Rails社区广泛接受，这本书有将其中的Java语言换成Ruby后的版本(重构(Ruby版) (豆瓣))</p>
+
+<p>UNIX编程艺术</p>
+
+<p>由公认的黑客领袖之一Eric S.Raymond撰写的这本书总结了长久以来的Unix领域中的设计和开发哲学，思想乃至文化体系，是了解Ruby和Rails诞生于其中的Unix黑客文化必不可少的读物</p>
+
+<h4 id="ruby-1">Ruby</h4>
+
+<p>深入理解Ruby，除了上边提到的Programming Ruby 1.9以及重构等通用编程书之外，还有以下几个选择</p>
+
+<p>Ruby编程语言</p>
+
+<p>Ruby之父松本行弘和O’Reilly的王牌作者合作，诞生了这本讲解Ruby最透彻的经典著作</p>
+
+<p>Eloquent Ruby</p>
+
+<p>Ruby社区的编程指南之一，介绍了Ruby社群的文化，品味和编程原则，强烈地反映了Ruby程序员的共同特质: 幽默，健谈，追求乐趣，热爱生活</p>
+
+<h4 id="test">Test</h4>
+
+<p>测试驱动开发(TDD)以及之后进化的行为驱动开发(BDD)是Ruby和Rails社群的核心文化之一，只有彻底理解并运用BDD，才是合格的Rails开发者</p>
+
+<p>The RSpec Book</p>
+
+<p>唯一的也是必读的BDD介绍作品，由RSpec核心成员撰写</p>
+
+<p>Git</p>
+
+<p>可以坚持把Pro Git的后半部分学习完，没有更深入和清楚的书了</p>
+
+<p>CSS</p>
+
+<p>CSS权威指南</p>
+
+<p>Eric Meyer的CSS权威指南至今仍然是CSS2讲解最全面和最深入的参考书</p>
+
+<p>Javascript and jQuery</p>
+
+<p>Web开发的交互性会越来越多，Javascript已经成为了相当严肃的编程语言</p>
+
+<p>JavaScript权威指南</p>
+
+<p>目前最全面最好的Javascript学习书籍</p>
+
+<p>jQuery基础教程 （第4版）</p>
+
+<p>唯一尚可称得上紧跟jQuery发展脚步的学习指南</p>
+
+<h4 id="rails-1">Rails</h4>
+
+<p>Rails发展的实在太快了，最好的方法也许是跟踪在线文档，不过还是推荐这本</p>
+
+<p>The Rails 4 Way</p>
+
+<p>这本书的Rails 3版本讲解Rails的哲学和细节相当到位，不过Rails 4版本还没有出版，非常值得在今年3月份第一时间拿下它。</p>
+
+<p>— More</p>
+
+<p>上边的书籍都读过的话，可能你终于能了解到Rails背后涉及的概念和实践有多么庞大惊人，也了解到了还有多么深的知识鸿沟需要跨越，了解到了一切都还只是开始，不过值得庆幸的是，一切事情都需要个开始</p>
+
+<hr />
+<p>著作权归作者所有。</p>
+
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>作者：李路</p>
+
+<p>链接：http://www.zhihu.com/question/19552402/answer/22336708</p>
+
+<p>来源：知乎</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年9 月2 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/ruby-fast-learn" data-title="ruby on rails 快速学习" data-url="http://helloyokoy.github.io/blog/ruby-fast-learn/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

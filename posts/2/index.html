@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="MJExtension The fastest, most convenient and most nonintrusive conversion between JSON and model. 世界上转换速度最快、使用最简单方便的字典转模型框架 GitHub：CoderMJLee ｜ Blog &hellip;">
+	<meta name="description" content="快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。 如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,41 +127,22 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/mjextensionjie-shao/">
+		<a href="/blog/ruby-fast-learn/">
 		
-			MJExtension介绍</a>
+			Ruby on Rails 快速学习</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
+		<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
 
-<h3 id="mjextension">MJExtension</h3>
-<hr />
+<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
 
-<p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
+<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
 
-<p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
-
-<p>GitHub：CoderMJLee ｜ Blog：mjios(Chinese) ｜ PR is welcome，or feedback</p>
-
-<h3 id="getting-started">Getting Started【开始使用】</h3>
-<hr />
-<p>####Features【能做什么】</p>
-
-<ul>
-  <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
-  <li>JSON –&gt; Model、Core Data Model</li>
-  <li>JSONString –&gt; Model、Core Data Model</li>
-  <li>Model、Core Data Model –&gt; JSON</li>
-  <li>JSON Array –&gt; Model Array、Core Data Model Array</li>
-  <li>JSONString –&gt; Model Array、Core Data Model Array</li>
-  <li>Model Array、Core Data Model Array –&gt; JSON Array</li>
-  <li>Coding all properties of model in one line code.</li>
-  <li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
-</ul>
+<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
 
 
 		
-		<a href="/blog/mjextensionjie-shao/" class="more-link">阅读全文</a>
+		<a href="/blog/ruby-fast-learn/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -171,11 +152,11 @@
 
 
 
-2015 年8 月10 日</div>
+2015 年9 月2 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ios/'>ios</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>
@@ -187,25 +168,71 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/frescojie-shao/">
+		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">
 		
-			Fresco介绍</a>
+			Android Https请求no Peer Certificate解决方案</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
+		<h3 id="section">解决方案一</h3>
+<hr />
 
-<h3 id="fresco">关于 Fresco</h3>
-<p>Fresco 是一个强大的图片加载组件。</p>
+<p>写了一个自定义类继承SSLSocketFactory：</p>
 
-<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
+<pre><code>import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
 
-<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
-<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
+import org.apache.http.conn.ssl.SSLSocketFactory;
+
+public class SSLSocketFactoryEx extends SSLSocketFactory {
+    
+    SSLContext sslContext = SSLContext.getInstance("TLS");
+    
+    public SSLSocketFactoryEx(KeyStore truststore) 
+                    throws NoSuchAlgorithmException, KeyManagementException,
+                    KeyStoreException, UnrecoverableKeyException {
+            super(truststore);
+            
+            TrustManager tm = new X509TrustManager() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
+
+        @Override  
+        public void checkClientTrusted(
+                        java.security.cert.X509Certificate[] chain, String authType)
+                                        throws java.security.cert.CertificateException {}  
+
+        @Override  
+        public void checkServerTrusted(
+                        java.security.cert.X509Certificate[] chain, String authType)
+                                        throws java.security.cert.CertificateException {}
+    };  
+    sslContext.init(null, new TrustManager[] { tm }, null);  
+}  
+
+@Override  
+public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
+        return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
+}  
+
+@Override  
+public Socket createSocket() throws IOException {  
+    return sslContext.getSocketFactory().createSocket();  
+}  
+}
+</code></pre>
 
 
 		
-		<a href="/blog/frescojie-shao/" class="more-link">阅读全文</a>
+		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -215,7 +242,7 @@
 
 
 
-2015 年8 月9 日</div>
+2015 年8 月12 日</div>
 	<div class="tags">
 
 
