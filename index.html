@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重… 那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态， &hellip;">
+	<meta name="description" content="1. iOS9网络适配_ATS：改用更安全的HTTPS [摘要]为了强制增强数据访问安全， iOS9 默认会把 所有的http请求 所有从NSURLConnection 、 CFURL 、 NSURLSession发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +127,90 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/ios9-adaption/">
+		
+			Ios9 适配</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="ios9atshttps">1. iOS9网络适配_ATS：改用更安全的HTTPS</h2>
+
+<p>[摘要]为了强制增强数据访问安全， iOS9 默认会把 <del>所有的http请求</del> 所有从<code>NSURLConnection</code> 、 <code>CFURL</code> 、 <code>NSURLSession</code>发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时，默认会让所有从<code>NSURLConnection</code> 、 <code>CFURL</code> 、 <code>NSURLSession</code>发出的 HTTP 请求统一采用TLS 1.2 协议。因为 AFNetworking 现在的版本底层使用了 <code>NSURLConnection</code> ，众多App将被影响（基于iOS8.x-SDK的App不受影响）。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。</p>
+
+<p>一个符合 ATS 要求的 HTTPS，应该满足如下条件：</p>
+
+<ol>
+  <li>Transport Layer Security协议版本要求TLS1.2以上</li>
+  <li>服务的Ciphers配置要求支持Forward Secrecy等</li>
+  <li>证书签名算法符合ATS要求等</li>
+</ol>
+
+<p>官方文档 <a href="https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240"> <strong><em>App Transport Security Technote</em></strong> </a> 对ATS 的介绍：</p>
+
+<p><img src="http://i58.tinypic.com/ajsf0j.jpg" alt="enter image description here" /></p>
+
+<p>注：有童鞋反映：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。</p>
+
+<p>那是因为：要注意 App Transport Security 要求 TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的，ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。下文也会详细描述该问题。</p>
+
+<p>官方文档 <a href="https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240"> <strong><em>App Transport Security Technote</em></strong> </a> 对CA颁发的证书要求：</p>
+
+<blockquote>
+  <p>Certificates must be signed using a SHA256 or better signature hash algorithm, with either a 2048 bit or greater RSA key or a 256 bit or greater Elliptic-Curve (ECC) key.
+Invalid certificates result in a hard failure and no connection</p>
+</blockquote>
+
+<p>在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：</p>
+
+<h3 id="section">跟我有毛关系？需要我加班吗？！</h3>
+
+<p>首先咱们来看下业内对Apple这一做法的评论：</p>
+
+<p><img src="https://i.imgur.com/Q17QDG0.png" alt="enter image description here" /></p>
+
+<p>这是某社交App上讨论，看来业内还是吐槽声和肯定声同在。</p>
+
+<p>结论是：</p>
+
+<blockquote>
+  <p>跟你很有关系，加班吧，少年！</p>
+</blockquote>
+
+<p>书归正传【严肃脸】，我们正式讨论下 WHAT，WHY，HOW：</p>
+
+<ol>
+  <li>WHAT（什么是SSL/TLS？跟HTTP和HTTPS有什么关系）</li>
+  <li>WHY（以前的HTTP不是也能用吗？为什么要用SSL/TLS？！Apple是不是又在反人类？）</li>
+  <li>HOW（如何适配？—弱弱地问下：加班要多久？）</li>
+</ol>
+
+<p>
+		
+		<a href="/blog/ios9-adaption/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月2 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/surge/">
 		
 			Surge</a>
@@ -157,57 +241,6 @@
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/rails-gems-recomend/">
-		
-			Rails Gems 推荐</a>
-	</h2>
-	<div class="entry-content">
-		<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
-
-<h5 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h5>
-
-<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
-
-<h5 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h5>
-
-<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
-
-<h5 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h5>
-
-<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
-
-<h5 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h5>
-
-<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
-
-
-		
-		<a href="/blog/rails-gems-recomend/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年10 月5 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>

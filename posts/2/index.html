@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。 如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 &hellip;">
+	<meta name="description" content="Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。 1.bootstrap（bootstrap-sass） 这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +127,57 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/rails-gems-recomend/">
+		
+			Rails Gems 推荐</a>
+	</h2>
+	<div class="entry-content">
+		<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
+
+<h5 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h5>
+
+<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
+
+<h5 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h5>
+
+<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
+
+<h5 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h5>
+
+<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
+
+<h5 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h5>
+
+<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
+
+
+		
+		<a href="/blog/rails-gems-recomend/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/ruby-fast-learn/">
 		
 			Ruby on Rails 快速学习</a>
@@ -157,96 +208,6 @@
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">
-		
-			Android Https请求no Peer Certificate解决方案</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">解决方案一</h3>
-<hr />
-
-<p>写了一个自定义类继承SSLSocketFactory：</p>
-
-<pre><code>import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import org.apache.http.conn.ssl.SSLSocketFactory;
-
-public class SSLSocketFactoryEx extends SSLSocketFactory {
-    
-    SSLContext sslContext = SSLContext.getInstance("TLS");
-    
-    public SSLSocketFactoryEx(KeyStore truststore) 
-                    throws NoSuchAlgorithmException, KeyManagementException,
-                    KeyStoreException, UnrecoverableKeyException {
-            super(truststore);
-            
-            TrustManager tm = new X509TrustManager() {
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-
-        @Override  
-        public void checkClientTrusted(
-                        java.security.cert.X509Certificate[] chain, String authType)
-                                        throws java.security.cert.CertificateException {}  
-
-        @Override  
-        public void checkServerTrusted(
-                        java.security.cert.X509Certificate[] chain, String authType)
-                                        throws java.security.cert.CertificateException {}
-    };  
-    sslContext.init(null, new TrustManager[] { tm }, null);  
-}  
-
-@Override  
-public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-        return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-}  
-
-@Override  
-public Socket createSocket() throws IOException {  
-    return sslContext.getSocketFactory().createSocket();  
-}  
-}
-</code></pre>
-
-
-		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月12 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

@@ -7,7 +7,10 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="MJExtension The fastest, most convenient and most nonintrusive conversion between JSON and model. 世界上转换速度最快、使用最简单方便的字典转模型框架 GitHub：CoderMJLee ｜ Blog &hellip;">
+	<meta name="description" content="解决方案一 写了一个自定义类继承SSLSocketFactory： import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.security. &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +130,96 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">
+		
+			Android Https请求no Peer Certificate解决方案</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="section">解决方案一</h3>
+<hr />
+
+<p>写了一个自定义类继承SSLSocketFactory：</p>
+
+<pre><code>import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import org.apache.http.conn.ssl.SSLSocketFactory;
+
+public class SSLSocketFactoryEx extends SSLSocketFactory {
+    
+    SSLContext sslContext = SSLContext.getInstance("TLS");
+    
+    public SSLSocketFactoryEx(KeyStore truststore) 
+                    throws NoSuchAlgorithmException, KeyManagementException,
+                    KeyStoreException, UnrecoverableKeyException {
+            super(truststore);
+            
+            TrustManager tm = new X509TrustManager() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
+
+        @Override  
+        public void checkClientTrusted(
+                        java.security.cert.X509Certificate[] chain, String authType)
+                                        throws java.security.cert.CertificateException {}  
+
+        @Override  
+        public void checkServerTrusted(
+                        java.security.cert.X509Certificate[] chain, String authType)
+                                        throws java.security.cert.CertificateException {}
+    };  
+    sslContext.init(null, new TrustManager[] { tm }, null);  
+}  
+
+@Override  
+public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
+        return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
+}  
+
+@Override  
+public Socket createSocket() throws IOException {  
+    return sslContext.getSocketFactory().createSocket();  
+}  
+}
+</code></pre>
+
+
+		
+		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年8 月12 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/mjextensionjie-shao/">
 		
 			MJExtension介绍</a>
@@ -176,50 +269,6 @@
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/frescojie-shao/">
-		
-			Fresco介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
-
-<h3 id="fresco">关于 Fresco</h3>
-<p>Fresco 是一个强大的图片加载组件。</p>
-
-<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
-
-<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
-
-<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
-
-
-		
-		<a href="/blog/frescojie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>
