@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-02T16:02:49+08:00</updated>
+  <updated>2015-11-03T15:56:49+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[技术学习态度]]></title>
+    <link href="http://helloyokoy.github.io/blog/tech-learn/"/>
+    <updated>2015-11-03T15:23:49+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/tech-learn</id>
+    <content type="html"><![CDATA[<p>本文仅谈业余时间的技术学习，不谈工作中的要求。</p>
+
+<p>技术固然要时时学习，因为更新快嘛，但对待技术上学什么，怎么花时间学，需要一个指导思想，否则浪费时间而且效果不好。</p>
+
+<ol>
+  <li>
+    <p>抓住主干，而非细节
+最近很火的一句话是“你不要用战术上的勤奋掩盖战略上的懒惰”。放到技术学习上就先主理解主干后关注枝叶，比如C++的好书很多，《Effective C++》和《Inside C++ Object Model》是好书，但它们都不是用来入门的，为什么? 因为它们不是主干，语言实现细节和各种坑你都了解了，碰到实际问题依然用不好C++。</p>
+  </li>
+  <li>
+    <p>尽量不折腾
+不去折腾那些不成熟的技术，尽量用较为成熟的技术。在一年多之前，我用AngularJS，MongoDB的时候把我可给坑惨了，所以我下决心如果不因为工作坚决不碰Go语言，Node.js，要学不如学Erlang。新技术应用场景不清晰，前景不清晰，生态环境弱，类库少，坑多不容易跳出来。简而言之就是风险大于收益。同理我也不喜欢用Linux而喜欢Mac，Vim的包也是别人弄好了直接install的。</p>
+  </li>
+</ol>
+
+<!--more-->
+
+<ol>
+  <li>
+    <p>尽量学习经典原理而不是浪费时间在细节上。
+这一点条和第一点类似，多花时间学习抽象模式，设计原则，类型系统，看诸如《SICP》《The little schemer》《Essential of Programming Language》这种书，如果不是因为工作绝不浪费时间到《Dive into python》这种具体到语言细节的书上。</p>
+  </li>
+  <li>
+    <p>尽量学习形而下的系统而不过多上升到形而上的思想上。上一点谈到了抽象模式和类型系统，但切不可单纯从思想上判断哪种语言一定好，哪种抽象模式就一定好，一定要结合形而下的系统综合看待，学习C语言就要随着OS学习，学习Lisp就随着编译器或分析器一起学习，学习Ruby或Python就跟着web开发来学习，通过某一类系统架构理解语言的优劣，通过语言来理解为何这么架构系统。</p>
+  </li>
+  <li>
+    <p>学好那些通用技能。
+比如：1，如何进行Debug，2，如何阅读源代码，3，如何进行基本性能监控，4，熟练用好自己的编辑器和*nix命令行，5，git技巧，6，项目管理能力，7，关系型数据库的知识。</p>
+  </li>
+</ol>
+
+<hr />
+<p>转载自 <a href="http://liusihao.com/post/64854832920/%E6%88%91%E5%AF%B9%E5%BE%85%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%80%81%E5%BA%A6">我对技术的态度</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Surge]]></title>
@@ -121,6 +162,255 @@
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[wechat 开发环境搭建]]></title>
+    <link href="http://helloyokoy.github.io/blog/wechat-develop-environment/"/>
+    <updated>2015-10-29T15:46:09+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wechat-develop-environment</id>
+    <content type="html"><![CDATA[<p>由于微信开发都是在微信内浏览器运行，不管是登陆还是支付都不能在PC开发端愉快地玩耍，但世界我们还是需要拯救的。</p>
+
+<p>由于自己换了新电脑，第一次做微信开发跟大家分享一下我的开发环境，欢迎拍砖交流。</p>
+
+<p>一般的第三方开发永远离不开两个配置，域名 &amp; 回调，有一些平台支持localhost的域名&amp;回调会方便，更有支持随意更改端口的，微信上面貌似都没有 。</p>
+
+<p>好了，假定我们的域名是playmonkey.me</p>
+
+<h2 id="section">域名</h2>
+
+<p>微信登陆，JSAPI以及支付都有域名限制，所以需要让手机微信上打开palymonkey.me时，访问到我们本地的development server。</p>
+
+<p>干这个勾当的当属 Charles 神器。</p>
+
+<!--more-->
+
+<p>下载安装打开Charles
+Proxy -&gt; Proxy Setting -&gt; Http Proxy勾选Enable…. 开启http proxy代理，端口默认是8888
+Tool -&gt; DNS Spoofing Settings 勾选Enable DNS Spoofing
+然后把palymonkey.me加到DNS Spoofs，指向本机127.0.0.1
+Charles好了，下一步配置手机，确保你的手机网络和电脑在同一局域网，配置手机的HTTP代理到电脑的IP上，端口8888；</p>
+
+<p>访问http://playmonkey.me；</p>
+
+<p>什么？挂了？当然，酱紫访问的是本地的80端口。</p>
+
+<p>好了，我们再来用 Nginx 反向代理搞定这个问题，让手机端的playmonkey.me访问到本地development server的3000端口上。</p>
+
+<p>首先安装启动Nginx，用Apache的朋友对不起了，你们要自食其力XD</p>
+
+<p>配置Nginx</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">server</span> <span class="p">{</span>
+</span><span class="line">      <span class="n">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span><span class="line">      <span class="n">server_name</span> <span class="n">playmonkey</span><span class="o">.</span><span class="n">me</span><span class="p">;</span>
+</span><span class="line">      <span class="n">charset</span> <span class="n">utf</span><span class="o">-</span><span class="mi">8</span><span class="p">;</span>
+</span><span class="line">      <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+</span><span class="line">        <span class="n">proxy_pass</span>          <span class="ss">http</span><span class="p">:</span><span class="sr">//mon</span><span class="n">key_servers</span><span class="p">;</span>
+</span><span class="line">        <span class="n">proxy_redirect</span>      <span class="n">default</span><span class="p">;</span>
+</span><span class="line">        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Forwarded</span><span class="o">-</span><span class="no">For</span> <span class="vg">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span class="line">        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Real</span><span class="o">-</span><span class="no">IP</span> <span class="vg">$remote_addr</span><span class="p">;</span>
+</span><span class="line">        <span class="n">proxy_set_header</span>    <span class="no">Host</span> <span class="vg">$http_host</span><span class="p">;</span>
+</span><span class="line">        <span class="n">proxy_next_upstream</span> <span class="n">http_502</span> <span class="n">http_504</span> <span class="n">error</span> <span class="n">timeout</span> <span class="n">invalid_header</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">      <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="n">upstream</span> <span class="n">palymonkey_servers</span><span class="p">{</span>
+</span><span class="line">      <span class="n">server</span> <span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">3000</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>再用手机访问http://playmonkey.me ，Nice….这回看到页面了。
+到此我们可以在微信上用playmonkey.me访问本地的dev server，可以愉快地调用JSAPI &amp; 微信oauth登陆 &amp; 发起支付。</p>
+
+<p>噢，如果做的是PC端的oauth微博登录怎么办？ 在本地host加上 127.0.0.1 palymonkey.com。Nice XD、</p>
+
+<h2 id="section-1">异步回调</h2>
+
+<p>上面说到发起支付，微信的支付结果是通过异步回调的，所以需要做内网穿透，这里推荐两个工具 ngrok OR localtunnel</p>
+
+<p>localtunnel</p>
+
+<p>localtunnel 是node写的，用起来非常简单</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">$ </span>npm install -g localtunnel
+</span><span class="line"><span class="nv">$ </span>lt --port 3000
+</span><span class="line">your url is: https://gqgh.localtunnel.me
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这样外网打开https://gqgh.localtunnel.me 就可以访问到本地的3000端口</p>
+
+<p>但是localtunnel是国外的，公司网络刚刚搭好，经常不稳定果断抛弃转入ngrok；</p>
+
+<p>ngrok（不想折腾的可以忽略XD）</p>
+
+<p>悲催的是ngrok也是国外的，而且服务器给墙了，BUT，问题不大，我们可以pull ngrok 1.X的源码自己编译，2.0会报证书错误如果没有合法的https证书。</p>
+
+<p>好了我们来编译ngrok，噢，对了，ngrok是Go写的，编译出来直接是一个可执行文件，爽歪歪有木有，哈~</p>
+
+<p>在服务器端（每家都有一只staging服务器吧）</p>
+
+<p>NGROK_DOMAIN 设置为您自己拥有的域名，并指向Ngrok server运行的服务器</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">NGROK_DOMAIN</span><span class="o">=</span><span class="s2">&quot;my.domain.com&quot;</span>
+</span><span class="line">git clone https://github.com/inconshreveable/ngrok.git
+</span><span class="line"><span class="nb">cd </span>ngrok
+</span><span class="line">
+</span><span class="line">openssl genrsa -out rootCA.key 2048
+</span><span class="line">openssl req -x509 -new -nodes -key rootCA.key -subj <span class="s2">&quot;/CN=$NGROK_DOMAIN&quot;</span> -days <span class="m">5000</span> -out rootCA.pem
+</span><span class="line">openssl genrsa -out device.key 2048
+</span><span class="line">openssl req -new -key device.key -subj <span class="s2">&quot;/CN=$NGROK_DOMAIN&quot;</span> -out device.csr
+</span><span class="line">openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000
+</span><span class="line">
+</span><span class="line">cp rootCA.pem assets/client/tls/ngrokroot.crt
+</span><span class="line"><span class="c"># make clean</span>
+</span><span class="line">make release-server release-client
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>编译完有两个可执行文件 bin/ngrok &amp; bin/ngrokd 
+将bin/ngrok copy到你本机
+在服务器上开启ngrok server</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">bin/ngrokd -tlsKey<span class="o">=</span>device.key -tlsCrt<span class="o">=</span>device.crt -domain<span class="o">=</span><span class="s2">&quot;$NGROK_DOMAIN&quot;</span> -httpAddr<span class="o">=</span><span class="s2">&quot;:8000&quot;</span> -httpsAddr<span class="o">=</span><span class="s2">&quot;:8001&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>本地端</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nv">NGROK_DOMAIN</span><span class="o">=</span><span class="s2">&quot;my.domain.com&quot;</span>
+</span><span class="line"><span class="nb">echo</span> -e <span class="s2">&quot;server_addr: $NGROK_DOMAIN:4443\ntrust_host_root_certs: false&quot;</span> &gt; ngrok-config
+</span><span class="line">./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span>playmonkey <span class="m">3000</span> // 配置subdomain到本地3000端口，这样外网通过playmonkey.NGROK_DOMAIN 就可以访问到本地dev server的3000端口
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>或者用SSH forwarding</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span><span class="m">3000</span> --proto<span class="o">=</span>tcp 22
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>以上Ngrok编译&amp;配置出自 <a href="https://gist.github.com/lyoshenka/002b7fbd801d0fd21f2f">How to setup Ngrok with a self-signed SSL cert</a></p>
+
+<p>至此我们在发起微信支付时回调URL的HOST就可以设置为playmonkey.NGROK_DOMAIN</p>
+
+<p>至此我们可以愉快地开发测试 微信的oauth登录 &amp; JSAPI &amp; 支付 &amp; 支付回调，好吧，很多BUG一点都不愉快。
+另外感谢 <a href="https://ruby-china.org/ruby_sky">@ruby_sky</a> 的这篇 <a href="https://ruby-china.org/topics/26138">微信支付文章</a> 微信支付做起来如丝般顺滑；
+内微信文档看起来太蛋疼了，各种配置也是找半天，大家有兴趣我可以总结一下微信各个开发的各种配置XD。</p>
+
+<hr />
+<p>转载自 <a href="https://ruby-china.org/topics/26443">ruby-china</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[微信开发 gems]]></title>
+    <link href="http://helloyokoy.github.io/blog/wechat-gems/"/>
+    <updated>2015-10-27T15:35:10+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wechat-gems</id>
+    <content type="html"><![CDATA[<p>最近陆续有不少用Rails开发微信项目的朋友在Github上开始使用weixin_rails_middleware、weixin_authorize，也不少人谈到Ratchet，春节开始到现在，一直有做微信的开发，现在在论坛上发布出来，希望让更多人知道这些gem的存在，更快速的完成你们手中的任务。</p>
+
+<p>有问题可以前往：微信开发论坛：http://weixin-dev.com/</p>
+
+<p>代码写得不好，还请多多包涵，如果有任何问题，可以直接联系我。:)</p>
+
+<!--more-->
+
+<h4 id="rails">1:一（两）条命令搭建Rails微信版本</h4>
+
+<p>按照最简洁的速度，10分钟可以跑起一个微信的项目：
+https://github.com/lanrion/weixin_rails_middleware</p>
+
+<p>自动验证微信请求；
+一（两）条命令，一个配置，简练风格；
+支持Rails 3, Rails 4；
+支持多公众账号平台，例如类似微盟；
+支持单个用户，即一个账号，但又不想保存在数据库；
+提供回复消息辅助方法；
+提供所有微信消息类型的业务逻辑的回复处理；
+wiki 中提供自定义菜单中的实现案例；
+自动生成token；
+详细见：</p>
+
+<p>https://github.com/lanrion/weixin_rails_middleware/wiki/</p>
+
+<p>wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
+
+<p>https://github.com/lanrion/weixin_rails_middleware</p>
+
+<h4 id="api">2：微信高级API实现：</h4>
+
+<p>https://github.com/lanrion/weixin_authorize</p>
+
+<p>除 Oauth 2 未实现，其他API均已实现；
+支持Redis存储access_token；
+还是直接看wiki 吧：</p>
+
+<p>https://github.com/lanrion/weixin_authorize/wiki/Getting-Started
+wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
+
+<h4 id="ratchet-v201gem-twitterratchetrails">3：集成Ratchet v2.0.1的gem: twitter_ratchet_rails</h4>
+
+<p>即：http://goratchet.com/ 压缩后非常小，十分适合wap使用，但有一个不足之处在于，组件不够丰富，期待更丰富的实现
+没其他多余的好说，看官直接点击：</p>
+
+<p>https://github.com/lanrion/twitter_ratchet_rails</p>
+
+<p>小弟身材弱小，砖别拍的太猛，嘿，把我拍死了，就没人维护这三个gem了。:)</p>
+
+<h4 id="section">4：例子（可能没有及时更新上最新版本）</h4>
+
+<p>Rails 4: https://github.com/lanrion/weixin_rails_middleware_example</p>
+
+<p>Rails 3: https://github.com/lanrion/weixin_rails_3</p>
+
+<p>企业微信gem</p>
+
+<p>请稳步： https://ruby-china.org/topics/22479</p>
+
+<p>微信开发论坛：http://weixin-dev.com/</p>
+
+<hr />
+<p>转载自 <a href="https://ruby-china.org/topics/18439">ruby-china</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[iOS9 适配]]></title>
     <link href="http://helloyokoy.github.io/blog/ios9-adaption/"/>
     <updated>2015-10-27T12:44:03+08:00</updated>
@@ -141,6 +431,8 @@
 
 <p><img src="http://i58.tinypic.com/ajsf0j.jpg" alt="enter image description here" /></p>
 
+<!--more-->
+
 <p>注：有童鞋反映：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。</p>
 
 <p>那是因为：要注意 App Transport Security 要求 TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的，ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。下文也会详细描述该问题。</p>
@@ -151,8 +443,6 @@
   <p>Certificates must be signed using a SHA256 or better signature hash algorithm, with either a 2048 bit or greater RSA key or a 256 bit or greater Elliptic-Curve (ECC) key.
 Invalid certificates result in a hard failure and no connection</p>
 </blockquote>
-
-<!--more-->
 
 <p>在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：</p>
 
@@ -2394,8 +2684,9 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 
 <h2 id="section-5">相关资料</h2>
 
-<p><a href="https://ruby-china.org/topics/22416">RubyMotion Workshop Beijing 资料总结</a>
-<a href="http://www.rubymotion.com/download/">RubyMotion 官网</a></p>
+<p><a href="https://ruby-china.org/topics/22416">RubyMotion Workshop Beijing 资料总结</a></p>
+
+<p><a href="http://www.rubymotion.com/download/">RubyMotion 官网</a></p>
 ]]></content>
   </entry>
   
@@ -4865,445 +5156,6 @@ public class ExampleApplication extends Application {
 </ul>
 
 <p>github地址: <a href="https://github.com/zhuchaowe/EasyIOS" title="Title">https://github.com/zhuchaowe/EasyIOS</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Afinal介绍]]></title>
-    <link href="http://helloyokoy.github.io/blog/afinaljie-shao/"/>
-    <updated>2015-03-10T11:38:38+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/afinaljie-shao</id>
-    <content type="html"><![CDATA[<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
-
-<h3 id="afinal">Afinal简介</h3>
-<hr />
-<ul>
-  <li>
-    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
-  </li>
-  <li>
-    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
-  </li>
-  <li>
-    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
-  </li>
-</ul>
-
-<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
-<hr />
-
-<ul>
-  <li>
-    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
-  </li>
-  <li>
-    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
-  </li>
-  <li>
-    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
-  </li>
-  <li>
-    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
-  </li>
-</ul>
-
-<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
-
-<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
-&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
-</code></pre>
-
-<!--more-->
-
-<h3 id="finaldb">FinalDB使用方法：</h3>
-<hr />
-<p>关于finalDb的更多介绍，请点击<a href="http://my.oschina.net/yangfuhai/blog/87459" title="Title">这里</a></p>
-
-<pre><code>FinalDb db = FinalDb.create(this);
-User user = new User(); //这里需要注意的是User对象必须有id属性，或者有通过@ID注解的属性
-user.setEmail("mail@tsz.net");
-user.setName("michael yang");
-db.save(user);
-</code></pre>
-
-<h4 id="finaldb-onetomany">FinalDB OneToMany懒加载使用方法：</h4>
-
-<p>模型定义：</p>
-
-<pre><code>public class Parent{
-private int id;
-@OneToMany(manyColumn = "parentId")
-private OneToManyLazyLoader&lt;Parent ,Child&gt; children;
-/*....*/
-}
-public class Child{
-private int id;
-private String text;
-@ManyToOne(column = "parentId")
-private  Parent  parent;
-/*....*/
-} 使用：
-
-List&lt;Parent&gt; all = db.findAll(Parent.class);
-    for( Parent  item : all){
-        if(item.getChildren ().getList().size()&gt;0)
-            Toast.makeText(this,item.getText() + item.getChildren().getList().get(0).getText(),Toast.LENGTH_LONG).show();
-    }
-</code></pre>
-
-<h3 id="finalactivity">FinalActivity使用方法：</h3>
-
-<ul>
-  <li>完全注解方式就可以进行UI绑定和事件绑定</li>
-  <li>
-    <p>无需findViewById和setClickListener等</p>
-
-    <pre><code>  public class AfinalDemoActivity extends FinalActivity {
-</code></pre>
-
-  	//无需调用findViewById和setOnclickListener等
-  	@ViewInject(id=R.id.button,click=”btnClick”) Button button;
-  	@ViewInject(id=R.id.textView) TextView textView;
-
-  	public void onCreate(Bundle savedInstanceState) {
-    <pre><code> 	super.onCreate(savedInstanceState);
- 	setContentView(R.layout.main);
-  	}
-</code></pre>
-
-  	public void btnClick(View v){
-    <pre><code> 		textView.setText("text set form button");
-  	}
-  }
-</code></pre>
-  </li>
-  <li>
-    <p>在其他侵入式框架下使用（如ActionBarShelock）</p>
-
-   	protected void onCreate(Bundle savedInstanceState) {
-    <pre><code> 		super.onCreate(savedInstanceState);
-  	setContentView(view);
-  	FinalActivity.initInjectedView(this);
-   	}
-</code></pre>
-  </li>
-  <li>
-    <p>在Fragment中使用</p>
-
-   	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-    <pre><code>    Bundle savedInstanceState) {
- 		View viewRoot = inflater.inflate(R.layout.map_frame, container, false);
- 		FinalActivity.initInjectedView(this,viewRoot);
- 	 	}
-</code></pre>
-  </li>
-</ul>
-
-<h3 id="finalhttp">FinalHttp使用方法：</h3>
-
-<h4 id="get">普通get方法</h4>
-
-<pre><code>FinalHttp fh = new FinalHttp();
-fh.get("http://www.yangfuhai.com", new AjaxCallBack(){
-
-@Override
-public void onLoading(long count, long current) { //每1秒钟自动被回调一次
-        textView.setText(current+"/"+count);
-}
-
-@Override
-public void onSuccess(String t) {
-        textView.setText(t==null?"null":t);
-}
-
-@Override
-public void onStart() {
-    //开始http请求的时候回调
-}
-
-@Override
-public void onFailure(Throwable t, String strMsg) {
-    //加载失败的时候回调
-}
-}); ####使用FinalHttp上传文件 或者 提交数据 到服务器（post方法）
-</code></pre>
-
-<p>文件上传到服务器，服务器如何接收，请查看<a href="http://www.oschina.net/question/105836_85825" title="Title">这里</a></p>
-
-<pre><code>AjaxParams params = new AjaxParams();
-params.put("username", "michael yang");
-params.put("password", "123456");
-params.put("email", "test@tsz.net");
-params.put("profile_picture", new File("/mnt/sdcard/pic.jpg")); // 上传文件
-params.put("profile_picture2", inputStream); // 上传数据流
-params.put("profile_picture3", new ByteArrayInputStream(bytes)); // 提交字节流
-
-FinalHttp fh = new FinalHttp();
-fh.post("http://www.yangfuhai.com", params, new AjaxCallBack(){
-@Override
-public void onLoading(long count, long current) {
-            textView.setText(current+"/"+count);
-}
-
-@Override
-    public void onSuccess(String t) {
-        textView.setText(t==null?"null":t);
-    }
-    });
-</code></pre>
-
-<h4 id="finalhttp-1">使用FinalHttp下载文件：</h4>
-
-<p>支持断点续传，随时停止下载任务 或者 开始任务</p>
-
-<pre><code>		FinalHttp fh = new FinalHttp();  
-		//调用download方法开始下载
-		HttpHandler handler = fh.download("http://www.xxx.com/下载路径/xxx.apk", //这里是下载的路径
-		true,//true:断点续传 false:不断点续传（全新下载）
-		"/mnt/sdcard/testapk.apk", //这是保存到本地的路径
-		new AjaxCallBack() {  
-            @Override  
-            public void onLoading(long count, long current) {  
-                 textView.setText("下载进度："+current+"/"+count);  
-            }  
-
-            @Override  
-            public void onSuccess(File t) {  
-                		textView.setText(t==null?"null":t.getAbsoluteFile().toString());  
-            }  
-
-        });  
-	//调用stop()方法停止下载
-	handler.stop();
-</code></pre>
-
-<h3 id="finalbitmap-">FinalBitmap 使用方法</h3>
-
-<p>加载网络图片就一行代码 fb.display(imageView,url) ,更多的display重载请看帮助文档</p>
-
-<pre><code>private GridView gridView;
-private FinalBitmap fb;
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.images);
-
-    gridView = (GridView) findViewById(R.id.gridView);
-    gridView.setAdapter(mAdapter);
-
-    fb = FinalBitmap.create(this);//初始化FinalBitmap模块
-    fb.configLoadingImage(R.drawable.downloading);
-    //这里可以进行其他十几项的配置，也可以不用配置，配置之后必须调用init()函数,才生效
-    //fb.configBitmapLoadThreadSize(int size)
-    //fb.configBitmapMaxHeight(bitmapHeight)
-}
-
-
-///////////////////////////adapter getView////////////////////////////////////////////
-
-public View getView(int position, View convertView, ViewGroup parent) {
-ImageView iv;
-if(convertView == null){
-    convertView = View.inflate(BitmapCacheActivity.this,R.layout.image_item, null);
-    iv = (ImageView) convertView.findViewById(R.id.imageView);
-    iv.setScaleType(ScaleType.CENTER_CROP);
-    convertView.setTag(iv);
-}else{
-    iv = (ImageView) convertView.getTag();
-}
-//bitmap加载就这一行代码，display还有其他重载，详情查看源码
-fb.display(iv,Images.imageUrls[position]);
-</code></pre>
-
-<h3 id="android-library-project">配置成Android Library Project</h3>
-
-<p>解决需求:有多个项目依赖afinal,并且想修改afinal源码</p>
-
-<ul>
-  <li>clone到本地</li>
-  <li>
-    <p>添加AndroidManifest.xml文件:</p>
-
-    <pre><code>  &lt;?xml version="1.0" encoding="utf-8"?&gt;
-  &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  	package="net.tsz.afinal" &gt;
-  	&lt;uses-sdk
-  android:minSdkVersion="5"
-  android:targetSdkVersion="7" /&gt;
-  &lt;/manifest&gt;
-</code></pre>
-  </li>
-  <li>
-    <p>导入到 Eclipse:</p>
-
-    <pre><code>  Import =&gt; Android =&gt; Existing Android Code Into Workspace
-</code></pre>
-  </li>
-  <li>工程上按右键 =&gt; Properties =&gt; Android =&gt; √ Is Library</li>
-  <li>完成,你的项目可以引用这个afinal Library了.</li>
-</ul>
-
-<h3 id="git">排除不需要Git管理的文件</h3>
-
-<p>解决需求:想修改源码,但不想让Eclipse把工程弄脏</p>
-
-<ul>
-  <li>
-    <p>忽略已经被Git管理的./bin目录:
-导入Eclipse前执行: git update-index –assume-unchanged ./bin/*</p>
-  </li>
-  <li>
-    <p>忽略未被Git管理的文件和目录: 添加/.gitignore 文件:</p>
-
-    <pre><code>  /gen
-  /assets
-  /bin
-  /res
-  /.classpath
-  /.project
-  /AndroidManifest.xml
-  /project.properties
-  /.gitignore
-</code></pre>
-  </li>
-  <li>
-    <p>导入到Eclipse,git status可见Repository依旧干净.</p>
-  </li>
-</ul>
-
-<p>GitHub地址: <a href="https://github.com/yangfuhai/afinal" title="url">https://github.com/yangfuhai/afinal</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MagicRecord介绍]]></title>
-    <link href="http://helloyokoy.github.io/blog/magicrecordjie-shao/"/>
-    <updated>2015-02-10T10:26:16+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/magicrecordjie-shao</id>
-    <content type="html"><![CDATA[<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
-
-<p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
-
-<p>也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。</p>
-
-<p>即使你会使用CoreData，每天重复性枯燥的使用CoreData也会变得很笨重，MagicalPanda创建的一个第三方库为这种工作带来了好消息。</p>
-
-<p>MagicalRecord 致力于更快捷和容易的使用CoreData。</p>
-
-<p>MagicalRecord 使用方便，特别流行。正如作者所说，MagicalRecord 致力于使CoreData的代码更简洁，更简单的获取数据，并且使用最优化的操作。</p>
-
-<p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
-
-<!--more-->
-
-<h4 id="httpblogcsdnnetdongtaochen2039articledetails40376197httpblogcsdnnetdongtaochen2039articledetails40376197-title">详细教程地址: <a href="http://blog.csdn.net/dongtaochen2039/article/details/40376197" title="Title">http://blog.csdn.net/dongtaochen2039/article/details/40376197</a></h4>
-
-<h4 id="github-magicrecordhttpsgithubcommagicalpandamagicalrecord-title"><a href="https://github.com/magicalpanda/MagicalRecord" title="Title">GitHub MagicRecord</a></h4>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[CTAssetsPickerController]]></title>
-    <link href="http://helloyokoy.github.io/blog/ctassetspickercontroller/"/>
-    <updated>2014-12-03T12:14:48+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/ctassetspickercontroller</id>
-    <content type="html"><![CDATA[<p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_19/19_98590_315f8ebbd058f7e.png" alt="image" title="image" /></p>
-
-<h3 id="section">特色</h3>
-<ol>
-  <li>用用户的相册中选择多张图片以及视频</li>
-  <li>有过滤的设置，只选择图片或只选择视频</li>
-  <li>可以设置选择图片以及视频的最大数量</li>
-  <li>平均5x fps</li>
-  <li>遵从UIAccessibility协议</li>
-</ol>
-
-<!--more-->
-
-<h3 id="section-1">需要</h3>
-<p>Xcode 5，iOS6及以上</p>
-
-<h3 id="section-2">安装</h3>
-
-<ol>
-  <li>导入CTAssetsPickerController.h文件</li>
-  <li>
-    <p>创建并显示CTAssetsPickerController</p>
-
-    <pre><code> CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
- picker.delegate = self;
- [self presentViewController:picker animated:YES completion:NULL];
-</code></pre>
-  </li>
-</ol>
-
-<h3 id="section-3">定制</h3>
-<p>你可以设置最大选择文件的数量：</p>
-
-<pre><code>picker.maximumNumberOfSelection = 10;
-</code></pre>
-
-<p>如果你希望只选择图片或者视频，创建ALAssetsFilter 并把它分配给assetsFilter</p>
-
-<pre><code>picker.assetsFilter = [ALAssetsFilter allPhotos]; // 只选择图片
-</code></pre>
-
-<p>如果选择器是以弹窗的形式显示，可以去掉选择按钮</p>
-
-<pre><code>picker.showsCancelButton = NO;
-</code></pre>
-
-<h4 id="ctassetspickercontrollerdelegate">实现CTAssetsPickerControllerDelegate</h4>
-<p>用户选择完成：</p>
-
-<pre><code>- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
-// assets contains ALAsset objects.
-</code></pre>
-
-<p>用户取消选择：</p>
-
-<pre><code>- (void)assetsPickerControllerDidCancel:(CTAssetsPickerController *)picker;
-</code></pre>
-
-<h4 id="section-4">注意</h4>
-<p>CTAssetsPickerController并不会压缩所选择的图片和视频。但是你可以通过defaultRepresentation 属性来处理选择的对象。</p>
-
-<p>例如：如果选择的是图片的话，可以像这样创建一个UIImage</p>
-
-<pre><code>ALAssetRepresentation *representation = alAsset.defaultRepresentation;
-
-UIImage *fullResolutionImage =
-[UIImage imageWithCGImage:representation.fullResolutionImage
-                    scale:1.0f
-              orientation:(UIImageOrientation)representation.orientation];
-</code></pre>
-
-<p>如果选择的是视频，则创建一个NSData：</p>
-
-<pre><code>ALAssetRepresentation *representation = alAsset.defaultRepresentation;
-
-NSURL *url          = representation.url;
-AVAsset *asset      = [AVURLAsset URLAssetWithURL:url options:nil];
-
-AVAssetExportSession *session =
-[AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetLowQuality];
-
-session.outputFileType  = AVFileTypeQuickTimeMovie;
-session.outputURL       = VIDEO_EXPORTING_URL;
-
-[session exportAsynchronouslyWithCompletionHandler:^{
-
-    if (session.status == AVAssetExportSessionStatusCompleted)
-    {
-        NSData *data    = [NSData dataWithContentsOfURL:session.outputURL];
-    }
-
-}];
-</code></pre>
-
-<p>请参考ALAssetRepresentation和AVAssetExportSession的文档</p>
-
-<p>GitHub地址 <a href="https://github.com/chiunam/CTAssetsPickerController" title="url">https://github.com/chiunam/CTAssetsPickerController</a></p>
 ]]></content>
   </entry>
   

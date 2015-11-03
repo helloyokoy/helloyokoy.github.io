@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-02T16:02:49+08:00</updated>
+  <updated>2015-11-03T15:56:49+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -141,6 +141,8 @@
 
 <p><img src="http://i58.tinypic.com/ajsf0j.jpg" alt="enter image description here" /></p>
 
+<!--more-->
+
 <p>注：有童鞋反映：服务器已支持TLS 1.2 SSL ，但iOS9上还是不行，还要进行本文提出的适配操作。</p>
 
 <p>那是因为：要注意 App Transport Security 要求 TLS 1.2，而且它要求站点使用支持forward secrecy协议的密码。证书也要求是符合ATS规格的，ATS只信任知名CA颁发的证书，小公司所使用的 self signed certificate，还是会被ATS拦截。。因此慎重检查与你的应用交互的服务器是不是符合ATS的要求非常重要。对此，建议使用下文中给出的NSExceptionDomains，并将你们公司的域名挂在下面。下文也会详细描述该问题。</p>
@@ -151,8 +153,6 @@
   <p>Certificates must be signed using a SHA256 or better signature hash algorithm, with either a 2048 bit or greater RSA key or a 256 bit or greater Elliptic-Curve (ECC) key.
 Invalid certificates result in a hard failure and no connection</p>
 </blockquote>
-
-<!--more-->
 
 <p>在讨论之前，跟往常一样，先说下iOS程序猿们最关心的问题：</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-02T16:02:49+08:00</updated>
+  <updated>2015-11-03T15:56:49+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,344 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[技术学习态度]]></title>
+    <link href="http://helloyokoy.github.io/blog/tech-learn/"/>
+    <updated>2015-11-03T15:23:49+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/tech-learn</id>
+    <content type="html"><![CDATA[<p>本文仅谈业余时间的技术学习，不谈工作中的要求。</p>
+
+<p>技术固然要时时学习，因为更新快嘛，但对待技术上学什么，怎么花时间学，需要一个指导思想，否则浪费时间而且效果不好。</p>
+
+<ol>
+  <li>
+    <p>抓住主干，而非细节
+最近很火的一句话是“你不要用战术上的勤奋掩盖战略上的懒惰”。放到技术学习上就先主理解主干后关注枝叶，比如C++的好书很多，《Effective C++》和《Inside C++ Object Model》是好书，但它们都不是用来入门的，为什么? 因为它们不是主干，语言实现细节和各种坑你都了解了，碰到实际问题依然用不好C++。</p>
+  </li>
+  <li>
+    <p>尽量不折腾
+不去折腾那些不成熟的技术，尽量用较为成熟的技术。在一年多之前，我用AngularJS，MongoDB的时候把我可给坑惨了，所以我下决心如果不因为工作坚决不碰Go语言，Node.js，要学不如学Erlang。新技术应用场景不清晰，前景不清晰，生态环境弱，类库少，坑多不容易跳出来。简而言之就是风险大于收益。同理我也不喜欢用Linux而喜欢Mac，Vim的包也是别人弄好了直接install的。</p>
+  </li>
+</ol>
+
+<!--more-->
+
+<ol>
+  <li>
+    <p>尽量学习经典原理而不是浪费时间在细节上。
+这一点条和第一点类似，多花时间学习抽象模式，设计原则，类型系统，看诸如《SICP》《The little schemer》《Essential of Programming Language》这种书，如果不是因为工作绝不浪费时间到《Dive into python》这种具体到语言细节的书上。</p>
+  </li>
+  <li>
+    <p>尽量学习形而下的系统而不过多上升到形而上的思想上。上一点谈到了抽象模式和类型系统，但切不可单纯从思想上判断哪种语言一定好，哪种抽象模式就一定好，一定要结合形而下的系统综合看待，学习C语言就要随着OS学习，学习Lisp就随着编译器或分析器一起学习，学习Ruby或Python就跟着web开发来学习，通过某一类系统架构理解语言的优劣，通过语言来理解为何这么架构系统。</p>
+  </li>
+  <li>
+    <p>学好那些通用技能。
+比如：1，如何进行Debug，2，如何阅读源代码，3，如何进行基本性能监控，4，熟练用好自己的编辑器和*nix命令行，5，git技巧，6，项目管理能力，7，关系型数据库的知识。</p>
+  </li>
+</ol>
+
+<hr />
+<p>转载自 <a href="http://liusihao.com/post/64854832920/%E6%88%91%E5%AF%B9%E5%BE%85%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%80%81%E5%BA%A6">我对技术的态度</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[wechat 开发环境搭建]]></title>
+    <link href="http://helloyokoy.github.io/blog/wechat-develop-environment/"/>
+    <updated>2015-10-29T15:46:09+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wechat-develop-environment</id>
+    <content type="html"><![CDATA[<p>由于微信开发都是在微信内浏览器运行，不管是登陆还是支付都不能在PC开发端愉快地玩耍，但世界我们还是需要拯救的。</p>
+
+<p>由于自己换了新电脑，第一次做微信开发跟大家分享一下我的开发环境，欢迎拍砖交流。</p>
+
+<p>一般的第三方开发永远离不开两个配置，域名 &amp; 回调，有一些平台支持localhost的域名&amp;回调会方便，更有支持随意更改端口的，微信上面貌似都没有 。</p>
+
+<p>好了，假定我们的域名是playmonkey.me</p>
+
+<h2 id="section">域名</h2>
+
+<p>微信登陆，JSAPI以及支付都有域名限制，所以需要让手机微信上打开palymonkey.me时，访问到我们本地的development server。</p>
+
+<p>干这个勾当的当属 Charles 神器。</p>
+
+<!--more-->
+
+<p>下载安装打开Charles
+Proxy -&gt; Proxy Setting -&gt; Http Proxy勾选Enable…. 开启http proxy代理，端口默认是8888
+Tool -&gt; DNS Spoofing Settings 勾选Enable DNS Spoofing
+然后把palymonkey.me加到DNS Spoofs，指向本机127.0.0.1
+Charles好了，下一步配置手机，确保你的手机网络和电脑在同一局域网，配置手机的HTTP代理到电脑的IP上，端口8888；</p>
+
+<p>访问http://playmonkey.me；</p>
+
+<p>什么？挂了？当然，酱紫访问的是本地的80端口。</p>
+
+<p>好了，我们再来用 Nginx 反向代理搞定这个问题，让手机端的playmonkey.me访问到本地development server的3000端口上。</p>
+
+<p>首先安装启动Nginx，用Apache的朋友对不起了，你们要自食其力XD</p>
+
+<p>配置Nginx</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;server {</span>
+</span><span class='line'><span class="sr">      listen 80;</span>
+</span><span class='line'><span class="sr">      server_name playmonkey.me;</span>
+</span><span class='line'><span class="sr">      charset utf-8;</span>
+</span><span class='line'><span class="sr">      location /</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">proxy_pass</span>          <span class="ss">http</span><span class="p">:</span><span class="sr">//mon</span><span class="n">key_servers</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_redirect</span>      <span class="n">default</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Forwarded</span><span class="o">-</span><span class="no">For</span> <span class="vg">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Real</span><span class="o">-</span><span class="no">IP</span> <span class="vg">$remote_addr</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="no">Host</span> <span class="vg">$http_host</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_next_upstream</span> <span class="n">http_502</span> <span class="n">http_504</span> <span class="n">error</span> <span class="n">timeout</span> <span class="n">invalid_header</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;  }</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'><span class="sr">upstream palymonkey_servers{</span>
+</span><span class='line'><span class="sr">  server 127.0.0.1:3000;</span>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>再用手机访问http://playmonkey.me ，Nice….这回看到页面了。
+到此我们可以在微信上用playmonkey.me访问本地的dev server，可以愉快地调用JSAPI &amp; 微信oauth登陆 &amp; 发起支付。</p>
+
+<p>噢，如果做的是PC端的oauth微博登录怎么办？ 在本地host加上 127.0.0.1 palymonkey.com。Nice XD、</p>
+
+<h2 id="section-1">异步回调</h2>
+
+<p>上面说到发起支付，微信的支付结果是通过异步回调的，所以需要做内网穿透，这里推荐两个工具 ngrok OR localtunnel</p>
+
+<p>localtunnel</p>
+
+<p>localtunnel 是node写的，用起来非常简单</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>npm install -g localtunnel
+</span><span class='line'><span class="nv">$ </span>lt –port 3000
+</span><span class='line'>your url is: https://gqgh.localtunnel.me&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>这样外网打开https://gqgh.localtunnel.me 就可以访问到本地的3000端口</p>
+
+<p>但是localtunnel是国外的，公司网络刚刚搭好，经常不稳定果断抛弃转入ngrok；</p>
+
+<p>ngrok（不想折腾的可以忽略XD）</p>
+
+<p>悲催的是ngrok也是国外的，而且服务器给墙了，BUT，问题不大，我们可以pull ngrok 1.X的源码自己编译，2.0会报证书错误如果没有合法的https证书。</p>
+
+<p>好了我们来编译ngrok，噢，对了，ngrok是Go写的，编译出来直接是一个可执行文件，爽歪歪有木有，哈~</p>
+
+<p>在服务器端（每家都有一只staging服务器吧）</p>
+
+<p>NGROK_DOMAIN 设置为您自己拥有的域名，并指向Ngrok server运行的服务器</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;NGROK_DOMAIN<span class="o">=</span>”my.domain.com”
+</span><span class='line'>git clone https://github.com/inconshreveable/ngrok.git
+</span><span class='line'><span class="nb">cd </span>ngrok&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;openssl genrsa -out rootCA.key 2048
+</span><span class='line'>openssl req -x509 -new -nodes -key rootCA.key -subj “/CN<span class="o">=</span><span class="nv">$NGROK_DOMAIN</span>” -days <span class="m">5000</span> -out rootCA.pem
+</span><span class='line'>openssl genrsa -out device.key 2048
+</span><span class='line'>openssl req -new -key device.key -subj “/CN<span class="o">=</span><span class="nv">$NGROK_DOMAIN</span>” -out device.csr
+</span><span class='line'>openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cp rootCA.pem assets/client/tls/ngrokroot.crt
+</span><span class='line'><span class="c"># make clean</span>
+</span><span class='line'>make release-server release-client&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>编译完有两个可执行文件 bin/ngrok &amp; bin/ngrokd 
+将bin/ngrok copy到你本机
+在服务器上开启ngrok server</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;bin/ngrokd -tlsKey<span class="o">=</span>device.key -tlsCrt<span class="o">=</span>device.crt -domain<span class="o">=</span>”<span class="nv">$NGROK_DOMAIN</span>” -httpAddr<span class="o">=</span>”:8000” -httpsAddr<span class="o">=</span>”:8001”&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>本地端</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;NGROK_DOMAIN<span class="o">=</span>”my.domain.com”
+</span><span class='line'><span class="nb">echo</span> -e “server_addr: <span class="nv">$NGROK_DOMAIN</span>:4443<span class="se">\n</span>trust_host_root_certs: <span class="nb">false</span>” <span class="p">&amp;</span>gt<span class="p">;</span> ngrok-config
+</span><span class='line'>./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span>playmonkey <span class="m">3000</span> // 配置subdomain到本地3000端口，这样外网通过playmonkey.NGROK_DOMAIN 就可以访问到本地dev server的3000端口&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>或者用SSH forwarding</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span><span class="m">3000</span> –proto<span class="o">=</span>tcp 22&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>以上Ngrok编译&amp;配置出自 <a href="https://gist.github.com/lyoshenka/002b7fbd801d0fd21f2f">How to setup Ngrok with a self-signed SSL cert</a></p>
+
+<p>至此我们在发起微信支付时回调URL的HOST就可以设置为playmonkey.NGROK_DOMAIN</p>
+
+<p>至此我们可以愉快地开发测试 微信的oauth登录 &amp; JSAPI &amp; 支付 &amp; 支付回调，好吧，很多BUG一点都不愉快。
+另外感谢 <a href="https://ruby-china.org/ruby_sky">@ruby_sky</a> 的这篇 <a href="https://ruby-china.org/topics/26138">微信支付文章</a> 微信支付做起来如丝般顺滑；
+内微信文档看起来太蛋疼了，各种配置也是找半天，大家有兴趣我可以总结一下微信各个开发的各种配置XD。</p>
+
+<hr />
+<p>转载自 <a href="https://ruby-china.org/topics/26443">ruby-china</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[微信开发 gems]]></title>
+    <link href="http://helloyokoy.github.io/blog/wechat-gems/"/>
+    <updated>2015-10-27T15:35:10+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wechat-gems</id>
+    <content type="html"><![CDATA[<p>最近陆续有不少用Rails开发微信项目的朋友在Github上开始使用weixin_rails_middleware、weixin_authorize，也不少人谈到Ratchet，春节开始到现在，一直有做微信的开发，现在在论坛上发布出来，希望让更多人知道这些gem的存在，更快速的完成你们手中的任务。</p>
+
+<p>有问题可以前往：微信开发论坛：http://weixin-dev.com/</p>
+
+<p>代码写得不好，还请多多包涵，如果有任何问题，可以直接联系我。:)</p>
+
+<!--more-->
+
+<h4 id="rails">1:一（两）条命令搭建Rails微信版本</h4>
+
+<p>按照最简洁的速度，10分钟可以跑起一个微信的项目：
+https://github.com/lanrion/weixin_rails_middleware</p>
+
+<p>自动验证微信请求；
+一（两）条命令，一个配置，简练风格；
+支持Rails 3, Rails 4；
+支持多公众账号平台，例如类似微盟；
+支持单个用户，即一个账号，但又不想保存在数据库；
+提供回复消息辅助方法；
+提供所有微信消息类型的业务逻辑的回复处理；
+wiki 中提供自定义菜单中的实现案例；
+自动生成token；
+详细见：</p>
+
+<p>https://github.com/lanrion/weixin_rails_middleware/wiki/</p>
+
+<p>wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
+
+<p>https://github.com/lanrion/weixin_rails_middleware</p>
+
+<h4 id="api">2：微信高级API实现：</h4>
+
+<p>https://github.com/lanrion/weixin_authorize</p>
+
+<p>除 Oauth 2 未实现，其他API均已实现；
+支持Redis存储access_token；
+还是直接看wiki 吧：</p>
+
+<p>https://github.com/lanrion/weixin_authorize/wiki/Getting-Started
+wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
+
+<h4 id="ratchet-v201gem-twitterratchetrails">3：集成Ratchet v2.0.1的gem: twitter_ratchet_rails</h4>
+
+<p>即：http://goratchet.com/ 压缩后非常小，十分适合wap使用，但有一个不足之处在于，组件不够丰富，期待更丰富的实现
+没其他多余的好说，看官直接点击：</p>
+
+<p>https://github.com/lanrion/twitter_ratchet_rails</p>
+
+<p>小弟身材弱小，砖别拍的太猛，嘿，把我拍死了，就没人维护这三个gem了。:)</p>
+
+<h4 id="section">4：例子（可能没有及时更新上最新版本）</h4>
+
+<p>Rails 4: https://github.com/lanrion/weixin_rails_middleware_example</p>
+
+<p>Rails 3: https://github.com/lanrion/weixin_rails_3</p>
+
+<p>企业微信gem</p>
+
+<p>请稳步： https://ruby-china.org/topics/22479</p>
+
+<p>微信开发论坛：http://weixin-dev.com/</p>
+
+<hr />
+<p>转载自 <a href="https://ruby-china.org/topics/18439">ruby-china</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ruby gems内存泄露]]></title>
@@ -82,242 +420,9 @@
 
 <h2 id="section-5">相关资料</h2>
 
-<p><a href="https://ruby-china.org/topics/22416">RubyMotion Workshop Beijing 资料总结</a>
-<a href="http://www.rubymotion.com/download/">RubyMotion 官网</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rails gems 推荐]]></title>
-    <link href="http://helloyokoy.github.io/blog/rails-gems-recomend/"/>
-    <updated>2015-10-05T12:31:27+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/rails-gems-recomend</id>
-    <content type="html"><![CDATA[<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
+<p><a href="https://ruby-china.org/topics/22416">RubyMotion Workshop Beijing 资料总结</a></p>
 
-<h5 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h5>
-
-<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
-
-<h5 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h5>
-
-<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
-
-<h5 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h5>
-
-<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
-
-<h5 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h5>
-
-<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
-
-<!--more-->
-
-<h5 id="paperclippaperclip--rubygemsorg">5.Paperclip（paperclip | RubyGems.org）</h5>
-
-<p>paperclip基本上已经是rails的御用图片上传gem了，功能强大使用方便，但是唯一不太好的就是图片剪裁上面功能比较有限。paperclip依赖于ImageMagic，大部分linux包管理器（如apt yum portage等）中应该都能找到这个软件包。</p>
-
-<h5 id="rmagickrmagick--rubygemsorg">6.rmagick（rmagick | RubyGems.org）</h5>
-
-<p>这个gem弥补了paperclip在图片剪裁上的不足。功能十分十分十分的强大，文档也很齐全，只不过是全英文，中文资料比较少。如果项目有要开发头像剪裁上传，那么用rmagic剪裁，paperclip上传是比较好的解决方案。</p>
-
-<h5 id="friendlyidfriendlyid--rubygemsorg">7.friendly_id（friendly_id | RubyGems.org）</h5>
-
-<p>现在大部分网站都已经是友好的url地址了，如果你的rails项目还用数字作为id进行查询那就太low了。</p>
-
-<h5 id="willpaginatewillpaginate">8.will_paginate（will_paginate）</h5>
-
-<p>老版本的will_paginate分业是基于plugin方式的，新版本的will_paginate已经抛弃了这样的做法，转而使用gem的方式。这样一来安装和使用更加方便，配合一些前端的分页加载库，会让分页加载功能开发非常快捷。</p>
-
-<h5 id="ransackransack--rubygemsorg">9.ransack（ransack | RubyGems.org）</h5>
-
-<p>搜索功能一般分为分词和不分词的，如果你只想做用户和文章标题检索之类的功能，那么不分词的搜索gem比较合适，类似的gem挺多的，我常用的是这个。</p>
-
-<h5 id="sunspotsunspot--rubygemsorg">10.sunspot（sunspot | RubyGems.org）</h5>
-
-<p>接上面，全文搜索的gem也不少，sunspot对于小型项目的话，稍微有些重。如果没有那么多要求的话，sphinx也可以考虑，速度快，占用资源低。</p>
-
-<h5 id="gecodergeocoder--rubygemsorg">11.Gecoder（geocoder | RubyGems.org）</h5>
-
-<p>说实话在web上做定位确实比较乏力，尽量还是用手机客户端吧</p>
-
-<h5 id="pumapumapuma--github">12.puma（puma/puma · GitHub）</h5>
-
-<p>对于想要处理并发请求的web项目，Puma 是和 Unicorn相竞争的 Web 服务器，它能够处理并发请求。Puma 使用线程，以及工作者进程，能够更多的利用可用的 CPU。在 Puma 中，如果整个基础代码是线程安全的，那么你可用利用线程。否则，在使用 Puma 的时候，你只能使用工作者进程进行拓展。Puma的设置也比较简单，官方有详细的使用文档，RubyChina也使用Puma，个人推荐。</p>
-
-<h5 id="emojiwpetersonemoji--github">13.Emoji（wpeterson/emoji · GitHub）</h5>
-
-<p>现在只要涉及社交的项目估计很少有不用表情的了，Emoji是个集成度比较高的Emoji表情转码库，使用方便，当然大部分情况下还是要配合前端使用。</p>
-
-<p>暂时想到这么多，欢迎补充，待续。。。。</p>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：孙笛</p>
-
-<p>链接：http://www.zhihu.com/question/31083216/answer/50654456</p>
-
-<p>来源：知乎</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby on rails 快速学习]]></title>
-    <link href="http://helloyokoy.github.io/blog/ruby-fast-learn/"/>
-    <updated>2015-09-02T12:07:16+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/ruby-fast-learn</id>
-    <content type="html"><![CDATA[<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
-
-<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
-
-<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
-
-<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
-
-<!--more-->
-
-<h4 id="section">起点阶段</h4>
-
-<p>强烈建议至少具备如下知识后再开始Rails开发</p>
-
-<h4 id="html-and-css">Html and CSS</h4>
-
-<p>结构和样式不止是设计人员的事，web开发必须要熟悉Head First HTML与CSS（第2版）虽然已经出版了很久，但依然是最好的Html&amp;CSS入门书</p>
-
-<h4 id="linux">Linux</h4>
-
-<p>几乎所有的开发环境都严重依赖于GNU/Linux为主的命令行环境，因此需要学习linux的基本概念和操作</p>
-
-<p>The Linux Command Line</p>
-
-<p>目前最好的linux command line学习指南，生动，清晰，详细，无论是菜鸟还是多年的老手都能从中受益，远超过之前作为标准教材的practical guide to xx系列。No starch这个出版社既有延续至今的Hacker精神，也懂得如何发掘有趣的作者</p>
-
-<h4 id="http-and-rest">HTTP and Rest</h4>
-
-<p>Web开发对于Http的深入理解是必须的，另外Rails还使用Rest协议作为基本指导原则，所以需要深入理解Http和RestRESTful Web Services中文版 这本是目前为止最好的描述HTTP与Rest的作品，可以让你重新认识Web，更何况其中的示例是Ruby语言(因为这本书合著者是Sam Ruby)</p>
-
-<h4 id="programming">Programming</h4>
-
-<p>程序员修炼之道 这本书告诉你，如何做才能成为一个注重实效的程序员，涉及了非常多的理念和实践，虽然都不深入，但至少让你知道世界是什么样子的，是任何程序员最应该在新手阶段读的书，也是对整个业界影响最大的经典之一</p>
-
-<h4 id="git-and-version-control">Git and Version Control</h4>
-
-<p>版本控制在项目中是一开始就要使用的，不止是开发，一切事情都需要版本控制Pro Git 这本是迄今为止讲解Git最清楚最深入的书，对于新手，不建议看后面的实现原理，先读前几章了解概念和学习日常实践使用是最重要的</p>
-
-<h4 id="ruby">Ruby</h4>
-
-<p>如果只是在Rails中使用的Ruby，可以使用一些免费的快速入门教程，不过，系统地学习Ruby，可以了解到很多面向对象开发或函数式编程的思想，对于熟悉和掌握Rails帮助非常大Programming Ruby 1.9 公认的Ruby入门经典，不过对于新手来说，只推荐前半的入门部分，高阶内容可以稍后再来学习</p>
-
-<h4 id="rails">Rails</h4>
-
-<p>Learn Web Development with the Ruby on Rails Tutorial</p>
-
-<p>最后是Rails自身的学习，这本书的最新版涵盖Rails4，是目前为止最好最完整的Rails入门教程，可以在线看，还有大量的视频搭配</p>
-
-<h4 id="section-1">进阶阶段</h4>
-<p>具备下面的知识，可以让你或多或少地理解Rails Way，并真正开始写出合格的Rails应用</p>
-
-<h4 id="programming-1">Programming</h4>
-
-<p>重构</p>
-
-<p>这本”重构”是当年石破天惊的经典著作，讲解如何持续改进和让代码优雅干净，拥有直到现在还依然适用的价值，尤其为Ruby On Rails社区广泛接受，这本书有将其中的Java语言换成Ruby后的版本(重构(Ruby版) (豆瓣))</p>
-
-<p>UNIX编程艺术</p>
-
-<p>由公认的黑客领袖之一Eric S.Raymond撰写的这本书总结了长久以来的Unix领域中的设计和开发哲学，思想乃至文化体系，是了解Ruby和Rails诞生于其中的Unix黑客文化必不可少的读物</p>
-
-<h4 id="ruby-1">Ruby</h4>
-
-<p>深入理解Ruby，除了上边提到的Programming Ruby 1.9以及重构等通用编程书之外，还有以下几个选择</p>
-
-<p>Ruby编程语言</p>
-
-<p>Ruby之父松本行弘和O’Reilly的王牌作者合作，诞生了这本讲解Ruby最透彻的经典著作</p>
-
-<p>Eloquent Ruby</p>
-
-<p>Ruby社区的编程指南之一，介绍了Ruby社群的文化，品味和编程原则，强烈地反映了Ruby程序员的共同特质: 幽默，健谈，追求乐趣，热爱生活</p>
-
-<h4 id="test">Test</h4>
-
-<p>测试驱动开发(TDD)以及之后进化的行为驱动开发(BDD)是Ruby和Rails社群的核心文化之一，只有彻底理解并运用BDD，才是合格的Rails开发者</p>
-
-<p>The RSpec Book</p>
-
-<p>唯一的也是必读的BDD介绍作品，由RSpec核心成员撰写</p>
-
-<p>Git</p>
-
-<p>可以坚持把Pro Git的后半部分学习完，没有更深入和清楚的书了</p>
-
-<p>CSS</p>
-
-<p>CSS权威指南</p>
-
-<p>Eric Meyer的CSS权威指南至今仍然是CSS2讲解最全面和最深入的参考书</p>
-
-<p>Javascript and jQuery</p>
-
-<p>Web开发的交互性会越来越多，Javascript已经成为了相当严肃的编程语言</p>
-
-<p>JavaScript权威指南</p>
-
-<p>目前最全面最好的Javascript学习书籍</p>
-
-<p>jQuery基础教程 （第4版）</p>
-
-<p>唯一尚可称得上紧跟jQuery发展脚步的学习指南</p>
-
-<h4 id="rails-1">Rails</h4>
-
-<p>Rails发展的实在太快了，最好的方法也许是跟踪在线文档，不过还是推荐这本</p>
-
-<p>The Rails 4 Way</p>
-
-<p>这本书的Rails 3版本讲解Rails的哲学和细节相当到位，不过Rails 4版本还没有出版，非常值得在今年3月份第一时间拿下它。</p>
-
-<p>— More</p>
-
-<p>上边的书籍都读过的话，可能你终于能了解到Rails背后涉及的概念和实践有多么庞大惊人，也了解到了还有多么深的知识鸿沟需要跨越，了解到了一切都还只是开始，不过值得庆幸的是，一切事情都需要个开始</p>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：李路</p>
-
-<p>链接：http://www.zhihu.com/question/19552402/answer/22336708</p>
-
-<p>来源：知乎</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby招聘]]></title>
-    <link href="http://helloyokoy.github.io/blog/rubyzhao-pin/"/>
-    <updated>2015-07-09T16:24:29+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/rubyzhao-pin</id>
-    <content type="html"><![CDATA[<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
-
-<!--more-->
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/9d7da2a7d66050e201486c8168f269a5.jpg" alt="alt text" title="Title" /></p>
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/ac3ec0fc602bff211e45a87e87d02a13.jpg" alt="alt text" title="Title" /></p>
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/68f11d523efd63d722aa71cd109e3308.jpg" alt="alt text" title="Title" /></p>
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/cf83aeab19c568f2448e80ba517d4891.jpg" alt="alt text" title="Title" /></p>
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/30831a38a59aaabd2618494454670792.jpg" alt="alt text" title="Title" /></p>
-
-<p>有意者请发送简历至： <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#109;&#105;&#110;&#046;&#103;&#111;&#110;&#103;&#064;&#100;&#106;&#105;&#046;&#099;&#111;&#109;">&#109;&#105;&#110;&#046;&#103;&#111;&#110;&#103;&#064;&#100;&#106;&#105;&#046;&#099;&#111;&#109;</a></p>
+<p><a href="http://www.rubymotion.com/download/">RubyMotion 官网</a></p>
 ]]></content>
   </entry>
   
