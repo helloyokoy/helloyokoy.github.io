@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>BryanFu Blog</title>
+	<title>gemfile 详解 - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
@@ -121,18 +121,9 @@
 	
 		
 	
-	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/gem-description/">
-		
-			Gemfile 详解</a>
-	</h2>
-	<div class="entry-content">
-		<p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Gemfile 详解</h2>
+	<div class="entry-content"><p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
 
 <p>原文：<a href="http://tosbourn.com/what-is-the-gemfile/">http://tosbourn.com/what-is-the-gemfile/</a></p>
 
@@ -455,10 +446,7 @@ gem "rails", bitbucket: "rails"
 
 <hr />
 <p>转载自 <a href="https://ruby-china.org/topics/26655">ruby-china</a></p>
-
-		
-		
-	</div>
+</div>
 
 
 <div class="meta">
@@ -480,102 +468,50 @@ gem "rails", bitbucket: "rails"
 </article>
 
 
-    <article class="post">
-	<h2 class="title">
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
 		
-		<a href="/blog/tech-learn/">
 		
-			技术学习态度</a>
-	</h2>
-	<div class="entry-content">
-		<p>本文仅谈业余时间的技术学习，不谈工作中的要求。</p>
-
-<p>技术固然要时时学习，因为更新快嘛，但对待技术上学什么，怎么花时间学，需要一个指导思想，否则浪费时间而且效果不好。</p>
-
-<ol>
-  <li>
-    <p>抓住主干，而非细节
-最近很火的一句话是“你不要用战术上的勤奋掩盖战略上的懒惰”。放到技术学习上就先主理解主干后关注枝叶，比如C++的好书很多，《Effective C++》和《Inside C++ Object Model》是好书，但它们都不是用来入门的，为什么? 因为它们不是主干，语言实现细节和各种坑你都了解了，碰到实际问题依然用不好C++。</p>
-  </li>
-  <li>
-    <p>尽量不折腾
-不去折腾那些不成熟的技术，尽量用较为成熟的技术。在一年多之前，我用AngularJS，MongoDB的时候把我可给坑惨了，所以我下决心如果不因为工作坚决不碰Go语言，Node.js，要学不如学Erlang。新技术应用场景不清晰，前景不清晰，生态环境弱，类库少，坑多不容易跳出来。简而言之就是风险大于收益。同理我也不喜欢用Linux而喜欢Mac，Vim的包也是别人弄好了直接install的。</p>
-  </li>
-</ol>
-
+		
+		
 
 		
-		<a href="/blog/tech-learn/" class="more-link">阅读全文</a>
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
 	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月3 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
 	
 </div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/surge/">
-		
-			Surge</a>
-	</h2>
-	<div class="entry-content">
-		<p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
-
-<p><img src="https://g.owind.com/content/images/2015/10/surgelogo.jpg" alt="alt text" title="surge" /></p>
-
-<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
-
-<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
-
-
-		
-		<a href="/blog/surge/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
 
 
 
 
-2015 年11 月2 日</div>
-	<div class="tags">
 
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/gem-description" data-title="gemfile 详解" data-url="http://helloyokoy.github.io/blog/gem-description/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
 
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-<nav id="pagenavi">
-    
-    
-        <a href="/posts/2" class="next">下一页</a>
-    
-    <div class="center"><a href="/blog/archives">文章列表</a></div>
-</nav>
-</div>
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
 	<footer id="footer" class="inner">Copyright &copy; 2015
 
     BryanFu
