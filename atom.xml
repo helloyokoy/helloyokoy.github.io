@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-04T22:30:58+08:00</updated>
+  <updated>2015-11-04T22:33:29+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[web开发cache]]></title>
+    <title type="html"><![CDATA[Web开发cache]]></title>
     <link href="http://helloyokoy.github.io/blog/web-cache/"/>
     <updated>2015-11-04T16:55:48+08:00</updated>
     <id>http://helloyokoy.github.io/blog/web-cache</id>
@@ -3903,7 +3903,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Rails gems 推荐]]></title>
+    <title type="html"><![CDATA[Rails Gems 推荐]]></title>
     <link href="http://helloyokoy.github.io/blog/rails-gems-recomend/"/>
     <updated>2015-10-05T12:31:27+08:00</updated>
     <id>http://helloyokoy.github.io/blog/rails-gems-recomend</id>
@@ -4272,7 +4272,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[ruby on rails 快速学习]]></title>
+    <title type="html"><![CDATA[Ruby On Rails 快速学习]]></title>
     <link href="http://helloyokoy.github.io/blog/ruby-fast-learn/"/>
     <updated>2015-09-02T12:07:16+08:00</updated>
     <id>http://helloyokoy.github.io/blog/ruby-fast-learn</id>
