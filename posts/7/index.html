@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin! 概述 &hellip;">
+	<meta name="description" content="objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,32 +127,37 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/iosduo-xian-cheng/">
+		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
 		
-			IOS多线程</a>
+			Ios依赖注入框架objection</a>
 	</h2>
 	<div class="entry-content">
 		<blockquote>
-  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
+  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
 </blockquote>
 
-<h2 id="section">概述</h2>
-<hr />
-<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
+<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
 
-<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
-
-<pre><code>Pthreads
-NSThread
-GCD
-NSOperation &amp; NSOperationQueue
+<pre><code>- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+	button.frame = CGRectMake(100, 100, 100, 30);
+	[self.view addSubview:button];
+}
+ 
+- (void)buttonTapped
+{
+	ViewControllerB *vc = [[ViewControllerB alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
+}
 </code></pre>
 
-<p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
+<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
 
 
 		
-		<a href="/blog/iosduo-xian-cheng/" class="more-link">阅读全文</a>
+		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -162,7 +167,7 @@ NSOperation &amp; NSOperationQueue
 
 
 
-2015 年6 月18 日</div>
+2015 年7 月10 日</div>
 	<div class="tags">
 
 
@@ -178,24 +183,18 @@ NSOperation &amp; NSOperationQueue
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/eventbusjie-shao/">
+		<a href="/blog/rubyzhao-pin/">
 		
-			Eventbus介绍</a>
+			Ruby招聘</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
+		<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
 
-<blockquote>
-  <p>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。</p>
-</blockquote>
-
-<h3 id="eventbus">1.下载EventBus的类库</h3>
-
-<p>源码：<a href="https://github.com/greenrobot/EventBus" title="url">https://github.com/greenrobot/EventBus</a></p>
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
 
 
 		
-		<a href="/blog/eventbusjie-shao/" class="more-link">阅读全文</a>
+		<a href="/blog/rubyzhao-pin/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -205,11 +204,11 @@ NSOperation &amp; NSOperationQueue
 
 
 
-2015 年5 月10 日</div>
+2015 年7 月9 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/android/'>android</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>
@@ -221,41 +220,28 @@ NSOperation &amp; NSOperationQueue
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/androidkai-yuan-kuang-jia/">
+		<a href="/blog/android-studio/">
 		
-			Android开源框架</a>
+			Android Studio比Eclipse好在那里</a>
 	</h2>
 	<div class="entry-content">
-		<h3 id="volley">1、volley</h3>
+		<h3 id="section">优点：</h3>
 
-<p>项目地址 https://github.com/smanikandan14/Volley-demo</p>
+<h4 id="google">1、Google推出的</h4>
 
-<ol>
-  <li>JSON，图像等的异步下载；</li>
-  <li>网络请求的排序（scheduling）</li>
-  <li>网络请求的优先级处理</li>
-  <li>缓存</li>
-  <li>多级别取消请求</li>
-  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
-</ol>
+<p>毫无疑问，这个是它的最大优势，Android Stuido是Google推出，专门为Android“量身订做”的，是Google大力支持的一款基于IntelliJ idea改造的IDE，google的工程师团队肯定会不断完善，上升空间非常大，这个应该能说明为什么它是Android的未来</p>
 
-<h3 id="android-async-http">2、android-async-http</h3>
+<h4 id="section-1">2、速度更快</h4>
 
-<p>项目地址：https://github.com/loopj/android-async-http</p>
+<p>Eclipse的启动速度、响应速度、内存占用一直被诟病，相信大家这点应该深有体会，而且经常遇到卡死状态。Studio不管哪一个方面都全面领先Eclipse。这点可能在windows上没有表现出来，win上运行studio同样会出现卡顿现象，但这只能说win平台还没优化好，毕竟还没有发布正式版，或者说windows系统本身就很卡顿，你还能指望它做什么呢。</p>
 
-<p>文档介绍：http://loopj.com/android-async-http/</p>
+<h4 id="ui">3、UI更漂亮</h4>
 
-<ol>
-  <li>在匿名回调中处理请求结果</li>
-  <li>在UI线程外进行http请求</li>
-  <li>文件断点上传</li>
-  <li>智能重试</li>
-  <li>默认gzip压缩</li>
-  <li>支持解析成Json格式</li>
-  <li>可将Cookies持久化到SharedPreferences
+<p>I/O上演示的那款黑色主题真是太棒了，极客范，Stuido自带的Darcula主题的炫酷黑界面实在是高大上，相比而言Eclipse下的黑色主题太low了</p>
+
 
 		
-		<a href="/blog/androidkai-yuan-kuang-jia/" class="more-link">阅读全文</a>
+		<a href="/blog/android-studio/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -265,7 +251,7 @@ NSOperation &amp; NSOperationQueue
 
 
 
-2015 年5 月9 日</div>
+2015 年7 月4 日</div>
 	<div class="tags">
 
 

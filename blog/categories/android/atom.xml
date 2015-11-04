@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-04T19:46:12+08:00</updated>
+  <updated>2015-11-04T20:23:42+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,163 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sublime Text 2 Plugin]]></title>
+    <link href="http://helloyokoy.github.io/blog/sublime-text-2-plugin/"/>
+    <updated>2015-11-01T19:58:52+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/sublime-text-2-plugin</id>
+    <content type="html"><![CDATA[<p>Sublime Text 2是一个轻量、简洁、高效、跨平台的编辑器，方便的配色以及兼容vim快捷键等各种优点博得了很多前端开发人员的喜爱。之前也不并知道它有这么多插件的扩展与支持，直到vincent问到有没有在用cTags插件，才知道原来Sublime通过插件也可以实现一些大型IDE的功能，遂google一下，本篇Blog就来介绍下Sublime下经常使用的插件。</p>
+
+<h4 id="package-control">安装包控制（Package Control）</h4>
+
+<p>打开Sublime Text 2，点击 Tools -&gt; Command Palette 调出控制台Console；</p>
+
+<p>将以下代码粘贴进命令行中并回车：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import urllib2,os;pf=’Package Control.sublime-package’;ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),’wb’).write(urllib2.urlopen(‘http://sublime.wbond.net/’+pf.replace(‘ ‘,’%20’)).read())&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>重启 Sublime Text 2，如果在 Preferences -&gt; Package Settings中见到Package Control这一项，就说明安装成功了。</p>
+
+<!--more-->
+
+<h4 id="alignment">安装Alignment插件</h4>
+<p>对于某些喜欢整齐的程序员来说，看到下面这种情况可能是让其无法忍受的：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var joe = ‘joe’;
+</span><span class='line'>var johnny = ‘johnny’;
+</span><span class='line'>var quaid = ‘quaid’;</span></code></pre></td></tr></table></div></figure></p>
+
+<p>一定要改成这样才会安心：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>var joe    = ‘joe’;
+</span><span class='line'>var johnny = ‘johnny’;
+</span><span class='line'>var quaid  = ‘quaid’;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>Sublime Text 2 之中，一个 Sublime Alignment 插件也可以轻松实现。</p>
+
+<ol>
+  <li>
+    <p>按下 Ctrl + Shift + P 调出命令面板。</p>
+  </li>
+  <li>
+    <p>输入 install 调出 Package Control: Install Package 选项，按下回车。</p>
+  </li>
+  <li>
+    <p>在列表中找到 Alignment，按下回车进行安装。</p>
+  </li>
+  <li>
+    <p>重启 Sublime Text 2 使之生效。现在通过选中文本并按 Ctrl + Shift + A 就可以进行对齐操作了。</p>
+  </li>
+</ol>
+
+<h4 id="vim">Vim模式</h4>
+
+<p>是的，Sublime Text 2已经支持 Vim 的编辑模式了，如果更喜欢 Vim 的编辑模式，可以通过以下方法来激活 Vintage mode：</p>
+
+<ol>
+  <li>
+    <p>按下 Ctrl + Shift + P 调出命令面板。</p>
+  </li>
+  <li>
+    <p>输入 settings user 调出 Preferences：Settings - User，并按下回车。</p>
+  </li>
+  <li>
+    <p>这时会打开一个 Preferences.sublime-settings 的文件， 如果是第一次修改，它应该是个空文件，把以下文本粘贴进去：</p>
+
+    <p>{
+  		“ignored_packages”: []
+ }</p>
+  </li>
+  <li>
+    <p>保存这个文件，这时按下 ESC 键，再按下一些你熟悉的 Vim 命令，是不是很有亲切感？</p>
+  </li>
+</ol>
+
+<h4 id="soda-">安装 Soda 主题</h4>
+<p>这里所讲的主题不同于针对代码的 Color Scheme，是指针对 Sublime 程序本身的主题，目前可以安装的是 Ian Hill 的 Soda。</p>
+
+<p>因为源中已经添加，所以这款主题的安装同样可以通过 Package Control，非常方便。目前 Soda 主题提供了明暗两种风格。</p>
+
+<p>激活方法，同样要修改 Preferences：Settings - User：</p>
+
+<ol>
+  <li>
+    <p>按下 Ctrl + Shift + P 调出命令面板。</p>
+  </li>
+  <li>
+    <p>输入 user settings 调出 Preferences：Settings - User，并按下回车。</p>
+  </li>
+  <li>
+    <p>添加以下代码激活 Soda Light 主题：</p>
+
+    <p>{
+  		“theme”: “Soda Light.sublime-theme”
+ }</p>
+
+    <p>添加以下代码激活 Soda Dark 主题：</p>
+
+    <p>{
+  		“theme”: “Soda Dark.sublime-theme”
+ }</p>
+  </li>
+  <li>
+    <p>保存生效。</p>
+  </li>
+</ol>
+
+<h4 id="ctags">安装cTags插件</h4>
+<p>这个插件能跨文件跳转，实现像eclipse可那样以追踪函数的功能，从此更喜欢上Sublime了。安装方法:</p>
+
+<ol>
+  <li>
+    <p>按下 Ctrl + Shift + P 调出命令面板。</p>
+  </li>
+  <li>
+    <p>输入 install 调出 Package Control: Install Package 选项，按下回车。</p>
+  </li>
+  <li>
+    <p>在列表中找到 ctags，按下回车进行安装。</p>
+  </li>
+  <li>
+    <p>ubuntu下安装运行命令：sudo apt-get install exuberant-ctags。</p>
+  </li>
+  <li>
+    <p>在sublime项目文件夹右键， 会出现Ctag:Rebuild Tags 的菜单。点击它，然后会生成.tags的文件。</p>
+  </li>
+</ol>
+
+<p>然后在你代码中， 光标放在某个函数上， 点击ctrl+shift+鼠标左键 就可以跳转到函数声明的地方。</p>
+
+<h4 id="zen-coding">Zen Coding</h4>
+<p>如果经常要写一些前端的代码，这个插件也是必不可少的，还不知道ZenCoding的同学推荐去看一下：《Zen Coding: 一种快速编写HTML/CSS代码的方法》</p>
+
+<h4 id="git">Git</h4>
+<p>一个整合GIT和Sublime Text的插件，执行了很多你需要使用的命令。</p>
+
+<hr />
+<p>转载自 <a href="http://stormzhang.com/devtools/2012/12/30/sublime-plugin/">stormzhang博客</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[android 开发遇到的坑]]></title>
@@ -98,6 +255,102 @@
 <p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
 
 <p>来源：知乎</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android Genymotion模拟器]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-genymotion/"/>
+    <updated>2015-09-04T19:48:35+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/android-genymotion</id>
+    <content type="html"><![CDATA[<p>相信很多Android开发者一定受够了速度慢、体验差效率及其地下的官方模拟器了,自己在平时的开发中几乎是不会用模拟器的，等的时间太久了，但是在一些尺寸适配或是兼容性测试的时候没有足够多的机器进行测试，这个时候就必须得用模拟器来代替了。用的久了真的不堪忍受那龟速般的模拟器，好在今天发现了一款神级模拟器Genymotion，就像发现新大陆般喜爱，下面就来介绍下。</p>
+
+<h4 id="genymotion">Genymotion简介</h4>
+<p>Genymotion是一套完整的工具，它提供了Android虚拟环境。如果你没有物理机器，又不想忍受官方模拟器的折磨，Genymotion会是你非常不错的选择， 它简直就是开发者、测试人员、推销者甚至是游戏玩家的福音。</p>
+
+<!--more-->
+
+<p><img src="http://a1.jikexueyuan.com/home/201501/16/5bbe/54b88953518c6.jpg" alt="icon" /></p>
+
+<p>Genymotion支持Windows、Linux和Mac OS，容易安装和使用，下面就然我们一起来体验神器给我们带来的快感吧。</p>
+
+<h4 id="genymotion-1">Genymotion特性</h4>
+<p>最好的Android模拟体验</p>
+
+<ul>
+  <li>
+    <p>支持OpenGL加速，提供最好的3D性能体验</p>
+  </li>
+  <li>
+    <p>可以从Google Play安装应用</p>
+  </li>
+  <li>
+    <p>支持全屏并改善了使用感受</p>
+  </li>
+</ul>
+
+<p>全控制</p>
+
+<ul>
+  <li>
+    <p>可同时启动多个模拟器</p>
+  </li>
+  <li>
+    <p>支持传感器管理，如电池状态、GPS、Accelerator加速器</p>
+  </li>
+  <li>
+    <p>支持Shell控制模拟器</p>
+  </li>
+</ul>
+
+<p>完全兼容ADB，您可以从主机控制您的模拟器</p>
+
+<p>管理设备</p>
+
+<ul>
+  <li>
+    <p>易安装</p>
+  </li>
+  <li>
+    <p>兼容Microsoft Windows 32/64 bits, Mac OSX 10.5+ and Linux 32/64 bits</p>
+  </li>
+  <li>
+    <p>可以配置模拟器参数，如屏幕分辨率、内存大小、CPU数量</p>
+  </li>
+  <li>
+    <p>轻松下载、部署最新的Genymotion虚拟设备。</p>
+  </li>
+</ul>
+
+<p>从Eclipse启动虚拟设备</p>
+
+<ul>
+  <li>使用Genymotion测试您的应用</li>
+</ul>
+
+<h4 id="section">安装与配置</h4>
+
+<p>安装基本是一路next，虽然Genymotion是免费版的，但是要求注册个账号才可以配置模拟器，配置好启动真是神速啊。</p>
+
+<h4 id="eclipse">Eclipse插件安装</h4>
+
+<p>Genymotion还支持Eclipse IDE，这大大方便了我们使用Genymotion来开发应用。安装方式：</p>
+
+<ul>
+  <li>
+    <p>启动Eclipse，Help-&gt;Install New Software…-&gt;Add</p>
+  </li>
+  <li>
+    <p>填写一下信息：</p>
+
+    <p>Name: Genymobile</p>
+
+    <p>Location: http://plugins.genymotion.com/eclipse</p>
+  </li>
+</ul>
+
+<p>接下来跟安装adt的流程一样，指导完成
+最后附上官网地址：<a href="http://www.genymotion.com/">http://www.genymotion.com/</a></p>
 ]]></content>
   </entry>
   
@@ -333,181 +586,6 @@ public Socket createSocket() throws IOException {
   <li><a href="http://www.fresco-cn.org/docs/index.html" title="Title">文档</a></li>
   <li><a href="https://github.com/facebook/fresco" title="Title">GitHub</a>的源码</li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[eventbus介绍]]></title>
-    <link href="http://helloyokoy.github.io/blog/eventbusjie-shao/"/>
-    <updated>2015-05-10T21:37:33+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/eventbusjie-shao</id>
-    <content type="html"><![CDATA[<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
-
-<blockquote>
-  <p>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。</p>
-</blockquote>
-
-<h3 id="eventbus">1.下载EventBus的类库</h3>
-
-<p>源码：<a href="https://github.com/greenrobot/EventBus" title="url">https://github.com/greenrobot/EventBus</a></p>
-
-<!--more-->
-
-<h3 id="section">2.基本使用</h3>
-
-<ol>
-  <li>
-    <p>自定义一个类，可以是空类，比如：</p>
-
-    <pre><code> public class AnyEventType {  
-     public AnyEventType(){}  
- }  
-</code></pre>
-  </li>
-  <li>
-    <p>在要接收消息的页面注册：</p>
-
-    <pre><code> eventBus.register(this);  
-</code></pre>
-  </li>
-  <li>
-    <p>发送消息</p>
-
-    <pre><code> eventBus.post(new AnyEventType event);  
-</code></pre>
-  </li>
-  <li>
-    <p>接受消息的页面实现(共有四个函数，各功能不同，这是其中之一，可以选择性的实现，这里先实现一个)：</p>
-
-    <pre><code> public void onEvent(AnyEventType event) {}  
-</code></pre>
-  </li>
-  <li>
-    <p>解除注册</p>
-
-    <pre><code> eventBus.unregister(this);  
-</code></pre>
-  </li>
-</ol>
-
-<p>详细教程: <a href="http://blog.csdn.net/harvic880925/article/details/40660137" title="url">http://blog.csdn.net/harvic880925/article/details/40660137</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[android开源框架]]></title>
-    <link href="http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia/"/>
-    <updated>2015-05-09T17:42:35+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia</id>
-    <content type="html"><![CDATA[<h3 id="volley">1、volley</h3>
-
-<p>项目地址 https://github.com/smanikandan14/Volley-demo</p>
-
-<ol>
-  <li>JSON，图像等的异步下载；</li>
-  <li>网络请求的排序（scheduling）</li>
-  <li>网络请求的优先级处理</li>
-  <li>缓存</li>
-  <li>多级别取消请求</li>
-  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
-</ol>
-
-<h3 id="android-async-http">2、android-async-http</h3>
-
-<p>项目地址：https://github.com/loopj/android-async-http</p>
-
-<p>文档介绍：http://loopj.com/android-async-http/</p>
-
-<ol>
-  <li>在匿名回调中处理请求结果</li>
-  <li>在UI线程外进行http请求</li>
-  <li>文件断点上传</li>
-  <li>智能重试</li>
-  <li>默认gzip压缩</li>
-  <li>支持解析成Json格式</li>
-  <li>可将Cookies持久化到SharedPreferences
-<!--more-->
-###3、Afinal框架</li>
-</ol>
-
-<p>项目地址：https://github.com/yangfuhai/afinal</p>
-
-<p>主要有四大模块：</p>
-
-<ol>
-  <li>数据库模块：android中的orm框架，使用了线程池对sqlite进行操作。</li>
-  <li>注解模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</li>
-  <li>网络模块：通过httpclient进行封装http数据请求，支持ajax方式加载，支持下载、上传文件功能。</li>
-  <li>图片缓存模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</li>
-  <li>
-    <h3 id="xutils">4、xUtils框架</h3>
-  </li>
-</ol>
-
-<p>项目地址：https://github.com/wyouflf/xUtils</p>
-
-<p>主要有四大模块：</p>
-
-<ol>
-  <li>数据库模块：android中的orm框架，一行代码就可以进行增删改查；
-         支持事务，默认关闭；
-         可通过注解自定义表名，列名，外键，唯一性约束，NOT NULL约束，CHECK约束等（需要混淆的时候请注解表名和列名）；
-         支持绑定外键，保存实体时外键关联实体自动保存或更新；
-         自动加载外键关联实体，支持延时加载；
-         支持链式表达查询，更直观的查询语义，参考下面的介绍或sample中的例子。</li>
-  <li>注解模块：android中的ioc框架，完全注解方式就可以进行UI，资源和事件绑定；
-         新的事件绑定方式，使用混淆工具混淆后仍可正常工作；
-         目前支持常用的20种事件绑定，参见ViewCommonEventListener类和包com.lidroid.xutils.view.annotation.event。</li>
-  <li>网络模块：支持同步，异步方式的请求；
-         支持大文件上传，上传大文件不会oom；
-         支持GET，POST，PUT，MOVE，COPY，DELETE，HEAD，OPTIONS，TRACE，CONNECT请求；
-         下载支持301/302重定向，支持设置是否根据Content-Disposition重命名下载的文件；
-         返回文本内容的请求(默认只启用了GET请求)支持缓存，可设置默认过期时间和针对当前请求的过期时间。</li>
-  <li>图片缓存模块：加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象；
-         支持加载网络图片和本地图片；
-         内存管理使用lru算法，更好的管理bitmap内存；
-         可配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等…</li>
-</ol>
-
-<h3 id="thinkandroid">5、ThinkAndroid</h3>
-
-<p>项目地址：https://github.com/white-cat/ThinkAndroid</p>
-
-<p>主要有以下模块：</p>
-
-<ol>
-  <li>MVC模块：实现视图与模型的分离。</li>
-  <li>ioc模块：android中的ioc模块，完全注解方式就可以进行UI绑定、res中的资源的读取、以及对象的初始化。</li>
-  <li>数据库模块：android中的orm框架，使用了线程池对sqlite进行操作。</li>
-  <li>http模块：通过httpclient进行封装http数据请求，支持异步及同步方式加载。</li>
-  <li>缓存模块：通过简单的配置及设计可以很好的实现缓存，对缓存可以随意的配置</li>
-  <li>图片缓存模块：imageview加载图片的时候无需考虑图片加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。</li>
-  <li>配置器模块：可以对简易的实现配对配置的操作，目前配置文件可以支持Preference、Properties对配置进行存取。</li>
-  <li>日志打印模块：可以较快的轻易的是实现日志打印，支持日志打印的扩展，目前支持对sdcard写入本地打印、以及控制台打印</li>
-  <li>下载器模块:可以简单的实现多线程下载、后台下载、断点续传、对下载进行控制、如开始、暂停、删除等等。</li>
-  <li>网络状态检测模块：当网络状态改变时，对其进行检</li>
-</ol>
-
-<h3 id="loonandroid">6、LoonAndroid</h3>
-
-<p>项目地址：https://github.com/gdpancheng/LoonAndroid</p>
-
-<p>主要有以下模块：</p>
-
-<ol>
-  <li>自动注入框架（只需要继承框架内的application既可）</li>
-  <li>图片加载框架（多重缓存，自动回收，最大限度保证内存的安全性）</li>
-  <li>网络请求模块（继承了基本上现在所有的http请求）</li>
-  <li>eventbus（集成一个开源的框架）</li>
-  <li>验证框架（集成开源框架）</li>
-  <li>json解析（支持解析成集合或者对象）</li>
-  <li>数据库（不知道是哪位写的 忘记了）</li>
-  <li>多线程断点下载（自动判断是否支持多线程，判断是否是重定向）</li>
-  <li>自动更新模块</li>
-  <li>一系列工具类</li>
-</ol>
-
 ]]></content>
   </entry>
   

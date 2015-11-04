@@ -217,28 +217,27 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/wechat-develop-environment/">
+		<a href="/blog/sublime-text-2-plugin/">
 		
-			Wechat 开发环境搭建</a>
+			Sublime Text 2 Plugin</a>
 	</h2>
 	<div class="entry-content">
-		<p>由于微信开发都是在微信内浏览器运行，不管是登陆还是支付都不能在PC开发端愉快地玩耍，但世界我们还是需要拯救的。</p>
+		<p>Sublime Text 2是一个轻量、简洁、高效、跨平台的编辑器，方便的配色以及兼容vim快捷键等各种优点博得了很多前端开发人员的喜爱。之前也不并知道它有这么多插件的扩展与支持，直到vincent问到有没有在用cTags插件，才知道原来Sublime通过插件也可以实现一些大型IDE的功能，遂google一下，本篇Blog就来介绍下Sublime下经常使用的插件。</p>
 
-<p>由于自己换了新电脑，第一次做微信开发跟大家分享一下我的开发环境，欢迎拍砖交流。</p>
+<h4 id="package-control">安装包控制（Package Control）</h4>
 
-<p>一般的第三方开发永远离不开两个配置，域名 &amp; 回调，有一些平台支持localhost的域名&amp;回调会方便，更有支持随意更改端口的，微信上面貌似都没有 。</p>
+<p>打开Sublime Text 2，点击 Tools -&gt; Command Palette 调出控制台Console；</p>
 
-<p>好了，假定我们的域名是playmonkey.me</p>
+<p>将以下代码粘贴进命令行中并回车：</p>
 
-<h2 id="section">域名</h2>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>微信登陆，JSAPI以及支付都有域名限制，所以需要让手机微信上打开palymonkey.me时，访问到我们本地的development server。</p>
-
-<p>干这个勾当的当属 Charles 神器。</p>
+<p>重启 Sublime Text 2，如果在 Preferences -&gt; Package Settings中见到Package Control这一项，就说明安装成功了。</p>
 
 
 		
-		<a href="/blog/wechat-develop-environment/" class="more-link">阅读全文</a>
+		<a href="/blog/sublime-text-2-plugin/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -248,11 +247,11 @@
 
 
 
-2015 年10 月29 日</div>
+2015 年11 月1 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>
