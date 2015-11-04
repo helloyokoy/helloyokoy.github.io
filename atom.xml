@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-03T16:30:48+08:00</updated>
+  <updated>2015-11-04T19:46:12+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,594 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[web开发cache]]></title>
+    <link href="http://helloyokoy.github.io/blog/web-cache/"/>
+    <updated>2015-11-04T16:55:48+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/web-cache</id>
+    <content type="html"><![CDATA[<p>总结web应用中常用的各种cache</p>
+
+<p>cache是提高应用性能重要的一个环节，写篇文章总结一下用过的各种对于动态内容的cache。
+文章以Nginx，Rails，Mysql，Redis作为例子，换成其他web服务器，语言，数据库，缓存服务都是类似的。
+以下是3层的示意图，方便后续引用：</p>
+
+<pre><code>                      +-------+
+1                     | Nginx |
+                      +-+-+-+-+
+                        | | |
+        +---------------+ | +---------------+
+        |                 |                 |
+    +---+---+         +---+---+         +---+---+
+2   |Unicorn|         |Unicorn|         |Unicorn|
+    +---+---+         +---+---+         +---+---+
+        |                 |                 |
+        |                 |                 |
+        |             +---+---+             |
+3        +-------------+  D B  +-------------+
+                      +-------+
+</code></pre>
+
+<!--more-->
+
+<ol>
+  <li>
+    <h2 id="section">客户端缓存</h2>
+  </li>
+</ol>
+
+<p>一个客户端经常会访问同一个资源，比如用浏览器访问网站首页或查看同一篇文章，或用app访问同一个api，如果该资源和他之前访问过的没有任何改变，就可以利用http规范中的304 Not Modified 响应头( http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5 )，直接用客户端的缓存，而无需在服务器端再生成一次内容。
+在Rails里面内置了fresh_when这个方法，一行代码就可以完成：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class ArticlesController
+</span><span class="line">  def show
+</span><span class="line">    @article = Article.find(params[:id])
+</span><span class="line">    fresh_when :last_modified =&gt; @article.updated_at.utc, :etag =&gt; @article
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>下次用户再访问的时候，会对比request header里面的If-Modified-Since和If-None-Match，如果相符合，就直接返回304，而不再生成response body。</p>
+
+<p>但是这样会遇到一个问题，假设我们的网站导航有用户信息，一个用户在未登陆专题访问了一下，然后登陆以后再访问，会发现页面上显示的还是未登陆状态。或者在app访问一篇文章，做了一下收藏，下次再进入这篇文章，还是显示未收藏状态。解决这个问题的方法很简单，将用户相关的变量也加入到etag的计算里面：</p>
+
+<pre><code>fresh_when :etag =&gt; [@article.cache_key, current_user.id]
+fresh_when :etag =&gt; [@article.cache_key, current_user_favorited] 另外提一个坑，如果nginx开启了gzip，对rails执行的结果进行压缩，会将rails输出的etag header干掉，nginx的开发人员说根据rfc规范，对proxy_pass方式处理必须这样（因为内容改变了），但是我个人认为没这个必要，于是用了粗暴的方法，直接将src/http/modules/ngx_http_gzip_filter_module.c这个文件里面的这行代码注释掉，然后重新编译nginx：
+
+//ngx_http_clear_etag(r); 或者你可以选择不改变nginx源代码，将gzip off掉，将压缩用Rack中间件来处理：
+
+config.middleware.use Rack::Deflater 除了在controller里面指定fresh_when以外，rails框架默认使用Rack::ETag middleware，它会自动给无etag的response加上etag，但是和fresh_when相比，自动etag能够节省的只是客户端时间，服务器端还是一样会执行所有的代码，用curl来对比一下。 Rack::ETag自动加入etag：
+</code></pre>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">curl -v http://localhost:3000/articles/1
+</span><span class="line">&lt; Etag: "bf328447bcb2b8706193a50962035619"
+</span><span class="line">&lt; X-Runtime: 0.286958
+</span><span class="line">curl -v http://localhost:3000/articles/1 --header 'If-None-Match: "bf328447bcb2b8706193a50962035619"'
+</span><span class="line">&lt; X-Runtime: 0.293798</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>用fresh_when：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">curl -v http://localhost:3000/articles/1 --header 'If-None-Match: "bf328447bcb2b8706193a50962035619"'
+</span><span class="line">&lt; X-Runtime: 0.033884</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ol>
+  <li>
+    <h2 id="nginx">Nginx缓存</h2>
+  </li>
+</ol>
+
+<p>有一些资源可能会被调用很多，又无关用户状态，并且很少改变，比如新闻app上的列表api，购物网站上ajax请求分类菜单，可以考虑用Nginx来做缓存。
+主要有2种实现方法：
+####A. 动态请求静态文件化
+在rails请求完成以后，将结果保存成静态文件，后续请求就会直接由nginx提供静态文件内容，用after_filter来实现一下：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class CategoriesController &lt; ActionController::Base
+</span><span class="line">  after_filter :generate_static_file, :only =&gt; [:index]
+</span><span class="line">
+</span><span class="line">  def index
+</span><span class="line">    @categories = Category.all
+</span><span class="line">  end
+</span><span class="line">
+</span><span class="line">  def generate_static_file
+</span><span class="line">    File.open(Rails.root.join('public', 'categories'), 'w') do |f|
+</span><span class="line">      f.write response.body
+</span><span class="line">    end
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>另外我们需要在任何分类更新的时候，删除掉这个文件，避免缓存不刷新的问题：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Category &lt; ActiveRecord::Base
+</span><span class="line">  after_save :delete_static_file
+</span><span class="line">  after_destroy :delete_static_file
+</span><span class="line">
+</span><span class="line">  def delete_static_file
+</span><span class="line">    File.delete Rails.root.join('public', 'categories')
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Rails 4之前，处理这种生成静态文件缓存可以用内置的caches_page， rails 4之后变成了一个独立gem actionpack-page_caching，和手工代码对比一下，</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class CategoriesController &lt; ActionController::Base
+</span><span class="line">  caches_page :index
+</span><span class="line">
+</span><span class="line">  def update
+</span><span class="line">    #...
+</span><span class="line">    expire_page action: 'index'
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果只有一台服务器，这个方法简单又实用，但是如果有多台服务器，就会出现更新分类只能刷新自己本身这台服务器缓存的问题，可以用nfs来共享静态资源目录解决，或者用第2种：</p>
+
+<h4 id="b-">B. 静态化到集中缓存服务</h4>
+<p>首先我们得让Nginx有直接访问缓存的能力：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">upstream redis {
+</span><span class="line">    server redis_server_ip:6379;
+</span><span class="line">  }
+</span><span class="line">
+</span><span class="line">  upstream ruby_backend {
+</span><span class="line">    server unicorn_server_ip1 fail_timeout=0;
+</span><span class="line">    server unicorn_server_ip2 fail_timeout=0;
+</span><span class="line">  }
+</span><span class="line">
+</span><span class="line">  location /categories {
+</span><span class="line">    set $redis_key $uri;
+</span><span class="line">    default_type   text/html;
+</span><span class="line">    redis_pass redis;
+</span><span class="line">    error_page 404 = @httpapp;
+</span><span class="line">  }
+</span><span class="line">
+</span><span class="line">  location @httpapp {
+</span><span class="line">    proxy_pass http://ruby_backend;
+</span><span class="line">  }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Nginx首先会用请求的uri作为key去redis里面获取，如果获取不到（404）就转发给unicorn进行处理，然后改写generate_static_file和delete_static_file方法：</p>
+
+<pre><code>redis_cache.set('categories', response.body)
+  	
+redis_cache.del('categories')
+</code></pre>
+
+<p>这样除了集中管理以外，还能够设置缓存的失效时间，对于一些更新无时效性要求的数据，就可以不用处理刷新机制，简单地固定时间刷新一次：</p>
+
+<pre><code>redis_cache.setex('categories', 3.hours.to_i, response.body)
+</code></pre>
+
+<ol>
+  <li>
+    <h2 id="section-1">整页缓存</h2>
+  </li>
+</ol>
+
+<p>Nginx缓存在处理带参数资源或者有用户状态的请求时候，就非常难以处理，这个时候可以用到整页缓存。
+比如说分页请求列表，我们可以将page参数加入到cache_path：</p>
+
+<pre><code>class CategoriesController
+  	caches_action :index, :expires_in =&gt; 1.day, :cache_path =&gt; proc 	{"categories/index/#{params[:page].to_i}"}
+end
+</code></pre>
+
+<p>比如说我们只需要针对rss输出进行缓存8小时：</p>
+
+<pre><code>class ArticlesController
+  	caches_action :index, :expires_in =&gt; 8.hours, :if =&gt; proc 	{request.format.rss?}
+end 再比如说对于非登陆用户，我们可以缓存首页：
+
+class HomeController
+  	caches_action :index, :expires_in =&gt; 3.hours, :if =&gt; proc {!	user_signed_in?}
+end
+</code></pre>
+
+<ol>
+  <li>
+    <h2 id="section-2">片段缓存</h2>
+  </li>
+</ol>
+
+<p>如果说前面2种缓存能够用到的场景有限，那么片段缓存是适用性最广的。</p>
+
+<h4 id="section-3">场景1：</h4>
+
+<p>我们需要在每个页面一段广告代码，用来显示不同广告，如果没有使用片段缓存，那么每个页面都会要去查询广告的代码，并且花费一定时间去生成html代码：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- if advert = Advert.where(:name =&gt; request.controller_name + request.action_name, :enable =&gt; true).first
+</span><span class="line">  div.ad
+</span><span class="line">    = advert.content</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>加了片段缓存以后，就可以少去这个查询：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- cache "adverts/#{request.controller_name}/#{request.action_name}", :expires_in =&gt; 1.day do
+</span><span class="line">  - if advert = Advert.where(:name =&gt; request.controller_name + request.action_name, :enable =&gt; true).first
+</span><span class="line">    div.ad
+</span><span class="line">      = advert.content</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="section-4">场景2：</h4>
+<p>阅读文章，文章的内容可能比较长时间都不会改变，经常变化可能是文章评论，就可以对文章主体部分加上片段缓存：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- cache "articles/#{@article.id}/#{@article.updated_at.to_i}" do
+</span><span class="line">  div.article
+</span><span class="line">    = @article.content.markdown2html</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>节约了生成markdown语法转换到html时间，这里用文章最后更新时间作为cache key的一部分，文章内容如果有改变，缓存自动失效，默认activerecord的cache_key方法也是用updated_at，你也可以加入更多的参数，比如article上有评论数的counter cache，更新评论数的时候不会更新文章时间，可以将这个counter也加入到key的一部分</p>
+
+<h4 id="section-5">场景3：</h4>
+<p>复杂页面结构的生成</p>
+
+<p>数据结构比较复杂的页面，在生成的时候避免不了大量的查询和html渲染，用片段缓存，可以将这部分时间大大地节约，以我们网站游记页面 http://chanyouji.com/trips/109123 （请允许小小地打个广告，带点流量）来说：</p>
+
+<p>需要获取天气数据，照片数据，文本数据等，同时还要生成meta，keyword等seo数据，而这些内容又是和其他动态内容交叉，片段缓存就可以分开多个：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- cache "trips/show/seo/#{@trip.fragment_cache_key}", :expires_in =&gt; 1.day do
+</span><span class="line">  title #{trip_name @trip}
+</span><span class="line">  meta name="description" content="..."
+</span><span class="line">  meta name="keywords" content="..."
+</span><span class="line">
+</span><span class="line">body
+</span><span class="line">  div
+</span><span class="line">    ...
+</span><span class="line">- cache "trips/show/viewer/#{@trip.fragment_cache_key}", :expires_in =&gt; 1.day do
+</span><span class="line">  - @trip.eager_load_all</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>小贴士，我在trip对象里面加了一个eager_load_all方法，缓存没有命中的时候，查询的时候避免出现n+1问题：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">def eager_load_all
+</span><span class="line">    ActiveRecord::Associations::Preloader.new([self], {:trip_days =&gt; [:weather_station_data, :nodes =&gt; [:entry, :notes =&gt; [:photo, :video, :audio]]]}).run
+</span><span class="line">  end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="section-6">小技巧1：带条件的片段缓存</h4>
+
+<p>和caches_action不同，rails自带的片段缓存是不支持条件的，比如说我们想未登陆用户给他用片段缓存，而登陆用户不使用，写起来就很麻烦，我们可以改写一下helper就可以了：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">def cache_if (condition, name = {}, cache_options = {}, &amp;block)
+</span><span class="line">    if condition
+</span><span class="line">      cache(name, cache_options, &amp;block)
+</span><span class="line">    else
+</span><span class="line">      yield
+</span><span class="line">    end
+</span><span class="line">  end
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">- cache_if !user_signed_in?, "xxx", :expires_in =&gt; 1.day do</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="section-7">小技巧2：关联对象的自动更新</h4>
+
+<p>常使用对象update_at时间戳来作为cache key，可以在关联对象上加上touch选项，自动更新关联对象时间戳，比如我们可以在更新或者删除文章评论的时候，自动个更新：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Article
+</span><span class="line">  has_many :comments
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">class Comment
+</span><span class="line">  belongs_to :article, :touch =&gt; true
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ol>
+  <li>
+    <h2 id="section-8">数据查询缓存</h2>
+  </li>
+</ol>
+
+<p>通常来说web应用性能瓶颈都出现在DB IO上，做好数据查询缓存，减少数据库的查询次数，可以极大提高整体响应时间。
+数据查询缓存分2种：</p>
+
+<h4 id="a-">A. 同一个请求周期内的缓存</h4>
+
+<p>举一个显示文章列表的例子，输出文章标题和文章类别，对应代码如下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># controller
+</span><span class="line">  def index
+</span><span class="line">    @articles = Article.first(10)
+</span><span class="line">  end
+</span><span class="line">
+</span><span class="line"># view
+</span><span class="line">- @articles.each do |article|
+</span><span class="line">  h1 = article.name
+</span><span class="line">  span = article.category.name</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>会发生10条类似的sql查询：</p>
+
+<pre><code>SELECT `categories`.* FROM `categories` WHERE `categories`.`id` = ?
+</code></pre>
+
+<p>rails内置了query cache</p>
+
+<p><a href="https://github.com/rails/rails/blob/master/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb">https://github.com/rails/rails/blob/master/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb</a>，</p>
+
+<p>在同一个请求周期内，如果没有update/delete/insert的操作，会对相同的sql查询进行缓存，如果文章类别都是相同的话，真正去查询数据库只会有1次。</p>
+
+<p>如果文章类别都不一样，就会出现N+1查询问题（常见的性能瓶颈），rails推荐的解决方法是用Eager Loading Associations</p>
+
+<p><a href="http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations">http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">def index
+</span><span class="line">    	@articles = Article.includes(:category).first(10)
+</span><span class="line">  	end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>查询语句会变成</p>
+
+<pre><code>SELECT `categories`.* FROM `categories` WHERE `categories`.`id` in (?,?,?...)
+</code></pre>
+
+<h4 id="b--1">B. 跨请求周期的缓存</h4>
+
+<p>同请求周期缓存所带来性能优化是很有限的，很多时候我们需要用跨请求周期的缓存，将一些常用的数据（比如User model）缓存，对于active record来说，利用统一的查询接口来fetch cache，利用callback来expire cache，就很容易实现，而且有一些现成的gem可以来用。</p>
+
+<p>比如说 identity_cache</p>
+
+<p><a href="https://github.com/Shopify/identity_cache">https://github.com/Shopify/identity_cache</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class User &lt; ActiveRecord::Base
+</span><span class="line">  include IdentityCache
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">class Article &lt; ActiveRecord::Base
+</span><span class="line">  include IdentityCache
+</span><span class="line">  cached_belongs_to :user
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"># 都会命中缓存
+</span><span class="line">User.fetch(1)
+</span><span class="line">Article.find(2).user</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这个gem的优点是代码实现简单，cache设置灵活，也方便扩展，缺点是需要用不同的查询方法名（fetch），以及额外的关系定义。</p>
+
+<p>如果想在无数据缓存的应用无缝加入缓存功能，推荐@hooopo 做的second_level_cache</p>
+
+<p><a href="https://github.com/hooopo/second_level_cache">https://github.com/hooopo/second_level_cache</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class User &lt; ActiveRecord::Base
+</span><span class="line">  acts_as_cached(:version =&gt; 1, :expires_in =&gt; 1.week)
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">#还是使用find方法，就会命中缓存
+</span><span class="line">User.find(1)
+</span><span class="line">#无需额外用不一样的belongs_to定义
+</span><span class="line">Article.find(2).user</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>实现原理是扩展了active record底层arel sql ast处理</p>
+
+<p><a href="https://github.com/hooopo/second_level_cache/blob/master/lib/second_level_cache/arel/wheres.rb">https://github.com/hooopo/second_level_cache/blob/master/lib/second_level_cache/arel/wheres.rb</a></p>
+
+<p>它的优点是无缝接入，缺点是扩展比较困难，对于只获取少量字段的查询无法缓存。</p>
+
+<ol>
+  <li>
+    <h2 id="section-9">数据库缓存</h2>
+  </li>
+</ol>
+
+<p>编辑中</p>
+
+<p>这6种缓存，分布在客户端到服务器端不同的位置，所能够节约的时间也正好从多到少依次排列。</p>
+
+<hr />
+<p>转载自  <a href="https://ruby-china.org/topics/19389">ruby-china</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何成为一个优秀的初级开发者]]></title>
+    <link href="http://helloyokoy.github.io/blog/how-to-become-a-developer/"/>
+    <updated>2015-11-04T16:49:15+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/how-to-become-a-developer</id>
+    <content type="html"><![CDATA[<p>原文: <a href="http://blog.newrelic.com/2014/04/23/better-junior-developer/">http://blog.newrelic.com/2014/04/23/better-junior-developer/</a></p>
+
+<p>翻译: <a href="https://ruby-china.org/mr_sun">@mr_sun</a></p>
+
+<p>在过去的几年中，New Relic聘请了许多接受过各种编程培训的或者“非传统”编程背景的毕业生，其中就包括我！事实上，在我获得我的学士学位以后，我想要进入一所医药大学做进一步的学习，但是这时我获得了Google提供的一份技术支持的工作。在四年多以后我利用一个休假的时间出席了Hackbright Academy，这是个教女性学员如何编程的学校，课程安排为十周（现在延长到了十二周）。在第一周教学即将结束的时候，我知道我终于找到了我想要专注一生去追求的事业和方向。</p>
+
+<p>不过，我的一个最大的忧虑是，我必须放弃我在其他领域已经积累起来的经验和技巧，去进入到一个全新的领域，在这个新领域里，我将面对的竞争对手都是拥有该领域几十年经验的资深工作者。幸运的是，在我真正进入到这样一个新角色以后，在共同工作的许多优秀的前辈的指导和帮助下，我总结出了一下一些自己的感悟：
+- 不断地学习是成为一个优秀开发者的必备基石
+- 有很多工程，是不是直接就开始写代码的</p>
+
+<p>要清晰的认识到，即便作为一个还有很多东西要学的初级开发者，也有很多方法来利用我已经在其他领域已具备的技能。因为自己已经经历过那样一段对自己很不确定的时期，这里我想要向大家传播以下两条信息：
+- 初级开发者：即使你还在学习关于编程的基本技巧，你也可以有很多方式为你的团队做出自己的贡献。
+- mentor：因材施教，换位思考，让你的指导更加符合初级开发者的学习需要，这样将使他们更有自信，使你的指导更具效率。</p>
+
+<!--more-->
+
+<h2 id="section">有很多要学</h2>
+
+<p>作为一个初级开发者，你将面临有太多东西要学的挑战，这时，重要的是不要试图所有东西都靠自己去解决，这里有三种方法可以采用：</p>
+
+<ol>
+  <li>
+    <p>找到想要帮助你的人</p>
+
+    <p>通过在你所在的团队或者结识其他编程团队，你可以扩展在你遇到问题时能为你提供帮助的网络人群。为了充分的利用网络资源，有一点很重要，就是面对一个问题，你需要先尽自己努力去探究，如此而不解，再去询问别人，这也是珍惜别人时间的一种表现。对于一个初级开发者，如果你在遇到问题时先自己做很多研究，那么你将会更快的学到更多的东西（这个过程中Google and StackOverflow将成为你的好朋友，为你提供很多的帮助）。这也会让你那些经验丰富的同事觉得他们对你的指导更有帮助，让他们更相信在下一次你遇到同样问题时你会充分利用他们给予你的建议和指导。</p>
+  </li>
+  <li>
+    <p>让别人更容易帮助到你</p>
+
+    <p>当你自己找不到合适的方式来描述你遇到的问题时，将更难于让别人理解你到底困惑在哪里。以下是一些我在遇到问题时喜欢使用的提问格式：</p>
+
+    <p>我在尝试__<strong>，这样我就可以</strong>__</p>
+
+    <p>我在____遇到了问题</p>
+
+    <p>我已经查看了__<strong>并且试过了</strong>__</p>
+
+    <p>举个例子，这是我最近一次用以上格式提问：“我试图要理解为什么这个账号登录时会出现这个banner，这样我就能告诉客户他们是否需要关注该警告。我在查看一个问题时找到了这个记录，我检查过了模型，并试图在本地将问题重现”。</p>
+  </li>
+  <li>
+    <p>缩小你要学习的范围</p>
+
+    <p>这就像在你解决一个棘手的技术问题时，你应该尽量将可能存在问题的范围缩小，以使的问题不至于过于繁杂。可能你想要弄明白的问题有太多太多，但是有经验的指导者可以告诉你哪些重要哪些不重要，给你分析这些问题的优先顺序（我的个人目标：真正自己独立的创建一个Rails App）。</p>
+  </li>
+</ol>
+
+<h2 id="section-1">帮助你的团队</h2>
+
+<p>作为一个初级开发者，你很自然会这样问自己：我本还需要这么多的帮助，又该怎样为我的团队贡献自己的力量呢？要记住，这世界上，开发的岗位永远要比开发人员多。所以并不需要在高效（高级开发人员）和低效（初级开发人员）做出选择，而是在于是否有相应的应用需要开发人员来做。记住以下这些策略将有助于反馈，调整你所写的代码</p>
+
+<ol>
+  <li>
+    <p>提出好的问题</p>
+
+    <p>我喜欢站在初级开发者的角度开考虑问题，提出好的问题，比如“我们是否在做一件正确的事？”这样可以帮助团队尽早发现错误的引导和假设。这样将避免在开发后期发现这些问题所将浪费大量的时间，所以要尽早提出好的问题。</p>
+  </li>
+  <li>
+    <p>给出好的反馈</p>
+
+    <p>将有用的反馈在合适的场合合适的时间给到正确的人，这对很对人来说并非易事。但是所有的公司都有其专门的反馈部门，因而即使初级开发者也有可能有机会获得大量参与反馈工作的机会。你也可以帮助预测来自于销售或者技术支持部门的关于产品新版本或产品更新的一些冲突。</p>
+  </li>
+  <li>
+    <p>使你的团队面对其他团队表现的更好</p>
+
+    <p>通过对你们所合作的团队投入更多的回应与热情，将使你的团队走的更远。有一种很好的方式来使你的团队在其他合作团队面前表现的更好，就是尽可能的向他们展示你们公司的产品特点。你可以有机会展示你的团队已经充分考虑了一些方面对其他团队的影响，比如可靠性。我几乎总是提前写好脚本并对整个流程作好足够的练习，以此来确保我的演示更加高效同时在演示过程中尽可能少的出错。</p>
+  </li>
+</ol>
+
+<h2 id="section-2">指导者要怎样才能更好的帮助初级开发者</h2>
+
+<p>以上的建议是专门针对初级开发者的，而对于导师来说，要更好的帮助初级开发者，使他们感觉到自己的价值和意识到自己为团队做出贡献的能力，也有很多事情可做。我很感兴趣于探讨如何让初级开发者的学习风格与有经验者的指导更好的磨合和匹配，以达到更好的效果。以此来保证每个人的时间都能被充分高效的利用，无论开发者还是指导者。举个例子，你可以探讨一个初级开发者希望以怎样的频率收到反馈和指示，以及高级开发者在什么时间什么情况下愿意被问题打断。</p>
+
+<p>同时，作为一个高级开发者也就是mentor，如果你想让初级开发者在一个问题上自己思考更多以此来让他学习更多东西，那么你需要让他知道你的目的。这样是为了避免初级开发者出现过多不自信的消极情绪，因为他们会误以为他们所提出的是一个很简单的问题，但事实上尽管那本是个很复杂的问题，这种误解会让他们怀疑自己的能力，而变得不自信。</p>
+
+<h2 id="section-3">结论</h2>
+
+<p>一个初级开发者在第一份工作中就如同一张白纸。有许多机会可以通过共同工作的高级开发者的一些技术指导来使他们可以快速提升并且让他们感觉到从第一天工作就能创造价值。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Gemfile 详解]]></title>
@@ -5018,375 +5606,6 @@ NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 
 <p>详细教程: <a href="http://blog.csdn.net/harvic880925/article/details/40660137" title="url">http://blog.csdn.net/harvic880925/article/details/40660137</a></p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[android开源框架]]></title>
-    <link href="http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia/"/>
-    <updated>2015-05-09T17:42:35+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia</id>
-    <content type="html"><![CDATA[<h3 id="volley">1、volley</h3>
-
-<p>项目地址 https://github.com/smanikandan14/Volley-demo</p>
-
-<ol>
-  <li>JSON，图像等的异步下载；</li>
-  <li>网络请求的排序（scheduling）</li>
-  <li>网络请求的优先级处理</li>
-  <li>缓存</li>
-  <li>多级别取消请求</li>
-  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
-</ol>
-
-<h3 id="android-async-http">2、android-async-http</h3>
-
-<p>项目地址：https://github.com/loopj/android-async-http</p>
-
-<p>文档介绍：http://loopj.com/android-async-http/</p>
-
-<ol>
-  <li>在匿名回调中处理请求结果</li>
-  <li>在UI线程外进行http请求</li>
-  <li>文件断点上传</li>
-  <li>智能重试</li>
-  <li>默认gzip压缩</li>
-  <li>支持解析成Json格式</li>
-  <li>可将Cookies持久化到SharedPreferences
-<!--more-->
-###3、Afinal框架</li>
-</ol>
-
-<p>项目地址：https://github.com/yangfuhai/afinal</p>
-
-<p>主要有四大模块：</p>
-
-<ol>
-  <li>数据库模块：android中的orm框架，使用了线程池对sqlite进行操作。</li>
-  <li>注解模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</li>
-  <li>网络模块：通过httpclient进行封装http数据请求，支持ajax方式加载，支持下载、上传文件功能。</li>
-  <li>图片缓存模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</li>
-  <li>
-    <h3 id="xutils">4、xUtils框架</h3>
-  </li>
-</ol>
-
-<p>项目地址：https://github.com/wyouflf/xUtils</p>
-
-<p>主要有四大模块：</p>
-
-<ol>
-  <li>数据库模块：android中的orm框架，一行代码就可以进行增删改查；
-         支持事务，默认关闭；
-         可通过注解自定义表名，列名，外键，唯一性约束，NOT NULL约束，CHECK约束等（需要混淆的时候请注解表名和列名）；
-         支持绑定外键，保存实体时外键关联实体自动保存或更新；
-         自动加载外键关联实体，支持延时加载；
-         支持链式表达查询，更直观的查询语义，参考下面的介绍或sample中的例子。</li>
-  <li>注解模块：android中的ioc框架，完全注解方式就可以进行UI，资源和事件绑定；
-         新的事件绑定方式，使用混淆工具混淆后仍可正常工作；
-         目前支持常用的20种事件绑定，参见ViewCommonEventListener类和包com.lidroid.xutils.view.annotation.event。</li>
-  <li>网络模块：支持同步，异步方式的请求；
-         支持大文件上传，上传大文件不会oom；
-         支持GET，POST，PUT，MOVE，COPY，DELETE，HEAD，OPTIONS，TRACE，CONNECT请求；
-         下载支持301/302重定向，支持设置是否根据Content-Disposition重命名下载的文件；
-         返回文本内容的请求(默认只启用了GET请求)支持缓存，可设置默认过期时间和针对当前请求的过期时间。</li>
-  <li>图片缓存模块：加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象；
-         支持加载网络图片和本地图片；
-         内存管理使用lru算法，更好的管理bitmap内存；
-         可配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等…</li>
-</ol>
-
-<h3 id="thinkandroid">5、ThinkAndroid</h3>
-
-<p>项目地址：https://github.com/white-cat/ThinkAndroid</p>
-
-<p>主要有以下模块：</p>
-
-<ol>
-  <li>MVC模块：实现视图与模型的分离。</li>
-  <li>ioc模块：android中的ioc模块，完全注解方式就可以进行UI绑定、res中的资源的读取、以及对象的初始化。</li>
-  <li>数据库模块：android中的orm框架，使用了线程池对sqlite进行操作。</li>
-  <li>http模块：通过httpclient进行封装http数据请求，支持异步及同步方式加载。</li>
-  <li>缓存模块：通过简单的配置及设计可以很好的实现缓存，对缓存可以随意的配置</li>
-  <li>图片缓存模块：imageview加载图片的时候无需考虑图片加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。</li>
-  <li>配置器模块：可以对简易的实现配对配置的操作，目前配置文件可以支持Preference、Properties对配置进行存取。</li>
-  <li>日志打印模块：可以较快的轻易的是实现日志打印，支持日志打印的扩展，目前支持对sdcard写入本地打印、以及控制台打印</li>
-  <li>下载器模块:可以简单的实现多线程下载、后台下载、断点续传、对下载进行控制、如开始、暂停、删除等等。</li>
-  <li>网络状态检测模块：当网络状态改变时，对其进行检</li>
-</ol>
-
-<h3 id="loonandroid">6、LoonAndroid</h3>
-
-<p>项目地址：https://github.com/gdpancheng/LoonAndroid</p>
-
-<p>主要有以下模块：</p>
-
-<ol>
-  <li>自动注入框架（只需要继承框架内的application既可）</li>
-  <li>图片加载框架（多重缓存，自动回收，最大限度保证内存的安全性）</li>
-  <li>网络请求模块（继承了基本上现在所有的http请求）</li>
-  <li>eventbus（集成一个开源的框架）</li>
-  <li>验证框架（集成开源框架）</li>
-  <li>json解析（支持解析成集合或者对象）</li>
-  <li>数据库（不知道是哪位写的 忘记了）</li>
-  <li>多线程断点下载（自动判断是否支持多线程，判断是否是重定向）</li>
-  <li>自动更新模块</li>
-  <li>一系列工具类</li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[leakCanary内寸泄露检测]]></title>
-    <link href="http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/"/>
-    <updated>2015-04-11T17:53:41+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce</id>
-    <content type="html"><![CDATA[<h2 id="leakcanary">LeakCanary</h2>
-
-<p>Android 和 Java 内存泄露检测。</p>
-
-<blockquote>
-  <p>“A small leak will sink a great ship.” - Benjamin Franklin</p>
-</blockquote>
-
-<blockquote>
-  <p>千里之堤， 毁于蚁穴。 – 《韩非子·喻老》</p>
-</blockquote>
-
-<p><img src="https://raw.githubusercontent.com/liaohuqiu/leakcanary/master/assets/screenshot.png" alt="alt text" title="Title" /></p>
-
-<h4 id="demo">demo</h4>
-
-<p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
-
-<!--more-->
-
-<h3 id="section">开始使用</h3>
-
-<p>在 build.gradle 中加入引用，不同的编译使用不同的引用：</p>
-
-<pre><code>dependencies {
-   			 debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
-   			 releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
- 	}
-</code></pre>
-
-<p>在 Application 中：</p>
-
-<pre><code>public class ExampleApplication extends Application {
-	@Override public void onCreate() {
-	super.onCreate();
-	LeakCanary.install(this);
-  		}
-}
-</code></pre>
-
-<p>这样，就万事俱备了！ 在 debug build 中，如果检测到某个 activity 有内存泄露，LeakCanary 就是自动地显示一个通知。</p>
-
-<h4 id="leakcanary-1">为什么需要使用 LeakCanary？</h4>
-<p>问得好，看这个文章LeakCanary: <a href="http://www.liaohuqiu.net/cn/posts/leak-canary/" title="Title">让内存泄露无所遁形</a></p>
-
-<h3 id="section-1">如何使用</h3>
-
-<p>使用 RefWatcher 监控那些本该被回收的对象。</p>
-
-<pre><code>RefWatcher refWatcher = {...};
-
-// 监控
-refWatcher.watch(schrodingerCat);
-LeakCanary.install() 会返回一个预定义的 RefWatcher，同时也会启用一个 	ActivityRefWatcher，用于自动监控调用 Activity.onDestroy() 之后泄露的 activity。
-
-public class ExampleApplication extends Application {
-</code></pre>
-
-  	public static RefWatcher getRefWatcher(Context context) {
-<pre><code>	ExampleApplication application = (ExampleApplication) 	context.getApplicationContext();
-return application.refWatcher;
-  	}
-</code></pre>
-
-  	private RefWatcher refWatcher;
-
-  	@Override public void onCreate() {
-<pre><code>	super.onCreate();
-	refWatcher = LeakCanary.install(this);
-  	}
-} 使用 RefWatcher 监控 Fragment：
-
-public abstract class BaseFragment extends Fragment {
-</code></pre>
-
-  	@Override public void onDestroy() {
-<pre><code>	super.onDestroy();
-	RefWatcher refWatcher = ExampleApplication.getRefWatcher(getActivity());
-	refWatcher.watch(this);
-  	}
-} ###工作机制
-</code></pre>
-
-<ol>
-  <li>
-    <p>RefWatcher.watch() 创建一个 KeyedWeakReference 到要被监控的对象。</p>
-  </li>
-  <li>
-    <p>然后在后台线程检查引用是否被清除，如果没有，调用GC。</p>
-  </li>
-  <li>
-    <p>如果引用还是未被清除，把 heap 内存 dump 到 APP 对应的文件系统中的一个 .hprof 文件中。</p>
-  </li>
-  <li>
-    <p>在另外一个进程中的 HeapAnalyzerService 有一个 HeapAnalyzer 使用HAHA 解析这个文件。</p>
-  </li>
-  <li>
-    <p>得益于唯一的 reference key, HeapAnalyzer 找到 KeyedWeakReference，定位内存泄露。</p>
-  </li>
-  <li>
-    <p>HeapAnalyzer 计算 到 GC roots 的最短强引用路径，并确定是否是泄露。如果是的话，建立导致泄露的引用链。</p>
-  </li>
-  <li>
-    <p>引用链传递到 APP 进程中的 DisplayLeakService， 并以通知的形式展示出来。</p>
-  </li>
-</ol>
-
-<h3 id="leak-trace">如何复制 leak trace？</h3>
-
-<p>在 Logcat 中，你可以看到类似这样的 leak trace：</p>
-
-<pre><code>In com.example.leakcanary:1.0:1 com.example.leakcanary.MainActivity has leaked:
-
-* GC ROOT thread java.lang.Thread.&lt;Java Local&gt; (named 'AsyncTask #1')
-* references com.example.leakcanary.MainActivity$3.this$0 (anonymous class extends android.os.AsyncTask)
-* leaks com.example.leakcanary.MainActivity instance
-
-* Reference Key: e71f3bf5-d786-4145-8539-584afaecad1d
-* Device: Genymotion generic Google Nexus 6 - 5.1.0 - API 22 - 1440x2560 vbox86p
-* Android Version: 5.1 API: 22
-* Durations: watch=5086ms, gc=110ms, heap dump=435ms, analysis=2086ms 你甚至可以通过分享按钮把这些东西分享出去。
-</code></pre>
-
-<h3 id="sdk-">SDK 导致的内存泄露</h3>
-
-<p>随着时间的推移，很多SDK 和厂商 ROM 中的内存泄露问题已经被尽快修复了。但是，当这样的问题发生时，一般的开发者能做的事情很有限。</p>
-
-<p>LeakCanary 有一个已知问题的忽略列表，AndroidExcludedRefs.java，如果你发现了一个新的问题，请提一个 issue 并附上 leak trace, reference key, 机器型号和 SDK 版本。如果可以附带上 dump 文件的 链接那就再好不过了。</p>
-
-<p>对于最新发布的 Android，这点尤其重要。你有机会在帮助在早期发现新的内存泄露，这对整个 Android 社区都有极大的益处。</p>
-
-<p>开发版本的 Snapshots 包在这里： Sonatype’s snapshots repository。</p>
-
-<h3 id="leak-trace-">leak trace 之外</h3>
-
-<p>有时，leak trace 不够，你需要通过 MAT 或者 YourKit 深挖 dump 文件。</p>
-
-<p>通过以下方法，你能找到问题所在：</p>
-
-<ol>
-  <li>查找所有的 com.squareup.leakcanary.KeyedWeakReference 实例。</li>
-  <li>检查 key 字段</li>
-  <li>Find the KeyedWeakReference that has a key field equal to the reference key reported by LeakCanary.</li>
-  <li>找到 key 和 和 logcat 输出的 key 值一样的 KeyedWeakReference。</li>
-  <li>referent 字段对应的就是泄露的对象。</li>
-  <li>剩下的，就是动手修复了。最好是检查到 GC root 的最短强引用路径开始。</li>
-</ol>
-
-<h3 id="section-2">自定义</h3>
-
-<h4 id="ui-">UI 样式</h4>
-
-<p>DisplayLeakActivity 有一个默认的图标和标签，你只要在你自己的 APP 资源中，替换以下资源就可。</p>
-
-<pre><code>res/
-  	drawable-hdpi/
-__leak_canary_icon.png
-  	drawable-mdpi/
-__leak_canary_icon.png
-  	drawable-xhdpi/
-__leak_canary_icon.png
-  	drawable-xxhdpi/
-__leak_canary_icon.png
-  	drawable-xxxhdpi/
-__leak_canary_icon.png
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-  	&lt;string name="__leak_canary_display_activity_label"&gt;MyLeaks&lt;/string&gt;
-&lt;/resources&gt;
-</code></pre>
-
-<h3 id="leak-trace-1">保存 leak trace</h3>
-
-<pre><code>DisplayLeakActivity saves up to 7 heap dumps &amp; leak traces in the app directory. You can change that number by providing R.integer.__leak_canary_max_stored_leaks in your app:
-</code></pre>
-
-<p>在 APP 的目录中，DisplayLeakActivity 保存了 7 个 dump 文件和 leak trace。你可以在你的 APP 中，定义 R.integer.__leak_canary_max_stored_leaks 来覆盖类库的默认值。</p>
-
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-  	&lt;integer name="__leak_canary_max_stored_leaks"&gt;20&lt;/integer&gt;
-&lt;/resources&gt; ###上传 leak trace 到服务器
-</code></pre>
-
-<p>你可以改变处理完成的默认行为，将 leak trace 和 heap dump 上传到你的服务器以便统计分析。</p>
-
-<p>创建一个 LeakUploadService， 最简单的就是继承 DisplayLeakService ：</p>
-
-<pre><code>public class LeakUploadService extends DisplayLeakService {
-  	@Override
-  	protected void afterDefaultHandling(HeapDump heapDump, AnalysisResult result, 	String leakInfo) {
-	if (!result.leakFound || result.excludedLeak) {
-  	return;
-	}
-	myServer.uploadLeakBlocking(heapDump.heapDumpFile, leakInfo);
-  	}
-} 请确认 release 版本 使用 RefWatcher.DISABLED：
-
-public class ExampleApplication extends Application {
-</code></pre>
-
-  	public static RefWatcher getRefWatcher(Context context) {
-<pre><code>	ExampleApplication application = (ExampleApplication) context.getApplicationContext();
-	return application.refWatcher;
-  	}
-</code></pre>
-
-  	private RefWatcher refWatcher;
-
-  	@Override public void onCreate() {
-<pre><code>	super.onCreate();
-	refWatcher = installLeakCanary();
-  	}
-</code></pre>
-
-  	protected RefWatcher installLeakCanary() {
-<pre><code>	return RefWatcher.DISABLED;
-  	}
-}
-</code></pre>
-
-<p>自定义 RefWatcher：</p>
-
-<pre><code>public class DebugExampleApplication extends ExampleApplication {
-  	protected RefWatcher installLeakCanary() {
-	return LeakCanary.install(app, LeakUploadService.class);
-  	}
-}
-</code></pre>
-
-<p>别忘了注册 service：</p>
-
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-&gt;
-  	&lt;application android:name="com.example.DebugExampleApplication"&gt;
-	&lt;service android:name="com.example.LeakUploadService" /&gt;
-  	&lt;/application&gt;
-&lt;/manifest&gt;
-</code></pre>
-
-<p><img src="https://github.com/liaohuqiu/leakcanary/raw/master/assets/icon_512.png" alt="alt text" title="Title" /></p>
-
-<p>本文转载自  <a href="http://www.liaohuqiu.net/cn/posts/leak-canary-read-me/" title="Title">srain博客</a></p>
 ]]></content>
   </entry>
   
