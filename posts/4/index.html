@@ -231,29 +231,30 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/android-mistake/">
+		<a href="/blog/anroi-asimplecache/">
 		
-			Android 开发遇到的坑</a>
+			Android 轻量缓存框架 ASimpleCache</a>
 	</h2>
 	<div class="entry-content">
-		<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
+		<p>做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些：</p>
 
-<ul>
+<ol>
   <li>
-    <p>在Android library中不能使用switch-case语句访问资源ID：
-<a href="http://zmywly8866.github.io/2014/12/24/android-can-not-use-switch-to-load-resource-in-libproject-solution.html">在Android library中不能使用switch-case语句访问资源ID的原因分析及解决方案</a></p>
+    <p>服务端控制缓存
+如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式，但是需要服务端配合，比较灵活。</p>
   </li>
   <li>
-    <p>不能在Activity没有完全显示时显示PopupWindow和Dialog：<a href="http://stackoverflow.com/questions/4187673/problems-creating-a-popup-window-in-android-activity">popupwindow - Problems creating a Popup Window in Android Activity</a></p>
+    <p>客户端直接控制缓存</p>
   </li>
-  <li>
-    <p>在多进程之间不要用SharedPreferences共享数据，虽然可以（MODE_MULTI_PROCESS），但极不稳定：<a href="http://stackoverflow.com/questions/22129717/mode-multi-process-for-sharedpreferences-isnt-working">android - MODE_MULTI_PROCESS for SharedPreferences isn’t working</a></p>
-  </li>
-</ul>
+</ol>
+
+<p>有些时候不需要服务端来支持的话，客户端可以直接做一层缓存，思路就是请求之后把数据缓存在本地，最常见的是直接以文件缓存在本地就好了，当然你可以缓存在本地的sqlite，以sqlite文件的形式缓存数据处理更灵活点，然后客户端自己处理缓存的时间，过期则直接清除数据。对于一些不太经常变化的页面，采用这种缓存可以减少客户端流量，同时减少服务器并发量。</p>
+
+<p>对于一些新闻类或者timeline这种，数据变化是非常频繁的，针对这种情况可能就不太适合设置缓存时间，这种情况可以考虑让页面每次进来都会自动刷新一次以获取最新数据，如果网络不好或者断开时可以直接读取本地缓存，增加用户体验。当然如果想要更复杂的处理可以配合时间来判断当前页面要不要刷新。</p>
 
 
 		
-		<a href="/blog/android-mistake/" class="more-link">阅读全文</a>
+		<a href="/blog/anroi-asimplecache/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -263,7 +264,7 @@
 
 
 
-2015 年10 月12 日</div>
+2015 年10 月14 日</div>
 	<div class="tags">
 
 
