@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-04T20:34:43+08:00</updated>
+  <updated>2015-11-04T22:30:58+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -2359,24 +2359,220 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[为什么要用Sketch]]></title>
+    <link href="http://helloyokoy.github.io/blog/sketch/"/>
+    <updated>2015-09-11T20:38:24+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/sketch</id>
+    <content type="html"><![CDATA[<p>Jean-Marc Denis（原文作者，前Sparrow设计师，现在在Google工作）在参加WWDC 2013时认识了Sketch的开发团队，所以在第一时间尝试了Sketch，当时由于一些功能的缺失，所以还是折回去使用Photoshop了。过了一段时间，他发现设计师社区开始疯狂着迷于这款新的设计工具，所以决定再试一试，想看看迭代了一段时间的Sketch现在能完成多少原先他需要用Photoshop来做的工作。现在，他80%的设计工作都是由Sketch来完成的，所以写了这篇文章来帮助大家一起了解Sketch。</p>
+
+<h4 id="photoshop">Photoshop并不是一款合适的界面设计工具</h4>
+
+<p>为什么我们会期待一个新的设计工具？因为当我们更多的关注效率和关注协作，就越发现Photoshop已经不足以满足我们的期待了。下面看看具体的理由：</p>
+
+<ul>
+  <li>
+    <p>并非为设计师打造</p>
+
+    <p>Photoshop是为图像处理开发的，诸如路径和矢量工具都是后期才加上去的，所以如果你关心一下Photoshop的更新路径，用户界面设计师完全不是Adobe做这条产品时关心的用户群。所以，如果抛去那些复杂的功能，一个为用户界面设计师打造的设计工具完全可以做得更简单，更高效。</p>
+  </li>
+  <li>
+    <p>不适合移动时代</p>
+
+    <p>相信我们都会觉得为不同的设备输出不同分辨率的素材而痛苦不已吧。或许，你会使用一些第三方插件或是启用一些模板来处理这些事，但依然是很浪费时间的。</p>
+  </li>
+</ul>
+
+<!--more-->
+
+<ul>
+  <li>
+    <p>引擎太过陈旧</p>
+
+    <p>Photoshop的引擎是上个世纪为图像处理而打造的，非常的耗费资源，即使是启动一下都要等很久，更别说一次移动多个分组了。话说回来，由于要兼顾Mac和Windows平台，能做到这样已经不容易了。</p>
+  </li>
+  <li>
+    <p>越来越跟不上时代</p>
+
+    <p>大公司的执行效率实在太低。不知道大伙是不是和我一样，非常痛苦地等了好几个月才等到Photoshop对Retina屏幕的支持。诸如自动对齐的等功能我已经不做期待了。</p>
+  </li>
+</ul>
+
+<h4 id="sketch">为什么Sketch确实值得尝试</h4>
+<ul>
+  <li>
+    <p>自动保存和多版本控制</p>
+
+    <p>有没有梦想过拜托机械的手动保存？Sketch可以做到。Sketch在工作的时候会不断地自动保存成果，并且允许你回复到此前的任一版本。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*-4cYKm2z-PiOVFnk.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>矢量作图并且像素级的完美</p>
+
+    <p>矢量图意味着可以任意扩展。你没有必要不断地去调整素材的尺寸，Sketch会自动就帮你维持一个像素级完美的作品。如果有的时候你必须用像素点来作图，比如说是画图标或者是插画设计，Sketch 也提供了从矢量切换到像素视图的功能。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/1600/0*55Ko51isBD3VVcSL.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>智能标尺</p>
+
+    <p>你喜欢xScope吗？还是正在用选框工具来进行测量？又或者是难用的网格？Sketch的智能标尺可以帮你轻松地把设计元素的对齐方式、内外间距都调整完美。就我个人而言，这个功能非常节省时间而且避免了复杂的人工计算，是我觉得最有用的功能之一。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*DOaquv046FxhhUz6.gif" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>随时随地编辑元素</p>
+
+    <p>在Sketch里我们可以随时随地修改一个元素的圆角、高度和宽度。只需要简单地修改数值就可以轻松调整元素，对于刚从Photoshop切换过来的设计师而言非常好用。甚至会让你产生强烈的依赖。</p>
+  </li>
+  <li>
+    <p>图形拼接</p>
+
+    <p>在Sketch 里你可以很轻松地把多个图形合并，构成一个新的图形。并且Sketch在提供了多种图形合并模式的同时，还允许你随时修改已经合并图形的子图形。这项功能使得你可以很轻松地管理和创造更复杂的图形。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*4piteVCDqPNzWS3V.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>每个图层都可以有多种混合效果</p>
+
+    <p>在Photoshop里想要让一个图层有多种混合效果是很困难的。但在Sketch里，你可以很容易给一个图层加上多种混合效果，看看下面的示例就知道了。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*UWRr3uQgedzzHtS6.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>自动选择最接近的像素边界</p>
+
+    <p>自动选择最接近的像素边界可以让一个图形或者是图层自动修正边距到一个像素级完善的位置。比如可以把一个宽度是5.3px的图形自动修正到5px，这样就不会有模糊的像素点和粗糙的图形了。我自己给这项功能设了一个快捷键（Command+Opitons+x），来确保我做出的每一个图形都像素级完美。这比人工一个一个按照网格修改图形高效得多。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*me1mYlEw5C1JKAKY.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>样式链接
+  有的时候你会做一些充斥文字的设计，样式链接可以帮助你设定一个固定的样式来快速地应用在新的文字上。如果你修改了其中任何一处的样式，那么所有链接该样式的文字都会自动更新到新的样式。并且，这项功能也可以应用在图形上。</li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/774/0*bTuYN8VIHPDImDXh.gif" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>导出素材</p>
+
+    <p>用Photoshop的时候，最痛苦的事莫过于切割元素，然后到处素材。Sketch则可以帮助你快速地导出各种分辨率和格式（pdf, eps, svg, png, jpg, tiff）的素材，通常导出只需要一个点击，并且不用借助任何第三方应用程序。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/914/0*Qjf-7dLH9R7H-yOk.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>分布式布局</p>
+
+    <p>作富文本设计的时候，布局会变得非常重要，这项功能可以帮助你快速地试验不同的方案。</p>
+  </li>
+  <li>
+    <p>网格</p>
+
+    <p>其实可以把网格功能理解成按照纵横两个维度自动地结构化布局内容。这个对于排版布局而言，非常方便。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*7TrwZwsBKN-hGLxk.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>出色的文字渲染</p>
+
+    <p>Sketch的文字渲染引擎非常出色，可以用来做很出色的文字布局和字体设计。因此，你可以放心地放弃Photoshop的抗锯齿功能。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*2wahLljvKwgbT_Ws.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>CSS样式导出</p>
+
+    <p>如果你在做一些网页设计，Sketch可以帮助你快速地把你的成果到处成CSS样式。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*qgh086TCiTWrVOl9.png" alt="icon" /></p>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*NxQ0xvJylnXQbGVm.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>旋转副本</p>
+
+    <p>这是一项小功能，但是确实可以节约你很多时间和精力。</p>
+  </li>
+  <li>
+    <p>Sketch Mirror</p>
+
+    <p>Sketch Mirror是一个Universal App，可以方便你在iPhone或是iPad上查看自己的成果。（作者撰写这个文章的时候Sketch还没有推出官方的镜像工具，所以这一段是译者补充的）。</p>
+  </li>
+</ul>
+
+<h4 id="section">快速响应是杀手锏</h4>
+
+<p>Sketch是一个小团队，发展非常快速。简单扫一眼Sketch的升级日志，你会发现每一个更新都会带来新的功能。 我非常建议你去使用Beta版本，你会见证Sketch快速的升级。 Sketch团队非常善于聆听用户的诉求，因而软件不断地变得更好。你可以去tenderapp上向他们提出新功能的要求。</p>
+
+<h4 id="section-1">相关链接</h4>
+
+<p><a href="http://www.bohemiancoding.com/download/sketch.zip">下载试用版</a></p>
+
+<p><a href="http://www.bohemiancoding.com/sketch/buy">Mac App Store下载地址</a></p>
+
+<p><a href="http://blog.mengto.com/topic/sketch/">Ment To 的博文</a></p>
+
+<p><a href="http://sketchtips.tumblr.com/">Sketch 技巧分享博客</a></p>
+
+<p><a href="http://www.sketchappsources.com/">Sketch 资源下载</a></p>
+
+<p><a href="http://www.douban.com/group/sketchapp/">Sketch 豆瓣中文小组</a></p>
+
+<p><a href="http://community.sketchcn.com/">Sketch 中文社区</a></p>
+
+<hr />
+<p>原文来自<a href="http://jianshu.io/p/7e8905b18620">http://jianshu.io/p/7e8905b18620</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[MJExtension介绍]]></title>
     <link href="http://helloyokoy.github.io/blog/mjextensionjie-shao/"/>
     <updated>2015-08-10T10:35:13+08:00</updated>
     <id>http://helloyokoy.github.io/blog/mjextensionjie-shao</id>
     <content type="html"><![CDATA[<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
 
-<h3 id="mjextension">MJExtension</h3>
-<hr />
+<h2 id="mjextension">MJExtension</h2>
 
-<p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
+<blockquote>
+  <p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
+</blockquote>
 
 <p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
 
-<p>GitHub：CoderMJLee ｜ Blog：mjios(Chinese) ｜ PR is welcome，or feedback</p>
+<h2 id="getting-started">Getting Started【开始使用】</h2>
 
-<h3 id="getting-started">Getting Started【开始使用】</h3>
-<hr />
-<p>####Features【能做什么】</p>
+<h4 id="features">Features【能做什么】</h4>
 
 <ul>
   <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
@@ -2394,14 +2590,14 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 
 <h4 id="why-use-mjextension-why-not-use-jsonmodel-or-mantle">Why use MJExtension, why not use JSONModel or Mantle</h4>
 
-<h5 id="mjextension-is-faster-than-jsonmodel-and-mantle">MJExtension is faster than JSONModel and Mantle【转换速率】</h5>
+<h4 id="mjextension-is-faster-than-jsonmodel-and-mantle">MJExtension is faster than JSONModel and Mantle【转换速率】</h4>
 
 <ul>
   <li>MJExtension &gt; JSONModel &gt; Mantle (Feel free to test it yourself)</li>
   <li>各位开发者也可以自行测试</li>
 </ul>
 
-<h5 id="mjextension-is-more-easy-to-gomjextension">MJExtension is more easy to go【MJExtension更加容易使用】</h5>
+<h4 id="mjextension-is-more-easy-to-gomjextension">MJExtension is more easy to go【MJExtension更加容易使用】</h4>
 
 <ul>
   <li>
@@ -2432,7 +2628,8 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 
 <h3 id="installation">Installation【安装】</h3>
 <hr />
-<p>####From CocoaPods【使用CocoaPods】</p>
+
+<h4 id="from-cocoapodscocoapods">From CocoaPods【使用CocoaPods】</h4>
 
 <pre><code>pod 'MJExtension'
 </code></pre>
@@ -2461,459 +2658,949 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
 
 <h4 id="the-most-simple-json---model">The most simple JSON -&gt; Model【最简单的字典转模型】</h4>
 
-<pre><code>typedef enum {
-SexMale,
-SexFemale
-} Sex;
-
-@interface User : NSObject
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *icon;
-@property (assign, nonatomic) unsigned int age;
-@property (copy, nonatomic) NSString *height;
-@property (strong, nonatomic) NSNumber *money;
-@property (assign, nonatomic) Sex sex;
-@property (assign, nonatomic, getter=isGay) BOOL gay;
-@end
-
-/***********************************************/
-
-NSDictionary *dict = @{
-@"name" : @"Jack",
-@"icon" : @"lufy.png",
-@"age" : @20,
-@"height" : @"1.55",
-@"money" : @100.9,
-@"sex" : @(SexFemale),
-@"gay" : @"true"
-//   @"gay" : @"1"
-//   @"gay" : @"NO"
-};
-
-// JSON -&gt; User
-User *user = [User objectWithKeyValues:dict];
-
-NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
-// name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>typedef enum {
+</span><span class='line'>   SexMale,
+</span><span class='line'>   SexFemale
+</span><span class='line'>} Sex;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@interface User : NSObject
+</span><span class='line'>@property (copy, nonatomic) NSString *name;
+</span><span class='line'>@property (copy, nonatomic) NSString *icon;
+</span><span class='line'>@property (assign, nonatomic) unsigned int age;
+</span><span class='line'>@property (copy, nonatomic) NSString *height;
+</span><span class='line'>@property (strong, nonatomic) NSNumber *money;
+</span><span class='line'>@property (assign, nonatomic) Sex sex;
+</span><span class='line'>@property (assign, nonatomic, getter=isGay) BOOL gay;
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>/&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>*****/&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSDictionary *dict = @{
+</span><span class='line'>   @”name” : @”Jack”,
+</span><span class='line'>   @”icon” : @”lufy.png”,
+</span><span class='line'>   @”age” : @20,
+</span><span class='line'>   @”height” : @”1.55”,
+</span><span class='line'>   @”money” : @100.9,
+</span><span class='line'>   @”sex” : @(SexFemale),
+</span><span class='line'>   @”gay” : @”true”
+</span><span class='line'>//   @”gay” : @”1”
+</span><span class='line'>//   @”gay” : @”NO”
+</span><span class='line'>};&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// JSON -&gt; User
+</span><span class='line'>User *user = [User objectWithKeyValues:dict];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSLog(@”name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d”, user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
+</span><span class='line'>// name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="jsonstring---modeljson">JSONString -&gt; Model【JSON字符串转模型】</h4>
 
-<pre><code>// 1.Define a JSONString
-NSString *jsonString = @"{\"name\":\"Jack\", \"icon\":\"lufy.png\", \"age\":20}";
-
-// 2.JSONString -&gt; User
-User *user = [User objectWithKeyValues:jsonString];
-
-// 3.Print user's properties
-NSLog(@"name=%@, icon=%@, age=%d", user.name, user.icon, user.age);
-// name=Jack, icon=lufy.png, age=20
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// 1.Define a JSONString
+</span><span class='line'>NSString *jsonString = @”{"name":"Jack", "icon":"lufy.png", "age":20}”;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// 2.JSONString -&gt; User
+</span><span class='line'>User *user = [User objectWithKeyValues:jsonString];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// 3.Print user’s properties
+</span><span class='line'>NSLog(@”name=%@, icon=%@, age=%d”, user.name, user.icon, user.age);
+</span><span class='line'>// name=Jack, icon=lufy.png, age=20&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="model-contains-model">Model contains model【模型中嵌套模型】</h4>
 
-<pre><code>@interface Status : NSObject
-@property (copy, nonatomic) NSString *text;
-@property (strong, nonatomic) User *user;
-@property (strong, nonatomic) Status *retweetedStatus;
-@end
-
-/***********************************************/
-
-NSDictionary *dict = @{
-@"text" : @"Agree!Nice weather!",
-@"user" : @{
-    @"name" : @"Jack",
-    @"icon" : @"lufy.png"
-},
-@"retweetedStatus" : @{
-    @"text" : @"Nice weather!",
-    @"user" : @{
-        @"name" : @"Rose",
-        @"icon" : @"nami.png"
-    }
-}
-};
-
-// JSON -&gt; Status
-Status *status = [Status objectWithKeyValues:dict];
-
-NSString *text = status.text;
-NSString *name = status.user.name;
-NSString *icon = status.user.icon;
-NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
-// text=Agree!Nice weather!, name=Jack, icon=lufy.png
-
-NSString *text2 = status.retweetedStatus.text;
-NSString *name2 = status.retweetedStatus.user.name;
-NSString *icon2 = status.retweetedStatus.user.icon;
-NSLog(@"text2=%@, name2=%@, icon2=%@", text2, name2, icon2);
-// text2=Nice weather!, name2=Rose, icon2=nami.png
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@interface Status : NSObject
+</span><span class='line'>@property (copy, nonatomic) NSString *text;
+</span><span class='line'>@property (strong, nonatomic) User *user;
+</span><span class='line'>@property (strong, nonatomic) Status *retweetedStatus;
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>/&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>*****/&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSDictionary *dict = @{
+</span><span class='line'>   @”text” : @”Agree!Nice weather!”,
+</span><span class='line'>   @”user” : @{
+</span><span class='line'>       @”name” : @”Jack”,
+</span><span class='line'>       @”icon” : @”lufy.png”
+</span><span class='line'>   },
+</span><span class='line'>   @”retweetedStatus” : @{
+</span><span class='line'>       @”text” : @”Nice weather!”,
+</span><span class='line'>       @”user” : @{
+</span><span class='line'>           @”name” : @”Rose”,
+</span><span class='line'>           @”icon” : @”nami.png”
+</span><span class='line'>       }
+</span><span class='line'>   }
+</span><span class='line'>};&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// JSON -&gt; Status
+</span><span class='line'>Status *status = [Status objectWithKeyValues:dict];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSString *text = status.text;
+</span><span class='line'>NSString *name = status.user.name;
+</span><span class='line'>NSString *icon = status.user.icon;
+</span><span class='line'>NSLog(@”text=%@, name=%@, icon=%@”, text, name, icon);
+</span><span class='line'>// text=Agree!Nice weather!, name=Jack, icon=lufy.png&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSString *text2 = status.retweetedStatus.text;
+</span><span class='line'>NSString *name2 = status.retweetedStatus.user.name;
+</span><span class='line'>NSString *icon2 = status.retweetedStatus.user.icon;
+</span><span class='line'>NSLog(@”text2=%@, name2=%@, icon2=%@”, text2, name2, icon2);
+</span><span class='line'>// text2=Nice weather!, name2=Rose, icon2=nami.png&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="model-contains-model-array">Model contains model-array【模型中有个数组属性，数组里面又要装着其他模型】</h4>
 
-<pre><code>@interface Ad : NSObject
-@property (copy, nonatomic) NSString *image;
-@property (copy, nonatomic) NSString *url;
-@end
-
-@interface StatusResult : NSObject
-/** Contatins status model */
-@property (strong, nonatomic) NSMutableArray *statuses;
-/** Contatins ad model */
-@property (strong, nonatomic) NSArray *ads;
-@property (strong, nonatomic) NSNumber *totalNumber;
-@end
-
-/***********************************************/
-
-// Tell MJExtension what type model will be contained in statuses and ads.
-[StatusResult setupObjectClassInArray:^NSDictionary *{
-return @{
-           @"statuses" : @"Status",
-           // @"statuses" : [Status class],
-           @"ads" : @"Ad"
-           // @"ads" : [Ad class]
-       };
-}];
-// Equals: StatusResult.m implements +objectClassInArray method.
-
-NSDictionary *dict = @{
-@"statuses" : @[
-                  @{
-                      @"text" : @"Nice weather!",
-                      @"user" : @{
-                          @"name" : @"Rose",
-                          @"icon" : @"nami.png"
-                      }
-                  },
-                  @{
-                      @"text" : @"Go camping tomorrow!",
-                      @"user" : @{
-                          @"name" : @"Jack",
-                          @"icon" : @"lufy.png"
-                      }
-                  }
-              ],
-@"ads" : @[
-             @{
-                 @"image" : @"ad01.png",
-                 @"url" : @"http://www.ad01.com"
-             },
-             @{
-                 @"image" : @"ad02.png",
-                 @"url" : @"http://www.ad02.com"
-             }
-         ],
-@"totalNumber" : @"2014"
-};
-
-// JSON -&gt; StatusResult
-StatusResult *result = [StatusResult objectWithKeyValues:dict];
-
-NSLog(@"totalNumber=%@", result.totalNumber);
-// totalNumber=2014
-
-// Printing
-for (Status *status in result.statuses) {
-NSString *text = status.text;
-NSString *name = status.user.name;
-NSString *icon = status.user.icon;
-NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
-}
-// text=Nice weather!, name=Rose, icon=nami.png
-// text=Go camping tomorrow!, name=Jack, icon=lufy.png
-
-// Printing
-for (Ad *ad in result.ads) {
-NSLog(@"image=%@, url=%@", ad.image, ad.url);
-}
-// image=ad01.png, url=http://www.ad01.com
-// image=ad02.png, url=http://www.ad02.com
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@interface Ad : NSObject
+</span><span class='line'>@property (copy, nonatomic) NSString *image;
+</span><span class='line'>@property (copy, nonatomic) NSString *url;
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@interface StatusResult : NSObject
+</span><span class='line'>/** Contatins status model */
+</span><span class='line'>@property (strong, nonatomic) NSMutableArray *statuses;
+</span><span class='line'>/** Contatins ad model */
+</span><span class='line'>@property (strong, nonatomic) NSArray *ads;
+</span><span class='line'>@property (strong, nonatomic) NSNumber *totalNumber;
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>/&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>*****/&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Tell MJExtension what type model will be contained in statuses and ads.
+</span><span class='line'>[StatusResult setupObjectClassInArray:^NSDictionary *{
+</span><span class='line'>  return @{
+</span><span class='line'>                 @”statuses” : @”Status”,
+</span><span class='line'>               // @”statuses” : [Status class],
+</span><span class='line'>               @”ads” : @”Ad”
+</span><span class='line'>               // @”ads” : [Ad class]
+</span><span class='line'>           };
+</span><span class='line'>}];
+</span><span class='line'>// Equals: StatusResult.m implements +objectClassInArray method.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSDictionary *dict = @{
+</span><span class='line'>   @”statuses” : @[
+</span><span class='line'>                      @{
+</span><span class='line'>                          @”text” : @”Nice weather!”,
+</span><span class='line'>                          @”user” : @{
+</span><span class='line'>                              @”name” : @”Rose”,
+</span><span class='line'>                              @”icon” : @”nami.png”
+</span><span class='line'>                          }
+</span><span class='line'>                      },
+</span><span class='line'>                      @{
+</span><span class='line'>                          @”text” : @”Go camping tomorrow!”,
+</span><span class='line'>                          @”user” : @{
+</span><span class='line'>                              @”name” : @”Jack”,
+</span><span class='line'>                              @”icon” : @”lufy.png”
+</span><span class='line'>                          }
+</span><span class='line'>                      }
+</span><span class='line'>                  ],
+</span><span class='line'>    @”ads” : @[
+</span><span class='line'>                 @{
+</span><span class='line'>                     @”image” : @”ad01.png”,
+</span><span class='line'>                     @”url” : @”http://www.ad01.com”
+</span><span class='line'>                 },
+</span><span class='line'>                 @{
+</span><span class='line'>                     @”image” : @”ad02.png”,
+</span><span class='line'>                     @”url” : @”http://www.ad02.com”
+</span><span class='line'>                 }
+</span><span class='line'>             ],
+</span><span class='line'>    @”totalNumber” : @”2014”
+</span><span class='line'>};&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// JSON -&gt; StatusResult
+</span><span class='line'>StatusResult *result = [StatusResult objectWithKeyValues:dict];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSLog(@”totalNumber=%@”, result.totalNumber);
+</span><span class='line'>// totalNumber=2014&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Printing
+</span><span class='line'>for (Status *status in result.statuses) {
+</span><span class='line'>    NSString *text = status.text;
+</span><span class='line'>    NSString *name = status.user.name;
+</span><span class='line'>    NSString *icon = status.user.icon;
+</span><span class='line'>    NSLog(@”text=%@, name=%@, icon=%@”, text, name, icon);
+</span><span class='line'>}
+</span><span class='line'>// text=Nice weather!, name=Rose, icon=nami.png
+</span><span class='line'>// text=Go camping tomorrow!, name=Jack, icon=lufy.png&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Printing
+</span><span class='line'>for (Ad *ad in result.ads) {
+</span><span class='line'>   NSLog(@”image=%@, url=%@”, ad.image, ad.url);
+</span><span class='line'>}
+</span><span class='line'>// image=ad01.png, url=http://www.ad01.com
+</span><span class='line'>// image=ad02.png, url=http://www.ad02.com&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="model-name---json-key-mappingkey">Model name - JSON key mapping【模型中的属性名和字典中的key不相同(或者需要多级映射)】</h4>
 
-<pre><code>@interface Bag : NSObject
-@property (copy, nonatomic) NSString *name;
-@property (assign, nonatomic) double price;
-@end
-
-@interface Student : NSObject
-@property (copy, nonatomic) NSString *ID;
-@property (copy, nonatomic) NSString *desc;
-@property (copy, nonatomic) NSString *nowName;
-@property (copy, nonatomic) NSString *oldName;
-@property (copy, nonatomic) NSString *nameChangedTime;
-@property (strong, nonatomic) Bag *bag;
-@end
-
-/***********************************************/
-
-// How to map
-[Student setupReplacedKeyFromPropertyName:^NSDictionary *{
-return @{
-           @"ID" : @"id",
-           @"desc" : @"desciption",
-           @"oldName" : @"name.oldName",
-           @"nowName" : @"name.newName",
-           @"nameChangedTime" : @"name.info[1].nameChangedTime",
-           @"bag" : @"other.bag"
-       };
-}];
-// Equals: Student.m implements +replacedKeyFromPropertyName method.
-
-NSDictionary *dict = @{
-@"id" : @"20",
-@"desciption" : @"kids",
-@"name" : @{
-    @"newName" : @"lufy",
-    @"oldName" : @"kitty",
-    @"info" : @[
-             @"test-data",
-             @{
-                         @"nameChangedTime" : @"2013-08"
-                     }
-              ]
-},
-@"other" : @{
-    @"bag" : @{
-        @"name" : @"a red bag",
-        @"price" : @100.7
-    }
-}
-};
-
-// JSON -&gt; Student
-Student *stu = [Student objectWithKeyValues:dict];
-
-// Printing
-NSLog(@"ID=%@, desc=%@, oldName=%@, nowName=%@, nameChangedTime=%@",
-  stu.ID, stu.desc, stu.oldName, stu.nowName, stu.nameChangedTime);
-// ID=20, desc=kids, oldName=kitty, nowName=lufy, nameChangedTime=2013-08
-NSLog(@"bagName=%@, bagPrice=%f", stu.bag.name, stu.bag.price);
-// bagName=a red bag, bagPrice=100.700000
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@interface Bag : NSObject
+</span><span class='line'>@property (copy, nonatomic) NSString *name;
+</span><span class='line'>@property (assign, nonatomic) double price;
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@interface Student : NSObject
+</span><span class='line'>@property (copy, nonatomic) NSString *ID;
+</span><span class='line'>@property (copy, nonatomic) NSString *desc;
+</span><span class='line'>@property (copy, nonatomic) NSString *nowName;
+</span><span class='line'>@property (copy, nonatomic) NSString *oldName;
+</span><span class='line'>@property (copy, nonatomic) NSString *nameChangedTime;
+</span><span class='line'>@property (strong, nonatomic) Bag *bag;
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>/&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>*****/&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// How to map
+</span><span class='line'>[Student setupReplacedKeyFromPropertyName:^NSDictionary *{
+</span><span class='line'>   return @{
+</span><span class='line'>               @”ID” : @”id”,
+</span><span class='line'>               @”desc” : @”desciption”,
+</span><span class='line'>               @”oldName” : @”name.oldName”,
+</span><span class='line'>               @”nowName” : @”name.newName”,
+</span><span class='line'>               @”nameChangedTime” : @”name.info[1].nameChangedTime”,
+</span><span class='line'>               @”bag” : @”other.bag”
+</span><span class='line'>           };
+</span><span class='line'>}];
+</span><span class='line'>// Equals: Student.m implements +replacedKeyFromPropertyName method.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSDictionary *dict = @{
+</span><span class='line'>    @”id” : @”20”,
+</span><span class='line'>    @”desciption” : @”kids”,
+</span><span class='line'>    @”name” : @{
+</span><span class='line'>        @”newName” : @”lufy”,
+</span><span class='line'>        @”oldName” : @”kitty”,
+</span><span class='line'>        @”info” : @[
+</span><span class='line'>                 @”test-data”,
+</span><span class='line'>                 @{
+</span><span class='line'>                             @”nameChangedTime” : @”2013-08”
+</span><span class='line'>                         }
+</span><span class='line'>                  ]
+</span><span class='line'>  },
+</span><span class='line'>    @”other” : @{
+</span><span class='line'>        @”bag” : @{
+</span><span class='line'>            @”name” : @”a red bag”,
+</span><span class='line'>            @”price” : @100.7
+</span><span class='line'>        }
+</span><span class='line'>    }
+</span><span class='line'>};&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// JSON -&gt; Student
+</span><span class='line'>Student *stu = [Student objectWithKeyValues:dict];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Printing
+</span><span class='line'>NSLog(@”ID=%@, desc=%@, oldName=%@, nowName=%@, nameChangedTime=%@”,
+</span><span class='line'>      stu.ID, stu.desc, stu.oldName, stu.nowName, stu.nameChangedTime);
+</span><span class='line'>// ID=20, desc=kids, oldName=kitty, nowName=lufy, nameChangedTime=2013-08
+</span><span class='line'>NSLog(@”bagName=%@, bagPrice=%f”, stu.bag.name, stu.bag.price);
+</span><span class='line'>// bagName=a red bag, bagPrice=100.700000&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="json-array---model-array">JSON array -&gt; model array【将一个字典数组转成模型数组】</h4>
 
-<pre><code>NSArray *dictArray = @[
-                     @{
-                         @"name" : @"Jack",
-                         @"icon" : @"lufy.png"
-                     },
-                     @{
-                         @"name" : @"Rose",
-                         @"icon" : @"nami.png"
-                     }
-                 ];
-
-// JSON array -&gt; User array
-NSArray *userArray = [User objectArrayWithKeyValuesArray:dictArray];
-
-// Printing
-for (User *user in userArray) {
-NSLog(@"name=%@, icon=%@", user.name, user.icon);
-}
-// name=Jack, icon=lufy.png
-// name=Rose, icon=nami.png
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSArray *dictArray = @[
+</span><span class='line'>                         @{
+</span><span class='line'>                             @”name” : @”Jack”,
+</span><span class='line'>                             @”icon” : @”lufy.png”
+</span><span class='line'>                         },
+</span><span class='line'>                         @{
+</span><span class='line'>                             @”name” : @”Rose”,
+</span><span class='line'>                             @”icon” : @”nami.png”
+</span><span class='line'>                         }
+</span><span class='line'>                    ];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// JSON array -&gt; User array
+</span><span class='line'>NSArray *userArray = [User objectArrayWithKeyValuesArray:dictArray];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Printing
+</span><span class='line'>for (User *user in userArray) {
+</span><span class='line'>   NSLog(@”name=%@, icon=%@”, user.name, user.icon);
+</span><span class='line'>}
+</span><span class='line'>// name=Jack, icon=lufy.png
+</span><span class='line'>// name=Rose, icon=nami.png&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="model---json">Model -&gt; JSON【将一个模型转成字典】</h4>
 
-<pre><code>// New model
-User *user = [[User alloc] init];
-user.name = @"Jack";
-user.icon = @"lufy.png";
-
-Status *status = [[Status alloc] init];
-status.user = user;
-status.text = @"Nice mood!";
-
-// Status -&gt; JSON
-NSDictionary *statusDict = status.keyValues;
-NSLog(@"%@", statusDict);
-/*
- 	{
- 		text = "Nice mood!";
- 		user =     {
- 		icon = "lufy.png";
- 		name = Jack;
- 		};
- 	}
- 	*/
-
-// More complex situation
-Student *stu = [[Student alloc] init];
-stu.ID = @"123";
-stu.oldName = @"rose";
-stu.nowName = @"jack";
-stu.desc = @"handsome";
-stu.nameChangedTime = @"2018-09-08";
-
-Bag *bag = [[Bag alloc] init];
-bag.name = @"a red bag";
-bag.price = 205;
-stu.bag = bag;
-
-NSDictionary *stuDict = stu.keyValues;
-NSLog(@"%@", stuDict);
-/*
-{
-ID = 123;
-bag =     {
-    name = "\U5c0f\U4e66\U5305";
-    price = 205;
-};
-desc = handsome;
-nameChangedTime = "2018-09-08";
-nowName = jack;
-oldName = rose;
-}
- */
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// New model
+</span><span class='line'>User *user = [[User alloc] init];
+</span><span class='line'>user.name = @”Jack”;
+</span><span class='line'>user.icon = @”lufy.png”;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Status *status = [[Status alloc] init];
+</span><span class='line'>status.user = user;
+</span><span class='line'>status.text = @”Nice mood!”;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Status -&gt; JSON
+</span><span class='line'>NSDictionary &lt;em>statusDict = status.keyValues;
+</span><span class='line'>NSLog(@”%@”, statusDict);
+</span><span class='line'>/&lt;/em>
+</span><span class='line'>{
+</span><span class='line'> 	text = “Nice mood!”;
+</span><span class='line'> 	user =     {
+</span><span class='line'> 	icon = “lufy.png”;
+</span><span class='line'> 	name = Jack;
+</span><span class='line'> 	};
+</span><span class='line'>}
+</span><span class='line'>*/&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// More complex situation
+</span><span class='line'>Student *stu = [[Student alloc] init];
+</span><span class='line'>stu.ID = @”123”;
+</span><span class='line'>stu.oldName = @”rose”;
+</span><span class='line'>stu.nowName = @”jack”;
+</span><span class='line'>stu.desc = @”handsome”;
+</span><span class='line'>stu.nameChangedTime = @”2018-09-08”;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Bag *bag = [[Bag alloc] init];
+</span><span class='line'>bag.name = @”a red bag”;
+</span><span class='line'>bag.price = 205;
+</span><span class='line'>stu.bag = bag;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSDictionary &lt;em>stuDict = stu.keyValues;
+</span><span class='line'>NSLog(@”%@”, stuDict);
+</span><span class='line'>/&lt;/em>
+</span><span class='line'>{
+</span><span class='line'>   ID = 123;
+</span><span class='line'>   bag =     {
+</span><span class='line'>        name = “\U5c0f\U4e66\U5305”;
+</span><span class='line'>        price = 205;
+</span><span class='line'> };
+</span><span class='line'>   desc = handsome;
+</span><span class='line'>   nameChangedTime = “2018-09-08”;
+</span><span class='line'>   nowName = jack;
+</span><span class='line'>   oldName = rose;
+</span><span class='line'>}
+</span><span class='line'>*/&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="model-array---json-array">Model array -&gt; JSON array【将一个模型数组转成字典数组】</h4>
 
-<pre><code>// New model array
-User *user1 = [[User alloc] init];
-user1.name = @"Jack";
-user1.icon = @"lufy.png";
-
-User *user2 = [[User alloc] init];
-user2.name = @"Rose";
-user2.icon = @"nami.png";
-
-NSArray *userArray = @[user1, user2];
-
-// Model array -&gt; JSON array
-NSArray *dictArray = [User keyValuesArrayWithObjectArray:userArray];
-NSLog(@"%@", dictArray);
-/*
- 	(
- 	{
- 	icon = "lufy.png";
- name = Jack;
- },
- 	{
- 	icon = "nami.png";
- 	name = Rose;
- 	}
- )
- 	*/
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// New model array
+</span><span class='line'>User *user1 = [[User alloc] init];
+</span><span class='line'>user1.name = @”Jack”;
+</span><span class='line'>user1.icon = @”lufy.png”;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>User *user2 = [[User alloc] init];
+</span><span class='line'>user2.name = @”Rose”;
+</span><span class='line'>user2.icon = @”nami.png”;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSArray *userArray = @[user1, user2];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Model array -&gt; JSON array
+</span><span class='line'>NSArray &lt;em>dictArray = [User keyValuesArrayWithObjectArray:userArray];
+</span><span class='line'>NSLog(@”%@”, dictArray);
+</span><span class='line'>/&lt;/em>
+</span><span class='line'> (
+</span><span class='line'> {
+</span><span class='line'> 	icon = “lufy.png”;
+</span><span class='line'>	name = Jack;
+</span><span class='line'>},
+</span><span class='line'> {
+</span><span class='line'> 	icon = “nami.png”;
+</span><span class='line'> 	name = Rose;
+</span><span class='line'> }
+</span><span class='line'>)
+</span><span class='line'>*/&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="core-data">Core Data</h4>
 
-<pre><code>NSDictionary *dict = @{
-                     @"name" : @"Jack",
-                     @"icon" : @"lufy.png",
-                     @"age" : @20,
-                     @"height" : @1.55,
-                     @"money" : @"100.9",
-                     @"sex" : @(SexFemale),
-                     @"gay" : @"true"
-                 };
-
-// This demo just provide simple steps
-NSManagedObjectContext *context = nil;
-User *user = [User objectWithKeyValues:dict context:context];
-
-[context save:nil];
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSDictionary *dict = @{
+</span><span class='line'>                         @”name” : @”Jack”,
+</span><span class='line'>                         @”icon” : @”lufy.png”,
+</span><span class='line'>                         @”age” : @20,
+</span><span class='line'>                         @”height” : @1.55,
+</span><span class='line'>                         @”money” : @”100.9”,
+</span><span class='line'>                         @”sex” : @(SexFemale),
+</span><span class='line'>                         @”gay” : @”true”
+</span><span class='line'>                     };&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// This demo just provide simple steps
+</span><span class='line'>NSManagedObjectContext *context = nil;
+</span><span class='line'>User *user = [User objectWithKeyValues:dict context:context];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[context save:nil];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="coding">Coding</h4>
 
-<pre><code>#import "MJExtension.h"
-
-@implementation Bag
-// NSCoding Implementation
-MJCodingImplementation
-@end
-
-/***********************************************/
-
-// what properties not to be coded
-[Bag setupIgnoredCodingPropertyNames:^NSArray *{
-return @[@"name"];
-}];
-// Equals: Bag.m implements +ignoredCodingPropertyNames method.
-
-// Create model
-Bag *bag = [[Bag alloc] init];
-bag.name = @"Red bag";
-bag.price = 200.8;
-
-NSString *file = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/	bag.data"];
-// Encoding
-[NSKeyedArchiver archiveRootObject:bag toFile:file];
-
-// Decoding
-Bag *decodedBag = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
-NSLog(@"name=%@, price=%f", decodedBag.name, decodedBag.price);
-// name=(null), price=200.800000
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="import-mjextensionh">import “MJExtension.h”&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@implementation Bag
+</span><span class='line'>// NSCoding Implementation
+</span><span class='line'>MJCodingImplementation
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>/&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>&lt;strong>**&lt;/strong>*****/&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// what properties not to be coded
+</span><span class='line'>[Bag setupIgnoredCodingPropertyNames:^NSArray *{
+</span><span class='line'>   return @[@”name”];
+</span><span class='line'>}];
+</span><span class='line'>// Equals: Bag.m implements +ignoredCodingPropertyNames method.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Create model
+</span><span class='line'>Bag *bag = [[Bag alloc] init];
+</span><span class='line'>bag.name = @”Red bag”;
+</span><span class='line'>bag.price = 200.8;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSString *file = [NSHomeDirectory() stringByAppendingPathComponent:@”Desktop/	bag.data”];
+</span><span class='line'>// Encoding
+</span><span class='line'>[NSKeyedArchiver archiveRootObject:bag toFile:file];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Decoding
+</span><span class='line'>Bag *decodedBag = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+</span><span class='line'>NSLog(@”name=%@, price=%f”, decodedBag.name, decodedBag.price);
+</span><span class='line'>// name=(null), price=200.800000&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="camel---underline">Camel -&gt; underline【统一转换属性名（比如驼峰转下划线）】</h4>
 
-<pre><code>// Dog
-#import "MJExtension.h"
-
-@implementation Dog
-+ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName
-{
-// nickName -&gt; nick_name
-return [propertyName underlineFromCamel];
-}
-@end
-
-// NSDictionary
-NSDictionary *dict = @{
-                   @"nick_name" : @"旺财",
-                   @"sale_price" : @"10.5",
-                   @"run_speed" : @"100.9"
-                   };
-// NSDictionary -&gt; Dog
-Dog *dog = [Dog objectWithKeyValues:dict];
-
-// printing
-NSLog(@"nickName=%@, scalePrice=%f runSpeed=%f", dog.nickName, dog.salePrice, dog.runSpeed);
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Dog
+</span><span class='line'>#import “MJExtension.h”&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@implementation Dog
+</span><span class='line'>+ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName
+</span><span class='line'>{
+</span><span class='line'>   // nickName -&gt; nick_name
+</span><span class='line'>   return [propertyName underlineFromCamel];
+</span><span class='line'>}
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// NSDictionary
+</span><span class='line'>NSDictionary *dict = @{
+</span><span class='line'>                       @”nick_name” : @”旺财”,
+</span><span class='line'>                       @”sale_price” : @”10.5”,
+</span><span class='line'>                       @”run_speed” : @”100.9”
+</span><span class='line'>                     };
+</span><span class='line'>// NSDictionary -&gt; Dog
+</span><span class='line'>Dog *dog = [Dog objectWithKeyValues:dict];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// printing
+</span><span class='line'>NSLog(@”nickName=%@, scalePrice=%f runSpeed=%f”, dog.nickName, dog.salePrice, dog.runSpeed);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="nsstring---nsdate-nil---nsdatenil">NSString -&gt; NSDate, nil -&gt; @”“【过滤字典的值（比如字符串日期处理为NSDate、字符串nil处理为@”“）】</h4>
 
-<pre><code>// Book
-#import "MJExtension.h"
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// Book
+</span><span class='line'>#import “MJExtension.h”&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@implementation Book
+</span><span class='line'>- (id)newValueFromOldValue:(id)oldValue property:(MJProperty *)property
+</span><span class='line'>{
+</span><span class='line'>  if ([property.name isEqualToString:@”publisher”]) {
+</span><span class='line'>        if (oldValue == nil) return @””;
+</span><span class='line'>  } else if (property.type.typeClass == [NSDate class]) {
+</span><span class='line'>        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+</span><span class='line'>        fmt.dateFormat = @”yyyy-MM-dd”;
+</span><span class='line'>        return [fmt dateFromString:oldValue];
+</span><span class='line'>  }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>return oldValue;
+</span><span class='line'>}
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// NSDictionary
+</span><span class='line'>NSDictionary *dict = @{
+</span><span class='line'>                       @”name” : @”5分钟突破iOS开发”,
+</span><span class='line'>                       @”publishedTime” : @”2011-09-10”
+</span><span class='line'>                       };
+</span><span class='line'>// NSDictionary -&gt; Book
+</span><span class='line'>Book *book = [Book objectWithKeyValues:dict];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>// printing
+</span><span class='line'>NSLog(@”name=%@, publisher=%@, publishedTime=%@”, book.name, book.publisher, book.publishedTime);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
-@implementation Book
-- (id)newValueFromOldValue:(id)oldValue property:(MJProperty *)property
-{
-if ([property.name isEqualToString:@"publisher"]) {
-    if (oldValue == nil) return @"";
-} else if (property.type.typeClass == [NSDate class]) {
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"yyyy-MM-dd";
-    return [fmt dateFromString:oldValue];
-}
-
-return oldValue;
-}
-@end
-
-// NSDictionary
-NSDictionary *dict = @{
-                   @"name" : @"5分钟突破iOS开发",
-                   @"publishedTime" : @"2011-09-10"
-                   };
-// NSDictionary -&gt; Book
-Book *book = [Book objectWithKeyValues:dict];
-
-// printing
-NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, book.publishedTime);
-</code></pre>
-
-<h4 id="more-use-cases">More use cases【更多用法】</h4>
+<h3 id="more-use-cases">More use cases【更多用法】</h3>
 
 <ul>
   <li>Please reference to NSObject+MJKeyValue.h and NSObject+MJCoding.h</li>
@@ -2923,7 +3610,7 @@ NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, boo
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[ios依赖注入框架objection]]></title>
+    <title type="html"><![CDATA[iOS 依赖注入框架 Objection]]></title>
     <link href="http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/"/>
     <updated>2015-07-10T21:52:44+08:00</updated>
     <id>http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection</id>
@@ -2933,20 +3620,50 @@ NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, boo
 
 <p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
 
-<pre><code>- (void)viewDidLoad
-{
-	[super viewDidLoad];
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-	button.frame = CGRectMake(100, 100, 100, 30);
-	[self.view addSubview:button];
-}
- 
-- (void)buttonTapped
-{
-	ViewControllerB *vc = [[ViewControllerB alloc] init];
-	[self.navigationController pushViewController:vc animated:YES];
-}
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;ul>
+</span><span class='line'>  &lt;li>
+</span><span class='line'>    &lt;p>(void)viewDidLoad
+</span><span class='line'>{
+</span><span class='line'>  [super viewDidLoad];
+</span><span class='line'>  UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+</span><span class='line'>  button.frame = CGRectMake(100, 100, 100, 30);
+</span><span class='line'>  [self.view addSubview:button];
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>  &lt;/li>
+</span><span class='line'>  &lt;li>
+</span><span class='line'>    &lt;p>(void)buttonTapped
+</span><span class='line'>{
+</span><span class='line'>  ViewControllerB *vc = [[ViewControllerB alloc] init];
+</span><span class='line'>  [self.navigationController pushViewController:vc animated:YES];
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>  &lt;/li>
+</span><span class='line'>&lt;/ul>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
 
@@ -2954,12 +3671,24 @@ NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, boo
 
 <p>实现方法是：先定义一个协议(protocol)，然后通过objection来注册这个协议对应的class，需要的时候，可以获取该协议对应的object。对于使用方无需关心到底使用的是哪个Class，反正该有的方法、属性都有了(在协议中指定)。这样就去除了对某个特定Class的依赖。也就是通常所说的「面向接口编程」。</p>
 
-<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-UIViewController &lt;ViewControllerAProtocol&gt; *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
-vc.backgroundColor = [UIColor lightGrayColor]; // [3]
-UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-self.window.rootViewController = nc;
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
+</span><span class='line'>UIViewController &lt;viewcontrolleraprotocol> *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
+</span><span class='line'>vc.backgroundColor = [UIColor lightGrayColor]; // [3]
+</span><span class='line'>UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+</span><span class='line'>self.window.rootViewController = nc;&lt;/viewcontrolleraprotocol>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <ol>
   <li>获取默认的injector，这个injector已经注册过ViewControllerAProtocol了。</li>
@@ -2969,24 +3698,51 @@ self.window.rootViewController = nc;
 
 <p>可以看到这里没有引用ViewControllerA。再来看看这个ViewControllerAProtocol是如何注册到injector中的，这里涉及到了Module，对Protocol的注册都是在Module中完成的。Module只要继承JSObjectionModule这个Class即可。</p>
 
-<pre><code>@interface ViewControllerAModule : JSObjectionModule
-@end
- 
-@implementation ViewControllerAModule
-- (void)configure
-{
-	[self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
-}
-@end
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@interface ViewControllerAModule : JSObjectionModule
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@implementation ViewControllerAModule
+</span><span class='line'>- (void)configure
+</span><span class='line'>{
+</span><span class='line'>   [self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
+</span><span class='line'>}
+</span><span class='line'>@end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>绑定操作是在configure方法里进行的，这个方法在被添加到injector里时会被自动触发。</p>
 
-<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-injector = injector ? : [JSObjection createInjector]; // [2]
-injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
-[JSObjection setDefaultInjector:injector]; // [4]
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
+</span><span class='line'>injector = injector ? : [JSObjection createInjector]; // [2]
+</span><span class='line'>injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
+</span><span class='line'>[JSObjection setDefaultInjector:injector]; // [4]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <ol>
   <li>获取默认的 injector</li>
@@ -2999,744 +3755,35 @@ injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
 
 <p>因为我们无法直接获得对应的Class，所以必须要在协议里定义好对外暴露的方法和属性，然后该Class也要实现该协议。</p>
 
-<pre><code>@protocol ViewControllerAProtocol &lt;NSObject&gt;
-@property (nonatomic) NSUInteger currentIndex;
-@property (nonatomic) UIColor *backgroundColor;
-@end
- 
-@interface ViewControllerA : UIViewController &lt;ViewControllerAProtocol&gt;
-@end
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@protocol ViewControllerAProtocol &lt;nsobject>
+</span><span class='line'>@property (nonatomic) NSUInteger currentIndex;
+</span><span class='line'>@property (nonatomic) UIColor *backgroundColor;
+</span><span class='line'>@end&lt;/nsobject>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@interface ViewControllerA : UIViewController &lt;viewcontrolleraprotocol>
+</span><span class='line'>@end&lt;/viewcontrolleraprotocol>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>通过objection实现依赖注入后，就能更好地实现SRP(Single Responsibility Principle)，代码更简洁，心情更舒畅，生活更美好。</p>
 
+<hr />
 <p>github地址: <a href="https://github.com/atomicobject/objection" title="url">https://github.com/atomicobject/objection</a></p>
 
 <p>demo地址: <a href="https://github.com/helloyokoy/bizhi" title="url">https://github.com/helloyokoy/bizhi</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[IOS多线程]]></title>
-    <link href="http://helloyokoy.github.io/blog/iosduo-xian-cheng/"/>
-    <updated>2015-06-18T22:25:55+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/iosduo-xian-cheng</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
-</blockquote>
-
-<h2 id="section">概述</h2>
-<hr />
-<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
-
-<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
-
-<pre><code>Pthreads
-NSThread
-GCD
-NSOperation &amp; NSOperationQueue
-</code></pre>
-
-<p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
-
-<!--more-->
-
-<h3 id="pthreads">Pthreads</h3>
-
-<p>其实这个方案不用说的，只是拿来充个数，为了让大家了解一下就好了。百度百科里是这么说的：</p>
-
-<p>POSIX线程（POSIX threads），简称Pthreads，是线程的POSIX标准。该标准定义了创建和操纵线程的一整套API。在类Unix操作系统（Unix、Linux、Mac OS X等）中，都使用Pthreads作为操作系统的线程。</p>
-
-<p>简单地说，这是一套在很多操作系统上都通用的多线程API，所以移植性很强（然并卵），当然在 iOS 中也是可以的。不过这是基于 c语言 的框架，使用起来这酸爽！感受一下：</p>
-
-<p>OBJECTIVE-C</p>
-
-<p>当然第一步要包含头文件</p>
-
-<pre><code>#import
-</code></pre>
-
-<p>然后创建线程，并执行任务</p>
-
-<pre><code>- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-pthread_t thread;
-//创建一个线程并自动执行
-pthread_create(&amp;thread, NULL, start, NULL);
-}
-void *start(void *data) {
-NSLog(@"%@", [NSThread currentThread]);
-return NULL;
-} 打印输出：
-
-
-2015-07-27 23:57:21.689 testThread[10616:2644653] {number = 2, name = (null)} 看代码就会发现他需要 c语言函数，这是比较蛋疼的，更蛋疼的是你需要手动处理线程的各个状态的转换即管理生命周期，比如，这段代码虽然创建了一个线程，但并没有销毁。
-</code></pre>
-
-<p>SWIFT</p>
-
-<p>很遗憾，在我目前的 swift1.2 中无法执行这套方法，原因是这个函数需要传入一个函数指针 CFunctionPointer类型，但是目前 swift 无法将方法转换成此类型。听说 swift 2.0 引入一个新特性 @convention(c), 可以完成 Swift 方法转换成 c 语言指针的。在这里可以看到</p>
-
-<p>那么，Pthreads 方案的多线程我就介绍这么多，毕竟做 iOS 开发几乎不可能用到。但是如果你感兴趣的话，或者说想要自己实现一套多线程方案，从底层开始定制，那么可以去搜一下相关资料。</p>
-
-<h3 id="nsthread">NSThread</h3>
-
-<p>这套方案是经过苹果封装后的，并且完全面向对象的。所以你可以直接操控线程对象，非常直观和方便。但是，它的生命周期还是需要我们手动管理，所以这套方案也是偶尔用用，比如 [NSThread currentThread]，它可以获取当前线程类，你就可以知道当前线程的各种属性，用于调试十分方便。下面来看看它的一些用法。</p>
-
-<h5 id="section-1">创建并启动</h5>
-
-<p>先创建线程类，再启动
-OBJECTIVE-C</p>
-
-  	// 创建
-  	NSThread *thread = [[NSThread alloc] initWithTarget:self 	selector:@selector(run:) object:nil];
-  	// 启动
-  	[thread start];
-
-<p>SWIFT</p>
-
-  	//创建
-  	let thread = NSThread(target: self, selector: “run:”, object: nil)
-  	//启动
-  	thread.start()
-
-<h5 id="section-2">创建并自动启动</h5>
-
-<p>OBJECTIVE-C</p>
-
-  	[NSThread detachNewThreadSelector:@selector(run:) toTarget:self withObject:nil];
-<p>SWIFT</p>
-
-  	NSThread.detachNewThreadSelector(“run:”, toTarget: self, withObject: nil)
-<p>使用 NSObject 的方法创建并自动启动</p>
-
-<p>OBJECTIVE-C</p>
-
-  	[self performSelectorInBackground:@selector(run:) withObject:nil];
-<p>SWIFT</p>
-
-<p>很遗憾 too! 苹果认为 performSelector: 不安全，所以在 Swift 去掉了这个方法。</p>
-
-<pre><code>Note: The performSelector: method and related selector-invoking methods are not imported in Swift because they are inherently unsafe.
-</code></pre>
-
-<h5 id="section-3">其他方法</h5>
-
-<p>除了创建启动外，NSThread 还以很多方法，下面我列举一些常见的方法，当然我列举的并不完整，更多方法大家可以去类的定义里去看。</p>
-
-<p>OBJECTIVE-C</p>
-
-<pre><code>//取消线程
-- (void)cancel;
-//启动线程
-- (void)start;
-//判断某个线程的状态的属性
-@property (readonly, getter=isExecuting) BOOL executing;
-@property (readonly, getter=isFinished) BOOL finished;
-@property (readonly, getter=isCancelled) BOOL cancelled;
-//设置和获取线程名字
--(void)setName:(NSString *)n;
--(NSString *)name;
-//获取当前线程信息
-+ (NSThread *)currentThread;
-//获取主线程信息
-+ (NSThread *)mainThread;
-//使当前线程暂停一段时间，或者暂停到某个时刻
-+ (void)sleepForTimeInterval:(NSTimeInterval)time;
-+ (void)sleepUntilDate:(NSDate *)date; SWIFT
-</code></pre>
-
-<p>Swift的方法名字和OC的方法名都一样，我就不浪费空间列举出来了。</p>
-
-<p>其实，NSThread 用起来也挺简单的，因为它就那几种方法。同时，我们也只有在一些非常简单的场景才会用 NSThread, 毕竟它还不够智能，不能优雅地处理多线程中的其他高级概念。所以接下来要说的内容才是重点。</p>
-
-<h3 id="gcd">GCD</h3>
-
-<p>Grand Central Dispatch，听名字就霸气。它是苹果为多核的并行运算提出的解决方案，所以会自动合理地利用更多的CPU内核（比如双核、四核），最重要的是它会自动管理线程的生命周期（创建线程、调度任务、销毁线程），完全不需要我们管理，我们只需要告诉干什么就行。同时它使用的也是 c语言，不过由于使用了 Block（Swift里叫做闭包），使得使用起来更加方便，而且灵活。所以基本上大家都使用 GCD 这套方案，老少咸宜，实在是居家旅行、杀人灭口，必备良药。不好意思，有点中二，咱们继续。</p>
-
-<h5 id="section-4">任务和队列</h5>
-
-<p>在 GCD 中，加入了两个非常重要的概念： 任务 和 队列。</p>
-
-<p>任务：即操作，你想要干什么，说白了就是一段代码，在 GCD 中就是一个 Block，所以添加任务十分方便。任务有两种执行方式： 同步执行 和 异步执行，他们之间的区别是 是否会创建新的线程。
-同步执行：只要是同步执行的任务，都会在当前线程执行，不会另开线程。</p>
-
-<p>异步执行：只要是异步执行的任务，都会另开线程，在别的线程执行。</p>
-
-<p>更新：</p>
-
-<p>这里说的并不准确，同步（sync） 和 异步（async） 的主要区别在于会不会阻塞当前线程，直到 Block 中的任务执行完毕！</p>
-
-<p>如果是 同步（sync） 操作，它会阻塞当前线程并等待 Block 中的任务执行完毕，然后当前线程才会继续往下运行。</p>
-
-<p>如果是 异步（async）操作，当前线程会直接往下执行，它不会阻塞当前线程。</p>
-
-<p>队列：用于存放任务。一共有两种队列， 串行队列 和 并行队列。
-串行队列 中的任务会根据队列的定义 FIFO 的执行，一个接一个的先进先出的进行执行。</p>
-
-<p>更新：放到串行队列的任务，GCD 会 FIFO（先进先出） 地取出来一个，执行一个，然后取下一个，这样一个一个的执行。</p>
-
-<p>并行队列 中的任务根据同步或异步有不同的执行方式。虽然很绕，但请看下表：</p>
-
-<p>更新：放到串行队列的任务，GCD 也会 FIFO的取出来，但不同的是，它取出来一个就会放到别的线程，然后再取出来一个又放到另一个的线程。这样由于取的动作很快，忽略不计，看起来，所有的任务都是一起执行的。不过需要注意，GCD 会根据系统资源控制并行的数量，所以如果任务很多，它并不会让所有任务同时执行。</p>
-
-<h5 id="section-5">创建队列</h5>
-
-<p>主队列：这是一个特殊的 串行队列。什么是主队列，大家都知道吧，它用于刷新 UI，任何需要刷新 UI 的工作都要在主队列执行，所以一般耗时的任务都要放到别的线程执行。</p>
-
-<p>//OBJECTIVE-C
-  dispatch_queue_t queue = ispatch_get_main_queue();
-  //SWIFT
-  let queue = ispatch_get_main_queue()
-自己创建的队列：凡是自己创建的队列都是 串行队列。其中第一个参数是标识符，用于 DEBUG 的时候标识唯一的队列，可以为空。大家可以看xcode的文档查看参数意义。
-更新：自己可以创建 串行队列, 也可以创建 并行队列。看下面的代码（代码已更新），它有两个参数，第一个上面已经说了，第二个才是最重要的。
-第二个参数用来表示创建的队列是串行的还是并行的，传入 DISPATCH_QUEUE_SERIAL 或 NULL 表示创建串行队列。传入 DISPATCH_QUEUE_CONCURRENT 表示创建并行队列。</p>
-
-   	//OBJECTIVE-C
-  	dispatch_queue_t queue = dispatch_queue_create(“tk.bourne.testQueue”, NULL);
-  	//SWIFT
-  	let queue = dispatch_queue_create(“tk.bourne.testQueue”, nil);
-<p>全局并行队列：这应该是唯一一个并行队列，只要是并行任务一般都加入到这个队列。</p>
-
-  	//OBJECTIVE-C
-  	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-  	//SWIFT
-  	let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-
-<h5 id="section-6">创建任务</h5>
-
-<p>同步任务：不会另开线程 (SYNC)</p>
-
-<p>OBJECTIVE-C</p>
-
-  	dispatch_sync(, ^{
-<pre><code>  //code here
-  NSLog(@"%@", [NSThread currentThread]);
-  	}); SWIFT
-</code></pre>
-
-  	dispatch_sync(, { () -&gt; Void in
-<pre><code>  //code here
-  println(NSThread.currentThread())
-  	}) 异步任务：会另开线程 (ASYNC)
-</code></pre>
-
-<p>OBJECTIVE-C</p>
-
-  	dispatch_async(, ^{
-<pre><code>  //code here
-  NSLog(@"%@", [NSThread currentThread]);
-  	}); SWIFT
-</code></pre>
-
-  	dispatch_async(, { () -&gt; Void in
-<pre><code>  //code here
-  println(NSThread.currentThread())
-  	})
-</code></pre>
-
-<p>更新：</p>
-
-<p>为了更好的理解同步和异步，和各种队列的使用，下面看两个示例：</p>
-
-<p>示例一：</p>
-
-<p>以下代码在主线程调用，结果是什么？</p>
-
-<pre><code>NSLog("之前 - %@", NSThread.currentThread())
-dispatch_sync(dispatch_get_main_queue(), { () -&gt; Void in 
-    NSLog("sync - %@", NSThread.currentThread())
-})
-NSLog("之后 - %@", NSThread.currentThread()) 答案：
-</code></pre>
-
-<p>只会打印第一句：之前 - {number = 1, name = main} ，然后主线程就卡死了，你可以在界面上放一个按钮，你就会发现点不了了。</p>
-
-<p>解释：</p>
-
-<p>同步任务会阻塞当前线程，然后把 Block 中的任务放到指定的队列中执行，只有等到 Block 中的任务完成后才会让当前线程继续往下运行。</p>
-
-<p>那么这里的步骤就是：打印完第一句后，dispatch_sync 立即阻塞当前的主线程，然后把 Block 中的任务放到 main_queue 中，可以 main_queue 中的任务会被取出来放到主线程中执行，但主线程这个时候已经被阻塞了，所以 Block 中的任务就不能完成，它不完成，dispatch_sync 就会一直阻塞主线程，这就是死锁现象。导致主线程一直卡死。</p>
-
-<p>示例二：</p>
-
-<p>以下代码会产生什么结果？</p>
-
-<pre><code>let queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
-   		NSLog("之前 - %@", NSThread.currentThread())
-	dispatch_async(queue, { () -&gt; Void in
-    NSLog("sync之前 - %@", NSThread.currentThread())
-    dispatch_sync(queue, { () -&gt; Void in
-         NSLog("sync - %@", NSThread.currentThread())
-    })
-    NSLog("sync之后 - %@", NSThread.currentThread())
-   		})
-  	NSLog("之后 - %@", NSThread.currentThread()) 答案：
-
-2015-07-30 02:06:51.058 test[33329:8793087] 之前 - {number = 1, name = main}
-
-2015-07-30 02:06:51.059 test[33329:8793356] sync之前 - {number = 2, name = (null)}
-
-2015-07-30 02:06:51.059 test[33329:8793087] 之后 - {number = 1, name = main}
-</code></pre>
-
-<p>很明显 sync - %@ 和 sync之后 - %@ 没有被打印出来！这是为什么呢？我们再来分析一下：</p>
-
-<p>分析：</p>
-
-<p>我们按执行顺序一步步来哦：</p>
-
-<p>使用 DISPATCH_QUEUE_SERIAL 这个参数，创建了一个 串行队列。
-打印出 之前 - %@ 这句。
-dispatch_async 异步执行，所以当前线程不会被阻塞，于是有了两条线程，一条当前线程继续往下打印出 之后 - %@这句, 另一台执行 Block 中的内容打印 sync之前 - %@ 这句。因为这两条是并行的，所以打印的先后顺序无所谓。</p>
-
-<p>注意，高潮来了。现在的情况和上一个例子一样了。dispatch_sync同步执行，于是它所在的线程会被阻塞，一直等到 sync 里的任务执行完才会继续往下。于是 sync 就高兴的把自己 Block 中的任务放到 queue 中，可谁想 queue 是一个串行队列，一次执行一个任务，所以 sync 的 Block 必须等到前一个任务执行完毕，可万万没想到的是 queue 正在执行的任务就是被 sync 阻塞了的那个。于是又发生了死锁。所以 sync 所在的线程被卡死了。剩下的两句代码自然不会打印。
-队列组</p>
-
-<p>队列组可以将很多队列添加到一个组里，这样做的好处是，当这个组里所有的任务都执行完了，队列组会通过一个方法通知我们。下面是使用方法，这是一个很实用的功能。</p>
-
-<p>OBJECTIVE-C</p>
-
-<pre><code>//1.创建队列组
-dispatch_group_t group = dispatch_group_create();
-//2.创建队列
-dispatch_queue_t queue = 	dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//3.多次使用队列组的方法执行任务, 只有异步方法
-//3.1.执行3次循环
-dispatch_group_async(group, queue, ^{
-for (NSInteger i = 0; i &lt; 3; i++) {
-    NSLog(@"group-01 - %@", [NSThread currentThread]);
-}
-});
-//3.2.主队列执行8次循环
-dispatch_group_async(group, dispatch_get_main_queue(), ^{
-for (NSInteger i = 0; i &lt; 8; i++) {
-    NSLog(@"group-02 - %@", [NSThread currentThread]);
-}
-});
-//3.3.执行5次循环
-dispatch_group_async(group, queue, ^{
-for (NSInteger i = 0; i &lt; 5; i++) {
-    NSLog(@"group-03 - %@", [NSThread currentThread]);
-}
-});
-//4.都完成后会自动通知
-dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-NSLog(@"完成 - %@", [NSThread currentThread]);
-}); SWIFT
-
-
-//1.创建队列组
-let group = dispatch_group_create()
-//2.创建队列
-let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-//3.多次使用队列组的方法执行任务, 只有异步方法
-//3.1.执行3次循环
-dispatch_group_async(group, queue) { () -&gt; Void in
-for _ in 0.. Void in
-for _ in 0.. Void in
-for _ in 0.. Void in
-NSLog("完成 - %@", NSThread.currentThread())
-} 打印结果
-
-
-2015-07-28 03:40:34.277 test[12540:3319271] group-03 - {number = 3, name = (null)}
-2015-07-28 03:40:34.277 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.277 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.277 test[12540:3319271] group-03 - {number = 3, name = (null)}
-2015-07-28 03:40:34.278 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.278 test[12540:3319271] group-03 - {number = 3, name = (null)}
-2015-07-28 03:40:34.278 test[12540:3319271] group-03 - {number = 3, name = (null)}
-2015-07-28 03:40:34.278 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.277 test[12540:3319273] group-01 - {number = 2, name = (null)}
-2015-07-28 03:40:34.278 test[12540:3319271] group-03 - {number = 3, name = (null)}
-2015-07-28 03:40:34.278 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.278 test[12540:3319273] group-01 - {number = 2, name = (null)}
-2015-07-28 03:40:34.278 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.278 test[12540:3319273] group-01 - {number = 2, name = (null)}
-2015-07-28 03:40:34.279 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.279 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.279 test[12540:3319146] 完成 - {number = 1, name = main} 这些就是 GCD 的基本功能，但是它的能力远不止这些，等讲完 NSOperation 后，我们再来看看它的一些其他方面用途。而且，只要你想象力够丰富，你可以组合出更好的用法。
-</code></pre>
-
-<p>更新：关于GCD，还有两个需要说的：</p>
-
-<pre><code>func dispatch_barrier_async(_ queue: dispatch_queue_t, _ block: dispatch_block_t):
-</code></pre>
-
-<p>这个方法重点是你传入的 queue，当你传入的 queue 是通过 DISPATCH_QUEUE_CONCURRENT 参数自己创建的 queue 时，这个方法会阻塞这个 queue（注意是阻塞 queue ，而不是阻塞当前线程），一直等到这个 queue 中排在它前面的任务都执行完成后才会开始执行自己，自己执行完毕后，再会取消阻塞，使这个 queue 中排在它后面的任务继续执行。</p>
-
-<p>如果你传入的是其他的 queue, 那么它就和 dispatch_async 一样了。</p>
-
-<pre><code>func dispatch_barrier_sync(_ queue: dispatch_queue_t, _ block: dispatch_block_t):
-</code></pre>
-
-<p>这个方法的使用和上一个一样，传入 自定义的并发队列（DISPATCH_QUEUE_CONCURRENT），它和上一个方法一样的阻塞 queue，不同的是 这个方法还会 阻塞当前线程。</p>
-
-<p>如果你传入的是其他的 queue, 那么它就和 dispatch_sync 一样了。</p>
-
-<h3 id="nsoperationnsoperationqueue">NSOperation和NSOperationQueue</h3>
-
-<p>NSOperation 是苹果公司对 GCD 的封装，完全面向对象，所以使用起来更好理解。 大家可以看到 NSOperation 和 NSOperationQueue 分别对应 GCD 的 任务 和 队列 。操作步骤也很好理解：</p>
-
-<p>将要执行的任务封装到一个 NSOperation 对象中。
-将此任务添加到一个 NSOperationQueue 对象中。
-然后系统就会自动在执行任务。至于同步还是异步、串行还是并行请继续往下看：</p>
-
-<h5 id="section-7">添加任务</h5>
-
-<p>值得说明的是，NSOperation 只是一个抽象类，所以不能封装任务。但它有 2 个子类用于封装任务。分别是：NSInvocationOperation 和 NSBlockOperation 。创建一个 Operation 后，需要调用 start 方法来启动任务，它会 默认在当前队列同步执行。当然你也可以在中途取消一个任务，只需要调用其 cancel 方法即可。</p>
-
-<p>NSInvocationOperation : 需要传入一个方法名。</p>
-
-<p>OBJECTIVE-C</p>
-
-  	//1.创建NSInvocationOperation对象
-  	NSInvocationOperation *operation = [[NSInvocationOperation alloc] 	initWithTarget:self selector:@selector(run) object:nil];
-<p>//2.开始执行
-  [operation start];
-SWIFT</p>
-
-<p>在 Swift 构建的和谐社会里，是容不下 NSInvocationOperation 这种不是类型安全的败类的。苹果如是说。这里有相关解释</p>
-
-<p>NSBlockOperation
-OBJECTIVE-C</p>
-
-  	//1.创建NSBlockOperation对象
-  	NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-<pre><code>  NSLog(@"%@", [NSThread currentThread]);
-  	}];
-  	//2.开始任务
-  	[operation start]; SWIFT
-</code></pre>
-
-  	//1.创建NSBlockOperation对象
-  	let operation = NSBlockOperation { () -&gt; Void in
-<pre><code>  println(NSThread.currentThread())
-  	}
-  	//2.开始任务
-  	operation.start() 之前说过这样的任务，默认会在当前线程执行。但是 NSBlockOperation 还有一个方法：addExecutionBlock: ，通过这个方法可以给 Operation 添加多个执行 Block。这样 Operation 中的任务 会并发执行，它会 在主线程和其它的多个线程 执行这些任务，注意下面的打印结果：
-</code></pre>
-
-<p>OBJECTIVE-C</p>
-
-<pre><code>  //1.创建NSBlockOperation对象
-  NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-      NSLog(@"%@", [NSThread currentThread]);
-  }];
-  //添加多个Block
-  for (NSInteger i = 0; i &lt; 5; i++) {
-      [operation addExecutionBlock:^{
-          NSLog(@"第%ld次：%@", i, [NSThread currentThread]);
-      }];
-  }
-  //2.开始任务
-  [operation start]; SWIFT
-
-
-    //1.创建NSBlockOperation对象
-    let operation = NSBlockOperation { () -&gt; Void in
-        NSLog("%@", NSThread.currentThread())
-    }
-    //2.添加多个Block
-    for i in 0.. Void in
-            NSLog("第%ld次 - %@", i, NSThread.currentThread())
-        }
-    }
-    //2.开始任务
-    operation.start() 打印输出
-
-2015-07-28 17:50:16.585 test[17527:4095467] 第2次 -{number = 1, name = main}
-2015-07-28 17:50:16.585 test[17527:4095666] 第1次 -{number = 4, name = (null)}
-2015-07-28 17:50:16.585 test[17527:4095665]{number = 3, name = (null)}
-2015-07-28 17:50:16.585 test[17527:4095662] 第0次 -{number = 2, name = (null)}
-2015-07-28 17:50:16.586 test[17527:4095666] 第3次 -{number = 4, name = (null)}
-2015-07-28 17:50:16.586 test[17527:4095467] 第4次 -{number = 1, name = main} NOTE：addExecutionBlock 方法必须在 start() 方法之前执行，否则就会报错：
-
-‘*** -[NSBlockOperation addExecutionBlock:]: blocks cannot be added after the operation has started executing or finished'
-</code></pre>
-
-<p>NOTE：大家可能发现了一个问题，为什么我在 Swift 里打印输出使用 NSLog() 而不是 println() 呢？原因是使用 print() / println() 输出的话，它会简单地使用 流（stream） 的概念，学过 C++ 的都知道。它会把需要输出的每个字符一个一个的输出到控制台。普通使用并没有问题，可是当多线程同步输出的时候问题就来了，由于很多 println() 同时打印，就会导致控制台上的字符混乱的堆在一起，而NSLog() 就没有这个问题。到底是什么样子的呢？你可以把上面 NSLog() 改为 println() ，然后一试便知。</p>
-
-<h5 id="operation">自定义Operation</h5>
-
-<p>除了上面的两种 Operation 以外，我们还可以自定义 Operation。自定义 Operation 需要继承 NSOperation 类，并实现其 main() 方法，因为在调用 start() 方法的时候，内部会调用 main() 方法完成相关逻辑。所以如果以上的两个类无法满足你的欲望的时候，你就需要自定义了。你想要实现什么功能都可以写在里面。除此之外，你还需要实现 cancel() 在内的各种方法。所以这个功能提供给高级玩家，我在这里就不说了，等我需要用到时在研究它，到时候可能会再做更新。</p>
-
-<h5 id="section-8">创建队列</h5>
-
-<p>看过上面的内容就知道，我们可以调用一个 NSOperation 对象的 start() 方法来启动这个任务，但是这样做他们默认是 同步执行 的。就算是 addExecutionBlock 方法，也会在 当前线程和其他线程 中执行，也就是说还是会占用当前线程。这是就要用到队列 NSOperationQueue 了。而且，按类型来说的话一共有两种类型：主队列、其他队列。只要添加到队列，会自动调用任务的 start() 方法</p>
-
-<p>主队列</p>
-
-<p>细心的同学就会发现，每套多线程方案都会有一个主线程（当然啦，说的是iOS中，像 pthread 这种多系统的方案并没有，因为 UI线程 理论需要每种操作系统自己定制）。这是一个特殊的线程，必须串行。所以添加到主队列的任务都会一个接一个地排着队在主线程处理。</p>
-
-<pre><code>//OBJECTIVE-C
-NSOperationQueue *queue = [NSOperationQueue mainQueue];
-//SWIFT
-let queue = NSOperationQueue.mainQueue() 其他队列 因为主队列比较特殊，所以会单独有一个类方法来获得主队列。那么通过初始化产生的队列就是其他队列了，因为只有这两种队列，除了主队列，其他队列就不需要名字了。
-</code></pre>
-
-<p>注意：其他队列的任务会在其他线程并行执行。</p>
-
-<p>OBJECTIVE-C</p>
-
-<pre><code>//1.创建一个其他队列    
-NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-//2.创建NSBlockOperation对象
-NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-NSLog(@"%@", [NSThread currentThread]);
-}];
-//3.添加多个Block
-for (NSInteger i = 0; i &lt; 5; i++) {
-[operation addExecutionBlock:^{
-    NSLog(@"第%ld次：%@", i, [NSThread currentThread]);
-}];
-}
-//4.队列添加任务
-[queue addOperation:operation]; SWIFT
-
-//1.创建其他队列
-let queue = NSOperationQueue()
-//2.创建NSBlockOperation对象
-let operation = NSBlockOperation { () -&gt; Void in
-NSLog("%@", NSThread.currentThread())
-}
-//3.添加多个Block
-for i in 0.. Void in
-    NSLog("第%ld次 - %@", i, NSThread.currentThread())
-}
-}
-//4.队列添加任务
-queue.addOperation(operation) 打印输出
-
-
-2015-07-28 20:26:28.463 test[18622:4443534]{number = 5, name = (null)}
-2015-07-28 20:26:28.463 test[18622:4443536] 第2次 -{number = 2, name = (null)}
-2015-07-28 20:26:28.463 test[18622:4443535] 第0次 -{number = 4, name = (null)}
-2015-07-28 20:26:28.463 test[18622:4443533] 第1次 -{number = 3, name = (null)}
-2015-07-28 20:26:28.463 test[18622:4443534] 第3次 -{number = 5, name = (null)}
-2015-07-28 20:26:28.463 test[18622:4443536] 第4次 -{number = 2, name = (null)} OK, 这时应该发问了，大家将 NSOperationQueue 与 GCD的队列 相比较就会发现，这里没有并行队列，那如果我想要10个任务在其他线程串行的执行怎么办？
-</code></pre>
-
-<p>这就是苹果封装的妙处，你不用管串行、并行、同步、异步这些名词。NSOperationQueue 有一个参数 maxConcurrentOperationCount 最大并发数，用来设置最多可以让多少个任务同时执行。当你把它设置为 1 的时候，他不就是串行了嘛！</p>
-
-<p>NSOperationQueue 还有一个添加任务的方法，- (void)addOperationWithBlock:(void (^)(void))block; ，这是不是和 GCD 差不多？这样就可以添加一个任务到队列中了，十分方便。</p>
-
-<p>NSOperation 有一个非常实用的功能，那就是添加依赖。比如有 3 个任务：A: 从服务器上下载一张图片，B：给这张图片加个水印，C：把图片返回给服务器。这时就可以用到依赖了:</p>
-
-<p>OBJECTIVE-C</p>
-
-<pre><code>//1.任务一：下载图片
-NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^{
-NSLog(@"下载图片 - %@", [NSThread currentThread]);
-[NSThread sleepForTimeInterval:1.0];
-}];
-//2.任务二：打水印
-NSBlockOperation *operation2 = [NSBlockOperation blockOperationWithBlock:^{
-NSLog(@"打水印   - %@", [NSThread currentThread]);
-[NSThread sleepForTimeInterval:1.0];
-}];
-//3.任务三：上传图片
-NSBlockOperation *operation3 = [NSBlockOperation blockOperationWithBlock:^{
-NSLog(@"上传图片 - %@", [NSThread currentThread]);
-[NSThread sleepForTimeInterval:1.0];
-}];
-//4.设置依赖
-[operation2 addDependency:operation1];      //任务二依赖任务一
-[operation3 addDependency:operation2];      //任务三依赖任务二
-//5.创建队列并加入任务
-NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-[queue addOperations:@[operation3, operation2, operation1] 	waitUntilFinished:NO]; SWIFT
-
-
-//1.任务一：下载图片
-let operation1 = NSBlockOperation { () -&gt; Void in
-NSLog("下载图片 - %@", NSThread.currentThread())
-NSThread.sleepForTimeInterval(1.0)
-}
-//2.任务二：打水印
-let operation2 = NSBlockOperation { () -&gt; Void in
-NSLog("打水印   - %@", NSThread.currentThread())
-NSThread.sleepForTimeInterval(1.0)
-}
-//3.任务三：上传图片
-let operation3 = NSBlockOperation { () -&gt; Void in
-NSLog("上传图片 - %@", NSThread.currentThread())
-NSThread.sleepForTimeInterval(1.0)
-}
-//4.设置依赖
-operation2.addDependency(operation1)    //任务二依赖任务一
-operation3.addDependency(operation2)    //任务三依赖任务二
-//5.创建队列并加入任务
-let queue = NSOperationQueue()
-queue.addOperations([operation3, operation2, operation1], 	waitUntilFinished: false) 打印结果
-
-
-
-2015-07-28 21:24:28.622 test[19392:4637517] 下载图片 -{number = 2, name = (null)}
-2015-07-28 21:24:29.622 test[19392:4637515] 打水印 -{number = 3, name = (null)}
-2015-07-28 21:24:30.627 test[19392:4637515] 上传图片 -{number = 3, name = (null)} 注意：不能添加相互依赖，会死锁，比如 A依赖B，B依赖A。 可以使用 removeDependency 来解除依赖关系。 可以在不同的队列之间依赖，反正就是这个依赖是添加到任务身上的，和队列没关系。 其他方法
-</code></pre>
-
-<p>以上就是一些主要方法, 下面还有一些常用方法需要大家注意：</p>
-
-<pre><code>NSOperation
-
-BOOL executing; //判断任务是否正在执行
-BOOL finished; //判断任务是否完成
-void (^completionBlock)(void); //用来设置完成后需要执行的操作
-- (void)cancel; //取消任务
-- (void)waitUntilFinished; //阻塞当前线程直到此任务执行完毕
-NSOperationQueue
-
-NSUInteger operationCount; //获取队列的任务数
-- (void)cancelAllOperations; //取消队列中所有的任务
-- (void)waitUntilAllOperationsAreFinished; //阻塞当前线程直到此队列中的所有任务执行完毕
-[queue setSuspended:YES]; // 暂停queue
-[queue setSuspended:NO]; // 继续queue 好啦，到这里差不多就讲完了。当然，我讲的并不完整，可能有一些知识我并没有讲到，但作为常用方法，这些已经足够了。不过我在这里只是告诉你了一些方法的功能，只是怎么把他们用到合适的地方，就需要多多实践了。下面我会说一些关于多线程的案例，是大家更加什么地了解。
-</code></pre>
-
-<h3 id="section-9">其他用法</h3>
-
-<p>在这部分，我会说一些和多线程知识相关的案例，可能有些很简单，大家早都知道的，不过因为这篇文章讲的是多线程嘛，所以应该尽可能的全面嘛。还有就是，我会尽可能的使用多种方法实现，让大家看看其中的区别。</p>
-
-<h5 id="section-10">线程同步</h5>
-
-<p>所谓线程同步就是为了防止多个线程抢夺同一个资源造成的数据安全问题，所采取的一种措施。当然也有很多实现方法，请往下看：</p>
-
-<p>互斥锁 ：给需要同步的代码块加一个互斥锁，就可以保证每次只有一个线程访问此代码块。
-OBJECTIVE-C</p>
-
-<pre><code>@synchronized(self) {
-//需要执行的代码块
-}
-SWIFT
-
-
-objc_sync_enter(self)
-//需要执行的代码块
-objc_sync_exit(self)
-</code></pre>
-
-<p>同步执行 ：我们可以使用多线程的知识，把多个线程都要执行此段代码添加到同一个串行队列，这样就实现了线程同步的概念。当然这里可以使用 GCD 和 NSOperation 两种方案，我都写出来。
-OBJECTIVE-C</p>
-
-  	//GCD
-  	//需要一个全局变量queue，要让所有线程的这个操作都加到一个queue中
-  	dispatch_sync(queue, ^{
-<pre><code>  NSInteger ticket = lastTicket;
-  [NSThread sleepForTimeInterval:0.1];
-  NSLog(@"%ld - %@",ticket, [NSThread currentThread]);
-  ticket -= 1;
-  lastTicket = ticket;
-  	});
-  	//NSOperation &amp; NSOperationQueue
-  	//重点：1. 全局的 NSOperationQueue, 所有的操作添加到同一个queue中
-  	//       2. 设置 queue 的 maxConcurrentOperationCount 为 1
-  	//       3. 如果后续操作需要Block中的结果，就需要调用每个操作的	waitUntilFinished，阻塞当前线程，一直等到当前操作完成，才允许执行后面的。	waitUntilFinished 要在添加到队列之后！
- 	 NSBlockOperation *operation = [NSBlockOperation 	blockOperationWithBlock:^{
-  NSInteger ticket = lastTicket;
-  [NSThread sleepForTimeInterval:1];
-  NSLog(@"%ld - %@",ticket, [NSThread currentThread]);
-  ticket -= 1;
-  lastTicket = ticket;
-  	}];
-  	[queue addOperation:operation];
-  	[operation waitUntilFinished];
-  	//后续要做的事 SWIFT
-</code></pre>
-
-<p>这里的 swift 代码，我就不写了，因为每句都一样，只是语法不同而已，照着 OC 的代码就能写出 Swift 的。这篇文章已经老长老长了，我就不浪费篇幅了，又不是高中写作文。</p>
-
-<h5 id="section-11">延迟执行</h5>
-
-<p>所谓延迟执行就是延时一段时间再执行某段代码。下面说一些常用方法。</p>
-
-<h6 id="perform">perform</h6>
-
-<p>OBJECTIVE-C</p>
-
- 	 // 3秒后自动调用self的run:方法，并且传递参数：@”abc”
-  	[self performSelector:@selector(run:) withObject:@”abc” afterDelay:3];
-
-<p>SWIFT</p>
-
-<p>之前就已经说过，Swift 里去掉了这个方法。</p>
-
-<h6 id="gcd-1">GCD</h6>
-
-<p>可以使用 GCD 中的 dispatch_after 方法，OC 和 Swift 都可以使用，这里只写 OC 的，Swift 的是一样的。</p>
-
-<p>OBJECTIVE-C</p>
-
-<pre><code>// 创建队列
-dispatch_queue_t queue = 	dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-// 设置延时，单位秒
-double delay = 3; 
-dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, ^{
-// 3秒后需要执行的任务
-}); ######NSTimer
-</code></pre>
-
-<p>NSTimer 是iOS中的一个计时器类，除了延迟执行还有很多用法，不过这里直说延迟执行的用法。同样只写 OC 版的，Swift 也是相同的。</p>
-
-<p>OBJECTIVE-C</p>
-
-<pre><code>[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(run:) userInfo:@"abc" repeats:NO];
-</code></pre>
-
-<h5 id="section-12">单例模式</h5>
-
-<p>至于什么是单例模式，我也不多说，我只说说一般怎么实现。在 Objective-C 中，实现单例的方法已经很具体了，虽然有别的方法，但是一般都是用一个标准的方法了，下面来看看。</p>
-
-<p>OBJECTIVE-C</p>
-
-<pre><code>@interface Tool : NSObject
-+ (instancetype)sharedTool;
-@end
-@implementation Tool
-static id _instance;
-+ (instancetype)sharedTool {
-static dispatch_once_t onceToken;
-dispatch_once(&amp;onceToken, ^{
-    _instance = [[Tool alloc] init];
-});
-return _instance;
-}
-@end 这里之所以将单例模式，是因为其中用到了 GCD 的 dispatch_once 方法。下面看 Swift 中的单例模式，在Swift中单例模式非常简单！想知道怎么从 OC 那么复杂的方法变成下面的写法的，请看这里
-</code></pre>
-
-<p>SWIFT</p>
-
-<pre><code>class Tool: NSObject {
-static let sharedTool = Tool()
-// 私有化构造方法，阻止其他对象使用这个类的默认的'()'构造方法
-private override init() {}
-} #####从其他线程回到主线程的方法
-</code></pre>
-
-<p>我们都知道在其他线程操作完成后必须到主线程更新UI。所以，介绍完所有的多线程方案后，我们来看看有哪些方法可以回到主线程。</p>
-
-<p>NSThread</p>
-
-<pre><code>//Objective-C
-[self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
-//Swift
-//swift 取消了 performSelector 方法。 GCD
-
-//Objective-C
-dispatch_async(dispatch_get_main_queue(), ^{
-});
-//Swift
-dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
-}) NSOperationQueue
-
-//Objective-C
-[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-}];
-//Swift
-NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
-}
-</code></pre>
 ]]></content>
   </entry>
   

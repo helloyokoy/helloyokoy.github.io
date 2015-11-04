@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。 如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 &hellip;">
+	<meta name="description" content="相信很多Android开发者一定受够了速度慢、体验差效率及其地下的官方模拟器了,自己在平时的开发中几乎是不会用模拟器的，等的时间太久了，但是在一些尺寸适配或是兼容性测试的时候没有足够多的机器进行测试，这个时候就必须得用模拟器来代替了。用的久了真的不堪忍受那龟速般的模拟器， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +127,44 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/android-genymotion/">
+		
+			Android Genymotion模拟器</a>
+	</h2>
+	<div class="entry-content">
+		<p>相信很多Android开发者一定受够了速度慢、体验差效率及其地下的官方模拟器了,自己在平时的开发中几乎是不会用模拟器的，等的时间太久了，但是在一些尺寸适配或是兼容性测试的时候没有足够多的机器进行测试，这个时候就必须得用模拟器来代替了。用的久了真的不堪忍受那龟速般的模拟器，好在今天发现了一款神级模拟器Genymotion，就像发现新大陆般喜爱，下面就来介绍下。</p>
+
+<h4 id="genymotion">Genymotion简介</h4>
+<p>Genymotion是一套完整的工具，它提供了Android虚拟环境。如果你没有物理机器，又不想忍受官方模拟器的折磨，Genymotion会是你非常不错的选择， 它简直就是开发者、测试人员、推销者甚至是游戏玩家的福音。</p>
+
+
+		
+		<a href="/blog/android-genymotion/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年9 月4 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/ruby-fast-learn/">
 		
 			Ruby on Rails 快速学习</a>
@@ -178,57 +216,106 @@
 
 <p>写了一个自定义类继承SSLSocketFactory：</p>
 
-<pre><code>import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import org.apache.http.conn.ssl.SSLSocketFactory;
-
-public class SSLSocketFactoryEx extends SSLSocketFactory {
-    
-    SSLContext sslContext = SSLContext.getInstance("TLS");
-    
-    public SSLSocketFactoryEx(KeyStore truststore) 
-                    throws NoSuchAlgorithmException, KeyManagementException,
-                    KeyStoreException, UnrecoverableKeyException {
-            super(truststore);
-            
-            TrustManager tm = new X509TrustManager() {
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-
-        @Override  
-        public void checkClientTrusted(
-                        java.security.cert.X509Certificate[] chain, String authType)
-                                        throws java.security.cert.CertificateException {}  
-
-        @Override  
-        public void checkServerTrusted(
-                        java.security.cert.X509Certificate[] chain, String authType)
-                                        throws java.security.cert.CertificateException {}
-    };  
-    sslContext.init(null, new TrustManager[] { tm }, null);  
-}  
-
-@Override  
-public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-        return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-}  
-
-@Override  
-public Socket createSocket() throws IOException {  
-    return sslContext.getSocketFactory().createSocket();  
-}  
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
+</span><span class="line">import java.net.Socket;
+</span><span class="line">import java.net.UnknownHostException;
+</span><span class="line">import java.security.KeyManagementException;
+</span><span class="line">import java.security.KeyStore;
+</span><span class="line">import java.security.KeyStoreException;
+</span><span class="line">import java.security.NoSuchAlgorithmException;
+</span><span class="line">import java.security.UnrecoverableKeyException;
+</span><span class="line">
+</span><span class="line">import javax.net.ssl.SSLContext;
+</span><span class="line">import javax.net.ssl.TrustManager;
+</span><span class="line">import javax.net.ssl.X509TrustManager;
+</span><span class="line">
+</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
+</span><span class="line">
+</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
+</span><span class="line">        
+</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
+</span><span class="line">        
+</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
+</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
+</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
+</span><span class="line">                super(truststore);
+</span><span class="line">                
+</span><span class="line">   TrustManager tm = new X509TrustManager() {
+</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkClientTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkServerTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}
+</span><span class="line">        };  
+</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
+</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket() throws IOException {  
+</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
+</span><span class="line">}  
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 		
@@ -247,66 +334,6 @@ public Socket createSocket() throws IOException {
 
 
 	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/mjextensionjie-shao/">
-		
-			MJExtension介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
-
-<h3 id="mjextension">MJExtension</h3>
-<hr />
-
-<p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
-
-<p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
-
-<p>GitHub：CoderMJLee ｜ Blog：mjios(Chinese) ｜ PR is welcome，or feedback</p>
-
-<h3 id="getting-started">Getting Started【开始使用】</h3>
-<hr />
-<p>####Features【能做什么】</p>
-
-<ul>
-  <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
-  <li>JSON –&gt; Model、Core Data Model</li>
-  <li>JSONString –&gt; Model、Core Data Model</li>
-  <li>Model、Core Data Model –&gt; JSON</li>
-  <li>JSON Array –&gt; Model Array、Core Data Model Array</li>
-  <li>JSONString –&gt; Model Array、Core Data Model Array</li>
-  <li>Model Array、Core Data Model Array –&gt; JSON Array</li>
-  <li>Coding all properties of model in one line code.</li>
-  <li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
-</ul>
-
-
-		
-		<a href="/blog/mjextensionjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>

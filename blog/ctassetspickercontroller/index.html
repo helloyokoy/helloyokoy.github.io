@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>CTAssetsPickerController - BryanFu Blog</title>
+	<title>iOS相册选择CTAssetsPickerController - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
@@ -123,8 +123,8 @@ Xcode 5，iOS6及以上 安装 导入CTAssetsPickerController.h文件 &hellip;">
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">CTAssetsPickerController</h2>
-	<div class="entry-content"><p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_19/19_98590_315f8ebbd058f7e.png" alt="image" title="image" /></p>
+	<h2 class="title">iOS相册选择CTAssetsPickerController</h2>
+	<div class="entry-content"><p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_19/19_98590_315f8ebbd058f7e.png" alt="img" title="image" /></p>
 
 <h3 id="section">特色</h3>
 <ol>
@@ -144,15 +144,15 @@ Xcode 5，iOS6及以上 安装 导入CTAssetsPickerController.h文件 &hellip;">
 
 <ol>
   <li>导入CTAssetsPickerController.h文件</li>
-  <li>
-    <p>创建并显示CTAssetsPickerController</p>
-
-    <pre><code> CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
- picker.delegate = self;
- [self presentViewController:picker animated:YES completion:NULL];
-</code></pre>
-  </li>
+  <li>创建并显示CTAssetsPickerController</li>
 </ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">CTAssetsPickerController *picker = [[CTAssetsPickerController alloc] init];
+</span><span class="line">picker.delegate = self;
+</span><span class="line">[self presentViewController:picker animated:YES completion:NULL];</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="section-3">定制</h3>
 <p>你可以设置最大选择文件的数量：</p>
@@ -173,51 +173,70 @@ Xcode 5，iOS6及以上 安装 导入CTAssetsPickerController.h文件 &hellip;">
 <h4 id="ctassetspickercontrollerdelegate">实现CTAssetsPickerControllerDelegate</h4>
 <p>用户选择完成：</p>
 
-<pre><code>- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
-// assets contains ALAsset objects.
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- (void)assetsPickerController:(CTAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+</span><span class="line">// assets contains ALAsset objects.</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>用户取消选择：</p>
 
-<pre><code>- (void)assetsPickerControllerDidCancel:(CTAssetsPickerController *)picker;
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- (void)assetsPickerControllerDidCancel:(CTAssetsPickerController *)picker;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="section-4">注意</h4>
 <p>CTAssetsPickerController并不会压缩所选择的图片和视频。但是你可以通过defaultRepresentation 属性来处理选择的对象。</p>
 
 <p>例如：如果选择的是图片的话，可以像这样创建一个UIImage</p>
 
-<pre><code>ALAssetRepresentation *representation = alAsset.defaultRepresentation;
-
-UIImage *fullResolutionImage =
-[UIImage imageWithCGImage:representation.fullResolutionImage
-                    scale:1.0f
-              orientation:(UIImageOrientation)representation.orientation];
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">ALAssetRepresentation *representation = alAsset.defaultRepresentation;
+</span><span class="line">
+</span><span class="line">UIImage *fullResolutionImage =
+</span><span class="line">[UIImage imageWithCGImage:representation.fullResolutionImage scale:1.0f orientation:(UIImageOrientation)representation.orientation];</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>如果选择的是视频，则创建一个NSData：</p>
 
-<pre><code>ALAssetRepresentation *representation = alAsset.defaultRepresentation;
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">ALAssetRepresentation *representation = alAsset.defaultRepresentation;
+</span><span class="line">
+</span><span class="line">NSURL *url          = representation.url;
+</span><span class="line">AVAsset *asset      = [AVURLAsset URLAssetWithURL:url options:nil];
+</span><span class="line">
+</span><span class="line">AVAssetExportSession *session =
+</span><span class="line">[AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetLowQuality];
+</span><span class="line">
+</span><span class="line">session.outputFileType  = AVFileTypeQuickTimeMovie;
+</span><span class="line">session.outputURL       = VIDEO_EXPORTING_URL;
+</span><span class="line">
+</span><span class="line">[session exportAsynchronouslyWithCompletionHandler:^{
+</span><span class="line">
+</span><span class="line">   if (session.status == AVAssetExportSessionStatusCompleted)
+</span><span class="line">   {
+</span><span class="line">      NSData *data    = [NSData dataWithContentsOfURL:session.outputURL];
+</span><span class="line">   }
+</span><span class="line">}];</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-NSURL *url          = representation.url;
-AVAsset *asset      = [AVURLAsset URLAssetWithURL:url options:nil];
-
-AVAssetExportSession *session =
-[AVAssetExportSession exportSessionWithAsset:asset presetName:AVAssetExportPresetLowQuality];
-
-session.outputFileType  = AVFileTypeQuickTimeMovie;
-session.outputURL       = VIDEO_EXPORTING_URL;
-
-[session exportAsynchronouslyWithCompletionHandler:^{
-
-    if (session.status == AVAssetExportSessionStatusCompleted)
-    {
-        NSData *data    = [NSData dataWithContentsOfURL:session.outputURL];
-    }
-
-}];
-</code></pre>
-
+<hr />
 <p>请参考ALAssetRepresentation和AVAssetExportSession的文档</p>
 
 <p>GitHub地址 <a href="https://github.com/chiunam/CTAssetsPickerController" title="url">https://github.com/chiunam/CTAssetsPickerController</a></p>
@@ -269,7 +288,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
   <section>
    <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="/blog/ctassetspickercontroller" data-title="CTAssetsPickerController" data-url="http://helloyokoy.github.io/blog/ctassetspickercontroller/"></div>
+<div class="ds-thread" data-thread-key="/blog/ctassetspickercontroller" data-title="iOS相册选择CTAssetsPickerController" data-url="http://helloyokoy.github.io/blog/ctassetspickercontroller/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

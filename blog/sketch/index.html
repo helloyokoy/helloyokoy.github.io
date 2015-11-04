@@ -1,0 +1,413 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>为什么要用Sketch - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="Jean-Marc Denis（原文作者，前Sparrow设计师，现在在Google工作）在参加WWDC 2013时认识了Sketch的开发团队，所以在第一时间尝试了Sketch，当时由于一些功能的缺失，所以还是折回去使用Photoshop了。过了一段时间， &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">为什么要用Sketch</h2>
+	<div class="entry-content"><p>Jean-Marc Denis（原文作者，前Sparrow设计师，现在在Google工作）在参加WWDC 2013时认识了Sketch的开发团队，所以在第一时间尝试了Sketch，当时由于一些功能的缺失，所以还是折回去使用Photoshop了。过了一段时间，他发现设计师社区开始疯狂着迷于这款新的设计工具，所以决定再试一试，想看看迭代了一段时间的Sketch现在能完成多少原先他需要用Photoshop来做的工作。现在，他80%的设计工作都是由Sketch来完成的，所以写了这篇文章来帮助大家一起了解Sketch。</p>
+
+<h4 id="photoshop">Photoshop并不是一款合适的界面设计工具</h4>
+
+<p>为什么我们会期待一个新的设计工具？因为当我们更多的关注效率和关注协作，就越发现Photoshop已经不足以满足我们的期待了。下面看看具体的理由：</p>
+
+<ul>
+  <li>
+    <p>并非为设计师打造</p>
+
+    <p>Photoshop是为图像处理开发的，诸如路径和矢量工具都是后期才加上去的，所以如果你关心一下Photoshop的更新路径，用户界面设计师完全不是Adobe做这条产品时关心的用户群。所以，如果抛去那些复杂的功能，一个为用户界面设计师打造的设计工具完全可以做得更简单，更高效。</p>
+  </li>
+  <li>
+    <p>不适合移动时代</p>
+
+    <p>相信我们都会觉得为不同的设备输出不同分辨率的素材而痛苦不已吧。或许，你会使用一些第三方插件或是启用一些模板来处理这些事，但依然是很浪费时间的。</p>
+  </li>
+</ul>
+
+<!--more-->
+
+<ul>
+  <li>
+    <p>引擎太过陈旧</p>
+
+    <p>Photoshop的引擎是上个世纪为图像处理而打造的，非常的耗费资源，即使是启动一下都要等很久，更别说一次移动多个分组了。话说回来，由于要兼顾Mac和Windows平台，能做到这样已经不容易了。</p>
+  </li>
+  <li>
+    <p>越来越跟不上时代</p>
+
+    <p>大公司的执行效率实在太低。不知道大伙是不是和我一样，非常痛苦地等了好几个月才等到Photoshop对Retina屏幕的支持。诸如自动对齐的等功能我已经不做期待了。</p>
+  </li>
+</ul>
+
+<h4 id="sketch">为什么Sketch确实值得尝试</h4>
+<ul>
+  <li>
+    <p>自动保存和多版本控制</p>
+
+    <p>有没有梦想过拜托机械的手动保存？Sketch可以做到。Sketch在工作的时候会不断地自动保存成果，并且允许你回复到此前的任一版本。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*-4cYKm2z-PiOVFnk.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>矢量作图并且像素级的完美</p>
+
+    <p>矢量图意味着可以任意扩展。你没有必要不断地去调整素材的尺寸，Sketch会自动就帮你维持一个像素级完美的作品。如果有的时候你必须用像素点来作图，比如说是画图标或者是插画设计，Sketch 也提供了从矢量切换到像素视图的功能。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/1600/0*55Ko51isBD3VVcSL.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>智能标尺</p>
+
+    <p>你喜欢xScope吗？还是正在用选框工具来进行测量？又或者是难用的网格？Sketch的智能标尺可以帮你轻松地把设计元素的对齐方式、内外间距都调整完美。就我个人而言，这个功能非常节省时间而且避免了复杂的人工计算，是我觉得最有用的功能之一。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*DOaquv046FxhhUz6.gif" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>随时随地编辑元素</p>
+
+    <p>在Sketch里我们可以随时随地修改一个元素的圆角、高度和宽度。只需要简单地修改数值就可以轻松调整元素，对于刚从Photoshop切换过来的设计师而言非常好用。甚至会让你产生强烈的依赖。</p>
+  </li>
+  <li>
+    <p>图形拼接</p>
+
+    <p>在Sketch 里你可以很轻松地把多个图形合并，构成一个新的图形。并且Sketch在提供了多种图形合并模式的同时，还允许你随时修改已经合并图形的子图形。这项功能使得你可以很轻松地管理和创造更复杂的图形。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*4piteVCDqPNzWS3V.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>每个图层都可以有多种混合效果</p>
+
+    <p>在Photoshop里想要让一个图层有多种混合效果是很困难的。但在Sketch里，你可以很容易给一个图层加上多种混合效果，看看下面的示例就知道了。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*UWRr3uQgedzzHtS6.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>自动选择最接近的像素边界</p>
+
+    <p>自动选择最接近的像素边界可以让一个图形或者是图层自动修正边距到一个像素级完善的位置。比如可以把一个宽度是5.3px的图形自动修正到5px，这样就不会有模糊的像素点和粗糙的图形了。我自己给这项功能设了一个快捷键（Command+Opitons+x），来确保我做出的每一个图形都像素级完美。这比人工一个一个按照网格修改图形高效得多。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*me1mYlEw5C1JKAKY.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>样式链接
+  有的时候你会做一些充斥文字的设计，样式链接可以帮助你设定一个固定的样式来快速地应用在新的文字上。如果你修改了其中任何一处的样式，那么所有链接该样式的文字都会自动更新到新的样式。并且，这项功能也可以应用在图形上。</li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/774/0*bTuYN8VIHPDImDXh.gif" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>导出素材</p>
+
+    <p>用Photoshop的时候，最痛苦的事莫过于切割元素，然后到处素材。Sketch则可以帮助你快速地导出各种分辨率和格式（pdf, eps, svg, png, jpg, tiff）的素材，通常导出只需要一个点击，并且不用借助任何第三方应用程序。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/914/0*Qjf-7dLH9R7H-yOk.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>分布式布局</p>
+
+    <p>作富文本设计的时候，布局会变得非常重要，这项功能可以帮助你快速地试验不同的方案。</p>
+  </li>
+  <li>
+    <p>网格</p>
+
+    <p>其实可以把网格功能理解成按照纵横两个维度自动地结构化布局内容。这个对于排版布局而言，非常方便。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*7TrwZwsBKN-hGLxk.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>出色的文字渲染</p>
+
+    <p>Sketch的文字渲染引擎非常出色，可以用来做很出色的文字布局和字体设计。因此，你可以放心地放弃Photoshop的抗锯齿功能。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*2wahLljvKwgbT_Ws.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>CSS样式导出</p>
+
+    <p>如果你在做一些网页设计，Sketch可以帮助你快速地把你的成果到处成CSS样式。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*qgh086TCiTWrVOl9.png" alt="icon" /></p>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*NxQ0xvJylnXQbGVm.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>旋转副本</p>
+
+    <p>这是一项小功能，但是确实可以节约你很多时间和精力。</p>
+  </li>
+  <li>
+    <p>Sketch Mirror</p>
+
+    <p>Sketch Mirror是一个Universal App，可以方便你在iPhone或是iPad上查看自己的成果。（作者撰写这个文章的时候Sketch还没有推出官方的镜像工具，所以这一段是译者补充的）。</p>
+  </li>
+</ul>
+
+<h4 id="section">快速响应是杀手锏</h4>
+
+<p>Sketch是一个小团队，发展非常快速。简单扫一眼Sketch的升级日志，你会发现每一个更新都会带来新的功能。 我非常建议你去使用Beta版本，你会见证Sketch快速的升级。 Sketch团队非常善于聆听用户的诉求，因而软件不断地变得更好。你可以去tenderapp上向他们提出新功能的要求。</p>
+
+<h4 id="section-1">相关链接</h4>
+
+<p><a href="http://www.bohemiancoding.com/download/sketch.zip">下载试用版</a></p>
+
+<p><a href="http://www.bohemiancoding.com/sketch/buy">Mac App Store下载地址</a></p>
+
+<p><a href="http://blog.mengto.com/topic/sketch/">Ment To 的博文</a></p>
+
+<p><a href="http://sketchtips.tumblr.com/">Sketch 技巧分享博客</a></p>
+
+<p><a href="http://www.sketchappsources.com/">Sketch 资源下载</a></p>
+
+<p><a href="http://www.douban.com/group/sketchapp/">Sketch 豆瓣中文小组</a></p>
+
+<p><a href="http://community.sketchcn.com/">Sketch 中文社区</a></p>
+
+<hr />
+<p>原文来自<a href="http://jianshu.io/p/7e8905b18620">http://jianshu.io/p/7e8905b18620</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年9 月11 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/sketch" data-title="为什么要用Sketch" data-url="http://helloyokoy.github.io/blog/sketch/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

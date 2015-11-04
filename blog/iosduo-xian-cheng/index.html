@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>IOS多线程 - BryanFu Blog</title>
+	<title>iOS多线程详解 - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
@@ -122,7 +122,7 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">IOS多线程</h2>
+	<h2 class="title">iOS多线程详解</h2>
 	<div class="entry-content"><blockquote>
   <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
 </blockquote>
@@ -133,11 +133,12 @@
 
 <p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
 
-<pre><code>Pthreads
-NSThread
-GCD
-NSOperation &amp; NSOperationQueue
-</code></pre>
+<ul>
+  <li>Pthreads</li>
+  <li>NSThread</li>
+  <li>GCD</li>
+  <li>NSOperation &amp; NSOperationQueue</li>
+</ul>
 
 <p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
 
@@ -160,18 +161,30 @@ NSOperation &amp; NSOperationQueue
 
 <p>然后创建线程，并执行任务</p>
 
-<pre><code>- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-pthread_t thread;
-//创建一个线程并自动执行
-pthread_create(&amp;thread, NULL, start, NULL);
-}
-void *start(void *data) {
-NSLog(@"%@", [NSThread currentThread]);
-return NULL;
-} 打印输出：
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+</span><span class="line">   pthread_t thread;
+</span><span class="line">   //创建一个线程并自动执行
+</span><span class="line">   pthread_create(&amp;thread, NULL, start, NULL);
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">void *start(void *data) {
+</span><span class="line">   NSLog(@"%@", [NSThread currentThread]);
+</span><span class="line">   return NULL;
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>打印输出：</p>
 
-2015-07-27 23:57:21.689 testThread[10616:2644653] {number = 2, name = (null)} 看代码就会发现他需要 c语言函数，这是比较蛋疼的，更蛋疼的是你需要手动处理线程的各个状态的转换即管理生命周期，比如，这段代码虽然创建了一个线程，但并没有销毁。
+<pre><code>2015-07-27 23:57:21.689 testThread[10616:2644653] {number = 2, name = (null)} 看代码就会发现他需要 c语言函数，这是比较蛋疼的，更蛋疼的是你需要手动处理线程的各个状态的转换即管理生命周期，比如，这段代码虽然创建了一个线程，但并没有销毁。
 </code></pre>
 
 <p>SWIFT</p>
@@ -184,68 +197,121 @@ return NULL;
 
 <p>这套方案是经过苹果封装后的，并且完全面向对象的。所以你可以直接操控线程对象，非常直观和方便。但是，它的生命周期还是需要我们手动管理，所以这套方案也是偶尔用用，比如 [NSThread currentThread]，它可以获取当前线程类，你就可以知道当前线程的各种属性，用于调试十分方便。下面来看看它的一些用法。</p>
 
-<h5 id="section-1">创建并启动</h5>
+<h4 id="section-1">创建并启动</h4>
 
-<p>先创建线程类，再启动
-OBJECTIVE-C</p>
+<p>先创建线程类，再启动</p>
 
-  	// 创建
-  	NSThread *thread = [[NSThread alloc] initWithTarget:self 	selector:@selector(run:) object:nil];
-  	// 启动
-  	[thread start];
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">// 创建
+</span><span class="line">NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(run:) object:nil];
+</span><span class="line">// 启动
+</span><span class="line">[thread start];
+</span><span class="line">    
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">//创建
+</span><span class="line">let thread = NSThread(target: self, selector: "run:", object: nil)
+</span><span class="line">//启动
+</span><span class="line">thread.start()</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>SWIFT</p>
+<h4 id="section-2">创建并自动启动</h4>
 
-  	//创建
-  	let thread = NSThread(target: self, selector: “run:”, object: nil)
-  	//启动
-  	thread.start()
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">[NSThread detachNewThreadSelector:@selector(run:) toTarget:self withObject:nil];
+</span><span class="line">
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">NSThread.detachNewThreadSelector("run:", toTarget: self, withObject: nil)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h5 id="section-2">创建并自动启动</h5>
-
-<p>OBJECTIVE-C</p>
-
-  	[NSThread detachNewThreadSelector:@selector(run:) toTarget:self withObject:nil];
-<p>SWIFT</p>
-
-  	NSThread.detachNewThreadSelector(“run:”, toTarget: self, withObject: nil)
 <p>使用 NSObject 的方法创建并自动启动</p>
 
-<p>OBJECTIVE-C</p>
-
-  	[self performSelectorInBackground:@selector(run:) withObject:nil];
-<p>SWIFT</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">[self performSelectorInBackground:@selector(run:) withObject:nil];
+</span><span class="line">
+</span><span class="line">SWIFT</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>很遗憾 too! 苹果认为 performSelector: 不安全，所以在 Swift 去掉了这个方法。</p>
 
-<pre><code>Note: The performSelector: method and related selector-invoking methods are not imported in Swift because they are inherently unsafe.
-</code></pre>
+<blockquote>
+  <p>Note: The performSelector: method and related selector-invoking methods are not imported in Swift because they are inherently unsafe.</p>
+</blockquote>
 
-<h5 id="section-3">其他方法</h5>
+<h4 id="section-3">其他方法</h4>
 
 <p>除了创建启动外，NSThread 还以很多方法，下面我列举一些常见的方法，当然我列举的并不完整，更多方法大家可以去类的定义里去看。</p>
 
-<p>OBJECTIVE-C</p>
-
-<pre><code>//取消线程
-- (void)cancel;
-//启动线程
-- (void)start;
-//判断某个线程的状态的属性
-@property (readonly, getter=isExecuting) BOOL executing;
-@property (readonly, getter=isFinished) BOOL finished;
-@property (readonly, getter=isCancelled) BOOL cancelled;
-//设置和获取线程名字
--(void)setName:(NSString *)n;
--(NSString *)name;
-//获取当前线程信息
-+ (NSThread *)currentThread;
-//获取主线程信息
-+ (NSThread *)mainThread;
-//使当前线程暂停一段时间，或者暂停到某个时刻
-+ (void)sleepForTimeInterval:(NSTimeInterval)time;
-+ (void)sleepUntilDate:(NSDate *)date; SWIFT
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">//取消线程
+</span><span class="line">- (void)cancel;
+</span><span class="line">//启动线程
+</span><span class="line">- (void)start;
+</span><span class="line">//判断某个线程的状态的属性
+</span><span class="line">@property (readonly, getter=isExecuting) BOOL executing;
+</span><span class="line">@property (readonly, getter=isFinished) BOOL finished;
+</span><span class="line">@property (readonly, getter=isCancelled) BOOL cancelled;
+</span><span class="line">//设置和获取线程名字
+</span><span class="line">-(void)setName:(NSString *)n;
+</span><span class="line">-(NSString *)name;
+</span><span class="line">//获取当前线程信息
+</span><span class="line">+ (NSThread *)currentThread;
+</span><span class="line">//获取主线程信息
+</span><span class="line">+ (NSThread *)mainThread;
+</span><span class="line">//使当前线程暂停一段时间，或者暂停到某个时刻
+</span><span class="line">+ (void)sleepForTimeInterval:(NSTimeInterval)time;
+</span><span class="line">+ (void)sleepUntilDate:(NSDate *)date;
+</span><span class="line">
+</span><span class="line">SWIFT</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Swift的方法名字和OC的方法名都一样，我就不浪费空间列举出来了。</p>
 
@@ -255,7 +321,7 @@ OBJECTIVE-C</p>
 
 <p>Grand Central Dispatch，听名字就霸气。它是苹果为多核的并行运算提出的解决方案，所以会自动合理地利用更多的CPU内核（比如双核、四核），最重要的是它会自动管理线程的生命周期（创建线程、调度任务、销毁线程），完全不需要我们管理，我们只需要告诉干什么就行。同时它使用的也是 c语言，不过由于使用了 Block（Swift里叫做闭包），使得使用起来更加方便，而且灵活。所以基本上大家都使用 GCD 这套方案，老少咸宜，实在是居家旅行、杀人灭口，必备良药。不好意思，有点中二，咱们继续。</p>
 
-<h5 id="section-4">任务和队列</h5>
+<h4 id="section-4">任务和队列</h4>
 
 <p>在 GCD 中，加入了两个非常重要的概念： 任务 和 队列。</p>
 
@@ -281,60 +347,99 @@ OBJECTIVE-C</p>
 
 <p>更新：放到串行队列的任务，GCD 也会 FIFO的取出来，但不同的是，它取出来一个就会放到别的线程，然后再取出来一个又放到另一个的线程。这样由于取的动作很快，忽略不计，看起来，所有的任务都是一起执行的。不过需要注意，GCD 会根据系统资源控制并行的数量，所以如果任务很多，它并不会让所有任务同时执行。</p>
 
-<h5 id="section-5">创建队列</h5>
+<h4 id="section-5">创建队列</h4>
 
 <p>主队列：这是一个特殊的 串行队列。什么是主队列，大家都知道吧，它用于刷新 UI，任何需要刷新 UI 的工作都要在主队列执行，所以一般耗时的任务都要放到别的线程执行。</p>
 
-<p>//OBJECTIVE-C
-  dispatch_queue_t queue = ispatch_get_main_queue();
-  //SWIFT
-  let queue = ispatch_get_main_queue()
-自己创建的队列：凡是自己创建的队列都是 串行队列。其中第一个参数是标识符，用于 DEBUG 的时候标识唯一的队列，可以为空。大家可以看xcode的文档查看参数意义。
-更新：自己可以创建 串行队列, 也可以创建 并行队列。看下面的代码（代码已更新），它有两个参数，第一个上面已经说了，第二个才是最重要的。
-第二个参数用来表示创建的队列是串行的还是并行的，传入 DISPATCH_QUEUE_SERIAL 或 NULL 表示创建串行队列。传入 DISPATCH_QUEUE_CONCURRENT 表示创建并行队列。</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//OBJECTIVE-C
+</span><span class="line">dispatch_queue_t queue = ispatch_get_main_queue();
+</span><span class="line">//SWIFT
+</span><span class="line">let queue = ispatch_get_main_queue()</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-   	//OBJECTIVE-C
-  	dispatch_queue_t queue = dispatch_queue_create(“tk.bourne.testQueue”, NULL);
-  	//SWIFT
-  	let queue = dispatch_queue_create(“tk.bourne.testQueue”, nil);
+<p>自己创建的队列：凡是自己创建的队列都是 串行队列。其中第一个参数是标识符，用于 DEBUG 的时候标识唯一的队列，可以为空。大家可以看xcode的文档查看参数意义。</p>
+
+<p>更新：自己可以创建 串行队列, 也可以创建 并行队列。看下面的代码（代码已更新），它有两个参数，第一个上面已经说了，第二个才是最重要的。</p>
+
+<p>第二个参数用来表示创建的队列是串行的还是并行的，传入 DISPATCH_QUEUE_SERIAL 或 NULL 表示创建串行队列。传入 DISPATCH_QUEUE_CONCURRENT 表示创建并行队列。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//OBJECTIVE-C
+</span><span class="line">dispatch_queue_t queue = dispatch_queue_create("tk.bourne.testQueue", NULL);
+</span><span class="line">//SWIFT
+</span><span class="line">let queue = dispatch_queue_create("tk.bourne.testQueue", nil);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 <p>全局并行队列：这应该是唯一一个并行队列，只要是并行任务一般都加入到这个队列。</p>
 
-  	//OBJECTIVE-C
-  	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-  	//SWIFT
-  	let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-
-<h5 id="section-6">创建任务</h5>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//OBJECTIVE-C
+</span><span class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+</span><span class="line">//SWIFT
+</span><span class="line">let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>####创建任务</p>
 
 <p>同步任务：不会另开线程 (SYNC)</p>
 
-<p>OBJECTIVE-C</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">dispatch_sync(, ^{
+</span><span class="line">      //code here
+</span><span class="line">      NSLog(@"%@", [NSThread currentThread]);
+</span><span class="line">});
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">dispatch_sync(, { () -&gt; Void in
+</span><span class="line">      //code here
+</span><span class="line">      println(NSThread.currentThread())
+</span><span class="line">})</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  	dispatch_sync(, ^{
-<pre><code>  //code here
-  NSLog(@"%@", [NSThread currentThread]);
-  	}); SWIFT
-</code></pre>
+<p>异步任务：会另开线程 (ASYNC)</p>
 
-  	dispatch_sync(, { () -&gt; Void in
-<pre><code>  //code here
-  println(NSThread.currentThread())
-  	}) 异步任务：会另开线程 (ASYNC)
-</code></pre>
-
-<p>OBJECTIVE-C</p>
-
-  	dispatch_async(, ^{
-<pre><code>  //code here
-  NSLog(@"%@", [NSThread currentThread]);
-  	}); SWIFT
-</code></pre>
-
-  	dispatch_async(, { () -&gt; Void in
-<pre><code>  //code here
-  println(NSThread.currentThread())
-  	})
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">dispatch_async(, ^{
+</span><span class="line">      //code here
+</span><span class="line">      NSLog(@"%@", [NSThread currentThread]);
+</span><span class="line">});
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">dispatch_async(, { () -&gt; Void in
+</span><span class="line">      //code here
+</span><span class="line">      println(NSThread.currentThread())
+</span><span class="line">})</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>更新：</p>
 
@@ -344,12 +449,18 @@ OBJECTIVE-C</p>
 
 <p>以下代码在主线程调用，结果是什么？</p>
 
-<pre><code>NSLog("之前 - %@", NSThread.currentThread())
-dispatch_sync(dispatch_get_main_queue(), { () -&gt; Void in 
-    NSLog("sync - %@", NSThread.currentThread())
-})
-NSLog("之后 - %@", NSThread.currentThread()) 答案：
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">NSLog("之前 - %@", NSThread.currentThread())
+</span><span class="line">dispatch_sync(dispatch_get_main_queue(), { () -&gt; Void in 
+</span><span class="line">        NSLog("sync - %@", NSThread.currentThread())
+</span><span class="line">})
+</span><span class="line">NSLog("之后 - %@", NSThread.currentThread())</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>答案：</p>
 
 <p>只会打印第一句：之前 - {number = 1, name = main} ，然后主线程就卡死了，你可以在界面上放一个按钮，你就会发现点不了了。</p>
 
@@ -363,18 +474,30 @@ NSLog("之后 - %@", NSThread.currentThread()) 答案：
 
 <p>以下代码会产生什么结果？</p>
 
-<pre><code>let queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
-   		NSLog("之前 - %@", NSThread.currentThread())
-	dispatch_async(queue, { () -&gt; Void in
-    NSLog("sync之前 - %@", NSThread.currentThread())
-    dispatch_sync(queue, { () -&gt; Void in
-         NSLog("sync - %@", NSThread.currentThread())
-    })
-    NSLog("sync之后 - %@", NSThread.currentThread())
-   		})
-  	NSLog("之后 - %@", NSThread.currentThread()) 答案：
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">let queue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_SERIAL)
+</span><span class="line">NSLog("之前 - %@", NSThread.currentThread())
+</span><span class="line">dispatch_async(queue, { () -&gt; Void in
+</span><span class="line">NSLog("sync之前 - %@", NSThread.currentThread())
+</span><span class="line">dispatch_sync(queue, { () -&gt; Void in
+</span><span class="line">   NSLog("sync - %@", NSThread.currentThread())
+</span><span class="line">})
+</span><span class="line">  NSLog("sync之后 - %@", NSThread.currentThread())
+</span><span class="line">})
+</span><span class="line">  	NSLog("之后 - %@", NSThread.currentThread())</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-2015-07-30 02:06:51.058 test[33329:8793087] 之前 - {number = 1, name = main}
+<p>答案：</p>
+
+<pre><code>2015-07-30 02:06:51.058 test[33329:8793087] 之前 - {number = 1, name = main}
 
 2015-07-30 02:06:51.059 test[33329:8793356] sync之前 - {number = 2, name = (null)}
 
@@ -396,52 +519,98 @@ dispatch_async 异步执行，所以当前线程不会被阻塞，于是有了�
 
 <p>队列组可以将很多队列添加到一个组里，这样做的好处是，当这个组里所有的任务都执行完了，队列组会通过一个方法通知我们。下面是使用方法，这是一个很实用的功能。</p>
 
-<p>OBJECTIVE-C</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">//1.创建队列组
+</span><span class="line">dispatch_group_t group = dispatch_group_create();
+</span><span class="line">//2.创建队列
+</span><span class="line">dispatch_queue_t queue = 	dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+</span><span class="line">//3.多次使用队列组的方法执行任务, 只有异步方法
+</span><span class="line">//3.1.执行3次循环
+</span><span class="line">dispatch_group_async(group, queue, ^{
+</span><span class="line">for (NSInteger i = 0; i &lt; 3; i++) {
+</span><span class="line">        NSLog(@"group-01 - %@", [NSThread currentThread]);
+</span><span class="line">}
+</span><span class="line">});
+</span><span class="line">//3.2.主队列执行8次循环
+</span><span class="line">dispatch_group_async(group, dispatch_get_main_queue(), ^{
+</span><span class="line">    for (NSInteger i = 0; i &lt; 8; i++) {
+</span><span class="line">        NSLog(@"group-02 - %@", [NSThread currentThread]);
+</span><span class="line">    }
+</span><span class="line">});
+</span><span class="line">//3.3.执行5次循环
+</span><span class="line">dispatch_group_async(group, queue, ^{
+</span><span class="line">    for (NSInteger i = 0; i &lt; 5; i++) {
+</span><span class="line">        NSLog(@"group-03 - %@", [NSThread currentThread]);
+</span><span class="line">    }
+</span><span class="line">});
+</span><span class="line">//4.都完成后会自动通知
+</span><span class="line">dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+</span><span class="line">    NSLog(@"完成 - %@", [NSThread currentThread]);
+</span><span class="line">});
+</span><span class="line">
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">//1.创建队列组
+</span><span class="line">let group = dispatch_group_create()
+</span><span class="line">//2.创建队列
+</span><span class="line">let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+</span><span class="line">//3.多次使用队列组的方法执行任务, 只有异步方法
+</span><span class="line">//3.1.执行3次循环
+</span><span class="line">dispatch_group_async(group, queue) { () -&gt; Void in
+</span><span class="line">    for _ in 0.. Void in
+</span><span class="line">    for _ in 0.. Void in
+</span><span class="line">    for _ in 0.. Void in
+</span><span class="line">    NSLog("完成 - %@", NSThread.currentThread())
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>//1.创建队列组
-dispatch_group_t group = dispatch_group_create();
-//2.创建队列
-dispatch_queue_t queue = 	dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//3.多次使用队列组的方法执行任务, 只有异步方法
-//3.1.执行3次循环
-dispatch_group_async(group, queue, ^{
-for (NSInteger i = 0; i &lt; 3; i++) {
-    NSLog(@"group-01 - %@", [NSThread currentThread]);
-}
-});
-//3.2.主队列执行8次循环
-dispatch_group_async(group, dispatch_get_main_queue(), ^{
-for (NSInteger i = 0; i &lt; 8; i++) {
-    NSLog(@"group-02 - %@", [NSThread currentThread]);
-}
-});
-//3.3.执行5次循环
-dispatch_group_async(group, queue, ^{
-for (NSInteger i = 0; i &lt; 5; i++) {
-    NSLog(@"group-03 - %@", [NSThread currentThread]);
-}
-});
-//4.都完成后会自动通知
-dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-NSLog(@"完成 - %@", [NSThread currentThread]);
-}); SWIFT
+<p>打印结果</p>
 
-
-//1.创建队列组
-let group = dispatch_group_create()
-//2.创建队列
-let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-//3.多次使用队列组的方法执行任务, 只有异步方法
-//3.1.执行3次循环
-dispatch_group_async(group, queue) { () -&gt; Void in
-for _ in 0.. Void in
-for _ in 0.. Void in
-for _ in 0.. Void in
-NSLog("完成 - %@", NSThread.currentThread())
-} 打印结果
-
-
-2015-07-28 03:40:34.277 test[12540:3319271] group-03 - {number = 3, name = (null)}
+<pre><code>2015-07-28 03:40:34.277 test[12540:3319271] group-03 - {number = 3, name = (null)}
 2015-07-28 03:40:34.277 test[12540:3319146] group-02 - {number = 1, name = main}
 2015-07-28 03:40:34.277 test[12540:3319146] group-02 - {number = 1, name = main}
 2015-07-28 03:40:34.277 test[12540:3319271] group-03 - {number = 3, name = (null)}
@@ -457,8 +626,10 @@ NSLog("完成 - %@", NSThread.currentThread())
 2015-07-28 03:40:34.278 test[12540:3319273] group-01 - {number = 2, name = (null)}
 2015-07-28 03:40:34.279 test[12540:3319146] group-02 - {number = 1, name = main}
 2015-07-28 03:40:34.279 test[12540:3319146] group-02 - {number = 1, name = main}
-2015-07-28 03:40:34.279 test[12540:3319146] 完成 - {number = 1, name = main} 这些就是 GCD 的基本功能，但是它的能力远不止这些，等讲完 NSOperation 后，我们再来看看它的一些其他方面用途。而且，只要你想象力够丰富，你可以组合出更好的用法。
+2015-07-28 03:40:34.279 test[12540:3319146] 完成 - {number = 1, name = main}
 </code></pre>
+
+<p>这些就是 GCD 的基本功能，但是它的能力远不止这些，等讲完 NSOperation 后，我们再来看看它的一些其他方面用途。而且，只要你想象力够丰富，你可以组合出更好的用法。</p>
 
 <p>更新：关于GCD，还有两个需要说的：</p>
 
@@ -484,7 +655,7 @@ NSLog("完成 - %@", NSThread.currentThread())
 将此任务添加到一个 NSOperationQueue 对象中。
 然后系统就会自动在执行任务。至于同步还是异步、串行还是并行请继续往下看：</p>
 
-<h5 id="section-7">添加任务</h5>
+<h4 id="section-6">添加任务</h4>
 
 <p>值得说明的是，NSOperation 只是一个抽象类，所以不能封装任务。但它有 2 个子类用于封装任务。分别是：NSInvocationOperation 和 NSBlockOperation 。创建一个 Operation 后，需要调用 start 方法来启动任务，它会 默认在当前队列同步执行。当然你也可以在中途取消一个任务，只需要调用其 cancel 方法即可。</p>
 
@@ -492,78 +663,134 @@ NSLog("完成 - %@", NSThread.currentThread())
 
 <p>OBJECTIVE-C</p>
 
-  	//1.创建NSInvocationOperation对象
-  	NSInvocationOperation *operation = [[NSInvocationOperation alloc] 	initWithTarget:self selector:@selector(run) object:nil];
-<p>//2.开始执行
-  [operation start];
-SWIFT</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//1.创建NSInvocationOperation对象
+</span><span class="line"> NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(run) object:nil];
+</span><span class="line">//2.开始执行
+</span><span class="line">[operation start];</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>SWIFT</p>
 
 <p>在 Swift 构建的和谐社会里，是容不下 NSInvocationOperation 这种不是类型安全的败类的。苹果如是说。这里有相关解释</p>
 
-<p>NSBlockOperation
-OBJECTIVE-C</p>
-
-  	//1.创建NSBlockOperation对象
-  	NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-<pre><code>  NSLog(@"%@", [NSThread currentThread]);
-  	}];
-  	//2.开始任务
-  	[operation start]; SWIFT
-</code></pre>
-
-  	//1.创建NSBlockOperation对象
-  	let operation = NSBlockOperation { () -&gt; Void in
-<pre><code>  println(NSThread.currentThread())
-  	}
-  	//2.开始任务
-  	operation.start() 之前说过这样的任务，默认会在当前线程执行。但是 NSBlockOperation 还有一个方法：addExecutionBlock: ，通过这个方法可以给 Operation 添加多个执行 Block。这样 Operation 中的任务 会并发执行，它会 在主线程和其它的多个线程 执行这些任务，注意下面的打印结果：
-</code></pre>
+<p>NSBlockOperation</p>
 
 <p>OBJECTIVE-C</p>
 
-<pre><code>  //1.创建NSBlockOperation对象
-  NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-      NSLog(@"%@", [NSThread currentThread]);
-  }];
-  //添加多个Block
-  for (NSInteger i = 0; i &lt; 5; i++) {
-      [operation addExecutionBlock:^{
-          NSLog(@"第%ld次：%@", i, [NSThread currentThread]);
-      }];
-  }
-  //2.开始任务
-  [operation start]; SWIFT
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//1.创建NSBlockOperation对象
+</span><span class="line">NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+</span><span class="line">   NSLog(@"%@", [NSThread currentThread]);
+</span><span class="line">}];
+</span><span class="line">//2.开始任务
+</span><span class="line">[operation start];
+</span><span class="line">
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">//1.创建NSBlockOperation对象
+</span><span class="line">let operation = NSBlockOperation { () -&gt; Void in
+</span><span class="line">   println(NSThread.currentThread())
+</span><span class="line">}
+</span><span class="line">//2.开始任务
+</span><span class="line">operation.start()</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>之前说过这样的任务，默认会在当前线程执行。但是 NSBlockOperation 还有一个方法：addExecutionBlock: ，通过这个方法可以给 Operation 添加多个执行 Block。这样 Operation 中的任务 会并发执行，它会 在主线程和其它的多个线程 执行这些任务，注意下面的打印结果：</p>
 
-    //1.创建NSBlockOperation对象
-    let operation = NSBlockOperation { () -&gt; Void in
-        NSLog("%@", NSThread.currentThread())
-    }
-    //2.添加多个Block
-    for i in 0.. Void in
-            NSLog("第%ld次 - %@", i, NSThread.currentThread())
-        }
-    }
-    //2.开始任务
-    operation.start() 打印输出
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">//1.创建NSBlockOperation对象
+</span><span class="line">NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+</span><span class="line">          NSLog(@"%@", [NSThread currentThread]);
+</span><span class="line">}];
+</span><span class="line">//添加多个Block
+</span><span class="line">for (NSInteger i = 0; i &lt; 5; i++) {
+</span><span class="line">  [operation addExecutionBlock:^{
+</span><span class="line">      NSLog(@"第%ld次：%@", i, [NSThread currentThread]);
+</span><span class="line">  }];
+</span><span class="line">}
+</span><span class="line">//2.开始任务
+</span><span class="line">[operation start];
+</span><span class="line">      
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">//1.创建NSBlockOperation对象
+</span><span class="line">let operation = NSBlockOperation { () -&gt; Void in
+</span><span class="line">    NSLog("%@", NSThread.currentThread())
+</span><span class="line">}
+</span><span class="line">//2.添加多个Block
+</span><span class="line">for i in 0.. Void in
+</span><span class="line">   NSLog("第%ld次 - %@", i, NSThread.currentThread())
+</span><span class="line">   }
+</span><span class="line"> }
+</span><span class="line">//2.开始任务
+</span><span class="line">operation.start()</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-2015-07-28 17:50:16.585 test[17527:4095467] 第2次 -{number = 1, name = main}
+<p>打印输出</p>
+
+<pre><code>2015-07-28 17:50:16.585 test[17527:4095467] 第2次 -{number = 1, name = main}
 2015-07-28 17:50:16.585 test[17527:4095666] 第1次 -{number = 4, name = (null)}
 2015-07-28 17:50:16.585 test[17527:4095665]{number = 3, name = (null)}
 2015-07-28 17:50:16.585 test[17527:4095662] 第0次 -{number = 2, name = (null)}
 2015-07-28 17:50:16.586 test[17527:4095666] 第3次 -{number = 4, name = (null)}
 2015-07-28 17:50:16.586 test[17527:4095467] 第4次 -{number = 1, name = main} NOTE：addExecutionBlock 方法必须在 start() 方法之前执行，否则就会报错：
-
-‘*** -[NSBlockOperation addExecutionBlock:]: blocks cannot be added after the operation has started executing or finished'
 </code></pre>
+
+<blockquote>
+  <p>-[NSBlockOperation addExecutionBlock:]: blocks cannot be added after the operation has started executing or finished’</p>
+</blockquote>
 
 <p>NOTE：大家可能发现了一个问题，为什么我在 Swift 里打印输出使用 NSLog() 而不是 println() 呢？原因是使用 print() / println() 输出的话，它会简单地使用 流（stream） 的概念，学过 C++ 的都知道。它会把需要输出的每个字符一个一个的输出到控制台。普通使用并没有问题，可是当多线程同步输出的时候问题就来了，由于很多 println() 同时打印，就会导致控制台上的字符混乱的堆在一起，而NSLog() 就没有这个问题。到底是什么样子的呢？你可以把上面 NSLog() 改为 println() ，然后一试便知。</p>
 
-<h5 id="operation">自定义Operation</h5>
+<h4 id="operation">自定义Operation</h4>
 
 <p>除了上面的两种 Operation 以外，我们还可以自定义 Operation。自定义 Operation 需要继承 NSOperation 类，并实现其 main() 方法，因为在调用 start() 方法的时候，内部会调用 main() 方法完成相关逻辑。所以如果以上的两个类无法满足你的欲望的时候，你就需要自定义了。你想要实现什么功能都可以写在里面。除此之外，你还需要实现 cancel() 在内的各种方法。所以这个功能提供给高级玩家，我在这里就不说了，等我需要用到时在研究它，到时候可能会再做更新。</p>
 
-<h5 id="section-8">创建队列</h5>
+<h4 id="section-7">创建队列</h4>
 
 <p>看过上面的内容就知道，我们可以调用一个 NSOperation 对象的 start() 方法来启动这个任务，但是这样做他们默认是 同步执行 的。就算是 addExecutionBlock 方法，也会在 当前线程和其他线程 中执行，也就是说还是会占用当前线程。这是就要用到队列 NSOperationQueue 了。而且，按类型来说的话一共有两种类型：主队列、其他队列。只要添加到队列，会自动调用任务的 start() 方法</p>
 
@@ -571,53 +798,97 @@ OBJECTIVE-C</p>
 
 <p>细心的同学就会发现，每套多线程方案都会有一个主线程（当然啦，说的是iOS中，像 pthread 这种多系统的方案并没有，因为 UI线程 理论需要每种操作系统自己定制）。这是一个特殊的线程，必须串行。所以添加到主队列的任务都会一个接一个地排着队在主线程处理。</p>
 
-<pre><code>//OBJECTIVE-C
-NSOperationQueue *queue = [NSOperationQueue mainQueue];
-//SWIFT
-let queue = NSOperationQueue.mainQueue() 其他队列 因为主队列比较特殊，所以会单独有一个类方法来获得主队列。那么通过初始化产生的队列就是其他队列了，因为只有这两种队列，除了主队列，其他队列就不需要名字了。
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//OBJECTIVE-C
+</span><span class="line">NSOperationQueue *queue = [NSOperationQueue mainQueue];
+</span><span class="line">//SWIFT
+</span><span class="line">let queue = NSOperationQueue.mainQueue()</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>其他队列</p>
+
+<p>因为主队列比较特殊，所以会单独有一个类方法来获得主队列。那么通过初始化产生的队列就是其他队列了，因为只有这两种队列，除了主队列，其他队列就不需要名字了。</p>
 
 <p>注意：其他队列的任务会在其他线程并行执行。</p>
 
-<p>OBJECTIVE-C</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">//1.创建一个其他队列    
+</span><span class="line">NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+</span><span class="line">//2.创建NSBlockOperation对象
+</span><span class="line">NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+</span><span class="line">NSLog(@"%@", [NSThread currentThread]);
+</span><span class="line">}];
+</span><span class="line">//3.添加多个Block
+</span><span class="line">for (NSInteger i = 0; i &lt; 5; i++) {
+</span><span class="line">  [operation addExecutionBlock:^{
+</span><span class="line">      NSLog(@"第%ld次：%@", i, [NSThread currentThread]);
+</span><span class="line">  }];
+</span><span class="line"> }
+</span><span class="line">//4.队列添加任务
+</span><span class="line">[queue addOperation:operation];
+</span><span class="line">
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">//1.创建其他队列
+</span><span class="line">let queue = NSOperationQueue()
+</span><span class="line">//2.创建NSBlockOperation对象
+</span><span class="line">let operation = NSBlockOperation { () -&gt; Void in
+</span><span class="line">NSLog("%@", NSThread.currentThread())
+</span><span class="line">}
+</span><span class="line">//3.添加多个Block
+</span><span class="line">for i in 0.. Void in
+</span><span class="line">   NSLog("第%ld次 - %@", i, NSThread.currentThread())
+</span><span class="line">  }
+</span><span class="line">}
+</span><span class="line">//4.队列添加任务
+</span><span class="line">queue.addOperation(operation)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>//1.创建一个其他队列    
-NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-//2.创建NSBlockOperation对象
-NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-NSLog(@"%@", [NSThread currentThread]);
-}];
-//3.添加多个Block
-for (NSInteger i = 0; i &lt; 5; i++) {
-[operation addExecutionBlock:^{
-    NSLog(@"第%ld次：%@", i, [NSThread currentThread]);
-}];
-}
-//4.队列添加任务
-[queue addOperation:operation]; SWIFT
+<p>打印输出</p>
 
-//1.创建其他队列
-let queue = NSOperationQueue()
-//2.创建NSBlockOperation对象
-let operation = NSBlockOperation { () -&gt; Void in
-NSLog("%@", NSThread.currentThread())
-}
-//3.添加多个Block
-for i in 0.. Void in
-    NSLog("第%ld次 - %@", i, NSThread.currentThread())
-}
-}
-//4.队列添加任务
-queue.addOperation(operation) 打印输出
-
-
-2015-07-28 20:26:28.463 test[18622:4443534]{number = 5, name = (null)}
+<pre><code>2015-07-28 20:26:28.463 test[18622:4443534]{number = 5, name = (null)}
 2015-07-28 20:26:28.463 test[18622:4443536] 第2次 -{number = 2, name = (null)}
 2015-07-28 20:26:28.463 test[18622:4443535] 第0次 -{number = 4, name = (null)}
 2015-07-28 20:26:28.463 test[18622:4443533] 第1次 -{number = 3, name = (null)}
 2015-07-28 20:26:28.463 test[18622:4443534] 第3次 -{number = 5, name = (null)}
-2015-07-28 20:26:28.463 test[18622:4443536] 第4次 -{number = 2, name = (null)} OK, 这时应该发问了，大家将 NSOperationQueue 与 GCD的队列 相比较就会发现，这里没有并行队列，那如果我想要10个任务在其他线程串行的执行怎么办？
+2015-07-28 20:26:28.463 test[18622:4443536] 第4次 -{number = 2, name = (null)}
 </code></pre>
+
+<p>OK, 这时应该发问了，大家将 NSOperationQueue 与 GCD的队列 相比较就会发现，这里没有并行队列，那如果我想要10个任务在其他线程串行的执行怎么办？</p>
 
 <p>这就是苹果封装的妙处，你不用管串行、并行、同步、异步这些名词。NSOperationQueue 有一个参数 maxConcurrentOperationCount 最大并发数，用来设置最多可以让多少个任务同时执行。当你把它设置为 1 的时候，他不就是串行了嘛！</p>
 
@@ -625,220 +896,389 @@ queue.addOperation(operation) 打印输出
 
 <p>NSOperation 有一个非常实用的功能，那就是添加依赖。比如有 3 个任务：A: 从服务器上下载一张图片，B：给这张图片加个水印，C：把图片返回给服务器。这时就可以用到依赖了:</p>
 
-<p>OBJECTIVE-C</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">//1.任务一：下载图片
+</span><span class="line">NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^{
+</span><span class="line">NSLog(@"下载图片 - %@", [NSThread currentThread]);
+</span><span class="line">[NSThread sleepForTimeInterval:1.0];
+</span><span class="line">}];
+</span><span class="line">//2.任务二：打水印
+</span><span class="line">NSBlockOperation *operation2 = [NSBlockOperation blockOperationWithBlock:^{
+</span><span class="line">NSLog(@"打水印   - %@", [NSThread currentThread]);
+</span><span class="line">   [NSThread sleepForTimeInterval:1.0];
+</span><span class="line">}];
+</span><span class="line">//3.任务三：上传图片
+</span><span class="line">NSBlockOperation *operation3 = [NSBlockOperation blockOperationWithBlock:^{
+</span><span class="line">NSLog(@"上传图片 - %@", [NSThread currentThread]);
+</span><span class="line">   [NSThread sleepForTimeInterval:1.0];
+</span><span class="line">}];
+</span><span class="line">//4.设置依赖
+</span><span class="line">[operation2 addDependency:operation1];      //任务二依赖任务一
+</span><span class="line">[operation3 addDependency:operation2];      //任务三依赖任务二
+</span><span class="line">//5.创建队列并加入任务
+</span><span class="line">NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+</span><span class="line">[queue addOperations:@[operation3, operation2, operation1] 	waitUntilFinished:NO];
+</span><span class="line">
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">//1.任务一：下载图片
+</span><span class="line">let operation1 = NSBlockOperation { () -&gt; Void in
+</span><span class="line">NSLog("下载图片 - %@", NSThread.currentThread())
+</span><span class="line">  NSThread.sleepForTimeInterval(1.0)
+</span><span class="line">}
+</span><span class="line">//2.任务二：打水印
+</span><span class="line">let operation2 = NSBlockOperation { () -&gt; Void in
+</span><span class="line">  NSLog("打水印   - %@", NSThread.currentThread())
+</span><span class="line">  NSThread.sleepForTimeInterval(1.0)
+</span><span class="line">}
+</span><span class="line">//3.任务三：上传图片
+</span><span class="line">let operation3 = NSBlockOperation { () -&gt; Void in
+</span><span class="line">   NSLog("上传图片 - %@", NSThread.currentThread())
+</span><span class="line">   NSThread.sleepForTimeInterval(1.0)
+</span><span class="line">}
+</span><span class="line">//4.设置依赖
+</span><span class="line">operation2.addDependency(operation1)    //任务二依赖任务一
+</span><span class="line">operation3.addDependency(operation2)    //任务三依赖任务二
+</span><span class="line">//5.创建队列并加入任务
+</span><span class="line">let queue = NSOperationQueue()
+</span><span class="line">queue.addOperations([operation3, operation2, operation1], waitUntilFinished: false)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>//1.任务一：下载图片
-NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^{
-NSLog(@"下载图片 - %@", [NSThread currentThread]);
-[NSThread sleepForTimeInterval:1.0];
-}];
-//2.任务二：打水印
-NSBlockOperation *operation2 = [NSBlockOperation blockOperationWithBlock:^{
-NSLog(@"打水印   - %@", [NSThread currentThread]);
-[NSThread sleepForTimeInterval:1.0];
-}];
-//3.任务三：上传图片
-NSBlockOperation *operation3 = [NSBlockOperation blockOperationWithBlock:^{
-NSLog(@"上传图片 - %@", [NSThread currentThread]);
-[NSThread sleepForTimeInterval:1.0];
-}];
-//4.设置依赖
-[operation2 addDependency:operation1];      //任务二依赖任务一
-[operation3 addDependency:operation2];      //任务三依赖任务二
-//5.创建队列并加入任务
-NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-[queue addOperations:@[operation3, operation2, operation1] 	waitUntilFinished:NO]; SWIFT
+<p>打印结果</p>
 
-
-//1.任务一：下载图片
-let operation1 = NSBlockOperation { () -&gt; Void in
-NSLog("下载图片 - %@", NSThread.currentThread())
-NSThread.sleepForTimeInterval(1.0)
-}
-//2.任务二：打水印
-let operation2 = NSBlockOperation { () -&gt; Void in
-NSLog("打水印   - %@", NSThread.currentThread())
-NSThread.sleepForTimeInterval(1.0)
-}
-//3.任务三：上传图片
-let operation3 = NSBlockOperation { () -&gt; Void in
-NSLog("上传图片 - %@", NSThread.currentThread())
-NSThread.sleepForTimeInterval(1.0)
-}
-//4.设置依赖
-operation2.addDependency(operation1)    //任务二依赖任务一
-operation3.addDependency(operation2)    //任务三依赖任务二
-//5.创建队列并加入任务
-let queue = NSOperationQueue()
-queue.addOperations([operation3, operation2, operation1], 	waitUntilFinished: false) 打印结果
-
-
-
-2015-07-28 21:24:28.622 test[19392:4637517] 下载图片 -{number = 2, name = (null)}
+<pre><code>2015-07-28 21:24:28.622 test[19392:4637517] 下载图片 -{number = 2, name = (null)}
 2015-07-28 21:24:29.622 test[19392:4637515] 打水印 -{number = 3, name = (null)}
-2015-07-28 21:24:30.627 test[19392:4637515] 上传图片 -{number = 3, name = (null)} 注意：不能添加相互依赖，会死锁，比如 A依赖B，B依赖A。 可以使用 removeDependency 来解除依赖关系。 可以在不同的队列之间依赖，反正就是这个依赖是添加到任务身上的，和队列没关系。 其他方法
+2015-07-28 21:24:30.627 test[19392:4637515] 上传图片 -{number = 3, name = (null)}
 </code></pre>
+
+<p>注意：不能添加相互依赖，会死锁，比如 A依赖B，B依赖A。
+可以使用 removeDependency 来解除依赖关系。
+可以在不同的队列之间依赖，反正就是这个依赖是添加到任务身上的，和队列没关系。
+其他方法</p>
 
 <p>以上就是一些主要方法, 下面还有一些常用方法需要大家注意：</p>
 
-<pre><code>NSOperation
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">NSOperation
+</span><span class="line">
+</span><span class="line">BOOL executing; //判断任务是否正在执行
+</span><span class="line">BOOL finished; //判断任务是否完成
+</span><span class="line">void (^completionBlock)(void); //用来设置完成后需要执行的操作
+</span><span class="line">- (void)cancel; //取消任务
+</span><span class="line">- (void)waitUntilFinished; //阻塞当前线程直到此任务执行完毕
+</span><span class="line">NSOperationQueue
+</span><span class="line">
+</span><span class="line">NSUInteger operationCount; //获取队列的任务数
+</span><span class="line">- (void)cancelAllOperations; //取消队列中所有的任务
+</span><span class="line">- (void)waitUntilAllOperationsAreFinished; //阻塞当前线程直到此队列中的所有任务执行完毕
+</span><span class="line">[queue setSuspended:YES]; // 暂停queue
+</span><span class="line">[queue setSuspended:NO]; // 继续queue</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-BOOL executing; //判断任务是否正在执行
-BOOL finished; //判断任务是否完成
-void (^completionBlock)(void); //用来设置完成后需要执行的操作
-- (void)cancel; //取消任务
-- (void)waitUntilFinished; //阻塞当前线程直到此任务执行完毕
-NSOperationQueue
+<p>好啦，到这里差不多就讲完了。当然，我讲的并不完整，可能有一些知识我并没有讲到，但作为常用方法，这些已经足够了。不过我在这里只是告诉你了一些方法的功能，只是怎么把他们用到合适的地方，就需要多多实践了。下面我会说一些关于多线程的案例，是大家更加什么地了解。</p>
 
-NSUInteger operationCount; //获取队列的任务数
-- (void)cancelAllOperations; //取消队列中所有的任务
-- (void)waitUntilAllOperationsAreFinished; //阻塞当前线程直到此队列中的所有任务执行完毕
-[queue setSuspended:YES]; // 暂停queue
-[queue setSuspended:NO]; // 继续queue 好啦，到这里差不多就讲完了。当然，我讲的并不完整，可能有一些知识我并没有讲到，但作为常用方法，这些已经足够了。不过我在这里只是告诉你了一些方法的功能，只是怎么把他们用到合适的地方，就需要多多实践了。下面我会说一些关于多线程的案例，是大家更加什么地了解。
-</code></pre>
-
-<h3 id="section-9">其他用法</h3>
+<h3 id="section-8">其他用法</h3>
 
 <p>在这部分，我会说一些和多线程知识相关的案例，可能有些很简单，大家早都知道的，不过因为这篇文章讲的是多线程嘛，所以应该尽可能的全面嘛。还有就是，我会尽可能的使用多种方法实现，让大家看看其中的区别。</p>
 
-<h5 id="section-10">线程同步</h5>
+<h4 id="section-9">线程同步</h4>
 
 <p>所谓线程同步就是为了防止多个线程抢夺同一个资源造成的数据安全问题，所采取的一种措施。当然也有很多实现方法，请往下看：</p>
 
-<p>互斥锁 ：给需要同步的代码块加一个互斥锁，就可以保证每次只有一个线程访问此代码块。
-OBJECTIVE-C</p>
+<p>互斥锁 ：给需要同步的代码块加一个互斥锁，就可以保证每次只有一个线程访问此代码块。</p>
 
-<pre><code>@synchronized(self) {
-//需要执行的代码块
-}
-SWIFT
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">@synchronized(self) {
+</span><span class="line">  //需要执行的代码块
+</span><span class="line">}
+</span><span class="line">	
+</span><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">objc_sync_enter(self)
+</span><span class="line">//需要执行的代码块
+</span><span class="line">objc_sync_exit(self)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>同步执行 ：我们可以使用多线程的知识，把多个线程都要执行此段代码添加到同一个串行队列，这样就实现了线程同步的概念。当然这里可以使用 GCD 和 NSOperation 两种方案，我都写出来。</p>
 
-objc_sync_enter(self)
-//需要执行的代码块
-objc_sync_exit(self)
-</code></pre>
-
-<p>同步执行 ：我们可以使用多线程的知识，把多个线程都要执行此段代码添加到同一个串行队列，这样就实现了线程同步的概念。当然这里可以使用 GCD 和 NSOperation 两种方案，我都写出来。
-OBJECTIVE-C</p>
-
-  	//GCD
-  	//需要一个全局变量queue，要让所有线程的这个操作都加到一个queue中
-  	dispatch_sync(queue, ^{
-<pre><code>  NSInteger ticket = lastTicket;
-  [NSThread sleepForTimeInterval:0.1];
-  NSLog(@"%ld - %@",ticket, [NSThread currentThread]);
-  ticket -= 1;
-  lastTicket = ticket;
-  	});
-  	//NSOperation &amp; NSOperationQueue
-  	//重点：1. 全局的 NSOperationQueue, 所有的操作添加到同一个queue中
-  	//       2. 设置 queue 的 maxConcurrentOperationCount 为 1
-  	//       3. 如果后续操作需要Block中的结果，就需要调用每个操作的	waitUntilFinished，阻塞当前线程，一直等到当前操作完成，才允许执行后面的。	waitUntilFinished 要在添加到队列之后！
- 	 NSBlockOperation *operation = [NSBlockOperation 	blockOperationWithBlock:^{
-  NSInteger ticket = lastTicket;
-  [NSThread sleepForTimeInterval:1];
-  NSLog(@"%ld - %@",ticket, [NSThread currentThread]);
-  ticket -= 1;
-  lastTicket = ticket;
-  	}];
-  	[queue addOperation:operation];
-  	[operation waitUntilFinished];
-  	//后续要做的事 SWIFT
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">//GCD
+</span><span class="line">//需要一个全局变量queue，要让所有线程的这个操作都加到一个queue中
+</span><span class="line">dispatch_sync(queue, ^{
+</span><span class="line">   NSInteger ticket = lastTicket;
+</span><span class="line">   [NSThread sleepForTimeInterval:0.1];
+</span><span class="line">   NSLog(@"%ld - %@",ticket, [NSThread currentThread]);
+</span><span class="line">   ticket -= 1;
+</span><span class="line">   lastTicket = ticket;
+</span><span class="line">});
+</span><span class="line">//NSOperation &amp; NSOperationQueue
+</span><span class="line">//重点：1. 全局的 NSOperationQueue, 所有的操作添加到同一个queue中
+</span><span class="line">//     2. 设置 queue 的 maxConcurrentOperationCount 为 1
+</span><span class="line">//     3. 如果后续操作需要Block中的结果，就需要调用每个操作的waitUntilFinished，阻塞当前线程，一直等到当前操作完成，才允许执行后面的。	waitUntilFinished 要在添加到队列之后！
+</span><span class="line">NSBlockOperation *operation = [NSBlockOperation 	blockOperationWithBlock:^{
+</span><span class="line">      NSInteger ticket = lastTicket;
+</span><span class="line">      [NSThread sleepForTimeInterval:1];
+</span><span class="line">      NSLog(@"%ld - %@",ticket, [NSThread currentThread]);
+</span><span class="line">      ticket -= 1;
+</span><span class="line">      lastTicket = ticket;
+</span><span class="line">}];
+</span><span class="line">[queue addOperation:operation];
+</span><span class="line">[operation waitUntilFinished];
+</span><span class="line">//后续要做的事
+</span><span class="line">
+</span><span class="line">SWIFT</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>这里的 swift 代码，我就不写了，因为每句都一样，只是语法不同而已，照着 OC 的代码就能写出 Swift 的。这篇文章已经老长老长了，我就不浪费篇幅了，又不是高中写作文。</p>
 
-<h5 id="section-11">延迟执行</h5>
+<h4 id="section-10">延迟执行</h4>
 
 <p>所谓延迟执行就是延时一段时间再执行某段代码。下面说一些常用方法。</p>
 
-<h6 id="perform">perform</h6>
+<h4 id="perform">perform</h4>
 
-<p>OBJECTIVE-C</p>
-
- 	 // 3秒后自动调用self的run:方法，并且传递参数：@”abc”
-  	[self performSelector:@selector(run:) withObject:@”abc” afterDelay:3];
-
-<p>SWIFT</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">// 3秒后自动调用self的run:方法，并且传递参数：@"abc"
+</span><span class="line">[self performSelector:@selector(run:) withObject:@"abc" afterDelay:3];
+</span><span class="line">  	
+</span><span class="line">SWIFT</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>之前就已经说过，Swift 里去掉了这个方法。</p>
 
-<h6 id="gcd-1">GCD</h6>
+<h4 id="gcd-1">GCD</h4>
 
 <p>可以使用 GCD 中的 dispatch_after 方法，OC 和 Swift 都可以使用，这里只写 OC 的，Swift 的是一样的。</p>
 
-<p>OBJECTIVE-C</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">// 创建队列
+</span><span class="line">dispatch_queue_t queue = 	dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+</span><span class="line">// 设置延时，单位秒
+</span><span class="line">double delay = 3; 
+</span><span class="line">dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, ^{
+</span><span class="line"> // 3秒后需要执行的任务
+</span><span class="line">});</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>// 创建队列
-dispatch_queue_t queue = 	dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-// 设置延时，单位秒
-double delay = 3; 
-dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), queue, ^{
-// 3秒后需要执行的任务
-}); ######NSTimer
-</code></pre>
+<h4 id="nstimer">NSTimer</h4>
 
 <p>NSTimer 是iOS中的一个计时器类，除了延迟执行还有很多用法，不过这里直说延迟执行的用法。同样只写 OC 版的，Swift 也是相同的。</p>
 
-<p>OBJECTIVE-C</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(run:) userInfo:@"abc" repeats:NO];</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>[NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(run:) userInfo:@"abc" repeats:NO];
-</code></pre>
-
-<h5 id="section-12">单例模式</h5>
+<h4 id="section-11">单例模式</h4>
 
 <p>至于什么是单例模式，我也不多说，我只说说一般怎么实现。在 Objective-C 中，实现单例的方法已经很具体了，虽然有别的方法，但是一般都是用一个标准的方法了，下面来看看。</p>
 
-<p>OBJECTIVE-C</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">OBJECTIVE-C
+</span><span class="line">
+</span><span class="line">@interface Tool : NSObject
+</span><span class="line">+ (instancetype)sharedTool;
+</span><span class="line">@end
+</span><span class="line">@implementation Tool
+</span><span class="line">static id _instance;
+</span><span class="line">+ (instancetype)sharedTool {
+</span><span class="line"> static dispatch_once_t onceToken;
+</span><span class="line"> dispatch_once(&amp;onceToken, ^{
+</span><span class="line">     _instance = [[Tool alloc] init];
+</span><span class="line"> });
+</span><span class="line"> return _instance;
+</span><span class="line"> }
+</span><span class="line">@end</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>@interface Tool : NSObject
-+ (instancetype)sharedTool;
-@end
-@implementation Tool
-static id _instance;
-+ (instancetype)sharedTool {
-static dispatch_once_t onceToken;
-dispatch_once(&amp;onceToken, ^{
-    _instance = [[Tool alloc] init];
-});
-return _instance;
-}
-@end 这里之所以将单例模式，是因为其中用到了 GCD 的 dispatch_once 方法。下面看 Swift 中的单例模式，在Swift中单例模式非常简单！想知道怎么从 OC 那么复杂的方法变成下面的写法的，请看这里
-</code></pre>
+<p>这里之所以将单例模式，是因为其中用到了 GCD 的 dispatch_once 方法。下面看 Swift 中的单例模式，在Swift中单例模式非常简单！想知道怎么从 OC 那么复杂的方法变成下面的写法的，请看这里</p>
 
-<p>SWIFT</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">SWIFT
+</span><span class="line">
+</span><span class="line">class Tool: NSObject {
+</span><span class="line"> static let sharedTool = Tool()
+</span><span class="line"> // 私有化构造方法，阻止其他对象使用这个类的默认的'()'构造方法
+</span><span class="line"> private override init() {}
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>class Tool: NSObject {
-static let sharedTool = Tool()
-// 私有化构造方法，阻止其他对象使用这个类的默认的'()'构造方法
-private override init() {}
-} #####从其他线程回到主线程的方法
-</code></pre>
+<h4 id="section-12">从其他线程回到主线程的方法</h4>
 
 <p>我们都知道在其他线程操作完成后必须到主线程更新UI。所以，介绍完所有的多线程方案后，我们来看看有哪些方法可以回到主线程。</p>
 
 <p>NSThread</p>
 
-<pre><code>//Objective-C
-[self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
-//Swift
-//swift 取消了 performSelector 方法。 GCD
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//Objective-C
+</span><span class="line">[self performSelectorOnMainThread:@selector(run) withObject:nil waitUntilDone:NO];
+</span><span class="line">//Swift
+</span><span class="line">//swift 取消了 performSelector 方法。</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-//Objective-C
-dispatch_async(dispatch_get_main_queue(), ^{
-});
-//Swift
-dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
-}) NSOperationQueue
+<p>GCD</p>
 
-//Objective-C
-[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-}];
-//Swift
-NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//Objective-C
+</span><span class="line">dispatch_async(dispatch_get_main_queue(), ^{
+</span><span class="line">});
+</span><span class="line">//Swift
+</span><span class="line">dispatch_async(dispatch_get_main_queue(), { () -&gt; Void in
+</span><span class="line">})</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>NSOperationQueue</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">//Objective-C
+</span><span class="line">[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+</span><span class="line">}];
+</span><span class="line">//Swift
+</span><span class="line">NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
@@ -887,7 +1327,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
   <section>
    <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="/blog/iosduo-xian-cheng" data-title="IOS多线程" data-url="http://helloyokoy.github.io/blog/iosduo-xian-cheng/"></div>
+<div class="ds-thread" data-thread-key="/blog/iosduo-xian-cheng" data-title="iOS多线程详解" data-url="http://helloyokoy.github.io/blog/iosduo-xian-cheng/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

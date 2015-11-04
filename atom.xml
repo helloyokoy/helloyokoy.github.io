@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-04T20:34:43+08:00</updated>
+  <updated>2015-11-04T22:30:58+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -3815,7 +3815,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[android 开发遇到的坑]]></title>
+    <title type="html"><![CDATA[Android 开发遇到的坑]]></title>
     <link href="http://helloyokoy.github.io/blog/android-mistake/"/>
     <updated>2015-10-12T14:21:57+08:00</updated>
     <id>http://helloyokoy.github.io/blog/android-mistake</id>
@@ -3903,63 +3903,63 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[rails gems 推荐]]></title>
+    <title type="html"><![CDATA[Rails gems 推荐]]></title>
     <link href="http://helloyokoy.github.io/blog/rails-gems-recomend/"/>
     <updated>2015-10-05T12:31:27+08:00</updated>
     <id>http://helloyokoy.github.io/blog/rails-gems-recomend</id>
     <content type="html"><![CDATA[<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
 
-<h5 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h5>
+<h4 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h4>
 
 <p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
 
-<h5 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h5>
+<h4 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h4>
 
 <p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
 
-<h5 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h5>
+<h4 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h4>
 
 <p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
 
-<h5 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h5>
+<h4 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h4>
 
 <p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
 
 <!--more-->
 
-<h5 id="paperclippaperclip--rubygemsorg">5.Paperclip（paperclip | RubyGems.org）</h5>
+<h4 id="paperclippaperclip--rubygemsorg">5.Paperclip（paperclip | RubyGems.org）</h4>
 
 <p>paperclip基本上已经是rails的御用图片上传gem了，功能强大使用方便，但是唯一不太好的就是图片剪裁上面功能比较有限。paperclip依赖于ImageMagic，大部分linux包管理器（如apt yum portage等）中应该都能找到这个软件包。</p>
 
-<h5 id="rmagickrmagick--rubygemsorg">6.rmagick（rmagick | RubyGems.org）</h5>
+<h4 id="rmagickrmagick--rubygemsorg">6.rmagick（rmagick | RubyGems.org）</h4>
 
 <p>这个gem弥补了paperclip在图片剪裁上的不足。功能十分十分十分的强大，文档也很齐全，只不过是全英文，中文资料比较少。如果项目有要开发头像剪裁上传，那么用rmagic剪裁，paperclip上传是比较好的解决方案。</p>
 
-<h5 id="friendlyidfriendlyid--rubygemsorg">7.friendly_id（friendly_id | RubyGems.org）</h5>
+<h4 id="friendlyidfriendlyid--rubygemsorg">7.friendly_id（friendly_id | RubyGems.org）</h4>
 
 <p>现在大部分网站都已经是友好的url地址了，如果你的rails项目还用数字作为id进行查询那就太low了。</p>
 
-<h5 id="willpaginatewillpaginate">8.will_paginate（will_paginate）</h5>
+<h4 id="willpaginatewillpaginate">8.will_paginate（will_paginate）</h4>
 
 <p>老版本的will_paginate分业是基于plugin方式的，新版本的will_paginate已经抛弃了这样的做法，转而使用gem的方式。这样一来安装和使用更加方便，配合一些前端的分页加载库，会让分页加载功能开发非常快捷。</p>
 
-<h5 id="ransackransack--rubygemsorg">9.ransack（ransack | RubyGems.org）</h5>
+<h4 id="ransackransack--rubygemsorg">9.ransack（ransack | RubyGems.org）</h4>
 
 <p>搜索功能一般分为分词和不分词的，如果你只想做用户和文章标题检索之类的功能，那么不分词的搜索gem比较合适，类似的gem挺多的，我常用的是这个。</p>
 
-<h5 id="sunspotsunspot--rubygemsorg">10.sunspot（sunspot | RubyGems.org）</h5>
+<h4 id="sunspotsunspot--rubygemsorg">10.sunspot（sunspot | RubyGems.org）</h4>
 
 <p>接上面，全文搜索的gem也不少，sunspot对于小型项目的话，稍微有些重。如果没有那么多要求的话，sphinx也可以考虑，速度快，占用资源低。</p>
 
-<h5 id="gecodergeocoder--rubygemsorg">11.Gecoder（geocoder | RubyGems.org）</h5>
+<h4 id="gecodergeocoder--rubygemsorg">11.Gecoder（geocoder | RubyGems.org）</h4>
 
 <p>说实话在web上做定位确实比较乏力，尽量还是用手机客户端吧</p>
 
-<h5 id="pumapumapuma--github">12.puma（puma/puma · GitHub）</h5>
+<h4 id="pumapumapuma--github">12.puma（puma/puma · GitHub）</h4>
 
 <p>对于想要处理并发请求的web项目，Puma 是和 Unicorn相竞争的 Web 服务器，它能够处理并发请求。Puma 使用线程，以及工作者进程，能够更多的利用可用的 CPU。在 Puma 中，如果整个基础代码是线程安全的，那么你可用利用线程。否则，在使用 Puma 的时候，你只能使用工作者进程进行拓展。Puma的设置也比较简单，官方有详细的使用文档，RubyChina也使用Puma，个人推荐。</p>
 
-<h5 id="emojiwpetersonemoji--github">13.Emoji（wpeterson/emoji · GitHub）</h5>
+<h4 id="emojiwpetersonemoji--github">13.Emoji（wpeterson/emoji · GitHub）</h4>
 
 <p>现在只要涉及社交的项目估计很少有不用表情的了，Emoji是个集成度比较高的Emoji表情转码库，使用方便，当然大部分情况下还是要配合前端使用。</p>
 
@@ -3975,6 +3975,203 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 <p>链接：http://www.zhihu.com/question/31083216/answer/50654456</p>
 
 <p>来源：知乎</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[为什么要用Sketch]]></title>
+    <link href="http://helloyokoy.github.io/blog/sketch/"/>
+    <updated>2015-09-11T20:38:24+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/sketch</id>
+    <content type="html"><![CDATA[<p>Jean-Marc Denis（原文作者，前Sparrow设计师，现在在Google工作）在参加WWDC 2013时认识了Sketch的开发团队，所以在第一时间尝试了Sketch，当时由于一些功能的缺失，所以还是折回去使用Photoshop了。过了一段时间，他发现设计师社区开始疯狂着迷于这款新的设计工具，所以决定再试一试，想看看迭代了一段时间的Sketch现在能完成多少原先他需要用Photoshop来做的工作。现在，他80%的设计工作都是由Sketch来完成的，所以写了这篇文章来帮助大家一起了解Sketch。</p>
+
+<h4 id="photoshop">Photoshop并不是一款合适的界面设计工具</h4>
+
+<p>为什么我们会期待一个新的设计工具？因为当我们更多的关注效率和关注协作，就越发现Photoshop已经不足以满足我们的期待了。下面看看具体的理由：</p>
+
+<ul>
+  <li>
+    <p>并非为设计师打造</p>
+
+    <p>Photoshop是为图像处理开发的，诸如路径和矢量工具都是后期才加上去的，所以如果你关心一下Photoshop的更新路径，用户界面设计师完全不是Adobe做这条产品时关心的用户群。所以，如果抛去那些复杂的功能，一个为用户界面设计师打造的设计工具完全可以做得更简单，更高效。</p>
+  </li>
+  <li>
+    <p>不适合移动时代</p>
+
+    <p>相信我们都会觉得为不同的设备输出不同分辨率的素材而痛苦不已吧。或许，你会使用一些第三方插件或是启用一些模板来处理这些事，但依然是很浪费时间的。</p>
+  </li>
+</ul>
+
+<!--more-->
+
+<ul>
+  <li>
+    <p>引擎太过陈旧</p>
+
+    <p>Photoshop的引擎是上个世纪为图像处理而打造的，非常的耗费资源，即使是启动一下都要等很久，更别说一次移动多个分组了。话说回来，由于要兼顾Mac和Windows平台，能做到这样已经不容易了。</p>
+  </li>
+  <li>
+    <p>越来越跟不上时代</p>
+
+    <p>大公司的执行效率实在太低。不知道大伙是不是和我一样，非常痛苦地等了好几个月才等到Photoshop对Retina屏幕的支持。诸如自动对齐的等功能我已经不做期待了。</p>
+  </li>
+</ul>
+
+<h4 id="sketch">为什么Sketch确实值得尝试</h4>
+<ul>
+  <li>
+    <p>自动保存和多版本控制</p>
+
+    <p>有没有梦想过拜托机械的手动保存？Sketch可以做到。Sketch在工作的时候会不断地自动保存成果，并且允许你回复到此前的任一版本。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*-4cYKm2z-PiOVFnk.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>矢量作图并且像素级的完美</p>
+
+    <p>矢量图意味着可以任意扩展。你没有必要不断地去调整素材的尺寸，Sketch会自动就帮你维持一个像素级完美的作品。如果有的时候你必须用像素点来作图，比如说是画图标或者是插画设计，Sketch 也提供了从矢量切换到像素视图的功能。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/1600/0*55Ko51isBD3VVcSL.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>智能标尺</p>
+
+    <p>你喜欢xScope吗？还是正在用选框工具来进行测量？又或者是难用的网格？Sketch的智能标尺可以帮你轻松地把设计元素的对齐方式、内外间距都调整完美。就我个人而言，这个功能非常节省时间而且避免了复杂的人工计算，是我觉得最有用的功能之一。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*DOaquv046FxhhUz6.gif" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>随时随地编辑元素</p>
+
+    <p>在Sketch里我们可以随时随地修改一个元素的圆角、高度和宽度。只需要简单地修改数值就可以轻松调整元素，对于刚从Photoshop切换过来的设计师而言非常好用。甚至会让你产生强烈的依赖。</p>
+  </li>
+  <li>
+    <p>图形拼接</p>
+
+    <p>在Sketch 里你可以很轻松地把多个图形合并，构成一个新的图形。并且Sketch在提供了多种图形合并模式的同时，还允许你随时修改已经合并图形的子图形。这项功能使得你可以很轻松地管理和创造更复杂的图形。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*4piteVCDqPNzWS3V.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>每个图层都可以有多种混合效果</p>
+
+    <p>在Photoshop里想要让一个图层有多种混合效果是很困难的。但在Sketch里，你可以很容易给一个图层加上多种混合效果，看看下面的示例就知道了。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*UWRr3uQgedzzHtS6.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>自动选择最接近的像素边界</p>
+
+    <p>自动选择最接近的像素边界可以让一个图形或者是图层自动修正边距到一个像素级完善的位置。比如可以把一个宽度是5.3px的图形自动修正到5px，这样就不会有模糊的像素点和粗糙的图形了。我自己给这项功能设了一个快捷键（Command+Opitons+x），来确保我做出的每一个图形都像素级完美。这比人工一个一个按照网格修改图形高效得多。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*me1mYlEw5C1JKAKY.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>样式链接
+  有的时候你会做一些充斥文字的设计，样式链接可以帮助你设定一个固定的样式来快速地应用在新的文字上。如果你修改了其中任何一处的样式，那么所有链接该样式的文字都会自动更新到新的样式。并且，这项功能也可以应用在图形上。</li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/774/0*bTuYN8VIHPDImDXh.gif" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>导出素材</p>
+
+    <p>用Photoshop的时候，最痛苦的事莫过于切割元素，然后到处素材。Sketch则可以帮助你快速地导出各种分辨率和格式（pdf, eps, svg, png, jpg, tiff）的素材，通常导出只需要一个点击，并且不用借助任何第三方应用程序。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/914/0*Qjf-7dLH9R7H-yOk.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>分布式布局</p>
+
+    <p>作富文本设计的时候，布局会变得非常重要，这项功能可以帮助你快速地试验不同的方案。</p>
+  </li>
+  <li>
+    <p>网格</p>
+
+    <p>其实可以把网格功能理解成按照纵横两个维度自动地结构化布局内容。这个对于排版布局而言，非常方便。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*7TrwZwsBKN-hGLxk.jpeg" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>出色的文字渲染</p>
+
+    <p>Sketch的文字渲染引擎非常出色，可以用来做很出色的文字布局和字体设计。因此，你可以放心地放弃Photoshop的抗锯齿功能。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*2wahLljvKwgbT_Ws.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>CSS样式导出</p>
+
+    <p>如果你在做一些网页设计，Sketch可以帮助你快速地把你的成果到处成CSS样式。</p>
+  </li>
+</ul>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*qgh086TCiTWrVOl9.png" alt="icon" /></p>
+
+<p><img src="https://d262ilb51hltx0.cloudfront.net/max/800/0*NxQ0xvJylnXQbGVm.png" alt="icon" /></p>
+
+<ul>
+  <li>
+    <p>旋转副本</p>
+
+    <p>这是一项小功能，但是确实可以节约你很多时间和精力。</p>
+  </li>
+  <li>
+    <p>Sketch Mirror</p>
+
+    <p>Sketch Mirror是一个Universal App，可以方便你在iPhone或是iPad上查看自己的成果。（作者撰写这个文章的时候Sketch还没有推出官方的镜像工具，所以这一段是译者补充的）。</p>
+  </li>
+</ul>
+
+<h4 id="section">快速响应是杀手锏</h4>
+
+<p>Sketch是一个小团队，发展非常快速。简单扫一眼Sketch的升级日志，你会发现每一个更新都会带来新的功能。 我非常建议你去使用Beta版本，你会见证Sketch快速的升级。 Sketch团队非常善于聆听用户的诉求，因而软件不断地变得更好。你可以去tenderapp上向他们提出新功能的要求。</p>
+
+<h4 id="section-1">相关链接</h4>
+
+<p><a href="http://www.bohemiancoding.com/download/sketch.zip">下载试用版</a></p>
+
+<p><a href="http://www.bohemiancoding.com/sketch/buy">Mac App Store下载地址</a></p>
+
+<p><a href="http://blog.mengto.com/topic/sketch/">Ment To 的博文</a></p>
+
+<p><a href="http://sketchtips.tumblr.com/">Sketch 技巧分享博客</a></p>
+
+<p><a href="http://www.sketchappsources.com/">Sketch 资源下载</a></p>
+
+<p><a href="http://www.douban.com/group/sketchapp/">Sketch 豆瓣中文小组</a></p>
+
+<p><a href="http://community.sketchcn.com/">Sketch 中文社区</a></p>
+
+<hr />
+<p>原文来自<a href="http://jianshu.io/p/7e8905b18620">http://jianshu.io/p/7e8905b18620</a></p>
 ]]></content>
   </entry>
   
@@ -4208,7 +4405,7 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[android https请求no peer certificate解决方案]]></title>
+    <title type="html"><![CDATA[Android https请求no peer certificate解决方案]]></title>
     <link href="http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/"/>
     <updated>2015-08-12T16:30:44+08:00</updated>
     <id>http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an</id>
@@ -4217,86 +4414,155 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 
 <p>写了一个自定义类继承SSLSocketFactory：</p>
 
-<pre><code>import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import org.apache.http.conn.ssl.SSLSocketFactory;
-
-public class SSLSocketFactoryEx extends SSLSocketFactory {
-    
-    SSLContext sslContext = SSLContext.getInstance("TLS");
-    
-    public SSLSocketFactoryEx(KeyStore truststore) 
-                    throws NoSuchAlgorithmException, KeyManagementException,
-                    KeyStoreException, UnrecoverableKeyException {
-            super(truststore);
-            
-            TrustManager tm = new X509TrustManager() {
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-
-        @Override  
-        public void checkClientTrusted(
-                        java.security.cert.X509Certificate[] chain, String authType)
-                                        throws java.security.cert.CertificateException {}  
-
-        @Override  
-        public void checkServerTrusted(
-                        java.security.cert.X509Certificate[] chain, String authType)
-                                        throws java.security.cert.CertificateException {}
-    };  
-    sslContext.init(null, new TrustManager[] { tm }, null);  
-}  
-
-@Override  
-public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-        return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-}  
-
-@Override  
-public Socket createSocket() throws IOException {  
-    return sslContext.getSocketFactory().createSocket();  
-}  
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
+</span><span class="line">import java.net.Socket;
+</span><span class="line">import java.net.UnknownHostException;
+</span><span class="line">import java.security.KeyManagementException;
+</span><span class="line">import java.security.KeyStore;
+</span><span class="line">import java.security.KeyStoreException;
+</span><span class="line">import java.security.NoSuchAlgorithmException;
+</span><span class="line">import java.security.UnrecoverableKeyException;
+</span><span class="line">
+</span><span class="line">import javax.net.ssl.SSLContext;
+</span><span class="line">import javax.net.ssl.TrustManager;
+</span><span class="line">import javax.net.ssl.X509TrustManager;
+</span><span class="line">
+</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
+</span><span class="line">
+</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
+</span><span class="line">        
+</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
+</span><span class="line">        
+</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
+</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
+</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
+</span><span class="line">                super(truststore);
+</span><span class="line">                
+</span><span class="line">   TrustManager tm = new X509TrustManager() {
+</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkClientTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkServerTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}
+</span><span class="line">        };  
+</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
+</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket() throws IOException {  
+</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
+</span><span class="line">}  
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <!--more-->
 
 <p>再来看看如何做回调：</p>
 
-<pre><code>public static HttpClient getNewHttpClient() {  
-    try {  
-        KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());  
-        trustStore.load(null, null);  
-        
-        SSLSocketFactory sf = new SSLSocketFactoryEx(trustStore);  
-        sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);  
-
-        HttpParams params = new BasicHttpParams();  
-        HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);  
-        HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);  
-
-        SchemeRegistry registry = new SchemeRegistry();  
-        registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));  
-        registry.register(new Scheme("https", sf, 443));  
-
-        ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry);  
-
-        return new DefaultHttpClient(ccm, params);  
-    } catch (Exception e) {  
-        return new DefaultHttpClient();  
-    }  
-}  
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">public static HttpClient getNewHttpClient() {  
+</span><span class="line"> try {  
+</span><span class="line">  KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());  
+</span><span class="line">  trustStore.load(null, null);  
+</span><span class="line">            
+</span><span class="line">  SSLSocketFactory sf = new SSLSocketFactoryEx(trustStore);  
+</span><span class="line">  sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);  
+</span><span class="line">    
+</span><span class="line">  HttpParams params = new BasicHttpParams();  
+</span><span class="line">  HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);  
+</span><span class="line">  HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);  
+</span><span class="line">    
+</span><span class="line">  SchemeRegistry registry = new SchemeRegistry();  
+</span><span class="line">  registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));  
+</span><span class="line">  registry.register(new Scheme("https", sf, 443));  
+</span><span class="line">    
+</span><span class="line">  ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry);   
+</span><span class="line">   return new DefaultHttpClient(ccm, params);  
+</span><span class="line">  } catch (Exception e) {  
+</span><span class="line">   return new DefaultHttpClient();  
+</span><span class="line">  }  
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>现在就可以拿这个HTTPClient去请求数据了</p>
 
@@ -4311,64 +4577,124 @@ public Socket createSocket() throws IOException {
 
 <p>3.把证书添加为信任。</p>
 
-<pre><code>String requestHTTPSPage(String mUrl) {
-    InputStream ins = null;
-    String result = "";
-    try {
-        ins = context.getAssets().open("app_pay.cer"); //下载的证书放到项目中的assets目录中
-        CertificateFactory cerFactory = CertificateFactory
-                .getInstance("X.509");
-        Certificate cer = cerFactory.generateCertificate(ins);
-        KeyStore keyStore = KeyStore.getInstance("PKCS12", "BC");
-        keyStore.load(null, null);
-        keyStore.setCertificateEntry("trust", cer);
- 
-        SSLSocketFactory socketFactory = new SSLSocketFactory(keyStore);
-        Scheme sch = new Scheme("https", socketFactory, 443);
-        HttpClient mHttpClient = new DefaultHttpClient();
-        mHttpClient.getConnectionManager().getSchemeRegistry()
-                .register(sch);
- 
-        BufferedReader reader = null;
-        try {
-            Log.d(TAG, "executeGet is in,murl:" + mUrl);
-            HttpGet request = new HttpGet();
-            request.setURI(new URI(mUrl));
-            HttpResponse response = mHttpClient.execute(request);
-            if (response.getStatusLine().getStatusCode() != 200) {
-                request.abort();
-                return result;
-            }
- 
-            reader = new BufferedReader(new InputStreamReader(response
-                    .getEntity().getContent()));
-            StringBuffer buffer = new StringBuffer();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line);
-            }
-            result = buffer.toString();
-            Log.d(TAG, "mUrl=" + mUrl + "\nresult = " + result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                reader.close();
-            }
-        }
-    } catch (Exception e) {
-        // TODO: handle exception
-    } finally {
-        try {
-            if (ins != null)
-                ins.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    return result;
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">String requestHTTPSPage(String mUrl) {
+</span><span class="line">  InputStream ins = null;
+</span><span class="line">  String result = "";
+</span><span class="line">  try {
+</span><span class="line">    
+</span><span class="line">   ins = context.getAssets().open("app_pay.cer"); //下载的证书放到项目中的assets目录中
+</span><span class="line">   CertificateFactory cerFactory = CertificateFactory
+</span><span class="line">                    .getInstance("X.509");
+</span><span class="line">   Certificate cer = cerFactory.generateCertificate(ins);
+</span><span class="line">   KeyStore keyStore = KeyStore.getInstance("PKCS12", "BC");
+</span><span class="line">   keyStore.load(null, null);
+</span><span class="line">   keyStore.setCertificateEntry("trust", cer);
+</span><span class="line"> 
+</span><span class="line">   SSLSocketFactory socketFactory = new SSLSocketFactory(keyStore);
+</span><span class="line">   Scheme sch = new Scheme("https", socketFactory, 443);
+</span><span class="line">   HttpClient mHttpClient = new DefaultHttpClient();
+</span><span class="line">   mHttpClient.getConnectionManager().getSchemeRegistry()
+</span><span class="line">                    .register(sch);
+</span><span class="line"> 
+</span><span class="line">  BufferedReader reader = null;
+</span><span class="line">     try {
+</span><span class="line">         Log.d(TAG, "executeGet is in,murl:" + mUrl);
+</span><span class="line">         HttpGet request = new HttpGet();
+</span><span class="line">         request.setURI(new URI(mUrl));
+</span><span class="line">         HttpResponse response = mHttpClient.execute(request);
+</span><span class="line">         if (response.getStatusLine().getStatusCode() != 200) {
+</span><span class="line">            request.abort();
+</span><span class="line">            return result;
+</span><span class="line">         }
+</span><span class="line"> 
+</span><span class="line">  reader = new BufferedReader(new InputStreamReader(response
+</span><span class="line">                        .getEntity().getContent()));
+</span><span class="line">  StringBuffer buffer = new StringBuffer();
+</span><span class="line">  String line = null;
+</span><span class="line">  while ((line = reader.readLine()) != null) {
+</span><span class="line">                    buffer.append(line);
+</span><span class="line">  }
+</span><span class="line">  result = buffer.toString();
+</span><span class="line">  Log.d(TAG, "mUrl=" + mUrl + "\nresult = " + result);
+</span><span class="line">  } catch (Exception e) {
+</span><span class="line">    e.printStackTrace();
+</span><span class="line">  } finally {
+</span><span class="line">     if (reader != null) {
+</span><span class="line">        reader.close();
+</span><span class="line">     }
+</span><span class="line"> }
+</span><span class="line"> } catch (Exception e) {
+</span><span class="line">   // TODO: handle exception
+</span><span class="line"> } finally {
+</span><span class="line">  
+</span><span class="line">  try {
+</span><span class="line">    if (ins != null)
+</span><span class="line">       ins.close();
+</span><span class="line">  } catch (IOException e) {
+</span><span class="line">     e.printStackTrace();
+</span><span class="line">  }
+</span><span class="line">  }
+</span><span class="line">  return result;
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
   
@@ -4379,18 +4705,17 @@ public Socket createSocket() throws IOException {
     <id>http://helloyokoy.github.io/blog/mjextensionjie-shao</id>
     <content type="html"><![CDATA[<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
 
-<h3 id="mjextension">MJExtension</h3>
-<hr />
+<h2 id="mjextension">MJExtension</h2>
 
-<p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
+<blockquote>
+  <p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
+</blockquote>
 
 <p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
 
-<p>GitHub：CoderMJLee ｜ Blog：mjios(Chinese) ｜ PR is welcome，or feedback</p>
+<h2 id="getting-started">Getting Started【开始使用】</h2>
 
-<h3 id="getting-started">Getting Started【开始使用】</h3>
-<hr />
-<p>####Features【能做什么】</p>
+<h4 id="features">Features【能做什么】</h4>
 
 <ul>
   <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
@@ -4408,14 +4733,14 @@ public Socket createSocket() throws IOException {
 
 <h4 id="why-use-mjextension-why-not-use-jsonmodel-or-mantle">Why use MJExtension, why not use JSONModel or Mantle</h4>
 
-<h5 id="mjextension-is-faster-than-jsonmodel-and-mantle">MJExtension is faster than JSONModel and Mantle【转换速率】</h5>
+<h4 id="mjextension-is-faster-than-jsonmodel-and-mantle">MJExtension is faster than JSONModel and Mantle【转换速率】</h4>
 
 <ul>
   <li>MJExtension &gt; JSONModel &gt; Mantle (Feel free to test it yourself)</li>
   <li>各位开发者也可以自行测试</li>
 </ul>
 
-<h5 id="mjextension-is-more-easy-to-gomjextension">MJExtension is more easy to go【MJExtension更加容易使用】</h5>
+<h4 id="mjextension-is-more-easy-to-gomjextension">MJExtension is more easy to go【MJExtension更加容易使用】</h4>
 
 <ul>
   <li>
@@ -4446,7 +4771,8 @@ public Socket createSocket() throws IOException {
 
 <h3 id="installation">Installation【安装】</h3>
 <hr />
-<p>####From CocoaPods【使用CocoaPods】</p>
+
+<h4 id="from-cocoapodscocoapods">From CocoaPods【使用CocoaPods】</h4>
 
 <pre><code>pod 'MJExtension'
 </code></pre>
@@ -4475,459 +4801,853 @@ public Socket createSocket() throws IOException {
 
 <h4 id="the-most-simple-json---model">The most simple JSON -&gt; Model【最简单的字典转模型】</h4>
 
-<pre><code>typedef enum {
-SexMale,
-SexFemale
-} Sex;
-
-@interface User : NSObject
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *icon;
-@property (assign, nonatomic) unsigned int age;
-@property (copy, nonatomic) NSString *height;
-@property (strong, nonatomic) NSNumber *money;
-@property (assign, nonatomic) Sex sex;
-@property (assign, nonatomic, getter=isGay) BOOL gay;
-@end
-
-/***********************************************/
-
-NSDictionary *dict = @{
-@"name" : @"Jack",
-@"icon" : @"lufy.png",
-@"age" : @20,
-@"height" : @"1.55",
-@"money" : @100.9,
-@"sex" : @(SexFemale),
-@"gay" : @"true"
-//   @"gay" : @"1"
-//   @"gay" : @"NO"
-};
-
-// JSON -&gt; User
-User *user = [User objectWithKeyValues:dict];
-
-NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
-// name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">typedef enum {
+</span><span class="line">   SexMale,
+</span><span class="line">   SexFemale
+</span><span class="line">} Sex;
+</span><span class="line">
+</span><span class="line">@interface User : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *name;
+</span><span class="line">@property (copy, nonatomic) NSString *icon;
+</span><span class="line">@property (assign, nonatomic) unsigned int age;
+</span><span class="line">@property (copy, nonatomic) NSString *height;
+</span><span class="line">@property (strong, nonatomic) NSNumber *money;
+</span><span class="line">@property (assign, nonatomic) Sex sex;
+</span><span class="line">@property (assign, nonatomic, getter=isGay) BOOL gay;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">   @"name" : @"Jack",
+</span><span class="line">   @"icon" : @"lufy.png",
+</span><span class="line">   @"age" : @20,
+</span><span class="line">   @"height" : @"1.55",
+</span><span class="line">   @"money" : @100.9,
+</span><span class="line">   @"sex" : @(SexFemale),
+</span><span class="line">   @"gay" : @"true"
+</span><span class="line">//   @"gay" : @"1"
+</span><span class="line">//   @"gay" : @"NO"
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// JSON -&gt; User
+</span><span class="line">User *user = [User objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
+</span><span class="line">// name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="jsonstring---modeljson">JSONString -&gt; Model【JSON字符串转模型】</h4>
 
-<pre><code>// 1.Define a JSONString
-NSString *jsonString = @"{\"name\":\"Jack\", \"icon\":\"lufy.png\", \"age\":20}";
-
-// 2.JSONString -&gt; User
-User *user = [User objectWithKeyValues:jsonString];
-
-// 3.Print user's properties
-NSLog(@"name=%@, icon=%@, age=%d", user.name, user.icon, user.age);
-// name=Jack, icon=lufy.png, age=20
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// 1.Define a JSONString
+</span><span class="line">NSString *jsonString = @"{\"name\":\"Jack\", \"icon\":\"lufy.png\", \"age\":20}";
+</span><span class="line">
+</span><span class="line">// 2.JSONString -&gt; User
+</span><span class="line">User *user = [User objectWithKeyValues:jsonString];
+</span><span class="line">
+</span><span class="line">// 3.Print user's properties
+</span><span class="line">NSLog(@"name=%@, icon=%@, age=%d", user.name, user.icon, user.age);
+</span><span class="line">// name=Jack, icon=lufy.png, age=20</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="model-contains-model">Model contains model【模型中嵌套模型】</h4>
 
-<pre><code>@interface Status : NSObject
-@property (copy, nonatomic) NSString *text;
-@property (strong, nonatomic) User *user;
-@property (strong, nonatomic) Status *retweetedStatus;
-@end
-
-/***********************************************/
-
-NSDictionary *dict = @{
-@"text" : @"Agree!Nice weather!",
-@"user" : @{
-    @"name" : @"Jack",
-    @"icon" : @"lufy.png"
-},
-@"retweetedStatus" : @{
-    @"text" : @"Nice weather!",
-    @"user" : @{
-        @"name" : @"Rose",
-        @"icon" : @"nami.png"
-    }
-}
-};
-
-// JSON -&gt; Status
-Status *status = [Status objectWithKeyValues:dict];
-
-NSString *text = status.text;
-NSString *name = status.user.name;
-NSString *icon = status.user.icon;
-NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
-// text=Agree!Nice weather!, name=Jack, icon=lufy.png
-
-NSString *text2 = status.retweetedStatus.text;
-NSString *name2 = status.retweetedStatus.user.name;
-NSString *icon2 = status.retweetedStatus.user.icon;
-NSLog(@"text2=%@, name2=%@, icon2=%@", text2, name2, icon2);
-// text2=Nice weather!, name2=Rose, icon2=nami.png
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">@interface Status : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *text;
+</span><span class="line">@property (strong, nonatomic) User *user;
+</span><span class="line">@property (strong, nonatomic) Status *retweetedStatus;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">   @"text" : @"Agree!Nice weather!",
+</span><span class="line">   @"user" : @{
+</span><span class="line">       @"name" : @"Jack",
+</span><span class="line">       @"icon" : @"lufy.png"
+</span><span class="line">   },
+</span><span class="line">   @"retweetedStatus" : @{
+</span><span class="line">       @"text" : @"Nice weather!",
+</span><span class="line">       @"user" : @{
+</span><span class="line">           @"name" : @"Rose",
+</span><span class="line">           @"icon" : @"nami.png"
+</span><span class="line">       }
+</span><span class="line">   }
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// JSON -&gt; Status
+</span><span class="line">Status *status = [Status objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">NSString *text = status.text;
+</span><span class="line">NSString *name = status.user.name;
+</span><span class="line">NSString *icon = status.user.icon;
+</span><span class="line">NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+</span><span class="line">// text=Agree!Nice weather!, name=Jack, icon=lufy.png
+</span><span class="line">
+</span><span class="line">NSString *text2 = status.retweetedStatus.text;
+</span><span class="line">NSString *name2 = status.retweetedStatus.user.name;
+</span><span class="line">NSString *icon2 = status.retweetedStatus.user.icon;
+</span><span class="line">NSLog(@"text2=%@, name2=%@, icon2=%@", text2, name2, icon2);
+</span><span class="line">// text2=Nice weather!, name2=Rose, icon2=nami.png</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="model-contains-model-array">Model contains model-array【模型中有个数组属性，数组里面又要装着其他模型】</h4>
 
-<pre><code>@interface Ad : NSObject
-@property (copy, nonatomic) NSString *image;
-@property (copy, nonatomic) NSString *url;
-@end
-
-@interface StatusResult : NSObject
-/** Contatins status model */
-@property (strong, nonatomic) NSMutableArray *statuses;
-/** Contatins ad model */
-@property (strong, nonatomic) NSArray *ads;
-@property (strong, nonatomic) NSNumber *totalNumber;
-@end
-
-/***********************************************/
-
-// Tell MJExtension what type model will be contained in statuses and ads.
-[StatusResult setupObjectClassInArray:^NSDictionary *{
-return @{
-           @"statuses" : @"Status",
-           // @"statuses" : [Status class],
-           @"ads" : @"Ad"
-           // @"ads" : [Ad class]
-       };
-}];
-// Equals: StatusResult.m implements +objectClassInArray method.
-
-NSDictionary *dict = @{
-@"statuses" : @[
-                  @{
-                      @"text" : @"Nice weather!",
-                      @"user" : @{
-                          @"name" : @"Rose",
-                          @"icon" : @"nami.png"
-                      }
-                  },
-                  @{
-                      @"text" : @"Go camping tomorrow!",
-                      @"user" : @{
-                          @"name" : @"Jack",
-                          @"icon" : @"lufy.png"
-                      }
-                  }
-              ],
-@"ads" : @[
-             @{
-                 @"image" : @"ad01.png",
-                 @"url" : @"http://www.ad01.com"
-             },
-             @{
-                 @"image" : @"ad02.png",
-                 @"url" : @"http://www.ad02.com"
-             }
-         ],
-@"totalNumber" : @"2014"
-};
-
-// JSON -&gt; StatusResult
-StatusResult *result = [StatusResult objectWithKeyValues:dict];
-
-NSLog(@"totalNumber=%@", result.totalNumber);
-// totalNumber=2014
-
-// Printing
-for (Status *status in result.statuses) {
-NSString *text = status.text;
-NSString *name = status.user.name;
-NSString *icon = status.user.icon;
-NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
-}
-// text=Nice weather!, name=Rose, icon=nami.png
-// text=Go camping tomorrow!, name=Jack, icon=lufy.png
-
-// Printing
-for (Ad *ad in result.ads) {
-NSLog(@"image=%@, url=%@", ad.image, ad.url);
-}
-// image=ad01.png, url=http://www.ad01.com
-// image=ad02.png, url=http://www.ad02.com
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">@interface Ad : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *image;
+</span><span class="line">@property (copy, nonatomic) NSString *url;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">@interface StatusResult : NSObject
+</span><span class="line">/** Contatins status model */
+</span><span class="line">@property (strong, nonatomic) NSMutableArray *statuses;
+</span><span class="line">/** Contatins ad model */
+</span><span class="line">@property (strong, nonatomic) NSArray *ads;
+</span><span class="line">@property (strong, nonatomic) NSNumber *totalNumber;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">// Tell MJExtension what type model will be contained in statuses and ads.
+</span><span class="line">[StatusResult setupObjectClassInArray:^NSDictionary *{
+</span><span class="line">  return @{
+</span><span class="line">                 @"statuses" : @"Status",
+</span><span class="line">               // @"statuses" : [Status class],
+</span><span class="line">               @"ads" : @"Ad"
+</span><span class="line">               // @"ads" : [Ad class]
+</span><span class="line">           };
+</span><span class="line">}];
+</span><span class="line">// Equals: StatusResult.m implements +objectClassInArray method.
+</span><span class="line">
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">   @"statuses" : @[
+</span><span class="line">                      @{
+</span><span class="line">                          @"text" : @"Nice weather!",
+</span><span class="line">                          @"user" : @{
+</span><span class="line">                              @"name" : @"Rose",
+</span><span class="line">                              @"icon" : @"nami.png"
+</span><span class="line">                          }
+</span><span class="line">                      },
+</span><span class="line">                      @{
+</span><span class="line">                          @"text" : @"Go camping tomorrow!",
+</span><span class="line">                          @"user" : @{
+</span><span class="line">                              @"name" : @"Jack",
+</span><span class="line">                              @"icon" : @"lufy.png"
+</span><span class="line">                          }
+</span><span class="line">                      }
+</span><span class="line">                  ],
+</span><span class="line">    @"ads" : @[
+</span><span class="line">                 @{
+</span><span class="line">                     @"image" : @"ad01.png",
+</span><span class="line">                     @"url" : @"http://www.ad01.com"
+</span><span class="line">                 },
+</span><span class="line">                 @{
+</span><span class="line">                     @"image" : @"ad02.png",
+</span><span class="line">                     @"url" : @"http://www.ad02.com"
+</span><span class="line">                 }
+</span><span class="line">             ],
+</span><span class="line">    @"totalNumber" : @"2014"
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// JSON -&gt; StatusResult
+</span><span class="line">StatusResult *result = [StatusResult objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">NSLog(@"totalNumber=%@", result.totalNumber);
+</span><span class="line">// totalNumber=2014
+</span><span class="line">
+</span><span class="line">// Printing
+</span><span class="line">for (Status *status in result.statuses) {
+</span><span class="line">    NSString *text = status.text;
+</span><span class="line">    NSString *name = status.user.name;
+</span><span class="line">    NSString *icon = status.user.icon;
+</span><span class="line">    NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+</span><span class="line">}
+</span><span class="line">// text=Nice weather!, name=Rose, icon=nami.png
+</span><span class="line">// text=Go camping tomorrow!, name=Jack, icon=lufy.png
+</span><span class="line">
+</span><span class="line">// Printing
+</span><span class="line">for (Ad *ad in result.ads) {
+</span><span class="line">   NSLog(@"image=%@, url=%@", ad.image, ad.url);
+</span><span class="line">}
+</span><span class="line">// image=ad01.png, url=http://www.ad01.com
+</span><span class="line">// image=ad02.png, url=http://www.ad02.com</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="model-name---json-key-mappingkey">Model name - JSON key mapping【模型中的属性名和字典中的key不相同(或者需要多级映射)】</h4>
 
-<pre><code>@interface Bag : NSObject
-@property (copy, nonatomic) NSString *name;
-@property (assign, nonatomic) double price;
-@end
-
-@interface Student : NSObject
-@property (copy, nonatomic) NSString *ID;
-@property (copy, nonatomic) NSString *desc;
-@property (copy, nonatomic) NSString *nowName;
-@property (copy, nonatomic) NSString *oldName;
-@property (copy, nonatomic) NSString *nameChangedTime;
-@property (strong, nonatomic) Bag *bag;
-@end
-
-/***********************************************/
-
-// How to map
-[Student setupReplacedKeyFromPropertyName:^NSDictionary *{
-return @{
-           @"ID" : @"id",
-           @"desc" : @"desciption",
-           @"oldName" : @"name.oldName",
-           @"nowName" : @"name.newName",
-           @"nameChangedTime" : @"name.info[1].nameChangedTime",
-           @"bag" : @"other.bag"
-       };
-}];
-// Equals: Student.m implements +replacedKeyFromPropertyName method.
-
-NSDictionary *dict = @{
-@"id" : @"20",
-@"desciption" : @"kids",
-@"name" : @{
-    @"newName" : @"lufy",
-    @"oldName" : @"kitty",
-    @"info" : @[
-             @"test-data",
-             @{
-                         @"nameChangedTime" : @"2013-08"
-                     }
-              ]
-},
-@"other" : @{
-    @"bag" : @{
-        @"name" : @"a red bag",
-        @"price" : @100.7
-    }
-}
-};
-
-// JSON -&gt; Student
-Student *stu = [Student objectWithKeyValues:dict];
-
-// Printing
-NSLog(@"ID=%@, desc=%@, oldName=%@, nowName=%@, nameChangedTime=%@",
-  stu.ID, stu.desc, stu.oldName, stu.nowName, stu.nameChangedTime);
-// ID=20, desc=kids, oldName=kitty, nowName=lufy, nameChangedTime=2013-08
-NSLog(@"bagName=%@, bagPrice=%f", stu.bag.name, stu.bag.price);
-// bagName=a red bag, bagPrice=100.700000
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">@interface Bag : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *name;
+</span><span class="line">@property (assign, nonatomic) double price;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">@interface Student : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *ID;
+</span><span class="line">@property (copy, nonatomic) NSString *desc;
+</span><span class="line">@property (copy, nonatomic) NSString *nowName;
+</span><span class="line">@property (copy, nonatomic) NSString *oldName;
+</span><span class="line">@property (copy, nonatomic) NSString *nameChangedTime;
+</span><span class="line">@property (strong, nonatomic) Bag *bag;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">// How to map
+</span><span class="line">[Student setupReplacedKeyFromPropertyName:^NSDictionary *{
+</span><span class="line">   return @{
+</span><span class="line">               @"ID" : @"id",
+</span><span class="line">               @"desc" : @"desciption",
+</span><span class="line">               @"oldName" : @"name.oldName",
+</span><span class="line">               @"nowName" : @"name.newName",
+</span><span class="line">               @"nameChangedTime" : @"name.info[1].nameChangedTime",
+</span><span class="line">               @"bag" : @"other.bag"
+</span><span class="line">           };
+</span><span class="line">}];
+</span><span class="line">// Equals: Student.m implements +replacedKeyFromPropertyName method.
+</span><span class="line">
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">    @"id" : @"20",
+</span><span class="line">    @"desciption" : @"kids",
+</span><span class="line">    @"name" : @{
+</span><span class="line">        @"newName" : @"lufy",
+</span><span class="line">        @"oldName" : @"kitty",
+</span><span class="line">        @"info" : @[
+</span><span class="line">                 @"test-data",
+</span><span class="line">                 @{
+</span><span class="line">                             @"nameChangedTime" : @"2013-08"
+</span><span class="line">                         }
+</span><span class="line">                  ]
+</span><span class="line">  },
+</span><span class="line">    @"other" : @{
+</span><span class="line">        @"bag" : @{
+</span><span class="line">            @"name" : @"a red bag",
+</span><span class="line">            @"price" : @100.7
+</span><span class="line">        }
+</span><span class="line">    }
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// JSON -&gt; Student
+</span><span class="line">Student *stu = [Student objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">// Printing
+</span><span class="line">NSLog(@"ID=%@, desc=%@, oldName=%@, nowName=%@, nameChangedTime=%@",
+</span><span class="line">      stu.ID, stu.desc, stu.oldName, stu.nowName, stu.nameChangedTime);
+</span><span class="line">// ID=20, desc=kids, oldName=kitty, nowName=lufy, nameChangedTime=2013-08
+</span><span class="line">NSLog(@"bagName=%@, bagPrice=%f", stu.bag.name, stu.bag.price);
+</span><span class="line">// bagName=a red bag, bagPrice=100.700000</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="json-array---model-array">JSON array -&gt; model array【将一个字典数组转成模型数组】</h4>
 
-<pre><code>NSArray *dictArray = @[
-                     @{
-                         @"name" : @"Jack",
-                         @"icon" : @"lufy.png"
-                     },
-                     @{
-                         @"name" : @"Rose",
-                         @"icon" : @"nami.png"
-                     }
-                 ];
-
-// JSON array -&gt; User array
-NSArray *userArray = [User objectArrayWithKeyValuesArray:dictArray];
-
-// Printing
-for (User *user in userArray) {
-NSLog(@"name=%@, icon=%@", user.name, user.icon);
-}
-// name=Jack, icon=lufy.png
-// name=Rose, icon=nami.png
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">NSArray *dictArray = @[
+</span><span class="line">                         @{
+</span><span class="line">                             @"name" : @"Jack",
+</span><span class="line">                             @"icon" : @"lufy.png"
+</span><span class="line">                         },
+</span><span class="line">                         @{
+</span><span class="line">                             @"name" : @"Rose",
+</span><span class="line">                             @"icon" : @"nami.png"
+</span><span class="line">                         }
+</span><span class="line">                    ];
+</span><span class="line">
+</span><span class="line">// JSON array -&gt; User array
+</span><span class="line">NSArray *userArray = [User objectArrayWithKeyValuesArray:dictArray];
+</span><span class="line">
+</span><span class="line">// Printing
+</span><span class="line">for (User *user in userArray) {
+</span><span class="line">   NSLog(@"name=%@, icon=%@", user.name, user.icon);
+</span><span class="line">}
+</span><span class="line">// name=Jack, icon=lufy.png
+</span><span class="line">// name=Rose, icon=nami.png</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="model---json">Model -&gt; JSON【将一个模型转成字典】</h4>
 
-<pre><code>// New model
-User *user = [[User alloc] init];
-user.name = @"Jack";
-user.icon = @"lufy.png";
-
-Status *status = [[Status alloc] init];
-status.user = user;
-status.text = @"Nice mood!";
-
-// Status -&gt; JSON
-NSDictionary *statusDict = status.keyValues;
-NSLog(@"%@", statusDict);
-/*
- 	{
- 		text = "Nice mood!";
- 		user =     {
- 		icon = "lufy.png";
- 		name = Jack;
- 		};
- 	}
- 	*/
-
-// More complex situation
-Student *stu = [[Student alloc] init];
-stu.ID = @"123";
-stu.oldName = @"rose";
-stu.nowName = @"jack";
-stu.desc = @"handsome";
-stu.nameChangedTime = @"2018-09-08";
-
-Bag *bag = [[Bag alloc] init];
-bag.name = @"a red bag";
-bag.price = 205;
-stu.bag = bag;
-
-NSDictionary *stuDict = stu.keyValues;
-NSLog(@"%@", stuDict);
-/*
-{
-ID = 123;
-bag =     {
-    name = "\U5c0f\U4e66\U5305";
-    price = 205;
-};
-desc = handsome;
-nameChangedTime = "2018-09-08";
-nowName = jack;
-oldName = rose;
-}
- */
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// New model
+</span><span class="line">User *user = [[User alloc] init];
+</span><span class="line">user.name = @"Jack";
+</span><span class="line">user.icon = @"lufy.png";
+</span><span class="line">
+</span><span class="line">Status *status = [[Status alloc] init];
+</span><span class="line">status.user = user;
+</span><span class="line">status.text = @"Nice mood!";
+</span><span class="line">
+</span><span class="line">// Status -&gt; JSON
+</span><span class="line">NSDictionary *statusDict = status.keyValues;
+</span><span class="line">NSLog(@"%@", statusDict);
+</span><span class="line">/*
+</span><span class="line">{
+</span><span class="line"> 	text = "Nice mood!";
+</span><span class="line"> 	user =     {
+</span><span class="line"> 	icon = "lufy.png";
+</span><span class="line"> 	name = Jack;
+</span><span class="line"> 	};
+</span><span class="line">}
+</span><span class="line">*/
+</span><span class="line">
+</span><span class="line">// More complex situation
+</span><span class="line">Student *stu = [[Student alloc] init];
+</span><span class="line">stu.ID = @"123";
+</span><span class="line">stu.oldName = @"rose";
+</span><span class="line">stu.nowName = @"jack";
+</span><span class="line">stu.desc = @"handsome";
+</span><span class="line">stu.nameChangedTime = @"2018-09-08";
+</span><span class="line">
+</span><span class="line">Bag *bag = [[Bag alloc] init];
+</span><span class="line">bag.name = @"a red bag";
+</span><span class="line">bag.price = 205;
+</span><span class="line">stu.bag = bag;
+</span><span class="line">
+</span><span class="line">NSDictionary *stuDict = stu.keyValues;
+</span><span class="line">NSLog(@"%@", stuDict);
+</span><span class="line">/*
+</span><span class="line">{
+</span><span class="line">   ID = 123;
+</span><span class="line">   bag =     {
+</span><span class="line">        name = "\U5c0f\U4e66\U5305";
+</span><span class="line">        price = 205;
+</span><span class="line"> };
+</span><span class="line">   desc = handsome;
+</span><span class="line">   nameChangedTime = "2018-09-08";
+</span><span class="line">   nowName = jack;
+</span><span class="line">   oldName = rose;
+</span><span class="line">}
+</span><span class="line">*/</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="model-array---json-array">Model array -&gt; JSON array【将一个模型数组转成字典数组】</h4>
 
-<pre><code>// New model array
-User *user1 = [[User alloc] init];
-user1.name = @"Jack";
-user1.icon = @"lufy.png";
-
-User *user2 = [[User alloc] init];
-user2.name = @"Rose";
-user2.icon = @"nami.png";
-
-NSArray *userArray = @[user1, user2];
-
-// Model array -&gt; JSON array
-NSArray *dictArray = [User keyValuesArrayWithObjectArray:userArray];
-NSLog(@"%@", dictArray);
-/*
- 	(
- 	{
- 	icon = "lufy.png";
- name = Jack;
- },
- 	{
- 	icon = "nami.png";
- 	name = Rose;
- 	}
- )
- 	*/
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// New model array
+</span><span class="line">User *user1 = [[User alloc] init];
+</span><span class="line">user1.name = @"Jack";
+</span><span class="line">user1.icon = @"lufy.png";
+</span><span class="line">
+</span><span class="line">User *user2 = [[User alloc] init];
+</span><span class="line">user2.name = @"Rose";
+</span><span class="line">user2.icon = @"nami.png";
+</span><span class="line">
+</span><span class="line">NSArray *userArray = @[user1, user2];
+</span><span class="line">
+</span><span class="line">// Model array -&gt; JSON array
+</span><span class="line">NSArray *dictArray = [User keyValuesArrayWithObjectArray:userArray];
+</span><span class="line">NSLog(@"%@", dictArray);
+</span><span class="line">/*
+</span><span class="line"> (
+</span><span class="line"> {
+</span><span class="line"> 	icon = "lufy.png";
+</span><span class="line">	name = Jack;
+</span><span class="line">},
+</span><span class="line"> {
+</span><span class="line"> 	icon = "nami.png";
+</span><span class="line"> 	name = Rose;
+</span><span class="line"> }
+</span><span class="line">)
+</span><span class="line">*/</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="core-data">Core Data</h4>
 
-<pre><code>NSDictionary *dict = @{
-                     @"name" : @"Jack",
-                     @"icon" : @"lufy.png",
-                     @"age" : @20,
-                     @"height" : @1.55,
-                     @"money" : @"100.9",
-                     @"sex" : @(SexFemale),
-                     @"gay" : @"true"
-                 };
-
-// This demo just provide simple steps
-NSManagedObjectContext *context = nil;
-User *user = [User objectWithKeyValues:dict context:context];
-
-[context save:nil];
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">NSDictionary *dict = @{
+</span><span class="line">                         @"name" : @"Jack",
+</span><span class="line">                         @"icon" : @"lufy.png",
+</span><span class="line">                         @"age" : @20,
+</span><span class="line">                         @"height" : @1.55,
+</span><span class="line">                         @"money" : @"100.9",
+</span><span class="line">                         @"sex" : @(SexFemale),
+</span><span class="line">                         @"gay" : @"true"
+</span><span class="line">                     };
+</span><span class="line">
+</span><span class="line">// This demo just provide simple steps
+</span><span class="line">NSManagedObjectContext *context = nil;
+</span><span class="line">User *user = [User objectWithKeyValues:dict context:context];
+</span><span class="line">
+</span><span class="line">[context save:nil];</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="coding">Coding</h4>
 
-<pre><code>#import "MJExtension.h"
-
-@implementation Bag
-// NSCoding Implementation
-MJCodingImplementation
-@end
-
-/***********************************************/
-
-// what properties not to be coded
-[Bag setupIgnoredCodingPropertyNames:^NSArray *{
-return @[@"name"];
-}];
-// Equals: Bag.m implements +ignoredCodingPropertyNames method.
-
-// Create model
-Bag *bag = [[Bag alloc] init];
-bag.name = @"Red bag";
-bag.price = 200.8;
-
-NSString *file = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/	bag.data"];
-// Encoding
-[NSKeyedArchiver archiveRootObject:bag toFile:file];
-
-// Decoding
-Bag *decodedBag = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
-NSLog(@"name=%@, price=%f", decodedBag.name, decodedBag.price);
-// name=(null), price=200.800000
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#import "MJExtension.h"
+</span><span class="line">
+</span><span class="line">@implementation Bag
+</span><span class="line">// NSCoding Implementation
+</span><span class="line">MJCodingImplementation
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">// what properties not to be coded
+</span><span class="line">[Bag setupIgnoredCodingPropertyNames:^NSArray *{
+</span><span class="line">   return @[@"name"];
+</span><span class="line">}];
+</span><span class="line">// Equals: Bag.m implements +ignoredCodingPropertyNames method.
+</span><span class="line">
+</span><span class="line">// Create model
+</span><span class="line">Bag *bag = [[Bag alloc] init];
+</span><span class="line">bag.name = @"Red bag";
+</span><span class="line">bag.price = 200.8;
+</span><span class="line">
+</span><span class="line">NSString *file = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/	bag.data"];
+</span><span class="line">// Encoding
+</span><span class="line">[NSKeyedArchiver archiveRootObject:bag toFile:file];
+</span><span class="line">
+</span><span class="line">// Decoding
+</span><span class="line">Bag *decodedBag = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+</span><span class="line">NSLog(@"name=%@, price=%f", decodedBag.name, decodedBag.price);
+</span><span class="line">// name=(null), price=200.800000</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="camel---underline">Camel -&gt; underline【统一转换属性名（比如驼峰转下划线）】</h4>
 
-<pre><code>// Dog
-#import "MJExtension.h"
-
-@implementation Dog
-+ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName
-{
-// nickName -&gt; nick_name
-return [propertyName underlineFromCamel];
-}
-@end
-
-// NSDictionary
-NSDictionary *dict = @{
-                   @"nick_name" : @"旺财",
-                   @"sale_price" : @"10.5",
-                   @"run_speed" : @"100.9"
-                   };
-// NSDictionary -&gt; Dog
-Dog *dog = [Dog objectWithKeyValues:dict];
-
-// printing
-NSLog(@"nickName=%@, scalePrice=%f runSpeed=%f", dog.nickName, dog.salePrice, dog.runSpeed);
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// Dog
+</span><span class="line">#import "MJExtension.h"
+</span><span class="line">
+</span><span class="line">@implementation Dog
+</span><span class="line">+ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName
+</span><span class="line">{
+</span><span class="line">   // nickName -&gt; nick_name
+</span><span class="line">   return [propertyName underlineFromCamel];
+</span><span class="line">}
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">// NSDictionary
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">                       @"nick_name" : @"旺财",
+</span><span class="line">                       @"sale_price" : @"10.5",
+</span><span class="line">                       @"run_speed" : @"100.9"
+</span><span class="line">                     };
+</span><span class="line">// NSDictionary -&gt; Dog
+</span><span class="line">Dog *dog = [Dog objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">// printing
+</span><span class="line">NSLog(@"nickName=%@, scalePrice=%f runSpeed=%f", dog.nickName, dog.salePrice, dog.runSpeed);</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="nsstring---nsdate-nil---nsdatenil">NSString -&gt; NSDate, nil -&gt; @”“【过滤字典的值（比如字符串日期处理为NSDate、字符串nil处理为@”“）】</h4>
 
-<pre><code>// Book
-#import "MJExtension.h"
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// Book
+</span><span class="line">#import "MJExtension.h"
+</span><span class="line">
+</span><span class="line">@implementation Book
+</span><span class="line">- (id)newValueFromOldValue:(id)oldValue property:(MJProperty *)property
+</span><span class="line">{
+</span><span class="line">  if ([property.name isEqualToString:@"publisher"]) {
+</span><span class="line">        if (oldValue == nil) return @"";
+</span><span class="line">  } else if (property.type.typeClass == [NSDate class]) {
+</span><span class="line">        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+</span><span class="line">        fmt.dateFormat = @"yyyy-MM-dd";
+</span><span class="line">        return [fmt dateFromString:oldValue];
+</span><span class="line">  }
+</span><span class="line">
+</span><span class="line">  return oldValue;
+</span><span class="line">}
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">// NSDictionary
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">                       @"name" : @"5分钟突破iOS开发",
+</span><span class="line">                       @"publishedTime" : @"2011-09-10"
+</span><span class="line">                       };
+</span><span class="line">// NSDictionary -&gt; Book
+</span><span class="line">Book *book = [Book objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">// printing
+</span><span class="line">NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, book.publishedTime);</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-@implementation Book
-- (id)newValueFromOldValue:(id)oldValue property:(MJProperty *)property
-{
-if ([property.name isEqualToString:@"publisher"]) {
-    if (oldValue == nil) return @"";
-} else if (property.type.typeClass == [NSDate class]) {
-    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-    fmt.dateFormat = @"yyyy-MM-dd";
-    return [fmt dateFromString:oldValue];
-}
-
-return oldValue;
-}
-@end
-
-// NSDictionary
-NSDictionary *dict = @{
-                   @"name" : @"5分钟突破iOS开发",
-                   @"publishedTime" : @"2011-09-10"
-                   };
-// NSDictionary -&gt; Book
-Book *book = [Book objectWithKeyValues:dict];
-
-// printing
-NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, book.publishedTime);
-</code></pre>
-
-<h4 id="more-use-cases">More use cases【更多用法】</h4>
+<h3 id="more-use-cases">More use cases【更多用法】</h3>
 
 <ul>
   <li>Please reference to NSObject+MJKeyValue.h and NSObject+MJCoding.h</li>
@@ -5003,100 +5723,6 @@ NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, boo
   <li><a href="http://www.fresco-cn.org/docs/index.html" title="Title">文档</a></li>
   <li><a href="https://github.com/facebook/fresco" title="Title">GitHub</a>的源码</li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ios依赖注入框架objection]]></title>
-    <link href="http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/"/>
-    <updated>2015-07-10T21:52:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
-</blockquote>
-
-<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
-
-<pre><code>- (void)viewDidLoad
-{
-	[super viewDidLoad];
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-	button.frame = CGRectMake(100, 100, 100, 30);
-	[self.view addSubview:button];
-}
- 
-- (void)buttonTapped
-{
-	ViewControllerB *vc = [[ViewControllerB alloc] init];
-	[self.navigationController pushViewController:vc animated:YES];
-}
-</code></pre>
-
-<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
-
-<!--more-->
-
-<p>实现方法是：先定义一个协议(protocol)，然后通过objection来注册这个协议对应的class，需要的时候，可以获取该协议对应的object。对于使用方无需关心到底使用的是哪个Class，反正该有的方法、属性都有了(在协议中指定)。这样就去除了对某个特定Class的依赖。也就是通常所说的「面向接口编程」。</p>
-
-<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-UIViewController &lt;ViewControllerAProtocol&gt; *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
-vc.backgroundColor = [UIColor lightGrayColor]; // [3]
-UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-self.window.rootViewController = nc;
-</code></pre>
-
-<ol>
-  <li>获取默认的injector，这个injector已经注册过ViewControllerAProtocol了。</li>
-  <li>获取ViewControllerAProtocol对应的Object。</li>
-  <li>拿到VC后，设置它的某些属性，比如这里的backgroundColor，因为在ViewControllerAProtocol里有定义这个属性，所以不会有warning。</li>
-</ol>
-
-<p>可以看到这里没有引用ViewControllerA。再来看看这个ViewControllerAProtocol是如何注册到injector中的，这里涉及到了Module，对Protocol的注册都是在Module中完成的。Module只要继承JSObjectionModule这个Class即可。</p>
-
-<pre><code>@interface ViewControllerAModule : JSObjectionModule
-@end
- 
-@implementation ViewControllerAModule
-- (void)configure
-{
-	[self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
-}
-@end
-</code></pre>
-
-<p>绑定操作是在configure方法里进行的，这个方法在被添加到injector里时会被自动触发。</p>
-
-<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-injector = injector ? : [JSObjection createInjector]; // [2]
-injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
-[JSObjection setDefaultInjector:injector]; // [4]
-</code></pre>
-
-<ol>
-  <li>获取默认的 injector</li>
-  <li>如果默认的 injector 不存在，就新建一个</li>
-  <li>往这个 injector 里注册我们的 Module</li>
-  <li>设置该 injector 为默认的 injector</li>
-</ol>
-
-<p>这段代码可以直接放到 + (void)load里执行，这样就可以避免在AppDelegate里import各种Module。</p>
-
-<p>因为我们无法直接获得对应的Class，所以必须要在协议里定义好对外暴露的方法和属性，然后该Class也要实现该协议。</p>
-
-<pre><code>@protocol ViewControllerAProtocol &lt;NSObject&gt;
-@property (nonatomic) NSUInteger currentIndex;
-@property (nonatomic) UIColor *backgroundColor;
-@end
- 
-@interface ViewControllerA : UIViewController &lt;ViewControllerAProtocol&gt;
-@end
-</code></pre>
-
-<p>通过objection实现依赖注入后，就能更好地实现SRP(Single Responsibility Principle)，代码更简洁，心情更舒畅，生活更美好。</p>
-
-<p>github地址: <a href="https://github.com/atomicobject/objection" title="url">https://github.com/atomicobject/objection</a></p>
-
-<p>demo地址: <a href="https://github.com/helloyokoy/bizhi" title="url">https://github.com/helloyokoy/bizhi</a></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-04T20:34:43+08:00</updated>
+  <updated>2015-11-04T22:30:58+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -245,7 +245,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[android 开发遇到的坑]]></title>
+    <title type="html"><![CDATA[Android 开发遇到的坑]]></title>
     <link href="http://helloyokoy.github.io/blog/android-mistake/"/>
     <updated>2015-10-12T14:21:57+08:00</updated>
     <id>http://helloyokoy.github.io/blog/android-mistake</id>
@@ -429,7 +429,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[android https请求no peer certificate解决方案]]></title>
+    <title type="html"><![CDATA[Android https请求no peer certificate解决方案]]></title>
     <link href="http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/"/>
     <updated>2015-08-12T16:30:44+08:00</updated>
     <id>http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an</id>
@@ -438,86 +438,171 @@
 
 <p>写了一个自定义类继承SSLSocketFactory：</p>
 
-<pre><code>import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import org.apache.http.conn.ssl.SSLSocketFactory;
-
-public class SSLSocketFactoryEx extends SSLSocketFactory {
-    
-    SSLContext sslContext = SSLContext.getInstance("TLS");
-    
-    public SSLSocketFactoryEx(KeyStore truststore) 
-                    throws NoSuchAlgorithmException, KeyManagementException,
-                    KeyStoreException, UnrecoverableKeyException {
-            super(truststore);
-            
-            TrustManager tm = new X509TrustManager() {
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-
-        @Override  
-        public void checkClientTrusted(
-                        java.security.cert.X509Certificate[] chain, String authType)
-                                        throws java.security.cert.CertificateException {}  
-
-        @Override  
-        public void checkServerTrusted(
-                        java.security.cert.X509Certificate[] chain, String authType)
-                                        throws java.security.cert.CertificateException {}
-    };  
-    sslContext.init(null, new TrustManager[] { tm }, null);  
-}  
-
-@Override  
-public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-        return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-}  
-
-@Override  
-public Socket createSocket() throws IOException {  
-    return sslContext.getSocketFactory().createSocket();  
-}  
-}
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import java.io.IOException;
+</span><span class='line'>import java.net.Socket;
+</span><span class='line'>import java.net.UnknownHostException;
+</span><span class='line'>import java.security.KeyManagementException;
+</span><span class='line'>import java.security.KeyStore;
+</span><span class='line'>import java.security.KeyStoreException;
+</span><span class='line'>import java.security.NoSuchAlgorithmException;
+</span><span class='line'>import java.security.UnrecoverableKeyException;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import javax.net.ssl.SSLContext;
+</span><span class='line'>import javax.net.ssl.TrustManager;
+</span><span class='line'>import javax.net.ssl.X509TrustManager;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import org.apache.http.conn.ssl.SSLSocketFactory;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>public class SSLSocketFactoryEx extends SSLSocketFactory {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>SSLContext sslContext = SSLContext.getInstance(“TLS”);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>public SSLSocketFactoryEx(KeyStore truststore) 
+</span><span class='line'>                        throws NoSuchAlgorithmException, KeyManagementException,
+</span><span class='line'>                        KeyStoreException, UnrecoverableKeyException {
+</span><span class='line'>                super(truststore);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>TrustManager tm = new X509TrustManager() {
+</span><span class='line'>                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@Override&lt;br />
+</span><span class='line'>public void checkClientTrusted(
+</span><span class='line'>   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class='line'>                                            throws java.security.cert.CertificateException {}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@Override&lt;br />
+</span><span class='line'>public void checkServerTrusted(
+</span><span class='line'>   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class='line'>                                            throws java.security.cert.CertificateException {}
+</span><span class='line'>        };&lt;br />
+</span><span class='line'>        sslContext.init(null, new TrustManager[] { tm }, null);&lt;br />
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@Override&lt;br />
+</span><span class='line'>public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {&lt;br />
+</span><span class='line'>  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);&lt;br />
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@Override&lt;br />
+</span><span class='line'>public Socket createSocket() throws IOException {&lt;br />
+</span><span class='line'>    return sslContext.getSocketFactory().createSocket();&lt;br />
+</span><span class='line'>}&lt;br />
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <!--more-->
 
 <p>再来看看如何做回调：</p>
 
-<pre><code>public static HttpClient getNewHttpClient() {  
-    try {  
-        KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());  
-        trustStore.load(null, null);  
-        
-        SSLSocketFactory sf = new SSLSocketFactoryEx(trustStore);  
-        sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);  
-
-        HttpParams params = new BasicHttpParams();  
-        HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);  
-        HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);  
-
-        SchemeRegistry registry = new SchemeRegistry();  
-        registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));  
-        registry.register(new Scheme("https", sf, 443));  
-
-        ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry);  
-
-        return new DefaultHttpClient(ccm, params);  
-    } catch (Exception e) {  
-        return new DefaultHttpClient();  
-    }  
-}  
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>public static HttpClient getNewHttpClient() {&lt;br />
+</span><span class='line'> try {&lt;br />
+</span><span class='line'>  KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());&lt;br />
+</span><span class='line'>  trustStore.load(null, null);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>SSLSocketFactory sf = new SSLSocketFactoryEx(trustStore);&lt;br />
+</span><span class='line'>  sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>HttpParams params = new BasicHttpParams();&lt;br />
+</span><span class='line'>  HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);&lt;br />
+</span><span class='line'>  HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>SchemeRegistry registry = new SchemeRegistry();&lt;br />
+</span><span class='line'>  registry.register(new Scheme(“http”, PlainSocketFactory.getSocketFactory(), 80));&lt;br />
+</span><span class='line'>  registry.register(new Scheme(“https”, sf, 443));&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry); &lt;br />
+</span><span class='line'>   return new DefaultHttpClient(ccm, params);&lt;br />
+</span><span class='line'>  } catch (Exception e) {&lt;br />
+</span><span class='line'>   return new DefaultHttpClient();&lt;br />
+</span><span class='line'>  }&lt;br />
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>现在就可以拿这个HTTPClient去请求数据了</p>
 
@@ -532,64 +617,132 @@ public Socket createSocket() throws IOException {
 
 <p>3.把证书添加为信任。</p>
 
-<pre><code>String requestHTTPSPage(String mUrl) {
-    InputStream ins = null;
-    String result = "";
-    try {
-        ins = context.getAssets().open("app_pay.cer"); //下载的证书放到项目中的assets目录中
-        CertificateFactory cerFactory = CertificateFactory
-                .getInstance("X.509");
-        Certificate cer = cerFactory.generateCertificate(ins);
-        KeyStore keyStore = KeyStore.getInstance("PKCS12", "BC");
-        keyStore.load(null, null);
-        keyStore.setCertificateEntry("trust", cer);
- 
-        SSLSocketFactory socketFactory = new SSLSocketFactory(keyStore);
-        Scheme sch = new Scheme("https", socketFactory, 443);
-        HttpClient mHttpClient = new DefaultHttpClient();
-        mHttpClient.getConnectionManager().getSchemeRegistry()
-                .register(sch);
- 
-        BufferedReader reader = null;
-        try {
-            Log.d(TAG, "executeGet is in,murl:" + mUrl);
-            HttpGet request = new HttpGet();
-            request.setURI(new URI(mUrl));
-            HttpResponse response = mHttpClient.execute(request);
-            if (response.getStatusLine().getStatusCode() != 200) {
-                request.abort();
-                return result;
-            }
- 
-            reader = new BufferedReader(new InputStreamReader(response
-                    .getEntity().getContent()));
-            StringBuffer buffer = new StringBuffer();
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line);
-            }
-            result = buffer.toString();
-            Log.d(TAG, "mUrl=" + mUrl + "\nresult = " + result);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                reader.close();
-            }
-        }
-    } catch (Exception e) {
-        // TODO: handle exception
-    } finally {
-        try {
-            if (ins != null)
-                ins.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    return result;
-}
-</code></pre>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>String requestHTTPSPage(String mUrl) {
+</span><span class='line'>  InputStream ins = null;
+</span><span class='line'>  String result = “”;
+</span><span class='line'>  try {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ins = context.getAssets().open(“app_pay.cer”); //下载的证书放到项目中的assets目录中
+</span><span class='line'>   CertificateFactory cerFactory = CertificateFactory
+</span><span class='line'>                    .getInstance(“X.509”);
+</span><span class='line'>   Certificate cer = cerFactory.generateCertificate(ins);
+</span><span class='line'>   KeyStore keyStore = KeyStore.getInstance(“PKCS12”, “BC”);
+</span><span class='line'>   keyStore.load(null, null);
+</span><span class='line'>   keyStore.setCertificateEntry(“trust”, cer);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>SSLSocketFactory socketFactory = new SSLSocketFactory(keyStore);
+</span><span class='line'>   Scheme sch = new Scheme(“https”, socketFactory, 443);
+</span><span class='line'>   HttpClient mHttpClient = new DefaultHttpClient();
+</span><span class='line'>   mHttpClient.getConnectionManager().getSchemeRegistry()
+</span><span class='line'>                    .register(sch);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>BufferedReader reader = null;
+</span><span class='line'>     try {
+</span><span class='line'>         Log.d(TAG, “executeGet is in,murl:” + mUrl);
+</span><span class='line'>         HttpGet request = new HttpGet();
+</span><span class='line'>         request.setURI(new URI(mUrl));
+</span><span class='line'>         HttpResponse response = mHttpClient.execute(request);
+</span><span class='line'>         if (response.getStatusLine().getStatusCode() != 200) {
+</span><span class='line'>            request.abort();
+</span><span class='line'>            return result;
+</span><span class='line'>         }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>reader = new BufferedReader(new InputStreamReader(response
+</span><span class='line'>                        .getEntity().getContent()));
+</span><span class='line'>  StringBuffer buffer = new StringBuffer();
+</span><span class='line'>  String line = null;
+</span><span class='line'>  while ((line = reader.readLine()) != null) {
+</span><span class='line'>                    buffer.append(line);
+</span><span class='line'>  }
+</span><span class='line'>  result = buffer.toString();
+</span><span class='line'>  Log.d(TAG, “mUrl=” + mUrl + “\nresult = “ + result);
+</span><span class='line'>  } catch (Exception e) {
+</span><span class='line'>    e.printStackTrace();
+</span><span class='line'>  } finally {
+</span><span class='line'>     if (reader != null) {
+</span><span class='line'>        reader.close();
+</span><span class='line'>     }
+</span><span class='line'> }
+</span><span class='line'> } catch (Exception e) {
+</span><span class='line'>   // TODO: handle exception
+</span><span class='line'> } finally {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>try {
+</span><span class='line'>    if (ins != null)
+</span><span class='line'>       ins.close();
+</span><span class='line'>  } catch (IOException e) {
+</span><span class='line'>     e.printStackTrace();
+</span><span class='line'>  }
+</span><span class='line'>  }
+</span><span class='line'>  return result;
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   

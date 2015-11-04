@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>ios依赖注入框架objection - BryanFu Blog</title>
+	<title>iOS 依赖注入框架 Objection - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
@@ -122,27 +122,39 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">Ios依赖注入框架objection</h2>
+	<h2 class="title">iOS 依赖注入框架 Objection</h2>
 	<div class="entry-content"><blockquote>
   <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
 </blockquote>
 
 <p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
 
-<pre><code>- (void)viewDidLoad
-{
-	[super viewDidLoad];
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-	button.frame = CGRectMake(100, 100, 100, 30);
-	[self.view addSubview:button];
-}
- 
-- (void)buttonTapped
-{
-	ViewControllerB *vc = [[ViewControllerB alloc] init];
-	[self.navigationController pushViewController:vc animated:YES];
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- (void)viewDidLoad
+</span><span class="line">{
+</span><span class="line">    [super viewDidLoad];
+</span><span class="line">    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+</span><span class="line">    button.frame = CGRectMake(100, 100, 100, 30);
+</span><span class="line">    [self.view addSubview:button];
+</span><span class="line">}
+</span><span class="line"> 
+</span><span class="line">- (void)buttonTapped
+</span><span class="line">{
+</span><span class="line">    ViewControllerB *vc = [[ViewControllerB alloc] init];
+</span><span class="line">    [self.navigationController pushViewController:vc animated:YES];
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
 
@@ -150,12 +162,16 @@
 
 <p>实现方法是：先定义一个协议(protocol)，然后通过objection来注册这个协议对应的class，需要的时候，可以获取该协议对应的object。对于使用方无需关心到底使用的是哪个Class，反正该有的方法、属性都有了(在协议中指定)。这样就去除了对某个特定Class的依赖。也就是通常所说的「面向接口编程」。</p>
 
-<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-UIViewController &lt;ViewControllerAProtocol&gt; *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
-vc.backgroundColor = [UIColor lightGrayColor]; // [3]
-UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-self.window.rootViewController = nc;
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
+</span><span class="line">UIViewController &lt;ViewControllerAProtocol&gt; *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
+</span><span class="line">vc.backgroundColor = [UIColor lightGrayColor]; // [3]
+</span><span class="line">UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+</span><span class="line">self.window.rootViewController = nc;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ol>
   <li>获取默认的injector，这个injector已经注册过ViewControllerAProtocol了。</li>
@@ -165,24 +181,35 @@ self.window.rootViewController = nc;
 
 <p>可以看到这里没有引用ViewControllerA。再来看看这个ViewControllerAProtocol是如何注册到injector中的，这里涉及到了Module，对Protocol的注册都是在Module中完成的。Module只要继承JSObjectionModule这个Class即可。</p>
 
-<pre><code>@interface ViewControllerAModule : JSObjectionModule
-@end
- 
-@implementation ViewControllerAModule
-- (void)configure
-{
-	[self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
-}
-@end
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">@interface ViewControllerAModule : JSObjectionModule
+</span><span class="line">@end
+</span><span class="line"> 
+</span><span class="line">@implementation ViewControllerAModule
+</span><span class="line">- (void)configure
+</span><span class="line">{
+</span><span class="line">   [self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
+</span><span class="line">}
+</span><span class="line">@end</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>绑定操作是在configure方法里进行的，这个方法在被添加到injector里时会被自动触发。</p>
 
-<pre><code>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-injector = injector ? : [JSObjection createInjector]; // [2]
-injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
-[JSObjection setDefaultInjector:injector]; // [4]
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
+</span><span class="line">injector = injector ? : [JSObjection createInjector]; // [2]
+</span><span class="line">injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
+</span><span class="line">[JSObjection setDefaultInjector:injector]; // [4]</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ol>
   <li>获取默认的 injector</li>
@@ -195,17 +222,24 @@ injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
 
 <p>因为我们无法直接获得对应的Class，所以必须要在协议里定义好对外暴露的方法和属性，然后该Class也要实现该协议。</p>
 
-<pre><code>@protocol ViewControllerAProtocol &lt;NSObject&gt;
-@property (nonatomic) NSUInteger currentIndex;
-@property (nonatomic) UIColor *backgroundColor;
-@end
- 
-@interface ViewControllerA : UIViewController &lt;ViewControllerAProtocol&gt;
-@end
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">@protocol ViewControllerAProtocol &lt;NSObject&gt;
+</span><span class="line">@property (nonatomic) NSUInteger currentIndex;
+</span><span class="line">@property (nonatomic) UIColor *backgroundColor;
+</span><span class="line">@end
+</span><span class="line"> 
+</span><span class="line">@interface ViewControllerA : UIViewController &lt;ViewControllerAProtocol&gt;
+</span><span class="line">@end</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>通过objection实现依赖注入后，就能更好地实现SRP(Single Responsibility Principle)，代码更简洁，心情更舒畅，生活更美好。</p>
 
+<hr />
 <p>github地址: <a href="https://github.com/atomicobject/objection" title="url">https://github.com/atomicobject/objection</a></p>
 
 <p>demo地址: <a href="https://github.com/helloyokoy/bizhi" title="url">https://github.com/helloyokoy/bizhi</a></p>
@@ -257,7 +291,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
   <section>
    <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="/blog/iosyi-lai-zhu-ru-kuang-jia-objection" data-title="ios依赖注入框架objection" data-url="http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/"></div>
+<div class="ds-thread" data-thread-key="/blog/iosyi-lai-zhu-ru-kuang-jia-objection" data-title="iOS 依赖注入框架 Objection" data-url="http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
