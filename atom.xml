@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-05T12:54:54+08:00</updated>
+  <updated>2015-11-05T13:03:20+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -130,16 +130,25 @@ inputLength &lt; MAX_INPUT_LENGTH
 
 <p>当你需要循环输出5遍”Hello World“时，Java代码应该会是这样：</p>
 
-<pre><code>for (int i = 0; i &lt; 5; i++) {
-	System.out.println("Hello world!");
-} 但是用Ruby，你也许会这样写：
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">for (int i = 0; i &lt; 5; i++) {
+</span><span class="line">    System.out.println("Hello world!");
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-for i in (0..5)
-  		puts "Hello world!"
-end 这些看上去都很不错，但是最完美的方式可能是下面这样：
+<p>但是用Ruby，你也许会这样写：</p>
 
-5.times { puts "Hello world!" }
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">for i in (0..5)
+</span><span class="line">  	puts "Hello world!"
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这些看上去都很不错，但是最完美的方式可能是下面这样：</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">5.times { puts "Hello world!" }</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="section-6">7、不要逆常规而行</h3>
 <p>每一种编程语言都有自己的约束习惯，总的来说，大家对Java的编程习惯可能会了解得比较多，我们一起来看看其中的一些习惯：</p>
