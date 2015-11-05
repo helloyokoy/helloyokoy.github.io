@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="原文: http://blog.newrelic.com/2014/04/23/better-junior-developer/ 翻译: @mr_sun 在过去的几年中，New Relic聘请了许多接受过各种编程培训的或者“非传统”编程背景的毕业生，其中就包括我！事实上，在我获得我的学士学位以后 &hellip;">
+	<meta name="description" content="前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。 原文：http://tosbourn.com/what-is-the-gemfile/ 作为Ruby开发者， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,53 +127,6 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/how-to-become-a-developer/">
-		
-			如何成为一个优秀的初级开发者</a>
-	</h2>
-	<div class="entry-content">
-		<p>原文: <a href="http://blog.newrelic.com/2014/04/23/better-junior-developer/">http://blog.newrelic.com/2014/04/23/better-junior-developer/</a></p>
-
-<p>翻译: <a href="https://ruby-china.org/mr_sun">@mr_sun</a></p>
-
-<p>在过去的几年中，New Relic聘请了许多接受过各种编程培训的或者“非传统”编程背景的毕业生，其中就包括我！事实上，在我获得我的学士学位以后，我想要进入一所医药大学做进一步的学习，但是这时我获得了Google提供的一份技术支持的工作。在四年多以后我利用一个休假的时间出席了Hackbright Academy，这是个教女性学员如何编程的学校，课程安排为十周（现在延长到了十二周）。在第一周教学即将结束的时候，我知道我终于找到了我想要专注一生去追求的事业和方向。</p>
-
-<p>不过，我的一个最大的忧虑是，我必须放弃我在其他领域已经积累起来的经验和技巧，去进入到一个全新的领域，在这个新领域里，我将面对的竞争对手都是拥有该领域几十年经验的资深工作者。幸运的是，在我真正进入到这样一个新角色以后，在共同工作的许多优秀的前辈的指导和帮助下，我总结出了一下一些自己的感悟：
-- 不断地学习是成为一个优秀开发者的必备基石
-- 有很多工程，是不是直接就开始写代码的</p>
-
-<p>要清晰的认识到，即便作为一个还有很多东西要学的初级开发者，也有很多方法来利用我已经在其他领域已具备的技能。因为自己已经经历过那样一段对自己很不确定的时期，这里我想要向大家传播以下两条信息：
-- 初级开发者：即使你还在学习关于编程的基本技巧，你也可以有很多方式为你的团队做出自己的贡献。
-- mentor：因材施教，换位思考，让你的指导更加符合初级开发者的学习需要，这样将使他们更有自信，使你的指导更具效率。</p>
-
-
-		
-		<a href="/blog/how-to-become-a-developer/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月4 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
 		<a href="/blog/gem-description/">
 		
 			Gemfile 详解</a>
@@ -250,6 +203,140 @@
 
 
 2015 年11 月3 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/surge/">
+		
+			Surge</a>
+	</h2>
+	<div class="entry-content">
+		<p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
+
+<p><img src="https://g.owind.com/content/images/2015/10/surgelogo.jpg" alt="alt text" title="surge" /></p>
+
+<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
+
+<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
+
+
+		
+		<a href="/blog/surge/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月2 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/sublime-text-2-plugin/">
+		
+			Sublime Text 2 Plugin</a>
+	</h2>
+	<div class="entry-content">
+		<p>Sublime Text 2是一个轻量、简洁、高效、跨平台的编辑器，方便的配色以及兼容vim快捷键等各种优点博得了很多前端开发人员的喜爱。之前也不并知道它有这么多插件的扩展与支持，直到vincent问到有没有在用cTags插件，才知道原来Sublime通过插件也可以实现一些大型IDE的功能，遂google一下，本篇Blog就来介绍下Sublime下经常使用的插件。</p>
+
+<h4 id="package-control">安装包控制（Package Control）</h4>
+
+<p>打开Sublime Text 2，点击 Tools -&gt; Command Palette 调出控制台Console；</p>
+
+<p>将以下代码粘贴进命令行中并回车：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>重启 Sublime Text 2，如果在 Preferences -&gt; Package Settings中见到Package Control这一项，就说明安装成功了。</p>
+
+
+		
+		<a href="/blog/sublime-text-2-plugin/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月1 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/wechat-develop-environment/">
+		
+			WeChat 开发环境搭建</a>
+	</h2>
+	<div class="entry-content">
+		<p>由于微信开发都是在微信内浏览器运行，不管是登陆还是支付都不能在PC开发端愉快地玩耍，但世界我们还是需要拯救的。</p>
+
+<p>由于自己换了新电脑，第一次做微信开发跟大家分享一下我的开发环境，欢迎拍砖交流。</p>
+
+<p>一般的第三方开发永远离不开两个配置，域名 &amp; 回调，有一些平台支持localhost的域名&amp;回调会方便，更有支持随意更改端口的，微信上面貌似都没有 。</p>
+
+<p>好了，假定我们的域名是playmonkey.me</p>
+
+<h2 id="section">域名</h2>
+
+<p>微信登陆，JSAPI以及支付都有域名限制，所以需要让手机微信上打开palymonkey.me时，访问到我们本地的development server。</p>
+
+<p>干这个勾当的当属 Charles 神器。</p>
+
+
+		
+		<a href="/blog/wechat-develop-environment/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月29 日</div>
 	<div class="tags">
 
 

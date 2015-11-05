@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。 如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 &hellip;">
+	<meta name="description" content="EasyIOS 以提升开发效率为宗旨 代码分离 -Model-View-ViewModel- 分离ViewController中的大量逻辑代码，解决ViewController承担了过多角色而造成的代码质量低下。增加视图与模型的绑定特性。 自动持久化 -Model to Db– &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,22 +127,42 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/ruby-fast-learn/">
+		<a href="/blog/ioszheng-tao-kuang-jia-easyios/">
 		
-			Ruby on Rails 快速学习</a>
+			iOS整体框架EasyiOS</a>
 	</h2>
 	<div class="entry-content">
-		<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
+		<h3 id="easyios-">EasyIOS 以提升开发效率为宗旨</h3>
+<hr />
 
-<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
-
-<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
-
-<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
+<ul>
+  <li>
+    <p>代码分离 -Model-View-ViewModel- 分离ViewController中的大量逻辑代码，解决ViewController承担了过多角色而造成的代码质量低下。增加视图与模型的绑定特性。</p>
+  </li>
+  <li>
+    <p>自动持久化 -Model to Db– 我再也不想思考如何实现持久化了。在我的想法里，将模型对象直接扔到一个bucket里，然后它就能自动的对数据进行存储、缓存、合并以及唯一化。我应当关注于描述对象间的属性和联系，以及我希望它们分组的方式。其他的实现细节都应该是不可见的。</p>
+  </li>
+  <li>
+    <p>自动RESTful API –Json to Model- 一旦我给程序发出指令，将一个API响应对应到一个数据对象，网络和JSON转换应该被自动完成。我只想关注如何将JSON中那些项目展示给用户。</p>
+  </li>
+  <li>
+    <p>有表现力的触发器和响应 -ReactiveCocoa– 我想用源于响应意图（Intent）的语法来描述事件的响应和触发器，我不关心它们间的连接是如何实现的，并且这些连接也不应该在重构时出错。</p>
+  </li>
+  <li>
+    <p>简洁明了的网络请求 -Action and Request- 对于简单的GET、POST请求，可以进行对象化操作，我只想告诉程序，链接在哪里，有哪些参数，接下来就自动拉取到想要的数据，顺便帮我把缓存也做齐了，也是极好的。</p>
+  </li>
+  <li>
+    <p>便捷的UI布局 – FLKAutolayout-更加便捷的进行autolayout布局,不管你使用springs &amp; struts或者AutoLayout，每种方法都需要你明确相关视图如何排列。你需要花大量的时间编写和修正这些排列，特别是现在有这么多设备需要适配 的情况下。没有什么是自动写好的，UI布局依赖于对细节的不断调整。推荐开发期间Debug工具FLEX,pod ‘FLEX’, ‘~&gt; 1.1.1’需要手动集成，发布release版本时请删除。</p>
+  </li>
+  <li>友好的线程控制 -GCDObjC-</li>
+  <li>便捷的正则匹配</li>
+  <li>富文本的Label</li>
+  <li>and so on……</li>
+</ul>
 
 
 		
-		<a href="/blog/ruby-fast-learn/" class="more-link">阅读全文</a>
+		<a href="/blog/ioszheng-tao-kuang-jia-easyios/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -152,11 +172,11 @@
 
 
 
-2015 年9 月2 日</div>
+2015 年4 月10 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>
@@ -168,120 +188,54 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">
+		<a href="/blog/afinaljie-shao/">
 		
-			Android Https请求no Peer Certificate解决方案</a>
+			Afinal介绍</a>
 	</h2>
 	<div class="entry-content">
-		<h3 id="section">解决方案一</h3>
+		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
+
+<h3 id="afinal">Afinal简介</h3>
+<hr />
+<ul>
+  <li>
+    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
+  </li>
+  <li>
+    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
+  </li>
+  <li>
+    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
+  </li>
+</ul>
+
+<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
 <hr />
 
-<p>写了一个自定义类继承SSLSocketFactory：</p>
+<ul>
+  <li>
+    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
+  </li>
+  <li>
+    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
+  </li>
+  <li>
+    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
+  </li>
+  <li>
+    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
+  </li>
+</ul>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
-</span><span class="line">import java.net.Socket;
-</span><span class="line">import java.net.UnknownHostException;
-</span><span class="line">import java.security.KeyManagementException;
-</span><span class="line">import java.security.KeyStore;
-</span><span class="line">import java.security.KeyStoreException;
-</span><span class="line">import java.security.NoSuchAlgorithmException;
-</span><span class="line">import java.security.UnrecoverableKeyException;
-</span><span class="line">
-</span><span class="line">import javax.net.ssl.SSLContext;
-</span><span class="line">import javax.net.ssl.TrustManager;
-</span><span class="line">import javax.net.ssl.X509TrustManager;
-</span><span class="line">
-</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
-</span><span class="line">
-</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
-</span><span class="line">        
-</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
-</span><span class="line">        
-</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
-</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
-</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
-</span><span class="line">                super(truststore);
-</span><span class="line">                
-</span><span class="line">   TrustManager tm = new X509TrustManager() {
-</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkClientTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkServerTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}
-</span><span class="line">        };  
-</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket() throws IOException {  
-</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
-</span><span class="line">}  
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
+
+<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
+</code></pre>
 
 
 		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" class="more-link">阅读全文</a>
+		<a href="/blog/afinaljie-shao/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -291,7 +245,7 @@
 
 
 
-2015 年8 月12 日</div>
+2015 年3 月10 日</div>
 	<div class="tags">
 
 
@@ -307,40 +261,28 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/mjextensionjie-shao/">
+		<a href="/blog/magicrecordjie-shao/">
 		
-			MJExtension介绍</a>
+			MagicRecord介绍</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
+		<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
 
-<h2 id="mjextension">MJExtension</h2>
+<p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
 
-<blockquote>
-  <p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
-</blockquote>
+<p>也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。</p>
 
-<p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
+<p>即使你会使用CoreData，每天重复性枯燥的使用CoreData也会变得很笨重，MagicalPanda创建的一个第三方库为这种工作带来了好消息。</p>
 
-<h2 id="getting-started">Getting Started【开始使用】</h2>
+<p>MagicalRecord 致力于更快捷和容易的使用CoreData。</p>
 
-<h4 id="features">Features【能做什么】</h4>
+<p>MagicalRecord 使用方便，特别流行。正如作者所说，MagicalRecord 致力于使CoreData的代码更简洁，更简单的获取数据，并且使用最优化的操作。</p>
 
-<ul>
-  <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
-  <li>JSON –&gt; Model、Core Data Model</li>
-  <li>JSONString –&gt; Model、Core Data Model</li>
-  <li>Model、Core Data Model –&gt; JSON</li>
-  <li>JSON Array –&gt; Model Array、Core Data Model Array</li>
-  <li>JSONString –&gt; Model Array、Core Data Model Array</li>
-  <li>Model Array、Core Data Model Array –&gt; JSON Array</li>
-  <li>Coding all properties of model in one line code.</li>
-  <li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
-</ul>
+<p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
 
 
 		
-		<a href="/blog/mjextensionjie-shao/" class="more-link">阅读全文</a>
+		<a href="/blog/magicrecordjie-shao/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -350,11 +292,103 @@
 
 
 
-2015 年8 月10 日</div>
+2015 年2 月10 日</div>
 	<div class="tags">
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/ctassetspickercontroller/">
+		
+			iOS相册选择CTAssetsPickerController</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_19/19_98590_315f8ebbd058f7e.png" alt="img" title="image" /></p>
+
+<h3 id="section">特色</h3>
+<ol>
+  <li>用用户的相册中选择多张图片以及视频</li>
+  <li>有过滤的设置，只选择图片或只选择视频</li>
+  <li>可以设置选择图片以及视频的最大数量</li>
+  <li>平均5x fps</li>
+  <li>遵从UIAccessibility协议</li>
+</ol>
+
+
+		
+		<a href="/blog/ctassetspickercontroller/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年12 月3 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/huan-jing-da-jian/">
+		
+			Rails 环境搭建</a>
+	</h2>
+	<div class="entry-content">
+		<blockquote>
+  <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
+次安装方法同样适用于产品环境！</p>
+</blockquote>
+
+<h3 id="section">系统需求</h3>
+<hr />
+
+<p>首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用:</p>
+
+<p>Mac OS X
+任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux …)
+强烈新手使用 Ubuntu 省掉不必要的麻烦！
+以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $  符号）</p>
+
+
+		
+		<a href="/blog/huan-jing-da-jian/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年11 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>
