@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="相信很多Android开发者一定受够了速度慢、体验差效率及其地下的官方模拟器了,自己在平时的开发中几乎是不会用模拟器的，等的时间太久了，但是在一些尺寸适配或是兼容性测试的时候没有足够多的机器进行测试，这个时候就必须得用模拟器来代替了。用的久了真的不堪忍受那龟速般的模拟器， &hellip;">
+	<meta name="description" content="Jean-Marc Denis（原文作者，前Sparrow设计师，现在在Google工作）在参加WWDC 2013时认识了Sketch的开发团队，所以在第一时间尝试了Sketch，当时由于一些功能的缺失，所以还是折回去使用Photoshop了。过了一段时间， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +127,58 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/sketch/">
+		
+			为什么要用Sketch</a>
+	</h2>
+	<div class="entry-content">
+		<p>Jean-Marc Denis（原文作者，前Sparrow设计师，现在在Google工作）在参加WWDC 2013时认识了Sketch的开发团队，所以在第一时间尝试了Sketch，当时由于一些功能的缺失，所以还是折回去使用Photoshop了。过了一段时间，他发现设计师社区开始疯狂着迷于这款新的设计工具，所以决定再试一试，想看看迭代了一段时间的Sketch现在能完成多少原先他需要用Photoshop来做的工作。现在，他80%的设计工作都是由Sketch来完成的，所以写了这篇文章来帮助大家一起了解Sketch。</p>
+
+<h4 id="photoshop">Photoshop并不是一款合适的界面设计工具</h4>
+
+<p>为什么我们会期待一个新的设计工具？因为当我们更多的关注效率和关注协作，就越发现Photoshop已经不足以满足我们的期待了。下面看看具体的理由：</p>
+
+<ul>
+  <li>
+    <p>并非为设计师打造</p>
+
+    <p>Photoshop是为图像处理开发的，诸如路径和矢量工具都是后期才加上去的，所以如果你关心一下Photoshop的更新路径，用户界面设计师完全不是Adobe做这条产品时关心的用户群。所以，如果抛去那些复杂的功能，一个为用户界面设计师打造的设计工具完全可以做得更简单，更高效。</p>
+  </li>
+  <li>
+    <p>不适合移动时代</p>
+
+    <p>相信我们都会觉得为不同的设备输出不同分辨率的素材而痛苦不已吧。或许，你会使用一些第三方插件或是启用一些模板来处理这些事，但依然是很浪费时间的。</p>
+  </li>
+</ul>
+
+
+		
+		<a href="/blog/sketch/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年9 月11 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/android-genymotion/">
 		
 			Android Genymotion模拟器</a>
@@ -195,145 +247,6 @@
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">
-		
-			Android Https请求no Peer Certificate解决方案</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">解决方案一</h3>
-<hr />
-
-<p>写了一个自定义类继承SSLSocketFactory：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
-</span><span class="line">import java.net.Socket;
-</span><span class="line">import java.net.UnknownHostException;
-</span><span class="line">import java.security.KeyManagementException;
-</span><span class="line">import java.security.KeyStore;
-</span><span class="line">import java.security.KeyStoreException;
-</span><span class="line">import java.security.NoSuchAlgorithmException;
-</span><span class="line">import java.security.UnrecoverableKeyException;
-</span><span class="line">
-</span><span class="line">import javax.net.ssl.SSLContext;
-</span><span class="line">import javax.net.ssl.TrustManager;
-</span><span class="line">import javax.net.ssl.X509TrustManager;
-</span><span class="line">
-</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
-</span><span class="line">
-</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
-</span><span class="line">        
-</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
-</span><span class="line">        
-</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
-</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
-</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
-</span><span class="line">                super(truststore);
-</span><span class="line">                
-</span><span class="line">   TrustManager tm = new X509TrustManager() {
-</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkClientTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkServerTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}
-</span><span class="line">        };  
-</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket() throws IOException {  
-</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
-</span><span class="line">}  
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月12 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-04T22:33:29+08:00</updated>
+  <updated>2015-11-05T11:35:32+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -1164,7 +1164,7 @@ gem "rails", bitbucket: "rails"
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[wechat 开发环境搭建]]></title>
+    <title type="html"><![CDATA[WeChat 开发环境搭建]]></title>
     <link href="http://helloyokoy.github.io/blog/wechat-develop-environment/"/>
     <updated>2015-10-29T15:46:09+08:00</updated>
     <id>http://helloyokoy.github.io/blog/wechat-develop-environment</id>

@@ -159,56 +159,99 @@ attr_accessor是可读也可写</p>
 
 <p>sample</p>
 
-<pre><code>class Rectangle
-  		def initialize(wdth, hgt)
-	@width = wdth
-	@height = hgt
-  		end
-  		def width=(wdth)
-	@width = wdth
-  		end
-  
-end
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Rectangle
+</span><span class="line">  	def initialize(wdth, hgt)
+</span><span class="line">    @width = wdth
+</span><span class="line">    @height = hgt
+</span><span class="line">  	end
+</span><span class="line">  	def width=(wdth)
+</span><span class="line">    @width = wdth
+</span><span class="line">  	end
+</span><span class="line">  
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">r = Rectangle.new(2,3)
+</span><span class="line">puts r.width = 5 #output 5
+</span><span class="line">puts r.width # error! because the width not support read</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-r = Rectangle.new(2,3)
-puts r.width = 5 #output 5
-puts r.width # error! because the width not support read
-继续补充下attr_accessor的使用，sample
+<p>继续补充下attr_accessor的使用，</p>
 
-class Rectangle
-  		attr_accessor :width
-  		attr_accessor :height
-  		attr_accessor :width2
-  		attr_accessor :height2
-</code></pre>
+<p>sample</p>
 
-  	def initialize(wdth, hgt)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-</code></pre>
-
-  	def area2()
-<pre><code>	return @width2 * @height2
-  	end
-  
-  
-end
-
-r = Rectangle.new(2,3)
-r.width = 5 # give samename's variable value
-r.height = 5 
-puts r.area() #outputs is 25  
-
-r.width2 = 6 # not samename's variable  create
-r.height2 = 6 
-puts r.area2() # outputs is 36
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Rectangle
+</span><span class="line">  	attr_accessor :width
+</span><span class="line">  	attr_accessor :height
+</span><span class="line">  	attr_accessor :width2
+</span><span class="line">  	attr_accessor :height2
+</span><span class="line">  
+</span><span class="line">  def initialize(wdth, hgt)
+</span><span class="line">    @width = wdth
+</span><span class="line">    @height = hgt
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">  def area()
+</span><span class="line">    return @width * @height
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">  def area2()
+</span><span class="line">    return @width2 * @height2
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">  
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">r = Rectangle.new(2,3)
+</span><span class="line">r.width = 5 # give samename's variable value
+</span><span class="line">r.height = 5 
+</span><span class="line">puts r.area() #outputs is 25  
+</span><span class="line">
+</span><span class="line">r.width2 = 6 # not samename's variable  create
+</span><span class="line">r.height2 = 6 
+</span><span class="line">puts r.area2() # outputs is 36</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>上面的代码说明了，在使用attr_accessor的时候，会寻找是否有同名的成员变量，如果有则访问同名成员变量，如果没有会默认创建一个前导@的成员变量</p>
 
@@ -216,34 +259,54 @@ puts r.area2() # outputs is 36
 
 <p>Ruby支持操作符重载，而且很神奇！</p>
 
-<pre><code>class Rectangle
-  	attr_accessor :width
-  	attr_accessor :height
-</code></pre>
-
-  	def initialize(wdth, hgt)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-</code></pre>
-
-  	def +(addRectangle)
-<pre><code>	return self.area + addRectangle.area
-  	end
-
-end
-
-r1 = Rectangle.new(2,2)
-r2 = Rectangle.new(3,3)
-puts r1+r2 # operator override
-puts r1+(r2)
-puts r1.+(r2) # standard function calling format
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Rectangle
+</span><span class="line">  attr_accessor :width
+</span><span class="line">  attr_accessor :height
+</span><span class="line">  
+</span><span class="line">  def initialize(wdth, hgt)
+</span><span class="line">    @width = wdth
+</span><span class="line">    @height = hgt
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">  def area()
+</span><span class="line">    return @width * @height
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">  def +(addRectangle)
+</span><span class="line">    return self.area + addRectangle.area
+</span><span class="line">  end
+</span><span class="line">
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">r1 = Rectangle.new(2,2)
+</span><span class="line">r2 = Rectangle.new(3,3)
+</span><span class="line">puts r1+r2 # operator override
+</span><span class="line">puts r1+(r2)
+</span><span class="line">puts r1.+(r2) # standard function calling format</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>神奇吧，其实把+号理解为一个函数的名字最好不过了，就像最后一个写法，哈哈。</p>
 
@@ -258,26 +321,42 @@ puts r1.+(r2) # standard function calling format
 
 <p>sample</p>
 
-<pre><code>class Rectangle
-  	attr_accessor :width
-  	attr_accessor :height
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Rectangle
+</span><span class="line"> attr_accessor :width
+</span><span class="line"> attr_accessor :height
+</span><span class="line">  
+</span><span class="line"> def initialize(wdth = 2, hgt = 2)
+</span><span class="line">    @width = wdth
+</span><span class="line">    @height = hgt
+</span><span class="line"> end
+</span><span class="line">  
+</span><span class="line"> def area()
+</span><span class="line">    return @width * @height
+</span><span class="line"> end
+</span><span class="line">
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">r1 = Rectangle.new
+</span><span class="line">puts r1.area</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  	def initialize(wdth = 2, hgt = 2)
-<pre><code>	@width = wdth
-	@height = hgt
-  	end
-</code></pre>
-
-  	def area()
-<pre><code>	return @width * @height
-  	end
-
-end
-
-r1 = Rectangle.new
-puts r1.area 看到了吧，使用默认值了
-</code></pre>
+<p>看到了吧，使用默认值了</p>
 
 <ul>
   <li>可选参数，可变长参数</li>
@@ -285,36 +364,61 @@ puts r1.area 看到了吧，使用默认值了
 
 <p>sample</p>
 
-<pre><code>class ParamSample
-  	def sayHello(*names)
-  puts names.class
-  puts "Hello #{names.join(",")}!"
-  	end
-  
-end
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class ParamSample
+</span><span class="line">  def sayHello(*names)
+</span><span class="line">     puts names.class
+</span><span class="line">     puts "Hello #{names.join(",")}!"
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">ps = ParamSample.new
+</span><span class="line">ps.sayHello #output Array Hello !
+</span><span class="line">ps.sayHello("lee","snake") #output Array Hello lee,snake!</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-ps = ParamSample.new
-ps.sayHello #output Array Hello !
-ps.sayHello("lee","snake") #output Array Hello lee,snake! 可以看出，可变长参数前缀*号，可变长参数的实质是一个Array，呵呵。
-</code></pre>
+<p>可以看出，可变长参数前缀*号，可变长参数的实质是一个Array，呵呵。</p>
 
 <h3 id="section-3">类变量以及类方法</h3>
 
 <p>sample code</p>
 
-<pre><code>class BankAccount
-  	@@interestRate = 6.5
-  	def BankAccount.getInterestRate()
-   		@@interestRate
-  	end
-  	attr_accessor :balance
-  	def initialize(bal)
-	@balance = bal
-  	end
-end
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class BankAccount
+</span><span class="line"> @@interestRate = 6.5
+</span><span class="line"> def BankAccount.getInterestRate()
+</span><span class="line">   	@@interestRate
+</span><span class="line"> end
+</span><span class="line"> attr_accessor :balance
+</span><span class="line"> def initialize(bal)
+</span><span class="line">    @balance = bal
+</span><span class="line">  end
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">puts BankAccount.getInterestRate()</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-puts BankAccount.getInterestRate() 以上代码中描述了如何定义类变量以及如何访问类变量
-</code></pre>
+<p>以上代码中描述了如何定义类变量以及如何访问类变量</p>
 
 <p>Ruby的成员访问修饰关键字分为三种，与c#一样。</p>
 
@@ -333,34 +437,54 @@ puts BankAccount.getInterestRate() 以上代码中描述了如何定义类变量
 
 <p>比如</p>
 
-<pre><code>class Greeter
-  	def initialize
-  	end
-</code></pre>
-
-  	private
-  	def sayhi()
-<pre><code>	puts "hi"
-  	end
-</code></pre>
-
-  	def saybye()
-<pre><code>	puts "bye"
-  	end
-</code></pre>
-
-  	public
-  	def say()
-<pre><code>	sayhi
-	saybye
-  	end
-  
-end
-
-g = Greeter.new
-g.say # output hi bye
-g.sayhi # error because the sayhi isn't publics member
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">class Greeter
+</span><span class="line">  def initialize
+</span><span class="line">  end
+</span><span class="line">    
+</span><span class="line">  private
+</span><span class="line">  def sayhi()
+</span><span class="line">    puts "hi"
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">  def saybye()
+</span><span class="line">    puts "bye"
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">  public
+</span><span class="line">  def say()
+</span><span class="line">    sayhi
+</span><span class="line">    saybye
+</span><span class="line">  end
+</span><span class="line">  
+</span><span class="line">end
+</span><span class="line">
+</span><span class="line">g = Greeter.new
+</span><span class="line">g.say # output hi bye
+</span><span class="line">g.sayhi # error because the sayhi isn't publics member</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>initialize默认就是private的</p>
 

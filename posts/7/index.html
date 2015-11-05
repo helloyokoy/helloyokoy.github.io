@@ -7,7 +7,47 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="MJExtension The fastest, most convenient and most nonintrusive conversion between JSON and model. 世界上转换速度最快、使用最简单方便的字典转模型框架 Getting Started【开始使用】 &hellip;">
+	<meta name="description" content="解决方案一 写了一个自定义类继承SSLSocketFactory： 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +167,145 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">
+		
+			Android Https请求no Peer Certificate解决方案</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="section">解决方案一</h3>
+<hr />
+
+<p>写了一个自定义类继承SSLSocketFactory：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
+</span><span class="line">import java.net.Socket;
+</span><span class="line">import java.net.UnknownHostException;
+</span><span class="line">import java.security.KeyManagementException;
+</span><span class="line">import java.security.KeyStore;
+</span><span class="line">import java.security.KeyStoreException;
+</span><span class="line">import java.security.NoSuchAlgorithmException;
+</span><span class="line">import java.security.UnrecoverableKeyException;
+</span><span class="line">
+</span><span class="line">import javax.net.ssl.SSLContext;
+</span><span class="line">import javax.net.ssl.TrustManager;
+</span><span class="line">import javax.net.ssl.X509TrustManager;
+</span><span class="line">
+</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
+</span><span class="line">
+</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
+</span><span class="line">        
+</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
+</span><span class="line">        
+</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
+</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
+</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
+</span><span class="line">                super(truststore);
+</span><span class="line">                
+</span><span class="line">   TrustManager tm = new X509TrustManager() {
+</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkClientTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkServerTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}
+</span><span class="line">        };  
+</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
+</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket() throws IOException {  
+</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
+</span><span class="line">}  
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+		
+		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年8 月12 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/mjextensionjie-shao/">
 		
 			MJExtension介绍</a>
@@ -219,74 +398,6 @@
 
 
 	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
-		
-			iOS 依赖注入框架 Objection</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
-  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
-</blockquote>
-
-<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">- (void)viewDidLoad
-</span><span class="line">{
-</span><span class="line">    [super viewDidLoad];
-</span><span class="line">    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-</span><span class="line">    button.frame = CGRectMake(100, 100, 100, 30);
-</span><span class="line">    [self.view addSubview:button];
-</span><span class="line">}
-</span><span class="line"> 
-</span><span class="line">- (void)buttonTapped
-</span><span class="line">{
-</span><span class="line">    ViewControllerB *vc = [[ViewControllerB alloc] init];
-</span><span class="line">    [self.navigationController pushViewController:vc animated:YES];
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
-
-
-		
-		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>

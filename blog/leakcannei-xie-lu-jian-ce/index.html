@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>leakCanary内寸泄露检测 - BryanFu Blog</title>
+	<title>LeakCanary内寸泄露检测 - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
@@ -122,7 +122,7 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">leakCanary内寸泄露检测</h2>
+	<h2 class="title">LeakCanary内寸泄露检测</h2>
 	<div class="entry-content"><h2 id="leakcanary">LeakCanary</h2>
 
 <p>Android 和 Java 内存泄露检测。</p>
@@ -172,39 +172,67 @@
 
 <p>使用 RefWatcher 监控那些本该被回收的对象。</p>
 
-<pre><code>RefWatcher refWatcher = {...};
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">RefWatcher refWatcher = {...};
+</span><span class="line">
+</span><span class="line">// 监控
+</span><span class="line">refWatcher.watch(schrodingerCat);
+</span><span class="line">LeakCanary.install() 会返回一个预定义的 RefWatcher，同时也会启用一个 ActivityRefWatcher，用于自动监控调用 Activity.onDestroy() 之后泄露的 activity。
+</span><span class="line">
+</span><span class="line">public class ExampleApplication extends Application {
+</span><span class="line">
+</span><span class="line">public static RefWatcher getRefWatcher(Context context) {
+</span><span class="line">    	ExampleApplication application = (ExampleApplication) 	context.getApplicationContext();
+</span><span class="line">    return application.refWatcher;
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">private RefWatcher refWatcher;
+</span><span class="line">
+</span><span class="line">@Override public void onCreate() {
+</span><span class="line">    	super.onCreate();
+</span><span class="line">    	refWatcher = LeakCanary.install(this);
+</span><span class="line">}
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-// 监控
-refWatcher.watch(schrodingerCat);
-LeakCanary.install() 会返回一个预定义的 RefWatcher，同时也会启用一个 	ActivityRefWatcher，用于自动监控调用 Activity.onDestroy() 之后泄露的 activity。
+<p>使用 RefWatcher 监控 Fragment：</p>
 
-public class ExampleApplication extends Application {
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">public abstract class BaseFragment extends Fragment {
+</span><span class="line">
+</span><span class="line">@Override public void onDestroy() {
+</span><span class="line">    super.onDestroy();
+</span><span class="line">    RefWatcher refWatcher = ExampleApplication.getRefWatcher(getActivity());
+</span><span class="line">    refWatcher.watch(this);
+</span><span class="line">}
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  	public static RefWatcher getRefWatcher(Context context) {
-<pre><code>	ExampleApplication application = (ExampleApplication) 	context.getApplicationContext();
-return application.refWatcher;
-  	}
-</code></pre>
-
-  	private RefWatcher refWatcher;
-
-  	@Override public void onCreate() {
-<pre><code>	super.onCreate();
-	refWatcher = LeakCanary.install(this);
-  	}
-} 使用 RefWatcher 监控 Fragment：
-
-public abstract class BaseFragment extends Fragment {
-</code></pre>
-
-  	@Override public void onDestroy() {
-<pre><code>	super.onDestroy();
-	RefWatcher refWatcher = ExampleApplication.getRefWatcher(getActivity());
-	refWatcher.watch(this);
-  	}
-} ###工作机制
-</code></pre>
+<h3 id="section-2">工作机制</h3>
 
 <ol>
   <li>
@@ -243,8 +271,10 @@ public abstract class BaseFragment extends Fragment {
 * Reference Key: e71f3bf5-d786-4145-8539-584afaecad1d
 * Device: Genymotion generic Google Nexus 6 - 5.1.0 - API 22 - 1440x2560 vbox86p
 * Android Version: 5.1 API: 22
-* Durations: watch=5086ms, gc=110ms, heap dump=435ms, analysis=2086ms 你甚至可以通过分享按钮把这些东西分享出去。
+* Durations: watch=5086ms, gc=110ms, heap dump=435ms, analysis=2086ms
 </code></pre>
+
+<p>你甚至可以通过分享按钮把这些东西分享出去。</p>
 
 <h3 id="sdk-">SDK 导致的内存泄露</h3>
 
@@ -271,28 +301,42 @@ public abstract class BaseFragment extends Fragment {
   <li>剩下的，就是动手修复了。最好是检查到 GC root 的最短强引用路径开始。</li>
 </ol>
 
-<h3 id="section-2">自定义</h3>
+<h3 id="section-3">自定义</h3>
 
 <h4 id="ui-">UI 样式</h4>
 
 <p>DisplayLeakActivity 有一个默认的图标和标签，你只要在你自己的 APP 资源中，替换以下资源就可。</p>
 
-<pre><code>res/
-  	drawable-hdpi/
-__leak_canary_icon.png
-  	drawable-mdpi/
-__leak_canary_icon.png
-  	drawable-xhdpi/
-__leak_canary_icon.png
-  	drawable-xxhdpi/
-__leak_canary_icon.png
-  	drawable-xxxhdpi/
-__leak_canary_icon.png
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-  	&lt;string name="__leak_canary_display_activity_label"&gt;MyLeaks&lt;/string&gt;
-&lt;/resources&gt;
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">res/
+</span><span class="line">  drawable-hdpi/
+</span><span class="line">  __leak_canary_icon.png
+</span><span class="line">  drawable-mdpi/
+</span><span class="line">  __leak_canary_icon.png
+</span><span class="line">  drawable-xhdpi/
+</span><span class="line">  __leak_canary_icon.png
+</span><span class="line">  drawable-xxhdpi/
+</span><span class="line">  __leak_canary_icon.png
+</span><span class="line">  drawable-xxxhdpi/
+</span><span class="line">  __leak_canary_icon.png
+</span><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+</span><span class="line">&lt;resources&gt;
+</span><span class="line">&lt;string name="__leak_canary_display_activity_label"&gt;MyLeaks&lt;/string&gt;
+</span><span class="line">&lt;/resources&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="leak-trace-1">保存 leak trace</h3>
 
@@ -301,71 +345,114 @@ __leak_canary_icon.png
 
 <p>在 APP 的目录中，DisplayLeakActivity 保存了 7 个 dump 文件和 leak trace。你可以在你的 APP 中，定义 R.integer.__leak_canary_max_stored_leaks 来覆盖类库的默认值。</p>
 
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;resources&gt;
-  	&lt;integer name="__leak_canary_max_stored_leaks"&gt;20&lt;/integer&gt;
-&lt;/resources&gt; ###上传 leak trace 到服务器
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+</span><span class="line">&lt;resources&gt;
+</span><span class="line">&lt;integer name="__leak_canary_max_stored_leaks"&gt;20&lt;/integer&gt;
+</span><span class="line">&lt;/resources&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="leak-trace--1">上传 leak trace 到服务器</h3>
 
 <p>你可以改变处理完成的默认行为，将 leak trace 和 heap dump 上传到你的服务器以便统计分析。</p>
 
 <p>创建一个 LeakUploadService， 最简单的就是继承 DisplayLeakService ：</p>
 
-<pre><code>public class LeakUploadService extends DisplayLeakService {
-  	@Override
-  	protected void afterDefaultHandling(HeapDump heapDump, AnalysisResult result, 	String leakInfo) {
-	if (!result.leakFound || result.excludedLeak) {
-  	return;
-	}
-	myServer.uploadLeakBlocking(heapDump.heapDumpFile, leakInfo);
-  	}
-} 请确认 release 版本 使用 RefWatcher.DISABLED：
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">public class LeakUploadService extends DisplayLeakService {
+</span><span class="line">  @Override
+</span><span class="line">  protected void afterDefaultHandling(HeapDump heapDump, AnalysisResult result, 	String leakInfo) {
+</span><span class="line">  if (!result.leakFound || result.excludedLeak) {
+</span><span class="line">     return;
+</span><span class="line">  }
+</span><span class="line">   myServer.uploadLeakBlocking(heapDump.heapDumpFile, leakInfo);
+</span><span class="line">  }
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-public class ExampleApplication extends Application {
-</code></pre>
+<p>请确认 release 版本 使用 RefWatcher.DISABLED：</p>
 
-  	public static RefWatcher getRefWatcher(Context context) {
-<pre><code>	ExampleApplication application = (ExampleApplication) context.getApplicationContext();
-	return application.refWatcher;
-  	}
-</code></pre>
-
-  	private RefWatcher refWatcher;
-
-  	@Override public void onCreate() {
-<pre><code>	super.onCreate();
-	refWatcher = installLeakCanary();
-  	}
-</code></pre>
-
-  	protected RefWatcher installLeakCanary() {
-<pre><code>	return RefWatcher.DISABLED;
-  	}
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">public class ExampleApplication extends Application {
+</span><span class="line">
+</span><span class="line">  public static RefWatcher getRefWatcher(Context context) {
+</span><span class="line">    	ExampleApplication application = (ExampleApplication) context.getApplicationContext();
+</span><span class="line">    	return application.refWatcher;
+</span><span class="line">  }
+</span><span class="line">
+</span><span class="line"> private RefWatcher refWatcher;
+</span><span class="line">
+</span><span class="line">  	@Override public void onCreate() {
+</span><span class="line">    	super.onCreate();
+</span><span class="line">    	refWatcher = installLeakCanary();
+</span><span class="line"> }
+</span><span class="line">
+</span><span class="line"> protected RefWatcher installLeakCanary() {
+</span><span class="line">    	return RefWatcher.DISABLED;
+</span><span class="line">  }
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>自定义 RefWatcher：</p>
 
-<pre><code>public class DebugExampleApplication extends ExampleApplication {
-  	protected RefWatcher installLeakCanary() {
-	return LeakCanary.install(app, LeakUploadService.class);
-  	}
-}
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">public class DebugExampleApplication extends ExampleApplication {
+</span><span class="line">  protected RefWatcher installLeakCanary() {
+</span><span class="line">    return LeakCanary.install(app, LeakUploadService.class);
+</span><span class="line">  }
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>别忘了注册 service：</p>
 
-<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-&gt;
-  	&lt;application android:name="com.example.DebugExampleApplication"&gt;
-	&lt;service android:name="com.example.LeakUploadService" /&gt;
-  	&lt;/application&gt;
-&lt;/manifest&gt;
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+</span><span class="line">&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+</span><span class="line">   	xmlns:tools="http://schemas.android.com/tools"
+</span><span class="line">&gt;
+</span><span class="line">&lt;application android:name="com.example.DebugExampleApplication"&gt;
+</span><span class="line">    	&lt;service android:name="com.example.LeakUploadService" /&gt;
+</span><span class="line">&lt;/application&gt;
+</span><span class="line">&lt;/manifest&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p><img src="https://github.com/liaohuqiu/leakcanary/raw/master/assets/icon_512.png" alt="alt text" title="Title" /></p>
+
+<hr />
 
 <p>本文转载自  <a href="http://www.liaohuqiu.net/cn/posts/leak-canary-read-me/" title="Title">srain博客</a></p>
 </div>
@@ -416,7 +503,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
   <section>
    <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="/blog/leakcannei-xie-lu-jian-ce" data-title="leakCanary内寸泄露检测" data-url="http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/"></div>
+<div class="ds-thread" data-thread-key="/blog/leakcannei-xie-lu-jian-ce" data-title="LeakCanary内寸泄露检测" data-url="http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

@@ -169,201 +169,333 @@
 <hr />
 <p>关于finalDb的更多介绍，请点击<a href="http://my.oschina.net/yangfuhai/blog/87459" title="Title">这里</a></p>
 
-<pre><code>FinalDb db = FinalDb.create(this);
-User user = new User(); //这里需要注意的是User对象必须有id属性，或者有通过@ID注解的属性
-user.setEmail("mail@tsz.net");
-user.setName("michael yang");
-db.save(user);
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">FinalDb db = FinalDb.create(this);
+</span><span class="line">User user = new User(); //这里需要注意的是User对象必须有id属性，或者有通过@ID注解的属性
+</span><span class="line">user.setEmail("mail@tsz.net");
+</span><span class="line">user.setName("michael yang");
+</span><span class="line">db.save(user);</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="finaldb-onetomany">FinalDB OneToMany懒加载使用方法：</h4>
 
 <p>模型定义：</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">public class Parent{
+</span><span class="line">   private int id;
+</span><span class="line">   @OneToMany(manyColumn = "parentId")
+</span><span class="line">   private OneToManyLazyLoader&lt;Parent ,Child&gt; children;
+</span><span class="line">   /*....*/
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">public class Child{
+</span><span class="line">   private int id;
+</span><span class="line">   private String text;
+</span><span class="line">   @ManyToOne(column = "parentId")
+</span><span class="line">   private  Parent  parent;
+</span><span class="line">   /*....*/
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre><code>public class Parent{
-private int id;
-@OneToMany(manyColumn = "parentId")
-private OneToManyLazyLoader&lt;Parent ,Child&gt; children;
-/*....*/
-}
-public class Child{
-private int id;
-private String text;
-@ManyToOne(column = "parentId")
-private  Parent  parent;
-/*....*/
-} 使用：
+<p>使用：</p>
 
-List&lt;Parent&gt; all = db.findAll(Parent.class);
-    for( Parent  item : all){
-        if(item.getChildren ().getList().size()&gt;0)
-            Toast.makeText(this,item.getText() + item.getChildren().getList().get(0).getText(),Toast.LENGTH_LONG).show();
-    }
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">List&lt;Parent&gt; all = db.findAll(Parent.class);
+</span><span class="line">for( Parent  item : all){
+</span><span class="line">       if(item.getChildren ().getList().size()&gt;0)
+</span><span class="line">         Toast.makeText(this,item.getText()+item.getChildren().getList().get(0).getText(),Toast.LENGTH_LONG).show();
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="finalactivity">FinalActivity使用方法：</h3>
 
 <ul>
   <li>完全注解方式就可以进行UI绑定和事件绑定</li>
-  <li>
-    <p>无需findViewById和setClickListener等</p>
-
-    <pre><code>  public class AfinalDemoActivity extends FinalActivity {
-</code></pre>
-
-  	//无需调用findViewById和setOnclickListener等
-  	@ViewInject(id=R.id.button,click=”btnClick”) Button button;
-  	@ViewInject(id=R.id.textView) TextView textView;
-
-  	public void onCreate(Bundle savedInstanceState) {
-    <pre><code> 	super.onCreate(savedInstanceState);
- 	setContentView(R.layout.main);
-  	}
-</code></pre>
-
-  	public void btnClick(View v){
-    <pre><code> 		textView.setText("text set form button");
-  	}
-  }
-</code></pre>
-  </li>
-  <li>
-    <p>在其他侵入式框架下使用（如ActionBarShelock）</p>
-
-   	protected void onCreate(Bundle savedInstanceState) {
-    <pre><code> 		super.onCreate(savedInstanceState);
-  	setContentView(view);
-  	FinalActivity.initInjectedView(this);
-   	}
-</code></pre>
-  </li>
-  <li>
-    <p>在Fragment中使用</p>
-
-   	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-    <pre><code>    Bundle savedInstanceState) {
- 		View viewRoot = inflater.inflate(R.layout.map_frame, container, false);
- 		FinalActivity.initInjectedView(this,viewRoot);
- 	 	}
-</code></pre>
-  </li>
+  <li>无需findViewById和setClickListener等</li>
 </ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">public class AfinalDemoActivity extends FinalActivity {
+</span><span class="line">
+</span><span class="line">   //无需调用findViewById和setOnclickListener等
+</span><span class="line">  @ViewInject(id=R.id.button,click="btnClick") Button button;
+</span><span class="line">  @ViewInject(id=R.id.textView) TextView textView;
+</span><span class="line">
+</span><span class="line">  public void onCreate(Bundle savedInstanceState) {
+</span><span class="line">     super.onCreate(savedInstanceState);
+</span><span class="line">     setContentView(R.layout.main);
+</span><span class="line">  }
+</span><span class="line">
+</span><span class="line">  public void btnClick(View v){
+</span><span class="line">     textView.setText("text set form button");
+</span><span class="line">  }
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>在其他侵入式框架下使用（如ActionBarShelock）</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">protected void onCreate(Bundle savedInstanceState) {
+</span><span class="line">     super.onCreate(savedInstanceState);
+</span><span class="line">     setContentView(view);
+</span><span class="line">     FinalActivity.initInjectedView(this);
+</span><span class="line"> }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>在Fragment中使用</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+</span><span class="line">   View viewRoot = inflater.inflate(R.layout.map_frame, container, false);
+</span><span class="line">   FinalActivity.initInjectedView(this,viewRoot);
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="finalhttp">FinalHttp使用方法：</h3>
 
 <h4 id="get">普通get方法</h4>
 
-<pre><code>FinalHttp fh = new FinalHttp();
-fh.get("http://www.yangfuhai.com", new AjaxCallBack(){
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">FinalHttp fh = new FinalHttp();
+</span><span class="line">fh.get("http://www.yangfuhai.com", new AjaxCallBack(){
+</span><span class="line">
+</span><span class="line">@Override
+</span><span class="line">public void onLoading(long count, long current) { //每1秒钟自动被回调一次
+</span><span class="line">   textView.setText(current+"/"+count);
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">@Override
+</span><span class="line">public void onSuccess(String t) {
+</span><span class="line">   textView.setText(t==null?"null":t);
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">@Override
+</span><span class="line">public void onStart() {
+</span><span class="line">  //开始http请求的时候回调
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">@Override
+</span><span class="line">public void onFailure(Throwable t, String strMsg) {
+</span><span class="line"> //加载失败的时候回调
+</span><span class="line">}
+</span><span class="line">});</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-@Override
-public void onLoading(long count, long current) { //每1秒钟自动被回调一次
-        textView.setText(current+"/"+count);
-}
-
-@Override
-public void onSuccess(String t) {
-        textView.setText(t==null?"null":t);
-}
-
-@Override
-public void onStart() {
-    //开始http请求的时候回调
-}
-
-@Override
-public void onFailure(Throwable t, String strMsg) {
-    //加载失败的时候回调
-}
-}); ####使用FinalHttp上传文件 或者 提交数据 到服务器（post方法）
-</code></pre>
+<h4 id="finalhttp---post">使用FinalHttp上传文件 或者 提交数据 到服务器（post方法）</h4>
 
 <p>文件上传到服务器，服务器如何接收，请查看<a href="http://www.oschina.net/question/105836_85825" title="Title">这里</a></p>
 
-<pre><code>AjaxParams params = new AjaxParams();
-params.put("username", "michael yang");
-params.put("password", "123456");
-params.put("email", "test@tsz.net");
-params.put("profile_picture", new File("/mnt/sdcard/pic.jpg")); // 上传文件
-params.put("profile_picture2", inputStream); // 上传数据流
-params.put("profile_picture3", new ByteArrayInputStream(bytes)); // 提交字节流
-
-FinalHttp fh = new FinalHttp();
-fh.post("http://www.yangfuhai.com", params, new AjaxCallBack(){
-@Override
-public void onLoading(long count, long current) {
-            textView.setText(current+"/"+count);
-}
-
-@Override
-    public void onSuccess(String t) {
-        textView.setText(t==null?"null":t);
-    }
-    });
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">AjaxParams params = new AjaxParams();
+</span><span class="line">params.put("username", "michael yang");
+</span><span class="line">params.put("password", "123456");
+</span><span class="line">params.put("email", "test@tsz.net");
+</span><span class="line">params.put("profile_picture", new File("/mnt/sdcard/pic.jpg")); // 上传文件
+</span><span class="line">params.put("profile_picture2", inputStream); // 上传数据流
+</span><span class="line">params.put("profile_picture3", new ByteArrayInputStream(bytes)); // 提交字节流
+</span><span class="line">
+</span><span class="line">FinalHttp fh = new FinalHttp();
+</span><span class="line">fh.post("http://www.yangfuhai.com", params, new AjaxCallBack(){
+</span><span class="line">@Override
+</span><span class="line">public void onLoading(long count, long current){ 
+</span><span class="line">     textView.setText(current+"/"+count);
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">@Override
+</span><span class="line">public void onSuccess(String t) {
+</span><span class="line">   textView.setText(t==null?"null":t);
+</span><span class="line">}
+</span><span class="line">});</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h4 id="finalhttp-1">使用FinalHttp下载文件：</h4>
 
 <p>支持断点续传，随时停止下载任务 或者 开始任务</p>
 
-<pre><code>		FinalHttp fh = new FinalHttp();  
-		//调用download方法开始下载
-		HttpHandler handler = fh.download("http://www.xxx.com/下载路径/xxx.apk", //这里是下载的路径
-		true,//true:断点续传 false:不断点续传（全新下载）
-		"/mnt/sdcard/testapk.apk", //这是保存到本地的路径
-		new AjaxCallBack() {  
-            @Override  
-            public void onLoading(long count, long current) {  
-                 textView.setText("下载进度："+current+"/"+count);  
-            }  
-
-            @Override  
-            public void onSuccess(File t) {  
-                		textView.setText(t==null?"null":t.getAbsoluteFile().toString());  
-            }  
-
-        });  
-	//调用stop()方法停止下载
-	handler.stop();
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">FinalHttp fh = new FinalHttp();  
+</span><span class="line">//调用download方法开始下载
+</span><span class="line">HttpHandler handler = fh.download("http://www.xxx.com/下载路径/xxx.apk", //这里是下载的路径
+</span><span class="line">true,//true:断点续传 false:不断点续传（全新下载）
+</span><span class="line">"/mnt/sdcard/testapk.apk", //这是保存到本地的路径
+</span><span class="line">new AjaxCallBack() {  
+</span><span class="line"> @Override  
+</span><span class="line">public void onLoading(long count, long current) {  
+</span><span class="line">      textView.setText("下载进度："+current+"/"+count);  
+</span><span class="line"> }  
+</span><span class="line">
+</span><span class="line">@Override  
+</span><span class="line">public void onSuccess(File t) {                  	textView.setText(t==null?"null":t.getAbsoluteFile().toString());  
+</span><span class="line">}  
+</span><span class="line">
+</span><span class="line">});  
+</span><span class="line">//调用stop()方法停止下载
+</span><span class="line">handler.stop();</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="finalbitmap-">FinalBitmap 使用方法</h3>
 
 <p>加载网络图片就一行代码 fb.display(imageView,url) ,更多的display重载请看帮助文档</p>
 
-<pre><code>private GridView gridView;
-private FinalBitmap fb;
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.images);
-
-    gridView = (GridView) findViewById(R.id.gridView);
-    gridView.setAdapter(mAdapter);
-
-    fb = FinalBitmap.create(this);//初始化FinalBitmap模块
-    fb.configLoadingImage(R.drawable.downloading);
-    //这里可以进行其他十几项的配置，也可以不用配置，配置之后必须调用init()函数,才生效
-    //fb.configBitmapLoadThreadSize(int size)
-    //fb.configBitmapMaxHeight(bitmapHeight)
-}
-
-
-///////////////////////////adapter getView////////////////////////////////////////////
-
-public View getView(int position, View convertView, ViewGroup parent) {
-ImageView iv;
-if(convertView == null){
-    convertView = View.inflate(BitmapCacheActivity.this,R.layout.image_item, null);
-    iv = (ImageView) convertView.findViewById(R.id.imageView);
-    iv.setScaleType(ScaleType.CENTER_CROP);
-    convertView.setTag(iv);
-}else{
-    iv = (ImageView) convertView.getTag();
-}
-//bitmap加载就这一行代码，display还有其他重载，详情查看源码
-fb.display(iv,Images.imageUrls[position]);
-</code></pre>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">private GridView gridView;
+</span><span class="line">private FinalBitmap fb;
+</span><span class="line">@Override
+</span><span class="line">protected void onCreate(Bundle savedInstanceState) {
+</span><span class="line">   super.onCreate(savedInstanceState);
+</span><span class="line">   setContentView(R.layout.images);
+</span><span class="line">
+</span><span class="line">   gridView = (GridView) findViewById(R.id.gridView);
+</span><span class="line">   gridView.setAdapter(mAdapter);
+</span><span class="line">
+</span><span class="line">   fb = FinalBitmap.create(this);//初始化FinalBitmap模块
+</span><span class="line">   fb.configLoadingImage(R.drawable.downloading);
+</span><span class="line">   //这里可以进行其他十几项的配置，也可以不用配置，配置之后必须调用init()函数,才生效
+</span><span class="line">   //fb.configBitmapLoadThreadSize(int size)
+</span><span class="line">   //fb.configBitmapMaxHeight(bitmapHeight)
+</span><span class="line">}
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">///////////////////////////adapter getView////////////////////////////////////////////
+</span><span class="line">
+</span><span class="line">public View getView(int position, View convertView, ViewGroup parent) {
+</span><span class="line">    ImageView iv;
+</span><span class="line">   if(convertView == null){
+</span><span class="line">      convertView = View.inflate(BitmapCacheActivity.this,R.layout.image_item, null);
+</span><span class="line">     iv = (ImageView) convertView.findViewById(R.id.imageView);
+</span><span class="line">     iv.setScaleType(ScaleType.CENTER_CROP);
+</span><span class="line">     convertView.setTag(iv);
+</span><span class="line">    }else{
+</span><span class="line">     iv = (ImageView) convertView.getTag();
+</span><span class="line">    }
+</span><span class="line">//bitmap加载就这一行代码，display还有其他重载，详情查看源码
+</span><span class="line">fb.display(iv,Images.imageUrls[position]);</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h3 id="android-library-project">配置成Android Library Project</h3>
 
@@ -371,18 +503,25 @@ fb.display(iv,Images.imageUrls[position]);
 
 <ul>
   <li>clone到本地</li>
-  <li>
-    <p>添加AndroidManifest.xml文件:</p>
+  <li>添加AndroidManifest.xml文件:</li>
+</ul>
 
-    <pre><code>  &lt;?xml version="1.0" encoding="utf-8"?&gt;
-  &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  	package="net.tsz.afinal" &gt;
-  	&lt;uses-sdk
-  android:minSdkVersion="5"
-  android:targetSdkVersion="7" /&gt;
-  &lt;/manifest&gt;
-</code></pre>
-  </li>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+</span><span class="line">&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+</span><span class="line">  package="net.tsz.afinal" &gt;
+</span><span class="line">  &lt;uses-sdk
+</span><span class="line">   android:minSdkVersion="5"
+</span><span class="line">   android:targetSdkVersion="7" /&gt;
+</span><span class="line">&lt;/manifest&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
   <li>
     <p>导入到 Eclipse:</p>
 
@@ -421,6 +560,7 @@ fb.display(iv,Images.imageUrls[position]);
   </li>
 </ul>
 
+<hr />
 <p>GitHub地址: <a href="https://github.com/yangfuhai/afinal" title="url">https://github.com/yangfuhai/afinal</a></p>
 </div>
 

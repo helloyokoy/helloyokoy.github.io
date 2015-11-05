@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content=" 阅读全文 2015 年7 月9 日 ruby ">
+	<meta name="description" content="objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -127,6 +127,74 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
+		
+			iOS 依赖注入框架 Objection</a>
+	</h2>
+	<div class="entry-content">
+		<blockquote>
+  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
+</blockquote>
+
+<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- (void)viewDidLoad
+</span><span class="line">{
+</span><span class="line">    [super viewDidLoad];
+</span><span class="line">    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+</span><span class="line">    button.frame = CGRectMake(100, 100, 100, 30);
+</span><span class="line">    [self.view addSubview:button];
+</span><span class="line">}
+</span><span class="line"> 
+</span><span class="line">- (void)buttonTapped
+</span><span class="line">{
+</span><span class="line">    ViewControllerB *vc = [[ViewControllerB alloc] init];
+</span><span class="line">    [self.navigationController pushViewController:vc animated:YES];
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
+
+
+		
+		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年7 月10 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/rubyzhao-pin/">
 		
 			Ruby招聘</a>
@@ -200,58 +268,6 @@
 
 
 	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/iosduo-xian-cheng/">
-		
-			iOS多线程详解</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
-  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
-</blockquote>
-
-<h2 id="section">概述</h2>
-<hr />
-<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
-
-<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
-
-<ul>
-  <li>Pthreads</li>
-  <li>NSThread</li>
-  <li>GCD</li>
-  <li>NSOperation &amp; NSOperationQueue</li>
-</ul>
-
-<p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
-
-
-		
-		<a href="/blog/iosduo-xian-cheng/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年6 月18 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>

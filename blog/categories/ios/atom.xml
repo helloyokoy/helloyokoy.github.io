@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-04T22:33:29+08:00</updated>
+  <updated>2015-11-05T11:35:32+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git Flow管理开发流程]]></title>
+    <link href="http://helloyokoy.github.io/blog/git-flow/"/>
+    <updated>2015-11-05T10:18:10+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/git-flow</id>
+    <content type="html"><![CDATA[<p>我们都知道, 在 git 的分支功能相对 svn 确实方便许多，而且也非常推荐使用分支来做开发. 我的做法是每个项目都有2个分支, master 和 develop. master 分支是主分支, 保证程序有一个 稳定版本, develop 则是开发用的分支, 几乎所有的功能开发, bug 修复都在这个分支上, 完成后 再合并回 master.</p>
+
+<p>但是情况并不是这么简单. 有时当我们正在开发一个功能, 但程序突然出现 bug 需要及时去修复的时候, 这时要切回 master 分支, 并基于它创建一个 hotfix 分支. 有时我们在开发一个功能时, 需要停下来去开发另一个功能. 而且所有这些问题都出现 的时候, 发布也会成为比较棘手问题.</p>
+
+<p>也就是说, git branch 功能很强大，但是没有一套模型告诉我们应该怎样在开发的时候善用 这些分支。于是有人就整理出了一套比较好的方案 A successful Git branching model, 今天我们就一起来学习下这套方案.</p>
+
+<!--more-->
+
+<p>简单来说, 他将 branch 分成2个主要分支和3个临时的辅助分支:</p>
+
+<p><img src="http://stormzhang.com/image/gitflow.png" alt="img" /></p>
+
+<h4 id="section">主要分支</h4>
+
+<p>master: 永远处在即将发布(production-ready)状态</p>
+
+<p>develop: 最新的开发状态</p>
+
+<h4 id="section-1">辅助分支</h4>
+
+<ul>
+  <li>
+    <p>feature: 开发新功能的分支, 基于 develop, 完成后 merge 回 develop</p>
+  </li>
+  <li>
+    <p>release: 准备要发布版本的分支, 用来修复 bug. 基于 develop, 完成后 merge 回 develop 和 master</p>
+  </li>
+  <li>
+    <p>hotfix: 修复 master 上的问题, 等不及 release 版本就必须马上上线. 基于 master, 完成后 merge 回 master 和 develop</p>
+  </li>
+</ul>
+
+<p>作者还提供了 git-flow 命令工具:</p>
+
+<pre><code>$ git flow init
+</code></pre>
+
+<p>接着它会问你一系列的问题，蛋定！尽量使用它的默认值就好了：</p>
+
+<pre><code>No branches exist yet. Base branches must be created now.
+Branch name for production releases: [master]
+Branch name for "next release" development: [develop]
+How to name your supporting branch prefixes?
+Feature branches? [feature/]
+Release branches? [release/]
+Hotfix branches? [hotfix/]
+Support branches? [support/]
+Version tag prefix? []
+</code></pre>
+
+<p>完成后当前所在分支就变成 develop. 任何开发都必须从 develop 开始:</p>
+
+<pre><code>git flow feature start some_awesome_feature 完成功能开发之后:
+
+git flow feature finish some_awesome_feature
+</code></pre>
+
+<p>该命令将会把feature/some_awesome_feature合并到develope分支，然后删除功能(feature)分支。</p>
+
+<p>将一个 feature 分支推到远程服务器:</p>
+
+<pre><code>git flow feature publish some_awesome_feature 或者
+
+git push origin feature/some_awesome_feature 当你的功能点都完成时（需要发布新版本了），就基于develop创建一个发布(release)分支，然后升级版本号并在最后发布日期前把Bug Fix掉吧：
+
+$ git flow release start v0.1.0 当你在完成（finish)一个发布分支时，它会把你所作的修改合并到master分支，同时合并回develop分支，所以，你不需要担心你的master分支比develop分支更加超前。
+</code></pre>
+
+<p>最后一件让git-flow显得威武的事情是它处理热修复（即时的BugFix）的能力，你可以像其他分支一样地创建和完成一个热修复分支，区别是它基于master分支，因此你可以在产品出现问题时快速修复，然后通过”finish”命令把修改合并回master和develop分支。</p>
+
+<hr />
+<p>git flow on github: <a href="https://github.com/nvie/gitflow">https://github.com/nvie/gitflow</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Surge]]></title>
@@ -3606,184 +3686,6 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
   <li>Please reference to NSObject+MJKeyValue.h and NSObject+MJCoding.h</li>
   <li><a href="https://github.com/CoderMJLee/MJExtension" title="url">github地址</a></li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS 依赖注入框架 Objection]]></title>
-    <link href="http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/"/>
-    <updated>2015-07-10T21:52:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
-</blockquote>
-
-<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;ul>
-</span><span class='line'>  &lt;li>
-</span><span class='line'>    &lt;p>(void)viewDidLoad
-</span><span class='line'>{
-</span><span class='line'>  [super viewDidLoad];
-</span><span class='line'>  UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-</span><span class='line'>  button.frame = CGRectMake(100, 100, 100, 30);
-</span><span class='line'>  [self.view addSubview:button];
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>  &lt;/li>
-</span><span class='line'>  &lt;li>
-</span><span class='line'>    &lt;p>(void)buttonTapped
-</span><span class='line'>{
-</span><span class='line'>  ViewControllerB *vc = [[ViewControllerB alloc] init];
-</span><span class='line'>  [self.navigationController pushViewController:vc animated:YES];
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>  &lt;/li>
-</span><span class='line'>&lt;/ul>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
-
-<!--more-->
-
-<p>实现方法是：先定义一个协议(protocol)，然后通过objection来注册这个协议对应的class，需要的时候，可以获取该协议对应的object。对于使用方无需关心到底使用的是哪个Class，反正该有的方法、属性都有了(在协议中指定)。这样就去除了对某个特定Class的依赖。也就是通常所说的「面向接口编程」。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-</span><span class='line'>UIViewController &lt;viewcontrolleraprotocol> *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
-</span><span class='line'>vc.backgroundColor = [UIColor lightGrayColor]; // [3]
-</span><span class='line'>UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-</span><span class='line'>self.window.rootViewController = nc;&lt;/viewcontrolleraprotocol>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<ol>
-  <li>获取默认的injector，这个injector已经注册过ViewControllerAProtocol了。</li>
-  <li>获取ViewControllerAProtocol对应的Object。</li>
-  <li>拿到VC后，设置它的某些属性，比如这里的backgroundColor，因为在ViewControllerAProtocol里有定义这个属性，所以不会有warning。</li>
-</ol>
-
-<p>可以看到这里没有引用ViewControllerA。再来看看这个ViewControllerAProtocol是如何注册到injector中的，这里涉及到了Module，对Protocol的注册都是在Module中完成的。Module只要继承JSObjectionModule这个Class即可。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@interface ViewControllerAModule : JSObjectionModule
-</span><span class='line'>@end&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@implementation ViewControllerAModule
-</span><span class='line'>- (void)configure
-</span><span class='line'>{
-</span><span class='line'>   [self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
-</span><span class='line'>}
-</span><span class='line'>@end&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>绑定操作是在configure方法里进行的，这个方法在被添加到injector里时会被自动触发。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-</span><span class='line'>injector = injector ? : [JSObjection createInjector]; // [2]
-</span><span class='line'>injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
-</span><span class='line'>[JSObjection setDefaultInjector:injector]; // [4]&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<ol>
-  <li>获取默认的 injector</li>
-  <li>如果默认的 injector 不存在，就新建一个</li>
-  <li>往这个 injector 里注册我们的 Module</li>
-  <li>设置该 injector 为默认的 injector</li>
-</ol>
-
-<p>这段代码可以直接放到 + (void)load里执行，这样就可以避免在AppDelegate里import各种Module。</p>
-
-<p>因为我们无法直接获得对应的Class，所以必须要在协议里定义好对外暴露的方法和属性，然后该Class也要实现该协议。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@protocol ViewControllerAProtocol &lt;nsobject>
-</span><span class='line'>@property (nonatomic) NSUInteger currentIndex;
-</span><span class='line'>@property (nonatomic) UIColor *backgroundColor;
-</span><span class='line'>@end&lt;/nsobject>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@interface ViewControllerA : UIViewController &lt;viewcontrolleraprotocol>
-</span><span class='line'>@end&lt;/viewcontrolleraprotocol>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>通过objection实现依赖注入后，就能更好地实现SRP(Single Responsibility Principle)，代码更简洁，心情更舒畅，生活更美好。</p>
-
-<hr />
-<p>github地址: <a href="https://github.com/atomicobject/objection" title="url">https://github.com/atomicobject/objection</a></p>
-
-<p>demo地址: <a href="https://github.com/helloyokoy/bizhi" title="url">https://github.com/helloyokoy/bizhi</a></p>
 ]]></content>
   </entry>
   
