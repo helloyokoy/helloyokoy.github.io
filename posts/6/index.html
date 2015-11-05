@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content=" 阅读全文 2015 年7 月9 日 ruby ">
+	<meta name="description" content="在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin! 概述 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -129,43 +129,6 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/rubyzhao-pin/">
-		
-			Ruby招聘</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
-
-
-		
-		<a href="/blog/rubyzhao-pin/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
 		<a href="/blog/iosduo-xian-cheng/">
 		
 			iOS多线程详解</a>
@@ -207,6 +170,62 @@
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/android-push/">
+		
+			Android Push 方案</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="gcmgoogle-cloud-messaging">方案一：使用GCM服务（Google Cloud Messaging）</h2>
+<p>简介：</p>
+
+<p>Google在Android上标配了自己的推送GCM（Google Cloud Messageing），可以帮助开发人员给他们的Android应用程序发送数据。它是一个轻量级的消息，告诉Android应用程序有新的数据要获取从服务器，或者它可能是一个消息，其中包含了4KB的payload data（像即时通讯这类应用程序可以直接使用该payload消息）。GCM服务处理排队的消息，并把消息传递到目标设备上运行的Android应用程序。</p>
+
+<p>优点：</p>
+
+<p>Google提供的服务、原生、简单，无需实现和部署服务端。</p>
+
+<p>缺点：</p>
+
+<ol>
+  <li>
+    <p>GCM要求Android系统必须是2.2以上的版本，所以对于不少2.2以前的系统没法推送</p>
+  </li>
+  <li>
+    <p>国内服务不稳定。而且不少国内的终端厂商纷纷把Google的服务去掉，替换上自己的。</p>
+  </li>
+  <li>
+    <p>需要用户绑定Google账号，但不少国内用户没有Google账号。</p>
+  </li>
+</ol>
+
+
+		
+		<a href="/blog/android-push/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年6 月12 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>
