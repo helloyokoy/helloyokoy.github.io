@@ -7,7 +7,9 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="原文: http://blog.newrelic.com/2014/04/23/better-junior-developer/ 翻译: @mr_sun 在过去的几年中，New Relic聘请了许多接受过各种编程培训的或者“非传统”编程背景的毕业生，其中就包括我！事实上，在我获得我的学士学位以后 &hellip;">
+	<meta name="description" content="总结web应用中常用的各种cache cache是提高应用性能重要的一个环节，写篇文章总结一下用过的各种对于动态内容的cache。
+文章以Nginx，Rails，Mysql，Redis作为例子，换成其他web服务器，语言，数据库，缓存服务都是类似的。
+以下是3层的示意图，方便后续引用 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -122,6 +124,61 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/web-cache/">
+		
+			Web开发cache</a>
+	</h2>
+	<div class="entry-content">
+		<p>总结web应用中常用的各种cache</p>
+
+<p>cache是提高应用性能重要的一个环节，写篇文章总结一下用过的各种对于动态内容的cache。
+文章以Nginx，Rails，Mysql，Redis作为例子，换成其他web服务器，语言，数据库，缓存服务都是类似的。
+以下是3层的示意图，方便后续引用：</p>
+
+<pre><code>                      +-------+
+1                     | Nginx |
+                      +-+-+-+-+
+                        | | |
+        +---------------+ | +---------------+
+        |                 |                 |
+    +---+---+         +---+---+         +---+---+
+2   |Unicorn|         |Unicorn|         |Unicorn|
+    +---+---+         +---+---+         +---+---+
+        |                 |                 |
+        |                 |                 |
+        |             +---+---+             |
+3        +-------------+  D B  +-------------+
+                      +-------+
+</code></pre>
+
+
+		
+		<a href="/blog/web-cache/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月4 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -295,52 +352,6 @@
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/sublime-text-2-plugin/">
-		
-			Sublime Text 2 Plugin</a>
-	</h2>
-	<div class="entry-content">
-		<p>Sublime Text 2是一个轻量、简洁、高效、跨平台的编辑器，方便的配色以及兼容vim快捷键等各种优点博得了很多前端开发人员的喜爱。之前也不并知道它有这么多插件的扩展与支持，直到vincent问到有没有在用cTags插件，才知道原来Sublime通过插件也可以实现一些大型IDE的功能，遂google一下，本篇Blog就来介绍下Sublime下经常使用的插件。</p>
-
-<h4 id="package-control">安装包控制（Package Control）</h4>
-
-<p>打开Sublime Text 2，点击 Tools -&gt; Command Palette 调出控制台Console；</p>
-
-<p>将以下代码粘贴进命令行中并回车：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>重启 Sublime Text 2，如果在 Preferences -&gt; Package Settings中见到Package Control这一项，就说明安装成功了。</p>
-
-
-		
-		<a href="/blog/sublime-text-2-plugin/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月1 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

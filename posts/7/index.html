@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="LeakCanary Android 和 Java 内存泄露检测。 “A small leak will sink a great ship.” - Benjamin Franklin 千里之堤， 毁于蚁穴。 – 《韩非子·喻老》 demo 一个非常简单的 LeakCanary demo: &hellip;">
+	<meta name="description" content="1、volley 项目地址 https://github.com/smanikandan14/Volley-demo JSON，图像等的异步下载； 网络请求的排序（scheduling） 网络请求的优先级处理 缓存 多级别取消请求 和Activity和生命周期的联动（ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -122,6 +122,105 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/androidkai-yuan-kuang-jia/">
+		
+			Android第三方库</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="volley">1、volley</h3>
+
+<p>项目地址 <a href="https://github.com/smanikandan14/Volley-demo">https://github.com/smanikandan14/Volley-demo</a></p>
+
+<ol>
+  <li>JSON，图像等的异步下载；</li>
+  <li>网络请求的排序（scheduling）</li>
+  <li>网络请求的优先级处理</li>
+  <li>缓存</li>
+  <li>多级别取消请求</li>
+  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
+</ol>
+
+<h3 id="android-async-http">2、android-async-http</h3>
+
+<p>项目地址：<a href="https://github.com/loopj/android-async-http">https://github.com/loopj/android-async-http</a></p>
+
+<p>文档介绍：<a href="http://loopj.com/android-async-http/">http://loopj.com/android-async-http/</a></p>
+
+<ol>
+  <li>在匿名回调中处理请求结果</li>
+  <li>在UI线程外进行http请求</li>
+  <li>文件断点上传</li>
+  <li>智能重试</li>
+  <li>默认gzip压缩</li>
+  <li>支持解析成Json格式</li>
+  <li>可将Cookies持久化到SharedPreferences
+
+		
+		<a href="/blog/androidkai-yuan-kuang-jia/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年5 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/turn-around-stay-grace/">
+		
+			优雅转身</a>
+	</h2>
+	<div class="entry-content">
+		<p>编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分：</p>
+
+<p>在我第一次创业的时候我非常好斗。在我看来整个世界好像就是一个战场，我无时无刻不在准备着战斗。与房东斗，与债主斗，与董事会斗，与各个你所能想到的群体斗。但是随着我不断的成长，我越来越发现找到一个共同点比不断的斗争更有好处。</p>
+
+<p>有两个人经常在我身旁尽最大的努力让我冷却下来，他们是我的COO Stuart Lander和CFO David Lapter。Stuart也有些好斗因子，但是之前做过律师的他懂得谈判与和解比打一场持久的战斗要好的多。我记得我们经常达成的一条共识就是——如果一定要转身，那么就优雅的转身。于是我形成了自己的一个思想：如果我要去战斗，那么我会如虎如狼直至胜利；但是如果一定要转身，那么我也将优雅从容的转身。</p>
+
+
+		
+		<a href="/blog/turn-around-stay-grace/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年5 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -301,97 +400,6 @@
 
 
 	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/magicrecordjie-shao/">
-		
-			MagicRecord介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
-
-<p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
-
-<p>也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。</p>
-
-<p>即使你会使用CoreData，每天重复性枯燥的使用CoreData也会变得很笨重，MagicalPanda创建的一个第三方库为这种工作带来了好消息。</p>
-
-<p>MagicalRecord 致力于更快捷和容易的使用CoreData。</p>
-
-<p>MagicalRecord 使用方便，特别流行。正如作者所说，MagicalRecord 致力于使CoreData的代码更简洁，更简单的获取数据，并且使用最优化的操作。</p>
-
-<p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
-
-
-		
-		<a href="/blog/magicrecordjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年2 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ctassetspickercontroller/">
-		
-			iOS相册选择CTAssetsPickerController</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_19/19_98590_315f8ebbd058f7e.png" alt="img" title="image" /></p>
-
-<h3 id="section">特色</h3>
-<ol>
-  <li>用用户的相册中选择多张图片以及视频</li>
-  <li>有过滤的设置，只选择图片或只选择视频</li>
-  <li>可以设置选择图片以及视频的最大数量</li>
-  <li>平均5x fps</li>
-  <li>遵从UIAccessibility协议</li>
-</ol>
-
-
-		
-		<a href="/blog/ctassetspickercontroller/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年12 月3 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>

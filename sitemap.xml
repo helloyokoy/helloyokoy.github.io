@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://helloyokoy.github.io/blog/git-command/</loc>
+    <lastmod>2015-11-05T13:26:53+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://helloyokoy.github.io/blog/write-best-code/</loc>
     <lastmod>2015-11-05T12:46:03+08:00</lastmod>
   </url>
@@ -119,6 +123,10 @@
   <url>
     <loc>http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia/</loc>
     <lastmod>2015-05-09T17:42:35+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/blog/turn-around-stay-grace/</loc>
+    <lastmod>2015-05-05T13:20:11+08:00</lastmod>
   </url>
   <url>
     <loc>http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/</loc>

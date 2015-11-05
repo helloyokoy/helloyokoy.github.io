@@ -1,0 +1,489 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Git 常用命令 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="Git配置 1
+2
+3
+4
+5
+6
+7
+8
+9
+git config --global user.name "storm"
+git config --global user.email "610540626@qq.com"
+git config --global color.ui true
+git &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Git 常用命令</h2>
+	<div class="entry-content"><h3 id="git">Git配置</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git config --global user.name "storm"
+</span><span class="line">git config --global user.email "610540626@qq.com"
+</span><span class="line">git config --global color.ui true
+</span><span class="line">git config --global alias.co checkout  # 别名
+</span><span class="line">git config --global alias.ci commit
+</span><span class="line">git config --global alias.st status
+</span><span class="line">git config --global alias.br branch
+</span><span class="line">git config --global core.editor "vim"  # 设置Editor使用vim
+</span><span class="line">git config --global core.quotepath false # 设置显示中文文件名</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>用户的git配置文件~/.gitconfig</p>
+
+<!--more-->
+
+<h3 id="git-1">Git常用命令</h3>
+<p>查看、添加、提交、删除、找回，重置修改文件</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git help &lt;command&gt;  # 显示command的help
+</span><span class="line">git show            # 显示某次提交的内容
+</span><span class="line">git show $id
+</span><span class="line">
+</span><span class="line">git co  -- &lt;file&gt;   # 抛弃工作区修改
+</span><span class="line">git co  .           # 抛弃工作区修改
+</span><span class="line">
+</span><span class="line">git add &lt;file&gt;      # 将工作文件修改提交到本地暂存区
+</span><span class="line">git add .           # 将所有修改过的工作文件提交暂存区
+</span><span class="line">
+</span><span class="line">git rm &lt;file&gt;       # 从版本库中删除文件
+</span><span class="line">git rm &lt;file&gt; --cached  # 从版本库中删除文件，但不删除文件
+</span><span class="line">
+</span><span class="line">git reset &lt;file&gt;    # 从暂存区恢复到工作文件
+</span><span class="line">git reset -- .      # 从暂存区恢复到工作文件
+</span><span class="line">git reset --hard    # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改
+</span><span class="line">
+</span><span class="line">git ci &lt;file&gt;
+</span><span class="line">git ci .
+</span><span class="line">git ci -a           # 将git add, git rm和git ci等操作都合并在一起做
+</span><span class="line">git ci -am "some comments"
+</span><span class="line">git ci --amend      # 修改最后一次提交记录
+</span><span class="line">
+</span><span class="line">git revert &lt;$id&gt;    # 恢复某次提交的状态，恢复动作本身也创建了一次提交对象
+</span><span class="line">git revert HEAD     # 恢复最后一次提交的状态</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>查看文件diff</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git diff &lt;file&gt;     # 比较当前文件和暂存区文件差异
+</span><span class="line">git diff
+</span><span class="line">git diff &lt;$id1&gt; &lt;$id2&gt;   # 比较两次提交之间的差异
+</span><span class="line">git diff &lt;branch1&gt;..&lt;branch2&gt; # 在两个分支之间比较 
+</span><span class="line">git diff --staged   # 比较暂存区和版本库差异
+</span><span class="line">git diff --cached   # 比较暂存区和版本库差异
+</span><span class="line">git diff --stat     # 仅仅比较统计信息</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>查看提交记录</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git log
+</span><span class="line">git log &lt;file&gt;      # 查看该文件每次提交记录
+</span><span class="line">git log -p &lt;file&gt;   # 查看每次详细修改内容的diff
+</span><span class="line">git log -p -2       # 查看最近两次详细
+</span><span class="line">tig</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Mac上可以使用tig代替diff和log，</p>
+
+<pre><code>brew install tig
+</code></pre>
+
+<h3 id="git-">Git 本地分支管理</h3>
+<p>查看、切换、创建和删除分支</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git br -r           # 查看远程分支
+</span><span class="line">git br &lt;new_branch&gt; # 创建新的分支
+</span><span class="line">git br -v           # 查看各个分支最后提交信息
+</span><span class="line">git br --merged     # 查看已经被合并到当前分支的分支
+</span><span class="line">git br --no-merged  # 查看尚未被合并到当前分支的分支
+</span><span class="line">
+</span><span class="line">git co &lt;branch&gt;     # 切换到某个分支
+</span><span class="line">git co -b &lt;new_branch&gt; # 创建新的分支，并且切换过去
+</span><span class="line">git co -b &lt;new_branch&gt; &lt;branch&gt;  # 基于branch创建新的new_branch
+</span><span class="line">
+</span><span class="line">git co $id          # 把某次历史提交记录checkout出来，但无分支信息，切换到其他分支会自动删除
+</span><span class="line">git co $id -b &lt;new_branch&gt;  # 把某次历史提交记录checkout出来，创建成一个分支
+</span><span class="line">
+</span><span class="line">git br -d &lt;branch&gt;  # 删除某个分支
+</span><span class="line">git br -D &lt;branch&gt;  # 强制删除某个分支 (未被合并的分支被删除的时候需要强制)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>分支合并和rebase</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git merge &lt;branch&gt;               # 将branch分支合并到当前分支
+</span><span class="line">git merge origin/master --no-ff  # 不要Fast-Foward合并，这样可以生成merge提交
+</span><span class="line">
+</span><span class="line">git rebase master &lt;branch&gt;       # 将master rebase到branch，相当于：
+</span><span class="line">git co &lt;branch&gt; &amp;&amp; git rebase master &amp;&amp; git co master &amp;&amp; git merge &lt;branch&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Git补丁管理(方便在多台机器上开发同步时用)</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git diff &gt; ../sync.patch         # 生成补丁
+</span><span class="line">git apply ../sync.patch          # 打补丁
+</span><span class="line">git apply --check ../sync.patch  # 测试补丁能否成功</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Git暂存管理</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git stash                        # 暂存
+</span><span class="line">git stash list                   # 列所有stash
+</span><span class="line">git stash apply                  # 恢复暂存的内容
+</span><span class="line">git stash drop                   # 删除暂存区
+</span><span class="line">git stash clear</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Git远程分支管理</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git pull                         # 抓取远程仓库所有分支更新并合并到本地
+</span><span class="line">git pull --no-ff                 # 抓取远程仓库所有分支更新并合并到本地，不要快进合并
+</span><span class="line">git fetch origin                 # 抓取远程仓库更新
+</span><span class="line">git merge origin/master          # 将远程主分支合并到本地当前分支
+</span><span class="line">git co --track origin/branch     # 跟踪某个远程分支创建相应的本地分支
+</span><span class="line">git co -b &lt;local_branch&gt; origin/&lt;remote_branch&gt;  # 基于远程分支创建本地分支，功能同上
+</span><span class="line">
+</span><span class="line">git push                         # push所有分支
+</span><span class="line">git push origin master           # 将本地主分支推到远程主分支
+</span><span class="line">git push -u origin master        # 将本地主分支推到远程(如无远程主分支则创建，用于初始化远程仓库)
+</span><span class="line">git push origin &lt;local_branch&gt;   # 创建远程分支， origin是远程仓库名
+</span><span class="line">git push origin &lt;local_branch&gt;:&lt;remote_branch&gt;  # 创建远程分支
+</span><span class="line">git push origin :&lt;remote_branch&gt;  #先删除本地分支(git br -d &lt;branch&gt;)，然后再push删除远程分支</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Git远程仓库管理</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git remote -v                    # 查看远程服务器地址和仓库名称
+</span><span class="line">git remote show origin           # 查看远程服务器仓库状态
+</span><span class="line">git remote add origin git@github:stormzhang/demo.git         # 添加远程仓库地址
+</span><span class="line">git remote set-url origin git@github.com:stormzhang/demo.git # 设置远程仓库地址(用于修改远程仓库地址</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>创建远程仓库</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git clone --bare robbin_site robbin_site.git  # 用带版本的项目创建纯版本仓库
+</span><span class="line">scp -r my_project.git git@git.csdn.net:~      # 将纯仓库上传到服务器上
+</span><span class="line">
+</span><span class="line">mkdir robbin_site.git &amp;&amp; cd robbin_site.git &amp;&amp; git --bare init # 在服务器创建纯仓库
+</span><span class="line">git remote add origin git@github.com:robbin/robbin_site.git    # 设置远程仓库地址
+</span><span class="line">git push -u origin master                                      # 客户端首次提交
+</span><span class="line">git push -u origin develop  # 首次将本地develop分支提交到远程develop分支，并且track
+</span><span class="line">
+</span><span class="line">git remote set-head origin master   # 设置远程仓库的HEAD指向master分支</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>也可以命令设置跟踪远程库和本地库</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git branch --set-upstream master origin/master
+</span><span class="line">git branch --set-upstream develop origin/develop</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<hr />
+<p>转载自 <a href="http://robbinfan.com/blog/34/git-common-command">robbinfan</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/git-command" data-title="Git 常用命令" data-url="http://helloyokoy.github.io/blog/git-command/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
