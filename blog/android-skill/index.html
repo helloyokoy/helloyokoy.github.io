@@ -1,0 +1,440 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Android 编程规范与常用技巧 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="一、Android编码规范 1.java代码中不出现中文，最多注释中可以出现中文 2.局部变量命名、静态成员变量命名
+只能包含字母，单词首字母出第一个外，都为大写，其他字母都为小写 3.常量命名
+只能包含字母和_，字母全部大写，单词之间用_隔开 4.layout中的id命名
+命名模式为： &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Android 编程规范与常用技巧</h2>
+	<div class="entry-content"><h3 id="android">一、Android编码规范</h3>
+
+<h4 id="java">1.java代码中不出现中文，最多注释中可以出现中文</h4>
+
+<h4 id="section">2.局部变量命名、静态成员变量命名</h4>
+<p>只能包含字母，单词首字母出第一个外，都为大写，其他字母都为小写</p>
+
+<h4 id="section-1">3.常量命名</h4>
+<p>只能包含字母和_，字母全部大写，单词之间用_隔开</p>
+
+<h4 id="layoutid">4.layout中的id命名</h4>
+<p>命名模式为：view缩写_模块名称_view的逻辑名称</p>
+
+<p>view的缩写详情如下</p>
+
+<pre><code>LayoutView：lv
+
+RelativeView:rv
+
+TextView:tv
+
+ImageView:iv
+
+ImageButton:im
+
+Button:btn
+</code></pre>
+
+<!--more-->
+
+<h4 id="activityview">5.activity中的view变量命名</h4>
+<p>命名模式为：逻辑名称+view缩写</p>
+
+<p>建议：如果layout文件很复杂，建议将layout分成多个模块，每个模块定义一个moduleViewHolder，其成员变量包含所属view</p>
+
+<h4 id="stringsxmlid">6.strings.xml中的id命名</h4>
+<p>命名模式：activity名称_功能模块名称_逻辑名称/activity名称_逻辑名称/common_逻辑名称</p>
+
+<p>strings.xml中，使用activity名称注释，将文件内容区分开来</p>
+
+<h4 id="drawable">7.drawable中的图片命名</h4>
+<p>命名模式：activity名称_逻辑名称/common_逻辑名称</p>
+
+<h4 id="stylesxmllayoutstylestylestylesxml">8.styles.xml：将layout中不断重现的style提炼出通用的style通用组件，放到styles.xml中；</h4>
+
+<h4 id="layer-listselector">9.使用layer-list和selector</h4>
+
+<h4 id="section-2">10.图片尽量分拆成多个可重用的图片</h4>
+
+<h4 id="section-3">11.服务端可以实现的，就不要放在客户端</h4>
+
+<h4 id="section-4">12.引用第三方库要慎重，避免应用大容量的第三方库，导致客户端包非常大</h4>
+
+<h4 id="section-5">13.处理应用全局异常和错误，将错误以邮件的形式发送给服务端</h4>
+
+<h4 id="section-6">14.图片的.9处理</h4>
+
+<h4 id="section-7">15.使用静态变量方式实现界面间共享要慎重</h4>
+
+<h4 id="log--">16.Log(系统名称 模块名称 接口名称，详细描述)</h4>
+
+<h4 id="section-8">17.单元测试（逻辑测试、界面测试）</h4>
+
+<h4 id="handlerhandlermessagewhat">18.不要重用父类的handler，对应一个类的handler也不应该让其子类用到，否则会导致message.what冲突</h4>
+
+<h4 id="activityviewonclicklistener">19.activity中在一个View.OnClickListener中处理所有的逻辑</h4>
+
+<h4 id="stringsxml1s">20.strings.xml中使用%1$s实现字符串的通配</h4>
+
+<h4 id="activityuicommonactivityactivity">21.如果多个Activity中包含共同的UI处理，那么可以提炼一个CommonActivity，把通用部分叫由它来处理，其他activity只要继承它即可</h4>
+
+<h4 id="buttonactivitgrouptabbuttonsetselectedtrueactivitygroupactivitybutton">22.使用button+activitgroup实现tab效果时，使用Button.setSelected(true)，确保按钮处于选择状态，并使activitygroup的当前activity与该button对应</h4>
+
+<h4 id="drawablelayoutmenuvalues">23.如果所开发的为通用组件，为避免冲突，将drawable/layout/menu/values目录下的文件名增加前缀</h4>
+
+<h4 id="section-9">24.数据一定要效验，例如</h4>
+<p>字符型转数字型，如果转换失败一定要有缺省值；</p>
+
+<p>服务端响应数据是否有效判断；</p>
+
+<h4 id="section-10">25.同一个客户端如果要放在不同的市场，而且要统计各个市场下载及使用数据时</h4>
+<p>针对不同的客户端打不同的包，唯一的区别是versionName，apk文件名为versionName.apk</p>
+
+<p>在升级时，要将自己的versionCode和versionName一并传给服务端，如果需要升级，则下载versionName相对应的apk</p>
+
+<p>关于是否要强制升级：</p>
+
+<ol>
+  <li>
+    <p>不管何种情况都强制升级</p>
+  </li>
+  <li>
+    <p>判断用户的版本和当前最新版本，如果兼容则强制升级，否则可选；</p>
+  </li>
+</ol>
+
+<h4 id="section-11">26.有的按钮要避免重复点击</h4>
+
+<h3 id="android-1">二、Android性能优化</h3>
+
+<h4 id="httpgzip">1.http用gzip压缩，设置连接超时时间和响应超时时间</h4>
+<p>http请求按照业务需求，分为是否可以缓存和不可缓存，那么在无网络的环境中，仍然通过缓存的httpresponse浏览部分数据，实现离线阅读。</p>
+
+<h4 id="listview-">2.listview 性能优化</h4>
+<ol>
+  <li>
+    <p>复用convertView
+在getItemView中，判断convertView是否为空，如果不为空，可复用。如果couvertview中的view需要添加listerner，代码一定要在if(convertView==null){}之外。</p>
+  </li>
+  <li>
+    <p>异步加载图片
+item中如果包含有webimage，那么最好异步加载</p>
+  </li>
+  <li>
+    <p>快速滑动时不显示图片
+当快速滑动列表时（SCROLL_STATE_FLING），item中的图片或获取需要消耗资源的view，可以不显示出来；而处于其他两种状态（SCROLL_STATE_IDLE 和SCROLL_STATE_TOUCH_SCROLL），则将那些view显示出来</p>
+  </li>
+  <li>
+    <p>list中异步加载的图片，当不在可视范围内，按照一定的算法及时回收（如在当前可视范围的上下10条item以外的图片进行回收，或者将图片进行缓存，设置一个大小，按照最近最少使用原则超过部分进行回收）
+5)BaseAdapter避免内存溢出
+如果BaseAdapter的实体类有属性非常消耗内存，可以将保存到文件；为提高性能，可以进行缓存，并限制缓存大小。</p>
+  </li>
+</ol>
+
+<h4 id="section-12">3.使用线程池</h4>
+<p>分为核心线程池和普通线程池，下载图片等耗时任务放置在普通线程池，避免耗时任务阻塞线程池后，导致所有异步任务都必须等待</p>
+
+<h4 id="section-13">4.异步任务</h4>
+<p>分为核心任务和普通任务，只有核心任务中出现的系统级错误才会报错，异步任务的ui操作需要判断原activity是否处于激活状态</p>
+
+<ol>
+  <li>
+    <p>主线程不要进行网络处理；</p>
+  </li>
+  <li>
+    <p>主线程不要进行数据库处理；</p>
+  </li>
+  <li>
+    <p>主线程不要进行文件处理；</p>
+  </li>
+</ol>
+
+<h4 id="staticcontext">5.尽量避免static成员变量引用资源耗费过多的实例,比如Context</h4>
+
+<h4 id="weakreference">6.使用WeakReference代替强引用</h4>
+<p>弱引用可以让您保持对对象的引用，同时允许GC在必要时释放对象，回收内存。对于那些创建便宜但耗费大量内存的对象，即希望保持该对象，又要在应用程序需要时使用，同时希望GC必要时回收时，可以考虑使用弱引用。</p>
+
+<h4 id="bitmap">7.超级大胖子Bitmap</h4>
+<ul>
+  <li>
+    <p>及时的销毁(Activity的onDestroy时将bitmap回收，在被UI组件使用后马上进行回收会抛RuntimeException: Canvas: trying to use a recycled bitmap android.graphics.Bitmap)</p>
+  </li>
+  <li>
+    <p>设置一定的采样率(有开发者提供的图片无需进行采样，对于有用户上传或第三方的大小不可控图片，可进行采样减少图片所占的内存)，从服务端返回图片，建议同时反馈图片的size</p>
+  </li>
+  <li>
+    <p>巧妙的运用软引用 drawable对应resid的资源，bitmap对应其他资源 任何类型的图片，如果获取不到（例如文件不存在，或者读取文件时跑OutOfMemory异常），应该有对应的默认图片（默认图片放在在apk中，通过resid获取）；</p>
+  </li>
+</ul>
+
+<h4 id="cursor-gc-android-cursor-close">8.保证Cursor 占用的内存被及时的释放掉，而不是等待GC来处理。并且 Android明显是倾向于编 程者手动的将Cursor close掉</h4>
+
+<h4 id="section-14">9.线程也是造成内存泄露的一个重要的源头。线程产生内存泄露的主要原因在于线程 生命周期的不可控</h4>
+
+<h4 id="imageview">10.如果ImageView的图片是来自网络，进行异步加载</h4>
+
+<h4 id="viewtouchlistener">11.应用开发中自定义View的时候，交互部分，千万不要写成线程不断刷新界面显示，而是根据TouchListener事件主动触发界面的更新</h4>
+
+<h4 id="drawable-1">12.Drawable</h4>
+<p>ui组件需要用到的图片是apk包自带的，那么一律用setImageResource或者setBackgroundResource，而不要根据resourceid</p>
+
+<p>注意：get(getResources(), R.drawable.btn_achievement_normal)该方法通过resid转换为drawable，需要考虑回收的问题，如果drawable是对象私有对象，在对象销毁前是肯定不会释放内存的。</p>
+
+<h4 id="activity">13.复用、回收Activity对象</h4>
+<ul>
+  <li>
+    <p>临时的activity及时finish</p>
+  </li>
+  <li>
+    <p>主界面设置为singleTask</p>
+  </li>
+  <li>
+    <p>一般界面设置为singleTop</p>
+  </li>
+</ul>
+
+<h4 id="section-15">14.位置信息</h4>
+
+<p>获取用户的地理位置信息时，在需要获取数据的时候打开GPS，之后及时关闭掉</p>
+
+<h4 id="onresumeonpause">15.在onResume时设置该界面的电源管理，在onPause时取消设置</h4>
+
+<h3 id="androidui">三、AndroidUI优化</h3>
+
+<h4 id="layoutmergeinclude">1.layout组件化，尽量使用merge及include复用</h4>
+
+<h4 id="styles">2.使用styles，复用样式定义</h4>
+
+<h4 id="section-16">3.软键盘的弹出控制，不要让其覆盖输入框</h4>
+
+<h4 id="section-17">4.数字、字母和汉字混排占位问题</h4>
+<p>将数字和字母全角化。由于现在大多数情况下我们的输入都是半角，所以 字母和数字的占位无法确定，但是一旦全角化之后，数字、字母的占位就和一个汉字的占位相同了，这样就可以避免由于占位导致的排版问题。</p>
+
+<h4 id="section-18">5.英文文档排版</h4>
+<p>textview自动换行时要保持单词的完整性，解决方案是计算字符串长度，然后手动设定每一行显示多少个字母并加上‘\n‘</p>
+
+<h4 id="relativelayout">6.复杂布局使用RelativeLayout</h4>
+
+<h4 id="dppix">7.自适应屏幕，使用dp替代pix</h4>
+
+<h4 id="androidlayoutweighttablelayout">8.使用android:layout_weight或者TableLayout制作等分布局</h4>
+
+<h4 id="animation-list">9.使用animation-list制作动画效果</h4>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年12 月21 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/android-skill" data-title="Android 编程规范与常用技巧" data-url="http://helloyokoy.github.io/blog/android-skill/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
