@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-05T12:40:46+08:00</updated>
+  <updated>2015-11-05T12:51:46+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,191 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[如何编写更棒的代码]]></title>
+    <link href="http://helloyokoy.github.io/blog/write-best-code/"/>
+    <updated>2015-11-05T12:46:03+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/write-best-code</id>
+    <content type="html"><![CDATA[<p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
+
+<p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
+
+<ol>
+  <li>
+    <p>保持方法简短扼要</p>
+  </li>
+  <li>
+    <p>永远永远不要将同一个变量用于不同的目的</p>
+  </li>
+  <li>
+    <p>尽可能让变量和方法的名称能够描述要实现的功能</p>
+  </li>
+  <li>
+    <p>尽可能将变量定义在最靠近它们的地方</p>
+  </li>
+  <li>
+    <p>不要出现让人费解的数字</p>
+  </li>
+  <li>
+    <p>要像对待朋友一样对待你擅长的语言</p>
+  </li>
+  <li>
+    <p>不要逆常规而行</p>
+  </li>
+  <li>
+    <p>千万小心过早的优化代码</p>
+  </li>
+  <li>
+    <p>要常常重构经过测试的代码</p>
+  </li>
+  <li>
+    <p>不要沉溺于过度的设计技巧</p>
+  </li>
+  <li>
+    <p>随时随地学习新的知识</p>
+  </li>
+</ol>
+
+<!--more-->
+
+<p>下面我们来对每一点详细展开介绍。</p>
+
+<h3 id="section">1、保持方法简短扼要</h3>
+
+<p>尽管很多人都遵循这条规则，但是它依然很重要。总的来说，编写的方法最好能在首屏完全显示。试想，如果你需要滚动页面才能看到整一个方法，那是一件多么分散注意力的事情。一个方法最好能保持在5 – 20行之间，当然，你也要视具体情况而定，并不是一概而论的。对于getter和setter方法，通常只需一行代码，所以它们看起来更像是类成员的存取访问器。</p>
+
+<h3 id="section-1">2、远永远不要将同一个变量用于不同的目的</h3>
+<p>一个变量应该只能被用于一个目的，我们可以通过使用常量（C++中用const标识，Java中用final标识），帮助编译器优化代码编译，也可以向程序标识“这个变量是不能被改变的”，这样我们编写的代码就有更好的可读性。</p>
+
+<h3 id="section-2">3、尽可能让变量和方法的名称能够描述要实现的功能</h3>
+<p>一段通俗易懂的程序代码，应该是任何人只要看了代码，就能明白程序是用来干嘛的。所以我建议大家尽量少用缩写，除非是程序界公认的简写习惯，像下面的简写习惯：</p>
+
+<pre><code>src - source
+pos - position
+prev - previous
+</code></pre>
+
+<p>如果你觉得描述性的简写方式没有价值，你可以比较一下n, ns, nsisd和numTeamMembers, seatCount, numSeatsInStadium。</p>
+
+<h3 id="section-3">4、尽可能将变量定义在最靠近它们的地方</h3>
+<p>当你在盖房子的时候，总不希望把锤子放在别人家的院子里吧，相反，你会把盖房的工具放得尽可能近，定义变量也是同样的道理。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int foo = 3;
+</span><span class='line'>int bar = 5;
+</span><span class='line'>// bunch of code that uses “bar”
+</span><span class='line'>// but doesn’t care about “foo”
+</span><span class='line'>// …&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>baz(foo);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>我们可以这样重构代码：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int bar = 5;
+</span><span class='line'>// bunch of code that use “bar”
+</span><span class='line'>// but doesn’t care about “foo”
+</span><span class='line'>// …&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int foo = 3;
+</span><span class='line'>baz(foo);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>当你把变量的声明跟使用它的地方相隔太远的时候（甚至是超过一屏），那的确会给你带来很大的麻烦。你会经常滚动页面去寻找这个变量，导致你很难在大脑中保持代码之间的连贯性。</p>
+
+<h3 id="section-4">5、不要出现让人费解的数字</h3>
+<p>任何时候，你要比较一些常量时，都要将它们定义成constant类型。团队之间调试代码时最让人头疼是出现下面的代码：</p>
+
+<pre><code>il &lt; 4384 把它替换成下面的代码该多好：
+
+inputLength &lt; MAX_INPUT_LENGTH ###6、要像对待朋友一样对待你擅长的语言 学习一种新的编程语言是一件很有趣的事情，从中你可以用很酷的方式学到新东西。还有就是让一个对某种语言很专业的人去学另外一种语言，很多时候会让人心有余而力不足。举个例子，你让一个Java大牛去学Ruby，他应该会用Ruby的方式去解决问题，而不是继续沿用Java的解决问题的思想。
+</code></pre>
+
+<p>当你需要循环输出5遍”Hello World“时，Java代码应该会是这样：</p>
+
+<pre><code>for (int i = 0; i &lt; 5; i++) {
+	System.out.println("Hello world!");
+} 但是用Ruby，你也许会这样写：
+
+for i in (0..5)
+  		puts "Hello world!"
+end 这些看上去都很不错，但是最完美的方式可能是下面这样：
+
+5.times { puts "Hello world!" }
+</code></pre>
+
+<h3 id="section-5">7、不要逆常规而行</h3>
+<p>每一种编程语言都有自己的约束习惯，总的来说，大家对Java的编程习惯可能会了解得比较多，我们一起来看看其中的一些习惯：</p>
+
+<p>方法名以小写字母开头，后面紧跟的是大写字母开头的单词，比如veryLongVariableName。
+类名一般都是大写字母开头的单词组合。
+常量的命名都是大写字母的单词，之间用下划线隔开，比如MY_CONSTANT
+左大括号应该跟if在同一行
+只有在迫不得已的时候才能打破这种规则，千万不要因为不喜欢这种做法而违背已经约定好的编码习俗。如果你身为团队一员，想改变一些编码规则的话，那也可以，不过当你把自己的代码分享给没有你这种习惯的队友的时候，棘手的问题会迎面而来。</p>
+
+<h3 id="section-6">8、千万小心过早的优化代码</h3>
+
+<p>过早的优化是所有问题的根源，至少电视上是这么说的…你的首要任务是编写容易理解的代码，而不要求你能很快写出来。除非你的程序运行很慢，否则谈优化都是为时太早。如果你想优化你的程序，那么得先找出程序的问题，这就是我们需要profilers这个工具的原因。</p>
+
+<p>在没有找到问题源头就去优化代码，这样做你所要付出的代价就是破坏了程序的结构，至少会丧失程序的可读性。如果你发现程序运行缓慢了，也不要盲目地重构代码，要先找到导致运行慢的根本原因。</p>
+
+<p>千万不要傻乎乎地去解决根本不存在的问题。</p>
+
+<h3 id="section-7">9、要常常重构经过测试的代码</h3>
+
+<p>世上没有绝对完美的事情。尽管你认为自己的代码已经写得非常完美了，过一段时间也要经常去看看它，也许那时你会对自己大骂：”怎么会那么傻！”</p>
+
+<p>有一种提高代码质量的方法，那就是经常重构通过测试的代码。所谓通过测试，我指的是程序要能正常工作，你可以通过自动化测试或者手动测试来确保这一点。</p>
+
+<p>首先你要确保程序能够正常运行，第一次我们并不需要写出多么完美的程序，能用就行，接下来我们可以慢慢重构，让它逐渐变得完美。这种开发方式很有TDD的味道，关键在于你需要熟悉重构的每一个环节。如果你熟练使用一些高级的IDE，像IntelliJ IDEA，那你的重构工作将会简单很多。</p>
+
+<p>重构完以后，也许你会碰到很多这样那样的问题，甚至会破坏正常的程序，这就是我们要利用自动化测试的原因了。当你重构完以后，跑一遍单元测试就能避免这些令人头疼的问题了。</p>
+
+<h3 id="section-8">10、不要沉溺于过度的设计技巧</h3>
+
+<p>当我第一次接触到设计模式这一概念时，我觉得自己找到了“圣杯”。这些精妙的设计思想可以让你工作更加顺利，也可以让你的设计浅显易懂，因为你可以简单的说“我使用了观察者模式”，而不同大费周章的解释一通。然而问题来了，由于有些问题看起来太自然太简单了，你会把那些设计模式的思想应用到任何地方，为什么不把这个类设计成单例模式（singleton）？干嘛不去创建一些工厂类呢？</p>
+
+<p>于是用80行代码就能完成的脚本，结果你用了10个类，15个接口和一堆泛型和注释，这其中的97%代码并没有做实质上的事情。设计模式虽然非常有用，可以帮助你简化设计，但是这并不是说你可以到处使用它们。你可以使用设计模式，但是不能将它滥用了。</p>
+
+<h3 id="section-9">11、随时随地学习新的知识</h3>
+
+<p>编程就是一项随时学习新事物的工作，当你学到了新的类库或者编程语言时，你会迫不及待地丢掉老的代码，进而去重写它们。然而有很多理由说明你不该这么做。</p>
+
+<p>将一个新的类库或者框架应用到现有的项目中就会出现类似的问题。比如说你正在为一个Web项目写Javascript，但是中间你发现了jQuery，这时候你会迫不及待想把jQuery应用进去，而丢掉原来的Javascript代码，即便你根本没用jQuery写过任何项目。</p>
+
+<p>最好的方式是你先用jQuery学着写一些简单的例子，把你项目中要用到的技术都学会。比如说你想要用AJAX？就先在项目之外写一些关于AJAX的简单例子，等到完全掌握了，就可以将老代码从项目中移除。</p>
+
+<p>如果你热衷于编程，我强烈推荐你阅读Steve McConnell编写的《Code Complete》，它将永远改变你的编程思维。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Web开发cache]]></title>
@@ -1160,231 +1345,6 @@ gem "rails", bitbucket: "rails"
 
 <hr />
 <p>转载自 <a href="http://liusihao.com/post/64854832920/%E6%88%91%E5%AF%B9%E5%BE%85%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%80%81%E5%BA%A6">我对技术的态度</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[WeChat 开发环境搭建]]></title>
-    <link href="http://helloyokoy.github.io/blog/wechat-develop-environment/"/>
-    <updated>2015-10-29T15:46:09+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/wechat-develop-environment</id>
-    <content type="html"><![CDATA[<p>由于微信开发都是在微信内浏览器运行，不管是登陆还是支付都不能在PC开发端愉快地玩耍，但世界我们还是需要拯救的。</p>
-
-<p>由于自己换了新电脑，第一次做微信开发跟大家分享一下我的开发环境，欢迎拍砖交流。</p>
-
-<p>一般的第三方开发永远离不开两个配置，域名 &amp; 回调，有一些平台支持localhost的域名&amp;回调会方便，更有支持随意更改端口的，微信上面貌似都没有 。</p>
-
-<p>好了，假定我们的域名是playmonkey.me</p>
-
-<h2 id="section">域名</h2>
-
-<p>微信登陆，JSAPI以及支付都有域名限制，所以需要让手机微信上打开palymonkey.me时，访问到我们本地的development server。</p>
-
-<p>干这个勾当的当属 Charles 神器。</p>
-
-<!--more-->
-
-<p>下载安装打开Charles
-Proxy -&gt; Proxy Setting -&gt; Http Proxy勾选Enable…. 开启http proxy代理，端口默认是8888
-Tool -&gt; DNS Spoofing Settings 勾选Enable DNS Spoofing
-然后把palymonkey.me加到DNS Spoofs，指向本机127.0.0.1
-Charles好了，下一步配置手机，确保你的手机网络和电脑在同一局域网，配置手机的HTTP代理到电脑的IP上，端口8888；</p>
-
-<p>访问http://playmonkey.me；</p>
-
-<p>什么？挂了？当然，酱紫访问的是本地的80端口。</p>
-
-<p>好了，我们再来用 Nginx 反向代理搞定这个问题，让手机端的playmonkey.me访问到本地development server的3000端口上。</p>
-
-<p>首先安装启动Nginx，用Apache的朋友对不起了，你们要自食其力XD</p>
-
-<p>配置Nginx</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;server {</span>
-</span><span class='line'><span class="sr">      listen 80;</span>
-</span><span class='line'><span class="sr">      server_name playmonkey.me;</span>
-</span><span class='line'><span class="sr">      charset utf-8;</span>
-</span><span class='line'><span class="sr">      location /</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">proxy_pass</span>          <span class="ss">http</span><span class="p">:</span><span class="sr">//mon</span><span class="n">key_servers</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">proxy_redirect</span>      <span class="n">default</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Forwarded</span><span class="o">-</span><span class="no">For</span> <span class="vg">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Real</span><span class="o">-</span><span class="no">IP</span> <span class="vg">$remote_addr</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="no">Host</span> <span class="vg">$http_host</span><span class="p">;</span>
-</span><span class='line'>        <span class="n">proxy_next_upstream</span> <span class="n">http_502</span> <span class="n">http_504</span> <span class="n">error</span> <span class="n">timeout</span> <span class="n">invalid_header</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;  }</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">}</span>
-</span><span class='line'><span class="sr">upstream palymonkey_servers{</span>
-</span><span class='line'><span class="sr">  server 127.0.0.1:3000;</span>
-</span><span class='line'><span class="sr">}</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>再用手机访问http://playmonkey.me ，Nice….这回看到页面了。
-到此我们可以在微信上用playmonkey.me访问本地的dev server，可以愉快地调用JSAPI &amp; 微信oauth登陆 &amp; 发起支付。</p>
-
-<p>噢，如果做的是PC端的oauth微博登录怎么办？ 在本地host加上 127.0.0.1 palymonkey.com。Nice XD、</p>
-
-<h2 id="section-1">异步回调</h2>
-
-<p>上面说到发起支付，微信的支付结果是通过异步回调的，所以需要做内网穿透，这里推荐两个工具 ngrok OR localtunnel</p>
-
-<p>localtunnel</p>
-
-<p>localtunnel 是node写的，用起来非常简单</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>npm install -g localtunnel
-</span><span class='line'><span class="nv">$ </span>lt –port 3000
-</span><span class='line'>your url is: https://gqgh.localtunnel.me&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>这样外网打开https://gqgh.localtunnel.me 就可以访问到本地的3000端口</p>
-
-<p>但是localtunnel是国外的，公司网络刚刚搭好，经常不稳定果断抛弃转入ngrok；</p>
-
-<p>ngrok（不想折腾的可以忽略XD）</p>
-
-<p>悲催的是ngrok也是国外的，而且服务器给墙了，BUT，问题不大，我们可以pull ngrok 1.X的源码自己编译，2.0会报证书错误如果没有合法的https证书。</p>
-
-<p>好了我们来编译ngrok，噢，对了，ngrok是Go写的，编译出来直接是一个可执行文件，爽歪歪有木有，哈~</p>
-
-<p>在服务器端（每家都有一只staging服务器吧）</p>
-
-<p>NGROK_DOMAIN 设置为您自己拥有的域名，并指向Ngrok server运行的服务器</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;NGROK_DOMAIN<span class="o">=</span>”my.domain.com”
-</span><span class='line'>git clone https://github.com/inconshreveable/ngrok.git
-</span><span class='line'><span class="nb">cd </span>ngrok&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;openssl genrsa -out rootCA.key 2048
-</span><span class='line'>openssl req -x509 -new -nodes -key rootCA.key -subj “/CN<span class="o">=</span><span class="nv">$NGROK_DOMAIN</span>” -days <span class="m">5000</span> -out rootCA.pem
-</span><span class='line'>openssl genrsa -out device.key 2048
-</span><span class='line'>openssl req -new -key device.key -subj “/CN<span class="o">=</span><span class="nv">$NGROK_DOMAIN</span>” -out device.csr
-</span><span class='line'>openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;cp rootCA.pem assets/client/tls/ngrokroot.crt
-</span><span class='line'><span class="c"># make clean</span>
-</span><span class='line'>make release-server release-client&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>编译完有两个可执行文件 bin/ngrok &amp; bin/ngrokd 
-将bin/ngrok copy到你本机
-在服务器上开启ngrok server</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;bin/ngrokd -tlsKey<span class="o">=</span>device.key -tlsCrt<span class="o">=</span>device.crt -domain<span class="o">=</span>”<span class="nv">$NGROK_DOMAIN</span>” -httpAddr<span class="o">=</span>”:8000” -httpsAddr<span class="o">=</span>”:8001”&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>本地端</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;NGROK_DOMAIN<span class="o">=</span>”my.domain.com”
-</span><span class='line'><span class="nb">echo</span> -e “server_addr: <span class="nv">$NGROK_DOMAIN</span>:4443<span class="se">\n</span>trust_host_root_certs: <span class="nb">false</span>” <span class="p">&amp;</span>gt<span class="p">;</span> ngrok-config
-</span><span class='line'>./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span>playmonkey <span class="m">3000</span> // 配置subdomain到本地3000端口，这样外网通过playmonkey.NGROK_DOMAIN 就可以访问到本地dev server的3000端口&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>或者用SSH forwarding</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span><span class="m">3000</span> –proto<span class="o">=</span>tcp 22&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>以上Ngrok编译&amp;配置出自 <a href="https://gist.github.com/lyoshenka/002b7fbd801d0fd21f2f">How to setup Ngrok with a self-signed SSL cert</a></p>
-
-<p>至此我们在发起微信支付时回调URL的HOST就可以设置为playmonkey.NGROK_DOMAIN</p>
-
-<p>至此我们可以愉快地开发测试 微信的oauth登录 &amp; JSAPI &amp; 支付 &amp; 支付回调，好吧，很多BUG一点都不愉快。
-另外感谢 <a href="https://ruby-china.org/ruby_sky">@ruby_sky</a> 的这篇 <a href="https://ruby-china.org/topics/26138">微信支付文章</a> 微信支付做起来如丝般顺滑；
-内微信文档看起来太蛋疼了，各种配置也是找半天，大家有兴趣我可以总结一下微信各个开发的各种配置XD。</p>
-
-<hr />
-<p>转载自 <a href="https://ruby-china.org/topics/26443">ruby-china</a></p>
 ]]></content>
   </entry>
   

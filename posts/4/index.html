@@ -7,8 +7,8 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。 在Android library中不能使用switch-case语句访问资源ID：
-在Android &hellip;">
+	<meta name="description" content="做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些： 服务端控制缓存
+如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -123,6 +123,55 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/anroi-asimplecache/">
+		
+			Android 轻量缓存框架 ASimpleCache</a>
+	</h2>
+	<div class="entry-content">
+		<p>做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些：</p>
+
+<ol>
+  <li>
+    <p>服务端控制缓存
+如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式，但是需要服务端配合，比较灵活。</p>
+  </li>
+  <li>
+    <p>客户端直接控制缓存</p>
+  </li>
+</ol>
+
+<p>有些时候不需要服务端来支持的话，客户端可以直接做一层缓存，思路就是请求之后把数据缓存在本地，最常见的是直接以文件缓存在本地就好了，当然你可以缓存在本地的sqlite，以sqlite文件的形式缓存数据处理更灵活点，然后客户端自己处理缓存的时间，过期则直接清除数据。对于一些不太经常变化的页面，采用这种缓存可以减少客户端流量，同时减少服务器并发量。</p>
+
+<p>对于一些新闻类或者timeline这种，数据变化是非常频繁的，针对这种情况可能就不太适合设置缓存时间，这种情况可以考虑让页面每次进来都会自动刷新一次以获取最新数据，如果网络不好或者断开时可以直接读取本地缓存，增加用户体验。当然如果想要更复杂的处理可以配合时间来判断当前页面要不要刷新。</p>
+
+
+		
+		<a href="/blog/anroi-asimplecache/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月14 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -306,47 +355,6 @@
 
 
 	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ruby-fast-learn/">
-		
-			Ruby on Rails 快速学习</a>
-	</h2>
-	<div class="entry-content">
-		<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
-
-<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
-
-<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
-
-<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
-
-
-		
-		<a href="/blog/ruby-fast-learn/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年9 月2 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-05T12:40:46+08:00</updated>
+  <updated>2015-11-05T12:51:46+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,175 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[如何编写更棒的代码]]></title>
+    <link href="http://helloyokoy.github.io/blog/write-best-code/"/>
+    <updated>2015-11-05T12:46:03+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/write-best-code</id>
+    <content type="html"><![CDATA[<p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
+
+<p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
+
+<ol>
+  <li>
+    <p>保持方法简短扼要</p>
+  </li>
+  <li>
+    <p>永远永远不要将同一个变量用于不同的目的</p>
+  </li>
+  <li>
+    <p>尽可能让变量和方法的名称能够描述要实现的功能</p>
+  </li>
+  <li>
+    <p>尽可能将变量定义在最靠近它们的地方</p>
+  </li>
+  <li>
+    <p>不要出现让人费解的数字</p>
+  </li>
+  <li>
+    <p>要像对待朋友一样对待你擅长的语言</p>
+  </li>
+  <li>
+    <p>不要逆常规而行</p>
+  </li>
+  <li>
+    <p>千万小心过早的优化代码</p>
+  </li>
+  <li>
+    <p>要常常重构经过测试的代码</p>
+  </li>
+  <li>
+    <p>不要沉溺于过度的设计技巧</p>
+  </li>
+  <li>
+    <p>随时随地学习新的知识</p>
+  </li>
+</ol>
+
+<!--more-->
+
+<p>下面我们来对每一点详细展开介绍。</p>
+
+<h3 id="section">1、保持方法简短扼要</h3>
+
+<p>尽管很多人都遵循这条规则，但是它依然很重要。总的来说，编写的方法最好能在首屏完全显示。试想，如果你需要滚动页面才能看到整一个方法，那是一件多么分散注意力的事情。一个方法最好能保持在5 – 20行之间，当然，你也要视具体情况而定，并不是一概而论的。对于getter和setter方法，通常只需一行代码，所以它们看起来更像是类成员的存取访问器。</p>
+
+<h3 id="section-1">2、远永远不要将同一个变量用于不同的目的</h3>
+<p>一个变量应该只能被用于一个目的，我们可以通过使用常量（C++中用const标识，Java中用final标识），帮助编译器优化代码编译，也可以向程序标识“这个变量是不能被改变的”，这样我们编写的代码就有更好的可读性。</p>
+
+<h3 id="section-2">3、尽可能让变量和方法的名称能够描述要实现的功能</h3>
+<p>一段通俗易懂的程序代码，应该是任何人只要看了代码，就能明白程序是用来干嘛的。所以我建议大家尽量少用缩写，除非是程序界公认的简写习惯，像下面的简写习惯：</p>
+
+<pre><code>src - source
+pos - position
+prev - previous
+</code></pre>
+
+<p>如果你觉得描述性的简写方式没有价值，你可以比较一下n, ns, nsisd和numTeamMembers, seatCount, numSeatsInStadium。</p>
+
+<h3 id="section-3">4、尽可能将变量定义在最靠近它们的地方</h3>
+<p>当你在盖房子的时候，总不希望把锤子放在别人家的院子里吧，相反，你会把盖房的工具放得尽可能近，定义变量也是同样的道理。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">int foo = 3;
+</span><span class="line">int bar = 5;
+</span><span class="line">// bunch of code that uses "bar"
+</span><span class="line">// but doesn't care about "foo"
+</span><span class="line">// ...
+</span><span class="line">
+</span><span class="line">baz(foo);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>我们可以这样重构代码：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">int bar = 5;
+</span><span class="line">// bunch of code that use "bar"
+</span><span class="line">// but doesn't care about "foo"
+</span><span class="line">// ...
+</span><span class="line">
+</span><span class="line">int foo = 3;
+</span><span class="line">baz(foo);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>当你把变量的声明跟使用它的地方相隔太远的时候（甚至是超过一屏），那的确会给你带来很大的麻烦。你会经常滚动页面去寻找这个变量，导致你很难在大脑中保持代码之间的连贯性。</p>
+
+<h3 id="section-4">5、不要出现让人费解的数字</h3>
+<p>任何时候，你要比较一些常量时，都要将它们定义成constant类型。团队之间调试代码时最让人头疼是出现下面的代码：</p>
+
+<pre><code>il &lt; 4384 把它替换成下面的代码该多好：
+
+inputLength &lt; MAX_INPUT_LENGTH ###6、要像对待朋友一样对待你擅长的语言 学习一种新的编程语言是一件很有趣的事情，从中你可以用很酷的方式学到新东西。还有就是让一个对某种语言很专业的人去学另外一种语言，很多时候会让人心有余而力不足。举个例子，你让一个Java大牛去学Ruby，他应该会用Ruby的方式去解决问题，而不是继续沿用Java的解决问题的思想。
+</code></pre>
+
+<p>当你需要循环输出5遍”Hello World“时，Java代码应该会是这样：</p>
+
+<pre><code>for (int i = 0; i &lt; 5; i++) {
+	System.out.println("Hello world!");
+} 但是用Ruby，你也许会这样写：
+
+for i in (0..5)
+  		puts "Hello world!"
+end 这些看上去都很不错，但是最完美的方式可能是下面这样：
+
+5.times { puts "Hello world!" }
+</code></pre>
+
+<h3 id="section-5">7、不要逆常规而行</h3>
+<p>每一种编程语言都有自己的约束习惯，总的来说，大家对Java的编程习惯可能会了解得比较多，我们一起来看看其中的一些习惯：</p>
+
+<p>方法名以小写字母开头，后面紧跟的是大写字母开头的单词，比如veryLongVariableName。
+类名一般都是大写字母开头的单词组合。
+常量的命名都是大写字母的单词，之间用下划线隔开，比如MY_CONSTANT
+左大括号应该跟if在同一行
+只有在迫不得已的时候才能打破这种规则，千万不要因为不喜欢这种做法而违背已经约定好的编码习俗。如果你身为团队一员，想改变一些编码规则的话，那也可以，不过当你把自己的代码分享给没有你这种习惯的队友的时候，棘手的问题会迎面而来。</p>
+
+<h3 id="section-6">8、千万小心过早的优化代码</h3>
+
+<p>过早的优化是所有问题的根源，至少电视上是这么说的…你的首要任务是编写容易理解的代码，而不要求你能很快写出来。除非你的程序运行很慢，否则谈优化都是为时太早。如果你想优化你的程序，那么得先找出程序的问题，这就是我们需要profilers这个工具的原因。</p>
+
+<p>在没有找到问题源头就去优化代码，这样做你所要付出的代价就是破坏了程序的结构，至少会丧失程序的可读性。如果你发现程序运行缓慢了，也不要盲目地重构代码，要先找到导致运行慢的根本原因。</p>
+
+<p>千万不要傻乎乎地去解决根本不存在的问题。</p>
+
+<h3 id="section-7">9、要常常重构经过测试的代码</h3>
+
+<p>世上没有绝对完美的事情。尽管你认为自己的代码已经写得非常完美了，过一段时间也要经常去看看它，也许那时你会对自己大骂：”怎么会那么傻！”</p>
+
+<p>有一种提高代码质量的方法，那就是经常重构通过测试的代码。所谓通过测试，我指的是程序要能正常工作，你可以通过自动化测试或者手动测试来确保这一点。</p>
+
+<p>首先你要确保程序能够正常运行，第一次我们并不需要写出多么完美的程序，能用就行，接下来我们可以慢慢重构，让它逐渐变得完美。这种开发方式很有TDD的味道，关键在于你需要熟悉重构的每一个环节。如果你熟练使用一些高级的IDE，像IntelliJ IDEA，那你的重构工作将会简单很多。</p>
+
+<p>重构完以后，也许你会碰到很多这样那样的问题，甚至会破坏正常的程序，这就是我们要利用自动化测试的原因了。当你重构完以后，跑一遍单元测试就能避免这些令人头疼的问题了。</p>
+
+<h3 id="section-8">10、不要沉溺于过度的设计技巧</h3>
+
+<p>当我第一次接触到设计模式这一概念时，我觉得自己找到了“圣杯”。这些精妙的设计思想可以让你工作更加顺利，也可以让你的设计浅显易懂，因为你可以简单的说“我使用了观察者模式”，而不同大费周章的解释一通。然而问题来了，由于有些问题看起来太自然太简单了，你会把那些设计模式的思想应用到任何地方，为什么不把这个类设计成单例模式（singleton）？干嘛不去创建一些工厂类呢？</p>
+
+<p>于是用80行代码就能完成的脚本，结果你用了10个类，15个接口和一堆泛型和注释，这其中的97%代码并没有做实质上的事情。设计模式虽然非常有用，可以帮助你简化设计，但是这并不是说你可以到处使用它们。你可以使用设计模式，但是不能将它滥用了。</p>
+
+<h3 id="section-9">11、随时随地学习新的知识</h3>
+
+<p>编程就是一项随时学习新事物的工作，当你学到了新的类库或者编程语言时，你会迫不及待地丢掉老的代码，进而去重写它们。然而有很多理由说明你不该这么做。</p>
+
+<p>将一个新的类库或者框架应用到现有的项目中就会出现类似的问题。比如说你正在为一个Web项目写Javascript，但是中间你发现了jQuery，这时候你会迫不及待想把jQuery应用进去，而丢掉原来的Javascript代码，即便你根本没用jQuery写过任何项目。</p>
+
+<p>最好的方式是你先用jQuery学着写一些简单的例子，把你项目中要用到的技术都学会。比如说你想要用AJAX？就先在项目之外写一些关于AJAX的简单例子，等到完全掌握了，就可以将老代码从项目中移除。</p>
+
+<p>如果你热衷于编程，我强烈推荐你阅读Steve McConnell编写的《Code Complete》，它将永远改变你的编程思维。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android Screen Adaption 屏幕适配]]></title>
@@ -4590,139 +4759,6 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 
 <p>接下来跟安装adt的流程一样，指导完成
 最后附上官网地址：<a href="http://www.genymotion.com/">http://www.genymotion.com/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby On Rails 快速学习]]></title>
-    <link href="http://helloyokoy.github.io/blog/ruby-fast-learn/"/>
-    <updated>2015-09-02T12:07:16+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/ruby-fast-learn</id>
-    <content type="html"><![CDATA[<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
-
-<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
-
-<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
-
-<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
-
-<!--more-->
-
-<h4 id="section">起点阶段</h4>
-
-<p>强烈建议至少具备如下知识后再开始Rails开发</p>
-
-<h4 id="html-and-css">Html and CSS</h4>
-
-<p>结构和样式不止是设计人员的事，web开发必须要熟悉Head First HTML与CSS（第2版）虽然已经出版了很久，但依然是最好的Html&amp;CSS入门书</p>
-
-<h4 id="linux">Linux</h4>
-
-<p>几乎所有的开发环境都严重依赖于GNU/Linux为主的命令行环境，因此需要学习linux的基本概念和操作</p>
-
-<p>The Linux Command Line</p>
-
-<p>目前最好的linux command line学习指南，生动，清晰，详细，无论是菜鸟还是多年的老手都能从中受益，远超过之前作为标准教材的practical guide to xx系列。No starch这个出版社既有延续至今的Hacker精神，也懂得如何发掘有趣的作者</p>
-
-<h4 id="http-and-rest">HTTP and Rest</h4>
-
-<p>Web开发对于Http的深入理解是必须的，另外Rails还使用Rest协议作为基本指导原则，所以需要深入理解Http和RestRESTful Web Services中文版 这本是目前为止最好的描述HTTP与Rest的作品，可以让你重新认识Web，更何况其中的示例是Ruby语言(因为这本书合著者是Sam Ruby)</p>
-
-<h4 id="programming">Programming</h4>
-
-<p>程序员修炼之道 这本书告诉你，如何做才能成为一个注重实效的程序员，涉及了非常多的理念和实践，虽然都不深入，但至少让你知道世界是什么样子的，是任何程序员最应该在新手阶段读的书，也是对整个业界影响最大的经典之一</p>
-
-<h4 id="git-and-version-control">Git and Version Control</h4>
-
-<p>版本控制在项目中是一开始就要使用的，不止是开发，一切事情都需要版本控制Pro Git 这本是迄今为止讲解Git最清楚最深入的书，对于新手，不建议看后面的实现原理，先读前几章了解概念和学习日常实践使用是最重要的</p>
-
-<h4 id="ruby">Ruby</h4>
-
-<p>如果只是在Rails中使用的Ruby，可以使用一些免费的快速入门教程，不过，系统地学习Ruby，可以了解到很多面向对象开发或函数式编程的思想，对于熟悉和掌握Rails帮助非常大Programming Ruby 1.9 公认的Ruby入门经典，不过对于新手来说，只推荐前半的入门部分，高阶内容可以稍后再来学习</p>
-
-<h4 id="rails">Rails</h4>
-
-<p>Learn Web Development with the Ruby on Rails Tutorial</p>
-
-<p>最后是Rails自身的学习，这本书的最新版涵盖Rails4，是目前为止最好最完整的Rails入门教程，可以在线看，还有大量的视频搭配</p>
-
-<h4 id="section-1">进阶阶段</h4>
-<p>具备下面的知识，可以让你或多或少地理解Rails Way，并真正开始写出合格的Rails应用</p>
-
-<h4 id="programming-1">Programming</h4>
-
-<p>重构</p>
-
-<p>这本”重构”是当年石破天惊的经典著作，讲解如何持续改进和让代码优雅干净，拥有直到现在还依然适用的价值，尤其为Ruby On Rails社区广泛接受，这本书有将其中的Java语言换成Ruby后的版本(重构(Ruby版) (豆瓣))</p>
-
-<p>UNIX编程艺术</p>
-
-<p>由公认的黑客领袖之一Eric S.Raymond撰写的这本书总结了长久以来的Unix领域中的设计和开发哲学，思想乃至文化体系，是了解Ruby和Rails诞生于其中的Unix黑客文化必不可少的读物</p>
-
-<h4 id="ruby-1">Ruby</h4>
-
-<p>深入理解Ruby，除了上边提到的Programming Ruby 1.9以及重构等通用编程书之外，还有以下几个选择</p>
-
-<p>Ruby编程语言</p>
-
-<p>Ruby之父松本行弘和O’Reilly的王牌作者合作，诞生了这本讲解Ruby最透彻的经典著作</p>
-
-<p>Eloquent Ruby</p>
-
-<p>Ruby社区的编程指南之一，介绍了Ruby社群的文化，品味和编程原则，强烈地反映了Ruby程序员的共同特质: 幽默，健谈，追求乐趣，热爱生活</p>
-
-<h4 id="test">Test</h4>
-
-<p>测试驱动开发(TDD)以及之后进化的行为驱动开发(BDD)是Ruby和Rails社群的核心文化之一，只有彻底理解并运用BDD，才是合格的Rails开发者</p>
-
-<p>The RSpec Book</p>
-
-<p>唯一的也是必读的BDD介绍作品，由RSpec核心成员撰写</p>
-
-<p>Git</p>
-
-<p>可以坚持把Pro Git的后半部分学习完，没有更深入和清楚的书了</p>
-
-<p>CSS</p>
-
-<p>CSS权威指南</p>
-
-<p>Eric Meyer的CSS权威指南至今仍然是CSS2讲解最全面和最深入的参考书</p>
-
-<p>Javascript and jQuery</p>
-
-<p>Web开发的交互性会越来越多，Javascript已经成为了相当严肃的编程语言</p>
-
-<p>JavaScript权威指南</p>
-
-<p>目前最全面最好的Javascript学习书籍</p>
-
-<p>jQuery基础教程 （第4版）</p>
-
-<p>唯一尚可称得上紧跟jQuery发展脚步的学习指南</p>
-
-<h4 id="rails-1">Rails</h4>
-
-<p>Rails发展的实在太快了，最好的方法也许是跟踪在线文档，不过还是推荐这本</p>
-
-<p>The Rails 4 Way</p>
-
-<p>这本书的Rails 3版本讲解Rails的哲学和细节相当到位，不过Rails 4版本还没有出版，非常值得在今年3月份第一时间拿下它。</p>
-
-<p>— More</p>
-
-<p>上边的书籍都读过的话，可能你终于能了解到Rails背后涉及的概念和实践有多么庞大惊人，也了解到了还有多么深的知识鸿沟需要跨越，了解到了一切都还只是开始，不过值得庆幸的是，一切事情都需要个开始</p>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：李路</p>
-
-<p>链接：http://www.zhihu.com/question/19552402/answer/22336708</p>
-
-<p>来源：知乎</p>
 ]]></content>
   </entry>
   
