@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="Sublime Text 2是一个轻量、简洁、高效、跨平台的编辑器，方便的配色以及兼容vim快捷键等各种优点博得了很多前端开发人员的喜爱。之前也不并知道它有这么多插件的扩展与支持，直到vincent问到有没有在用cTags插件，才知道原来Sublime通过插件也可以实现一些大型IDE的功能， &hellip;">
+	<meta name="description" content="由于微信开发都是在微信内浏览器运行，不管是登陆还是支付都不能在PC开发端愉快地玩耍，但世界我们还是需要拯救的。 由于自己换了新电脑，第一次做微信开发跟大家分享一下我的开发环境，欢迎拍砖交流。 一般的第三方开发永远离不开两个配置，域名 &amp; 回调，有一些平台支持localhost的域名& &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -124,52 +124,6 @@
 		
 	
 	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/sublime-text-2-plugin/">
-		
-			Sublime Text 2 Plugin</a>
-	</h2>
-	<div class="entry-content">
-		<p>Sublime Text 2是一个轻量、简洁、高效、跨平台的编辑器，方便的配色以及兼容vim快捷键等各种优点博得了很多前端开发人员的喜爱。之前也不并知道它有这么多插件的扩展与支持，直到vincent问到有没有在用cTags插件，才知道原来Sublime通过插件也可以实现一些大型IDE的功能，遂google一下，本篇Blog就来介绍下Sublime下经常使用的插件。</p>
-
-<h4 id="package-control">安装包控制（Package Control）</h4>
-
-<p>打开Sublime Text 2，点击 Tools -&gt; Command Palette 调出控制台Console；</p>
-
-<p>将以下代码粘贴进命令行中并回车：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>重启 Sublime Text 2，如果在 Preferences -&gt; Package Settings中见到Package Control这一项，就说明安装成功了。</p>
-
-
-		
-		<a href="/blog/sublime-text-2-plugin/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月1 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
 
 
     <article class="post">
@@ -352,6 +306,53 @@
 
 
 2015 年10 月22 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/rubymotion/">
+		
+			RubyMotion简介</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="rubymotion-">RubyMotion 是什么</h2>
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2015/aa191c47356e1b30b1f1a7d7e82fea3c.gif" alt="icon" /></p>
+
+<h2 id="section">统一的运行时环境</h2>
+<p>在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java Runtime，Dalvik 以及 ART 实现了 Ruby 语言。由于这种异常紧密的集成，Ruby 可以自如的调用各平台的接口而不会产生任何性能损失。你可以轻松自如的混编 Ruby 和 Objective-C 或者 Ruby 和 Java，自由的访问各平台提供的最新的 API，自由调用各种第三方库。</p>
+
+<h2 id="section-1">完全编译</h2>
+
+<p>RubyMotion 使用基于 LLVM 构建(参见原理)的革命性的、先进的预编译器（AOT Complier）将项目中的 Ruby 代码编译成经过优化的机器代码。在 iOS 以及 Android 项目，编译器可以生成 32 位和 64 位的 ARM 目标代码，在 OS X 项目则可以生成 32 位和 64 位的 Intel 目标代码。原始的 Ruby 代码不会出现在程序中，也不会在运行期间被解释执行。RubyMotion 的典型项目的程序包大小在 1MB 以下。</p>
+
+<h2 id="section-2">自动管理内存</h2>
+
+<p>在 Ruby 语言中，你无需考虑内存管理事宜。因为，RubyMotion 会自动释放内存中那些你创建的但是却不再会被使用的对象。针对 iOS 和 OS X 平台，我们提供了一个自定义的内存模型，在设计上类似 Objective-C 的 ARC 机制。这个模型无需再使用额外内存或者代码来处理不再使用的对象的声明和回收。针对 Android 平台，我们使用 Java 运行时环境的 GC 来管理内存。</p>
+
+
+		
+		<a href="/blog/rubymotion/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月15 日</div>
 	<div class="tags">
 
 
