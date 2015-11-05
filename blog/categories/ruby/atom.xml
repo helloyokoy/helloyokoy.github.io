@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-05T14:24:41+08:00</updated>
+  <updated>2015-11-05T15:00:27+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -852,91 +852,6 @@ end
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[如何成为一个优秀的初级开发者]]></title>
-    <link href="http://helloyokoy.github.io/blog/how-to-become-a-developer/"/>
-    <updated>2015-11-04T16:49:15+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/how-to-become-a-developer</id>
-    <content type="html"><![CDATA[<p>原文: <a href="http://blog.newrelic.com/2014/04/23/better-junior-developer/">http://blog.newrelic.com/2014/04/23/better-junior-developer/</a></p>
-
-<p>翻译: <a href="https://ruby-china.org/mr_sun">@mr_sun</a></p>
-
-<p>在过去的几年中，New Relic聘请了许多接受过各种编程培训的或者“非传统”编程背景的毕业生，其中就包括我！事实上，在我获得我的学士学位以后，我想要进入一所医药大学做进一步的学习，但是这时我获得了Google提供的一份技术支持的工作。在四年多以后我利用一个休假的时间出席了Hackbright Academy，这是个教女性学员如何编程的学校，课程安排为十周（现在延长到了十二周）。在第一周教学即将结束的时候，我知道我终于找到了我想要专注一生去追求的事业和方向。</p>
-
-<p>不过，我的一个最大的忧虑是，我必须放弃我在其他领域已经积累起来的经验和技巧，去进入到一个全新的领域，在这个新领域里，我将面对的竞争对手都是拥有该领域几十年经验的资深工作者。幸运的是，在我真正进入到这样一个新角色以后，在共同工作的许多优秀的前辈的指导和帮助下，我总结出了一下一些自己的感悟：
-- 不断地学习是成为一个优秀开发者的必备基石
-- 有很多工程，是不是直接就开始写代码的</p>
-
-<p>要清晰的认识到，即便作为一个还有很多东西要学的初级开发者，也有很多方法来利用我已经在其他领域已具备的技能。因为自己已经经历过那样一段对自己很不确定的时期，这里我想要向大家传播以下两条信息：
-- 初级开发者：即使你还在学习关于编程的基本技巧，你也可以有很多方式为你的团队做出自己的贡献。
-- mentor：因材施教，换位思考，让你的指导更加符合初级开发者的学习需要，这样将使他们更有自信，使你的指导更具效率。</p>
-
-<!--more-->
-
-<h2 id="section">有很多要学</h2>
-
-<p>作为一个初级开发者，你将面临有太多东西要学的挑战，这时，重要的是不要试图所有东西都靠自己去解决，这里有三种方法可以采用：</p>
-
-<ol>
-  <li>
-    <p>找到想要帮助你的人</p>
-
-    <p>通过在你所在的团队或者结识其他编程团队，你可以扩展在你遇到问题时能为你提供帮助的网络人群。为了充分的利用网络资源，有一点很重要，就是面对一个问题，你需要先尽自己努力去探究，如此而不解，再去询问别人，这也是珍惜别人时间的一种表现。对于一个初级开发者，如果你在遇到问题时先自己做很多研究，那么你将会更快的学到更多的东西（这个过程中Google and StackOverflow将成为你的好朋友，为你提供很多的帮助）。这也会让你那些经验丰富的同事觉得他们对你的指导更有帮助，让他们更相信在下一次你遇到同样问题时你会充分利用他们给予你的建议和指导。</p>
-  </li>
-  <li>
-    <p>让别人更容易帮助到你</p>
-
-    <p>当你自己找不到合适的方式来描述你遇到的问题时，将更难于让别人理解你到底困惑在哪里。以下是一些我在遇到问题时喜欢使用的提问格式：</p>
-
-    <p>我在尝试__<strong>，这样我就可以</strong>__</p>
-
-    <p>我在____遇到了问题</p>
-
-    <p>我已经查看了__<strong>并且试过了</strong>__</p>
-
-    <p>举个例子，这是我最近一次用以上格式提问：“我试图要理解为什么这个账号登录时会出现这个banner，这样我就能告诉客户他们是否需要关注该警告。我在查看一个问题时找到了这个记录，我检查过了模型，并试图在本地将问题重现”。</p>
-  </li>
-  <li>
-    <p>缩小你要学习的范围</p>
-
-    <p>这就像在你解决一个棘手的技术问题时，你应该尽量将可能存在问题的范围缩小，以使的问题不至于过于繁杂。可能你想要弄明白的问题有太多太多，但是有经验的指导者可以告诉你哪些重要哪些不重要，给你分析这些问题的优先顺序（我的个人目标：真正自己独立的创建一个Rails App）。</p>
-  </li>
-</ol>
-
-<h2 id="section-1">帮助你的团队</h2>
-
-<p>作为一个初级开发者，你很自然会这样问自己：我本还需要这么多的帮助，又该怎样为我的团队贡献自己的力量呢？要记住，这世界上，开发的岗位永远要比开发人员多。所以并不需要在高效（高级开发人员）和低效（初级开发人员）做出选择，而是在于是否有相应的应用需要开发人员来做。记住以下这些策略将有助于反馈，调整你所写的代码</p>
-
-<ol>
-  <li>
-    <p>提出好的问题</p>
-
-    <p>我喜欢站在初级开发者的角度开考虑问题，提出好的问题，比如“我们是否在做一件正确的事？”这样可以帮助团队尽早发现错误的引导和假设。这样将避免在开发后期发现这些问题所将浪费大量的时间，所以要尽早提出好的问题。</p>
-  </li>
-  <li>
-    <p>给出好的反馈</p>
-
-    <p>将有用的反馈在合适的场合合适的时间给到正确的人，这对很对人来说并非易事。但是所有的公司都有其专门的反馈部门，因而即使初级开发者也有可能有机会获得大量参与反馈工作的机会。你也可以帮助预测来自于销售或者技术支持部门的关于产品新版本或产品更新的一些冲突。</p>
-  </li>
-  <li>
-    <p>使你的团队面对其他团队表现的更好</p>
-
-    <p>通过对你们所合作的团队投入更多的回应与热情，将使你的团队走的更远。有一种很好的方式来使你的团队在其他合作团队面前表现的更好，就是尽可能的向他们展示你们公司的产品特点。你可以有机会展示你的团队已经充分考虑了一些方面对其他团队的影响，比如可靠性。我几乎总是提前写好脚本并对整个流程作好足够的练习，以此来确保我的演示更加高效同时在演示过程中尽可能少的出错。</p>
-  </li>
-</ol>
-
-<h2 id="section-2">指导者要怎样才能更好的帮助初级开发者</h2>
-
-<p>以上的建议是专门针对初级开发者的，而对于导师来说，要更好的帮助初级开发者，使他们感觉到自己的价值和意识到自己为团队做出贡献的能力，也有很多事情可做。我很感兴趣于探讨如何让初级开发者的学习风格与有经验者的指导更好的磨合和匹配，以达到更好的效果。以此来保证每个人的时间都能被充分高效的利用，无论开发者还是指导者。举个例子，你可以探讨一个初级开发者希望以怎样的频率收到反馈和指示，以及高级开发者在什么时间什么情况下愿意被问题打断。</p>
-
-<p>同时，作为一个高级开发者也就是mentor，如果你想让初级开发者在一个问题上自己思考更多以此来让他学习更多东西，那么你需要让他知道你的目的。这样是为了避免初级开发者出现过多不自信的消极情绪，因为他们会误以为他们所提出的是一个很简单的问题，但事实上尽管那本是个很复杂的问题，这种误解会让他们怀疑自己的能力，而变得不自信。</p>
-
-<h2 id="section-3">结论</h2>
-
-<p>一个初级开发者在第一份工作中就如同一张白纸。有许多机会可以通过共同工作的高级开发者的一些技术指导来使他们可以快速提升并且让他们感觉到从第一天工作就能创造价值。</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Gemfile 详解]]></title>
     <link href="http://helloyokoy.github.io/blog/gem-description/"/>
     <updated>2015-11-03T16:05:02+08:00</updated>
@@ -1345,43 +1260,299 @@ gem "rails", bitbucket: "rails"
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[技术学习态度]]></title>
-    <link href="http://helloyokoy.github.io/blog/tech-learn/"/>
-    <updated>2015-11-03T15:23:49+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/tech-learn</id>
-    <content type="html"><![CDATA[<p>本文仅谈业余时间的技术学习，不谈工作中的要求。</p>
+    <title type="html"><![CDATA[WeChat 开发环境搭建]]></title>
+    <link href="http://helloyokoy.github.io/blog/wechat-develop-environment/"/>
+    <updated>2015-10-29T15:46:09+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wechat-develop-environment</id>
+    <content type="html"><![CDATA[<p>由于微信开发都是在微信内浏览器运行，不管是登陆还是支付都不能在PC开发端愉快地玩耍，但世界我们还是需要拯救的。</p>
 
-<p>技术固然要时时学习，因为更新快嘛，但对待技术上学什么，怎么花时间学，需要一个指导思想，否则浪费时间而且效果不好。</p>
+<p>由于自己换了新电脑，第一次做微信开发跟大家分享一下我的开发环境，欢迎拍砖交流。</p>
 
-<ol>
-  <li>
-    <p>抓住主干，而非细节
-最近很火的一句话是“你不要用战术上的勤奋掩盖战略上的懒惰”。放到技术学习上就先主理解主干后关注枝叶，比如C++的好书很多，《Effective C++》和《Inside C++ Object Model》是好书，但它们都不是用来入门的，为什么? 因为它们不是主干，语言实现细节和各种坑你都了解了，碰到实际问题依然用不好C++。</p>
-  </li>
-  <li>
-    <p>尽量不折腾
-不去折腾那些不成熟的技术，尽量用较为成熟的技术。在一年多之前，我用AngularJS，MongoDB的时候把我可给坑惨了，所以我下决心如果不因为工作坚决不碰Go语言，Node.js，要学不如学Erlang。新技术应用场景不清晰，前景不清晰，生态环境弱，类库少，坑多不容易跳出来。简而言之就是风险大于收益。同理我也不喜欢用Linux而喜欢Mac，Vim的包也是别人弄好了直接install的。</p>
-  </li>
-</ol>
+<p>一般的第三方开发永远离不开两个配置，域名 &amp; 回调，有一些平台支持localhost的域名&amp;回调会方便，更有支持随意更改端口的，微信上面貌似都没有 。</p>
+
+<p>好了，假定我们的域名是playmonkey.me</p>
+
+<h2 id="section">域名</h2>
+
+<p>微信登陆，JSAPI以及支付都有域名限制，所以需要让手机微信上打开palymonkey.me时，访问到我们本地的development server。</p>
+
+<p>干这个勾当的当属 Charles 神器。</p>
 
 <!--more-->
 
-<ol>
-  <li>
-    <p>尽量学习经典原理而不是浪费时间在细节上。
-这一点条和第一点类似，多花时间学习抽象模式，设计原则，类型系统，看诸如《SICP》《The little schemer》《Essential of Programming Language》这种书，如果不是因为工作绝不浪费时间到《Dive into python》这种具体到语言细节的书上。</p>
-  </li>
-  <li>
-    <p>尽量学习形而下的系统而不过多上升到形而上的思想上。上一点谈到了抽象模式和类型系统，但切不可单纯从思想上判断哪种语言一定好，哪种抽象模式就一定好，一定要结合形而下的系统综合看待，学习C语言就要随着OS学习，学习Lisp就随着编译器或分析器一起学习，学习Ruby或Python就跟着web开发来学习，通过某一类系统架构理解语言的优劣，通过语言来理解为何这么架构系统。</p>
-  </li>
-  <li>
-    <p>学好那些通用技能。
-比如：1，如何进行Debug，2，如何阅读源代码，3，如何进行基本性能监控，4，熟练用好自己的编辑器和*nix命令行，5，git技巧，6，项目管理能力，7，关系型数据库的知识。</p>
-  </li>
-</ol>
+<p>下载安装打开Charles
+Proxy -&gt; Proxy Setting -&gt; Http Proxy勾选Enable…. 开启http proxy代理，端口默认是8888
+Tool -&gt; DNS Spoofing Settings 勾选Enable DNS Spoofing
+然后把palymonkey.me加到DNS Spoofs，指向本机127.0.0.1
+Charles好了，下一步配置手机，确保你的手机网络和电脑在同一局域网，配置手机的HTTP代理到电脑的IP上，端口8888；</p>
+
+<p>访问http://playmonkey.me；</p>
+
+<p>什么？挂了？当然，酱紫访问的是本地的80端口。</p>
+
+<p>好了，我们再来用 Nginx 反向代理搞定这个问题，让手机端的playmonkey.me访问到本地development server的3000端口上。</p>
+
+<p>首先安装启动Nginx，用Apache的朋友对不起了，你们要自食其力XD</p>
+
+<p>配置Nginx</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;server {</span>
+</span><span class='line'><span class="sr">      listen 80;</span>
+</span><span class='line'><span class="sr">      server_name playmonkey.me;</span>
+</span><span class='line'><span class="sr">      charset utf-8;</span>
+</span><span class='line'><span class="sr">      location /</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">proxy_pass</span>          <span class="ss">http</span><span class="p">:</span><span class="sr">//mon</span><span class="n">key_servers</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_redirect</span>      <span class="n">default</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Forwarded</span><span class="o">-</span><span class="no">For</span> <span class="vg">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Real</span><span class="o">-</span><span class="no">IP</span> <span class="vg">$remote_addr</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="no">Host</span> <span class="vg">$http_host</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_next_upstream</span> <span class="n">http_502</span> <span class="n">http_504</span> <span class="n">error</span> <span class="n">timeout</span> <span class="n">invalid_header</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;  }</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'><span class="sr">upstream palymonkey_servers{</span>
+</span><span class='line'><span class="sr">  server 127.0.0.1:3000;</span>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>再用手机访问http://playmonkey.me ，Nice….这回看到页面了。
+到此我们可以在微信上用playmonkey.me访问本地的dev server，可以愉快地调用JSAPI &amp; 微信oauth登陆 &amp; 发起支付。</p>
+
+<p>噢，如果做的是PC端的oauth微博登录怎么办？ 在本地host加上 127.0.0.1 palymonkey.com。Nice XD、</p>
+
+<h2 id="section-1">异步回调</h2>
+
+<p>上面说到发起支付，微信的支付结果是通过异步回调的，所以需要做内网穿透，这里推荐两个工具 ngrok OR localtunnel</p>
+
+<p>localtunnel</p>
+
+<p>localtunnel 是node写的，用起来非常简单</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>npm install -g localtunnel
+</span><span class='line'><span class="nv">$ </span>lt –port 3000
+</span><span class='line'>your url is: https://gqgh.localtunnel.me&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>这样外网打开https://gqgh.localtunnel.me 就可以访问到本地的3000端口</p>
+
+<p>但是localtunnel是国外的，公司网络刚刚搭好，经常不稳定果断抛弃转入ngrok；</p>
+
+<p>ngrok（不想折腾的可以忽略XD）</p>
+
+<p>悲催的是ngrok也是国外的，而且服务器给墙了，BUT，问题不大，我们可以pull ngrok 1.X的源码自己编译，2.0会报证书错误如果没有合法的https证书。</p>
+
+<p>好了我们来编译ngrok，噢，对了，ngrok是Go写的，编译出来直接是一个可执行文件，爽歪歪有木有，哈~</p>
+
+<p>在服务器端（每家都有一只staging服务器吧）</p>
+
+<p>NGROK_DOMAIN 设置为您自己拥有的域名，并指向Ngrok server运行的服务器</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;NGROK_DOMAIN<span class="o">=</span>”my.domain.com”
+</span><span class='line'>git clone https://github.com/inconshreveable/ngrok.git
+</span><span class='line'><span class="nb">cd </span>ngrok&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;openssl genrsa -out rootCA.key 2048
+</span><span class='line'>openssl req -x509 -new -nodes -key rootCA.key -subj “/CN<span class="o">=</span><span class="nv">$NGROK_DOMAIN</span>” -days <span class="m">5000</span> -out rootCA.pem
+</span><span class='line'>openssl genrsa -out device.key 2048
+</span><span class='line'>openssl req -new -key device.key -subj “/CN<span class="o">=</span><span class="nv">$NGROK_DOMAIN</span>” -out device.csr
+</span><span class='line'>openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cp rootCA.pem assets/client/tls/ngrokroot.crt
+</span><span class='line'><span class="c"># make clean</span>
+</span><span class='line'>make release-server release-client&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>编译完有两个可执行文件 bin/ngrok &amp; bin/ngrokd 
+将bin/ngrok copy到你本机
+在服务器上开启ngrok server</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;bin/ngrokd -tlsKey<span class="o">=</span>device.key -tlsCrt<span class="o">=</span>device.crt -domain<span class="o">=</span>”<span class="nv">$NGROK_DOMAIN</span>” -httpAddr<span class="o">=</span>”:8000” -httpsAddr<span class="o">=</span>”:8001”&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>本地端</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;NGROK_DOMAIN<span class="o">=</span>”my.domain.com”
+</span><span class='line'><span class="nb">echo</span> -e “server_addr: <span class="nv">$NGROK_DOMAIN</span>:4443<span class="se">\n</span>trust_host_root_certs: <span class="nb">false</span>” <span class="p">&amp;</span>gt<span class="p">;</span> ngrok-config
+</span><span class='line'>./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span>playmonkey <span class="m">3000</span> // 配置subdomain到本地3000端口，这样外网通过playmonkey.NGROK_DOMAIN 就可以访问到本地dev server的3000端口&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>或者用SSH forwarding</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span><span class="m">3000</span> –proto<span class="o">=</span>tcp 22&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>以上Ngrok编译&amp;配置出自 <a href="https://gist.github.com/lyoshenka/002b7fbd801d0fd21f2f">How to setup Ngrok with a self-signed SSL cert</a></p>
+
+<p>至此我们在发起微信支付时回调URL的HOST就可以设置为playmonkey.NGROK_DOMAIN</p>
+
+<p>至此我们可以愉快地开发测试 微信的oauth登录 &amp; JSAPI &amp; 支付 &amp; 支付回调，好吧，很多BUG一点都不愉快。
+另外感谢 <a href="https://ruby-china.org/ruby_sky">@ruby_sky</a> 的这篇 <a href="https://ruby-china.org/topics/26138">微信支付文章</a> 微信支付做起来如丝般顺滑；
+内微信文档看起来太蛋疼了，各种配置也是找半天，大家有兴趣我可以总结一下微信各个开发的各种配置XD。</p>
 
 <hr />
-<p>转载自 <a href="http://liusihao.com/post/64854832920/%E6%88%91%E5%AF%B9%E5%BE%85%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%80%81%E5%BA%A6">我对技术的态度</a></p>
+<p>转载自 <a href="https://ruby-china.org/topics/26443">ruby-china</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[微信开发 gems]]></title>
+    <link href="http://helloyokoy.github.io/blog/wechat-gems/"/>
+    <updated>2015-10-27T15:35:10+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wechat-gems</id>
+    <content type="html"><![CDATA[<p>最近陆续有不少用Rails开发微信项目的朋友在Github上开始使用weixin_rails_middleware、weixin_authorize，也不少人谈到Ratchet，春节开始到现在，一直有做微信的开发，现在在论坛上发布出来，希望让更多人知道这些gem的存在，更快速的完成你们手中的任务。</p>
+
+<p>有问题可以前往：微信开发论坛：http://weixin-dev.com/</p>
+
+<p>代码写得不好，还请多多包涵，如果有任何问题，可以直接联系我。:)</p>
+
+<!--more-->
+
+<h4 id="rails">1:一（两）条命令搭建Rails微信版本</h4>
+
+<p>按照最简洁的速度，10分钟可以跑起一个微信的项目：
+https://github.com/lanrion/weixin_rails_middleware</p>
+
+<p>自动验证微信请求；
+一（两）条命令，一个配置，简练风格；
+支持Rails 3, Rails 4；
+支持多公众账号平台，例如类似微盟；
+支持单个用户，即一个账号，但又不想保存在数据库；
+提供回复消息辅助方法；
+提供所有微信消息类型的业务逻辑的回复处理；
+wiki 中提供自定义菜单中的实现案例；
+自动生成token；
+详细见：</p>
+
+<p>https://github.com/lanrion/weixin_rails_middleware/wiki/</p>
+
+<p>wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
+
+<p>https://github.com/lanrion/weixin_rails_middleware</p>
+
+<h4 id="api">2：微信高级API实现：</h4>
+
+<p>https://github.com/lanrion/weixin_authorize</p>
+
+<p>除 Oauth 2 未实现，其他API均已实现；
+支持Redis存储access_token；
+还是直接看wiki 吧：</p>
+
+<p>https://github.com/lanrion/weixin_authorize/wiki/Getting-Started
+wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
+
+<h4 id="ratchet-v201gem-twitterratchetrails">3：集成Ratchet v2.0.1的gem: twitter_ratchet_rails</h4>
+
+<p>即：http://goratchet.com/ 压缩后非常小，十分适合wap使用，但有一个不足之处在于，组件不够丰富，期待更丰富的实现
+没其他多余的好说，看官直接点击：</p>
+
+<p>https://github.com/lanrion/twitter_ratchet_rails</p>
+
+<p>小弟身材弱小，砖别拍的太猛，嘿，把我拍死了，就没人维护这三个gem了。:)</p>
+
+<h4 id="section">4：例子（可能没有及时更新上最新版本）</h4>
+
+<p>Rails 4: https://github.com/lanrion/weixin_rails_middleware_example</p>
+
+<p>Rails 3: https://github.com/lanrion/weixin_rails_3</p>
+
+<p>企业微信gem</p>
+
+<p>请稳步： https://ruby-china.org/topics/22479</p>
+
+<p>微信开发论坛：http://weixin-dev.com/</p>
+
+<hr />
+<p>转载自 <a href="https://ruby-china.org/topics/18439">ruby-china</a></p>
 ]]></content>
   </entry>
   

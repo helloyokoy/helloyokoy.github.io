@@ -3,12 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>octopress搭建教程 - BryanFu Blog</title>
+	<title>Octopress搭建教程 - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="1.安装Octopress
-git clone git://github.com/imathis/octopress.git octopress
+	<meta name="description" content="1.安装Octopress git clone git://github.com/imathis/octopress.git octopress
 cd octopress
 bundle update # 安装依赖的组件
 rake install # 安装默认的Octopress主题 2.配置Git &hellip;">
@@ -73,6 +72,7 @@ rake install # 安装默认的Octopress主题 2.配置Git &hellip;">
 	<li><a href="/blog/categories/ios">iOS</a></li>
 	<li><a href="/blog/categories/android">Android</a></li>
 	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
 	<li><a href="/about">关于</a></li>
 </ul>
 </nav>
@@ -85,6 +85,7 @@ rake install # 安装默认的Octopress主题 2.配置Git &hellip;">
 	<li><a href="/blog/categories/ios">iOS</a></li>
 	<li><a href="/blog/categories/android">Android</a></li>
 	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
 	<li><a href="/about">关于</a></li>
 </ul>
 </div>
@@ -127,14 +128,16 @@ rake install # 安装默认的Octopress主题 2.配置Git &hellip;">
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Octopress搭建教程</h2>
-	<div class="entry-content"><h2 id="octopress">1.安装Octopress</h2>
+	<div class="entry-content"><h4 id="octopress">1.安装Octopress</h4>
+
 <pre><code>git clone git://github.com/imathis/octopress.git octopress
 cd octopress
 bundle update    # 安装依赖的组件
 rake install     # 安装默认的Octopress主题
 </code></pre>
 
-<h2 id="git">2.配置Git</h2>
+<h4 id="git">2.配置Git</h4>
+
 <p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
 
 <pre><code>git remote rm origin
@@ -144,7 +147,8 @@ git remote add octopress git://github.com/imathis/octopress.git  # 为了octopre
 
 <!--more-->
 
-<h2 id="github">3.配置github</h2>
+<h4 id="github">3.配置github</h4>
+
 <p>在github上创建一个仓库，注意仓库名称要以下这种格式yourname.github.io，这样代码发布后自动这个url就可以访问了（此处一定要注意哦，我刚开始没注意，死活没得到想要的效果）。</p>
 
 <p>例如你的 GitHub 帐号是 jack 就将 Repository 命名为 jack.github.io， 完成后会得到一组 GitHub Pages URL http://yourname.github.io/ (注意不能用 https协议，必须用 http协议)。</p>
@@ -161,13 +165,15 @@ git remote add octopress git://github.com/imathis/octopress.git  # 为了octopre
 rake deploy
 </code></pre>
 
-<h2 id="source--git">4.将 source 也加入 git</h2>
+<h4 id="source--git">4.将 source 也加入 git</h4>
+
 <pre><code>git add .
 git commit -m 'initial source commit'
 git push origin source
 </code></pre>
 
-<h2 id="octopress-1">5.更新 Octopress</h2>
+<h4 id="octopress-1">5.更新 Octopress</h4>
+
 <pre><code>git remote add octopress git://github.com/imathis/	octopress.git
 git pull octopress master     # Get the latest Octopress
 bundle install                # Keep gems updated
@@ -175,13 +181,14 @@ rake update_source            # update the template's 	source
 rake update_style             # update the template's style
 </code></pre>
 
-<h2 id="section">6.发表新文章</h2>
+<h4 id="section">6.发表新文章</h4>
+
 <pre><code>rake new_post["新文章名称"]
 rake preview
 用浏览器打开 http://localhost:4000 就可以看到效果了。
 </code></pre>
 
-<h2 id="section-1">7.发布</h2>
+<h4 id="section-1">7.发布</h4>
 
 <pre><code>rake gen_deploy
 rake deploy                 #若发布后无效果可试试此命令
@@ -199,7 +206,7 @@ rake deploy                 #若发布后无效果可试试此命令
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/octopress/'>octopress</a>
+	<a class='category' href='/blog/categories/other/'>other</a>
 
 
 </div>
@@ -234,7 +241,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
   <section>
    <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="/blog/octopressda-jian-jiao-cheng" data-title="octopress搭建教程" data-url="http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/"></div>
+<div class="ds-thread" data-thread-key="/blog/octopressda-jian-jiao-cheng" data-title="Octopress搭建教程" data-url="http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
