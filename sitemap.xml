@@ -105,10 +105,6 @@
     <lastmod>2015-07-09T16:24:29+08:00</lastmod>
   </url>
   <url>
-    <loc>http://helloyokoy.github.io/blog/android-studio/</loc>
-    <lastmod>2015-07-04T20:12:40+08:00</lastmod>
-  </url>
-  <url>
     <loc>http://helloyokoy.github.io/blog/iosduo-xian-cheng/</loc>
     <lastmod>2015-06-18T22:25:55+08:00</lastmod>
   </url>
@@ -173,8 +169,16 @@
     <lastmod>2014-08-09T14:08:03+08:00</lastmod>
   </url>
   <url>
+    <loc>http://helloyokoy.github.io/blog/android-gradle/</loc>
+    <lastmod>2014-08-05T14:14:14+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian/</loc>
     <lastmod>2014-07-08T22:04:09+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/blog/android-studio/</loc>
+    <lastmod>2014-07-04T20:12:40+08:00</lastmod>
   </url>
   <url>
     <loc>http://helloyokoy.github.io/blog/markdownyu-fa/</loc>
@@ -206,12 +210,12 @@
     <loc>http://helloyokoy.github.io/blog/categories/octopress/</loc>
   </url>
   <url>
+    <loc>http://helloyokoy.github.io/blog/categories/android/</loc>
+  </url>
+  <url>
     <loc>http://helloyokoy.github.io/blog/categories/ios/</loc>
   </url>
   <url>
     <loc>http://helloyokoy.github.io/blog/categories/ruby/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/categories/android/</loc>
   </url>
 </urlset>

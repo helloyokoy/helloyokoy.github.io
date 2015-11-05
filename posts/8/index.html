@@ -7,7 +7,10 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。 为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。 也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。 &hellip;">
+	<meta name="description" content="一、Android编码规范 1.java代码中不出现中文，最多注释中可以出现中文 2.局部变量命名、静态成员变量命名
+只能包含字母，单词首字母出第一个外，都为大写，其他字母都为小写 3.常量命名
+只能包含字母和_，字母全部大写，单词之间用_隔开 4.layout中的id命名
+命名模式为： &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -122,53 +125,6 @@
 		
 	
 	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/magicrecordjie-shao/">
-		
-			MagicRecord介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
-
-<p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
-
-<p>也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。</p>
-
-<p>即使你会使用CoreData，每天重复性枯燥的使用CoreData也会变得很笨重，MagicalPanda创建的一个第三方库为这种工作带来了好消息。</p>
-
-<p>MagicalRecord 致力于更快捷和容易的使用CoreData。</p>
-
-<p>MagicalRecord 使用方便，特别流行。正如作者所说，MagicalRecord 致力于使CoreData的代码更简洁，更简单的获取数据，并且使用最优化的操作。</p>
-
-<p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
-
-
-		
-		<a href="/blog/magicrecordjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年2 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
 
 
     <article class="post">
@@ -362,6 +318,78 @@ Button:btn
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">
+		
+			知名 iOS 应用背后的第三方项目</a>
+	</h2>
+	<div class="entry-content">
+		<blockquote>
+  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
+</blockquote>
+
+<h3 id="instagram">Instagram</h3>
+<hr />
+<ul>
+  <li>
+    <p>AFNetworking: 适用于iOS和OS X的网络框架。</p>
+  </li>
+  <li>
+    <p>Appirater: 提醒用户打分。</p>
+  </li>
+  <li>
+    <p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
+  </li>
+  <li>
+    <p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
+  </li>
+  <li>
+    <p>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</p>
+  </li>
+  <li>
+    <p>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</p>
+  </li>
+  <li>
+    <p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
+  </li>
+  <li>
+    <p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
+  </li>
+  <li>
+    <p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
+  </li>
+  <li>
+    <p>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</p>
+  </li>
+</ul>
+
+<p>
+		
+		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年10 月28 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>

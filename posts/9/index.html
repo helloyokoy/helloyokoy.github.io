@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@ &hellip;">
+	<meta name="description" content="Android网址或Blog 博客 http://stormzhang.com/ 知乎回答 http://www.zhihu.com/question/33993035 StackOverflow tag android http://stackoverflow.com/questions/ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -122,78 +122,6 @@
 		
 	
 	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">
-		
-			知名 iOS 应用背后的第三方项目</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
-  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
-</blockquote>
-
-<h3 id="instagram">Instagram</h3>
-<hr />
-<ul>
-  <li>
-    <p>AFNetworking: 适用于iOS和OS X的网络框架。</p>
-  </li>
-  <li>
-    <p>Appirater: 提醒用户打分。</p>
-  </li>
-  <li>
-    <p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
-  </li>
-  <li>
-    <p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
-  </li>
-  <li>
-    <p>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</p>
-  </li>
-  <li>
-    <p>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</p>
-  </li>
-  <li>
-    <p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
-  </li>
-  <li>
-    <p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
-  </li>
-  <li>
-    <p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
-  </li>
-  <li>
-    <p>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</p>
-  </li>
-</ul>
-
-<p>
-		
-		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年10 月28 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
 
 
     <article class="post">
@@ -434,6 +362,58 @@ attr_accessor是可读也可写</p>
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/android-gradle/">
+		
+			Android Gradle</a>
+	</h2>
+	<div class="entry-content">
+		<p>Google I/O 2013发布了新的开发工具Android Studio和新的构建系统Gradle， Android Studio自不必说，这是Android IDE的未来。这篇文章就来学习下Gradle。</p>
+
+<h3 id="gradle">什么是Gradle？</h3>
+<p>Gradle 是以 Groovy 语言为基础，面向Java应用为主，基于DSL语法的自动化构建工具。说到Java的自动化构建工具，大家一定对Ant和Maven都不会陌生，对，Gradle就是这样一种类似的工具，不过它比Ant和Maven强大的多，而且使用起来更加方便简单并且兼容Maven。</p>
+
+<p>下面列举了一些使用Gradle构建Android项目的好处：</p>
+
+<ul>
+  <li>
+    <p>在IDE环境和命令行下使用同一个构建系统</p>
+  </li>
+  <li>
+    <p>改进的依赖关系管理</p>
+  </li>
+  <li>
+    <p>更容易地集成到自动化构建系统</p>
+  </li>
+</ul>
+
+
+		
+		<a href="/blog/android-gradle/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年8 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/">
 		
 			iOS第三方库和插件</a>
@@ -494,32 +474,28 @@ attr_accessor是可读也可写</p>
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/markdownyu-fa/">
+		<a href="/blog/android-studio/">
 		
-			Markdown语法</a>
+			Android Studio比Eclipse好在那里</a>
 	</h2>
 	<div class="entry-content">
-		<h3 id="word">1. 标题设置（让字体变大，和word的标题意思一样）</h3>
-<hr />
+		<h3 id="section">优点：</h3>
 
-<p>在Markdown当中设置标题，有两种方式：</p>
+<h4 id="google">1、Google推出的</h4>
 
-<p>第一种：通过在文字下方添加“=”和“-”，他们分别表示一级标题和二级标题。</p>
+<p>毫无疑问，这个是它的最大优势，Android Stuido是Google推出，专门为Android“量身订做”的，是Google大力支持的一款基于IntelliJ idea改造的IDE，google的工程师团队肯定会不断完善，上升空间非常大，这个应该能说明为什么它是Android的未来</p>
 
-<p>第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大）</p>
+<h4 id="section-1">2、速度更快</h4>
 
-<h3 id="blockquote">2. 块注释（blockquote）</h3>
-<hr />
+<p>Eclipse的启动速度、响应速度、内存占用一直被诟病，相信大家这点应该深有体会，而且经常遇到卡死状态。Studio不管哪一个方面都全面领先Eclipse。这点可能在windows上没有表现出来，win上运行studio同样会出现卡顿现象，但这只能说win平台还没优化好，毕竟还没有发布正式版，或者说windows系统本身就很卡顿，你还能指望它做什么呢。</p>
 
-<p>通过在文字开头添加“&gt;”表示块注释。（当&gt;和文字之间添加五个blank时，块注释的文字会有变化。）</p>
+<h4 id="ui">3、UI更漂亮</h4>
 
-<h3 id="section">3. 斜体</h3>
-<hr />
-<p>将需要设置为斜体的文字两端使用1个“*”或者“_”夹起来</p>
+<p>I/O上演示的那款黑色主题真是太棒了，极客范，Stuido自带的Darcula主题的炫酷黑界面实在是高大上，相比而言Eclipse下的黑色主题太low了</p>
 
 
 		
-		<a href="/blog/markdownyu-fa/" class="more-link">阅读全文</a>
+		<a href="/blog/android-studio/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -529,11 +505,11 @@ attr_accessor是可读也可写</p>
 
 
 
-2014 年6 月9 日</div>
+2014 年7 月4 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/octopress/'>octopress</a>
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>
