@@ -269,6 +269,66 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/bundler/">
+		
+			Bundler 的作用以及原理</a>
+	</h2>
+	<div class="entry-content">
+		<p>原文：<a href="http://bundler.io/rationale.html">http://bundler.io/rationale.html</a></p>
+
+<p>首先，你要在你应用根目录下一个叫Gemfile文件里声明这些依赖，它看起来是这个样子的：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">source 'https://rubygems.org'
+</span><span class="line">
+</span><span class="line">gem 'rails', '4.1.0.rc2'
+</span><span class="line">gem 'rack-cache'
+</span><span class="line">gem 'nokogiri', '~&gt; 1.6.1'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这个Gemfile说明了这些事情：</p>
+
+<p>首先，他告诉 bundler 默认是在Gemfile里指定的https://rubygems.org上来找 gem。如果你的一些 gem 需要从一个私有的 gem 服务器上获取，那么你可以为这些 gem 覆盖掉这个默认的源设置。</p>
+
+<p>接着，你声明了一些依赖：</p>
+
+<ul>
+  <li>版本是4.1.0.rc2的rails</li>
+  <li>任意版本的rack-cache</li>
+  <li>版本是&gt;= 1.6.1但是&lt; 1.7.0的nokogiri</li>
+</ul>
+
+
+		
+		<a href="/blog/bundler/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年7 月11 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
 		
 			iOS 依赖注入框架 Objection</a>
@@ -587,49 +647,6 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
 
 
 	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/eventbusjie-shao/">
-		
-			Eventbus介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
-
-<blockquote>
-  <p>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。</p>
-</blockquote>
-
-<h3 id="eventbus">1.下载EventBus的类库</h3>
-
-<p>源码：<a href="https://github.com/greenrobot/EventBus" title="url">https://github.com/greenrobot/EventBus</a></p>
-
-
-		
-		<a href="/blog/eventbusjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

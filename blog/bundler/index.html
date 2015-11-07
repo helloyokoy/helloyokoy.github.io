@@ -1,0 +1,496 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bundler 的作用以及原理 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="原文：http://bundler.io/rationale.html 首先，你要在你应用根目录下一个叫Gemfile文件里声明这些依赖，它看起来是这个样子的： 1
+2
+3
+4
+5
+source 'https://rubygems.org' gem 'rails', '4.1.0.rc2'
+gem &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Bundler 的作用以及原理</h2>
+	<div class="entry-content"><p>原文：<a href="http://bundler.io/rationale.html">http://bundler.io/rationale.html</a></p>
+
+<p>首先，你要在你应用根目录下一个叫Gemfile文件里声明这些依赖，它看起来是这个样子的：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">source 'https://rubygems.org'
+</span><span class="line">
+</span><span class="line">gem 'rails', '4.1.0.rc2'
+</span><span class="line">gem 'rack-cache'
+</span><span class="line">gem 'nokogiri', '~&gt; 1.6.1'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这个Gemfile说明了这些事情：</p>
+
+<p>首先，他告诉 bundler 默认是在Gemfile里指定的https://rubygems.org上来找 gem。如果你的一些 gem 需要从一个私有的 gem 服务器上获取，那么你可以为这些 gem 覆盖掉这个默认的源设置。</p>
+
+<p>接着，你声明了一些依赖：</p>
+
+<ul>
+  <li>版本是4.1.0.rc2的rails</li>
+  <li>任意版本的rack-cache</li>
+  <li>版本是&gt;= 1.6.1但是&lt; 1.7.0的nokogiri</li>
+</ul>
+
+<!--more-->
+
+<p>在你第一次声明完依赖后，你要告诉 bundler 去获取它们：</p>
+
+<pre><code>$ bundle install    # 也可以直接运行 'bundle'，相当于 'bundle install'
+</code></pre>
+
+<p>Bundler 会连接rubygems.org（或者其他你声明的源），然后列出所有你指定的符合你需要的 gem。因为所有你在Gemfile里的依赖有它们自己的依赖，所以基于上面的Gemfile运行bundle install会安装相当多的的 gem。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ bundle install
+</span><span class="line">Fetching gem metadata from https://rubygems.org/.........
+</span><span class="line">Fetching additional metadata from https://rubygems.org/..
+</span><span class="line">Resolving dependencies...
+</span><span class="line">Using rake 10.3.1
+</span><span class="line">Using json 1.8.1
+</span><span class="line">Installing minitest 5.3.3
+</span><span class="line">Installing i18n 0.6.9
+</span><span class="line">Installing thread_safe 0.3.3
+</span><span class="line">Installing builder 3.2.2
+</span><span class="line">Installing rack 1.5.2
+</span><span class="line">Installing erubis 2.7.0
+</span><span class="line">Installing mime-types 1.25.1
+</span><span class="line">Using bundler 1.6.2
+</span><span class="line">Installing polyglot 0.3.4
+</span><span class="line">Installing arel 5.0.1.20140414130214
+</span><span class="line">Installing hike 1.2.3
+</span><span class="line">Installing mini_portile 0.5.3
+</span><span class="line">Installing multi_json 1.9.3
+</span><span class="line">Installing thor 0.19.1
+</span><span class="line">Installing tilt 1.4.1
+</span><span class="line">Installing tzinfo 1.1.0
+</span><span class="line">Installing rack-test 0.6.2
+</span><span class="line">Installing rack-cache 1.2
+</span><span class="line">Installing treetop 1.4.15
+</span><span class="line">Installing sprockets 2.12.1
+</span><span class="line">Installing activesupport 4.1.0.rc2
+</span><span class="line">Installing mail 2.5.4
+</span><span class="line">Installing actionview 4.1.0.rc2
+</span><span class="line">Installing activemodel 4.1.0.rc2
+</span><span class="line">Installing actionpack 4.1.0.rc2
+</span><span class="line">Installing activerecord 4.1.0.rc2
+</span><span class="line">Installing actionmailer 4.1.0.rc2
+</span><span class="line">Installing sprockets-rails 2.0.1
+</span><span class="line">Installing railties 4.1.0.rc2
+</span><span class="line">Installing rails 4.1.0.rc2
+</span><span class="line">Installing nokogiri 1.6.1
+</span><span class="line">Your bundle is complete!
+</span><span class="line">Use `bundle show [gemname]` to see where a bundled gem is installed.</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果任何需要的 gem 已经被安装了，bundler 会直接使用它们。在你的系统上安装完所有的 gem 后，bundler 会写一个所有这些 gem 和它们的版本号的快照到 Gemfile.lock 里。</p>
+
+<h3 id="bundler">配置你的应用使用 Bundler</h3>
+
+<p>Bundler 保证 Ruby 能找到Gemfile里的所有 gem 和这些 gem 自己的依赖。如果你的应用是个 Rails 3 以上的应用的话，你的应用默认已经有运行 bundler 的代码了。如果是 Rails 2.3 的应用，可以看在 Rails 2.3 中设置 Bundler。</p>
+
+<p>对于另外的应用来说（比如说基于 Sinatra 的应用），你需要在你引用任何 gem 之前配置一下 bundler。在你应用加载的第一个文件的第一行（对于 Sinatra, 就是写着require ‘sinatra’的那个文件）加入以下下代码：</p>
+
+<pre><code>require 'rubygems' # Ruby 1.8 以后的版本不再需要这句（楼主注）
+require 'bundle/setup'
+</code></pre>
+
+<p>这样 bundler 就能自动找到你的Gemfile，并且让你Gemfile里的所有 gem 是可用的（从技术上讲，就是把这些 gem 放到$LOAD_PATH里）。</p>
+
+<p>现在你的代码就可以运行了，你可以引用你需要的 gem。比如说你可以require ‘sinatra’。如果你有很多依赖，你可能希望“引用所有我Gemfile的 gem”。如果要这样做的话，可以把下面这行代码放到require ‘bundler/setup’的下一行：</p>
+
+<pre><code>Bundler.require(:default) 对于我们刚才的Gemfile来说，这行代码相当于：
+
+require 'rails'
+require 'rack-cache'
+require 'nokogiri' 精明的读者会发现正确引用rack-cache的方式是rake/cache，而不是require 'rack-cache'。为了告诉 bundler 使用require 'rack/cache'，只要更新你的Gemfie:
+
+source 'https://rubygems.org'
+
+gem 'rails', '4.1.0.rc2'
+gem 'rack-cache', require: 'rack/cache'
+gem 'nokogiri', '~&gt; 1.6.1'
+</code></pre>
+
+<p>对于这么小的一个Gemfile来说，我们建议你跳过Bundler.require而是手动引用这些 gem（特别是你还需要在Gemfile里写一个:require配置）。对于很大的Gemfile来说，使用Bundler.require让你省略了大量重复的依赖引用。</p>
+
+<h3 id="section">把你的代码放进版本库</h3>
+
+<p>在你开发你的应用一段时间后，把应用跟Gemfile和Gemfile.lock一起放到版本库里。这样，你的版本库里就有了你的应用最后一次你确定能正常工作时所有的 gem 以及版本号的记录。要记住，尽管你的Gemfile里只有三个 gem，但是当你去考虑你依赖的 gem 也依赖其他 gem 时，你的应用实际上依赖了大量的 gem，</p>
+
+<p>这个非常重要：Gemfile.lock把你的应用变成一个你的代码跟第三方代码最后一次你确定能正常工作的包。 在Gemfile里确切指定你依赖的第三方代码的版本并不能提供同样的保证，因为 gem 通常给它们自己的依赖声明一个版本号的范围。</p>
+
+<p>你在同一台机器上再次运行bundle install的时候，bundler 会发现系统上已经有了你需要的依赖，然后就会跳过安装的过程。</p>
+
+<p>不要把.bundle目录放入版本库，以及所有它里面的文件。这些文件在不同的机器上是不同的，主要是用来保存运行bundle install时的参数。</p>
+
+<p>如果你运行了bundle pack，你需要的 gem （除了来源是 git 仓库的 gem 以外）都会被下载到vendor/cache目录。如果所有你需要的 gem 都在那个目录里而且你把它放进了版本库里，bundler 运行的时候就不需要联网了。这是一个可选的步骤，因为这样做你的版本库就会变得很大。</p>
+
+<h3 id="section-1">与其他开发者共享你的应用</h3>
+
+<p>当你的同事（或者你在另外一台机器上）获取你的代码的时候，它会包含你最近开发时使用的所有第三方代码的确切版本。当他们运行bundle install，bundler 会找到Gemfile.lock并跳过解决依赖的步骤，改为安装所有你原来机器上一样的 gem。</p>
+
+<p>换句话说，你不需要去猜你需要安装什么版本的依赖。在我们刚才用过的栗子里，尽管rake-cache声明了依赖rack &gt;= 0.4，但是我们确定他能正常工作在rack 1.5.2下。即使 Rack 的团队发布了rack 1.5.3，bundler 还是会安装1.5.2这个我们已经知道的确切的版本。这为开发者减轻了大量的维护负担，因为所有机器上都运行着同样的第三方代码。</p>
+
+<p>更新依赖</p>
+
+<p>当然，有时候你可能要更新你的应用依赖的部分 gem。比如说，你想要把rails升级到4.1.0。重点是，你只想要升级一个依赖，而不是要重新解决你的所有依赖并且使用所有 gem 最新的版本。在我们栗子里，你只有3个依赖，但是即使在这个栗子里，更新任何一个东西都会变得复杂。</p>
+
+<p>比如说，rails 4.1.0.rc2依赖actionpack 4.1.0.rc2，而actionpack又依赖rack ~&gt; 1.5.2（意思是&gt;= 1.5.2且&lt; 1.6.0)。rack-cache又依赖rack &gt;= 0.4。我们假设rails 4.1.0也依赖rack ~&gt; 1.5.2，并且在rails 4.1.0发布后 Rack 团队发布了rack 1.5.3。</p>
+
+<p>如果我们为了更新 Rails，天真地更新了所有它依赖的 gem，我们得到了rack 1.5.3，这刚好满足rails 4.1.0和rack-cache的要求。然而我们并没有特别说要更新rack-cache，它就可能跟rack 1.5.3不兼容（不管什么原因）。虽然把rack 1.5.2升级到rack 1.5.3不会搞坏什么东西，但是类似这种导致更大版本跨度的更新场景也会发生（见下面[1]更多讨论）。</p>
+
+<p>为了避免这个问题，当你更新一个 gem 时，如果有其他 gem 有与它相同的依赖，bundler 就不会更新那个相同的依赖。在上面的栗子里，由于rack-cache依然依赖rack，bundler 不会更新rack。这样保证了更新rails不会不小心搞坏rack-cache。由于rails 4.1.0的依赖actionpack 4.1.0保留了rack 1.5.2的兼容，bundler 就不会管它，rack-cache就会继续工作，尽管它可能面临跟rack 1.5.3的不兼容。</p>
+
+<p>由于你一开始声明了依赖rails 4.1.0.rc2，如果你想要更新到rails 4.1.0，只要简单地在Gemfile里更新成gem ‘rails’, ‘4.1.0’并且运行：</p>
+
+<pre><code>$ bundle install 根据上面地描述，bundle install总是执行保守地升级，不会更新你没有在Gemfile里显式更改的 gem（或者它们的依赖）。也就是说你不修改Gemfile里的rack-cache，bundler 就会把它 和它的依赖（rack） 当成一个不可修改的整体。如果rails 3.0.0跟rack-cache不兼容，bundler 就会显示你的依赖快照（Gemfile.lock）跟你更新后的Gemfile之间的冲突。
+</code></pre>
+
+<p>如果你更新了你的Gemfile，并且你的系统上已经有你所有需要的依赖了，当你启动应用的时候 bundler 会透明地更新Gemfile.lock。举个栗子，如果你把mysql加到你的Gemfile里，并且已经在你的系统上安装了，你可以不需要运行bundle install就能启动你的应用，并且 bundler 会把最近一次正确的配置写到Gemfile.lock里</p>
+
+<p>这个功能在你添加或更新依赖很少的 gem 时就会比较方便。在你更新一些比较重要的 gem（比如 rails）或者有被很多 gem 依赖的 gem（比如rack）它就可能失败。如果透明更新失败了，你的应用就会启动失败，bundler 会显示错误引导你运行bundle install。</p>
+
+<h3 id="gemfile--gem">不修改 Gemfile 来更新 Gem</h3>
+
+<p>有时候，你想要不修改 Gemfile 来更新一个依赖。比如说，你想要更新到最新版本的rack-cache。而你又没有在Gemfie里指定rack-cache的版本，你可能想要周期性地获取rakc-cache地最新版。那么你可以使用bundle update命令：</p>
+
+<pre><code>$ bundle update rack-cache 这个命令会更新rack-cache和它地依赖更新到Gemfile里允许地最新版本（在这个栗子里就是更新到最新版本）。它不会修改其地依赖。
+</code></pre>
+
+<p>但是它会在需要地时候更新其他 gem 的依赖。举个栗子，如果最新版的rack-cache指定了依赖rack &gt;= 1.5.2，bundler 会更新rack到1.5.2尽管你没有要求 bundler 更新 rack。如果 bundler 需要更新一个其他的 gem 依赖的 gem，那么它会在更新完成后告诉你这件事。</p>
+
+<p>如果你要更新所有 Gemfile 里的 gem 到最新的能用的版本，运行：</p>
+
+<pre><code>$ bundle update 这个命令会从头开始解决依赖并忽略掉Gemfile.lock。如果你这么做了，你要准备好git reset --hard和测试用例。从头解决依赖会有意想不到的结果，特别是一部分你依赖的第三方库在你上一次更新的时候发布了新的版本。
+</code></pre>
+
+<h3 id="section-2">总结</h3>
+
+<p>一个简单的 Bundler 流程</p>
+
+<ul>
+  <li>
+    <p>当你第一次创建 Rails 应用的时候，它已经包含了Gemfile。其他的应用可以运行：</p>
+
+    <p>$ bundle init</p>
+  </li>
+</ul>
+
+<p>bundle init命令会创建一个简单的Gemfile让你编辑。</p>
+
+<p>下面，添加你的应用需要的 gem。如果你关心部分你需要的 gem 的版本，可以加一个合适的版本约束：</p>
+
+<pre><code>source 'https://rubygems.org'
+
+gem 'sinatra', '~&gt; 1.3.6'
+gem 'rack-cache'
+gem 'rack-bug'
+</code></pre>
+
+<p>如果你有 gem 没在你的系统上安装，运行：
+	$ bundle install</p>
+
+<p>更新一个 gem 的版本，首先修改 Gemfile：</p>
+
+<pre><code>source 'https://rubygems.org'
+
+gem 'sinatra', '~&gt; 1.4.5'
+gem 'rack-cache'
+gem 'rack-bug'
+</code></pre>
+
+<p>然后运行：</p>
+
+<pre><code>$ bundle install
+</code></pre>
+
+<p>如果bundle install说你的Gemfile跟Gemfie.lock之间有冲突，运行：</p>
+
+<pre><code>$ bundle update sinatra
+</code></pre>
+
+<p>这个会升级 Sinatra 这个 gem，以及它所有的依赖。</p>
+
+<p>更新所有你Gemfile里的 gem 到最新可用的版本，运行：</p>
+
+<pre><code>$ bundle update
+</code></pre>
+
+<ul>
+  <li>每当你的Gemfile.lock变化的时候，把它放入你的版本库。它保存了你的应用能成功运行所依赖的所有第三方代码的确切版本的历史。</li>
+  <li>
+    <p>当部署你的代码到测试或者生产服务器的时候，首先运行你的测试（或启动你的本地开发服务器），确定你把Gemfile.lock放到了版本库里。在远程服务器上，运行：</p>
+
+    <p>$ bundle install –deployment</p>
+  </li>
+</ul>
+
+<h3 id="section-3">备注</h3>
+
+<p>[1] 举个栗子，如果rails 4.1.0依赖rack 2.0，这个rack 2.0满足rack-cache的依赖，因为它声明了&gt;= 0.4的依赖。当然你能指责说rack-cache不指定依赖的最高版本很愚蠢，但是这种情况确实是普遍存在的，而且很多项目声明依赖的时候会发现它们处在一个很尴尬的场面。依赖限制太严（rack = 1.5.1）就会让你的项目很难兼容其他项目。依赖限制太宽（rack &gt;= 1.0）会在 Rack 发布新版本的时候可能搞坏你的代码。使用这样的依赖声明rack ~&gt; 1.5.2和 SemVer 兼容的版本号基本上能解决这个问题，但是这也只是一个普遍能接受的方案。由于 RubyGems 有超过十万个库，这个假设在实际应用中可能并不成立。</p>
+
+<hr />
+<p>转载自 <a href="https://ruby-china.org/topics/25530">ruby-china</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年7 月11 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/bundler" data-title="Bundler 的作用以及原理" data-url="http://helloyokoy.github.io/blog/bundler/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
