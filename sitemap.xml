@@ -101,6 +101,10 @@
     <lastmod>2015-07-09T16:24:29+08:00</lastmod>
   </url>
   <url>
+    <loc>http://helloyokoy.github.io/blog/what-happend-when-you-browse-my-blog/</loc>
+    <lastmod>2015-06-27T16:58:31+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://helloyokoy.github.io/blog/iosduo-xian-cheng/</loc>
     <lastmod>2015-06-18T22:25:55+08:00</lastmod>
   </url>
@@ -181,6 +185,10 @@
     <lastmod>2014-09-11T17:30:37+08:00</lastmod>
   </url>
   <url>
+    <loc>http://helloyokoy.github.io/blog/ruby-rails-books/</loc>
+    <lastmod>2014-09-07T16:30:57+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://helloyokoy.github.io/blog/rubyyu-fa/</loc>
     <lastmod>2014-08-09T14:08:03+08:00</lastmod>
   </url>
@@ -233,5 +241,20 @@
   </url>
   <url>
     <loc>http://helloyokoy.github.io/blog/categories/ruby/</loc>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/posts/2/</loc>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/posts/3/</loc>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/posts/4/</loc>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/posts/5/</loc>
+  </url>
+  <url>
+    <loc>http://helloyokoy.github.io/posts/6/</loc>
   </url>
 </urlset>

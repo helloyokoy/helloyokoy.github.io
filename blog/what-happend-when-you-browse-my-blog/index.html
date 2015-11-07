@@ -1,0 +1,472 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>当你浏览我的博客时计算机干了什么 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="在大学的时候, 我脑海里时常都蹦出对计算机的许多问号, 尤其是计算机是如何工作的, 为什么它如此强大, 越来越显著地改变了我们的生活. 随着知识的积累, OS, 进程, 线程, 计算机网络, web 开发, 一个个知识孤岛在某一天终于连接了起来, 形成了一个极为清晰的信息流. 我相信, &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">当你浏览我的博客时计算机干了什么</h2>
+	<div class="entry-content"><p>在大学的时候, 我脑海里时常都蹦出对计算机的许多问号, 尤其是计算机是如何工作的, 为什么它如此强大, 越来越显著地改变了我们的生活.</p>
+
+<p>随着知识的积累, OS, 进程, 线程, 计算机网络, web 开发, 一个个知识孤岛在某一天终于连接了起来, 形成了一个极为清晰的信息流.</p>
+
+<p>我相信, 作为读者的你, 也会非常想弄明白其中原理, 或者已经弄明白但可能还有些一些疑问, 于是乎, 我将一个很常见的操作, 进行信息流分析, 尝试分层分析它们的每一步.</p>
+
+<p>这个操作就是: 当你正在浏览我的这篇博客时, 计算机到底做了什么?</p>
+
+<p>为了叙述方便, 我限定使用了 chrome 浏览器, nginx, unicorn, rails 来描述它们, 实际上, 这些组件都是可以替换的.</p>
+
+<!--more-->
+
+<h3 id="chrome-">chrome 浏览器:</h3>
+
+<ol>
+  <li>启动一个新的子进程, 渲染一个新的 tab</li>
+  <li>接收到用户输入的 URL, 发送网络请求 dns, 和后续的 http 请求, 等待 dns 与博客服务器响应, 最终获取到 html, css, javascript 网络数据.</li>
+  <li>按照 w3c 规范, 将 html 渲染成 dom 节点, 按照 css 的样式要求, 进行布局与效果显示.</li>
+  <li>执行其中的 javascript 代码, 根据情况修改对应的 dom 节点, 执行网络操作等.
+由于这一层可以是浏览器, 也可能是爬虫, 还可能是其他什么东东, 所以统称为用户代理.( User Agent )</li>
+</ol>
+
+<p>由于 W3C 规范十分繁锁, UI 渲染机制又十分复杂, JS执行引擎也十分 “高技术含量”, 这导致我们国内还没有真正独立自主的浏览器, 全是用 ie 或者 chrome 的 “核”, 自己套个壳.</p>
+
+<p>浏览器的开发复杂度, 堪比编写一个完整的操作系统.</p>
+
+<h4 id="w3c-html5-javascript-css">关键字 : 用户代理, w3c, HTML5, Javascript, CSS.</h4>
+
+<h3 id="section">操作系统上层:</h3>
+
+<p>操作系统目前最常见的即我们平时使用的 OSX 或者 windows 8, 以及经常作为服务器的 Linux.</p>
+
+<p>这一层, 它为进程提供一个容身之地: 一块内存, 一些受限的资源操作, 如读磁盘, 发网络数据, 与其他进程交互.</p>
+
+<ol>
+  <li>收到 chrome 父进程的请求, 创建一个子进程:
+    <ul>
+      <li>开辟一段内存存储新进程的pid及它的环境变量, 叫做 进程描述符.</li>
+      <li>收到 exec() 系列的系统调用, 准备一块内存, 加载子进程的代码, 继承父进程的运行数据.</li>
+      <li>收到渲染 UI 请求, 指挥显示器显示指定的内存位置上的颜色, 这件事太麻烦了, 以后交给它的小弟 DMA 自动处理.</li>
+    </ul>
+  </li>
+  <li>
+    <p>接收到 socket() 系列的系统调用, 指挥网卡发送指定的报文:</p>
+
+    <ul>
+      <li>
+        <p>DNS 请求:</p>
+
+        <ol>
+          <li>
+            <p>查找本机 hosts 映射文件( 例如 OSX 10.10 在 /etc/hosts ) , 如果找到就直接返回 IP 地址, 否则继续以下步骤.</p>
+          </li>
+          <li>
+            <p>在 UDP 报文中填入内容: 请求 yafeilee.me 的 IP 地址.</p>
+          </li>
+          <li>
+            <p>在 IP 报文中组装 IP: 8.8.8.8, PORT 53, 类型: DNS, 内容: 上面的 UDP 报文</p>
+          </li>
+          <li>
+            <p>在 链路层上组装 SMAC: xx:xx:xx:xx:xx:xx, DMAC: 路由器MAC. ( 如果没记录下路由MAC, 发 ARP 找)</p>
+          </li>
+          <li>
+            <p>交付给网卡, 网卡开始发送.</p>
+          </li>
+          <li>
+            <p>操作系统开始干别的事情, 等待对方响应</p>
+          </li>
+          <li>
+            <p>网卡接收到对方响应的数据, 告诉操作系统, 已经收到.</p>
+          </li>
+          <li>
+            <p>操作系统通知 chrome 进程, IP 地址已经找到, 给你.</p>
+          </li>
+          <li>
+            <p>chrome 进程开始准备 HTTP 请求.</p>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <p>组装来自上层的 HTTP 请求数据.</p>
+
+        <ol>
+          <li>
+            <p>从 1024 - 65535 中找到一个空闲的 IO 端口, 绑定, 避免其他进程占用.</p>
+          </li>
+          <li>
+            <p>与对方(刚才找到的 IP 地址)进行三次握手, 确认对方是在线的.</p>
+          </li>
+          <li>
+            <p>按照上面的 DNS 报请求的方式, 组装好 HTTP 数据, 将数据交付网卡发送.</p>
+          </li>
+          <li>
+            <p>接收到数据后, 通知 chrome 数据已经到达. chrome 子进程可能继续请求一些数据( 例如加载图片, 其他资源等 )</p>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="section-1">操作系统是如何做到进程抽象的呢?</h4>
+
+<p>不难. 做到以下几点:</p>
+
+<ol>
+  <li>实现虚拟内存映射, 术语为 MMU, 通过缺页中断调用, 每一个进程可以模拟出 4G (32位总线位数下) 的独立内存, 互不干扰.</li>
+  <li>由 CPU 硬件支持 RING0 与 RING3 的至少两级切换, 使得 RING3 禁止某些指令, 例如切换 RING 和访问网卡等, 操作系统配置此特性, 并使得进程运行在 RING3 下面. 但需要访问硬件怎么办?</li>
+  <li>利用软中断提供 API 给进程调用.</li>
+</ol>
+
+<p>至此, 在操作系统级别之上, 进程之间就互相独立了, 可以互不干扰, 也无权干扰其他进程.</p>
+
+<h4 id="os----mmu-socket">关键字 : OS, 进程, 线程, 用户态, MMU, socket编程.</h4>
+
+<h3 id="section-2">操作系统底层</h3>
+
+<p>在底层, 操作系统负责 “理解” 并执行对应的指令, 例如:</p>
+
+<p>如何将数据交付给网卡, 如何获得网卡新的数据, 如何存储一个数据.</p>
+
+<p>也即负责解决一个极为神奇的问题: 如何将各种指令转换成 0 与 1, 并运算结果.</p>
+
+<ol>
+  <li>
+    <p>一切皆可计算</p>
+
+    <p>想像一下, 一段声音, 可以将它的频率数字化为 0 与 1, 存储起来, 播放的时候, 由 CPU 按照时序一点点计算出来, 并驱动音响播放声音.( 电信号要经过 CPU, 总线, 音频输出, 音响 )</p>
+
+    <p>一张图像, 可以将它的每个像素都用 RGB 存储下来, 写为 0 与 1, 交给显示器显示( 显示器是专门将 RGB 数据显示为图像的设备 )</p>
+
+    <p>目前, 几乎所有东西都可以数字化了.</p>
+  </li>
+  <li>
+    <p>指令运算</p>
+
+    <p>首先, 布尔代数的理论的指导可以让机器用电路进行二进制运算. 布尔代数与继电器(现在是晶体管, 大规模集成电路 )可以推论造出存储器, 触发器( 时钟 ), 运算器( 计算加法 ), 控制器( 控制指令处理, 常见指令存储, 加载, 跳转, 加法 )</p>
+
+    <p>有了以上的工具, CPU 就诞生了.</p>
+
+    <p>所有的程序都会被编译器处理为二进制代码存储起来, 最后由 CPU 依次取出指令并处理.</p>
+  </li>
+  <li>
+    <p>操作抽象</p>
+
+    <p>对于 CPU 而言, 它的针脚就是输入与输出, 网卡通过总线与 CPU 连接起来, 操作系统会设定一些参数告诉 CPU 一旦有硬件中断, 就处理预置的指令. 这种方式叫硬中断.( 可以想像, 硬中断有好多种, 硬盘, 打印机, 网卡, 鼠标, 键盘, 所以也会排个序号, 叫中断号. )</p>
+
+    <p>对于应用程序, 为了系统安全, 操作系统利用 CPU 的 RING3 和 MMU 为它们抽象了进程描述符, 进程空间( 32 位默认为 4G ), 为它们提供了一套 API, 例如, 启动子进程, 与其他进程通信, 监听网络消息, 等等( 标准的 Unix 的操作系统 API 有 1000 多个), 这套 API 的调用方式也利用了 CPU 的中断处理( 默认中断号 0x80 ), 这种方式叫做软中断.</p>
+
+    <p>通过以上的抽象处理, 在计算机 “只懂得加法运算” 的情况下, 理解了指令 获取到网络数据, 最终驱动显示器( 如果图像运算量太大, 则可能交给显卡计算 ) 渲染出了博客内容.</p>
+  </li>
+</ol>
+
+<h4 id="cpu---">关键字 : CPU原理, 图灵机, 数字化, 继电器.</h4>
+
+<h3 id="section-3">网络邮递</h3>
+
+<p>网卡收到发送指令后, 将数据按照 0, 1 编码成高低电平组成的电气信号, 发送到网线中, 先等到网线上没有正在传送的数据, 之后便开始发送数据.</p>
+
+<p>家庭路由器接受到网卡数据后, 将 MAC 与 IP 从数据报文中替换为自身的, 转发给下一级路由器.</p>
+
+<p>如果用的拨号上网, 这些报文会由猫首先由数字信号转化为模拟信号, 传递至电话网的另一端: 服务提供商( ISP ), 例如电信. 他们将信号再由猫解回数字信号. 我们叫这种方式为 PPPOE 上网.</p>
+
+<p>如果用的光纤, 可将数字信号直达服务商.</p>
+
+<p>服务商的下一级路由器就像邮递员一样, 将邮件( 数据报文 )的邮戳与回信做一些调整, 继续发送给下一级路由器, 依次下去, 最终交付给我博客所在的 IP 地址的计算机.</p>
+
+<p>每台路由器都可以理解成一个计算机.</p>
+
+<p>这种方案, 被称为路由与交换技术.</p>
+
+<p>关键字 : 路由, 交换, 计算机网络, 以太网.</p>
+
+<h3 id="section-4">博客服务器的回应</h3>
+
+<p>博客服务器运行在 VPS 上, 一个 VPS 看上去就是一个真实的电脑, 但事实上, 它是运行在一个真实的电脑上的一个虚拟电脑, 这种技术叫做虚拟化技术. 各种最近很热门的云服务商均是利用这种技术实现的.</p>
+
+<p>博客服务器上也同时跑了一个操作系统, 其名为 Linux, 但没有图形界面. 其工作原理与上面的操作系统大同小异.</p>
+
+<p>直接跳过操作系统的处理( 上面已经讲述了 ), 直接从博客服务器监听的进程说起, 这个进程名为 nginx master, 监听 80 端口( WEB 程序默认的端口 ), 一旦接收到一个新的请求, nginx master 判断来源, 根据配置将连接转移给它的合适的子进程 nginx worker, 自己继续监听新的请求.</p>
+
+<p>worker 接收到连接请求后, 回复对端连接已就绪, 对方就 balabla… 发送请求数据过来了.</p>
+
+<p>worker 将请求弄清楚, 发现这个请求是要 Ruby on Rails 的服务进程 unicorn 处理的, 将请求添加一些额外字段, 例如 X-Forwarded-For, HOST 等, 转发给 unicorn.</p>
+
+<p>为什么需要这两步 “多余” 的部分呢?</p>
+
+<ol>
+  <li>一个服务器可能提供多个网站服务, 它们都必须使用 80 端口, 需要有一个分发器: nginx/apache.</li>
+  <li>为了更快的交付数据, 某些静态数据不会变, 数据会被压缩, 这些分发器处理这些内容时非常专业.</li>
+</ol>
+
+<h4 id="nginx-unicorn">关键字 : nginx, unicorn</h4>
+
+<h3 id="ruby-on-rails-">Ruby on Rails 进程</h3>
+
+<p>Ruby on Rails 只是千百 Web 开发领域中的一种, 同类的如 php, j2ee, asp.net. 本质上它们都是负责一件事:</p>
+
+<p>如何让 Web 应用更高效的被开发出来, 并更快的交付给用户, 并在未来也更好维护.</p>
+
+<p>unicorn 是 Rails 应用的一个生产容器, 非常的高效与易于使用.</p>
+
+<p>unicorn 接收到 nginx 发过来的请求后, 将请求的 URL 与参数进行一层层分析( rack ), 由路由表查明, 发现这是交给控制器 posts_controller 的 index 方法的.</p>
+
+<p>于是调用 posts#index 的方法.</p>
+
+<p>posts#index 将 postgres 数据库里最新一篇的博客取出. 并把 app/views/index.html.slim 数据渲染成 html, 交付给上一层.</p>
+
+<p>nginx 将数据转交给用户.</p>
+
+<p>其间, 浏览器与 nginx 经过多次的交互, 最终, 图片, JS, HTML, CSS 都基本到位后, 浏览器开始渲染出最终的结果.</p>
+
+<h4 id="web--ruby-on-rails-session-cookie-">关键字 : web 开发, Ruby on Rails, session, cookie, 缓存.</h4>
+
+<h3 id="section-5">总结一下</h3>
+
+<p>我尝试将所有流程都串到一起了, 这样的意义何在? 我用下面的比方来说:</p>
+
+<p>假如你现在是一个酒店大厨, 你只管把原材料加上配料做成美味的饭菜即可. 你是无须知道原材料是从哪里运来的.</p>
+
+<p>但只有你对原材料十分了解, 你才可能找到世界上最好的原材料, 才可能成为世界顶极的大厨.</p>
+
+<p>我想, 只有好奇心能驱动我们走的更远.</p>
+
+<p>至此, 对于宏观世界而言, 世界仅仅为你耗费了零点几度的电, 增加了一点熵.</p>
+
+<p><img src="http://yafeilee.me/uploads/photo/image/54db6c6e6c69341204130000/ionic.jpg" alt="img" /></p>
+
+<p>附, 主要参考书目:</p>
+
+<ol>
+  <li>现代操作系统</li>
+  <li>计算机网络</li>
+  <li>深入理解计算机系统</li>
+  <li>编码的奥秘</li>
+  <li>Ruby on Rails 敏捷开发</li>
+</ol>
+
+<p>更多书目可到我的豆瓣读书列表查阅: http://www.douban.com/people/41759170/</p>
+
+<p>深入补充阅读文章: https://github.com/skyline75489/what-happens-when-zh_CN
+ps: 这篇文章信息量巨大, 我理解有限, 如果你发现任何错误或问题, 欢迎在下面留言给我.</p>
+
+<hr />
+
+<p>转载自 <a href="http://yafeilee.me/blogs/54db6c7b6c69341204140000">http://yafeilee.me/blogs/54db6c7b6c69341204140000</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年6 月27 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/what-happend-when-you-browse-my-blog" data-title="当你浏览我的博客时计算机干了什么" data-url="http://helloyokoy.github.io/blog/what-happend-when-you-browse-my-blog/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
