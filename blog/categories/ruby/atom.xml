@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-06T00:02:44+08:00</updated>
+  <updated>2015-11-07T15:08:59+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,155 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails-perftest 分析 Rails 引用的性能]]></title>
+    <link href="http://helloyokoy.github.io/blog/rails-perftest/"/>
+    <updated>2015-11-07T15:04:49+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/rails-perftest</id>
+    <content type="html"><![CDATA[<p>这个是 Rails 官方的 Gem，可以直接集成到 Rails 里面</p>
+
+<p>你可以写 Benchmark 的测试用例:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>require ‘test_helper’
+</span><span class='line'>require ‘rails/performance_test_help’&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class HomepageTest &lt; ActionDispatch::PerformanceTest
+</span><span class='line'>  # Refer to the documentation for all available options
+</span><span class='line'>  # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
+</span><span class='line'>  #                          output: ‘tmp/performance’, formats: [:flat] }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>test “homepage” do
+</span><span class='line'>    get ‘/’
+</span><span class='line'>  end
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<!--more-->
+
+<p>然后可以执行</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake test:benchmark
+</span><span class='line'>HomepageTest#test_homepage (31 ms warmup)
+</span><span class='line'>           wall_time: 6 ms
+</span><span class='line'>              memory: 437.27 KB
+</span><span class='line'>             objects: 5,514
+</span><span class='line'>             gc_runs: 0
+</span><span class='line'>             gc_time: 19 ms&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>你可以直接在命令行使用</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ perftest profiler ‘User.first’ –runs 3
+</span><span class='line'>ProfilerTest#test_user_first (3 ms warmup)
+</span><span class='line'>        process_time: 4 ms
+</span><span class='line'>              memory: 289 Bytes
+</span><span class='line'>             objects: 551&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>你还可以用 Helper 在 View, Controler, Model 里面打点统计</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="appcontrollerstopicscontrollerrb">app/controllers/topics_controller.rb&lt;/h1>
+</span><span class='line'>&lt;p>class TopicsController &lt; ApplicationController
+</span><span class='line'>  def index
+</span><span class='line'>    benchmark(“  Benchmark: topics/index/suggest_topics”) do
+</span><span class='line'>      @suggest_topics = Topic.without_hide_nodes.suggest.limit(3)
+</span><span class='line'>    end
+</span><span class='line'>    …
+</span><span class='line'>  end
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>Rails log 将会输出</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="developmentlog">development.log&lt;/h1>
+</span><span class='line'>&lt;p>Started GET “/topics” for 127.0.0.1 at 2015-01-01 00:50:19 +0800
+</span><span class='line'>  …
+</span><span class='line'>  Benchmark:  topics/index/suggest_topics (1.4ms)
+</span><span class='line'>  …
+</span><span class='line'>Completed 200 OK in 121ms (Views: 108.1ms)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>还有更多功能待你发现哦!</p>
+
+<hr />
+<p><a href="https://github.com/rails/rails-perftest">https://github.com/rails/rails-perftest</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Web开发cache]]></title>
@@ -1331,38 +1480,6 @@ wiki中也有不少关于开发上的建议与经验，还有自己遇到一些�
 
 <hr />
 <p>转载自 <a href="https://ruby-china.org/topics/18439">ruby-china</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby gems内存泄露]]></title>
-    <link href="http://helloyokoy.github.io/blog/ruby-gems-memory-leak/"/>
-    <updated>2015-10-22T15:01:34+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/ruby-gems-memory-leak</id>
-    <content type="html"><![CDATA[<p>请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新</p>
-
-<ul>
-  <li>
-    <p>therubyracer &lt; 0.12.2</p>
-  </li>
-  <li>
-    <p>sidekiq &lt; 3.5.1</p>
-  </li>
-  <li>
-    <p>celluloid &gt; 0.16.0, &lt; 0.17.2</p>
-  </li>
-  <li>
-    <p>zipruby &lt;= 0.3.6</p>
-  </li>
-  <li>
-    <p>redcarpet &lt; 3.3.3</p>
-  </li>
-  <li>
-    <p>grape &lt; 0.2.5</p>
-  </li>
-</ul>
-
-<p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
 ]]></content>
   </entry>
   

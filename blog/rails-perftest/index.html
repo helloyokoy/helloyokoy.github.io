@@ -1,0 +1,340 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Rails-perftest 分析 Rails 引用的性能 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="这个是 Rails 官方的 Gem，可以直接集成到 Rails 里面 你可以写 Benchmark 的测试用例: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+require 'test_helper'
+require 'rails/performance_test_help' class &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Rails-perftest 分析 Rails 引用的性能</h2>
+	<div class="entry-content"><p>这个是 Rails 官方的 Gem，可以直接集成到 Rails 里面</p>
+
+<p>你可以写 Benchmark 的测试用例:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">require 'test_helper'
+</span><span class="line">require 'rails/performance_test_help'
+</span><span class="line">
+</span><span class="line">class HomepageTest &lt; ActionDispatch::PerformanceTest
+</span><span class="line">  # Refer to the documentation for all available options
+</span><span class="line">  # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
+</span><span class="line">  #                          output: 'tmp/performance', formats: [:flat] }
+</span><span class="line">
+</span><span class="line">  test "homepage" do
+</span><span class="line">    get '/'
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<!--more-->
+
+<p>然后可以执行</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ rake test:benchmark
+</span><span class="line">HomepageTest#test_homepage (31 ms warmup)
+</span><span class="line">           wall_time: 6 ms
+</span><span class="line">              memory: 437.27 KB
+</span><span class="line">             objects: 5,514
+</span><span class="line">             gc_runs: 0
+</span><span class="line">             gc_time: 19 ms</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>你可以直接在命令行使用</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">$ perftest profiler 'User.first' --runs 3
+</span><span class="line">ProfilerTest#test_user_first (3 ms warmup)
+</span><span class="line">        process_time: 4 ms
+</span><span class="line">              memory: 289 Bytes
+</span><span class="line">             objects: 551</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>你还可以用 Helper 在 View, Controler, Model 里面打点统计</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># app/controllers/topics_controller.rb
+</span><span class="line">class TopicsController &lt; ApplicationController
+</span><span class="line">  def index
+</span><span class="line">    benchmark("  Benchmark: topics/index/suggest_topics") do
+</span><span class="line">      @suggest_topics = Topic.without_hide_nodes.suggest.limit(3)
+</span><span class="line">    end
+</span><span class="line">    ...
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Rails log 将会输出</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># development.log
+</span><span class="line">Started GET "/topics" for 127.0.0.1 at 2015-01-01 00:50:19 +0800
+</span><span class="line">  ...
+</span><span class="line">  Benchmark:  topics/index/suggest_topics (1.4ms)
+</span><span class="line">  ...
+</span><span class="line">Completed 200 OK in 121ms (Views: 108.1ms)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>还有更多功能待你发现哦!</p>
+
+<hr />
+<p><a href="https://github.com/rails/rails-perftest">https://github.com/rails/rails-perftest</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月7 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/rails-perftest" data-title="Rails-perftest 分析 Rails 引用的性能" data-url="http://helloyokoy.github.io/blog/rails-perftest/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
