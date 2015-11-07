@@ -1,0 +1,293 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Redis 缓存服务器配置 - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点： 除了Hash，还提供了Sorted Set, List等数据结构 可以持久化到磁盘 支持cluster (3.0) 它的性能和memcached不相上下，再加上流行的其他组件（比如队列） &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Redis 缓存服务器配置</h2>
+	<div class="entry-content"><p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
+
+<ol>
+  <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
+  <li>可以持久化到磁盘</li>
+  <li>支持cluster (3.0)</li>
+</ol>
+
+<p>它的性能和memcached不相上下，再加上流行的其他组件（比如队列）也会用到redis，从架构简单出发，已经没有必要混用redis和memcached了。</p>
+
+<p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
+
+<!--more-->
+
+<h3 id="redis">Redis配置</h3>
+
+<p>作为缓存服务器，如果不加以限制内存的话，就很有可能出现将整台服务器内存都耗光的情况，可以在redis的配置文件里面设置：</p>
+
+<pre><code># 限定最多使用1.5GB内存
+maxmemory 1536mb 如果内存到达了指定的上限，还要往redis里面添加更多的缓存内容，需要设置清理内容的策略：
+
+# 设置策略为清理最少使用的key对应的数据
+maxmemory-policy allkeys-lru 清理策略有多种，redis的官方文档有一篇很详细的说明：[http://redis.io/topics/lru-cache](http://redis.io/topics/lru-cache)
+</code></pre>
+
+<h3 id="redis-1">Redis监控</h3>
+
+<p>redis提供了INFO这个命令，能够随时监控服务器的状态，只用telnet到对应服务器的端口，执行命令即可：</p>
+
+<pre><code>telnet localhost 6379
+info 在输出的信息里面有这几项和缓存的状态比较有关系：
+
+keyspace_hits:14414110
+keyspace_misses:3228654
+used_memory:433264648
+expired_keys:1333536
+evicted_keys:1547380 通过计算hits和miss，我们可以得到缓存的命中率：14414110 / (14414110 + 3228654) = 81% ，一个缓存失效机制，和过期时间设计良好的系统，命中率可以做到95%以上,对于整体性能提升是很大的。
+</code></pre>
+
+<p>used_memory,expired_keys,evicted_keys这3个信息的具体含义，redis的官方也有一篇很详细的说明：</p>
+
+<p><a href="http://redis.io/commands/info">http://redis.io/commands/info</a></p>
+
+<p>有个ruby gem叫redis-stat，它利用INFO命令展现出更直观的信息报表，推荐：</p>
+
+<p><a href="https://github.com/junegunn/redis-stat">https://github.com/junegunn/redis-stat</a></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/82396805d893ad0af30845d4a2abd15c.png" alt="img" /></p>
+
+<h3 id="rails">优化Rails的缓存配置</h3>
+
+<p>Rails在用redis作为缓存的时候，配置很简单，官方文档是用schema的方式来写的：</p>
+
+<pre><code>config.cache_store = :redis_store, "redis://localhost:6379/0/cache" 由于实在太简单了，很多人就直接用这个默认设置了，但实际上还有一些很有用的参数可以通过hash options的方式来写，比如压缩超过32K的数据压缩以后再放入缓存，再比如设置默认所有的key失效时间为8小时：
+
+config.cache_store = :redis_store, {:host =&gt; 'redis.server', :port =&gt; 6379, :compress =&gt; true, :expires_in =&gt; 8.hours, :compress_threshold =&gt; 32.kilobytes}
+</code></pre>
+
+<p>用一个实际案例来作为例子，一台redis缓存服务器在优化配置之前，占用4.2G左右的内存，缓存命中率在70%左右。
+我们先在服务器上执行BGSAVE命令，将内存dump下来，然后用 https://github.com/sripathikrishnan/redis-rdb-tools 这个工具，将dump的数据，解析成csv文件：</p>
+
+<pre><code>rdb -c memory /var/redis/6379/dump.rdb &gt; memory.csv
+</code></pre>
+
+<p>用excel打开分析，按key进行排序和统计，我们可以看到哪一些类型的缓存在服务器上最多，调整这个类型缓存的失效时间和失效机制，再通过redis-stat来观察进行微调，提高整体的命中率。</p>
+
+<p>通过分析占用内存比较大的key，发现有30%左右的相同类型key，用了95%的内存，这些缓存大部分是html的片段缓存，通过设置compress_threshold和compress参数，让整体内存占用从4.2G，下降到了1.3G。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年5 月7 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/redis-huan-cun-fu-wu-qi-pei-zhi" data-title="Redis 缓存服务器配置" data-url="http://helloyokoy.github.io/blog/redis-huan-cun-fu-wu-qi-pei-zhi/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-07T15:08:59+08:00</updated>
+  <updated>2015-11-07T16:03:26+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -702,339 +702,6 @@ end
 
 <hr />
 <p>转载自  <a href="https://ruby-china.org/topics/19389">ruby-china</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Gemfile 详解]]></title>
-    <link href="http://helloyokoy.github.io/blog/gem-description/"/>
-    <updated>2015-11-03T16:05:02+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/gem-description</id>
-    <content type="html"><![CDATA[<p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
-
-<p>原文：<a href="http://tosbourn.com/what-is-the-gemfile/">http://tosbourn.com/what-is-the-gemfile/</a></p>
-
-<p>作为Ruby开发者，我们一直在使用Gemfile，并且大部分人知道一些关于Gemfile的基础知识。在这篇文章里，我想更加深入到Gemfile里面去看看通过Gemfile所能做的一切。</p>
-
-<h2 id="gemfile">什么是Gemfile</h2>
-
-<p>Gemfile是我们创建的一个用于描述gem之间依赖的文件。gem是一堆Ruby代码的集合，它能够为我们提供调用。你的Gemfile必须放在项目的根目录下面， 这是Bundler的要求，对于任何的其他形式的包管理文件来说，这也是标准。这里值得注意的一点是Gemfile会被作为Ruby代码来执行。当在Bundler上下文环境中被执行的时能使我们访问一些方法，我们用这些方法来解释gem之间的require关系。</p>
-
-<!--more-->
-
-<h2 id="gemfile-1">创建Gemfile</h2>
-
-<p>首先我们要做的就是告诉Gemfile到那里去找到这些gems, 这就是gem的源。</p>
-
-<p>我们使用#source方法来做这件事情</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">source "https://rubygems.org"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这里并不推荐一个项目有多个源。对于99%的项目，你的Gemfile的源都会被要求设置为https://rubygems.org，对于一个源，唯一的要求是它必须是一个合法的Rubygems的repo。</p>
-
-<h2 id="section">源的优先级</h2>
-
-<p>现在我们来探讨下关于gem源的优先级。
-我们在Gemfile的顶部位置定义一个源的同时，我们也可以针对每个gem定义一个源。我们也能够为一个本地的gem定义一个路径或者是为gem定义一个git路径，比如说GitHub之类的（我们在后面点讲到这点）。</p>
-
-<p>当Bundler尝试定位一个gem的时候，它会首先查看这个gem有没有显示的设置源，如果有，就先使用这个源。如果你在设置gem的时候有使用source, path或者git依赖的话，Bundler将会先在这些地方找，然后再去其他地方寻找。如果没有被显示设置的话， Bundler将会依照你Gemfile里面定义的源的顺序来找。如果一个gem能够在多个源里面被找到的话（虽然这是极为罕见的，因为你最好只定义一个源），你将会得到一个warning来提示你哪个源被使用了。</p>
-
-<p>你能够使#source作为一个block来调用</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">source "https://my_awesome_source.com" do
-</span><span class="line">   gem "my_gem"
-</span><span class="line">   gem “my_other_gem”
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="section-1">带验证的源</h2>
-
-<p>有些源需要你使用验证才能够被设定。Bundler有一个设置选项使得你可以为每个源设置用户名和密码</p>
-
-<pre><code>bundle config my_gem_source.com my_username:my_password
-</code></pre>
-
-<p>这是任何希望通过Bundler来安装gem都必须要的因为它不会被放入版本管理里面。你也可以直接在Gemfile中设置你的验证信息，当然，这些验证信息也会被commit进你的版本管理工具。如下所示</p>
-
-<pre><code>source "https://username:password@my_gem_source.com" 你在源里面的设置，都会被你以bundle config的方式设置的东西所覆盖。
-</code></pre>
-
-<h2 id="ruby">设置Ruby信息</h2>
-
-<p>如果你的应用程序需要使用一个特别的Ruby版本或是引擎，我们都能够在Gemfile里面进行设置。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">ruby "1.9.3", :patchlevel =&gt; "247", :engine =&gt; "jruby", :engine_version =&gt; "1.6.7"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>当设定这个的时候，需要的唯一点信息就是ruby的版本（我们这里使用1.9.3）
-* :pathlevel 声明了Ruby的patch level
-* :engine 声明了使用的Ruby引擎
-* :engine_version 声明了引擎的版本 (如果这个被设置了，engine也需要被设置）</p>
-
-<h2 id="gems">设置Gems</h2>
-
-<p>现在我们到了Gemfile的核心，设置你的gems。最基本的语法如下：</p>
-
-<pre><code>gem "my_gem"
-</code></pre>
-
-<p>这里my_gem是 gem的名字，gem的名字是唯一要求的参数，此外还有几个可以选择的参数可以使用。</p>
-
-<h2 id="gem">设置Gem的版本</h2>
-
-<p>对于一个gem，你最常做的事情就是设置它的版本，如果你不设置版本的话，你也可以说任意的版本都可以。</p>
-
-<pre><code>gem "my_gem", "&gt;= 0.0"
-</code></pre>
-
-<p>这里有7个操作符供你用来设置你的gem</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">* = Equal To "=1.0"
-</span><span class="line"> * != Not Equal To "!=1.0"
-</span><span class="line"> * &gt; Greater Than "&gt;1.0"
-</span><span class="line"> * &lt; Less Than "&lt;1.0"
-</span><span class="line"> * &gt;= Greater Than or Equal To "&gt;=1.0"
-</span><span class="line"> * &lt;= Less Than or Equal To "&lt;=1.0"
-</span><span class="line"> * ~&gt; Pessimistically Greater Than or Equal To "~&gt;1.0"
-</span><span class="line"> * ~&gt; Pessimistically Greater Than or Equal To</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>~&gt; 操作能够让你使用这个gem的未来的某个安全的版本。如果你觉得使用一个大的版本更安全，你能够像下面这样声明.</p>
-
-<pre><code>gem "my_gem", "~&gt; 2.0"
-</code></pre>
-
-<p>这能够允许你安装任意的2.x版本的gem，但是3.x版本是不被允许的。或许你对这么宽泛的版本感到不爽，你也可以声明一个更具体的版本，如下</p>
-
-<pre><code>gem "my_gem", "~&gt; 2.5.0"
-</code></pre>
-
-<p>这能够让你使用2.5.0到2.6.0之间的版本。下面的例子能够让你更加理解~&gt; 操作符</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">* gem "my_gem", "~&gt; 1.0" –&gt; gem "my_gem", "&gt;= 1.0", "&lt; 2.0"
-</span><span class="line">   * gem "my_gem", "~&gt; 1.5.0" –&gt; gem "my_gem", "&gt;= 1.5.0", "&lt; 1.6.0"
-</span><span class="line">   * gem "my_gem", "~&gt; 1.5.5" –&gt; gem "my_gem", "&gt;= 1.5.5", "&lt; 1.6.0"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="gemrequired">设置gem被required</h2>
-
-<p>如果你使用Rails的话，这点小技巧可能被隐藏了，但是在你的config/application.rb文件里面你能看到这么一行代码。</p>
-
-<pre><code>Bundler.require(:default, Rails.env)
-</code></pre>
-
-<p>它的意思是require所有没有被放入group（后面会讲到这个概念）里面的gems和所有放入和当前rails环境（RAILS_ENV, development, test, production)同名的group里面的gems。</p>
-
-<p>默认方式下，如果你在Gemfile里面包含一个gem，当Bundler.require被调用的时候会被包含进来。我们也能通过下面的设置让gem不被包含进来(译者注释：这样你就只能安装这个gem，在使用的时候必须在你的代码里手动的添加require ‘my_gem’来调用my_gem里面的方法了。为什么需要这样呢，因为并不是所有的地方都需要使用这个gem，比如你在rake task里面使用了my_gem, 而其他地方没有使用，故你只需要在这个gem require到task里面，避免了所有的进程都把这个gem加载进去）</p>
-
-<pre><code>gem "my_gem", require: false
-</code></pre>
-
-<p>当然你也可以指定哪些文件夹被required的，如下：</p>
-
-<pre><code>gem "my_gem", require: ["my_gem/specific_module/my_class", "my_gem"]
-</code></pre>
-
-<p>这点在当你的gem有很多功能的，你必须每次手动require的时候非常有用。</p>
-
-<h2 id="gem-1">gem分组</h2>
-
-<p>正如我上面提到的一样，一个gem可以属于一个或多个group，当它不属于任何group的时候，它被放入了:default group。
-有两种方法你可以对一个gem分组。第一种是对group属性进行赋值，如下所示：</p>
-
-<pre><code>gem "my_gem", group: :development
-</code></pre>
-
-<p>它的意思是，这个gem只在development环境下被require。这也意味着当你在安装gems的时候，你可以指定某个group下面的gems不被安装，这样在一定程度上能加快gem的安装。</p>
-
-<pre><code>bundle install --without development test
-</code></pre>
-
-<p>上面的意思是安装除development和test group意外的所有gems。
-第二种gem分组的方法就是你可以将gems放入一个block里面，如下所示：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">group :development do
-</span><span class="line">   gem "my_gem"
-</span><span class="line">   gem "my_other_gem"
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这看上去更美观，并且你也可以设置多个group。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">group :development, :test do
-</span><span class="line">  gem "my_gem"
-</span><span class="line">  gem "my_other_gem"
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>如果你想让某个group变成可选的形式，你也可以像下面这样，设置optional: true</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">group :development, optional: true do
-</span><span class="line">   gem "my_gem"
-</span><span class="line">   gem "my_other_gem"
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>当上面被设置时，为了安装development group下面的gems，需要运行bundle install —with development</p>
-
-<h2 id="gem-2">设置gem的平台</h2>
-
-<p>如果某个gem只能在某个平台上使用，你也可以在gemfile里面设置。平台的原理和group很类似，但不同的是你不需要去通过—without这样的option去指定，它会自动根据平台判断执行。</p>
-
-<pre><code>gem "my_gem", platform: :jrubygem "my_other_gem", platform: [:ruby, :mri_18]
-</code></pre>
-
-<p>下面是一个不同平台的list。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">* ruby – C Ruby (MRI) or Rubinius, but not Windows
-</span><span class="line">   * ruby_18 to ruby_22 – ruby &amp; (version 1.8 .. version 2.2)
-</span><span class="line">   * mri – Same as ruby, but not Rubinius
-</span><span class="line">   * mri_18 to mri_22 – mri &amp; (version 1.8 .. version 2.2)
-</span><span class="line">   * rbx – Same as ruby, but only Rubinius (not MRI)
-</span><span class="line">   * jruby – JRuby
-</span><span class="line">   * mswin – Windows
-</span><span class="line">   * mingw – Windows 32 bit mingw32 platform (aka RubyInstaller)
-</span><span class="line">   * mingw_18 to mingw_22 – mingw &amp; (version 1.8 .. version 2.2)
-</span><span class="line">   * x64_mingw – Windows 64 bit mingw32 platform
-</span><span class="line">   * x64_mingw_20 to x64_mingw_22 – x64_mingw &amp; (version 2.0 .. version 2.2)</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>我发现平台真的非常有用，当一个开发团队在不同平台开发的时候。当你team的一个开发者使用的是Windows平台的时候，你可能需要不同版本的gem来支持。我经常使用下面的block语法来使用platform设定。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">platforms :jruby do
-</span><span class="line">  gem "my_gem"
-</span><span class="line">  gem "my_other_gem"
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="gem-3">设置gem的源</h2>
-
-<p>ok，现在我们来讲设置gem的源，如下所示:</p>
-
-<pre><code>gem "my_gem", source: "https://my_awesome_gemsite.com"
-</code></pre>
-
-<p>如果这个my_gem 在source里面找不到的话，Bundler也不会去default的源里面找，所以找不到的情况下这个gem就不会被安装。</p>
-
-<h2 id="gitgem">从git安装gem</h2>
-
-<p>你可以设置gem的安装源为一个git repo，比如GitHub, 这只需要你将source属性替换为git。你可以设置这个repo的链接为HTTP(S), SSH, GIT等协议，但最好使用HTTP(S)和SSH，因为其他的会使你可能成为man-in-the-middle攻击的受害者。如果你把gem放入到repo里面，你必须要在repo根目录文件夹下面有一个.gemspec 文件。这里面需要包含一个合法gem的声明。如果你没有提供这个文件，Bundler会尝试创建一个，但是他不会被依赖。如果你尝试去include一个没有提供.gemspec文件的git repo里面的gem，你必须指定一个版本号。</p>
-
-<p>你可以为gem设置branch，tag，ref，默认是使用master branch。你也可以强制Bundler扩展submodule，通过以下方式来设置：</p>
-
-<pre><code>gem "my_gem", git: "ssh@githib.com/tosbourn/my_gem", branch: test_branch, submodules: true
-</code></pre>
-
-<p>如果你有多个gem来自同一个git repo，你也可以通过下面block形式组织起来。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git "git@github.com:tosbourn/my_gems.git" do
-</span><span class="line">  gem "my_gem"
-</span><span class="line">  gem "my_other_gem"
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="gitsource">设置Git作为source</h2>
-
-<p>你可以设置一个URL来作为一个更广义的源，你可以通过调用#git_source方法并将name作为参数传进去，以及一个接收一个参数的block，并返回一个string作为repo的URL。如下所示：</p>
-
-<pre><code>git_source(:custom_git){ |repo| "https://my_secret_git_repos.com/#{repo}.git" }
-gem "my_gem", custom_git: "tosbourn/test_repo"
-</code></pre>
-
-<h2 id="bitbucketgithubhelper-method">BitBucket和Github的helper method</h2>
-
-<p>因为BitBucket和Github都是比较流行的git repo host，所以有两者的helper method。在两者里面，Bundler都默认repo是public的。</p>
-
-<pre><code>gem "my_gem", github: "tosbourn/my_gem" 
-gem "my_gem", bitbucket: "tosbourn/my_gem"
-</code></pre>
-
-<p>你也可以设置两者的branch。当用户名和repo名字一致的时候，可以省略一个。</p>
-
-<pre><code>gem "rails", github: "rails"
-gem "rails", bitbucket: "rails"
-</code></pre>
-
-<p>注意：在Bundler 2出来之前，你不能使用:github这个参数，目前它是使用git://协议的，就是前面讲过的可能会受到man-in-the-middle攻击的。还有一个helper :gist, 如果你Github上是以gist的形式存放的话就能够使用它。你可以只使用gist ID作为path，也可以像:github, :bitbucket那样传入:branch参数。</p>
-
-<pre><code>gem "my_gem", :gist =&gt; "5935162112", branch: "my_custom_branch"
-</code></pre>
-
-<h2 id="pathgem">用path包含本地Gem</h2>
-
-<p>你可以通过传入:path参数来依赖你本地的gems。</p>
-
-<pre><code>gem "my_gem", :path =&gt; "../my_path/my_gem"
-</code></pre>
-
-<p>如果你传入一个相对路径的话（如上），这个路径是相对于你Gemfile的路径的。如果你想把某个文件夹下所有的gems都包含进去的话，你可以使用如下的block。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">path "../my_path/gems" do
-</span><span class="line">  gem "my_gem"
-</span><span class="line">  gem "my_other_gem"
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>有一点值得注意的是，如果你使用的是path的话，Bundler是不会编译c extension的。</p>
-
-<h2 id="gems-1">选择性的安装gems</h2>
-
-<p>有时候你想在某个前提条件被满足的情况下安装这个gem，比如你系统里面是否有某个程序。下面这个方法能够接收一个proc或lambda，下面的例子中我们将在你的系统是mac的时候安装这个gem</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">install_if -&gt; { RUBY_PLATFORM =~ /darwin/ } do
-</span><span class="line">   gem "my_osx_gem"
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="section-2">结束语</h2>
-
-<p>谢谢你的阅读并希望它能对你有所帮助，如果我有什么遗漏或你有什么问题的话请联系我~</p>
-
-<hr />
-<p>转载自 <a href="https://ruby-china.org/topics/26655">ruby-china</a></p>
 ]]></content>
   </entry>
   
@@ -4881,6 +4548,964 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 </span><span class="line">  }
 </span><span class="line">  return result;
 </span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MJExtension介绍]]></title>
+    <link href="http://helloyokoy.github.io/blog/mjextensionjie-shao/"/>
+    <updated>2015-08-10T10:35:13+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/mjextensionjie-shao</id>
+    <content type="html"><![CDATA[<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
+
+<h2 id="mjextension">MJExtension</h2>
+
+<blockquote>
+  <p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
+</blockquote>
+
+<p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
+
+<h2 id="getting-started">Getting Started【开始使用】</h2>
+
+<h4 id="features">Features【能做什么】</h4>
+
+<ul>
+  <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
+  <li>JSON –&gt; Model、Core Data Model</li>
+  <li>JSONString –&gt; Model、Core Data Model</li>
+  <li>Model、Core Data Model –&gt; JSON</li>
+  <li>JSON Array –&gt; Model Array、Core Data Model Array</li>
+  <li>JSONString –&gt; Model Array、Core Data Model Array</li>
+  <li>Model Array、Core Data Model Array –&gt; JSON Array</li>
+  <li>Coding all properties of model in one line code.</li>
+  <li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
+</ul>
+
+<!--more-->
+
+<h4 id="why-use-mjextension-why-not-use-jsonmodel-or-mantle">Why use MJExtension, why not use JSONModel or Mantle</h4>
+
+<h4 id="mjextension-is-faster-than-jsonmodel-and-mantle">MJExtension is faster than JSONModel and Mantle【转换速率】</h4>
+
+<ul>
+  <li>MJExtension &gt; JSONModel &gt; Mantle (Feel free to test it yourself)</li>
+  <li>各位开发者也可以自行测试</li>
+</ul>
+
+<h4 id="mjextension-is-more-easy-to-gomjextension">MJExtension is more easy to go【MJExtension更加容易使用】</h4>
+
+<ul>
+  <li>
+    <p>JSONModel</p>
+
+    <ul>
+      <li>You must let all model class extend JSONModel class</li>
+      <li>要求所有模型类必须继承自JSONModel基类</li>
+    </ul>
+  </li>
+  <li>
+    <p>Mantle</p>
+
+    <ul>
+      <li>You must let all model class extend MTModel class.</li>
+      <li>要求所有模型类必须继承自MTModel基类</li>
+    </ul>
+  </li>
+  <li>
+    <p>MJExtension</p>
+
+    <ul>
+      <li>Your model class doesn’t need to extend another base class. You don’t need to modify any model file. Nonintrusive, convenient.</li>
+      <li>不需要你的模型类继承任何特殊基类，也不需要修改任何模型代码，毫无污染，毫无侵入性</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="installation">Installation【安装】</h3>
+<hr />
+
+<h4 id="from-cocoapodscocoapods">From CocoaPods【使用CocoaPods】</h4>
+
+<pre><code>pod 'MJExtension'
+</code></pre>
+
+<h4 id="manually">Manually【手动导入】</h4>
+
+<ul>
+  <li>Drag all source files under floder MJExtension to your project.【将MJExtension文件夹中的所有源代码拽入项目中】</li>
+  <li>
+    <p>Import the main header file：#import “MJExtension.h”【导入主头文件：#import “MJExtension.h”】</p>
+
+    <pre><code>  MJExtension.h
+  MJConst.h               MJConst.m
+  MJFoundation.h          MJFoundation.m
+  MJProperty.h            MJProperty.m
+  MJType.h                MJType.m
+  NSObject+MJCoding.h     NSObject+MJCoding.m
+  NSObject+MJProperty.h   NSObject+MJProperty.m
+  NSObject+MJKeyValue.h   NSObject+MJKeyValue.m
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="examples">Examples【示例】</h3>
+<hr />
+
+<h4 id="the-most-simple-json---model">The most simple JSON -&gt; Model【最简单的字典转模型】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">typedef enum {
+</span><span class="line">   SexMale,
+</span><span class="line">   SexFemale
+</span><span class="line">} Sex;
+</span><span class="line">
+</span><span class="line">@interface User : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *name;
+</span><span class="line">@property (copy, nonatomic) NSString *icon;
+</span><span class="line">@property (assign, nonatomic) unsigned int age;
+</span><span class="line">@property (copy, nonatomic) NSString *height;
+</span><span class="line">@property (strong, nonatomic) NSNumber *money;
+</span><span class="line">@property (assign, nonatomic) Sex sex;
+</span><span class="line">@property (assign, nonatomic, getter=isGay) BOOL gay;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">   @"name" : @"Jack",
+</span><span class="line">   @"icon" : @"lufy.png",
+</span><span class="line">   @"age" : @20,
+</span><span class="line">   @"height" : @"1.55",
+</span><span class="line">   @"money" : @100.9,
+</span><span class="line">   @"sex" : @(SexFemale),
+</span><span class="line">   @"gay" : @"true"
+</span><span class="line">//   @"gay" : @"1"
+</span><span class="line">//   @"gay" : @"NO"
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// JSON -&gt; User
+</span><span class="line">User *user = [User objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">NSLog(@"name=%@, icon=%@, age=%zd, height=%@, money=%@, sex=%d, gay=%d", user.name, user.icon, user.age, user.height, user.money, user.sex, user.gay);
+</span><span class="line">// name=Jack, icon=lufy.png, age=20, height=1.550000, money=100.9, sex=1</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="jsonstring---modeljson">JSONString -&gt; Model【JSON字符串转模型】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// 1.Define a JSONString
+</span><span class="line">NSString *jsonString = @"{\"name\":\"Jack\", \"icon\":\"lufy.png\", \"age\":20}";
+</span><span class="line">
+</span><span class="line">// 2.JSONString -&gt; User
+</span><span class="line">User *user = [User objectWithKeyValues:jsonString];
+</span><span class="line">
+</span><span class="line">// 3.Print user's properties
+</span><span class="line">NSLog(@"name=%@, icon=%@, age=%d", user.name, user.icon, user.age);
+</span><span class="line">// name=Jack, icon=lufy.png, age=20</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="model-contains-model">Model contains model【模型中嵌套模型】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">@interface Status : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *text;
+</span><span class="line">@property (strong, nonatomic) User *user;
+</span><span class="line">@property (strong, nonatomic) Status *retweetedStatus;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">   @"text" : @"Agree!Nice weather!",
+</span><span class="line">   @"user" : @{
+</span><span class="line">       @"name" : @"Jack",
+</span><span class="line">       @"icon" : @"lufy.png"
+</span><span class="line">   },
+</span><span class="line">   @"retweetedStatus" : @{
+</span><span class="line">       @"text" : @"Nice weather!",
+</span><span class="line">       @"user" : @{
+</span><span class="line">           @"name" : @"Rose",
+</span><span class="line">           @"icon" : @"nami.png"
+</span><span class="line">       }
+</span><span class="line">   }
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// JSON -&gt; Status
+</span><span class="line">Status *status = [Status objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">NSString *text = status.text;
+</span><span class="line">NSString *name = status.user.name;
+</span><span class="line">NSString *icon = status.user.icon;
+</span><span class="line">NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+</span><span class="line">// text=Agree!Nice weather!, name=Jack, icon=lufy.png
+</span><span class="line">
+</span><span class="line">NSString *text2 = status.retweetedStatus.text;
+</span><span class="line">NSString *name2 = status.retweetedStatus.user.name;
+</span><span class="line">NSString *icon2 = status.retweetedStatus.user.icon;
+</span><span class="line">NSLog(@"text2=%@, name2=%@, icon2=%@", text2, name2, icon2);
+</span><span class="line">// text2=Nice weather!, name2=Rose, icon2=nami.png</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="model-contains-model-array">Model contains model-array【模型中有个数组属性，数组里面又要装着其他模型】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">@interface Ad : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *image;
+</span><span class="line">@property (copy, nonatomic) NSString *url;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">@interface StatusResult : NSObject
+</span><span class="line">/** Contatins status model */
+</span><span class="line">@property (strong, nonatomic) NSMutableArray *statuses;
+</span><span class="line">/** Contatins ad model */
+</span><span class="line">@property (strong, nonatomic) NSArray *ads;
+</span><span class="line">@property (strong, nonatomic) NSNumber *totalNumber;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">// Tell MJExtension what type model will be contained in statuses and ads.
+</span><span class="line">[StatusResult setupObjectClassInArray:^NSDictionary *{
+</span><span class="line">  return @{
+</span><span class="line">                 @"statuses" : @"Status",
+</span><span class="line">               // @"statuses" : [Status class],
+</span><span class="line">               @"ads" : @"Ad"
+</span><span class="line">               // @"ads" : [Ad class]
+</span><span class="line">           };
+</span><span class="line">}];
+</span><span class="line">// Equals: StatusResult.m implements +objectClassInArray method.
+</span><span class="line">
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">   @"statuses" : @[
+</span><span class="line">                      @{
+</span><span class="line">                          @"text" : @"Nice weather!",
+</span><span class="line">                          @"user" : @{
+</span><span class="line">                              @"name" : @"Rose",
+</span><span class="line">                              @"icon" : @"nami.png"
+</span><span class="line">                          }
+</span><span class="line">                      },
+</span><span class="line">                      @{
+</span><span class="line">                          @"text" : @"Go camping tomorrow!",
+</span><span class="line">                          @"user" : @{
+</span><span class="line">                              @"name" : @"Jack",
+</span><span class="line">                              @"icon" : @"lufy.png"
+</span><span class="line">                          }
+</span><span class="line">                      }
+</span><span class="line">                  ],
+</span><span class="line">    @"ads" : @[
+</span><span class="line">                 @{
+</span><span class="line">                     @"image" : @"ad01.png",
+</span><span class="line">                     @"url" : @"http://www.ad01.com"
+</span><span class="line">                 },
+</span><span class="line">                 @{
+</span><span class="line">                     @"image" : @"ad02.png",
+</span><span class="line">                     @"url" : @"http://www.ad02.com"
+</span><span class="line">                 }
+</span><span class="line">             ],
+</span><span class="line">    @"totalNumber" : @"2014"
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// JSON -&gt; StatusResult
+</span><span class="line">StatusResult *result = [StatusResult objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">NSLog(@"totalNumber=%@", result.totalNumber);
+</span><span class="line">// totalNumber=2014
+</span><span class="line">
+</span><span class="line">// Printing
+</span><span class="line">for (Status *status in result.statuses) {
+</span><span class="line">    NSString *text = status.text;
+</span><span class="line">    NSString *name = status.user.name;
+</span><span class="line">    NSString *icon = status.user.icon;
+</span><span class="line">    NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+</span><span class="line">}
+</span><span class="line">// text=Nice weather!, name=Rose, icon=nami.png
+</span><span class="line">// text=Go camping tomorrow!, name=Jack, icon=lufy.png
+</span><span class="line">
+</span><span class="line">// Printing
+</span><span class="line">for (Ad *ad in result.ads) {
+</span><span class="line">   NSLog(@"image=%@, url=%@", ad.image, ad.url);
+</span><span class="line">}
+</span><span class="line">// image=ad01.png, url=http://www.ad01.com
+</span><span class="line">// image=ad02.png, url=http://www.ad02.com</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="model-name---json-key-mappingkey">Model name - JSON key mapping【模型中的属性名和字典中的key不相同(或者需要多级映射)】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">@interface Bag : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *name;
+</span><span class="line">@property (assign, nonatomic) double price;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">@interface Student : NSObject
+</span><span class="line">@property (copy, nonatomic) NSString *ID;
+</span><span class="line">@property (copy, nonatomic) NSString *desc;
+</span><span class="line">@property (copy, nonatomic) NSString *nowName;
+</span><span class="line">@property (copy, nonatomic) NSString *oldName;
+</span><span class="line">@property (copy, nonatomic) NSString *nameChangedTime;
+</span><span class="line">@property (strong, nonatomic) Bag *bag;
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">// How to map
+</span><span class="line">[Student setupReplacedKeyFromPropertyName:^NSDictionary *{
+</span><span class="line">   return @{
+</span><span class="line">               @"ID" : @"id",
+</span><span class="line">               @"desc" : @"desciption",
+</span><span class="line">               @"oldName" : @"name.oldName",
+</span><span class="line">               @"nowName" : @"name.newName",
+</span><span class="line">               @"nameChangedTime" : @"name.info[1].nameChangedTime",
+</span><span class="line">               @"bag" : @"other.bag"
+</span><span class="line">           };
+</span><span class="line">}];
+</span><span class="line">// Equals: Student.m implements +replacedKeyFromPropertyName method.
+</span><span class="line">
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">    @"id" : @"20",
+</span><span class="line">    @"desciption" : @"kids",
+</span><span class="line">    @"name" : @{
+</span><span class="line">        @"newName" : @"lufy",
+</span><span class="line">        @"oldName" : @"kitty",
+</span><span class="line">        @"info" : @[
+</span><span class="line">                 @"test-data",
+</span><span class="line">                 @{
+</span><span class="line">                             @"nameChangedTime" : @"2013-08"
+</span><span class="line">                         }
+</span><span class="line">                  ]
+</span><span class="line">  },
+</span><span class="line">    @"other" : @{
+</span><span class="line">        @"bag" : @{
+</span><span class="line">            @"name" : @"a red bag",
+</span><span class="line">            @"price" : @100.7
+</span><span class="line">        }
+</span><span class="line">    }
+</span><span class="line">};
+</span><span class="line">
+</span><span class="line">// JSON -&gt; Student
+</span><span class="line">Student *stu = [Student objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">// Printing
+</span><span class="line">NSLog(@"ID=%@, desc=%@, oldName=%@, nowName=%@, nameChangedTime=%@",
+</span><span class="line">      stu.ID, stu.desc, stu.oldName, stu.nowName, stu.nameChangedTime);
+</span><span class="line">// ID=20, desc=kids, oldName=kitty, nowName=lufy, nameChangedTime=2013-08
+</span><span class="line">NSLog(@"bagName=%@, bagPrice=%f", stu.bag.name, stu.bag.price);
+</span><span class="line">// bagName=a red bag, bagPrice=100.700000</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="json-array---model-array">JSON array -&gt; model array【将一个字典数组转成模型数组】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">NSArray *dictArray = @[
+</span><span class="line">                         @{
+</span><span class="line">                             @"name" : @"Jack",
+</span><span class="line">                             @"icon" : @"lufy.png"
+</span><span class="line">                         },
+</span><span class="line">                         @{
+</span><span class="line">                             @"name" : @"Rose",
+</span><span class="line">                             @"icon" : @"nami.png"
+</span><span class="line">                         }
+</span><span class="line">                    ];
+</span><span class="line">
+</span><span class="line">// JSON array -&gt; User array
+</span><span class="line">NSArray *userArray = [User objectArrayWithKeyValuesArray:dictArray];
+</span><span class="line">
+</span><span class="line">// Printing
+</span><span class="line">for (User *user in userArray) {
+</span><span class="line">   NSLog(@"name=%@, icon=%@", user.name, user.icon);
+</span><span class="line">}
+</span><span class="line">// name=Jack, icon=lufy.png
+</span><span class="line">// name=Rose, icon=nami.png</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="model---json">Model -&gt; JSON【将一个模型转成字典】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// New model
+</span><span class="line">User *user = [[User alloc] init];
+</span><span class="line">user.name = @"Jack";
+</span><span class="line">user.icon = @"lufy.png";
+</span><span class="line">
+</span><span class="line">Status *status = [[Status alloc] init];
+</span><span class="line">status.user = user;
+</span><span class="line">status.text = @"Nice mood!";
+</span><span class="line">
+</span><span class="line">// Status -&gt; JSON
+</span><span class="line">NSDictionary *statusDict = status.keyValues;
+</span><span class="line">NSLog(@"%@", statusDict);
+</span><span class="line">/*
+</span><span class="line">{
+</span><span class="line"> 	text = "Nice mood!";
+</span><span class="line"> 	user =     {
+</span><span class="line"> 	icon = "lufy.png";
+</span><span class="line"> 	name = Jack;
+</span><span class="line"> 	};
+</span><span class="line">}
+</span><span class="line">*/
+</span><span class="line">
+</span><span class="line">// More complex situation
+</span><span class="line">Student *stu = [[Student alloc] init];
+</span><span class="line">stu.ID = @"123";
+</span><span class="line">stu.oldName = @"rose";
+</span><span class="line">stu.nowName = @"jack";
+</span><span class="line">stu.desc = @"handsome";
+</span><span class="line">stu.nameChangedTime = @"2018-09-08";
+</span><span class="line">
+</span><span class="line">Bag *bag = [[Bag alloc] init];
+</span><span class="line">bag.name = @"a red bag";
+</span><span class="line">bag.price = 205;
+</span><span class="line">stu.bag = bag;
+</span><span class="line">
+</span><span class="line">NSDictionary *stuDict = stu.keyValues;
+</span><span class="line">NSLog(@"%@", stuDict);
+</span><span class="line">/*
+</span><span class="line">{
+</span><span class="line">   ID = 123;
+</span><span class="line">   bag =     {
+</span><span class="line">        name = "\U5c0f\U4e66\U5305";
+</span><span class="line">        price = 205;
+</span><span class="line"> };
+</span><span class="line">   desc = handsome;
+</span><span class="line">   nameChangedTime = "2018-09-08";
+</span><span class="line">   nowName = jack;
+</span><span class="line">   oldName = rose;
+</span><span class="line">}
+</span><span class="line">*/</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="model-array---json-array">Model array -&gt; JSON array【将一个模型数组转成字典数组】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// New model array
+</span><span class="line">User *user1 = [[User alloc] init];
+</span><span class="line">user1.name = @"Jack";
+</span><span class="line">user1.icon = @"lufy.png";
+</span><span class="line">
+</span><span class="line">User *user2 = [[User alloc] init];
+</span><span class="line">user2.name = @"Rose";
+</span><span class="line">user2.icon = @"nami.png";
+</span><span class="line">
+</span><span class="line">NSArray *userArray = @[user1, user2];
+</span><span class="line">
+</span><span class="line">// Model array -&gt; JSON array
+</span><span class="line">NSArray *dictArray = [User keyValuesArrayWithObjectArray:userArray];
+</span><span class="line">NSLog(@"%@", dictArray);
+</span><span class="line">/*
+</span><span class="line"> (
+</span><span class="line"> {
+</span><span class="line"> 	icon = "lufy.png";
+</span><span class="line">	name = Jack;
+</span><span class="line">},
+</span><span class="line"> {
+</span><span class="line"> 	icon = "nami.png";
+</span><span class="line"> 	name = Rose;
+</span><span class="line"> }
+</span><span class="line">)
+</span><span class="line">*/</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="core-data">Core Data</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">NSDictionary *dict = @{
+</span><span class="line">                         @"name" : @"Jack",
+</span><span class="line">                         @"icon" : @"lufy.png",
+</span><span class="line">                         @"age" : @20,
+</span><span class="line">                         @"height" : @1.55,
+</span><span class="line">                         @"money" : @"100.9",
+</span><span class="line">                         @"sex" : @(SexFemale),
+</span><span class="line">                         @"gay" : @"true"
+</span><span class="line">                     };
+</span><span class="line">
+</span><span class="line">// This demo just provide simple steps
+</span><span class="line">NSManagedObjectContext *context = nil;
+</span><span class="line">User *user = [User objectWithKeyValues:dict context:context];
+</span><span class="line">
+</span><span class="line">[context save:nil];</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="coding">Coding</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">#import "MJExtension.h"
+</span><span class="line">
+</span><span class="line">@implementation Bag
+</span><span class="line">// NSCoding Implementation
+</span><span class="line">MJCodingImplementation
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">/***********************************************/
+</span><span class="line">
+</span><span class="line">// what properties not to be coded
+</span><span class="line">[Bag setupIgnoredCodingPropertyNames:^NSArray *{
+</span><span class="line">   return @[@"name"];
+</span><span class="line">}];
+</span><span class="line">// Equals: Bag.m implements +ignoredCodingPropertyNames method.
+</span><span class="line">
+</span><span class="line">// Create model
+</span><span class="line">Bag *bag = [[Bag alloc] init];
+</span><span class="line">bag.name = @"Red bag";
+</span><span class="line">bag.price = 200.8;
+</span><span class="line">
+</span><span class="line">NSString *file = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/	bag.data"];
+</span><span class="line">// Encoding
+</span><span class="line">[NSKeyedArchiver archiveRootObject:bag toFile:file];
+</span><span class="line">
+</span><span class="line">// Decoding
+</span><span class="line">Bag *decodedBag = [NSKeyedUnarchiver unarchiveObjectWithFile:file];
+</span><span class="line">NSLog(@"name=%@, price=%f", decodedBag.name, decodedBag.price);
+</span><span class="line">// name=(null), price=200.800000</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="camel---underline">Camel -&gt; underline【统一转换属性名（比如驼峰转下划线）】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// Dog
+</span><span class="line">#import "MJExtension.h"
+</span><span class="line">
+</span><span class="line">@implementation Dog
+</span><span class="line">+ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName
+</span><span class="line">{
+</span><span class="line">   // nickName -&gt; nick_name
+</span><span class="line">   return [propertyName underlineFromCamel];
+</span><span class="line">}
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">// NSDictionary
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">                       @"nick_name" : @"旺财",
+</span><span class="line">                       @"sale_price" : @"10.5",
+</span><span class="line">                       @"run_speed" : @"100.9"
+</span><span class="line">                     };
+</span><span class="line">// NSDictionary -&gt; Dog
+</span><span class="line">Dog *dog = [Dog objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">// printing
+</span><span class="line">NSLog(@"nickName=%@, scalePrice=%f runSpeed=%f", dog.nickName, dog.salePrice, dog.runSpeed);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="nsstring---nsdate-nil---nsdatenil">NSString -&gt; NSDate, nil -&gt; @”“【过滤字典的值（比如字符串日期处理为NSDate、字符串nil处理为@”“）】</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// Book
+</span><span class="line">#import "MJExtension.h"
+</span><span class="line">
+</span><span class="line">@implementation Book
+</span><span class="line">- (id)newValueFromOldValue:(id)oldValue property:(MJProperty *)property
+</span><span class="line">{
+</span><span class="line">  if ([property.name isEqualToString:@"publisher"]) {
+</span><span class="line">        if (oldValue == nil) return @"";
+</span><span class="line">  } else if (property.type.typeClass == [NSDate class]) {
+</span><span class="line">        NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+</span><span class="line">        fmt.dateFormat = @"yyyy-MM-dd";
+</span><span class="line">        return [fmt dateFromString:oldValue];
+</span><span class="line">  }
+</span><span class="line">
+</span><span class="line">  return oldValue;
+</span><span class="line">}
+</span><span class="line">@end
+</span><span class="line">
+</span><span class="line">// NSDictionary
+</span><span class="line">NSDictionary *dict = @{
+</span><span class="line">                       @"name" : @"5分钟突破iOS开发",
+</span><span class="line">                       @"publishedTime" : @"2011-09-10"
+</span><span class="line">                       };
+</span><span class="line">// NSDictionary -&gt; Book
+</span><span class="line">Book *book = [Book objectWithKeyValues:dict];
+</span><span class="line">
+</span><span class="line">// printing
+</span><span class="line">NSLog(@"name=%@, publisher=%@, publishedTime=%@", book.name, book.publisher, book.publishedTime);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="more-use-cases">More use cases【更多用法】</h3>
+
+<ul>
+  <li>Please reference to NSObject+MJKeyValue.h and NSObject+MJCoding.h</li>
+  <li><a href="https://github.com/CoderMJLee/MJExtension" title="url">github地址</a></li>
+</ul>
 ]]></content>
   </entry>
   
