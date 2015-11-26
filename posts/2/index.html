@@ -7,8 +7,8 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些： 服务端控制缓存
-如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式， &hellip;">
+	<meta name="description" content="RubyMotion 是什么 统一的运行时环境
+在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -125,6 +125,53 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/rubymotion/">
+		
+			RubyMotion简介</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="rubymotion-">RubyMotion 是什么</h2>
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2015/aa191c47356e1b30b1f1a7d7e82fea3c.gif" alt="icon" /></p>
+
+<h2 id="section">统一的运行时环境</h2>
+<p>在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java Runtime，Dalvik 以及 ART 实现了 Ruby 语言。由于这种异常紧密的集成，Ruby 可以自如的调用各平台的接口而不会产生任何性能损失。你可以轻松自如的混编 Ruby 和 Objective-C 或者 Ruby 和 Java，自由的访问各平台提供的最新的 API，自由调用各种第三方库。</p>
+
+<h2 id="section-1">完全编译</h2>
+
+<p>RubyMotion 使用基于 LLVM 构建(参见原理)的革命性的、先进的预编译器（AOT Complier）将项目中的 Ruby 代码编译成经过优化的机器代码。在 iOS 以及 Android 项目，编译器可以生成 32 位和 64 位的 ARM 目标代码，在 OS X 项目则可以生成 32 位和 64 位的 Intel 目标代码。原始的 Ruby 代码不会出现在程序中，也不会在运行期间被解释执行。RubyMotion 的典型项目的程序包大小在 1MB 以下。</p>
+
+<h2 id="section-2">自动管理内存</h2>
+
+<p>在 Ruby 语言中，你无需考虑内存管理事宜。因为，RubyMotion 会自动释放内存中那些你创建的但是却不再会被使用的对象。针对 iOS 和 OS X 平台，我们提供了一个自定义的内存模型，在设计上类似 Objective-C 的 ARC 机制。这个模型无需再使用额外内存或者代码来处理不再使用的对象的声明和回收。针对 Android 平台，我们使用 Java 运行时环境的 GC 来管理内存。</p>
+
+
+		
+		<a href="/blog/rubymotion/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月15 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -526,145 +573,6 @@
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">
-		
-			Android Https请求no Peer Certificate解决方案</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">解决方案一</h3>
-<hr />
-
-<p>写了一个自定义类继承SSLSocketFactory：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
-</span><span class="line">import java.net.Socket;
-</span><span class="line">import java.net.UnknownHostException;
-</span><span class="line">import java.security.KeyManagementException;
-</span><span class="line">import java.security.KeyStore;
-</span><span class="line">import java.security.KeyStoreException;
-</span><span class="line">import java.security.NoSuchAlgorithmException;
-</span><span class="line">import java.security.UnrecoverableKeyException;
-</span><span class="line">
-</span><span class="line">import javax.net.ssl.SSLContext;
-</span><span class="line">import javax.net.ssl.TrustManager;
-</span><span class="line">import javax.net.ssl.X509TrustManager;
-</span><span class="line">
-</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
-</span><span class="line">
-</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
-</span><span class="line">        
-</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
-</span><span class="line">        
-</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
-</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
-</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
-</span><span class="line">                super(truststore);
-</span><span class="line">                
-</span><span class="line">   TrustManager tm = new X509TrustManager() {
-</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkClientTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkServerTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}
-</span><span class="line">        };  
-</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket() throws IOException {  
-</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
-</span><span class="line">}  
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月12 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

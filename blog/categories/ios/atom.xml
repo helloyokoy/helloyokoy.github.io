@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-07T17:50:48+08:00</updated>
+  <updated>2015-11-26T18:49:47+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,208 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NSLog 和 LLDB]]></title>
+    <link href="http://helloyokoy.github.io/blog/nslog-and-lldb/"/>
+    <updated>2015-11-26T18:38:31+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/nslog-and-lldb</id>
+    <content type="html"><![CDATA[<h3 id="section">前言</h3>
+
+<p>打Log是我们debug时最简单朴素的方法，NSLog对于objc开发就像printf对于c一样重要。但在使用NSLog打印大量Log，尤其是在游戏开发时（如每一帧都打印数据），NSLog会明显的拖慢程序的运行速度（游戏帧速严重下滑）。本文探究了一下NSLog如此之慢的原因，并尝试使用lldb断点调试器替代NSLog进行debug log。</p>
+
+<h3 id="section-1">小测试</h3>
+
+<p>测试下分别使用NSLog和printf打印10000次耗费的时间。CFAbsoluteTimeGetCurrent()函数可以打印出当前的时间戳，精度还是很高的，于是乎测试代码如下：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>CFAbsoluteTime startNSLog = CFAbsoluteTimeGetCurrent(); 
+</span><span class='line'>for (int i = 0; i &lt; 10000; i++) { 
+</span><span class='line'>    NSLog(@”%d”, i); 
+</span><span class='line'>} 
+</span><span class='line'>CFAbsoluteTime endNSLog = CFAbsoluteTimeGetCurrent();&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>CFAbsoluteTime startPrintf = CFAbsoluteTimeGetCurrent(); 
+</span><span class='line'>for (int i = 0; i &lt; 10000; i++) { 
+</span><span class='line'>    printf(“%d\n”, i); 
+</span><span class='line'>} 
+</span><span class='line'>CFAbsoluteTime endPrintf = CFAbsoluteTimeGetCurrent();&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSLog(@”NSLog time: %lf, printf time: %lf”, endNSLog - startNSLog, endPrintf - startPrintf);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>这个时间和机器肯定有关系，只看它们的差别就好。为了全面性，尝试了三种平台：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>NSLog time: 4.985445, printf time: 0.084193 // mac 
+</span><span class='line'>NSLog time: 5.562460, printf time: 0.019408 // 模拟器 
+</span><span class='line'>NSLog time: 10.471490, printf time: 0.090503 // 真机调试(iphone5)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>可以发现，在mac上（模拟器其实也算是mac吧）速度差别达到了60倍左右，而真机调试甚至达到了离谱的100多倍。</p>
+
+<p><!--more--></p>
+
+<h3 id="section-2">探究原因</h3>
+
+<p>基本上这种事情一定可以在Apple文档中找到，看NSLog的文档，第一句话就说：Logs an error message to the Apple System Log facility.，所以首先，NSLog就不是设计作为普通的debug log的，而是error log；其次，NSLog也并非是printf的简单封装，而是Apple System Log(后面简称ASL)的封装。</p>
+
+<h3 id="asl">ASL</h3>
+
+<p>ASL是个啥？从官方手册上，或者从终端执行man 3 asl都可以看到说明：</p>
+
+<blockquote>
+  <p>These routines provide an interface to the Apple System Log facility. They are intended to be a replacement for the syslog(3) API, which will continue to be supported for backwards compatibility.</p>
+</blockquote>
+
+<p>大概就是个系统级别的log工具吧，syslog的替代版，提供了一系列强大的log功能。不过一般我们接触不到，NSLog就对它提供了高层次的封装，如这篇文档所提到的：</p>
+
+<blockquote>
+  <p>You can use two interfaces in OS X to log messages: ASL and Syslog. You can also use a number of higher-level approaches such as NSLog. However, because most daemons are not linked against Foundation or the Application Kit, the low-level APIs are often more appropriate</p>
+</blockquote>
+
+<p>一些底层相关的守护进程(deamons)不会link如Foundation等高层框架，所以asl用在这儿正合适；而对于应用层的用NSLog。</p>
+
+<p>在CocoaLumberjack的文档中也说了NSLog效率低下的问题：</p>
+
+<blockquote>
+  <p>NSLog does 2 things:</p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>It writes log messages to the Apple System Logging (asl) facility. This allows log messages to show up in Console.app.</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>It also checks to see if the application’s stderr stream is going to a terminal (such as when the application is being run via Xcode). If so it writes the log message to stderr (so that it shows up in the Xcode console).</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>To send a log message to the ASL facility, you basically open a client connection to the ASL daemon and send the message. BUT - each thread must use a separate client connection. So, to be thread safe, every time NSLog is called it opens a new asl client connection, sends the message, and then closes the connection.</p>
+</blockquote>
+
+<p>意识大概是说，NSLog会向ASL写log，同时向Terminal写log，而且同时会出现在Console.app中（Mac自带软件，用NSLog打出的log在其中全部可见）；不仅如此，每一次NSLog都会新建一个ASL client并向ASL守护进程发起连接，log之后再关闭连接。所以说，当这个过程出现N次时，消耗大量资源导致程序变慢也就不奇怪了。</p>
+
+<h3 id="section-3">时间和进程信息</h3>
+
+<p>主要原因已经找到，还有个值得注意的问题是NSLog每次会将当前的系统时间，进程和线程信息等作为前缀也打印出来，如：</p>
+
+<pre><code>2012-34-56 12:34:56.789 XXXXXXXX[36818:303] xxxxxx
+</code></pre>
+
+<p>当然这些也可能是作为ASL的参数创建的，但不论如何，一定是有消耗的（虽然这个prefix十有八九不是我们需要的看到的）</p>
+
+<h3 id="section-4">如何是好</h3>
+
+<p>NSLog有这样的消耗问题，那该怎么办呢？</p>
+
+<ol>
+  <li>
+    <p>拒绝残留的Log。现在项目都是多人共同开发，我们应该只把Log作为错误日志或者重要信息的日志使用，commit前请把自己调试的log去掉（尤其是在循环里写log的小伙伴，简直不能一起快乐的玩耍了）</p>
+  </li>
+  <li>
+    <p>release版本中消除Log。debug归debug，再慢也不能波及到release版本，用预编译宏过滤下就好。</p>
+  </li>
+  <li>
+    <p>是时候换个Log系统了，如CocoaLumberjack，自建一个简单的当然也挺好（其实为了项目需要自己也写了个小log系统，实现可以按名字和级别显示log和一些扩展功能，以后有机会分享下）</p>
+  </li>
+</ol>
+
+<p>不过个人认为debug时最好还是用调试器进行调试（尤其是只需要知道某个变量值的时候）</p>
+
+<h3 id="lldblog">尝试使用断点+lldb调试器打Log</h3>
+
+<p>关于强大的lldb调试器用一个专题来讲都是应该，现在只了解一些皮毛，不过就算皮毛的功能也可以替代NSLog这种方法进行调试了，重要的一点是：使用断点log不需要重新编译工程，况且和Xcode已经结合的很好，在此先只说打Log这件事。</p>
+
+<p>简单断点+po(p)</p>
+
+<p>断点时可以在xcode的lldb调试区使用po或p命令打印对象或变量，对于当前栈帧中引用到的变量都是可见的，所以说假如只是看一眼某个对象运行到这儿是不是存在，是什么值的话，设个断点就够了，况且IDE已经把这个功能集成，鼠标放变量上就可以了。</p>
+
+<p>lldb一些常用调试技巧可以这篇入门<a href="http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/">教程</a></p>
+
+<p>Condition和Action断点</p>
+
+<p>断点不止能把程序断住，触发时也按一定条件，而且可以执行（一个或多个）Action，在断点上右键选择Edit Breakpoint，弹出的断点设置中可以添加一些Action：</p>
+
+<p><img src="http://www.cocoachina.com/cms/uploads/allimg/140530/8370_140530114340_1.jpg" alt="img" /></p>
+
+<p>其中专门有一项就是Log Message，做个小测试：
+for (int i = 0; i &lt; 10; i++) 
+{ 
+    // break point here 
+} 
+设置断点后编辑断点：</p>
+
+<p>输入框下面就有支持的格式，表达式(或变量)可以使用@exp@这种格式包起来。于是乎输出：</p>
+
+<pre><code>break at: 'main()',  count: 4, sunnyxx says : 3 
+break at: 'main()',  count: 5, sunnyxx says : 4 
+break at: 'main()',  count: 6, sunnyxx says : 5 
+</code></pre>
+
+<p>正如所料。更多的调试技巧还需要深入研究，不过可以肯定的是，比起单纯的使用NSLog，使用好的工具可以让我们debug的效率更高</p>
+
+<h3 id="section-5">总结</h3>
+
+<ol>
+  <li>
+    <p>NSLog耗费比较大的资源</p>
+  </li>
+  <li>
+    <p>NSLog被设计为error log，是ASL的高层封装</p>
+  </li>
+  <li>
+    <p>在项目中避免提交commit自己的Debug log，release版本更要注意去除NSLog，可以使用自建的log系统或好用的log系统来替代NSLog</p>
+  </li>
+</ol>
+
+<p>4、debug不应只局限于log满天飞，lldb断点调试是一个优秀的debug方法，需要再深入研究下</p>
+
+<h3 id="references">References</h3>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html">https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html</a></p>
+
+<p><a href="http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/">http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/</a></p>
+
+<p><a href="https://github.com/CocoaLumberjack/CocoaLumberjack/wiki/Performance">https://github.com/CocoaLumberjack/CocoaLumberjack/wiki/Performance</a></p>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html#//apple_ref/doc/uid/10000172i-SW8-SW1">https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html#//apple_ref/doc/uid/10000172i-SW8-SW1</a></p>
+
+<p><a href="http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/">http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Surge]]></title>
@@ -3606,184 +3808,6 @@ Posted by [微博@iOS程序犭袁](http://weibo.com/luohanchenyilong/)
   <li>Please reference to NSObject+MJKeyValue.h and NSObject+MJCoding.h</li>
   <li><a href="https://github.com/CoderMJLee/MJExtension" title="url">github地址</a></li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS 依赖注入框架 Objection]]></title>
-    <link href="http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/"/>
-    <updated>2015-07-10T21:52:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
-</blockquote>
-
-<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;ul>
-</span><span class='line'>  &lt;li>
-</span><span class='line'>    &lt;p>(void)viewDidLoad
-</span><span class='line'>{
-</span><span class='line'>  [super viewDidLoad];
-</span><span class='line'>  UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-</span><span class='line'>  button.frame = CGRectMake(100, 100, 100, 30);
-</span><span class='line'>  [self.view addSubview:button];
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>  &lt;/li>
-</span><span class='line'>  &lt;li>
-</span><span class='line'>    &lt;p>(void)buttonTapped
-</span><span class='line'>{
-</span><span class='line'>  ViewControllerB *vc = [[ViewControllerB alloc] init];
-</span><span class='line'>  [self.navigationController pushViewController:vc animated:YES];
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>  &lt;/li>
-</span><span class='line'>&lt;/ul>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
-
-<!--more-->
-
-<p>实现方法是：先定义一个协议(protocol)，然后通过objection来注册这个协议对应的class，需要的时候，可以获取该协议对应的object。对于使用方无需关心到底使用的是哪个Class，反正该有的方法、属性都有了(在协议中指定)。这样就去除了对某个特定Class的依赖。也就是通常所说的「面向接口编程」。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-</span><span class='line'>UIViewController &lt;viewcontrolleraprotocol> *vc = [injector getObject:@protocol(ViewControllerAProtocol)]; // [2]
-</span><span class='line'>vc.backgroundColor = [UIColor lightGrayColor]; // [3]
-</span><span class='line'>UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-</span><span class='line'>self.window.rootViewController = nc;&lt;/viewcontrolleraprotocol>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<ol>
-  <li>获取默认的injector，这个injector已经注册过ViewControllerAProtocol了。</li>
-  <li>获取ViewControllerAProtocol对应的Object。</li>
-  <li>拿到VC后，设置它的某些属性，比如这里的backgroundColor，因为在ViewControllerAProtocol里有定义这个属性，所以不会有warning。</li>
-</ol>
-
-<p>可以看到这里没有引用ViewControllerA。再来看看这个ViewControllerAProtocol是如何注册到injector中的，这里涉及到了Module，对Protocol的注册都是在Module中完成的。Module只要继承JSObjectionModule这个Class即可。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@interface ViewControllerAModule : JSObjectionModule
-</span><span class='line'>@end&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@implementation ViewControllerAModule
-</span><span class='line'>- (void)configure
-</span><span class='line'>{
-</span><span class='line'>   [self bindClass:[ViewControllerA class] toProtocol:@protocol(ViewControllerAProtocol)];
-</span><span class='line'>}
-</span><span class='line'>@end&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>绑定操作是在configure方法里进行的，这个方法在被添加到injector里时会被自动触发。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>JSObjectionInjector *injector = [JSObjection defaultInjector]; // [1]
-</span><span class='line'>injector = injector ? : [JSObjection createInjector]; // [2]
-</span><span class='line'>injector = [injector withModule:[[ViewControllerAModule alloc] init]]; // [3]
-</span><span class='line'>[JSObjection setDefaultInjector:injector]; // [4]&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<ol>
-  <li>获取默认的 injector</li>
-  <li>如果默认的 injector 不存在，就新建一个</li>
-  <li>往这个 injector 里注册我们的 Module</li>
-  <li>设置该 injector 为默认的 injector</li>
-</ol>
-
-<p>这段代码可以直接放到 + (void)load里执行，这样就可以避免在AppDelegate里import各种Module。</p>
-
-<p>因为我们无法直接获得对应的Class，所以必须要在协议里定义好对外暴露的方法和属性，然后该Class也要实现该协议。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@protocol ViewControllerAProtocol &lt;nsobject>
-</span><span class='line'>@property (nonatomic) NSUInteger currentIndex;
-</span><span class='line'>@property (nonatomic) UIColor *backgroundColor;
-</span><span class='line'>@end&lt;/nsobject>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@interface ViewControllerA : UIViewController &lt;viewcontrolleraprotocol>
-</span><span class='line'>@end&lt;/viewcontrolleraprotocol>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>通过objection实现依赖注入后，就能更好地实现SRP(Single Responsibility Principle)，代码更简洁，心情更舒畅，生活更美好。</p>
-
-<hr />
-<p>github地址: <a href="https://github.com/atomicobject/objection" title="url">https://github.com/atomicobject/objection</a></p>
-
-<p>demo地址: <a href="https://github.com/helloyokoy/bizhi" title="url">https://github.com/helloyokoy/bizhi</a></p>
 ]]></content>
   </entry>
   

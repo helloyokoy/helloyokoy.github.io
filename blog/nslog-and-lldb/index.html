@@ -1,0 +1,404 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>NSLog 和 LLDB - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="前言 打Log是我们debug时最简单朴素的方法，NSLog对于objc开发就像printf对于c一样重要。但在使用NSLog打印大量Log，尤其是在游戏开发时（如每一帧都打印数据），NSLog会明显的拖慢程序的运行速度（游戏帧速严重下滑）。本文探究了一下NSLog如此之慢的原因， &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">NSLog 和 LLDB</h2>
+	<div class="entry-content"><h3 id="section">前言</h3>
+
+<p>打Log是我们debug时最简单朴素的方法，NSLog对于objc开发就像printf对于c一样重要。但在使用NSLog打印大量Log，尤其是在游戏开发时（如每一帧都打印数据），NSLog会明显的拖慢程序的运行速度（游戏帧速严重下滑）。本文探究了一下NSLog如此之慢的原因，并尝试使用lldb断点调试器替代NSLog进行debug log。</p>
+
+<h3 id="section-1">小测试</h3>
+
+<p>测试下分别使用NSLog和printf打印10000次耗费的时间。CFAbsoluteTimeGetCurrent()函数可以打印出当前的时间戳，精度还是很高的，于是乎测试代码如下：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">CFAbsoluteTime startNSLog = CFAbsoluteTimeGetCurrent(); 
+</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
+</span><span class="line">    NSLog(@"%d", i); 
+</span><span class="line">} 
+</span><span class="line">CFAbsoluteTime endNSLog = CFAbsoluteTimeGetCurrent(); 
+</span><span class="line"> 
+</span><span class="line">CFAbsoluteTime startPrintf = CFAbsoluteTimeGetCurrent(); 
+</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
+</span><span class="line">    printf("%d\n", i); 
+</span><span class="line">} 
+</span><span class="line">CFAbsoluteTime endPrintf = CFAbsoluteTimeGetCurrent(); 
+</span><span class="line">
+</span><span class="line">NSLog(@"NSLog time: %lf, printf time: %lf", endNSLog - startNSLog, endPrintf - startPrintf);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这个时间和机器肯定有关系，只看它们的差别就好。为了全面性，尝试了三种平台：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">NSLog time: 4.985445, printf time: 0.084193 // mac 
+</span><span class="line">NSLog time: 5.562460, printf time: 0.019408 // 模拟器 
+</span><span class="line">NSLog time: 10.471490, printf time: 0.090503 // 真机调试(iphone5)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>可以发现，在mac上（模拟器其实也算是mac吧）速度差别达到了60倍左右，而真机调试甚至达到了离谱的100多倍。</p>
+
+<p><!--more--></p>
+
+<h3 id="section-2">探究原因</h3>
+
+<p>基本上这种事情一定可以在Apple文档中找到，看NSLog的文档，第一句话就说：Logs an error message to the Apple System Log facility.，所以首先，NSLog就不是设计作为普通的debug log的，而是error log；其次，NSLog也并非是printf的简单封装，而是Apple System Log(后面简称ASL)的封装。</p>
+
+<h3 id="asl">ASL</h3>
+
+<p>ASL是个啥？从官方手册上，或者从终端执行man 3 asl都可以看到说明：</p>
+
+<blockquote>
+  <p>These routines provide an interface to the Apple System Log facility. They are intended to be a replacement for the syslog(3) API, which will continue to be supported for backwards compatibility.</p>
+</blockquote>
+
+<p>大概就是个系统级别的log工具吧，syslog的替代版，提供了一系列强大的log功能。不过一般我们接触不到，NSLog就对它提供了高层次的封装，如这篇文档所提到的：</p>
+
+<blockquote>
+  <p>You can use two interfaces in OS X to log messages: ASL and Syslog. You can also use a number of higher-level approaches such as NSLog. However, because most daemons are not linked against Foundation or the Application Kit, the low-level APIs are often more appropriate</p>
+</blockquote>
+
+<p>一些底层相关的守护进程(deamons)不会link如Foundation等高层框架，所以asl用在这儿正合适；而对于应用层的用NSLog。</p>
+
+<p>在CocoaLumberjack的文档中也说了NSLog效率低下的问题：</p>
+
+<blockquote>
+  <p>NSLog does 2 things:</p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>It writes log messages to the Apple System Logging (asl) facility. This allows log messages to show up in Console.app.</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>It also checks to see if the application’s stderr stream is going to a terminal (such as when the application is being run via Xcode). If so it writes the log message to stderr (so that it shows up in the Xcode console).</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>To send a log message to the ASL facility, you basically open a client connection to the ASL daemon and send the message. BUT - each thread must use a separate client connection. So, to be thread safe, every time NSLog is called it opens a new asl client connection, sends the message, and then closes the connection.</p>
+</blockquote>
+
+<p>意识大概是说，NSLog会向ASL写log，同时向Terminal写log，而且同时会出现在Console.app中（Mac自带软件，用NSLog打出的log在其中全部可见）；不仅如此，每一次NSLog都会新建一个ASL client并向ASL守护进程发起连接，log之后再关闭连接。所以说，当这个过程出现N次时，消耗大量资源导致程序变慢也就不奇怪了。</p>
+
+<h3 id="section-3">时间和进程信息</h3>
+
+<p>主要原因已经找到，还有个值得注意的问题是NSLog每次会将当前的系统时间，进程和线程信息等作为前缀也打印出来，如：</p>
+
+<pre><code>2012-34-56 12:34:56.789 XXXXXXXX[36818:303] xxxxxx
+</code></pre>
+
+<p>当然这些也可能是作为ASL的参数创建的，但不论如何，一定是有消耗的（虽然这个prefix十有八九不是我们需要的看到的）</p>
+
+<h3 id="section-4">如何是好</h3>
+
+<p>NSLog有这样的消耗问题，那该怎么办呢？</p>
+
+<ol>
+  <li>
+    <p>拒绝残留的Log。现在项目都是多人共同开发，我们应该只把Log作为错误日志或者重要信息的日志使用，commit前请把自己调试的log去掉（尤其是在循环里写log的小伙伴，简直不能一起快乐的玩耍了）</p>
+  </li>
+  <li>
+    <p>release版本中消除Log。debug归debug，再慢也不能波及到release版本，用预编译宏过滤下就好。</p>
+  </li>
+  <li>
+    <p>是时候换个Log系统了，如CocoaLumberjack，自建一个简单的当然也挺好（其实为了项目需要自己也写了个小log系统，实现可以按名字和级别显示log和一些扩展功能，以后有机会分享下）</p>
+  </li>
+</ol>
+
+<p>不过个人认为debug时最好还是用调试器进行调试（尤其是只需要知道某个变量值的时候）</p>
+
+<h3 id="lldblog">尝试使用断点+lldb调试器打Log</h3>
+
+<p>关于强大的lldb调试器用一个专题来讲都是应该，现在只了解一些皮毛，不过就算皮毛的功能也可以替代NSLog这种方法进行调试了，重要的一点是：使用断点log不需要重新编译工程，况且和Xcode已经结合的很好，在此先只说打Log这件事。</p>
+
+<p>简单断点+po(p)</p>
+
+<p>断点时可以在xcode的lldb调试区使用po或p命令打印对象或变量，对于当前栈帧中引用到的变量都是可见的，所以说假如只是看一眼某个对象运行到这儿是不是存在，是什么值的话，设个断点就够了，况且IDE已经把这个功能集成，鼠标放变量上就可以了。</p>
+
+<p>lldb一些常用调试技巧可以这篇入门<a href="http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/">教程</a></p>
+
+<p>Condition和Action断点</p>
+
+<p>断点不止能把程序断住，触发时也按一定条件，而且可以执行（一个或多个）Action，在断点上右键选择Edit Breakpoint，弹出的断点设置中可以添加一些Action：</p>
+
+<p><img src="http://www.cocoachina.com/cms/uploads/allimg/140530/8370_140530114340_1.jpg" alt="img" /></p>
+
+<p>其中专门有一项就是Log Message，做个小测试：
+for (int i = 0; i &lt; 10; i++) 
+{ 
+    // break point here 
+} 
+设置断点后编辑断点：</p>
+
+<p>输入框下面就有支持的格式，表达式(或变量)可以使用@exp@这种格式包起来。于是乎输出：</p>
+
+<pre><code>break at: 'main()',  count: 4, sunnyxx says : 3 
+break at: 'main()',  count: 5, sunnyxx says : 4 
+break at: 'main()',  count: 6, sunnyxx says : 5 
+</code></pre>
+
+<p>正如所料。更多的调试技巧还需要深入研究，不过可以肯定的是，比起单纯的使用NSLog，使用好的工具可以让我们debug的效率更高</p>
+
+<h3 id="section-5">总结</h3>
+
+<ol>
+  <li>
+    <p>NSLog耗费比较大的资源</p>
+  </li>
+  <li>
+    <p>NSLog被设计为error log，是ASL的高层封装</p>
+  </li>
+  <li>
+    <p>在项目中避免提交commit自己的Debug log，release版本更要注意去除NSLog，可以使用自建的log系统或好用的log系统来替代NSLog</p>
+  </li>
+</ol>
+
+<p>4、debug不应只局限于log满天飞，lldb断点调试是一个优秀的debug方法，需要再深入研究下</p>
+
+<h3 id="references">References</h3>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html">https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html</a></p>
+
+<p><a href="http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/">http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/</a></p>
+
+<p><a href="https://github.com/CocoaLumberjack/CocoaLumberjack/wiki/Performance">https://github.com/CocoaLumberjack/CocoaLumberjack/wiki/Performance</a></p>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html#//apple_ref/doc/uid/10000172i-SW8-SW1">https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html#//apple_ref/doc/uid/10000172i-SW8-SW1</a></p>
+
+<p><a href="http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/">http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年11 月26 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/nslog-and-lldb" data-title="NSLog 和 LLDB" data-url="http://helloyokoy.github.io/blog/nslog-and-lldb/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

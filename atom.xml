@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-07T17:50:48+08:00</updated>
+  <updated>2015-11-26T18:49:47+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,192 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NSLog 和 LLDB]]></title>
+    <link href="http://helloyokoy.github.io/blog/nslog-and-lldb/"/>
+    <updated>2015-11-26T18:38:31+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/nslog-and-lldb</id>
+    <content type="html"><![CDATA[<h3 id="section">前言</h3>
+
+<p>打Log是我们debug时最简单朴素的方法，NSLog对于objc开发就像printf对于c一样重要。但在使用NSLog打印大量Log，尤其是在游戏开发时（如每一帧都打印数据），NSLog会明显的拖慢程序的运行速度（游戏帧速严重下滑）。本文探究了一下NSLog如此之慢的原因，并尝试使用lldb断点调试器替代NSLog进行debug log。</p>
+
+<h3 id="section-1">小测试</h3>
+
+<p>测试下分别使用NSLog和printf打印10000次耗费的时间。CFAbsoluteTimeGetCurrent()函数可以打印出当前的时间戳，精度还是很高的，于是乎测试代码如下：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">CFAbsoluteTime startNSLog = CFAbsoluteTimeGetCurrent(); 
+</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
+</span><span class="line">    NSLog(@"%d", i); 
+</span><span class="line">} 
+</span><span class="line">CFAbsoluteTime endNSLog = CFAbsoluteTimeGetCurrent(); 
+</span><span class="line"> 
+</span><span class="line">CFAbsoluteTime startPrintf = CFAbsoluteTimeGetCurrent(); 
+</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
+</span><span class="line">    printf("%d\n", i); 
+</span><span class="line">} 
+</span><span class="line">CFAbsoluteTime endPrintf = CFAbsoluteTimeGetCurrent(); 
+</span><span class="line">
+</span><span class="line">NSLog(@"NSLog time: %lf, printf time: %lf", endNSLog - startNSLog, endPrintf - startPrintf);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这个时间和机器肯定有关系，只看它们的差别就好。为了全面性，尝试了三种平台：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">NSLog time: 4.985445, printf time: 0.084193 // mac 
+</span><span class="line">NSLog time: 5.562460, printf time: 0.019408 // 模拟器 
+</span><span class="line">NSLog time: 10.471490, printf time: 0.090503 // 真机调试(iphone5)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>可以发现，在mac上（模拟器其实也算是mac吧）速度差别达到了60倍左右，而真机调试甚至达到了离谱的100多倍。</p>
+
+<p><!--more--></p>
+
+<h3 id="section-2">探究原因</h3>
+
+<p>基本上这种事情一定可以在Apple文档中找到，看NSLog的文档，第一句话就说：Logs an error message to the Apple System Log facility.，所以首先，NSLog就不是设计作为普通的debug log的，而是error log；其次，NSLog也并非是printf的简单封装，而是Apple System Log(后面简称ASL)的封装。</p>
+
+<h3 id="asl">ASL</h3>
+
+<p>ASL是个啥？从官方手册上，或者从终端执行man 3 asl都可以看到说明：</p>
+
+<blockquote>
+  <p>These routines provide an interface to the Apple System Log facility. They are intended to be a replacement for the syslog(3) API, which will continue to be supported for backwards compatibility.</p>
+</blockquote>
+
+<p>大概就是个系统级别的log工具吧，syslog的替代版，提供了一系列强大的log功能。不过一般我们接触不到，NSLog就对它提供了高层次的封装，如这篇文档所提到的：</p>
+
+<blockquote>
+  <p>You can use two interfaces in OS X to log messages: ASL and Syslog. You can also use a number of higher-level approaches such as NSLog. However, because most daemons are not linked against Foundation or the Application Kit, the low-level APIs are often more appropriate</p>
+</blockquote>
+
+<p>一些底层相关的守护进程(deamons)不会link如Foundation等高层框架，所以asl用在这儿正合适；而对于应用层的用NSLog。</p>
+
+<p>在CocoaLumberjack的文档中也说了NSLog效率低下的问题：</p>
+
+<blockquote>
+  <p>NSLog does 2 things:</p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>It writes log messages to the Apple System Logging (asl) facility. This allows log messages to show up in Console.app.</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>It also checks to see if the application’s stderr stream is going to a terminal (such as when the application is being run via Xcode). If so it writes the log message to stderr (so that it shows up in the Xcode console).</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>To send a log message to the ASL facility, you basically open a client connection to the ASL daemon and send the message. BUT - each thread must use a separate client connection. So, to be thread safe, every time NSLog is called it opens a new asl client connection, sends the message, and then closes the connection.</p>
+</blockquote>
+
+<p>意识大概是说，NSLog会向ASL写log，同时向Terminal写log，而且同时会出现在Console.app中（Mac自带软件，用NSLog打出的log在其中全部可见）；不仅如此，每一次NSLog都会新建一个ASL client并向ASL守护进程发起连接，log之后再关闭连接。所以说，当这个过程出现N次时，消耗大量资源导致程序变慢也就不奇怪了。</p>
+
+<h3 id="section-3">时间和进程信息</h3>
+
+<p>主要原因已经找到，还有个值得注意的问题是NSLog每次会将当前的系统时间，进程和线程信息等作为前缀也打印出来，如：</p>
+
+<pre><code>2012-34-56 12:34:56.789 XXXXXXXX[36818:303] xxxxxx
+</code></pre>
+
+<p>当然这些也可能是作为ASL的参数创建的，但不论如何，一定是有消耗的（虽然这个prefix十有八九不是我们需要的看到的）</p>
+
+<h3 id="section-4">如何是好</h3>
+
+<p>NSLog有这样的消耗问题，那该怎么办呢？</p>
+
+<ol>
+  <li>
+    <p>拒绝残留的Log。现在项目都是多人共同开发，我们应该只把Log作为错误日志或者重要信息的日志使用，commit前请把自己调试的log去掉（尤其是在循环里写log的小伙伴，简直不能一起快乐的玩耍了）</p>
+  </li>
+  <li>
+    <p>release版本中消除Log。debug归debug，再慢也不能波及到release版本，用预编译宏过滤下就好。</p>
+  </li>
+  <li>
+    <p>是时候换个Log系统了，如CocoaLumberjack，自建一个简单的当然也挺好（其实为了项目需要自己也写了个小log系统，实现可以按名字和级别显示log和一些扩展功能，以后有机会分享下）</p>
+  </li>
+</ol>
+
+<p>不过个人认为debug时最好还是用调试器进行调试（尤其是只需要知道某个变量值的时候）</p>
+
+<h3 id="lldblog">尝试使用断点+lldb调试器打Log</h3>
+
+<p>关于强大的lldb调试器用一个专题来讲都是应该，现在只了解一些皮毛，不过就算皮毛的功能也可以替代NSLog这种方法进行调试了，重要的一点是：使用断点log不需要重新编译工程，况且和Xcode已经结合的很好，在此先只说打Log这件事。</p>
+
+<p>简单断点+po(p)</p>
+
+<p>断点时可以在xcode的lldb调试区使用po或p命令打印对象或变量，对于当前栈帧中引用到的变量都是可见的，所以说假如只是看一眼某个对象运行到这儿是不是存在，是什么值的话，设个断点就够了，况且IDE已经把这个功能集成，鼠标放变量上就可以了。</p>
+
+<p>lldb一些常用调试技巧可以这篇入门<a href="http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/">教程</a></p>
+
+<p>Condition和Action断点</p>
+
+<p>断点不止能把程序断住，触发时也按一定条件，而且可以执行（一个或多个）Action，在断点上右键选择Edit Breakpoint，弹出的断点设置中可以添加一些Action：</p>
+
+<p><img src="http://www.cocoachina.com/cms/uploads/allimg/140530/8370_140530114340_1.jpg" alt="img" /></p>
+
+<p>其中专门有一项就是Log Message，做个小测试：
+for (int i = 0; i &lt; 10; i++) 
+{ 
+    // break point here 
+} 
+设置断点后编辑断点：</p>
+
+<p>输入框下面就有支持的格式，表达式(或变量)可以使用@exp@这种格式包起来。于是乎输出：</p>
+
+<pre><code>break at: 'main()',  count: 4, sunnyxx says : 3 
+break at: 'main()',  count: 5, sunnyxx says : 4 
+break at: 'main()',  count: 6, sunnyxx says : 5 
+</code></pre>
+
+<p>正如所料。更多的调试技巧还需要深入研究，不过可以肯定的是，比起单纯的使用NSLog，使用好的工具可以让我们debug的效率更高</p>
+
+<h3 id="section-5">总结</h3>
+
+<ol>
+  <li>
+    <p>NSLog耗费比较大的资源</p>
+  </li>
+  <li>
+    <p>NSLog被设计为error log，是ASL的高层封装</p>
+  </li>
+  <li>
+    <p>在项目中避免提交commit自己的Debug log，release版本更要注意去除NSLog，可以使用自建的log系统或好用的log系统来替代NSLog</p>
+  </li>
+</ol>
+
+<p>4、debug不应只局限于log满天飞，lldb断点调试是一个优秀的debug方法，需要再深入研究下</p>
+
+<h3 id="references">References</h3>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html">https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man3/asl.3.html</a></p>
+
+<p><a href="http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/">http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/</a></p>
+
+<p><a href="https://github.com/CocoaLumberjack/CocoaLumberjack/wiki/Performance">https://github.com/CocoaLumberjack/CocoaLumberjack/wiki/Performance</a></p>
+
+<p><a href="https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html#//apple_ref/doc/uid/10000172i-SW8-SW1">https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html#//apple_ref/doc/uid/10000172i-SW8-SW1</a></p>
+
+<p><a href="http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/">http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails-perftest 分析 Rails 引用的性能]]></title>
@@ -4333,300 +4519,6 @@ location ~* ^(/pictures/).*\.(jpg|jpeg|png|gif|bmp)$ {
 
 <hr />
 <p>转载自 <a href="https://ruby-china.org/topics/26231">ruby-china</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android https请求no peer certificate解决方案]]></title>
-    <link href="http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/"/>
-    <updated>2015-08-12T16:30:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an</id>
-    <content type="html"><![CDATA[<h3 id="section">解决方案一</h3>
-<hr />
-
-<p>写了一个自定义类继承SSLSocketFactory：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
-</span><span class="line">import java.net.Socket;
-</span><span class="line">import java.net.UnknownHostException;
-</span><span class="line">import java.security.KeyManagementException;
-</span><span class="line">import java.security.KeyStore;
-</span><span class="line">import java.security.KeyStoreException;
-</span><span class="line">import java.security.NoSuchAlgorithmException;
-</span><span class="line">import java.security.UnrecoverableKeyException;
-</span><span class="line">
-</span><span class="line">import javax.net.ssl.SSLContext;
-</span><span class="line">import javax.net.ssl.TrustManager;
-</span><span class="line">import javax.net.ssl.X509TrustManager;
-</span><span class="line">
-</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
-</span><span class="line">
-</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
-</span><span class="line">        
-</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
-</span><span class="line">        
-</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
-</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
-</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
-</span><span class="line">                super(truststore);
-</span><span class="line">                
-</span><span class="line">   TrustManager tm = new X509TrustManager() {
-</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkClientTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkServerTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}
-</span><span class="line">        };  
-</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket() throws IOException {  
-</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
-</span><span class="line">}  
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<!--more-->
-
-<p>再来看看如何做回调：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">public static HttpClient getNewHttpClient() {  
-</span><span class="line"> try {  
-</span><span class="line">  KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());  
-</span><span class="line">  trustStore.load(null, null);  
-</span><span class="line">            
-</span><span class="line">  SSLSocketFactory sf = new SSLSocketFactoryEx(trustStore);  
-</span><span class="line">  sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);  
-</span><span class="line">    
-</span><span class="line">  HttpParams params = new BasicHttpParams();  
-</span><span class="line">  HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);  
-</span><span class="line">  HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);  
-</span><span class="line">    
-</span><span class="line">  SchemeRegistry registry = new SchemeRegistry();  
-</span><span class="line">  registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));  
-</span><span class="line">  registry.register(new Scheme("https", sf, 443));  
-</span><span class="line">    
-</span><span class="line">  ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry);   
-</span><span class="line">   return new DefaultHttpClient(ccm, params);  
-</span><span class="line">  } catch (Exception e) {  
-</span><span class="line">   return new DefaultHttpClient();  
-</span><span class="line">  }  
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>现在就可以拿这个HTTPClient去请求数据了</p>
-
-<h3 id="section-1">解决方案二</h3>
-<hr />
-
-<p><a href="http://www.cnblogs.com/P_Chou/archive/2010/12/27/https-ssl-certification.html" title="Title">http://www.cnblogs.com/P_Chou/archive/2010/12/27/https-ssl-certification.html</a>讲的非常清楚https-ssl的认证过程，膜拜下该作者</p>
-
-<p>1.浏览器访问https地址，保存提示的证书到本地，放到android项目中的assets目录。</p>
-
-<p>2.导入证书，代码如下。</p>
-
-<p>3.把证书添加为信任。</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-<span class="line-number">54</span>
-<span class="line-number">55</span>
-<span class="line-number">56</span>
-<span class="line-number">57</span>
-<span class="line-number">58</span>
-<span class="line-number">59</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">String requestHTTPSPage(String mUrl) {
-</span><span class="line">  InputStream ins = null;
-</span><span class="line">  String result = "";
-</span><span class="line">  try {
-</span><span class="line">    
-</span><span class="line">   ins = context.getAssets().open("app_pay.cer"); //下载的证书放到项目中的assets目录中
-</span><span class="line">   CertificateFactory cerFactory = CertificateFactory
-</span><span class="line">                    .getInstance("X.509");
-</span><span class="line">   Certificate cer = cerFactory.generateCertificate(ins);
-</span><span class="line">   KeyStore keyStore = KeyStore.getInstance("PKCS12", "BC");
-</span><span class="line">   keyStore.load(null, null);
-</span><span class="line">   keyStore.setCertificateEntry("trust", cer);
-</span><span class="line"> 
-</span><span class="line">   SSLSocketFactory socketFactory = new SSLSocketFactory(keyStore);
-</span><span class="line">   Scheme sch = new Scheme("https", socketFactory, 443);
-</span><span class="line">   HttpClient mHttpClient = new DefaultHttpClient();
-</span><span class="line">   mHttpClient.getConnectionManager().getSchemeRegistry()
-</span><span class="line">                    .register(sch);
-</span><span class="line"> 
-</span><span class="line">  BufferedReader reader = null;
-</span><span class="line">     try {
-</span><span class="line">         Log.d(TAG, "executeGet is in,murl:" + mUrl);
-</span><span class="line">         HttpGet request = new HttpGet();
-</span><span class="line">         request.setURI(new URI(mUrl));
-</span><span class="line">         HttpResponse response = mHttpClient.execute(request);
-</span><span class="line">         if (response.getStatusLine().getStatusCode() != 200) {
-</span><span class="line">            request.abort();
-</span><span class="line">            return result;
-</span><span class="line">         }
-</span><span class="line"> 
-</span><span class="line">  reader = new BufferedReader(new InputStreamReader(response
-</span><span class="line">                        .getEntity().getContent()));
-</span><span class="line">  StringBuffer buffer = new StringBuffer();
-</span><span class="line">  String line = null;
-</span><span class="line">  while ((line = reader.readLine()) != null) {
-</span><span class="line">                    buffer.append(line);
-</span><span class="line">  }
-</span><span class="line">  result = buffer.toString();
-</span><span class="line">  Log.d(TAG, "mUrl=" + mUrl + "\nresult = " + result);
-</span><span class="line">  } catch (Exception e) {
-</span><span class="line">    e.printStackTrace();
-</span><span class="line">  } finally {
-</span><span class="line">     if (reader != null) {
-</span><span class="line">        reader.close();
-</span><span class="line">     }
-</span><span class="line"> }
-</span><span class="line"> } catch (Exception e) {
-</span><span class="line">   // TODO: handle exception
-</span><span class="line"> } finally {
-</span><span class="line">  
-</span><span class="line">  try {
-</span><span class="line">    if (ins != null)
-</span><span class="line">       ins.close();
-</span><span class="line">  } catch (IOException e) {
-</span><span class="line">     e.printStackTrace();
-</span><span class="line">  }
-</span><span class="line">  }
-</span><span class="line">  return result;
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
   
