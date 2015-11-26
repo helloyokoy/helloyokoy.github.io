@@ -7,18 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="Git配置 1
-2
-3
-4
-5
-6
-7
-8
-9
-git config --global user.name "storm"
-git config --global user.email "610540626@qq.com"
-git config --global color.ui true &hellip;">
+	<meta name="description" content="Afinal简介 Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用； 使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -135,6 +124,79 @@ git config --global color.ui true &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/afinaljie-shao/">
+		
+			Afinal介绍</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
+
+<h3 id="afinal">Afinal简介</h3>
+<hr />
+<ul>
+  <li>
+    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
+  </li>
+  <li>
+    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
+  </li>
+  <li>
+    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
+  </li>
+</ul>
+
+<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
+<hr />
+
+<ul>
+  <li>
+    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
+  </li>
+  <li>
+    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
+  </li>
+  <li>
+    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
+  </li>
+  <li>
+    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
+  </li>
+</ul>
+
+<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
+
+<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
+</code></pre>
+
+
+		
+		<a href="/blog/afinaljie-shao/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年3 月10 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -636,84 +698,6 @@ Button:btn
 
 
 	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ruby-rails-books/">
-		
-			Ruby/Rails 书籍</a>
-	</h2>
-	<div class="entry-content">
-		<p>开始</p>
-
-<p>早就相对现在Ruby/Rails的书做个总结。方便对Rails感兴趣的朋友查找。</p>
-
-<p>因为ruby on rails的书时效性很强，Ruby语言2007之前跟Rails两年以前的书都没加在这个列表里。</p>
-
-<p>有些特殊的跟设计相关的书例外。</p>
-
-<h3 id="ruby">Ruby:</h3>
-
-<h4 id="section">入门篇</h4>
-
-<ul>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/0596516177/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596516177">The Ruby Programming Language</a></p>
-
-    <p>Ruby之父”Mats”参与写作的一本书。</p>
-
-    <p>很像Ruby的官方书，内容是Ruby每一部分的定义，简洁准确。稍微有点生涩，但是这类书大多是很好的的参考书。</p>
-
-    <p>如果你对Ruby有一定的了解，想要重新研究一下某一方面概念，比如Ruby里的Closure。 除了Google可能这本书就是最佳选择了。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1934356085/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1934356085">Programming Ruby 1.9: The Pragmatic Programmers’ Guide</a></p>
-
-    <p>著名的斧头书，很多人把这本书作为Ruby入门的标准教材。内容覆盖很全面。</p>
-
-    <p>虽然这本书看上去很厚，但是后一半是Ruby API。语言上更为流畅，建议这本书入门，上面那本书速查。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1430223634/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1430223634">Beginning Ruby: From Novice to Professional</a></p>
-
-    <p>这本书分三部分，第一部分使一些基础知识，第二部分侧重Ruby语言，最后一部分简略介绍了ruby在web,网络，GUI方面的应用，以及一部分的Gem。</p>
-
-    <p>如果你第一次接触Ruby，可一看一下这本书，如果已经看了其他的ruby的书，这本书除了第三部分一些内容可能帮助不是特别大。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1593272944/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593272944">The Book of Ruby: A Hands-On Guide for the Adventurous</a></p>
-
-    <p>这是一本2011年7月出的书，我看了他们免费的第十一章，关于Symbol的，给我的感觉是这本书的代码实例比较多。</p>
-
-    <p>喜欢通过代码学习的同学可以尝试一下这本书。</p>
-  </li>
-</ul>
-
-
-		
-		<a href="/blog/ruby-rails-books/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年9 月7 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>
