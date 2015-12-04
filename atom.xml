@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-26T21:48:19+08:00</updated>
+  <updated>2015-12-04T11:40:25+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,199 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用 Grape 构建 RESTful API]]></title>
+    <link href="http://helloyokoy.github.io/blog/grape-on-rails/"/>
+    <updated>2015-12-04T11:32:56+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/grape-on-rails</id>
+    <content type="html"><![CDATA[<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
+
+<h3 id="section">安装配置</h3>
+
+<p>首先确保安装：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">## Platform
+</span><span class="line">gem 'rails', '4.2.0'
+</span><span class="line">
+</span><span class="line">## RESTful API Engine
+</span><span class="line">gem 'grape'
+</span><span class="line">gem 'grape-entity'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-1">组织架构</h3>
+
+<h4 id="section-2">目录结构</h4>
+
+<pre><code>api
+├── api.rb
+└── v1
+	├── base.rb
+	├── entities
+	│   ├── base.rb
+	│   └── user_basic.rb
+	├── helpers
+	│   ├── page_helper.rb
+	│   └── user_helper.rb
+	├── base_api.rb
+	└── users_api.rb
+</code></pre>
+
+<p>base.rb 中定义着API的版本、输出格式，及挂载更多API。
+users_api.rb 就像controller，对每个resources都进行分开写，然后在base.rb中进行mount
+entities 使用grape-entity，控制输出中的对象及格式。
+helper 放置常用的helper，像分页，用户验证。
+entities/user_basic.rb</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">module V1
+</span><span class="line">  module Entities
+</span><span class="line">    class UserBasic &lt; Entities::Base
+</span><span class="line">      format_with(:iso8601) { |dt| dt.iso8601 }
+</span><span class="line">
+</span><span class="line">      expose :id
+</span><span class="line">      expose :name
+</span><span class="line">      # 如果需要输出层级对象，可以按这种方式
+</span><span class="line">      # expose :company, using: Entities::Company
+</span><span class="line">
+</span><span class="line">      # 日期、时间一律使用ISO 8601
+</span><span class="line">      expose :created_at, format_with: :iso8601
+</span><span class="line">
+</span><span class="line">      # with_options(format_with: :iso8601) do
+</span><span class="line">      #   expose :created_at
+</span><span class="line">      # end
+</span><span class="line">    end
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>base.rb</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">module V1
+</span><span class="line">  class Base &lt; Grape::API
+</span><span class="line">    version      'v1'
+</span><span class="line">    format       :json
+</span><span class="line">
+</span><span class="line">    # Mount the APIs
+</span><span class="line">    mount UsersApi
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="section-3">挂载</h4>
+
+<p>routes.rb</p>
+
+<pre><code>mount V1::API =&gt; '/'
+</code></pre>
+
+<h4 id="section-4">测试</h4>
+
+<pre><code>http://localhost:3000/v1/users
+</code></pre>
+
+<h3 id="best-practices">Best Practices</h3>
+
+<p>↑↑↑ Best Practices for Designing a Pragmatic RESTful API | Vinay Sahni
+A RESTful Tutorial</p>
+
+<p>非常推荐 Vinay Sahni的实践，说明的非常清晰，而 RESTful Tutorial 也是推荐，但Wrapper一节不作推荐。</p>
+
+<h3 id="doc-with-swagger-ui">Doc with Swagger UI</h3>
+
+<h4 id="grape-swagger">grape-swagger</h4>
+
+<p>routes.rb</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">gem 'grape-swagger'
+</span><span class="line">routes.rb
+</span><span class="line">
+</span><span class="line">add_swagger_documentation
+</span><span class="line">./config/initializers/swagger.rb
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">GrapeSwaggerRails.options.url      = '/swagger_doc.json'
+</span><span class="line">GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
+</span><span class="line">http://localhost:3000/swagger_doc.json</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="grapeswaggerrails">GrapeSwaggerRails</h4>
+
+<p>./config/initializers/swagger.rb
+1
+gem ‘grape-swagger-rails’
+./config/initializers/swagger.rb
+1
+mount GrapeSwaggerRails::Engine +&gt; ‘/docs’</p>
+
+<h3 id="section-5">分页</h3>
+
+<p>类库有will_paginate和 Kaminari，示例中选后者。</p>
+
+<p>和Grape结合部分，使用 api-pagination。</p>
+
+<p>测试： 
+http://localhost:3000/v1/users?page=2&amp;per_page=2</p>
+
+<p>分页有很多种定义方式，建议采用RFC-5988  中所定义。（如上链接）</p>
+
+<h3 id="jsend">JSend</h3>
+
+<p>http://labs.omniti.com/labs/jsend
+RESTful Tutorial 中推荐过JSend，而之前项目中也使用了类似的格式，就是在数据源外包一层，并加上其它的一些信息，像code, status, message。</p>
+
+<p>这些信息主要是应用于JSONP。建议用该方式：，或者是一些无法获取或处理HTTP Header的JS类库。</p>
+
+<h3 id="partial-response">Partial Response</h3>
+
+<p>Grape中实现参见该文：Crafting Ruby Grape APIs: Partial Response</p>
+
+<h3 id="error-">Error 处理</h3>
+
+<p>REF::</p>
+
+<p>HTTP 接口设计指北</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Charles]]></title>
@@ -4535,139 +4728,6 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 
 <hr />
 <p>转载自 <a href="http://liusihao.com/post/64854832920/%E6%88%91%E5%AF%B9%E5%BE%85%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%80%81%E5%BA%A6">我对技术的态度</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby On Rails 快速学习]]></title>
-    <link href="http://helloyokoy.github.io/blog/ruby-fast-learn/"/>
-    <updated>2015-09-02T12:07:16+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/ruby-fast-learn</id>
-    <content type="html"><![CDATA[<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
-
-<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
-
-<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
-
-<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
-
-<!--more-->
-
-<h4 id="section">起点阶段</h4>
-
-<p>强烈建议至少具备如下知识后再开始Rails开发</p>
-
-<h4 id="html-and-css">Html and CSS</h4>
-
-<p>结构和样式不止是设计人员的事，web开发必须要熟悉Head First HTML与CSS（第2版）虽然已经出版了很久，但依然是最好的Html&amp;CSS入门书</p>
-
-<h4 id="linux">Linux</h4>
-
-<p>几乎所有的开发环境都严重依赖于GNU/Linux为主的命令行环境，因此需要学习linux的基本概念和操作</p>
-
-<p>The Linux Command Line</p>
-
-<p>目前最好的linux command line学习指南，生动，清晰，详细，无论是菜鸟还是多年的老手都能从中受益，远超过之前作为标准教材的practical guide to xx系列。No starch这个出版社既有延续至今的Hacker精神，也懂得如何发掘有趣的作者</p>
-
-<h4 id="http-and-rest">HTTP and Rest</h4>
-
-<p>Web开发对于Http的深入理解是必须的，另外Rails还使用Rest协议作为基本指导原则，所以需要深入理解Http和RestRESTful Web Services中文版 这本是目前为止最好的描述HTTP与Rest的作品，可以让你重新认识Web，更何况其中的示例是Ruby语言(因为这本书合著者是Sam Ruby)</p>
-
-<h4 id="programming">Programming</h4>
-
-<p>程序员修炼之道 这本书告诉你，如何做才能成为一个注重实效的程序员，涉及了非常多的理念和实践，虽然都不深入，但至少让你知道世界是什么样子的，是任何程序员最应该在新手阶段读的书，也是对整个业界影响最大的经典之一</p>
-
-<h4 id="git-and-version-control">Git and Version Control</h4>
-
-<p>版本控制在项目中是一开始就要使用的，不止是开发，一切事情都需要版本控制Pro Git 这本是迄今为止讲解Git最清楚最深入的书，对于新手，不建议看后面的实现原理，先读前几章了解概念和学习日常实践使用是最重要的</p>
-
-<h4 id="ruby">Ruby</h4>
-
-<p>如果只是在Rails中使用的Ruby，可以使用一些免费的快速入门教程，不过，系统地学习Ruby，可以了解到很多面向对象开发或函数式编程的思想，对于熟悉和掌握Rails帮助非常大Programming Ruby 1.9 公认的Ruby入门经典，不过对于新手来说，只推荐前半的入门部分，高阶内容可以稍后再来学习</p>
-
-<h4 id="rails">Rails</h4>
-
-<p>Learn Web Development with the Ruby on Rails Tutorial</p>
-
-<p>最后是Rails自身的学习，这本书的最新版涵盖Rails4，是目前为止最好最完整的Rails入门教程，可以在线看，还有大量的视频搭配</p>
-
-<h4 id="section-1">进阶阶段</h4>
-<p>具备下面的知识，可以让你或多或少地理解Rails Way，并真正开始写出合格的Rails应用</p>
-
-<h4 id="programming-1">Programming</h4>
-
-<p>重构</p>
-
-<p>这本”重构”是当年石破天惊的经典著作，讲解如何持续改进和让代码优雅干净，拥有直到现在还依然适用的价值，尤其为Ruby On Rails社区广泛接受，这本书有将其中的Java语言换成Ruby后的版本(重构(Ruby版) (豆瓣))</p>
-
-<p>UNIX编程艺术</p>
-
-<p>由公认的黑客领袖之一Eric S.Raymond撰写的这本书总结了长久以来的Unix领域中的设计和开发哲学，思想乃至文化体系，是了解Ruby和Rails诞生于其中的Unix黑客文化必不可少的读物</p>
-
-<h4 id="ruby-1">Ruby</h4>
-
-<p>深入理解Ruby，除了上边提到的Programming Ruby 1.9以及重构等通用编程书之外，还有以下几个选择</p>
-
-<p>Ruby编程语言</p>
-
-<p>Ruby之父松本行弘和O’Reilly的王牌作者合作，诞生了这本讲解Ruby最透彻的经典著作</p>
-
-<p>Eloquent Ruby</p>
-
-<p>Ruby社区的编程指南之一，介绍了Ruby社群的文化，品味和编程原则，强烈地反映了Ruby程序员的共同特质: 幽默，健谈，追求乐趣，热爱生活</p>
-
-<h4 id="test">Test</h4>
-
-<p>测试驱动开发(TDD)以及之后进化的行为驱动开发(BDD)是Ruby和Rails社群的核心文化之一，只有彻底理解并运用BDD，才是合格的Rails开发者</p>
-
-<p>The RSpec Book</p>
-
-<p>唯一的也是必读的BDD介绍作品，由RSpec核心成员撰写</p>
-
-<p>Git</p>
-
-<p>可以坚持把Pro Git的后半部分学习完，没有更深入和清楚的书了</p>
-
-<p>CSS</p>
-
-<p>CSS权威指南</p>
-
-<p>Eric Meyer的CSS权威指南至今仍然是CSS2讲解最全面和最深入的参考书</p>
-
-<p>Javascript and jQuery</p>
-
-<p>Web开发的交互性会越来越多，Javascript已经成为了相当严肃的编程语言</p>
-
-<p>JavaScript权威指南</p>
-
-<p>目前最全面最好的Javascript学习书籍</p>
-
-<p>jQuery基础教程 （第4版）</p>
-
-<p>唯一尚可称得上紧跟jQuery发展脚步的学习指南</p>
-
-<h4 id="rails-1">Rails</h4>
-
-<p>Rails发展的实在太快了，最好的方法也许是跟踪在线文档，不过还是推荐这本</p>
-
-<p>The Rails 4 Way</p>
-
-<p>这本书的Rails 3版本讲解Rails的哲学和细节相当到位，不过Rails 4版本还没有出版，非常值得在今年3月份第一时间拿下它。</p>
-
-<p>— More</p>
-
-<p>上边的书籍都读过的话，可能你终于能了解到Rails背后涉及的概念和实践有多么庞大惊人，也了解到了还有多么深的知识鸿沟需要跨越，了解到了一切都还只是开始，不过值得庆幸的是，一切事情都需要个开始</p>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：李路</p>
-
-<p>链接：http://www.zhihu.com/question/19552402/answer/22336708</p>
-
-<p>来源：知乎</p>
 ]]></content>
   </entry>
   

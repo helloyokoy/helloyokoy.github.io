@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://helloyokoy.github.io/blog/grape-on-rails/</loc>
+    <lastmod>2015-12-04T11:32:56+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://helloyokoy.github.io/blog/charles/</loc>
     <lastmod>2015-11-26T21:34:03+08:00</lastmod>
   </url>

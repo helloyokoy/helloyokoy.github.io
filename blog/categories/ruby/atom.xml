@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-11-26T21:48:19+08:00</updated>
+  <updated>2015-12-04T11:40:25+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,225 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用 Grape 构建 RESTful API]]></title>
+    <link href="http://helloyokoy.github.io/blog/grape-on-rails/"/>
+    <updated>2015-12-04T11:32:56+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/grape-on-rails</id>
+    <content type="html"><![CDATA[<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
+
+<h3 id="section">安装配置</h3>
+
+<p>首先确保安装：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2 id="platform">Platform&lt;/h2>
+</span><span class='line'>&lt;p>gem ‘rails’, ‘4.2.0’&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2 id="restful-api-engine">RESTful API Engine&lt;/h2>
+</span><span class='line'>&lt;p>gem ‘grape’
+</span><span class='line'>gem ‘grape-entity’&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<h3 id="section-1">组织架构</h3>
+
+<h4 id="section-2">目录结构</h4>
+
+<pre><code>api
+├── api.rb
+└── v1
+	├── base.rb
+	├── entities
+	│   ├── base.rb
+	│   └── user_basic.rb
+	├── helpers
+	│   ├── page_helper.rb
+	│   └── user_helper.rb
+	├── base_api.rb
+	└── users_api.rb
+</code></pre>
+
+<p>base.rb 中定义着API的版本、输出格式，及挂载更多API。
+users_api.rb 就像controller，对每个resources都进行分开写，然后在base.rb中进行mount
+entities 使用grape-entity，控制输出中的对象及格式。
+helper 放置常用的helper，像分页，用户验证。
+entities/user_basic.rb</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>module V1
+</span><span class='line'>  module Entities
+</span><span class='line'>    class UserBasic &lt; Entities::Base
+</span><span class='line'>      format_with(:iso8601) { |dt| dt.iso8601 }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  expose :id
+</span><span class='line'>  expose :name
+</span><span class='line'>  # 如果需要输出层级对象，可以按这种方式
+</span><span class='line'>  # expose :company, using: Entities::Company
+</span><span class='line'>
+</span><span class='line'>  # 日期、时间一律使用ISO 8601
+</span><span class='line'>  expose :created_at, format_with: :iso8601
+</span><span class='line'>
+</span><span class='line'>  # with_options(format_with: :iso8601) do
+</span><span class='line'>  #   expose :created_at
+</span><span class='line'>  # end
+</span><span class='line'>end   end end
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>base.rb</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>module V1
+</span><span class='line'>  class Base &lt; Grape::API
+</span><span class='line'>    version      ‘v1’
+</span><span class='line'>    format       :json&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code># Mount the APIs
+</span><span class='line'>mount UsersApi   end end
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<h4 id="section-3">挂载</h4>
+
+<p>routes.rb</p>
+
+<pre><code>mount V1::API =&gt; '/'
+</code></pre>
+
+<h4 id="section-4">测试</h4>
+
+<pre><code>http://localhost:3000/v1/users
+</code></pre>
+
+<h3 id="best-practices">Best Practices</h3>
+
+<p>↑↑↑ Best Practices for Designing a Pragmatic RESTful API | Vinay Sahni
+A RESTful Tutorial</p>
+
+<p>非常推荐 Vinay Sahni的实践，说明的非常清晰，而 RESTful Tutorial 也是推荐，但Wrapper一节不作推荐。</p>
+
+<h3 id="doc-with-swagger-ui">Doc with Swagger UI</h3>
+
+<h4 id="grape-swagger">grape-swagger</h4>
+
+<p>routes.rb</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>gem ‘grape-swagger’
+</span><span class='line'>routes.rb&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>add_swagger_documentation
+</span><span class='line'>./config/initializers/swagger.rb&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>GrapeSwaggerRails.options.url      = ‘/swagger_doc.json’
+</span><span class='line'>GrapeSwaggerRails.options.app_url  = ‘http://swagger.wordnik.com’
+</span><span class='line'>http://localhost:3000/swagger_doc.json&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<h4 id="grapeswaggerrails">GrapeSwaggerRails</h4>
+
+<p>./config/initializers/swagger.rb
+1
+gem ‘grape-swagger-rails’
+./config/initializers/swagger.rb
+1
+mount GrapeSwaggerRails::Engine +&gt; ‘/docs’</p>
+
+<h3 id="section-5">分页</h3>
+
+<p>类库有will_paginate和 Kaminari，示例中选后者。</p>
+
+<p>和Grape结合部分，使用 api-pagination。</p>
+
+<p>测试： 
+http://localhost:3000/v1/users?page=2&amp;per_page=2</p>
+
+<p>分页有很多种定义方式，建议采用RFC-5988  中所定义。（如上链接）</p>
+
+<h3 id="jsend">JSend</h3>
+
+<p>http://labs.omniti.com/labs/jsend
+RESTful Tutorial 中推荐过JSend，而之前项目中也使用了类似的格式，就是在数据源外包一层，并加上其它的一些信息，像code, status, message。</p>
+
+<p>这些信息主要是应用于JSONP。建议用该方式：，或者是一些无法获取或处理HTTP Header的JS类库。</p>
+
+<h3 id="partial-response">Partial Response</h3>
+
+<p>Grape中实现参见该文：Crafting Ruby Grape APIs: Partial Response</p>
+
+<h3 id="error-">Error 处理</h3>
+
+<p>REF::</p>
+
+<p>HTTP 接口设计指北</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails-perftest 分析 Rails 引用的性能]]></title>
@@ -1072,38 +1291,6 @@ wiki中也有不少关于开发上的建议与经验，还有自己遇到一些�
 
 <hr />
 <p>转载自 <a href="https://ruby-china.org/topics/18439">ruby-china</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby gems内存泄露]]></title>
-    <link href="http://helloyokoy.github.io/blog/ruby-gems-memory-leak/"/>
-    <updated>2015-10-22T15:01:34+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/ruby-gems-memory-leak</id>
-    <content type="html"><![CDATA[<p>请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新</p>
-
-<ul>
-  <li>
-    <p>therubyracer &lt; 0.12.2</p>
-  </li>
-  <li>
-    <p>sidekiq &lt; 3.5.1</p>
-  </li>
-  <li>
-    <p>celluloid &gt; 0.16.0, &lt; 0.17.2</p>
-  </li>
-  <li>
-    <p>zipruby &lt;= 0.3.6</p>
-  </li>
-  <li>
-    <p>redcarpet &lt; 3.3.3</p>
-  </li>
-  <li>
-    <p>grape &lt; 0.2.5</p>
-  </li>
-</ul>
-
-<p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
 ]]></content>
   </entry>
   

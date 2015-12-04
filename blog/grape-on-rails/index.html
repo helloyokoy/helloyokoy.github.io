@@ -1,0 +1,418 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>使用 Grape 构建 RESTful API - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。 安装配置 首先确保安装： 1
+2
+3
+4
+5
+6
+## Platform
+gem 'rails', '4.2.0' ## RESTful API &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">使用 Grape 构建 RESTful API</h2>
+	<div class="entry-content"><p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
+
+<h3 id="section">安装配置</h3>
+
+<p>首先确保安装：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">## Platform
+</span><span class="line">gem 'rails', '4.2.0'
+</span><span class="line">
+</span><span class="line">## RESTful API Engine
+</span><span class="line">gem 'grape'
+</span><span class="line">gem 'grape-entity'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-1">组织架构</h3>
+
+<h4 id="section-2">目录结构</h4>
+
+<pre><code>api
+├── api.rb
+└── v1
+	├── base.rb
+	├── entities
+	│   ├── base.rb
+	│   └── user_basic.rb
+	├── helpers
+	│   ├── page_helper.rb
+	│   └── user_helper.rb
+	├── base_api.rb
+	└── users_api.rb
+</code></pre>
+
+<p>base.rb 中定义着API的版本、输出格式，及挂载更多API。
+users_api.rb 就像controller，对每个resources都进行分开写，然后在base.rb中进行mount
+entities 使用grape-entity，控制输出中的对象及格式。
+helper 放置常用的helper，像分页，用户验证。
+entities/user_basic.rb</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">module V1
+</span><span class="line">  module Entities
+</span><span class="line">    class UserBasic &lt; Entities::Base
+</span><span class="line">      format_with(:iso8601) { |dt| dt.iso8601 }
+</span><span class="line">
+</span><span class="line">      expose :id
+</span><span class="line">      expose :name
+</span><span class="line">      # 如果需要输出层级对象，可以按这种方式
+</span><span class="line">      # expose :company, using: Entities::Company
+</span><span class="line">
+</span><span class="line">      # 日期、时间一律使用ISO 8601
+</span><span class="line">      expose :created_at, format_with: :iso8601
+</span><span class="line">
+</span><span class="line">      # with_options(format_with: :iso8601) do
+</span><span class="line">      #   expose :created_at
+</span><span class="line">      # end
+</span><span class="line">    end
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>base.rb</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">module V1
+</span><span class="line">  class Base &lt; Grape::API
+</span><span class="line">    version      'v1'
+</span><span class="line">    format       :json
+</span><span class="line">
+</span><span class="line">    # Mount the APIs
+</span><span class="line">    mount UsersApi
+</span><span class="line">  end
+</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="section-3">挂载</h4>
+
+<p>routes.rb</p>
+
+<pre><code>mount V1::API =&gt; '/'
+</code></pre>
+
+<h4 id="section-4">测试</h4>
+
+<pre><code>http://localhost:3000/v1/users
+</code></pre>
+
+<h3 id="best-practices">Best Practices</h3>
+
+<p>↑↑↑ Best Practices for Designing a Pragmatic RESTful API | Vinay Sahni
+A RESTful Tutorial</p>
+
+<p>非常推荐 Vinay Sahni的实践，说明的非常清晰，而 RESTful Tutorial 也是推荐，但Wrapper一节不作推荐。</p>
+
+<h3 id="doc-with-swagger-ui">Doc with Swagger UI</h3>
+
+<h4 id="grape-swagger">grape-swagger</h4>
+
+<p>routes.rb</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">gem 'grape-swagger'
+</span><span class="line">routes.rb
+</span><span class="line">
+</span><span class="line">add_swagger_documentation
+</span><span class="line">./config/initializers/swagger.rb
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">GrapeSwaggerRails.options.url      = '/swagger_doc.json'
+</span><span class="line">GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
+</span><span class="line">http://localhost:3000/swagger_doc.json</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4 id="grapeswaggerrails">GrapeSwaggerRails</h4>
+
+<p>./config/initializers/swagger.rb
+1
+gem ‘grape-swagger-rails’
+./config/initializers/swagger.rb
+1
+mount GrapeSwaggerRails::Engine +&gt; ‘/docs’</p>
+
+<h3 id="section-5">分页</h3>
+
+<p>类库有will_paginate和 Kaminari，示例中选后者。</p>
+
+<p>和Grape结合部分，使用 api-pagination。</p>
+
+<p>测试： 
+http://localhost:3000/v1/users?page=2&amp;per_page=2</p>
+
+<p>分页有很多种定义方式，建议采用RFC-5988  中所定义。（如上链接）</p>
+
+<h3 id="jsend">JSend</h3>
+
+<p>http://labs.omniti.com/labs/jsend
+RESTful Tutorial 中推荐过JSend，而之前项目中也使用了类似的格式，就是在数据源外包一层，并加上其它的一些信息，像code, status, message。</p>
+
+<p>这些信息主要是应用于JSONP。建议用该方式：，或者是一些无法获取或处理HTTP Header的JS类库。</p>
+
+<h3 id="partial-response">Partial Response</h3>
+
+<p>Grape中实现参见该文：Crafting Ruby Grape APIs: Partial Response</p>
+
+<h3 id="error-">Error 处理</h3>
+
+<p>REF::</p>
+
+<p>HTTP 接口设计指北</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年12 月4 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/grape-on-rails" data-title="使用 Grape 构建 RESTful API" data-url="http://helloyokoy.github.io/blog/grape-on-rails/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>
