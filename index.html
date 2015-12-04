@@ -141,7 +141,9 @@ gem 'rails', '4.2.0' ## RESTful API &hellip;">
 			使用 Grape 构建 RESTful API</a>
 	</h2>
 	<div class="entry-content">
-		<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
+		<p><img src="http://blog.lanvige.com/uploads/ruby/grape-logo.png" alt="img" /></p>
+
+<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
 
 <h3 id="section">安装配置</h3>
 
@@ -181,154 +183,11 @@ gem 'rails', '4.2.0' ## RESTful API &hellip;">
 <p>base.rb 中定义着API的版本、输出格式，及挂载更多API。
 users_api.rb 就像controller，对每个resources都进行分开写，然后在base.rb中进行mount
 entities 使用grape-entity，控制输出中的对象及格式。
-helper 放置常用的helper，像分页，用户验证。
-entities/user_basic.rb</p>
+helper 放置常用的helper，像分页，用户验证。</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">module V1
-</span><span class="line">  module Entities
-</span><span class="line">    class UserBasic &lt; Entities::Base
-</span><span class="line">      format_with(:iso8601) { |dt| dt.iso8601 }
-</span><span class="line">
-</span><span class="line">      expose :id
-</span><span class="line">      expose :name
-</span><span class="line">      # 如果需要输出层级对象，可以按这种方式
-</span><span class="line">      # expose :company, using: Entities::Company
-</span><span class="line">
-</span><span class="line">      # 日期、时间一律使用ISO 8601
-</span><span class="line">      expose :created_at, format_with: :iso8601
-</span><span class="line">
-</span><span class="line">      # with_options(format_with: :iso8601) do
-</span><span class="line">      #   expose :created_at
-</span><span class="line">      # end
-</span><span class="line">    end
-</span><span class="line">  end
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>base.rb</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">module V1
-</span><span class="line">  class Base &lt; Grape::API
-</span><span class="line">    version      'v1'
-</span><span class="line">    format       :json
-</span><span class="line">
-</span><span class="line">    # Mount the APIs
-</span><span class="line">    mount UsersApi
-</span><span class="line">  end
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h4 id="section-3">挂载</h4>
-
-<p>routes.rb</p>
-
-<pre><code>mount V1::API =&gt; '/'
-</code></pre>
-
-<h4 id="section-4">测试</h4>
-
-<pre><code>http://localhost:3000/v1/users
-</code></pre>
-
-<h3 id="best-practices">Best Practices</h3>
-
-<p>↑↑↑ Best Practices for Designing a Pragmatic RESTful API | Vinay Sahni
-A RESTful Tutorial</p>
-
-<p>非常推荐 Vinay Sahni的实践，说明的非常清晰，而 RESTful Tutorial 也是推荐，但Wrapper一节不作推荐。</p>
-
-<h3 id="doc-with-swagger-ui">Doc with Swagger UI</h3>
-
-<h4 id="grape-swagger">grape-swagger</h4>
-
-<p>routes.rb</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">gem 'grape-swagger'
-</span><span class="line">routes.rb
-</span><span class="line">
-</span><span class="line">add_swagger_documentation
-</span><span class="line">./config/initializers/swagger.rb
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">GrapeSwaggerRails.options.url      = '/swagger_doc.json'
-</span><span class="line">GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
-</span><span class="line">http://localhost:3000/swagger_doc.json</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h4 id="grapeswaggerrails">GrapeSwaggerRails</h4>
-
-<p>./config/initializers/swagger.rb
-1
-gem ‘grape-swagger-rails’
-./config/initializers/swagger.rb
-1
-mount GrapeSwaggerRails::Engine +&gt; ‘/docs’</p>
-
-<h3 id="section-5">分页</h3>
-
-<p>类库有will_paginate和 Kaminari，示例中选后者。</p>
-
-<p>和Grape结合部分，使用 api-pagination。</p>
-
-<p>测试： 
-http://localhost:3000/v1/users?page=2&amp;per_page=2</p>
-
-<p>分页有很多种定义方式，建议采用RFC-5988  中所定义。（如上链接）</p>
-
-<h3 id="jsend">JSend</h3>
-
-<p>http://labs.omniti.com/labs/jsend
-RESTful Tutorial 中推荐过JSend，而之前项目中也使用了类似的格式，就是在数据源外包一层，并加上其它的一些信息，像code, status, message。</p>
-
-<p>这些信息主要是应用于JSONP。建议用该方式：，或者是一些无法获取或处理HTTP Header的JS类库。</p>
-
-<h3 id="partial-response">Partial Response</h3>
-
-<p>Grape中实现参见该文：Crafting Ruby Grape APIs: Partial Response</p>
-
-<h3 id="error-">Error 处理</h3>
-
-<p>REF::</p>
-
-<p>HTTP 接口设计指北</p>
 
 		
-		
+		<a href="/blog/grape-on-rails/" class="more-link">阅读全文</a>
 	</div>
 
 

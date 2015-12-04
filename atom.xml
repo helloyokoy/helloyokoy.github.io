@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-12-04T11:40:25+08:00</updated>
+  <updated>2015-12-04T11:52:55+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -18,7 +18,9 @@
     <link href="http://helloyokoy.github.io/blog/grape-on-rails/"/>
     <updated>2015-12-04T11:32:56+08:00</updated>
     <id>http://helloyokoy.github.io/blog/grape-on-rails</id>
-    <content type="html"><![CDATA[<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
+    <content type="html"><![CDATA[<p><img src="http://blog.lanvige.com/uploads/ruby/grape-logo.png" alt="img" /></p>
+
+<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
 
 <h3 id="section">安装配置</h3>
 
@@ -58,8 +60,11 @@
 <p>base.rb 中定义着API的版本、输出格式，及挂载更多API。
 users_api.rb 就像controller，对每个resources都进行分开写，然后在base.rb中进行mount
 entities 使用grape-entity，控制输出中的对象及格式。
-helper 放置常用的helper，像分页，用户验证。
-entities/user_basic.rb</p>
+helper 放置常用的helper，像分页，用户验证。</p>
+
+<!--more-->
+
+<p>entities/user_basic.rb</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -130,13 +135,12 @@ entities/user_basic.rb</p>
 
 <h4 id="section-4">测试</h4>
 
-<pre><code>http://localhost:3000/v1/users
-</code></pre>
+<p><a href="http://localhost:3000/v1/users">http://localhost:3000/v1/users</a></p>
 
 <h3 id="best-practices">Best Practices</h3>
+<p><a href="http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api">Best Practices for Designing a Pragmatic RESTful API Vinay Sahni</a></p>
 
-<p>↑↑↑ Best Practices for Designing a Pragmatic RESTful API | Vinay Sahni
-A RESTful Tutorial</p>
+<p><a href="http://www.restapitutorial.com/">A RESTful Tutorial</a></p>
 
 <p>非常推荐 Vinay Sahni的实践，说明的非常清晰，而 RESTful Tutorial 也是推荐，但Wrapper一节不作推荐。</p>
 
@@ -155,7 +159,6 @@ A RESTful Tutorial</p>
 <span class="line-number">7</span>
 <span class="line-number">8</span>
 <span class="line-number">9</span>
-<span class="line-number">10</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">gem 'grape-swagger'
 </span><span class="line">routes.rb
 </span><span class="line">
@@ -164,45 +167,52 @@ A RESTful Tutorial</p>
 </span><span class="line">
 </span><span class="line">
 </span><span class="line">GrapeSwaggerRails.options.url      = '/swagger_doc.json'
-</span><span class="line">GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'
-</span><span class="line">http://localhost:3000/swagger_doc.json</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class="line">GrapeSwaggerRails.options.app_url  = 'http://swagger.wordnik.com'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><a href="http://localhost:3000/swagger_doc.json">http://localhost:3000/swagger_doc.json</a></p>
 
 <h4 id="grapeswaggerrails">GrapeSwaggerRails</h4>
 
-<p>./config/initializers/swagger.rb
-1
-gem ‘grape-swagger-rails’
-./config/initializers/swagger.rb
-1
-mount GrapeSwaggerRails::Engine +&gt; ‘/docs’</p>
+<p>./config/initializers/swagger.rb</p>
+
+<pre><code>gem 'grape-swagger-rails' ./config/initializers/swagger.rb
+
+mount GrapeSwaggerRails::Engine +&gt; '/docs'
+</code></pre>
 
 <h3 id="section-5">分页</h3>
 
-<p>类库有will_paginate和 Kaminari，示例中选后者。</p>
+<p>类库有will_paginate和<a href="https://github.com/amatsuda/kaminari">Kaminari</a>，示例中选后者。</p>
 
-<p>和Grape结合部分，使用 api-pagination。</p>
+<p>和Grape结合部分，使用 <a href="https://github.com/davidcelis/api-pagination#grape">api-pagination</a>。</p>
 
-<p>测试： 
-http://localhost:3000/v1/users?page=2&amp;per_page=2</p>
+<p>测试：</p>
+
+<p><a href="http://localhost:3000/v1/users?page=2&amp;per_page=2">http://localhost:3000/v1/users?page=2&amp;per_page=2</a></p>
 
 <p>分页有很多种定义方式，建议采用RFC-5988  中所定义。（如上链接）</p>
 
 <h3 id="jsend">JSend</h3>
 
-<p>http://labs.omniti.com/labs/jsend
-RESTful Tutorial 中推荐过JSend，而之前项目中也使用了类似的格式，就是在数据源外包一层，并加上其它的一些信息，像code, status, message。</p>
+<p><a href="http://labs.omniti.com/labs/jsend">http://labs.omniti.com/labs/jsend</a></p>
 
-<p>这些信息主要是应用于JSONP。建议用该方式：，或者是一些无法获取或处理HTTP Header的JS类库。</p>
+<p>RESTful Tutorial 中推荐过JSend，而之前项目中也使用了类似的格式，就是在数据源外包一层，并加上其它的一些信息，像code, status, message。</p>
+
+<p>这些信息主要是应用于JSONP。<a href="https://github.com/bolasblack/http-api-guide#json-p">建议用该方式</a>：，或者是一些无法获取或处理HTTP Header的JS类库。</p>
 
 <h3 id="partial-response">Partial Response</h3>
 
-<p>Grape中实现参见该文：Crafting Ruby Grape APIs: Partial Response</p>
+<p>Grape中实现参见该文：<a href="http://www.nicolasgarnil.me/blog/2013/crafting-ruby-grape-apis-partial-response-part1/">Crafting Ruby Grape APIs: Partial Response</a></p>
 
 <h3 id="error-">Error 处理</h3>
 
 <p>REF::</p>
 
-<p>HTTP 接口设计指北</p>
+<p><a href="https://github.com/bolasblack/http-api-guide">HTTP 接口设计指北</a></p>
+
+<hr />
+
+<p>转载自 <a href="http://blog.lanvige.com/2015/01/13/build-restful-api-with-grape/?utm_source=tuicool&amp;utm_medium=referral">http://blog.lanvige.com/2015/01/13/build-restful-api-with-grape/?utm_source=tuicool&amp;utm_medium=referral</a></p>
 ]]></content>
   </entry>
   
