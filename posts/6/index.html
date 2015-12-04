@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="Android网址或Blog 博客 http://stormzhang.com/ 知乎回答 http://www.zhihu.com/question/33993035 StackOverflow tag android http://stackoverflow.com/questions/ &hellip;">
+	<meta name="description" content="优点： 1、Google推出的 毫无疑问，这个是它的最大优势，Android Stuido是Google推出，专门为Android“量身订做”的，是Google大力支持的一款基于IntelliJ idea改造的IDE，google的工程师团队肯定会不断完善，上升空间非常大， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -129,6 +129,208 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/android-studio/">
+		
+			Android Studio比Eclipse好在那里</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="section">优点：</h3>
+
+<h4 id="google">1、Google推出的</h4>
+
+<p>毫无疑问，这个是它的最大优势，Android Stuido是Google推出，专门为Android“量身订做”的，是Google大力支持的一款基于IntelliJ idea改造的IDE，google的工程师团队肯定会不断完善，上升空间非常大，这个应该能说明为什么它是Android的未来</p>
+
+<h4 id="section-1">2、速度更快</h4>
+
+<p>Eclipse的启动速度、响应速度、内存占用一直被诟病，相信大家这点应该深有体会，而且经常遇到卡死状态。Studio不管哪一个方面都全面领先Eclipse。这点可能在windows上没有表现出来，win上运行studio同样会出现卡顿现象，但这只能说win平台还没优化好，毕竟还没有发布正式版，或者说windows系统本身就很卡顿，你还能指望它做什么呢。</p>
+
+<h4 id="ui">3、UI更漂亮</h4>
+
+<p>I/O上演示的那款黑色主题真是太棒了，极客范，Stuido自带的Darcula主题的炫酷黑界面实在是高大上，相比而言Eclipse下的黑色主题太low了</p>
+
+
+		
+		<a href="/blog/android-studio/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年7 月4 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/git-flow/">
+		
+			Git Flow管理开发流程</a>
+	</h2>
+	<div class="entry-content">
+		<p>我们都知道, 在 git 的分支功能相对 svn 确实方便许多，而且也非常推荐使用分支来做开发. 我的做法是每个项目都有2个分支, master 和 develop. master 分支是主分支, 保证程序有一个 稳定版本, develop 则是开发用的分支, 几乎所有的功能开发, bug 修复都在这个分支上, 完成后 再合并回 master.</p>
+
+<p>但是情况并不是这么简单. 有时当我们正在开发一个功能, 但程序突然出现 bug 需要及时去修复的时候, 这时要切回 master 分支, 并基于它创建一个 hotfix 分支. 有时我们在开发一个功能时, 需要停下来去开发另一个功能. 而且所有这些问题都出现 的时候, 发布也会成为比较棘手问题.</p>
+
+<p>也就是说, git branch 功能很强大，但是没有一套模型告诉我们应该怎样在开发的时候善用 这些分支。于是有人就整理出了一套比较好的方案 A successful Git branching model, 今天我们就一起来学习下这套方案.</p>
+
+
+		
+		<a href="/blog/git-flow/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年4 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/androidkai-yuan-kuang-jia/">
+		
+			Android第三方库</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="volley">1、volley</h3>
+
+<p>项目地址 <a href="https://github.com/smanikandan14/Volley-demo">https://github.com/smanikandan14/Volley-demo</a></p>
+
+<ol>
+  <li>JSON，图像等的异步下载；</li>
+  <li>网络请求的排序（scheduling）</li>
+  <li>网络请求的优先级处理</li>
+  <li>缓存</li>
+  <li>多级别取消请求</li>
+  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
+</ol>
+
+<h3 id="android-async-http">2、android-async-http</h3>
+
+<p>项目地址：<a href="https://github.com/loopj/android-async-http">https://github.com/loopj/android-async-http</a></p>
+
+<p>文档介绍：<a href="http://loopj.com/android-async-http/">http://loopj.com/android-async-http/</a></p>
+
+<ol>
+  <li>在匿名回调中处理请求结果</li>
+  <li>在UI线程外进行http请求</li>
+  <li>文件断点上传</li>
+  <li>智能重试</li>
+  <li>默认gzip压缩</li>
+  <li>支持解析成Json格式</li>
+  <li>可将Cookies持久化到SharedPreferences
+
+		
+		<a href="/blog/androidkai-yuan-kuang-jia/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2013 年11 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/git-command/">
+		
+			Git 常用命令</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="git">Git配置</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git config --global user.name "storm"
+</span><span class="line">git config --global user.email "610540626@qq.com"
+</span><span class="line">git config --global color.ui true
+</span><span class="line">git config --global alias.co checkout  # 别名
+</span><span class="line">git config --global alias.ci commit
+</span><span class="line">git config --global alias.st status
+</span><span class="line">git config --global alias.br branch
+</span><span class="line">git config --global core.editor "vim"  # 设置Editor使用vim
+</span><span class="line">git config --global core.quotepath false # 设置显示中文文件名</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>用户的git配置文件~/.gitconfig</p>
+
+
+		
+		<a href="/blog/git-command/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2013 年9 月25 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/androidxue-xi-zi-liao/">
 		
 			Android学习资源</a>
@@ -196,7 +398,7 @@
 
 
 
-2014 年9 月11 日</div>
+2013 年9 月11 日</div>
 	<div class="tags">
 
 
@@ -212,59 +414,30 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/ruby-rails-books/">
+		<a href="/blog/markdownyu-fa/">
 		
-			Ruby/Rails 书籍</a>
+			MarkDown语法</a>
 	</h2>
 	<div class="entry-content">
-		<p>开始</p>
+		<h3 id="word">1. 标题设置（让字体变大，和word的标题意思一样）</h3>
 
-<p>早就相对现在Ruby/Rails的书做个总结。方便对Rails感兴趣的朋友查找。</p>
+<p>在Markdown当中设置标题，有两种方式：</p>
 
-<p>因为ruby on rails的书时效性很强，Ruby语言2007之前跟Rails两年以前的书都没加在这个列表里。</p>
+<p>第一种：通过在文字下方添加“=”和“-”，他们分别表示一级标题和二级标题。</p>
 
-<p>有些特殊的跟设计相关的书例外。</p>
+<p>第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大）</p>
 
-<h3 id="ruby">Ruby:</h3>
+<h3 id="blockquote">2. 块注释（blockquote）</h3>
 
-<h4 id="section">入门篇</h4>
+<p>通过在文字开头添加“&gt;”表示块注释。（当&gt;和文字之间添加五个blank时，块注释的文字会有变化。）</p>
 
-<ul>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/0596516177/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596516177">The Ruby Programming Language</a></p>
+<h3 id="section">3. 斜体</h3>
 
-    <p>Ruby之父”Mats”参与写作的一本书。</p>
-
-    <p>很像Ruby的官方书，内容是Ruby每一部分的定义，简洁准确。稍微有点生涩，但是这类书大多是很好的的参考书。</p>
-
-    <p>如果你对Ruby有一定的了解，想要重新研究一下某一方面概念，比如Ruby里的Closure。 除了Google可能这本书就是最佳选择了。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1934356085/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1934356085">Programming Ruby 1.9: The Pragmatic Programmers’ Guide</a></p>
-
-    <p>著名的斧头书，很多人把这本书作为Ruby入门的标准教材。内容覆盖很全面。</p>
-
-    <p>虽然这本书看上去很厚，但是后一半是Ruby API。语言上更为流畅，建议这本书入门，上面那本书速查。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1430223634/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1430223634">Beginning Ruby: From Novice to Professional</a></p>
-
-    <p>这本书分三部分，第一部分使一些基础知识，第二部分侧重Ruby语言，最后一部分简略介绍了ruby在web,网络，GUI方面的应用，以及一部分的Gem。</p>
-
-    <p>如果你第一次接触Ruby，可一看一下这本书，如果已经看了其他的ruby的书，这本书除了第三部分一些内容可能帮助不是特别大。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1593272944/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593272944">The Book of Ruby: A Hands-On Guide for the Adventurous</a></p>
-
-    <p>这是一本2011年7月出的书，我看了他们免费的第十一章，关于Symbol的，给我的感觉是这本书的代码实例比较多。</p>
-
-    <p>喜欢通过代码学习的同学可以尝试一下这本书。</p>
-  </li>
-</ul>
+<p>将需要设置为斜体的文字两端使用1个“*”或者“_”夹起来</p>
 
 
 		
-		<a href="/blog/ruby-rails-books/" class="more-link">阅读全文</a>
+		<a href="/blog/markdownyu-fa/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -274,11 +447,11 @@
 
 
 
-2014 年9 月7 日</div>
+2013 年8 月9 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/other/'>other</a>
 
 
 </div>
@@ -339,219 +512,11 @@ attr_accessor是可读也可写</p>
 
 
 
-2014 年8 月9 日</div>
+2013 年6 月12 日</div>
 	<div class="tags">
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-gradle/">
-		
-			Android Gradle</a>
-	</h2>
-	<div class="entry-content">
-		<p>Google I/O 2013发布了新的开发工具Android Studio和新的构建系统Gradle， Android Studio自不必说，这是Android IDE的未来。这篇文章就来学习下Gradle。</p>
-
-<h3 id="gradle">什么是Gradle？</h3>
-<p>Gradle 是以 Groovy 语言为基础，面向Java应用为主，基于DSL语法的自动化构建工具。说到Java的自动化构建工具，大家一定对Ant和Maven都不会陌生，对，Gradle就是这样一种类似的工具，不过它比Ant和Maven强大的多，而且使用起来更加方便简单并且兼容Maven。</p>
-
-<p>下面列举了一些使用Gradle构建Android项目的好处：</p>
-
-<ul>
-  <li>
-    <p>在IDE环境和命令行下使用同一个构建系统</p>
-  </li>
-  <li>
-    <p>改进的依赖关系管理</p>
-  </li>
-  <li>
-    <p>更容易地集成到自动化构建系统</p>
-  </li>
-</ul>
-
-
-		
-		<a href="/blog/android-gradle/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年8 月5 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/">
-		
-			iOS第三方库和插件</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="section">前言</h2>
-<hr />
-
-<blockquote>
-  <p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p>
-</blockquote>
-
-<h2 id="section-1">第三方库</h2>
-
-<h4 id="cocoapod">CocoaPod</h4>
-
-<p>CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具</p>
-
-<p>在CocoaPod没有出现之前 第三方库的管理是非常痛苦的 尤其是一些大型的库(比如nimbus) 每次对库进行更新 都可能会非常的痛苦</p>
-
-<p>CocoaPod的出现解决了这些问题 以Framework的方式引入第三方库 极大的节约了集成的时间 而且通吃Objective-C和Swift(Swift上的Cathatage我没有实际用过 但是它的那种集成方式还是比CocoaPod麻烦点)</p>
-
-<h4 id="icarousel">iCarousel</h4>
-
-<p>在iOS 4.x的时代(我也是从4.0开始接触iOS开发的) Coverflow的效果可谓是风靡一时 初出茅庐的我当年对如何实现几乎是束手无策(当年所有的电影资讯类的APP 如布丁爱生活等 都需要实现Coverflow选片的效果 碰巧我也要做一个) iCarousel的出现替我解决了一个大的难题</p>
-
-<p>从此iCarousel成为了我每个项目的必备良药(也是我最喜欢的库) 不管是Coverflow还是轮播广告 都能轻描淡写的搞定 其内置的十来种显示类型 基本可以解决90%的UI需求 而其强大的自定义功能 则可以解决剩余的10% :)</p>
-
-<p>不熟悉的朋友可以尝试一下其精美的demo(pod try iCarousel) 所有的功能都在demo中一览无余</p>
-
-<p>作者nicklockwood也是一个高产的大神 同时维护着数量众多且优质的开源库(比如iVersion iRate) 大家不妨去看一看 淘一淘</p>
-
-
-		
-		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年7 月8 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-studio/">
-		
-			Android Studio比Eclipse好在那里</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">优点：</h3>
-
-<h4 id="google">1、Google推出的</h4>
-
-<p>毫无疑问，这个是它的最大优势，Android Stuido是Google推出，专门为Android“量身订做”的，是Google大力支持的一款基于IntelliJ idea改造的IDE，google的工程师团队肯定会不断完善，上升空间非常大，这个应该能说明为什么它是Android的未来</p>
-
-<h4 id="section-1">2、速度更快</h4>
-
-<p>Eclipse的启动速度、响应速度、内存占用一直被诟病，相信大家这点应该深有体会，而且经常遇到卡死状态。Studio不管哪一个方面都全面领先Eclipse。这点可能在windows上没有表现出来，win上运行studio同样会出现卡顿现象，但这只能说win平台还没优化好，毕竟还没有发布正式版，或者说windows系统本身就很卡顿，你还能指望它做什么呢。</p>
-
-<h4 id="ui">3、UI更漂亮</h4>
-
-<p>I/O上演示的那款黑色主题真是太棒了，极客范，Stuido自带的Darcula主题的炫酷黑界面实在是高大上，相比而言Eclipse下的黑色主题太low了</p>
-
-
-		
-		<a href="/blog/android-studio/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年7 月4 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/markdownyu-fa/">
-		
-			MarkDown语法</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="word">1. 标题设置（让字体变大，和word的标题意思一样）</h3>
-
-<p>在Markdown当中设置标题，有两种方式：</p>
-
-<p>第一种：通过在文字下方添加“=”和“-”，他们分别表示一级标题和二级标题。</p>
-
-<p>第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大）</p>
-
-<h3 id="blockquote">2. 块注释（blockquote）</h3>
-
-<p>通过在文字开头添加“&gt;”表示块注释。（当&gt;和文字之间添加五个blank时，块注释的文字会有变化。）</p>
-
-<h3 id="section">3. 斜体</h3>
-
-<p>将需要设置为斜体的文字两端使用1个“*”或者“_”夹起来</p>
-
-
-		
-		<a href="/blog/markdownyu-fa/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年6 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
 
 
 </div>
@@ -597,7 +562,7 @@ git remote add octopress git://github.com/imathis/octopress.git  # 为了octopre
 
 
 
-2014 年6 月8 日</div>
+2013 年5 月8 日</div>
 	<div class="tags">
 
 

@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。 原文：http://tosbourn.com/what-is-the-gemfile/ 作为Ruby开发者， &hellip;">
+	<meta name="description" content="CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。 为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。 也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -124,178 +124,6 @@
 		
 	
 	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/gem-description/">
-		
-			Gemfile 详解</a>
-	</h2>
-	<div class="entry-content">
-		<p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
-
-<p>原文：<a href="http://tosbourn.com/what-is-the-gemfile/">http://tosbourn.com/what-is-the-gemfile/</a></p>
-
-<p>作为Ruby开发者，我们一直在使用Gemfile，并且大部分人知道一些关于Gemfile的基础知识。在这篇文章里，我想更加深入到Gemfile里面去看看通过Gemfile所能做的一切。</p>
-
-<h2 id="gemfile">什么是Gemfile</h2>
-
-<p>Gemfile是我们创建的一个用于描述gem之间依赖的文件。gem是一堆Ruby代码的集合，它能够为我们提供调用。你的Gemfile必须放在项目的根目录下面， 这是Bundler的要求，对于任何的其他形式的包管理文件来说，这也是标准。这里值得注意的一点是Gemfile会被作为Ruby代码来执行。当在Bundler上下文环境中被执行的时能使我们访问一些方法，我们用这些方法来解释gem之间的require关系。</p>
-
-
-		
-		<a href="/blog/gem-description/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年4 月3 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/afinaljie-shao/">
-		
-			Afinal介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
-
-<h3 id="afinal">Afinal简介</h3>
-<hr />
-<ul>
-  <li>
-    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
-  </li>
-  <li>
-    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
-  </li>
-  <li>
-    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
-  </li>
-</ul>
-
-<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
-<hr />
-
-<ul>
-  <li>
-    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
-  </li>
-  <li>
-    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
-  </li>
-  <li>
-    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
-  </li>
-  <li>
-    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
-  </li>
-</ul>
-
-<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
-
-<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
-&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
-</code></pre>
-
-
-		
-		<a href="/blog/afinaljie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年3 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/git-command/">
-		
-			Git 常用命令</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="git">Git配置</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git config --global user.name "storm"
-</span><span class="line">git config --global user.email "610540626@qq.com"
-</span><span class="line">git config --global color.ui true
-</span><span class="line">git config --global alias.co checkout  # 别名
-</span><span class="line">git config --global alias.ci commit
-</span><span class="line">git config --global alias.st status
-</span><span class="line">git config --global alias.br branch
-</span><span class="line">git config --global core.editor "vim"  # 设置Editor使用vim
-</span><span class="line">git config --global core.quotepath false # 设置显示中文文件名</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>用户的git配置文件~/.gitconfig</p>
-
-
-		
-		<a href="/blog/git-command/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年3 月5 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	
-</div>
-</article>
 
 
     <article class="post">
@@ -658,6 +486,196 @@ Button:btn
 
 
 	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/ruby-rails-books/">
+		
+			Ruby/Rails 书籍</a>
+	</h2>
+	<div class="entry-content">
+		<p>开始</p>
+
+<p>早就相对现在Ruby/Rails的书做个总结。方便对Rails感兴趣的朋友查找。</p>
+
+<p>因为ruby on rails的书时效性很强，Ruby语言2007之前跟Rails两年以前的书都没加在这个列表里。</p>
+
+<p>有些特殊的跟设计相关的书例外。</p>
+
+<h3 id="ruby">Ruby:</h3>
+
+<h4 id="section">入门篇</h4>
+
+<ul>
+  <li>
+    <p><a href="http://www.amazon.com/gp/product/0596516177/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596516177">The Ruby Programming Language</a></p>
+
+    <p>Ruby之父”Mats”参与写作的一本书。</p>
+
+    <p>很像Ruby的官方书，内容是Ruby每一部分的定义，简洁准确。稍微有点生涩，但是这类书大多是很好的的参考书。</p>
+
+    <p>如果你对Ruby有一定的了解，想要重新研究一下某一方面概念，比如Ruby里的Closure。 除了Google可能这本书就是最佳选择了。</p>
+  </li>
+  <li>
+    <p><a href="http://www.amazon.com/gp/product/1934356085/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1934356085">Programming Ruby 1.9: The Pragmatic Programmers’ Guide</a></p>
+
+    <p>著名的斧头书，很多人把这本书作为Ruby入门的标准教材。内容覆盖很全面。</p>
+
+    <p>虽然这本书看上去很厚，但是后一半是Ruby API。语言上更为流畅，建议这本书入门，上面那本书速查。</p>
+  </li>
+  <li>
+    <p><a href="http://www.amazon.com/gp/product/1430223634/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1430223634">Beginning Ruby: From Novice to Professional</a></p>
+
+    <p>这本书分三部分，第一部分使一些基础知识，第二部分侧重Ruby语言，最后一部分简略介绍了ruby在web,网络，GUI方面的应用，以及一部分的Gem。</p>
+
+    <p>如果你第一次接触Ruby，可一看一下这本书，如果已经看了其他的ruby的书，这本书除了第三部分一些内容可能帮助不是特别大。</p>
+  </li>
+  <li>
+    <p><a href="http://www.amazon.com/gp/product/1593272944/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593272944">The Book of Ruby: A Hands-On Guide for the Adventurous</a></p>
+
+    <p>这是一本2011年7月出的书，我看了他们免费的第十一章，关于Symbol的，给我的感觉是这本书的代码实例比较多。</p>
+
+    <p>喜欢通过代码学习的同学可以尝试一下这本书。</p>
+  </li>
+</ul>
+
+
+		
+		<a href="/blog/ruby-rails-books/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年9 月7 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/android-gradle/">
+		
+			Android Gradle</a>
+	</h2>
+	<div class="entry-content">
+		<p>Google I/O 2013发布了新的开发工具Android Studio和新的构建系统Gradle， Android Studio自不必说，这是Android IDE的未来。这篇文章就来学习下Gradle。</p>
+
+<h3 id="gradle">什么是Gradle？</h3>
+<p>Gradle 是以 Groovy 语言为基础，面向Java应用为主，基于DSL语法的自动化构建工具。说到Java的自动化构建工具，大家一定对Ant和Maven都不会陌生，对，Gradle就是这样一种类似的工具，不过它比Ant和Maven强大的多，而且使用起来更加方便简单并且兼容Maven。</p>
+
+<p>下面列举了一些使用Gradle构建Android项目的好处：</p>
+
+<ul>
+  <li>
+    <p>在IDE环境和命令行下使用同一个构建系统</p>
+  </li>
+  <li>
+    <p>改进的依赖关系管理</p>
+  </li>
+  <li>
+    <p>更容易地集成到自动化构建系统</p>
+  </li>
+</ul>
+
+
+		
+		<a href="/blog/android-gradle/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年8 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/">
+		
+			iOS第三方库和插件</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="section">前言</h2>
+<hr />
+
+<blockquote>
+  <p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p>
+</blockquote>
+
+<h2 id="section-1">第三方库</h2>
+
+<h4 id="cocoapod">CocoaPod</h4>
+
+<p>CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具</p>
+
+<p>在CocoaPod没有出现之前 第三方库的管理是非常痛苦的 尤其是一些大型的库(比如nimbus) 每次对库进行更新 都可能会非常的痛苦</p>
+
+<p>CocoaPod的出现解决了这些问题 以Framework的方式引入第三方库 极大的节约了集成的时间 而且通吃Objective-C和Swift(Swift上的Cathatage我没有实际用过 但是它的那种集成方式还是比CocoaPod麻烦点)</p>
+
+<h4 id="icarousel">iCarousel</h4>
+
+<p>在iOS 4.x的时代(我也是从4.0开始接触iOS开发的) Coverflow的效果可谓是风靡一时 初出茅庐的我当年对如何实现几乎是束手无策(当年所有的电影资讯类的APP 如布丁爱生活等 都需要实现Coverflow选片的效果 碰巧我也要做一个) iCarousel的出现替我解决了一个大的难题</p>
+
+<p>从此iCarousel成为了我每个项目的必备良药(也是我最喜欢的库) 不管是Coverflow还是轮播广告 都能轻描淡写的搞定 其内置的十来种显示类型 基本可以解决90%的UI需求 而其强大的自定义功能 则可以解决剩余的10% :)</p>
+
+<p>不熟悉的朋友可以尝试一下其精美的demo(pod try iCarousel) 所有的功能都在demo中一览无余</p>
+
+<p>作者nicklockwood也是一个高产的大神 同时维护着数量众多且优质的开源库(比如iVersion iRate) 大家不妨去看一看 淘一淘</p>
+
+
+		
+		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年7 月8 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>

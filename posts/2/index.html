@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="1. iOS9网络适配_ATS：改用更安全的HTTPS [摘要]为了强制增强数据访问安全， iOS9 默认会把 所有的http请求 所有从NSURLConnection 、 CFURL 、 NSURLSession发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时， &hellip;">
+	<meta name="description" content="请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新 therubyracer &lt; 0.12.2 sidekiq &lt; 3.5.1 celluloid &gt; 0.16.0, &lt; 0.17.2 zipruby &lt;= 0.3.6 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -124,55 +124,6 @@
 		
 	
 	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ios9-adaption/">
-		
-			iOS9 适配</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="ios9atshttps">1. iOS9网络适配_ATS：改用更安全的HTTPS</h2>
-
-<p>[摘要]为了强制增强数据访问安全， iOS9 默认会把 <del>所有的http请求</del> 所有从<code>NSURLConnection</code> 、 <code>CFURL</code> 、 <code>NSURLSession</code>发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时，默认会让所有从<code>NSURLConnection</code> 、 <code>CFURL</code> 、 <code>NSURLSession</code>发出的 HTTP 请求统一采用TLS 1.2 协议。因为 AFNetworking 现在的版本底层使用了 <code>NSURLConnection</code> ，众多App将被影响（基于iOS8.x-SDK的App不受影响）。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。</p>
-
-<p>一个符合 ATS 要求的 HTTPS，应该满足如下条件：</p>
-
-<ol>
-  <li>Transport Layer Security协议版本要求TLS1.2以上</li>
-  <li>服务的Ciphers配置要求支持Forward Secrecy等</li>
-  <li>证书签名算法符合ATS要求等</li>
-</ol>
-
-<p>官方文档 <a href="https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240"> <strong><em>App Transport Security Technote</em></strong> </a> 对ATS 的介绍：</p>
-
-<p><img src="http://i58.tinypic.com/ajsf0j.jpg" alt="enter image description here" /></p>
-
-
-		
-		<a href="/blog/ios9-adaption/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年10 月27 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
 
 
     <article class="post">
@@ -596,6 +547,47 @@
 
 
 	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/ruby-fast-learn/">
+		
+			Ruby on Rails 快速学习</a>
+	</h2>
+	<div class="entry-content">
+		<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
+
+<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
+
+<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
+
+<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
+
+
+		
+		<a href="/blog/ruby-fast-learn/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年9 月2 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>

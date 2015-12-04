@@ -4,7 +4,7 @@
   <title><![CDATA[分类：other | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/other/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-12-04T11:52:55+08:00</updated>
+  <updated>2015-12-04T12:21:54+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,86 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Git Flow管理开发流程]]></title>
-    <link href="http://helloyokoy.github.io/blog/git-flow/"/>
-    <updated>2015-11-05T10:18:10+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/git-flow</id>
-    <content type="html"><![CDATA[<p>我们都知道, 在 git 的分支功能相对 svn 确实方便许多，而且也非常推荐使用分支来做开发. 我的做法是每个项目都有2个分支, master 和 develop. master 分支是主分支, 保证程序有一个 稳定版本, develop 则是开发用的分支, 几乎所有的功能开发, bug 修复都在这个分支上, 完成后 再合并回 master.</p>
-
-<p>但是情况并不是这么简单. 有时当我们正在开发一个功能, 但程序突然出现 bug 需要及时去修复的时候, 这时要切回 master 分支, 并基于它创建一个 hotfix 分支. 有时我们在开发一个功能时, 需要停下来去开发另一个功能. 而且所有这些问题都出现 的时候, 发布也会成为比较棘手问题.</p>
-
-<p>也就是说, git branch 功能很强大，但是没有一套模型告诉我们应该怎样在开发的时候善用 这些分支。于是有人就整理出了一套比较好的方案 A successful Git branching model, 今天我们就一起来学习下这套方案.</p>
-
-<!--more-->
-
-<p>简单来说, 他将 branch 分成2个主要分支和3个临时的辅助分支:</p>
-
-<p><img src="http://stormzhang.com/image/gitflow.png" alt="img" /></p>
-
-<h4 id="section">主要分支</h4>
-
-<p>master: 永远处在即将发布(production-ready)状态</p>
-
-<p>develop: 最新的开发状态</p>
-
-<h4 id="section-1">辅助分支</h4>
-
-<ul>
-  <li>
-    <p>feature: 开发新功能的分支, 基于 develop, 完成后 merge 回 develop</p>
-  </li>
-  <li>
-    <p>release: 准备要发布版本的分支, 用来修复 bug. 基于 develop, 完成后 merge 回 develop 和 master</p>
-  </li>
-  <li>
-    <p>hotfix: 修复 master 上的问题, 等不及 release 版本就必须马上上线. 基于 master, 完成后 merge 回 master 和 develop</p>
-  </li>
-</ul>
-
-<p>作者还提供了 git-flow 命令工具:</p>
-
-<pre><code>$ git flow init
-</code></pre>
-
-<p>接着它会问你一系列的问题，蛋定！尽量使用它的默认值就好了：</p>
-
-<pre><code>No branches exist yet. Base branches must be created now.
-Branch name for production releases: [master]
-Branch name for "next release" development: [develop]
-How to name your supporting branch prefixes?
-Feature branches? [feature/]
-Release branches? [release/]
-Hotfix branches? [hotfix/]
-Support branches? [support/]
-Version tag prefix? []
-</code></pre>
-
-<p>完成后当前所在分支就变成 develop. 任何开发都必须从 develop 开始:</p>
-
-<pre><code>git flow feature start some_awesome_feature 完成功能开发之后:
-
-git flow feature finish some_awesome_feature
-</code></pre>
-
-<p>该命令将会把feature/some_awesome_feature合并到develope分支，然后删除功能(feature)分支。</p>
-
-<p>将一个 feature 分支推到远程服务器:</p>
-
-<pre><code>git flow feature publish some_awesome_feature 或者
-
-git push origin feature/some_awesome_feature 当你的功能点都完成时（需要发布新版本了），就基于develop创建一个发布(release)分支，然后升级版本号并在最后发布日期前把Bug Fix掉吧：
-
-$ git flow release start v0.1.0 当你在完成（finish)一个发布分支时，它会把你所作的修改合并到master分支，同时合并回develop分支，所以，你不需要担心你的master分支比develop分支更加超前。
-</code></pre>
-
-<p>最后一件让git-flow显得威武的事情是它处理热修复（即时的BugFix）的能力，你可以像其他分支一样地创建和完成一个热修复分支，区别是它基于master分支，因此你可以在产品出现问题时快速修复，然后通过”finish”命令把修改合并回master和develop分支。</p>
-
-<hr />
-<p>git flow on github: <a href="https://github.com/nvie/gitflow">https://github.com/nvie/gitflow</a></p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sublime Text 2 Plugin]]></title>
@@ -455,6 +375,228 @@ $ git flow release start v0.1.0 当你在完成（finish)一个发布分支时�
 <h2 id="section-3">结论</h2>
 
 <p>一个初级开发者在第一份工作中就如同一张白纸。有许多机会可以通过共同工作的高级开发者的一些技术指导来使他们可以快速提升并且让他们感觉到从第一天工作就能创造价值。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何编写更棒的代码]]></title>
+    <link href="http://helloyokoy.github.io/blog/write-best-code/"/>
+    <updated>2015-06-05T12:46:03+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/write-best-code</id>
+    <content type="html"><![CDATA[<p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
+
+<p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
+
+<ol>
+  <li>
+    <p>保持方法简短扼要</p>
+  </li>
+  <li>
+    <p>永远永远不要将同一个变量用于不同的目的</p>
+  </li>
+  <li>
+    <p>尽可能让变量和方法的名称能够描述要实现的功能</p>
+  </li>
+  <li>
+    <p>尽可能将变量定义在最靠近它们的地方</p>
+  </li>
+  <li>
+    <p>不要出现让人费解的数字</p>
+  </li>
+  <li>
+    <p>要像对待朋友一样对待你擅长的语言</p>
+  </li>
+  <li>
+    <p>不要逆常规而行</p>
+  </li>
+  <li>
+    <p>千万小心过早的优化代码</p>
+  </li>
+  <li>
+    <p>要常常重构经过测试的代码</p>
+  </li>
+  <li>
+    <p>不要沉溺于过度的设计技巧</p>
+  </li>
+  <li>
+    <p>随时随地学习新的知识</p>
+  </li>
+</ol>
+
+<!--more-->
+
+<p>下面我们来对每一点详细展开介绍。</p>
+
+<h3 id="section">1、保持方法简短扼要</h3>
+
+<p>尽管很多人都遵循这条规则，但是它依然很重要。总的来说，编写的方法最好能在首屏完全显示。试想，如果你需要滚动页面才能看到整一个方法，那是一件多么分散注意力的事情。一个方法最好能保持在5 – 20行之间，当然，你也要视具体情况而定，并不是一概而论的。对于getter和setter方法，通常只需一行代码，所以它们看起来更像是类成员的存取访问器。</p>
+
+<h3 id="section-1">2、远永远不要将同一个变量用于不同的目的</h3>
+<p>一个变量应该只能被用于一个目的，我们可以通过使用常量（C++中用const标识，Java中用final标识），帮助编译器优化代码编译，也可以向程序标识“这个变量是不能被改变的”，这样我们编写的代码就有更好的可读性。</p>
+
+<h3 id="section-2">3、尽可能让变量和方法的名称能够描述要实现的功能</h3>
+<p>一段通俗易懂的程序代码，应该是任何人只要看了代码，就能明白程序是用来干嘛的。所以我建议大家尽量少用缩写，除非是程序界公认的简写习惯，像下面的简写习惯：</p>
+
+<pre><code>src - source
+pos - position
+prev - previous
+</code></pre>
+
+<p>如果你觉得描述性的简写方式没有价值，你可以比较一下n, ns, nsisd和numTeamMembers, seatCount, numSeatsInStadium。</p>
+
+<h3 id="section-3">4、尽可能将变量定义在最靠近它们的地方</h3>
+<p>当你在盖房子的时候，总不希望把锤子放在别人家的院子里吧，相反，你会把盖房的工具放得尽可能近，定义变量也是同样的道理。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int foo = 3;
+</span><span class='line'>int bar = 5;
+</span><span class='line'>// bunch of code that uses “bar”
+</span><span class='line'>// but doesn’t care about “foo”
+</span><span class='line'>// …&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>baz(foo);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>我们可以这样重构代码：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int bar = 5;
+</span><span class='line'>// bunch of code that use “bar”
+</span><span class='line'>// but doesn’t care about “foo”
+</span><span class='line'>// …&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int foo = 3;
+</span><span class='line'>baz(foo);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>当你把变量的声明跟使用它的地方相隔太远的时候（甚至是超过一屏），那的确会给你带来很大的麻烦。你会经常滚动页面去寻找这个变量，导致你很难在大脑中保持代码之间的连贯性。</p>
+
+<h3 id="section-4">5、不要出现让人费解的数字</h3>
+<p>任何时候，你要比较一些常量时，都要将它们定义成constant类型。团队之间调试代码时最让人头疼是出现下面的代码：</p>
+
+<pre><code>il &lt; 4384 把它替换成下面的代码该多好：
+
+inputLength &lt; MAX_INPUT_LENGTH
+</code></pre>
+
+<h3 id="section-5">6、要像对待朋友一样对待你擅长的语言</h3>
+
+<p>学习一种新的编程语言是一件很有趣的事情，从中你可以用很酷的方式学到新东西。还有就是让一个对某种语言很专业的人去学另外一种语言，很多时候会让人心有余而力不足。举个例子，你让一个Java大牛去学Ruby，他应该会用Ruby的方式去解决问题，而不是继续沿用Java的解决问题的思想。</p>
+
+<p>当你需要循环输出5遍”Hello World“时，Java代码应该会是这样：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>for (int i = 0; i &lt; 5; i++) {
+</span><span class='line'>    System.out.println(“Hello world!”);
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>但是用Ruby，你也许会这样写：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>for i in (0..5)
+</span><span class='line'>  	puts “Hello world!”
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>这些看上去都很不错，但是最完美的方式可能是下面这样：
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>5.times { puts “Hello world!” }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<h3 id="section-6">7、不要逆常规而行</h3>
+<p>每一种编程语言都有自己的约束习惯，总的来说，大家对Java的编程习惯可能会了解得比较多，我们一起来看看其中的一些习惯：</p>
+
+<p>方法名以小写字母开头，后面紧跟的是大写字母开头的单词，比如veryLongVariableName。
+类名一般都是大写字母开头的单词组合。
+常量的命名都是大写字母的单词，之间用下划线隔开，比如MY_CONSTANT
+左大括号应该跟if在同一行
+只有在迫不得已的时候才能打破这种规则，千万不要因为不喜欢这种做法而违背已经约定好的编码习俗。如果你身为团队一员，想改变一些编码规则的话，那也可以，不过当你把自己的代码分享给没有你这种习惯的队友的时候，棘手的问题会迎面而来。</p>
+
+<h3 id="section-7">8、千万小心过早的优化代码</h3>
+
+<p>过早的优化是所有问题的根源，至少电视上是这么说的…你的首要任务是编写容易理解的代码，而不要求你能很快写出来。除非你的程序运行很慢，否则谈优化都是为时太早。如果你想优化你的程序，那么得先找出程序的问题，这就是我们需要profilers这个工具的原因。</p>
+
+<p>在没有找到问题源头就去优化代码，这样做你所要付出的代价就是破坏了程序的结构，至少会丧失程序的可读性。如果你发现程序运行缓慢了，也不要盲目地重构代码，要先找到导致运行慢的根本原因。</p>
+
+<p>千万不要傻乎乎地去解决根本不存在的问题。</p>
+
+<h3 id="section-8">9、要常常重构经过测试的代码</h3>
+
+<p>世上没有绝对完美的事情。尽管你认为自己的代码已经写得非常完美了，过一段时间也要经常去看看它，也许那时你会对自己大骂：”怎么会那么傻！”</p>
+
+<p>有一种提高代码质量的方法，那就是经常重构通过测试的代码。所谓通过测试，我指的是程序要能正常工作，你可以通过自动化测试或者手动测试来确保这一点。</p>
+
+<p>首先你要确保程序能够正常运行，第一次我们并不需要写出多么完美的程序，能用就行，接下来我们可以慢慢重构，让它逐渐变得完美。这种开发方式很有TDD的味道，关键在于你需要熟悉重构的每一个环节。如果你熟练使用一些高级的IDE，像IntelliJ IDEA，那你的重构工作将会简单很多。</p>
+
+<p>重构完以后，也许你会碰到很多这样那样的问题，甚至会破坏正常的程序，这就是我们要利用自动化测试的原因了。当你重构完以后，跑一遍单元测试就能避免这些令人头疼的问题了。</p>
+
+<h3 id="section-9">10、不要沉溺于过度的设计技巧</h3>
+
+<p>当我第一次接触到设计模式这一概念时，我觉得自己找到了“圣杯”。这些精妙的设计思想可以让你工作更加顺利，也可以让你的设计浅显易懂，因为你可以简单的说“我使用了观察者模式”，而不同大费周章的解释一通。然而问题来了，由于有些问题看起来太自然太简单了，你会把那些设计模式的思想应用到任何地方，为什么不把这个类设计成单例模式（singleton）？干嘛不去创建一些工厂类呢？</p>
+
+<p>于是用80行代码就能完成的脚本，结果你用了10个类，15个接口和一堆泛型和注释，这其中的97%代码并没有做实质上的事情。设计模式虽然非常有用，可以帮助你简化设计，但是这并不是说你可以到处使用它们。你可以使用设计模式，但是不能将它滥用了。</p>
+
+<h3 id="section-10">11、随时随地学习新的知识</h3>
+
+<p>编程就是一项随时学习新事物的工作，当你学到了新的类库或者编程语言时，你会迫不及待地丢掉老的代码，进而去重写它们。然而有很多理由说明你不该这么做。</p>
+
+<p>将一个新的类库或者框架应用到现有的项目中就会出现类似的问题。比如说你正在为一个Web项目写Javascript，但是中间你发现了jQuery，这时候你会迫不及待想把jQuery应用进去，而丢掉原来的Javascript代码，即便你根本没用jQuery写过任何项目。</p>
+
+<p>最好的方式是你先用jQuery学着写一些简单的例子，把你项目中要用到的技术都学会。比如说你想要用AJAX？就先在项目之外写一些关于AJAX的简单例子，等到完全掌握了，就可以将老代码从项目中移除。</p>
+
+<p>如果你热衷于编程，我强烈推荐你阅读Steve McConnell编写的《Code Complete》，它将永远改变你的编程思维。</p>
 ]]></content>
   </entry>
   
