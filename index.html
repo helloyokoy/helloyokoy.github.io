@@ -7,14 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。 安装配置 首先确保安装： 1
-2
-3
-4
-5
-6
-## Platform
-gem 'rails', '4.2.0' ## RESTful API &hellip;">
+	<meta name="description" content="@property (nonatomic,copy) NSString *propertyName; self.propertyName是对属性的访问；使用_propertyName是对局部变量的访问。 所有被声明为属性的成员，在iOS5 之前需要使用编译器指令@synthesize &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -131,6 +124,57 @@ gem 'rails', '4.2.0' ## RESTful API &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/ios-self/">
+		
+			iOS Self 和 下划线 _ 区别</a>
+	</h2>
+	<div class="entry-content">
+		<pre><code>@property (nonatomic,copy) NSString *propertyName;
+</code></pre>
+
+<p>self.propertyName是对属性的访问；使用_propertyName是对局部变量的访问。</p>
+
+<p>所有被声明为属性的成员，在iOS5 之前需要使用编译器指令@synthesize 来告诉编译器帮助生成属性的getter,setter方法。
+之后这个指令可以不用人为指定了，默认情况下编译器会帮我们生成。</p>
+
+<p>编译器在生成getter,setter方法时是有优先级的，它首先查找当前的类中用户是否已定义属性的getter,setter方法，如果有，则编译器会跳过，不会再生成，使用用户定义的方法。</p>
+
+<p>也就是说你在使用self.propertyName 时是在调用一个getter方法。</p>
+
+<pre><code>self.propertyName 会让计数器＋1;_propertyName却不会。  
+
+_propertyName是类似于self-&gt;_propertyName。
+</code></pre>
+
+<p>用self.propertyName 是更好的选择，因为这样可以兼容懒加载，同时也避免了使用下划线的时候忽视了self这个指针，后者容易在block中造成循环引用。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年12 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -631,55 +675,6 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ios9-adaption/">
-		
-			iOS9 适配</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="ios9atshttps">1. iOS9网络适配_ATS：改用更安全的HTTPS</h2>
-
-<p>[摘要]为了强制增强数据访问安全， iOS9 默认会把 <del>所有的http请求</del> 所有从<code>NSURLConnection</code> 、 <code>CFURL</code> 、 <code>NSURLSession</code>发出的 HTTP 请求，都改为 HTTPS 请求：iOS9.x-SDK编译时，默认会让所有从<code>NSURLConnection</code> 、 <code>CFURL</code> 、 <code>NSURLSession</code>发出的 HTTP 请求统一采用TLS 1.2 协议。因为 AFNetworking 现在的版本底层使用了 <code>NSURLConnection</code> ，众多App将被影响（基于iOS8.x-SDK的App不受影响）。服务器因此需要更新，以解析相关数据。如不更新，可通过在 Info.plist 中声明，倒退回不安全的网络请求。而这一做法，官方文档称为ATS，全称为App Transport Security，是iOS9的一个新特性。</p>
-
-<p>一个符合 ATS 要求的 HTTPS，应该满足如下条件：</p>
-
-<ol>
-  <li>Transport Layer Security协议版本要求TLS1.2以上</li>
-  <li>服务的Ciphers配置要求支持Forward Secrecy等</li>
-  <li>证书签名算法符合ATS要求等</li>
-</ol>
-
-<p>官方文档 <a href="https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/index.html#//apple_ref/doc/uid/TP40016240"> <strong><em>App Transport Security Technote</em></strong> </a> 对ATS 的介绍：</p>
-
-<p><img src="http://i58.tinypic.com/ajsf0j.jpg" alt="enter image description here" /></p>
-
-
-		
-		<a href="/blog/ios9-adaption/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年10 月27 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>

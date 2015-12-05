@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>分类：ios - BryanFu Blog</title>
+	<title>iOS self 和 下划线 _ 区别 - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="Category: ios">
+	<meta name="description" content="@property (nonatomic,copy) NSString *propertyName; self.propertyName是对属性的访问；使用_propertyName是对局部变量的访问。 所有被声明为属性的成员，在iOS5 之前需要使用编译器指令@synthesize &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -123,286 +123,92 @@
 	
 		
 	
-	<div id="content" class="inner">
-	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">iOS Self 和 下划线 _ 区别</h2>
+	<div class="entry-content"><pre><code>@property (nonatomic,copy) NSString *propertyName;
+</code></pre>
+
+<p>self.propertyName是对属性的访问；使用_propertyName是对局部变量的访问。</p>
+
+<p>所有被声明为属性的成员，在iOS5 之前需要使用编译器指令@synthesize 来告诉编译器帮助生成属性的getter,setter方法。
+之后这个指令可以不用人为指定了，默认情况下编译器会帮我们生成。</p>
+
+<p>编译器在生成getter,setter方法时是有优先级的，它首先查找当前的类中用户是否已定义属性的getter,setter方法，如果有，则编译器会跳过，不会再生成，使用用户定义的方法。</p>
+
+<p>也就是说你在使用self.propertyName 时是在调用一个getter方法。</p>
+
+<pre><code>self.propertyName 会让计数器＋1;_propertyName却不会。  
+
+_propertyName是类似于self-&gt;_propertyName。
+</code></pre>
+
+<p>用self.propertyName 是更好的选择，因为这样可以兼容懒加载，同时也避免了使用下划线的时候忽视了self这个指针，后者容易在block中造成循环引用。</p>
+</div>
 
 
-	
-	
-	<section class="archives"><h1 class="year">2015</h1>
+<div class="meta">
+	<div class="date">
 
-<article>
-	<h2 class="title"><a href="/blog/ios-self/">iOS self 和 下划线 _ 区别</a></h2>
-	<div class="meta">
-		<div class="date">12 月 05 日</div>
-		<div class="tags">
+
+
+
+2015 年12 月5 日</div>
+	<div class="tags">
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>
-	    
-	</div>
-</article>
 	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/charles/">Charles</a></h2>
-	<div class="meta">
-		<div class="date">11 月 26 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
 </div>
-	    
-	</div>
 </article>
-	
-
-	
 
 
-<article>
-	<h2 class="title"><a href="/blog/nslog-and-lldb/">NSLog 和 LLDB</a></h2>
-	<div class="meta">
-		<div class="date">11 月 26 日</div>
-		<div class="tags">
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
 
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
 	</div>
-</article>
 	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/surge/">Surge</a></h2>
-	<div class="meta">
-		<div class="date">11 月 02 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
 </div>
-	    
-	</div>
-</article>
-	
 
-	
 
 
-<article>
-	<h2 class="title"><a href="/blog/ios9-adaption/">iOS9 适配</a></h2>
-	<div class="meta">
-		<div class="date">10 月 27 日</div>
-		<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/sketch/">为什么要用Sketch</a></h2>
-	<div class="meta">
-		<div class="date">09 月 11 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/mjextensionjie-shao/">MJExtension介绍</a></h2>
-	<div class="meta">
-		<div class="date">08 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">iOS 依赖注入框架 Objection</a></h2>
-	<div class="meta">
-		<div class="date">07 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosduo-xian-cheng/">iOS多线程详解</a></h2>
-	<div class="meta">
-		<div class="date">06 月 18 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ioszheng-tao-kuang-jia-easyios/">iOS整体框架EasyiOS</a></h2>
-	<div class="meta">
-		<div class="date">04 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/magicrecordjie-shao/">MagicRecord介绍</a></h2>
-	<div class="meta">
-		<div class="date">02 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2014</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/ctassetspickercontroller/">iOS相册选择CTAssetsPickerController</a></h2>
-	<div class="meta">
-		<div class="date">12 月 03 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">知名 iOS 应用背后的第三方项目</a></h2>
-	<div class="meta">
-		<div class="date">10 月 28 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosdi-san-fang-ku-he-cha-jian/">iOS第三方库和插件</a></h2>
-	<div class="meta">
-		<div class="date">07 月 08 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-	</section>
-	
-
-</div>
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/ios-self" data-title="iOS self 和 下划线 _ 区别" data-url="http://helloyokoy.github.io/blog/ios-self/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
 	<footer id="footer" class="inner">Copyright &copy; 2015
 
     BryanFu
