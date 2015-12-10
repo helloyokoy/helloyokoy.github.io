@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>分类：ios - BryanFu Blog</title>
+	<title>xcode plugin  - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="Category: ios">
+	<meta name="description" content="新版 xcode 插件 不能用 解决方法 find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -123,305 +123,94 @@
 	
 		
 	
-	<div id="content" class="inner">
-	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Xcode Plugin</h2>
+	<div class="entry-content"><p>新版 xcode 插件 不能用 解决方法</p>
+
+<pre><code>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
+</code></pre>
+
+<p>xcode 插件管理器</p>
+
+<pre><code>Alcatraz
+</code></pre>
+
+<p>xcode 常用插件</p>
+
+<pre><code>xtodo 
+fuzzyautocompelte
+codepilot
+xcodeboost
+xalign
+KSimageNamed
+xcolors
+</code></pre>
+</div>
 
 
-	
-	
-	<section class="archives"><h1 class="year">2015</h1>
+<div class="meta">
+	<div class="date">
 
-<article>
-	<h2 class="title"><a href="/blog/xcode-plugin/">xcode plugin </a></h2>
-	<div class="meta">
-		<div class="date">12 月 10 日</div>
-		<div class="tags">
+
+
+
+2015 年12 月10 日</div>
+	<div class="tags">
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>
-	    
-	</div>
-</article>
 	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ios-self/">iOS self 和 下划线 _ 区别</a></h2>
-	<div class="meta">
-		<div class="date">12 月 05 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
 </div>
-	    
-	</div>
 </article>
-	
-
-	
 
 
-<article>
-	<h2 class="title"><a href="/blog/charles/">Charles</a></h2>
-	<div class="meta">
-		<div class="date">11 月 26 日</div>
-		<div class="tags">
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
 
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
 	</div>
-</article>
 	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/nslog-and-lldb/">NSLog 和 LLDB</a></h2>
-	<div class="meta">
-		<div class="date">11 月 26 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
 </div>
-	    
-	</div>
-</article>
-	
 
-	
 
 
-<article>
-	<h2 class="title"><a href="/blog/surge/">Surge</a></h2>
-	<div class="meta">
-		<div class="date">11 月 02 日</div>
-		<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ios9-adaption/">iOS9 适配</a></h2>
-	<div class="meta">
-		<div class="date">10 月 27 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/sketch/">为什么要用Sketch</a></h2>
-	<div class="meta">
-		<div class="date">09 月 11 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/mjextensionjie-shao/">MJExtension介绍</a></h2>
-	<div class="meta">
-		<div class="date">08 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">iOS 依赖注入框架 Objection</a></h2>
-	<div class="meta">
-		<div class="date">07 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosduo-xian-cheng/">iOS多线程详解</a></h2>
-	<div class="meta">
-		<div class="date">06 月 18 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ioszheng-tao-kuang-jia-easyios/">iOS整体框架EasyiOS</a></h2>
-	<div class="meta">
-		<div class="date">04 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/magicrecordjie-shao/">MagicRecord介绍</a></h2>
-	<div class="meta">
-		<div class="date">02 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2014</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/ctassetspickercontroller/">iOS相册选择CTAssetsPickerController</a></h2>
-	<div class="meta">
-		<div class="date">12 月 03 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">知名 iOS 应用背后的第三方项目</a></h2>
-	<div class="meta">
-		<div class="date">10 月 28 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosdi-san-fang-ku-he-cha-jian/">iOS第三方库和插件</a></h2>
-	<div class="meta">
-		<div class="date">07 月 08 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-	</section>
-	
-
-</div>
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/xcode-plugin" data-title="xcode plugin " data-url="http://helloyokoy.github.io/blog/xcode-plugin/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
 	<footer id="footer" class="inner">Copyright &copy; 2015
 
     BryanFu

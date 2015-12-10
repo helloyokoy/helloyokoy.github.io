@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-12-05T15:54:42+08:00</updated>
+  <updated>2015-12-10T16:36:29+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[xcode plugin ]]></title>
+    <link href="http://helloyokoy.github.io/blog/xcode-plugin/"/>
+    <updated>2015-12-10T16:17:52+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/xcode-plugin</id>
+    <content type="html"><![CDATA[<p>新版 xcode 插件 不能用 解决方法</p>
+
+<pre><code>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
+</code></pre>
+
+<p>xcode 插件管理器</p>
+
+<pre><code>Alcatraz
+</code></pre>
+
+<p>xcode 常用插件</p>
+
+<pre><code>xtodo 
+fuzzyautocompelte
+codepilot
+xcodeboost
+xalign
+KSimageNamed
+xcolors
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS self 和 下划线 _ 区别]]></title>
@@ -4643,47 +4671,6 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 
 <p>接下来跟安装adt的流程一样，指导完成
 最后附上官网地址：<a href="http://www.genymotion.com/">http://www.genymotion.com/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[技术学习态度]]></title>
-    <link href="http://helloyokoy.github.io/blog/tech-learn/"/>
-    <updated>2015-09-03T15:23:49+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/tech-learn</id>
-    <content type="html"><![CDATA[<p>本文仅谈业余时间的技术学习，不谈工作中的要求。</p>
-
-<p>技术固然要时时学习，因为更新快嘛，但对待技术上学什么，怎么花时间学，需要一个指导思想，否则浪费时间而且效果不好。</p>
-
-<ol>
-  <li>
-    <p>抓住主干，而非细节
-最近很火的一句话是“你不要用战术上的勤奋掩盖战略上的懒惰”。放到技术学习上就先主理解主干后关注枝叶，比如C++的好书很多，《Effective C++》和《Inside C++ Object Model》是好书，但它们都不是用来入门的，为什么? 因为它们不是主干，语言实现细节和各种坑你都了解了，碰到实际问题依然用不好C++。</p>
-  </li>
-  <li>
-    <p>尽量不折腾
-不去折腾那些不成熟的技术，尽量用较为成熟的技术。在一年多之前，我用AngularJS，MongoDB的时候把我可给坑惨了，所以我下决心如果不因为工作坚决不碰Go语言，Node.js，要学不如学Erlang。新技术应用场景不清晰，前景不清晰，生态环境弱，类库少，坑多不容易跳出来。简而言之就是风险大于收益。同理我也不喜欢用Linux而喜欢Mac，Vim的包也是别人弄好了直接install的。</p>
-  </li>
-</ol>
-
-<!--more-->
-
-<ol>
-  <li>
-    <p>尽量学习经典原理而不是浪费时间在细节上。
-这一点条和第一点类似，多花时间学习抽象模式，设计原则，类型系统，看诸如《SICP》《The little schemer》《Essential of Programming Language》这种书，如果不是因为工作绝不浪费时间到《Dive into python》这种具体到语言细节的书上。</p>
-  </li>
-  <li>
-    <p>尽量学习形而下的系统而不过多上升到形而上的思想上。上一点谈到了抽象模式和类型系统，但切不可单纯从思想上判断哪种语言一定好，哪种抽象模式就一定好，一定要结合形而下的系统综合看待，学习C语言就要随着OS学习，学习Lisp就随着编译器或分析器一起学习，学习Ruby或Python就跟着web开发来学习，通过某一类系统架构理解语言的优劣，通过语言来理解为何这么架构系统。</p>
-  </li>
-  <li>
-    <p>学好那些通用技能。
-比如：1，如何进行Debug，2，如何阅读源代码，3，如何进行基本性能监控，4，熟练用好自己的编辑器和*nix命令行，5，git技巧，6，项目管理能力，7，关系型数据库的知识。</p>
-  </li>
-</ol>
-
-<hr />
-<p>转载自 <a href="http://liusihao.com/post/64854832920/%E6%88%91%E5%AF%B9%E5%BE%85%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%80%81%E5%BA%A6">我对技术的态度</a></p>
 ]]></content>
   </entry>
   
