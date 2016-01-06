@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-12-10T16:36:29+08:00</updated>
+  <updated>2016-01-06T11:55:11+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[wax 简介]]></title>
+    <link href="http://helloyokoy.github.io/blog/wax-profile/"/>
+    <updated>2016-01-06T11:47:10+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wax-profile</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>开源Wax，Alibaba技术团队接力支持
+还在为iOS发版受伤吗，无需发布Ａｐｐ新版本，动态修复线上问题的解决方案来了！</p>
+</blockquote>
+
+<h3 id="section">发版的痛</h3>
+
+<p>去年无线Allin时每次手淘发版都需要经过个多月的煎熬，哪怕一个很小的需求改动也需要等待整个发版节奏。发版周期长、发版需求多、发版难是手淘这种超级app的特点，而审核时间长、升级速度慢、升级率低是App Store的通病，线上bug更是每个app都避免不了痛，而对于手淘亿级的UV来说，哪怕一个小小的bug都会影响成千上万的用户。对于这些困扰了多年的问题，急需一种无需发版即可动态修复线上问题的解决方案！</p>
+
+<p><img src="http://img3.tbcdn.cn/L1/461/1/02ca09b2d15db2db0de408395e0dba1788b969f2?spm=5176.blog1480.yqblogcon1.5.aDhNu5" alt="img" /></p>
+
+<p>Wax是什么？</p>
+
+<p><img src="http://img4.tbcdn.cn/L1/461/1/aae0800e99288ec9f9516877fe69af2ce665c215?spm=5176.blog1480.yqblogcon1.6.aDhNu5" alt="img" /></p>
+
+<p>还记得当年火爆无比的游戏《愤怒的小鸟》吗，它就是基于Wax框架编写的。Wax把Lua脚本语言与原生Objective-C底层runtime结合起来，使得你可以在Lua里面使用任何Objective-C类及框架。</p>
+
+<h3 id="wax">为什么选择Wax？</h3>
+<p><img src="http://img3.tbcdn.cn/L1/461/1/f1cbbd6b9c23b38ccd7783a9cf281d36033843a8?spm=5176.blog1480.yqblogcon1.7.aDhNu5" alt="logo" /></p>
+
+<p>Lua是一个简洁、轻量、可扩展的脚本语言，它的体积小、速度快，在大量的游戏中使用，以实现游戏的可配置和可更新。我们可以把这个思路借鉴到app的开发中，由于Lua需要预先绑定很多C函数才可在脚本中使用，所以单独使用Lua无法做到高复用性。而Wax连接了Lua与Objective-C runtime，使得我们可以在Lua里调用和替换任意类的方法，甚至新增类、方法。这样一来就能在app不发布新版的情况下，通过远程下载脚本的方式修复线上app里的bug、甚至新增一些功能。</p>
+
+<!--more-->
+
+<h3 id="wax-1">我们对Wax做了什么改造？</h3>
+
+<p>线程安全</p>
+
+<p>Wax本身的设计的场景是针对主线程的UI等逻辑，当我们去替换一个会多线程异步调用的方法时就会出现crash，这样一来就会削弱修复的场景，所以我们给Wax在合适的地方进行多线程保护使其具有线程安全特性。</p>
+
+<p>64位适配</p>
+
+<p>从iPhone5s开始，苹果推出了64位cpu架构，从今年2月份开始陆续要求app必须支持64位。
+Lua字节码也有32位与64位编译区分，所以原来的Wax stdlib库在64位无法运行，我们修改原有的Lua字节码打包逻辑使其能在64位正常运行。
+Wax的核心逻辑是替换函数，但原思路利用了32位函数入栈的特性，导致此方法在64位彻底失效。为此我们重新寻找新的函数替换思路，确保在64位也能正常运行。</p>
+
+<p>block传递、调用</p>
+
+<p>在Objective-C中，block以其简洁、易用的特性使用越来越普遍，而Wax虽有Lua的closure却没有支持Lua与OC 的block互通，这会使我们无法修复带有block的方法，为此我们对block的原理进行彻底的分析，同时绞尽脑汁利用32\64位函数参数入栈的特性，最终支持高达7个参数（当然，也可以支持更多）的block传递、调用。</p>
+
+<p>get/set私有成员变量</p>
+
+<p>Wax支持属性的get/set，但似乎忽略了私有成员变量，而我们的代码大量使用了私有成员变量，所以必须支持。庆幸的是Objective-C runtime有操作私有成员变量的API，因此我们在上层对NSObject扩展一些get/set的方法就可以支持私有成员变量的操作了。</p>
+
+<p>常用C函数</p>
+
+<p>要想在Lua里调用C函数，只需要在C代码里注册一下即可，所以看起来支持C函数很简单。但如果我们要把OC框架里的常用的几十、几百个函数都要支持呢？人肉一个个的写显然会显得乏力。所以我们将OC框架里的函数从文档拷贝出然后用脚本预处理，再使用tolua++进行自动代码生成、绑定，这样一来即使支持更多C函数也很简单了。</p>
+
+<p>Lua代码调试</p>
+
+<p>编写简单的Lua代码，只需要几个print打点日志就可以判断逻辑的执行是否正确。但如果是量多、复杂的代码时，只能打日志就会很痛苦了。所以我们将开源届比较强大的Lua调试器ZeroBraneStudio引进，再配合mobdebug远程调试脚本，适配到Wax，就实现了Lua代码在Wax框架中的调试，支持常用的断点、单步，当然还有更方便的观察变量、显示调用栈、控制台调用等</p>
+
+<p>bug修复</p>
+
+<p>由于Wax从2013年就不再维护，而我们的使用场景又多、又复杂，所以也会发现里面的不少bug，当然也做了修复。</p>
+
+<p>Hotpatch封装</p>
+
+<p>Wax提供了基础的Lua运行能力，但真正应用时，还需要很多准备工作。所以我们封装了TBHotaptchSDK提供Lua字节码编译、代码和资源打包、加密、签名、校验、运行等功能。同时还封装了TBHotaptchService提供patch包的版本控制、更新、下载等功能。</p>
+
+<h3 id="section-1">使用情况</h3>
+
+<p>iOS的Hotpatch从去年5月份研发上线以来共发布patch 180多次，意味着修复手淘线上bug 100多个。集团有天猫、聚划算、支付宝、闲鱼、UC等近20个app接入。足以证明Hotpatch的强烈需求以及Wax的价值。</p>
+
+<h3 id="section-2">为什么回馈开源？</h3>
+
+<p>Wax从2013年初就不再被原作者维护了，而64位的出现使得Wax完全不可用，业界也希望有人来解决Wax的众多问题。我们虽对Wax做了很多改造，但最初也是吸收开源届的贡献，秉承开源的奉献精神，将我们付出的劳动再回馈给开源，希望重新激活Wax社区，重新打造一个强大的Wax。
+很荣幸Wax的原作者在其github上改写了主页，将链接指向了Alibaba，这是对我们的一种莫大的肯定。</p>
+
+<p><img src="http://img2.tbcdn.cn/L1/461/1/6b96757c6dd225e1f36d033256a5e8665bce62ed?spm=5176.blog1480.yqblogcon1.8.aDhNu5" alt="img" /></p>
+
+<p>源码网址：<a href="https://github.com/alibaba/wax">https://github.com/alibaba/wax</a></p>
+
+<p>来源：阿里巴巴技术协会（ATA）</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[xcode plugin ]]></title>
@@ -4575,102 +4657,6 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 
 <hr />
 <p>原文来自<a href="http://jianshu.io/p/7e8905b18620">http://jianshu.io/p/7e8905b18620</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android Genymotion模拟器]]></title>
-    <link href="http://helloyokoy.github.io/blog/android-genymotion/"/>
-    <updated>2015-09-04T19:48:35+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/android-genymotion</id>
-    <content type="html"><![CDATA[<p>相信很多Android开发者一定受够了速度慢、体验差效率及其地下的官方模拟器了,自己在平时的开发中几乎是不会用模拟器的，等的时间太久了，但是在一些尺寸适配或是兼容性测试的时候没有足够多的机器进行测试，这个时候就必须得用模拟器来代替了。用的久了真的不堪忍受那龟速般的模拟器，好在今天发现了一款神级模拟器Genymotion，就像发现新大陆般喜爱，下面就来介绍下。</p>
-
-<h4 id="genymotion">Genymotion简介</h4>
-<p>Genymotion是一套完整的工具，它提供了Android虚拟环境。如果你没有物理机器，又不想忍受官方模拟器的折磨，Genymotion会是你非常不错的选择， 它简直就是开发者、测试人员、推销者甚至是游戏玩家的福音。</p>
-
-<!--more-->
-
-<p><img src="http://a1.jikexueyuan.com/home/201501/16/5bbe/54b88953518c6.jpg" alt="icon" /></p>
-
-<p>Genymotion支持Windows、Linux和Mac OS，容易安装和使用，下面就然我们一起来体验神器给我们带来的快感吧。</p>
-
-<h4 id="genymotion-1">Genymotion特性</h4>
-<p>最好的Android模拟体验</p>
-
-<ul>
-  <li>
-    <p>支持OpenGL加速，提供最好的3D性能体验</p>
-  </li>
-  <li>
-    <p>可以从Google Play安装应用</p>
-  </li>
-  <li>
-    <p>支持全屏并改善了使用感受</p>
-  </li>
-</ul>
-
-<p>全控制</p>
-
-<ul>
-  <li>
-    <p>可同时启动多个模拟器</p>
-  </li>
-  <li>
-    <p>支持传感器管理，如电池状态、GPS、Accelerator加速器</p>
-  </li>
-  <li>
-    <p>支持Shell控制模拟器</p>
-  </li>
-</ul>
-
-<p>完全兼容ADB，您可以从主机控制您的模拟器</p>
-
-<p>管理设备</p>
-
-<ul>
-  <li>
-    <p>易安装</p>
-  </li>
-  <li>
-    <p>兼容Microsoft Windows 32/64 bits, Mac OSX 10.5+ and Linux 32/64 bits</p>
-  </li>
-  <li>
-    <p>可以配置模拟器参数，如屏幕分辨率、内存大小、CPU数量</p>
-  </li>
-  <li>
-    <p>轻松下载、部署最新的Genymotion虚拟设备。</p>
-  </li>
-</ul>
-
-<p>从Eclipse启动虚拟设备</p>
-
-<ul>
-  <li>使用Genymotion测试您的应用</li>
-</ul>
-
-<h4 id="section">安装与配置</h4>
-
-<p>安装基本是一路next，虽然Genymotion是免费版的，但是要求注册个账号才可以配置模拟器，配置好启动真是神速啊。</p>
-
-<h4 id="eclipse">Eclipse插件安装</h4>
-
-<p>Genymotion还支持Eclipse IDE，这大大方便了我们使用Genymotion来开发应用。安装方式：</p>
-
-<ul>
-  <li>
-    <p>启动Eclipse，Help-&gt;Install New Software…-&gt;Add</p>
-  </li>
-  <li>
-    <p>填写一下信息：</p>
-
-    <p>Name: Genymobile</p>
-
-    <p>Location: http://plugins.genymotion.com/eclipse</p>
-  </li>
-</ul>
-
-<p>接下来跟安装adt的流程一样，指导完成
-最后附上官网地址：<a href="http://www.genymotion.com/">http://www.genymotion.com/</a></p>
 ]]></content>
   </entry>
   

@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content=" 阅读全文 2015 年7 月9 日 ruby ">
+	<meta name="description" content="objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -124,6 +124,74 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
+		
+			iOS 依赖注入框架 Objection</a>
+	</h2>
+	<div class="entry-content">
+		<blockquote>
+  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
+</blockquote>
+
+<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">- (void)viewDidLoad
+</span><span class="line">{
+</span><span class="line">    [super viewDidLoad];
+</span><span class="line">    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+</span><span class="line">    button.frame = CGRectMake(100, 100, 100, 30);
+</span><span class="line">    [self.view addSubview:button];
+</span><span class="line">}
+</span><span class="line"> 
+</span><span class="line">- (void)buttonTapped
+</span><span class="line">{
+</span><span class="line">    ViewControllerB *vc = [[ViewControllerB alloc] init];
+</span><span class="line">    [self.navigationController pushViewController:vc animated:YES];
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
+
+
+		
+		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年7 月10 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -564,67 +632,6 @@
 </div>
 </article>
 
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ioszheng-tao-kuang-jia-easyios/">
-		
-			iOS整体框架EasyiOS</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="easyios-">EasyIOS 以提升开发效率为宗旨</h3>
-<hr />
-
-<ul>
-  <li>
-    <p>代码分离 -Model-View-ViewModel- 分离ViewController中的大量逻辑代码，解决ViewController承担了过多角色而造成的代码质量低下。增加视图与模型的绑定特性。</p>
-  </li>
-  <li>
-    <p>自动持久化 -Model to Db– 我再也不想思考如何实现持久化了。在我的想法里，将模型对象直接扔到一个bucket里，然后它就能自动的对数据进行存储、缓存、合并以及唯一化。我应当关注于描述对象间的属性和联系，以及我希望它们分组的方式。其他的实现细节都应该是不可见的。</p>
-  </li>
-  <li>
-    <p>自动RESTful API –Json to Model- 一旦我给程序发出指令，将一个API响应对应到一个数据对象，网络和JSON转换应该被自动完成。我只想关注如何将JSON中那些项目展示给用户。</p>
-  </li>
-  <li>
-    <p>有表现力的触发器和响应 -ReactiveCocoa– 我想用源于响应意图（Intent）的语法来描述事件的响应和触发器，我不关心它们间的连接是如何实现的，并且这些连接也不应该在重构时出错。</p>
-  </li>
-  <li>
-    <p>简洁明了的网络请求 -Action and Request- 对于简单的GET、POST请求，可以进行对象化操作，我只想告诉程序，链接在哪里，有哪些参数，接下来就自动拉取到想要的数据，顺便帮我把缓存也做齐了，也是极好的。</p>
-  </li>
-  <li>
-    <p>便捷的UI布局 – FLKAutolayout-更加便捷的进行autolayout布局,不管你使用springs &amp; struts或者AutoLayout，每种方法都需要你明确相关视图如何排列。你需要花大量的时间编写和修正这些排列，特别是现在有这么多设备需要适配 的情况下。没有什么是自动写好的，UI布局依赖于对细节的不断调整。推荐开发期间Debug工具FLEX,pod ‘FLEX’, ‘~&gt; 1.1.1’需要手动集成，发布release版本时请删除。</p>
-  </li>
-  <li>友好的线程控制 -GCDObjC-</li>
-  <li>便捷的正则匹配</li>
-  <li>富文本的Label</li>
-  <li>and so on……</li>
-</ul>
-
-
-		
-		<a href="/blog/ioszheng-tao-kuang-jia-easyios/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年4 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
 <nav id="pagenavi">
     
         
@@ -637,7 +644,7 @@
     <div class="center"><a href="/blog/archives">文章列表</a></div>
 </nav>
 </div>
-	<footer id="footer" class="inner">Copyright &copy; 2015
+	<footer id="footer" class="inner">Copyright &copy; 2016
 
     BryanFu
 

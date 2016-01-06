@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2015-12-10T16:36:29+08:00</updated>
+  <updated>2016-01-06T11:55:11+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[wax 简介]]></title>
+    <link href="http://helloyokoy.github.io/blog/wax-profile/"/>
+    <updated>2016-01-06T11:47:10+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wax-profile</id>
+    <content type="html"><![CDATA[<blockquote>
+  <p>开源Wax，Alibaba技术团队接力支持
+还在为iOS发版受伤吗，无需发布Ａｐｐ新版本，动态修复线上问题的解决方案来了！</p>
+</blockquote>
+
+<h3 id="section">发版的痛</h3>
+
+<p>去年无线Allin时每次手淘发版都需要经过个多月的煎熬，哪怕一个很小的需求改动也需要等待整个发版节奏。发版周期长、发版需求多、发版难是手淘这种超级app的特点，而审核时间长、升级速度慢、升级率低是App Store的通病，线上bug更是每个app都避免不了痛，而对于手淘亿级的UV来说，哪怕一个小小的bug都会影响成千上万的用户。对于这些困扰了多年的问题，急需一种无需发版即可动态修复线上问题的解决方案！</p>
+
+<p><img src="http://img3.tbcdn.cn/L1/461/1/02ca09b2d15db2db0de408395e0dba1788b969f2?spm=5176.blog1480.yqblogcon1.5.aDhNu5" alt="img" /></p>
+
+<p>Wax是什么？</p>
+
+<p><img src="http://img4.tbcdn.cn/L1/461/1/aae0800e99288ec9f9516877fe69af2ce665c215?spm=5176.blog1480.yqblogcon1.6.aDhNu5" alt="img" /></p>
+
+<p>还记得当年火爆无比的游戏《愤怒的小鸟》吗，它就是基于Wax框架编写的。Wax把Lua脚本语言与原生Objective-C底层runtime结合起来，使得你可以在Lua里面使用任何Objective-C类及框架。</p>
+
+<h3 id="wax">为什么选择Wax？</h3>
+<p><img src="http://img3.tbcdn.cn/L1/461/1/f1cbbd6b9c23b38ccd7783a9cf281d36033843a8?spm=5176.blog1480.yqblogcon1.7.aDhNu5" alt="logo" /></p>
+
+<p>Lua是一个简洁、轻量、可扩展的脚本语言，它的体积小、速度快，在大量的游戏中使用，以实现游戏的可配置和可更新。我们可以把这个思路借鉴到app的开发中，由于Lua需要预先绑定很多C函数才可在脚本中使用，所以单独使用Lua无法做到高复用性。而Wax连接了Lua与Objective-C runtime，使得我们可以在Lua里调用和替换任意类的方法，甚至新增类、方法。这样一来就能在app不发布新版的情况下，通过远程下载脚本的方式修复线上app里的bug、甚至新增一些功能。</p>
+
+<!--more-->
+
+<h3 id="wax-1">我们对Wax做了什么改造？</h3>
+
+<p>线程安全</p>
+
+<p>Wax本身的设计的场景是针对主线程的UI等逻辑，当我们去替换一个会多线程异步调用的方法时就会出现crash，这样一来就会削弱修复的场景，所以我们给Wax在合适的地方进行多线程保护使其具有线程安全特性。</p>
+
+<p>64位适配</p>
+
+<p>从iPhone5s开始，苹果推出了64位cpu架构，从今年2月份开始陆续要求app必须支持64位。
+Lua字节码也有32位与64位编译区分，所以原来的Wax stdlib库在64位无法运行，我们修改原有的Lua字节码打包逻辑使其能在64位正常运行。
+Wax的核心逻辑是替换函数，但原思路利用了32位函数入栈的特性，导致此方法在64位彻底失效。为此我们重新寻找新的函数替换思路，确保在64位也能正常运行。</p>
+
+<p>block传递、调用</p>
+
+<p>在Objective-C中，block以其简洁、易用的特性使用越来越普遍，而Wax虽有Lua的closure却没有支持Lua与OC 的block互通，这会使我们无法修复带有block的方法，为此我们对block的原理进行彻底的分析，同时绞尽脑汁利用32\64位函数参数入栈的特性，最终支持高达7个参数（当然，也可以支持更多）的block传递、调用。</p>
+
+<p>get/set私有成员变量</p>
+
+<p>Wax支持属性的get/set，但似乎忽略了私有成员变量，而我们的代码大量使用了私有成员变量，所以必须支持。庆幸的是Objective-C runtime有操作私有成员变量的API，因此我们在上层对NSObject扩展一些get/set的方法就可以支持私有成员变量的操作了。</p>
+
+<p>常用C函数</p>
+
+<p>要想在Lua里调用C函数，只需要在C代码里注册一下即可，所以看起来支持C函数很简单。但如果我们要把OC框架里的常用的几十、几百个函数都要支持呢？人肉一个个的写显然会显得乏力。所以我们将OC框架里的函数从文档拷贝出然后用脚本预处理，再使用tolua++进行自动代码生成、绑定，这样一来即使支持更多C函数也很简单了。</p>
+
+<p>Lua代码调试</p>
+
+<p>编写简单的Lua代码，只需要几个print打点日志就可以判断逻辑的执行是否正确。但如果是量多、复杂的代码时，只能打日志就会很痛苦了。所以我们将开源届比较强大的Lua调试器ZeroBraneStudio引进，再配合mobdebug远程调试脚本，适配到Wax，就实现了Lua代码在Wax框架中的调试，支持常用的断点、单步，当然还有更方便的观察变量、显示调用栈、控制台调用等</p>
+
+<p>bug修复</p>
+
+<p>由于Wax从2013年就不再维护，而我们的使用场景又多、又复杂，所以也会发现里面的不少bug，当然也做了修复。</p>
+
+<p>Hotpatch封装</p>
+
+<p>Wax提供了基础的Lua运行能力，但真正应用时，还需要很多准备工作。所以我们封装了TBHotaptchSDK提供Lua字节码编译、代码和资源打包、加密、签名、校验、运行等功能。同时还封装了TBHotaptchService提供patch包的版本控制、更新、下载等功能。</p>
+
+<h3 id="section-1">使用情况</h3>
+
+<p>iOS的Hotpatch从去年5月份研发上线以来共发布patch 180多次，意味着修复手淘线上bug 100多个。集团有天猫、聚划算、支付宝、闲鱼、UC等近20个app接入。足以证明Hotpatch的强烈需求以及Wax的价值。</p>
+
+<h3 id="section-2">为什么回馈开源？</h3>
+
+<p>Wax从2013年初就不再被原作者维护了，而64位的出现使得Wax完全不可用，业界也希望有人来解决Wax的众多问题。我们虽对Wax做了很多改造，但最初也是吸收开源届的贡献，秉承开源的奉献精神，将我们付出的劳动再回馈给开源，希望重新激活Wax社区，重新打造一个强大的Wax。
+很荣幸Wax的原作者在其github上改写了主页，将链接指向了Alibaba，这是对我们的一种莫大的肯定。</p>
+
+<p><img src="http://img2.tbcdn.cn/L1/461/1/6b96757c6dd225e1f36d033256a5e8665bce62ed?spm=5176.blog1480.yqblogcon1.8.aDhNu5" alt="img" /></p>
+
+<p>源码网址：<a href="https://github.com/alibaba/wax">https://github.com/alibaba/wax</a></p>
+
+<p>来源：阿里巴巴技术协会（ATA）</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[xcode plugin ]]></title>
@@ -494,113 +576,6 @@ break at: 'main()',  count: 6, sunnyxx says : 5
 <p><a href="https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html#//apple_ref/doc/uid/10000172i-SW8-SW1">https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html#//apple_ref/doc/uid/10000172i-SW8-SW1</a></p>
 
 <p><a href="http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/">http://www.cimgf.com/2012/12/13/xcode-lldb-tutorial/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Surge]]></title>
-    <link href="http://helloyokoy.github.io/blog/surge/"/>
-    <updated>2015-11-02T11:24:57+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/surge</id>
-    <content type="html"><![CDATA[<p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
-
-<p><img src="https://g.owind.com/content/images/2015/10/surgelogo.jpg" alt="alt text" title="surge" /></p>
-
-<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
-
-<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
-
-<!--more-->
-
-<p>简单的开始可以直接导入一份 conf 文件（URL 或者 iTunes），例如<a href="https://gist.github.com/janlay/b57476c72a93b7e622a6" title="link">这里</a>的，对于不求甚解的用户来说你可以直接使用完事（但是你还是要改改服务器地址用户名什么的。。或者直接从供应商处获取导入 URL）。</p>
-
-<p>配置的结构大概是这样，对于专业用户来说，理解应该不难</p>
-
-<p><figure class='code'><figcaption><span> (rules)</span> <a href='/downloads/code/rules'>download</a></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'><span class="k">[General]</span>
-</span><span class='line'><span class="c1"># warning, notify, info, verbose</span>
-</span><span class='line'><span class="na">loglevel</span> <span class="o">=</span> <span class="s">notify</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">[Proxy]</span>
-</span><span class='line'><span class="c1"># http, https, socks5</span>
-</span><span class='line'><span class="c1"># SSLedge 使用 https，老式 APNp 用 http</span>
-</span><span class='line'><span class="na">Proxy</span> <span class="o">=</span> <span class="s">https, server, port, username, password, ciphers </span>
-</span><span class='line'>
-</span><span class='line'><span class="k">[Rule]</span>
-</span><span class='line'><span class="c1"># 域名关键字，干掉不想要的请求</span>
-</span><span class='line'><span class="err">DOMAIN-KEYWORD,umeng.co,REJECT</span>
-</span><span class='line'><span class="err">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 常用网站优先匹配，加快速度。使用代理转发，完全没有 CDN 被干扰的问题~</span>
-</span><span class='line'><span class="err">DOMAIN-SUFFIX,cn,DIRECT</span>
-</span><span class='line'><span class="err">DOMAIN-SUFFIX,qq.com,DIRECT</span>
-</span><span class='line'><span class="err">DOMAIN-SUFFIX,ls.apple.com,DIRECT</span>
-</span><span class='line'><span class="err">DOMAIN-SUFFIX,apple.com,Proxy</span>
-</span><span class='line'><span class="err">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 强制这些不尊重系统代理的请求走 packet-tunnel-provider，解决 Twitter.app 和 Mail.app 收发邮件问题</span>
-</span><span class='line'><span class="err">DOMAIN-KEYWORD,twitter,Proxy,force-remote-dns</span>
-</span><span class='line'><span class="err">DOMAIN-KEYWORD,gmail,Proxy,force-remote-dns</span>
-</span><span class='line'><span class="c1"># instagram.app 也没问题</span>
-</span><span class='line'><span class="err">DOMAIN-KEYWORD,instagram,Proxy,force-remote-dns</span>
-</span><span class='line'><span class="c1"># Telegram.app 也没问题</span>
-</span><span class='line'><span class="err">IP-CIDR,91.108.56.0/22,Proxy,force-remote-dns</span>
-</span><span class='line'><span class="err">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># LAN</span>
-</span><span class='line'><span class="err">IP-CIDR,192.168.0.0/16,DIRECT</span>
-</span><span class='line'><span class="err">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 其余的请求使用 GEOIP 判断服务器所在地，如果是国内的，走直连，搞定</span>
-</span><span class='line'><span class="err">GEOIP,CN,DIRECT</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># 最后 Matchall，丢给代理</span>
-</span><span class='line'><span class="err">FINAL,Proxy</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>通过规则定义和组合，必然可以满足专业用户的需求，非常强大。配置可以使用 app 自带的 GUI，当然也有文本编辑方式。</p>
-
-<p>由于 Surge 的核心和是个 http proxy，有些处理不了的请求我们可以强制 bypass 掉，走系统接口，这个可以在代理设置-高级处设置，如果你不太懂，请不要随意设置。</p>
-
 ]]></content>
   </entry>
   
