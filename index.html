@@ -7,8 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="开源Wax，Alibaba技术团队接力支持
-还在为iOS发版受伤吗，无需发布Ａｐｐ新版本，动态修复线上问题的解决方案来了！ 发版的痛 去年无线Allin时每次手淘发版都需要经过个多月的煎熬，哪怕一个很小的需求改动也需要等待整个发版节奏。发版周期长、发版需求多、发版难是手淘这种超级app的特点， &hellip;">
+	<meta name="description" content="介绍 Emmet (前身为 Zen Coding) 是一个能大幅度提高前端开发效率的一个工具: 基本上，大多数的文本编辑器都会允许你存储和重用一些代码块，我们称之为“片段”。虽然片段能很好地推动你得生产力，但大多数的实现都有这样一个缺点：你必须先定义你得代码片段，并且不能再运行时进行拓展。 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -125,6 +124,68 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/emmelearn/">
+		
+			Emmet 学习</a>
+	</h2>
+	<div class="entry-content">
+		<h4 id="section">介绍</h4>
+
+<p>Emmet (前身为 Zen Coding) 是一个能大幅度提高前端开发效率的一个工具:</p>
+
+<p><img src="http://cdn.w3cplus.com/cdn/farfuture/jXcuIfm_Jn4-aJO7c59GOzDUd1163lwYGIWK3PIX2oE/mtime:1421034939/sites/default/files/styles/print_image/public/baiyaimages/emmet-p1.jpg" alt="icon" /></p>
+
+<p>基本上，大多数的文本编辑器都会允许你存储和重用一些代码块，我们称之为“片段”。虽然片段能很好地推动你得生产力，但大多数的实现都有这样一个缺点：你必须先定义你得代码片段，并且不能再运行时进行拓展。</p>
+
+<p>Emmet把片段这个概念提高到了一个新的层次：你可以设置CSS形式的能够动态被解析的表达式，然后根据你所输入的缩写来得到相应的内容。Emmet是很成熟的并且非常适用于编写HTML/XML 和 CSS 代码的前端开发人员，但也可以用于编程语言。</p>
+
+<h4 id="section-1">使用示例：</h4>
+
+<p>在编辑器中输入缩写代码：ul&gt;li*5 ，然后按下拓展键（默认为tab），即可得到代码片段：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&lt;ul&gt;
+</span><span class="line">    &lt;li&gt;&lt;/li&gt;
+</span><span class="line">    &lt;li&gt;&lt;/li&gt;
+</span><span class="line">    &lt;li&gt;&lt;/li&gt;
+</span><span class="line">    &lt;li&gt;&lt;/li&gt;
+</span><span class="line">    &lt;li&gt;&lt;/li&gt;
+</span><span class="line">&lt;/ul&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+		
+		<a href="/blog/emmelearn/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2016 年1 月20 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -652,52 +713,6 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/sublime-text-2-plugin/">
-		
-			Sublime Text 2 Plugin</a>
-	</h2>
-	<div class="entry-content">
-		<p>Sublime Text 2是一个轻量、简洁、高效、跨平台的编辑器，方便的配色以及兼容vim快捷键等各种优点博得了很多前端开发人员的喜爱。之前也不并知道它有这么多插件的扩展与支持，直到vincent问到有没有在用cTags插件，才知道原来Sublime通过插件也可以实现一些大型IDE的功能，遂google一下，本篇Blog就来介绍下Sublime下经常使用的插件。</p>
-
-<h4 id="package-control">安装包控制（Package Control）</h4>
-
-<p>打开Sublime Text 2，点击 Tools -&gt; Command Palette 调出控制台Console；</p>
-
-<p>将以下代码粘贴进命令行中并回车：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>重启 Sublime Text 2，如果在 Preferences -&gt; Package Settings中见到Package Control这一项，就说明安装成功了。</p>
-
-
-		
-		<a href="/blog/sublime-text-2-plugin/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月1 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
 
 
 </div>
