@@ -1,0 +1,248 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>facebook redex - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="去年，Facebook使用叫ReDex的字节码优化工具优化了他们的安卓应用的性能. 现在，ReDex已经开源了。安卓开发者可以免费地使用这个工具优化自己的应用。也可以将它用作其它安卓字节码优化工具的基础。 在Facebook工程博客的一篇文章中指出，.DEX（安卓的可执行文件的形式）文件中的类， &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Facebook Redex</h2>
+	<div class="entry-content"><p><img src="http://img.blog.csdn.net/20160414083628369" alt="redex" /></p>
+
+<p>去年，Facebook使用叫ReDex的字节码优化工具优化了他们的安卓应用的性能.</p>
+
+<p>现在，ReDex已经开源了。安卓开发者可以免费地使用这个工具优化自己的应用。也可以将它用作其它安卓字节码优化工具的基础。</p>
+
+<!--more-->
+
+<p>在Facebook工程博客的一篇文章中指出，.DEX（安卓的可执行文件的形式）文件中的类，并不是按照应用启动时候加载的顺序加载的，而是按照编译工具指定的顺序加载的。</p>
+
+<p>ReDex使用程序运行时产生的运行数据判定哪些类应该在.DEX文件中被优先载入。“想要最小化从内存中读取数据的次数，最好从启动的时候就载入字节码。”Facebook称，他们使用ReDex对应用优化之后，对存储的读取减少了25%，运行速度提高了30%。</p>
+
+<p>关于这个速度，Facebook称，在存储较慢的老旧机器上效果非常明显，但是对于新的收集，性能也有明显的提高。Facebook在一台搭载了安卓4.4的全新的Nexus4上（有35%的安卓设备运行这个版本）测试，启动时间从2秒降至1.6秒。</p>
+
+<p>Runtime分析可以用来删除无关的元数据和接口，但是开发者也可以自定义优化的行为。比如，有些方法即使没有直接被调用，也可以让它们保留下来。</p>
+
+<p>这个优化是在应用编译完成之后进行的。也就是说，理论上你也可以结合其他优化，比如对Java进行虚拟机层的优化和语言的优化，像即将到来的Java 9的语言模块特性等等。</p>
+
+<p>优化Java的字节码文件并不是一种新技术。还有其他的开源项目，例如ProGuard就可以通过删除运行时没有使用的代码进行优化。但是它并不能像ReDex那样按照执行顺序来重新组织类。</p>
+
+<hr />
+<p>原文链接：  <a href="http://www.infoworld.com/article/3055222/android/">http://www.infoworld.com/article/3055222/android/</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2016 年4 月15 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/facebook-redex" data-title="facebook redex" data-url="http://helloyokoy.github.io/blog/facebook-redex/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2016
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

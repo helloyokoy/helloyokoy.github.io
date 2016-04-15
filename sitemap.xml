@@ -1,303 +1,289 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>http://helloyokoy.github.io/blog/promisekit/</loc>
-    <lastmod>2016-03-07T18:33:15+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/emmelearn/</loc>
-    <lastmod>2016-01-20T21:33:48+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/wax-profile/</loc>
-    <lastmod>2016-01-06T11:47:10+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/xcode-plugin/</loc>
-    <lastmod>2015-12-10T16:17:52+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/ios-self/</loc>
-    <lastmod>2015-12-05T15:48:50+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/grape-on-rails/</loc>
-    <lastmod>2015-12-04T11:32:56+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/charles/</loc>
-    <lastmod>2015-11-26T21:34:03+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/nslog-and-lldb/</loc>
-    <lastmod>2015-11-26T18:38:31+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/rails-perftest/</loc>
-    <lastmod>2015-11-07T15:04:49+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/web-cache/</loc>
-    <lastmod>2015-11-04T16:55:48+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/surge/</loc>
-    <lastmod>2015-11-02T11:24:57+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/sublime-text-2-plugin/</loc>
-    <lastmod>2015-11-01T19:58:52+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/wechat-develop-environment/</loc>
-    <lastmod>2015-10-29T15:46:09+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/wechat-gems/</loc>
-    <lastmod>2015-10-27T15:35:10+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/ios9-adaption/</loc>
-    <lastmod>2015-10-27T12:44:03+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/ruby-gems-memory-leak/</loc>
-    <lastmod>2015-10-22T15:01:34+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/rubymotion/</loc>
-    <lastmod>2015-10-15T15:52:38+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/anroi-asimplecache/</loc>
-    <lastmod>2015-10-14T20:28:27+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-mistake/</loc>
-    <lastmod>2015-10-12T14:21:57+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/rails-gems-recomend/</loc>
-    <lastmod>2015-10-05T12:31:27+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/full-stack-developer/</loc>
-    <lastmod>2015-09-15T16:18:48+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/sketch/</loc>
-    <lastmod>2015-09-11T20:38:24+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-genymotion/</loc>
-    <lastmod>2015-09-04T19:48:35+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/tech-learn/</loc>
-    <lastmod>2015-09-03T15:23:49+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/ruby-fast-learn/</loc>
-    <lastmod>2015-09-02T12:07:16+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/rails-image-size/</loc>
-    <lastmod>2015-08-22T17:46:39+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/</loc>
-    <lastmod>2015-08-12T16:30:44+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/mjextensionjie-shao/</loc>
-    <lastmod>2015-08-10T10:35:13+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/frescojie-shao/</loc>
-    <lastmod>2015-08-09T17:09:42+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/how-to-become-a-developer/</loc>
-    <lastmod>2015-07-24T16:49:15+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-screen-adaption/</loc>
-    <lastmod>2015-07-15T12:18:16+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/bundler/</loc>
-    <lastmod>2015-07-11T17:25:27+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/</loc>
-    <lastmod>2015-07-10T21:52:44+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/rubyzhao-pin/</loc>
-    <lastmod>2015-07-09T16:24:29+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/what-happend-when-you-browse-my-blog/</loc>
-    <lastmod>2015-06-27T16:58:31+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/iosduo-xian-cheng/</loc>
-    <lastmod>2015-06-18T22:25:55+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-push/</loc>
-    <lastmod>2015-06-12T12:11:15+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/write-best-code/</loc>
-    <lastmod>2015-06-05T12:46:03+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/eventbusjie-shao/</loc>
-    <lastmod>2015-05-10T21:37:33+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/redis-huan-cun-fu-wu-qi-pei-zhi/</loc>
-    <lastmod>2015-05-07T15:14:36+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/turn-around-stay-grace/</loc>
-    <lastmod>2015-05-05T13:20:11+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/</loc>
-    <lastmod>2015-04-11T17:53:41+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/ioszheng-tao-kuang-jia-easyios/</loc>
-    <lastmod>2015-04-10T22:10:43+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/gem-description/</loc>
-    <lastmod>2015-04-03T16:05:02+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/afinaljie-shao/</loc>
-    <lastmod>2015-03-10T11:38:38+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/magicrecordjie-shao/</loc>
-    <lastmod>2015-02-10T10:26:16+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-skill/</loc>
-    <lastmod>2014-12-21T13:46:47+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/ctassetspickercontroller/</loc>
-    <lastmod>2014-12-03T12:14:48+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/java-reflection/</loc>
-    <lastmod>2014-11-15T13:37:57+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/huan-jing-da-jian/</loc>
-    <lastmod>2014-11-09T16:05:07+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/</loc>
-    <lastmod>2014-10-28T22:17:44+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-volly/</loc>
-    <lastmod>2014-10-17T14:46:20+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/ruby-rails-books/</loc>
-    <lastmod>2014-09-07T16:30:57+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-gradle/</loc>
-    <lastmod>2014-08-05T14:14:14+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian/</loc>
-    <lastmod>2014-07-08T22:04:09+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/android-studio/</loc>
-    <lastmod>2014-07-04T20:12:40+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/git-flow/</loc>
-    <lastmod>2014-04-05T10:18:10+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia/</loc>
-    <lastmod>2013-11-09T17:42:35+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/git-command/</loc>
-    <lastmod>2013-09-25T13:26:53+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/</loc>
-    <lastmod>2013-09-11T17:30:37+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/markdownyu-fa/</loc>
-    <lastmod>2013-08-09T15:07:14+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/rubyyu-fa/</loc>
-    <lastmod>2013-06-12T14:08:03+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/</loc>
-    <lastmod>2013-05-08T21:00:18+08:00</lastmod>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/404.html</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/archives/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/archives/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/about/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/categories/other/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/categories/ruby/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/categories/android/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/blog/categories/ios/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/posts/2/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/posts/3/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/posts/4/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/posts/5/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/posts/6/</loc>
-  </url>
-  <url>
-    <loc>http://helloyokoy.github.io/posts/7/</loc>
-  </url>
+<url>
+<loc>http://helloyokoy.github.io/blog/facebook-redex/</loc>
+<lastmod>2016-04-15T17:08:14+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/promisekit/</loc>
+<lastmod>2016-03-07T18:33:15+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/emmelearn/</loc>
+<lastmod>2016-01-20T21:33:48+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/wax-profile/</loc>
+<lastmod>2016-01-06T11:47:10+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/xcode-plugin/</loc>
+<lastmod>2015-12-10T16:17:52+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/ios-self/</loc>
+<lastmod>2015-12-05T15:48:50+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/grape-on-rails/</loc>
+<lastmod>2015-12-04T11:32:56+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/charles/</loc>
+<lastmod>2015-11-26T21:34:03+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/nslog-and-lldb/</loc>
+<lastmod>2015-11-26T18:38:31+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/rails-perftest/</loc>
+<lastmod>2015-11-07T15:04:49+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/web-cache/</loc>
+<lastmod>2015-11-04T16:55:48+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/surge/</loc>
+<lastmod>2015-11-02T11:24:57+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/sublime-text-2-plugin/</loc>
+<lastmod>2015-11-01T19:58:52+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/wechat-develop-environment/</loc>
+<lastmod>2015-10-29T15:46:09+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/wechat-gems/</loc>
+<lastmod>2015-10-27T15:35:10+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/ios9-adaption/</loc>
+<lastmod>2015-10-27T12:44:03+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/ruby-gems-memory-leak/</loc>
+<lastmod>2015-10-22T15:01:34+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/rubymotion/</loc>
+<lastmod>2015-10-15T15:52:38+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/anroi-asimplecache/</loc>
+<lastmod>2015-10-14T20:28:27+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-mistake/</loc>
+<lastmod>2015-10-12T14:21:57+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/rails-gems-recomend/</loc>
+<lastmod>2015-10-05T12:31:27+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/full-stack-developer/</loc>
+<lastmod>2015-09-15T16:18:48+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/sketch/</loc>
+<lastmod>2015-09-11T20:38:24+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-genymotion/</loc>
+<lastmod>2015-09-04T19:48:35+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/tech-learn/</loc>
+<lastmod>2015-09-03T15:23:49+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/ruby-fast-learn/</loc>
+<lastmod>2015-09-02T12:07:16+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/rails-image-size/</loc>
+<lastmod>2015-08-22T17:46:39+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/</loc>
+<lastmod>2015-08-12T16:30:44+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/mjextensionjie-shao/</loc>
+<lastmod>2015-08-10T10:35:13+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/frescojie-shao/</loc>
+<lastmod>2015-08-09T17:09:42+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/how-to-become-a-developer/</loc>
+<lastmod>2015-07-24T16:49:15+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-screen-adaption/</loc>
+<lastmod>2015-07-15T12:18:16+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/bundler/</loc>
+<lastmod>2015-07-11T17:25:27+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/iosyi-lai-zhu-ru-kuang-jia-objection/</loc>
+<lastmod>2015-07-10T21:52:44+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/rubyzhao-pin/</loc>
+<lastmod>2015-07-09T16:24:29+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/what-happend-when-you-browse-my-blog/</loc>
+<lastmod>2015-06-27T16:58:31+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/iosduo-xian-cheng/</loc>
+<lastmod>2015-06-18T22:25:55+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-push/</loc>
+<lastmod>2015-06-12T12:11:15+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/write-best-code/</loc>
+<lastmod>2015-06-05T12:46:03+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/eventbusjie-shao/</loc>
+<lastmod>2015-05-10T21:37:33+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/redis-huan-cun-fu-wu-qi-pei-zhi/</loc>
+<lastmod>2015-05-07T15:14:36+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/turn-around-stay-grace/</loc>
+<lastmod>2015-05-05T13:20:11+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/leakcannei-xie-lu-jian-ce/</loc>
+<lastmod>2015-04-11T17:53:41+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/ioszheng-tao-kuang-jia-easyios/</loc>
+<lastmod>2015-04-10T22:10:43+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/gem-description/</loc>
+<lastmod>2015-04-03T16:05:02+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/afinaljie-shao/</loc>
+<lastmod>2015-03-10T11:38:38+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/magicrecordjie-shao/</loc>
+<lastmod>2015-02-10T10:26:16+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-skill/</loc>
+<lastmod>2014-12-21T13:46:47+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/ctassetspickercontroller/</loc>
+<lastmod>2014-12-03T12:14:48+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/java-reflection/</loc>
+<lastmod>2014-11-15T13:37:57+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/huan-jing-da-jian/</loc>
+<lastmod>2014-11-09T16:05:07+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/</loc>
+<lastmod>2014-10-28T22:17:44+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-volly/</loc>
+<lastmod>2014-10-17T14:46:20+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/ruby-rails-books/</loc>
+<lastmod>2014-09-07T16:30:57+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-gradle/</loc>
+<lastmod>2014-08-05T14:14:14+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/iosdi-san-fang-ku-he-cha-jian/</loc>
+<lastmod>2014-07-08T22:04:09+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/android-studio/</loc>
+<lastmod>2014-07-04T20:12:40+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/git-flow/</loc>
+<lastmod>2014-04-05T10:18:10+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/androidkai-yuan-kuang-jia/</loc>
+<lastmod>2013-11-09T17:42:35+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/git-command/</loc>
+<lastmod>2013-09-25T13:26:53+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/androidxue-xi-zi-liao/</loc>
+<lastmod>2013-09-11T17:30:37+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/markdownyu-fa/</loc>
+<lastmod>2013-08-09T15:07:14+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/rubyyu-fa/</loc>
+<lastmod>2013-06-12T14:08:03+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/octopressda-jian-jiao-cheng/</loc>
+<lastmod>2013-05-08T21:00:18+08:00</lastmod>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/404.html</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/archives/</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/archives/</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/about/</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/categories/other/</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/categories/ruby/</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/categories/android/</loc>
+</url>
+<url>
+<loc>http://helloyokoy.github.io/blog/categories/ios/</loc>
+</url>
 </urlset>

@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分： 在我第一次创业的时候我非常好斗。在我看来整个世界好像就是一个战场，我无时无刻不在准备着战斗。与房东斗，与债主斗，与董事会斗，与各个你所能想到的群体斗。但是随着我不断的成长， &hellip;">
+	<meta name="description" content="随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点： 除了Hash，还提供了Sorted Set, List等数据结构 可以持久化到磁盘 支持cluster (3.0) 它的性能和memcached不相上下，再加上流行的其他组件（比如队列） &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -124,6 +124,51 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">
+		
+			Redis 缓存服务器配置</a>
+	</h2>
+	<div class="entry-content">
+		<p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
+
+<ol>
+  <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
+  <li>可以持久化到磁盘</li>
+  <li>支持cluster (3.0)</li>
+</ol>
+
+<p>它的性能和memcached不相上下，再加上流行的其他组件（比如队列）也会用到redis，从架构简单出发，已经没有必要混用redis和memcached了。</p>
+
+<p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
+
+
+		
+		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年5 月7 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -583,54 +628,6 @@ Button:btn
 
 
 	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/huan-jing-da-jian/">
-		
-			Rails 环境搭建</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
-  <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
-次安装方法同样适用于产品环境！</p>
-</blockquote>
-
-<h3 id="section">系统需求</h3>
-<hr />
-
-<p>首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用:</p>
-
-<p>Mac OS X
-任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux …)
-强烈新手使用 Ubuntu 省掉不必要的麻烦！
-以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $  符号）</p>
-
-
-		
-		<a href="/blog/huan-jing-da-jian/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年11 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>

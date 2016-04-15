@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2016-04-07T18:58:54+08:00</updated>
+  <updated>2016-04-15T17:12:43+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[facebook redex]]></title>
+    <link href="http://helloyokoy.github.io/blog/facebook-redex/"/>
+    <updated>2016-04-15T17:08:14+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/facebook-redex</id>
+    <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160414083628369" alt="redex" /></p>
+
+<p>去年，Facebook使用叫ReDex的字节码优化工具优化了他们的安卓应用的性能.</p>
+
+<p>现在，ReDex已经开源了。安卓开发者可以免费地使用这个工具优化自己的应用。也可以将它用作其它安卓字节码优化工具的基础。</p>
+
+<!--more-->
+
+<p>在Facebook工程博客的一篇文章中指出，.DEX（安卓的可执行文件的形式）文件中的类，并不是按照应用启动时候加载的顺序加载的，而是按照编译工具指定的顺序加载的。</p>
+
+<p>ReDex使用程序运行时产生的运行数据判定哪些类应该在.DEX文件中被优先载入。“想要最小化从内存中读取数据的次数，最好从启动的时候就载入字节码。”Facebook称，他们使用ReDex对应用优化之后，对存储的读取减少了25%，运行速度提高了30%。</p>
+
+<p>关于这个速度，Facebook称，在存储较慢的老旧机器上效果非常明显，但是对于新的收集，性能也有明显的提高。Facebook在一台搭载了安卓4.4的全新的Nexus4上（有35%的安卓设备运行这个版本）测试，启动时间从2秒降至1.6秒。</p>
+
+<p>Runtime分析可以用来删除无关的元数据和接口，但是开发者也可以自定义优化的行为。比如，有些方法即使没有直接被调用，也可以让它们保留下来。</p>
+
+<p>这个优化是在应用编译完成之后进行的。也就是说，理论上你也可以结合其他优化，比如对Java进行虚拟机层的优化和语言的优化，像即将到来的Java 9的语言模块特性等等。</p>
+
+<p>优化Java的字节码文件并不是一种新技术。还有其他的开源项目，例如ProGuard就可以通过删除运行时没有使用的代码进行优化。但是它并不能像ReDex那样按照执行顺序来重新组织类。</p>
+
+<hr />
+<p>原文链接：  <a href="http://www.infoworld.com/article/3055222/android/">http://www.infoworld.com/article/3055222/android/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android 轻量缓存框架 ASimpleCache]]></title>
@@ -586,76 +616,6 @@
 </span><span class='line'>}&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Fresco介绍]]></title>
-    <link href="http://helloyokoy.github.io/blog/frescojie-shao/"/>
-    <updated>2015-08-09T17:09:42+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/frescojie-shao</id>
-    <content type="html"><![CDATA[<p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
-
-<h3 id="fresco">关于 Fresco</h3>
-<p>Fresco 是一个强大的图片加载组件。</p>
-
-<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
-
-<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
-
-<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
-
-<!--more-->
-
-<h3 id="section">特性</h3>
-
-<h4 id="section-1">内存管理</h4>
-
-<p>解压后的图片，即Android中的Bitmap，占用大量的内存。大的内存占用势必引发更加频繁的GC。在5.0以下，GC将会显著地引发界面卡顿。</p>
-
-<p>在5.0以下系统，Fresco将图片放到一个特别的内存区域。当然，在图片不显示的时候，占用的内存会自动被释放。这会使得APP更加流畅，减少因图片内存占用而引发的OOM。</p>
-
-<p>Fresco 在低端机器上表现一样出色，你再也不用因图片内存占用而思前想后。</p>
-
-<h4 id="section-2">图片的渐进式呈现</h4>
-<p>渐进式的JPEG图片格式已经流行数年了，渐进式图片格式先呈现大致的图片轮廓，然后随着图片下载的继续，呈现逐渐清晰的图片，这对于移动设备，尤其是慢网络有极大的利好，可带来更好的用户体验。</p>
-
-<p>Android 本身的图片库不支持此格式，但是Fresco支持。使用时，和往常一样，仅仅需要提供一个图片的URI即可，剩下的事情，Fresco会处理。</p>
-
-<h4 id="gifwebp">Gif图和WebP格式</h4>
-<p>是的，支持加载Gif图，支持WebP格式。</p>
-
-<h4 id="section-3">图像的呈现</h4>
-<p>Fresco 的 Drawees 设计，带来一些有用的特性：</p>
-
-<ul>
-  <li>自定义居中焦点(对人脸等图片显示非常有帮助)</li>
-  <li>圆角图，当然圆圈也行。</li>
-  <li>下载失败之后，点击重现下载</li>
-  <li>自定义占位图，自定义overlay, 或者进度条</li>
-  <li>指定用户按压时的overlay</li>
-</ul>
-
-<h4 id="section-4">图像的加载</h4>
-<p>Fresco 的 image pipeline 设计，允许用户在多方面控制图片的加载：</p>
-
-<ul>
-  <li>为同一个图片指定不同的远程路径，或者使用已经存在本地缓存中的图片</li>
-  <li>先显示一个低解析度的图片，等高清图下载完之后再显示高清图</li>
-  <li>加载完成回调通知</li>
-  <li>对于本地图，如有EXIF缩略图，在大图加载完成之前，可先显示缩略图</li>
-  <li>缩放或者旋转图片</li>
-  <li>处理已下载的图片</li>
-  <li>WebP 支持</li>
-</ul>
-
-<h3 id="section-5">了解更多</h3>
-<ul>
-  <li>相关博客: <a href="https://code.facebook.com/posts/366199913563917" title="Title">Fresco的发布</a></li>
-  <li><a href="http://www.fresco-cn.org/docs/download-fresco.html" title="Title">下载</a>Fresco</li>
-  <li><a href="http://www.fresco-cn.org/docs/index.html" title="Title">文档</a></li>
-  <li><a href="https://github.com/facebook/fresco" title="Title">GitHub</a>的源码</li>
-</ul>
 ]]></content>
   </entry>
   

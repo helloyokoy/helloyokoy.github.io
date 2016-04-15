@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2016-04-07T18:58:54+08:00</updated>
+  <updated>2016-04-15T17:12:43+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[facebook redex]]></title>
+    <link href="http://helloyokoy.github.io/blog/facebook-redex/"/>
+    <updated>2016-04-15T17:08:14+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/facebook-redex</id>
+    <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160414083628369" alt="redex" /></p>
+
+<p>去年，Facebook使用叫ReDex的字节码优化工具优化了他们的安卓应用的性能.</p>
+
+<p>现在，ReDex已经开源了。安卓开发者可以免费地使用这个工具优化自己的应用。也可以将它用作其它安卓字节码优化工具的基础。</p>
+
+<!--more-->
+
+<p>在Facebook工程博客的一篇文章中指出，.DEX（安卓的可执行文件的形式）文件中的类，并不是按照应用启动时候加载的顺序加载的，而是按照编译工具指定的顺序加载的。</p>
+
+<p>ReDex使用程序运行时产生的运行数据判定哪些类应该在.DEX文件中被优先载入。“想要最小化从内存中读取数据的次数，最好从启动的时候就载入字节码。”Facebook称，他们使用ReDex对应用优化之后，对存储的读取减少了25%，运行速度提高了30%。</p>
+
+<p>关于这个速度，Facebook称，在存储较慢的老旧机器上效果非常明显，但是对于新的收集，性能也有明显的提高。Facebook在一台搭载了安卓4.4的全新的Nexus4上（有35%的安卓设备运行这个版本）测试，启动时间从2秒降至1.6秒。</p>
+
+<p>Runtime分析可以用来删除无关的元数据和接口，但是开发者也可以自定义优化的行为。比如，有些方法即使没有直接被调用，也可以让它们保留下来。</p>
+
+<p>这个优化是在应用编译完成之后进行的。也就是说，理论上你也可以结合其他优化，比如对Java进行虚拟机层的优化和语言的优化，像即将到来的Java 9的语言模块特性等等。</p>
+
+<p>优化Java的字节码文件并不是一种新技术。还有其他的开源项目，例如ProGuard就可以通过删除运行时没有使用的代码进行优化。但是它并不能像ReDex那样按照执行顺序来重新组织类。</p>
+
+<hr />
+<p>原文链接：  <a href="http://www.infoworld.com/article/3055222/android/">http://www.infoworld.com/article/3055222/android/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[PromiseKit: 同时支持Objective-C和Swift的Promise类库]]></title>
@@ -4449,82 +4479,6 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 <p>作者：张明云</p>
 
 <p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
-
-<p>来源：知乎</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails Gems 推荐]]></title>
-    <link href="http://helloyokoy.github.io/blog/rails-gems-recomend/"/>
-    <updated>2015-10-05T12:31:27+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/rails-gems-recomend</id>
-    <content type="html"><![CDATA[<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
-
-<h4 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h4>
-
-<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
-
-<h4 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h4>
-
-<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
-
-<h4 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h4>
-
-<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
-
-<h4 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h4>
-
-<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
-
-<!--more-->
-
-<h4 id="paperclippaperclip--rubygemsorg">5.Paperclip（paperclip | RubyGems.org）</h4>
-
-<p>paperclip基本上已经是rails的御用图片上传gem了，功能强大使用方便，但是唯一不太好的就是图片剪裁上面功能比较有限。paperclip依赖于ImageMagic，大部分linux包管理器（如apt yum portage等）中应该都能找到这个软件包。</p>
-
-<h4 id="rmagickrmagick--rubygemsorg">6.rmagick（rmagick | RubyGems.org）</h4>
-
-<p>这个gem弥补了paperclip在图片剪裁上的不足。功能十分十分十分的强大，文档也很齐全，只不过是全英文，中文资料比较少。如果项目有要开发头像剪裁上传，那么用rmagic剪裁，paperclip上传是比较好的解决方案。</p>
-
-<h4 id="friendlyidfriendlyid--rubygemsorg">7.friendly_id（friendly_id | RubyGems.org）</h4>
-
-<p>现在大部分网站都已经是友好的url地址了，如果你的rails项目还用数字作为id进行查询那就太low了。</p>
-
-<h4 id="willpaginatewillpaginate">8.will_paginate（will_paginate）</h4>
-
-<p>老版本的will_paginate分业是基于plugin方式的，新版本的will_paginate已经抛弃了这样的做法，转而使用gem的方式。这样一来安装和使用更加方便，配合一些前端的分页加载库，会让分页加载功能开发非常快捷。</p>
-
-<h4 id="ransackransack--rubygemsorg">9.ransack（ransack | RubyGems.org）</h4>
-
-<p>搜索功能一般分为分词和不分词的，如果你只想做用户和文章标题检索之类的功能，那么不分词的搜索gem比较合适，类似的gem挺多的，我常用的是这个。</p>
-
-<h4 id="sunspotsunspot--rubygemsorg">10.sunspot（sunspot | RubyGems.org）</h4>
-
-<p>接上面，全文搜索的gem也不少，sunspot对于小型项目的话，稍微有些重。如果没有那么多要求的话，sphinx也可以考虑，速度快，占用资源低。</p>
-
-<h4 id="gecodergeocoder--rubygemsorg">11.Gecoder（geocoder | RubyGems.org）</h4>
-
-<p>说实话在web上做定位确实比较乏力，尽量还是用手机客户端吧</p>
-
-<h4 id="pumapumapuma--github">12.puma（puma/puma · GitHub）</h4>
-
-<p>对于想要处理并发请求的web项目，Puma 是和 Unicorn相竞争的 Web 服务器，它能够处理并发请求。Puma 使用线程，以及工作者进程，能够更多的利用可用的 CPU。在 Puma 中，如果整个基础代码是线程安全的，那么你可用利用线程。否则，在使用 Puma 的时候，你只能使用工作者进程进行拓展。Puma的设置也比较简单，官方有详细的使用文档，RubyChina也使用Puma，个人推荐。</p>
-
-<h4 id="emojiwpetersonemoji--github">13.Emoji（wpeterson/emoji · GitHub）</h4>
-
-<p>现在只要涉及社交的项目估计很少有不用表情的了，Emoji是个集成度比较高的Emoji表情转码库，使用方便，当然大部分情况下还是要配合前端使用。</p>
-
-<p>暂时想到这么多，欢迎补充，待续。。。。</p>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：孙笛</p>
-
-<p>链接：http://www.zhihu.com/question/31083216/answer/50654456</p>
 
 <p>来源：知乎</p>
 ]]></content>
