@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2016-05-26T15:06:17+08:00</updated>
+  <updated>2016-05-26T15:22:45+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -20,164 +20,166 @@
     <id>http://helloyokoy.github.io/blog/android-frame</id>
     <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160524172058595" alt="img" /></p>
 
-<p>框架简单介绍：</p>
+<!--more-->
 
 <ul>
-  <li>
-    <p>缓存</p>
-
-    <p>DiskLruCache: Java实现基于LRU的磁盘缓存</p>
-  </li>
-  <li>
-    <p>图片加载</p>
-  </li>
+  <li>缓存</li>
 </ul>
 
-<p>Android Universal Image Loader: 一个强大的加载，缓存，展示图片的库</p>
-
-<p>Picasso: 一个强大的图片下载与缓存的库。</p>
-
-<p>Fresco: 一个用于管理图像和他们使用的内存的库</p>
-
-<p>Glide: 一个图片加载和缓存的库</p>
+<p>DiskLruCache:	Java实现基于LRU的磁盘缓存</p>
 
 <ul>
-  <li>
-    <p>图片处理</p>
-
-    <p>Picasso-transformations: 一个为Picasso提供多种图片变换的库</p>
-
-    <p>Glide-transformations: 一个为Glide提供多种图片变换的库</p>
-
-    <p>Android-gpuimage: 基于OpenGL的Android过滤器</p>
-  </li>
-  <li>
-    <p>网络请求</p>
-
-    <p>Android Async HTTP: Android异步HTTP库</p>
-
-    <p>AndroidAsync: 异步Socket，HTTP(客户端+服务器)，WebSocket，和socket.io库。基于NIO而不是线程。</p>
-
-    <p>OkHttp: 一个Http与Http/2的客户端Retrofit类型安全的Http客户端</p>
-
-    <p>Volley: Google推出的Android异步网络请求框架和图片加载框架</p>
-  </li>
-  <li>
-    <p>网络解析</p>
-  </li>
+  <li>图片加载</li>
 </ul>
 
-<p>Gson:  一个Java序列化/反序列化库，可以将JSON和java对象互相转换</p>
+<p>Android Universal Image Loader:	一个强大的加载，缓存，展示图片的库</p>
 
-<p>Jackson:  Jackson可以轻松地将Java对象转换成json对象和xml文档，同样也可以将json、xml转换成Java对象</p>
+<p>Picasso:	一个强大的图片下载与缓存的库</p>
 
-<p>Fastjson:  Java上一个快速的JSON解析器/生成器</p>
+<p>Fresco:	一个用于管理图像和他们使用的内存的库</p>
 
-<p>HtmlPaser： 一种用来解析单个独立html或嵌套html的方式</p>
+<p>Glide:	一个图片加载和缓存的库</p>
 
-<p>Jsoup:  一个以最好的DOM，CSS和jQuery解析html的库</p>
+<ul>
+  <li>图片处理</li>
+</ul>
+
+<p>Picasso-transformations	: 一个为Picasso提供多种图片变换的库</p>
+
+<p>Glide-transformations:	一个为Glide提供多种图片变换的库</p>
+
+<p>Android-gpuimage: 	基于OpenGL的Android过滤器</p>
+
+<ul>
+  <li>网络请求</li>
+</ul>
+
+<p>Android Async HTTP:	Android异步HTTP库</p>
+
+<p>AndroidAsync: 	异步Socket，HTTP(客户端+服务器)，WebSocket，和socket.io库。基于NIO而不是线程。</p>
+
+<p>OkHttp: 	一个Http与Http/2的客户端</p>
+
+<p>Retrofit:	类型安全的Http客户端</p>
+
+<p>Volley: Google推出的Android异步网络请求框架和图片加载框架</p>
+
+<ul>
+  <li>网络解析</li>
+</ul>
+
+<p>Gson:	一个Java序列化/反序列化库，可以将JSON和java对象互相转换</p>
+
+<p>Jackson:	Jackson可以轻松地将Java对象转换成json对象和xml文档，同样也可以将json、xml转换成Java对象</p>
+
+<p>Fastjson:	Java上一个快速的JSON解析器/生成器</p>
+
+<p>HtmlPaser: 一种用来解析单个独立html或嵌套html的方式</p>
+
+<p>Jsoup:	一个以最好的DOM，CSS和jQuery解析html的库</p>
 
 <ul>
   <li>数据库</li>
 </ul>
 
-<p>OrmLite: JDBC和Android的轻量级ORM java包</p>
+<p>OrmLite:	JDBC和Android的轻量级ORM java包</p>
 
-<p>Sugar: 用超级简单的方法处理Android数据库</p>
+<p>Sugar:	用超级简单的方法处理Android数据库</p>
 
-<p>GreenDAO: 一种轻快地将对象映射到SQLite数据库的ORM解决方案。</p>
+<p>GreenDAO:	一种轻快地将对象映射到SQLite数据库的ORM解决方案</p>
 
 <p>ActiveAndroid: 以活动记录方式为Android SQLite提供持久化</p>
 
-<p>SQLBrite: SQLiteOpenHelper 和ContentResolver的轻量级包装</p>
+<p>SQLBrite:	SQLiteOpenHelper 和ContentResolver的轻量级包装</p>
 
-<p>Realm移动数据库：一个SQLite和ORM的替换品</p>
-
-<ul>
-  <li>
-    <p>依赖注入</p>
-
-    <p>ButterKnife: 将Android视图和回调方法绑定到字段和方法上	
-  Dagger2: 一个Android和java快速依赖注射器。</p>
-
-    <p>AndroidAnotations: 快速安卓开发。易于维护	
-  RoboGuice: Android平台的Google Guice</p>
-  </li>
-  <li>
-    <p>图表</p>
-  </li>
-</ul>
-
-<p>WilliamChart: 创建图表的Android库</p>
-
-<p>HelloCharts: 兼容到API8的Android图表库</p>
-
-<p>MPAndroidChart: 一个强大的Android图表视图/图形库</p>
+<p>Realm 移动数据库：一个SQLite和ORM的替换品</p>
 
 <ul>
-  <li>
-    <p>后台处理</p>
-
-    <p>Tape: 一个轻快的，事务性的，基于文件的FIFO的库Android</p>
-
-    <p>Priority Job Queue: 一个专门为Android轻松调度任务的工作队列</p>
-  </li>
-  <li>
-    <p>事件总线</p>
-
-    <p>EventBus: 安卓优化的事件总线，简化了活动、片段、线程、服务等的通信</p>
-
-    <p>Otto: 一个基于Guava的增强的事件总线</p>
-  </li>
-  <li>
-    <p>响应式编程</p>
-
-    <p>RxJava: JVM上的响应式扩展</p>
-
-    <p>RxJavaJoins: 为RxJava提供Joins操作</p>
-
-    <p>RxAndroid: Android上的响应式扩展，在RxJava基础上添加了Android线程调度</p>
-
-    <p>RxBinding: 提供用RxJava绑定Android UI的API</p>
-
-    <p>Agera: Android上的响应式编程</p>
-  </li>
-  <li>
-    <p>Log框架</p>
-
-    <p>Logger: 简单，漂亮，强大的Android日志工具</p>
-
-    <p>Hugo: 在调试版本上注解的触发方法进行日志记录</p>
-
-    <p>Timber: 一个小的，可扩展的日志工具</p>
-  </li>
-  <li>
-    <p>测试框架</p>
-
-    <p>Mockito: Java编写的Mocking单元测试框架</p>
-
-    <p>Robotium: Android UI 测试</p>
-
-    <p>Robolectric: Android单元测试框架</p>
-  </li>
+  <li>依赖注入</li>
 </ul>
 
-<p>Android自带很多测试工具：JUnit，Monkeyrunner，UiAutomator，Espresso等</p>
+<p>ButterKnife:	将Android视图和回调方法绑定到字段和方法上</p>
+
+<p>Dagger2:	一个Android和java快速依赖注射器。</p>
+
+<p>AndroidAnotations:	快速安卓开发。易于维护</p>
+
+<p>RoboGuice: Android平台的Google Guice</p>
 
 <ul>
-  <li>
-    <p>调试框架</p>
-
-    <p>Stetho: 调试Android应用的桥梁，使得可以利用Chrome开发者工具进行调试</p>
-  </li>
-  <li>
-    <p>性能优化</p>
-
-    <p>LeakCanary: 内存泄漏检测工具</p>
-
-    <p>ACRA: Android应用程序崩溃报告</p>
-  </li>
+  <li>图表</li>
 </ul>
+
+<p>WilliamChart:	创建图表的Android库</p>
+
+<p>HelloCharts:	兼容到API8的Android图表库</p>
+
+<p>MPAndroidChart:	一个强大的Android图表视图/图形库</p>
+
+<ul>
+  <li>后台处理</li>
+</ul>
+
+<p>Tape:	一个轻快的，事务性的，基于文件的FIFO的库</p>
+
+<p>Android Priority Job Queue: 一个专门为Android轻松调度任务的工作队列</p>
+
+<ul>
+  <li>事件总线</li>
+</ul>
+
+<p>EventBus:	安卓优化的事件总线，简化了活动、片段、线程、服务等的通信</p>
+
+<p>Otto:	一个基于Guava的增强的事件总线</p>
+
+<ul>
+  <li>响应式编程</li>
+</ul>
+
+<p>RxJava: JVM上的响应式扩展</p>
+
+<p>RxJavaJoins:	为RxJava提供Joins操作</p>
+
+<p>RxAndroid: Android上的响应式扩展，在RxJava基础上添加了Android线程调度</p>
+
+<p>RxBinding: 提供用RxJava绑定Android UI的API</p>
+
+<p>Agera:	Android上的响应式编程</p>
+
+<ul>
+  <li>Log框架</li>
+</ul>
+
+<p>Logger: 简单，漂亮，强大的Android日志工具
+Hugo: 在调试版本上注解的触发方法进行日志记录
+Timber: 一个小的，可扩展的日志工具</p>
+
+<ul>
+  <li>测试框架</li>
+</ul>
+
+<p>Mockito:	Java编写的Mocking单元测试框架</p>
+
+<p>Robotium:	Android UI 测试</p>
+
+<p>Robolectric:	Android单元测试框架</p>
+
+<p>Android自带很多测试工具：JUnit，Monkeyrunner，
+UiAutomator，Espresso等</p>
+
+<ul>
+  <li>调试框架</li>
+</ul>
+
+<p>Stetho: 调试Android应用的桥梁，使得可以利用Chrome开发者工具进行调试</p>
+
+<ul>
+  <li>性能优化</li>
+</ul>
+
+<p>LeakCanary:	内存泄漏检测工具</p>
+
+<p>ACRA:	Android应用程序崩溃报告</p>
 ]]></content>
   </entry>
   
