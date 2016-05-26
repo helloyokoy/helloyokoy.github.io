@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2016-04-15T17:12:43+08:00</updated>
+  <updated>2016-05-26T15:06:17+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,174 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[android frame]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-frame/"/>
+    <updated>2016-05-26T14:47:35+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/android-frame</id>
+    <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160524172058595" alt="img" /></p>
+
+<p>框架简单介绍：</p>
+
+<ul>
+  <li>
+    <p>缓存</p>
+
+    <p>DiskLruCache: Java实现基于LRU的磁盘缓存</p>
+  </li>
+  <li>
+    <p>图片加载</p>
+  </li>
+</ul>
+
+<p>Android Universal Image Loader: 一个强大的加载，缓存，展示图片的库</p>
+
+<p>Picasso: 一个强大的图片下载与缓存的库。</p>
+
+<p>Fresco: 一个用于管理图像和他们使用的内存的库</p>
+
+<p>Glide: 一个图片加载和缓存的库</p>
+
+<ul>
+  <li>
+    <p>图片处理</p>
+
+    <p>Picasso-transformations: 一个为Picasso提供多种图片变换的库</p>
+
+    <p>Glide-transformations: 一个为Glide提供多种图片变换的库</p>
+
+    <p>Android-gpuimage: 基于OpenGL的Android过滤器</p>
+  </li>
+  <li>
+    <p>网络请求</p>
+
+    <p>Android Async HTTP: Android异步HTTP库</p>
+
+    <p>AndroidAsync: 异步Socket，HTTP(客户端+服务器)，WebSocket，和socket.io库。基于NIO而不是线程。</p>
+
+    <p>OkHttp: 一个Http与Http/2的客户端Retrofit类型安全的Http客户端</p>
+
+    <p>Volley: Google推出的Android异步网络请求框架和图片加载框架</p>
+  </li>
+  <li>
+    <p>网络解析</p>
+  </li>
+</ul>
+
+<p>Gson:  一个Java序列化/反序列化库，可以将JSON和java对象互相转换</p>
+
+<p>Jackson:  Jackson可以轻松地将Java对象转换成json对象和xml文档，同样也可以将json、xml转换成Java对象</p>
+
+<p>Fastjson:  Java上一个快速的JSON解析器/生成器</p>
+
+<p>HtmlPaser： 一种用来解析单个独立html或嵌套html的方式</p>
+
+<p>Jsoup:  一个以最好的DOM，CSS和jQuery解析html的库</p>
+
+<ul>
+  <li>数据库</li>
+</ul>
+
+<p>OrmLite: JDBC和Android的轻量级ORM java包</p>
+
+<p>Sugar: 用超级简单的方法处理Android数据库</p>
+
+<p>GreenDAO: 一种轻快地将对象映射到SQLite数据库的ORM解决方案。</p>
+
+<p>ActiveAndroid: 以活动记录方式为Android SQLite提供持久化</p>
+
+<p>SQLBrite: SQLiteOpenHelper 和ContentResolver的轻量级包装</p>
+
+<p>Realm移动数据库：一个SQLite和ORM的替换品</p>
+
+<ul>
+  <li>
+    <p>依赖注入</p>
+
+    <p>ButterKnife: 将Android视图和回调方法绑定到字段和方法上	
+  Dagger2: 一个Android和java快速依赖注射器。</p>
+
+    <p>AndroidAnotations: 快速安卓开发。易于维护	
+  RoboGuice: Android平台的Google Guice</p>
+  </li>
+  <li>
+    <p>图表</p>
+  </li>
+</ul>
+
+<p>WilliamChart: 创建图表的Android库</p>
+
+<p>HelloCharts: 兼容到API8的Android图表库</p>
+
+<p>MPAndroidChart: 一个强大的Android图表视图/图形库</p>
+
+<ul>
+  <li>
+    <p>后台处理</p>
+
+    <p>Tape: 一个轻快的，事务性的，基于文件的FIFO的库Android</p>
+
+    <p>Priority Job Queue: 一个专门为Android轻松调度任务的工作队列</p>
+  </li>
+  <li>
+    <p>事件总线</p>
+
+    <p>EventBus: 安卓优化的事件总线，简化了活动、片段、线程、服务等的通信</p>
+
+    <p>Otto: 一个基于Guava的增强的事件总线</p>
+  </li>
+  <li>
+    <p>响应式编程</p>
+
+    <p>RxJava: JVM上的响应式扩展</p>
+
+    <p>RxJavaJoins: 为RxJava提供Joins操作</p>
+
+    <p>RxAndroid: Android上的响应式扩展，在RxJava基础上添加了Android线程调度</p>
+
+    <p>RxBinding: 提供用RxJava绑定Android UI的API</p>
+
+    <p>Agera: Android上的响应式编程</p>
+  </li>
+  <li>
+    <p>Log框架</p>
+
+    <p>Logger: 简单，漂亮，强大的Android日志工具</p>
+
+    <p>Hugo: 在调试版本上注解的触发方法进行日志记录</p>
+
+    <p>Timber: 一个小的，可扩展的日志工具</p>
+  </li>
+  <li>
+    <p>测试框架</p>
+
+    <p>Mockito: Java编写的Mocking单元测试框架</p>
+
+    <p>Robotium: Android UI 测试</p>
+
+    <p>Robolectric: Android单元测试框架</p>
+  </li>
+</ul>
+
+<p>Android自带很多测试工具：JUnit，Monkeyrunner，UiAutomator，Espresso等</p>
+
+<ul>
+  <li>
+    <p>调试框架</p>
+
+    <p>Stetho: 调试Android应用的桥梁，使得可以利用Chrome开发者工具进行调试</p>
+  </li>
+  <li>
+    <p>性能优化</p>
+
+    <p>LeakCanary: 内存泄漏检测工具</p>
+
+    <p>ACRA: Android应用程序崩溃报告</p>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[facebook redex]]></title>
@@ -4393,94 +4561,6 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 
 <hr />
 <p>转载自 <a href="http://stormzhang.com/android/2014/10/17/android-simple-cache/">strom博客</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android 开发遇到的坑]]></title>
-    <link href="http://helloyokoy.github.io/blog/android-mistake/"/>
-    <updated>2015-10-12T14:21:57+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/android-mistake</id>
-    <content type="html"><![CDATA[<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
-
-<ul>
-  <li>
-    <p>在Android library中不能使用switch-case语句访问资源ID：
-<a href="http://zmywly8866.github.io/2014/12/24/android-can-not-use-switch-to-load-resource-in-libproject-solution.html">在Android library中不能使用switch-case语句访问资源ID的原因分析及解决方案</a></p>
-  </li>
-  <li>
-    <p>不能在Activity没有完全显示时显示PopupWindow和Dialog：<a href="http://stackoverflow.com/questions/4187673/problems-creating-a-popup-window-in-android-activity">popupwindow - Problems creating a Popup Window in Android Activity</a></p>
-  </li>
-  <li>
-    <p>在多进程之间不要用SharedPreferences共享数据，虽然可以（MODE_MULTI_PROCESS），但极不稳定：<a href="http://stackoverflow.com/questions/22129717/mode-multi-process-for-sharedpreferences-isnt-working">android - MODE_MULTI_PROCESS for SharedPreferences isn’t working</a></p>
-  </li>
-</ul>
-
-<!--more-->
-
-<ul>
-  <li>
-    <p>有些时候不能使用Application的Context，不然会报错（比如启动Activity，显示Dialog等）：
-<img src="https://pic3.zhimg.com/e3f3236cbd96c69cdea10d014bacbeae_b.png" alt="icon" /></p>
-  </li>
-  <li>
-    <p>同一个应用的JNI代码，不要轻易换NDK编译的版本，否则会有很多问题（主要是一些方法实现不一样，并且高版本对代码的检测更严格），比如r8没有问题，但到r9就有问题了，这是个大坑；</p>
-  </li>
-  <li>
-    <p>Android的JNI代码中，有返回类型的函数没有返回值编译的时候也不会报错；</p>
-  </li>
-  <li>
-    <p>当前Activity的onPause方法执行结束后才会执行下一个Activity的onCreate方法，所以在onPause方法中不适合做耗时较长的工作，这会影响到页面之间的跳转效率；</p>
-  </li>
-  <li>
-    <p>谨慎使用Android的透明主题，透明主题会导致很多问题，比如：如果新的Activity采用了透明主题，那么当前Activity的onStop方法不会被调用；在设置为透明主题的Activity界面按Home键时，可能会导致刷屏不干净的问题；进入主题为透明主题的界面会有明显的延时感；</p>
-  </li>
-  <li>
-    <p>不要在非UI线程中初始化ViewStub，否则会返回null；</p>
-  </li>
-  <li>
-    <p>公共接口一定要考虑到代码重入的情况，能设计为单例就尽量用单例；</p>
-  </li>
-  <li>
-    <p>不要通过Bundle传递大块的数据，否则会报TransactionTooLargeException异常：<a href="http://stackoverflow.com/questions/12819617/issue-passing-large-data-to-second-activity">java - Issue: Passing large data to second Activity</a></p>
-  </li>
-  <li>
-    <p>尽量不要通过Application缓存数据，这不稳定：
-<a href="http://zmywly8866.github.io/2014/12/26/android-do-not-store-data-in-the-application-object.html">不要在Android的Application对象中缓存数据!</a></p>
-  </li>
-  <li>
-    <p>尽量不要使用AnimationDrawable，它在初始化的时候就将所有图片加载到内存中，特别占内存，并且还不能释放，释放之后下次进入再次加载时会报错；</p>
-  </li>
-  <li>
-    <p>9图不能通过tinypng压缩，不然会有问题；</p>
-  </li>
-  <li>
-    <p>genymotion模拟器快是因为它是基于x86架构的，如果你的应用中用到了so，但没有x86架构的so，只能放弃使用它；Android Studio的模拟器也一样；</p>
-  </li>
-  <li>
-    <p>Eclipse的Android开发环境配置好后不要轻易升级ADT和build tools，不然会浪费你很多时间，还有就是一个workspace中的工程不要太多，不然每次启动都会很慢；</p>
-  </li>
-  <li>
-    <p>Android studio每个版本、gradle每个版本差别都比较大（我是这样认为的），对于jni代码的编译建议在Eclipse中进行，如果在Android studio中开发jni会浪费很多时间，主要是编译脚本的配置比较麻烦；</p>
-  </li>
-  <li>
-    <p>Eclipse中的Lint太不靠谱，特别是主工程中依赖library的时候，很多提示都是有问题的，建议使用Android Studio的工程清理工具，特别推荐；</p>
-  </li>
-  <li>
-    <p>AsyncTask默认自己维护一个静态的线程池，而该线程池只允许同时执行一个线程，也就是说，不管多少个AsyncTask,只要是调用execute()方法，都是共享这个默认进程池的，你的任务必须在之前的任务执行完以后，才能执行。<a href="http://zmywly8866.github.io/2015/09/29/android-call-asynctask-excute-not-run.html">调用AsyncTask的excute方法不能立即执行程序的原因分析及改善方案</a></p>
-  </li>
-</ul>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：张明云</p>
-
-<p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
-
-<p>来源：知乎</p>
 ]]></content>
   </entry>
   

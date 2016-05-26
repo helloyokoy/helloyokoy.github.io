@@ -1,0 +1,386 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>android frame - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="框架简单介绍： 缓存 DiskLruCache: Java实现基于LRU的磁盘缓存 图片加载 Android Universal Image Loader: 一个强大的加载，缓存，展示图片的库 Picasso: 一个强大的图片下载与缓存的库。 Fresco: 一个用于管理图像和他们使用的内存的库 &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Android Frame</h2>
+	<div class="entry-content"><p><img src="http://img.blog.csdn.net/20160524172058595" alt="img" /></p>
+
+<p>框架简单介绍：</p>
+
+<ul>
+  <li>
+    <p>缓存</p>
+
+    <p>DiskLruCache: Java实现基于LRU的磁盘缓存</p>
+  </li>
+  <li>
+    <p>图片加载</p>
+  </li>
+</ul>
+
+<p>Android Universal Image Loader: 一个强大的加载，缓存，展示图片的库</p>
+
+<p>Picasso: 一个强大的图片下载与缓存的库。</p>
+
+<p>Fresco: 一个用于管理图像和他们使用的内存的库</p>
+
+<p>Glide: 一个图片加载和缓存的库</p>
+
+<ul>
+  <li>
+    <p>图片处理</p>
+
+    <p>Picasso-transformations: 一个为Picasso提供多种图片变换的库</p>
+
+    <p>Glide-transformations: 一个为Glide提供多种图片变换的库</p>
+
+    <p>Android-gpuimage: 基于OpenGL的Android过滤器</p>
+  </li>
+  <li>
+    <p>网络请求</p>
+
+    <p>Android Async HTTP: Android异步HTTP库</p>
+
+    <p>AndroidAsync: 异步Socket，HTTP(客户端+服务器)，WebSocket，和socket.io库。基于NIO而不是线程。</p>
+
+    <p>OkHttp: 一个Http与Http/2的客户端Retrofit类型安全的Http客户端</p>
+
+    <p>Volley: Google推出的Android异步网络请求框架和图片加载框架</p>
+  </li>
+  <li>
+    <p>网络解析</p>
+  </li>
+</ul>
+
+<p>Gson:  一个Java序列化/反序列化库，可以将JSON和java对象互相转换</p>
+
+<p>Jackson:  Jackson可以轻松地将Java对象转换成json对象和xml文档，同样也可以将json、xml转换成Java对象</p>
+
+<p>Fastjson:  Java上一个快速的JSON解析器/生成器</p>
+
+<p>HtmlPaser： 一种用来解析单个独立html或嵌套html的方式</p>
+
+<p>Jsoup:  一个以最好的DOM，CSS和jQuery解析html的库</p>
+
+<ul>
+  <li>数据库</li>
+</ul>
+
+<p>OrmLite: JDBC和Android的轻量级ORM java包</p>
+
+<p>Sugar: 用超级简单的方法处理Android数据库</p>
+
+<p>GreenDAO: 一种轻快地将对象映射到SQLite数据库的ORM解决方案。</p>
+
+<p>ActiveAndroid: 以活动记录方式为Android SQLite提供持久化</p>
+
+<p>SQLBrite: SQLiteOpenHelper 和ContentResolver的轻量级包装</p>
+
+<p>Realm移动数据库：一个SQLite和ORM的替换品</p>
+
+<ul>
+  <li>
+    <p>依赖注入</p>
+
+    <p>ButterKnife: 将Android视图和回调方法绑定到字段和方法上	
+  Dagger2: 一个Android和java快速依赖注射器。</p>
+
+    <p>AndroidAnotations: 快速安卓开发。易于维护	
+  RoboGuice: Android平台的Google Guice</p>
+  </li>
+  <li>
+    <p>图表</p>
+  </li>
+</ul>
+
+<p>WilliamChart: 创建图表的Android库</p>
+
+<p>HelloCharts: 兼容到API8的Android图表库</p>
+
+<p>MPAndroidChart: 一个强大的Android图表视图/图形库</p>
+
+<ul>
+  <li>
+    <p>后台处理</p>
+
+    <p>Tape: 一个轻快的，事务性的，基于文件的FIFO的库Android</p>
+
+    <p>Priority Job Queue: 一个专门为Android轻松调度任务的工作队列</p>
+  </li>
+  <li>
+    <p>事件总线</p>
+
+    <p>EventBus: 安卓优化的事件总线，简化了活动、片段、线程、服务等的通信</p>
+
+    <p>Otto: 一个基于Guava的增强的事件总线</p>
+  </li>
+  <li>
+    <p>响应式编程</p>
+
+    <p>RxJava: JVM上的响应式扩展</p>
+
+    <p>RxJavaJoins: 为RxJava提供Joins操作</p>
+
+    <p>RxAndroid: Android上的响应式扩展，在RxJava基础上添加了Android线程调度</p>
+
+    <p>RxBinding: 提供用RxJava绑定Android UI的API</p>
+
+    <p>Agera: Android上的响应式编程</p>
+  </li>
+  <li>
+    <p>Log框架</p>
+
+    <p>Logger: 简单，漂亮，强大的Android日志工具</p>
+
+    <p>Hugo: 在调试版本上注解的触发方法进行日志记录</p>
+
+    <p>Timber: 一个小的，可扩展的日志工具</p>
+  </li>
+  <li>
+    <p>测试框架</p>
+
+    <p>Mockito: Java编写的Mocking单元测试框架</p>
+
+    <p>Robotium: Android UI 测试</p>
+
+    <p>Robolectric: Android单元测试框架</p>
+  </li>
+</ul>
+
+<p>Android自带很多测试工具：JUnit，Monkeyrunner，UiAutomator，Espresso等</p>
+
+<ul>
+  <li>
+    <p>调试框架</p>
+
+    <p>Stetho: 调试Android应用的桥梁，使得可以利用Chrome开发者工具进行调试</p>
+  </li>
+  <li>
+    <p>性能优化</p>
+
+    <p>LeakCanary: 内存泄漏检测工具</p>
+
+    <p>ACRA: Android应用程序崩溃报告</p>
+  </li>
+</ul>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2016 年5 月26 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/android-frame" data-title="android frame" data-url="http://helloyokoy.github.io/blog/android-frame/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2016
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

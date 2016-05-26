@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2016-04-15T17:12:43+08:00</updated>
+  <updated>2016-05-26T15:06:17+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,174 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[android frame]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-frame/"/>
+    <updated>2016-05-26T14:47:35+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/android-frame</id>
+    <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160524172058595" alt="img" /></p>
+
+<p>框架简单介绍：</p>
+
+<ul>
+  <li>
+    <p>缓存</p>
+
+    <p>DiskLruCache: Java实现基于LRU的磁盘缓存</p>
+  </li>
+  <li>
+    <p>图片加载</p>
+  </li>
+</ul>
+
+<p>Android Universal Image Loader: 一个强大的加载，缓存，展示图片的库</p>
+
+<p>Picasso: 一个强大的图片下载与缓存的库。</p>
+
+<p>Fresco: 一个用于管理图像和他们使用的内存的库</p>
+
+<p>Glide: 一个图片加载和缓存的库</p>
+
+<ul>
+  <li>
+    <p>图片处理</p>
+
+    <p>Picasso-transformations: 一个为Picasso提供多种图片变换的库</p>
+
+    <p>Glide-transformations: 一个为Glide提供多种图片变换的库</p>
+
+    <p>Android-gpuimage: 基于OpenGL的Android过滤器</p>
+  </li>
+  <li>
+    <p>网络请求</p>
+
+    <p>Android Async HTTP: Android异步HTTP库</p>
+
+    <p>AndroidAsync: 异步Socket，HTTP(客户端+服务器)，WebSocket，和socket.io库。基于NIO而不是线程。</p>
+
+    <p>OkHttp: 一个Http与Http/2的客户端Retrofit类型安全的Http客户端</p>
+
+    <p>Volley: Google推出的Android异步网络请求框架和图片加载框架</p>
+  </li>
+  <li>
+    <p>网络解析</p>
+  </li>
+</ul>
+
+<p>Gson:  一个Java序列化/反序列化库，可以将JSON和java对象互相转换</p>
+
+<p>Jackson:  Jackson可以轻松地将Java对象转换成json对象和xml文档，同样也可以将json、xml转换成Java对象</p>
+
+<p>Fastjson:  Java上一个快速的JSON解析器/生成器</p>
+
+<p>HtmlPaser： 一种用来解析单个独立html或嵌套html的方式</p>
+
+<p>Jsoup:  一个以最好的DOM，CSS和jQuery解析html的库</p>
+
+<ul>
+  <li>数据库</li>
+</ul>
+
+<p>OrmLite: JDBC和Android的轻量级ORM java包</p>
+
+<p>Sugar: 用超级简单的方法处理Android数据库</p>
+
+<p>GreenDAO: 一种轻快地将对象映射到SQLite数据库的ORM解决方案。</p>
+
+<p>ActiveAndroid: 以活动记录方式为Android SQLite提供持久化</p>
+
+<p>SQLBrite: SQLiteOpenHelper 和ContentResolver的轻量级包装</p>
+
+<p>Realm移动数据库：一个SQLite和ORM的替换品</p>
+
+<ul>
+  <li>
+    <p>依赖注入</p>
+
+    <p>ButterKnife: 将Android视图和回调方法绑定到字段和方法上	
+  Dagger2: 一个Android和java快速依赖注射器。</p>
+
+    <p>AndroidAnotations: 快速安卓开发。易于维护	
+  RoboGuice: Android平台的Google Guice</p>
+  </li>
+  <li>
+    <p>图表</p>
+  </li>
+</ul>
+
+<p>WilliamChart: 创建图表的Android库</p>
+
+<p>HelloCharts: 兼容到API8的Android图表库</p>
+
+<p>MPAndroidChart: 一个强大的Android图表视图/图形库</p>
+
+<ul>
+  <li>
+    <p>后台处理</p>
+
+    <p>Tape: 一个轻快的，事务性的，基于文件的FIFO的库Android</p>
+
+    <p>Priority Job Queue: 一个专门为Android轻松调度任务的工作队列</p>
+  </li>
+  <li>
+    <p>事件总线</p>
+
+    <p>EventBus: 安卓优化的事件总线，简化了活动、片段、线程、服务等的通信</p>
+
+    <p>Otto: 一个基于Guava的增强的事件总线</p>
+  </li>
+  <li>
+    <p>响应式编程</p>
+
+    <p>RxJava: JVM上的响应式扩展</p>
+
+    <p>RxJavaJoins: 为RxJava提供Joins操作</p>
+
+    <p>RxAndroid: Android上的响应式扩展，在RxJava基础上添加了Android线程调度</p>
+
+    <p>RxBinding: 提供用RxJava绑定Android UI的API</p>
+
+    <p>Agera: Android上的响应式编程</p>
+  </li>
+  <li>
+    <p>Log框架</p>
+
+    <p>Logger: 简单，漂亮，强大的Android日志工具</p>
+
+    <p>Hugo: 在调试版本上注解的触发方法进行日志记录</p>
+
+    <p>Timber: 一个小的，可扩展的日志工具</p>
+  </li>
+  <li>
+    <p>测试框架</p>
+
+    <p>Mockito: Java编写的Mocking单元测试框架</p>
+
+    <p>Robotium: Android UI 测试</p>
+
+    <p>Robolectric: Android单元测试框架</p>
+  </li>
+</ul>
+
+<p>Android自带很多测试工具：JUnit，Monkeyrunner，UiAutomator，Espresso等</p>
+
+<ul>
+  <li>
+    <p>调试框架</p>
+
+    <p>Stetho: 调试Android应用的桥梁，使得可以利用Chrome开发者工具进行调试</p>
+  </li>
+  <li>
+    <p>性能优化</p>
+
+    <p>LeakCanary: 内存泄漏检测工具</p>
+
+    <p>ACRA: Android应用程序崩溃报告</p>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[facebook redex]]></title>
@@ -298,324 +466,6 @@
 
 <p>接下来跟安装adt的流程一样，指导完成
 最后附上官网地址：<a href="http://www.genymotion.com/">http://www.genymotion.com/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android https请求no peer certificate解决方案]]></title>
-    <link href="http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/"/>
-    <updated>2015-08-12T16:30:44+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an</id>
-    <content type="html"><![CDATA[<h3 id="section">解决方案一</h3>
-<hr />
-
-<p>写了一个自定义类继承SSLSocketFactory：</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>import java.io.IOException;
-</span><span class='line'>import java.net.Socket;
-</span><span class='line'>import java.net.UnknownHostException;
-</span><span class='line'>import java.security.KeyManagementException;
-</span><span class='line'>import java.security.KeyStore;
-</span><span class='line'>import java.security.KeyStoreException;
-</span><span class='line'>import java.security.NoSuchAlgorithmException;
-</span><span class='line'>import java.security.UnrecoverableKeyException;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>import javax.net.ssl.SSLContext;
-</span><span class='line'>import javax.net.ssl.TrustManager;
-</span><span class='line'>import javax.net.ssl.X509TrustManager;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>import org.apache.http.conn.ssl.SSLSocketFactory;&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>public class SSLSocketFactoryEx extends SSLSocketFactory {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>SSLContext sslContext = SSLContext.getInstance(“TLS”);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>public SSLSocketFactoryEx(KeyStore truststore) 
-</span><span class='line'>                        throws NoSuchAlgorithmException, KeyManagementException,
-</span><span class='line'>                        KeyStoreException, UnrecoverableKeyException {
-</span><span class='line'>                super(truststore);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>TrustManager tm = new X509TrustManager() {
-</span><span class='line'>                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@Override&lt;br />
-</span><span class='line'>public void checkClientTrusted(
-</span><span class='line'>   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class='line'>                                            throws java.security.cert.CertificateException {}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@Override&lt;br />
-</span><span class='line'>public void checkServerTrusted(
-</span><span class='line'>   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class='line'>                                            throws java.security.cert.CertificateException {}
-</span><span class='line'>        };&lt;br />
-</span><span class='line'>        sslContext.init(null, new TrustManager[] { tm }, null);&lt;br />
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@Override&lt;br />
-</span><span class='line'>public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {&lt;br />
-</span><span class='line'>  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);&lt;br />
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>@Override&lt;br />
-</span><span class='line'>public Socket createSocket() throws IOException {&lt;br />
-</span><span class='line'>    return sslContext.getSocketFactory().createSocket();&lt;br />
-</span><span class='line'>}&lt;br />
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<!--more-->
-
-<p>再来看看如何做回调：</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>public static HttpClient getNewHttpClient() {&lt;br />
-</span><span class='line'> try {&lt;br />
-</span><span class='line'>  KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());&lt;br />
-</span><span class='line'>  trustStore.load(null, null);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>SSLSocketFactory sf = new SSLSocketFactoryEx(trustStore);&lt;br />
-</span><span class='line'>  sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>HttpParams params = new BasicHttpParams();&lt;br />
-</span><span class='line'>  HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);&lt;br />
-</span><span class='line'>  HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>SchemeRegistry registry = new SchemeRegistry();&lt;br />
-</span><span class='line'>  registry.register(new Scheme(“http”, PlainSocketFactory.getSocketFactory(), 80));&lt;br />
-</span><span class='line'>  registry.register(new Scheme(“https”, sf, 443));&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry); &lt;br />
-</span><span class='line'>   return new DefaultHttpClient(ccm, params);&lt;br />
-</span><span class='line'>  } catch (Exception e) {&lt;br />
-</span><span class='line'>   return new DefaultHttpClient();&lt;br />
-</span><span class='line'>  }&lt;br />
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>现在就可以拿这个HTTPClient去请求数据了</p>
-
-<h3 id="section-1">解决方案二</h3>
-<hr />
-
-<p><a href="http://www.cnblogs.com/P_Chou/archive/2010/12/27/https-ssl-certification.html" title="Title">http://www.cnblogs.com/P_Chou/archive/2010/12/27/https-ssl-certification.html</a>讲的非常清楚https-ssl的认证过程，膜拜下该作者</p>
-
-<p>1.浏览器访问https地址，保存提示的证书到本地，放到android项目中的assets目录。</p>
-
-<p>2.导入证书，代码如下。</p>
-
-<p>3.把证书添加为信任。</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>String requestHTTPSPage(String mUrl) {
-</span><span class='line'>  InputStream ins = null;
-</span><span class='line'>  String result = “”;
-</span><span class='line'>  try {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>ins = context.getAssets().open(“app_pay.cer”); //下载的证书放到项目中的assets目录中
-</span><span class='line'>   CertificateFactory cerFactory = CertificateFactory
-</span><span class='line'>                    .getInstance(“X.509”);
-</span><span class='line'>   Certificate cer = cerFactory.generateCertificate(ins);
-</span><span class='line'>   KeyStore keyStore = KeyStore.getInstance(“PKCS12”, “BC”);
-</span><span class='line'>   keyStore.load(null, null);
-</span><span class='line'>   keyStore.setCertificateEntry(“trust”, cer);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>SSLSocketFactory socketFactory = new SSLSocketFactory(keyStore);
-</span><span class='line'>   Scheme sch = new Scheme(“https”, socketFactory, 443);
-</span><span class='line'>   HttpClient mHttpClient = new DefaultHttpClient();
-</span><span class='line'>   mHttpClient.getConnectionManager().getSchemeRegistry()
-</span><span class='line'>                    .register(sch);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>BufferedReader reader = null;
-</span><span class='line'>     try {
-</span><span class='line'>         Log.d(TAG, “executeGet is in,murl:” + mUrl);
-</span><span class='line'>         HttpGet request = new HttpGet();
-</span><span class='line'>         request.setURI(new URI(mUrl));
-</span><span class='line'>         HttpResponse response = mHttpClient.execute(request);
-</span><span class='line'>         if (response.getStatusLine().getStatusCode() != 200) {
-</span><span class='line'>            request.abort();
-</span><span class='line'>            return result;
-</span><span class='line'>         }&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>reader = new BufferedReader(new InputStreamReader(response
-</span><span class='line'>                        .getEntity().getContent()));
-</span><span class='line'>  StringBuffer buffer = new StringBuffer();
-</span><span class='line'>  String line = null;
-</span><span class='line'>  while ((line = reader.readLine()) != null) {
-</span><span class='line'>                    buffer.append(line);
-</span><span class='line'>  }
-</span><span class='line'>  result = buffer.toString();
-</span><span class='line'>  Log.d(TAG, “mUrl=” + mUrl + “\nresult = “ + result);
-</span><span class='line'>  } catch (Exception e) {
-</span><span class='line'>    e.printStackTrace();
-</span><span class='line'>  } finally {
-</span><span class='line'>     if (reader != null) {
-</span><span class='line'>        reader.close();
-</span><span class='line'>     }
-</span><span class='line'> }
-</span><span class='line'> } catch (Exception e) {
-</span><span class='line'>   // TODO: handle exception
-</span><span class='line'> } finally {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>try {
-</span><span class='line'>    if (ins != null)
-</span><span class='line'>       ins.close();
-</span><span class='line'>  } catch (IOException e) {
-</span><span class='line'>     e.printStackTrace();
-</span><span class='line'>  }
-</span><span class='line'>  }
-</span><span class='line'>  return result;
-</span><span class='line'>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   
