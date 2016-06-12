@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2016-06-12T18:38:45+08:00</updated>
+  <updated>2016-06-12T19:00:10+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -103,6 +103,174 @@
 <h3 id="jspatch--1">JSPatch 平台速度和稳定性如何？</h3>
 
 <p>通过 JSPatch 平台上传的脚本文件都会保存在七牛云存储上，客户端 APP 只跟七牛服务器通讯，支持高并发，CDN分布全国，速度和稳定性有保证。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[swift开发库]]></title>
+    <link href="http://helloyokoy.github.io/blog/swiftkai-fa-ku/"/>
+    <updated>2016-06-05T18:50:01+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/swiftkai-fa-ku</id>
+    <content type="html"><![CDATA[<ol>
+  <li>CryptoSwift</li>
+</ol>
+
+<p>swift加密库, 支持md5,sha1,sha224,sha256…</p>
+
+<p>github地址: <a href="https://github.com/krzyzanowskim/CryptoSwift">https://github.com/krzyzanowskim/CryptoSwift</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085348448948.jpg" alt="jpg" /></p>
+
+<!--more-->
+
+<ol>
+  <li>Kingfisher</li>
+</ol>
+
+<p>Kingfisher 是一个异步下载和缓存图片的库 类似于SDWebImage</p>
+
+<p>只不过它是纯Swift的实现</p>
+
+<p>github地址：<a href="https://github.com/onevcat/Kingfisher">https://github.com/onevcat/Kingfisher</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085373992263.jpg" alt="jpg" /></p>
+
+<ol>
+  <li>PeekPop</li>
+</ol>
+
+<p>3DTouch动画组件</p>
+
+<p>Peek和Pop是iPhone 6S和6S+上新增的一个很棒的iOS特性，可以很方便地使用3D touch来预览内容。</p>
+
+<p>github地址：<a href="https://github.com/marmelroy/PeekPop">https://github.com/marmelroy/PeekPop</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085502558697.jpg" alt="jpg" /></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085641814017.gif" alt="jpg" /></p>
+
+<ol>
+  <li>AlamofireObjectMapper</li>
+</ol>
+
+<p>将Alamofire JSON响应数据 转为swift对象</p>
+
+<p>github地址：<a href="https://github.com/tristanhimmelman/AlamofireObjectMapper">https://github.com/tristanhimmelman/AlamofireObjectMapper</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085537803735.jpg" alt="jpg" /></p>
+
+<ol>
+  <li>RxAlamofire</li>
+</ol>
+
+<p>为Alamofire提供 函数响应式（FRP）调用接口</p>
+
+<p>以优雅的方式使用Alamofire进行网络请求</p>
+
+<p>github地址：<a href="https://github.com/RxSwiftCommunity/RxAlamofire">https://github.com/RxSwiftCommunity/RxAlamofire</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085656633375.jpg" alt="jpg" /></p>
+
+<ol>
+  <li>PromiseKit</li>
+</ol>
+
+<p>异步编程类库 提供了很多实用的异步函数 让异步编程更简单</p>
+
+<p>github地址：<a href="https://github.com/mxcl/PromiseKit">https://github.com/mxcl/PromiseKit</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085675411831.jpg" alt="jpg" /></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085698363881.jpg" alt="jpg" /></p>
+
+<ol>
+  <li>EZSwiftExtensions</li>
+</ol>
+
+<p>对Swift标准库， Foundation， UIKit 提供了很多高级扩展函数</p>
+
+<p>包括以下内容：</p>
+
+<p>NSObject</p>
+
+<p>Bool</p>
+
+<p>Int</p>
+
+<p>Double</p>
+
+<p>String</p>
+
+<p>NSAttritedString</p>
+
+<p>Array</p>
+
+<p>Dictioanry</p>
+
+<p>NSDate</p>
+
+<p>NSTimer</p>
+
+<p>CGRect</p>
+
+<p>UIViewController</p>
+
+<p>UIView</p>
+
+<p>UITextView</p>
+
+<p>UILabel</p>
+
+<p>UIImageView</p>
+
+<p>UIImage</p>
+
+<p>Block Objects</p>
+
+<p>UIDevice</p>
+
+<p>NSUserDefauts</p>
+
+<p>NSURL</p>
+
+<p>EZ function and variables</p>
+
+<p>github地址：<a href="https://github.com/goktugyil/EZSwiftExtensions">https://github.com/goktugyil/EZSwiftExtensions</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085719198231.jpg" alt="jpg" /></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085745420071.jpg" alt="jpg" /></p>
+
+<ol>
+  <li>Aspects</li>
+</ol>
+
+<p>swift面向切面编程（AOP）库 【Method Swizzling】</p>
+
+<p>github地址：<a href="https://github.com/steipete/Aspects">https://github.com/steipete/Aspects</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085770599317.jpg" alt="jpg" /></p>
+
+<ol>
+  <li>PermissionScope</li>
+</ol>
+
+<p>权限管理库 提供申请权限授权操作</p>
+
+<p>githubd地址：<a href="https://github.com/nickoneill/PermissionScope">https://github.com/nickoneill/PermissionScope</a></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085793901381.jpg" alt="" /></p>
+
+<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085821147167.gif" alt="" /></p>
+
+<p>10、Alamofire</p>
+
+<p>网络操作库 基本都知道</p>
+
+<p>github地址：<a href="https://github.com/Alamofire/Alamofire">https://github.com/Alamofire/Alamofire</a></p>
+
+<hr />
+<p>转载自<a href="http://www.cocoachina.com/swift/20160525/16437.html">http://www.cocoachina.com/swift/20160525/16437.html</a></p>
 ]]></content>
   </entry>
   
@@ -260,32 +428,6 @@ xalign
 KSimageNamed
 xcolors
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS self 和 下划线 _ 区别]]></title>
-    <link href="http://helloyokoy.github.io/blog/ios-self/"/>
-    <updated>2015-12-05T15:48:50+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/ios-self</id>
-    <content type="html"><![CDATA[<pre><code>@property (nonatomic,copy) NSString *propertyName;
-</code></pre>
-
-<p>self.propertyName是对属性的访问；使用_propertyName是对局部变量的访问。</p>
-
-<p>所有被声明为属性的成员，在iOS5 之前需要使用编译器指令@synthesize 来告诉编译器帮助生成属性的getter,setter方法。
-之后这个指令可以不用人为指定了，默认情况下编译器会帮我们生成。</p>
-
-<p>编译器在生成getter,setter方法时是有优先级的，它首先查找当前的类中用户是否已定义属性的getter,setter方法，如果有，则编译器会跳过，不会再生成，使用用户定义的方法。</p>
-
-<p>也就是说你在使用self.propertyName 时是在调用一个getter方法。</p>
-
-<pre><code>self.propertyName 会让计数器＋1;_propertyName却不会。  
-
-_propertyName是类似于self-&gt;_propertyName。
-</code></pre>
-
-<p>用self.propertyName 是更好的选择，因为这样可以兼容懒加载，同时也避免了使用下划线的时候忽视了self这个指针，后者容易在block中造成循环引用。</p>
 ]]></content>
   </entry>
   
