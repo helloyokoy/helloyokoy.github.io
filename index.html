@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content=" 阅读全文 2016 年5 月26 日 android ">
+	<meta name="description" content="什么是 JSPatch？ JSPatch 是一个开源项目(Github链接)，只需要在项目里引入极小的引擎文件，就可以使用 JavaScript 调用任何 Objective-C 的原生接口，替换任意 Objective-C 原生方法。目前主要用于下发 JS 脚本替换原生 Objective-C &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -124,6 +124,43 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/jspatch/">
+		
+			JSPatch 介绍</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="jspatch">什么是 JSPatch？</h3>
+
+<p>JSPatch 是一个开源项目(<a href="https://github.com/bang590/JSPatch">Github链接</a>)，只需要在项目里引入极小的引擎文件，就可以使用 JavaScript 调用任何 Objective-C 的原生接口，替换任意 Objective-C 原生方法。目前主要用于下发 JS 脚本替换原生 Objective-C 代码，实时修复线上 bug。</p>
+
+
+		
+		<a href="/blog/jspatch/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2016 年6 月12 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -573,85 +610,6 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 		
 		<a href="/blog/charles/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月26 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/nslog-and-lldb/">
-		
-			NSLog 和 LLDB</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">前言</h3>
-
-<p>打Log是我们debug时最简单朴素的方法，NSLog对于objc开发就像printf对于c一样重要。但在使用NSLog打印大量Log，尤其是在游戏开发时（如每一帧都打印数据），NSLog会明显的拖慢程序的运行速度（游戏帧速严重下滑）。本文探究了一下NSLog如此之慢的原因，并尝试使用lldb断点调试器替代NSLog进行debug log。</p>
-
-<h3 id="section-1">小测试</h3>
-
-<p>测试下分别使用NSLog和printf打印10000次耗费的时间。CFAbsoluteTimeGetCurrent()函数可以打印出当前的时间戳，精度还是很高的，于是乎测试代码如下：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">CFAbsoluteTime startNSLog = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
-</span><span class="line">    NSLog(@"%d", i); 
-</span><span class="line">} 
-</span><span class="line">CFAbsoluteTime endNSLog = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line"> 
-</span><span class="line">CFAbsoluteTime startPrintf = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
-</span><span class="line">    printf("%d\n", i); 
-</span><span class="line">} 
-</span><span class="line">CFAbsoluteTime endPrintf = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">
-</span><span class="line">NSLog(@"NSLog time: %lf, printf time: %lf", endNSLog - startNSLog, endPrintf - startPrintf);</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这个时间和机器肯定有关系，只看它们的差别就好。为了全面性，尝试了三种平台：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">NSLog time: 4.985445, printf time: 0.084193 // mac 
-</span><span class="line">NSLog time: 5.562460, printf time: 0.019408 // 模拟器 
-</span><span class="line">NSLog time: 10.471490, printf time: 0.090503 // 真机调试(iphone5)</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>可以发现，在mac上（模拟器其实也算是mac吧）速度差别达到了60倍左右，而真机调试甚至达到了离谱的100多倍。</p>
-
-<p>
-		
-		<a href="/blog/nslog-and-lldb/" class="more-link">阅读全文</a>
 	</div>
 
 
