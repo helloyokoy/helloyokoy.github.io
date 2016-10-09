@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2016-06-12T19:00:10+08:00</updated>
+  <updated>2016-10-09T15:48:43+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vapor 用swift写服务端]]></title>
+    <link href="http://helloyokoy.github.io/blog/vapor-swift-server/"/>
+    <updated>2016-10-09T15:43:38+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/vapor-swift-server</id>
+    <content type="html"><![CDATA[<p>自从苹果官方发布了一个 Swift 的 Linux 开源版本之后，服务端 Swift 终于迎来了一个令人激动的前景。我的好奇心终于无法克制，是时候尝试一下服务端 Swift 了！</p>
+
+<p><a href="http://vapor.codes/">http://vapor.codes/</a></p>
+
+<!--more-->
+
+<p>官方教程如下</p>
+
+<p><a href="https://vapor.github.io/documentation/getting-started/hello-world.html">https://vapor.github.io/documentation/getting-started/hello-world.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JSPatch 介绍]]></title>
@@ -400,34 +417,6 @@ Wax的核心逻辑是替换函数，但原思路利用了32位函数入栈的特
 <p>源码网址：<a href="https://github.com/alibaba/wax">https://github.com/alibaba/wax</a></p>
 
 <p>来源：阿里巴巴技术协会（ATA）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[xcode plugin ]]></title>
-    <link href="http://helloyokoy.github.io/blog/xcode-plugin/"/>
-    <updated>2015-12-10T16:17:52+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/xcode-plugin</id>
-    <content type="html"><![CDATA[<p>新版 xcode 插件 不能用 解决方法</p>
-
-<pre><code>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
-</code></pre>
-
-<p>xcode 插件管理器</p>
-
-<pre><code>Alcatraz
-</code></pre>
-
-<p>xcode 常用插件</p>
-
-<pre><code>xtodo 
-fuzzyautocompelte
-codepilot
-xcodeboost
-xalign
-KSimageNamed
-xcolors
-</code></pre>
 ]]></content>
   </entry>
   

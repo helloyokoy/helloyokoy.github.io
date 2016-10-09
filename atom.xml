@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2016-06-12T19:00:10+08:00</updated>
+  <updated>2016-10-09T15:48:43+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vapor 用swift写服务端]]></title>
+    <link href="http://helloyokoy.github.io/blog/vapor-swift-server/"/>
+    <updated>2016-10-09T15:43:38+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/vapor-swift-server</id>
+    <content type="html"><![CDATA[<p>自从苹果官方发布了一个 Swift 的 Linux 开源版本之后，服务端 Swift 终于迎来了一个令人激动的前景。我的好奇心终于无法克制，是时候尝试一下服务端 Swift 了！</p>
+
+<p><a href="http://vapor.codes/">http://vapor.codes/</a></p>
+
+<!--more-->
+
+<p>官方教程如下</p>
+
+<p><a href="https://vapor.github.io/documentation/getting-started/hello-world.html">https://vapor.github.io/documentation/getting-started/hello-world.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JSPatch 介绍]]></title>
@@ -4675,38 +4692,6 @@ bottomlayoutguide 替换成 mas_bottomlayoutguide</p>
 
 <p>Posted by <a href="http://weibo.com/luohanchenyilong/">微博@iOS程序犭袁</a><br />
 原创文章，版权声明：自由转载-非商用-非衍生-保持署名 | <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">Creative Commons BY-NC-ND 3.0</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ruby gems内存泄露]]></title>
-    <link href="http://helloyokoy.github.io/blog/ruby-gems-memory-leak/"/>
-    <updated>2015-10-22T15:01:34+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/ruby-gems-memory-leak</id>
-    <content type="html"><![CDATA[<p>请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新</p>
-
-<ul>
-  <li>
-    <p>therubyracer &lt; 0.12.2</p>
-  </li>
-  <li>
-    <p>sidekiq &lt; 3.5.1</p>
-  </li>
-  <li>
-    <p>celluloid &gt; 0.16.0, &lt; 0.17.2</p>
-  </li>
-  <li>
-    <p>zipruby &lt;= 0.3.6</p>
-  </li>
-  <li>
-    <p>redcarpet &lt; 3.3.3</p>
-  </li>
-  <li>
-    <p>grape &lt; 0.2.5</p>
-  </li>
-</ul>
-
-<p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
 ]]></content>
   </entry>
   

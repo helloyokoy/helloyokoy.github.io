@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="什么是 JSPatch？ JSPatch 是一个开源项目(Github链接)，只需要在项目里引入极小的引擎文件，就可以使用 JavaScript 调用任何 Objective-C 的原生接口，替换任意 Objective-C 原生方法。目前主要用于下发 JS 脚本替换原生 Objective-C &hellip;">
+	<meta name="description" content=" 自从苹果官方发布了一个 Swift 的 Linux 开源版本之后，服务端 Swift 终于迎来了一个令人激动的前景。我的好奇心终于无法克制，是时候尝试一下服务端 Swift 了！ http://vapor.codes/ 阅读全文 2016 年10 月9 日 ios ">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -124,6 +124,43 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/vapor-swift-server/">
+		
+			Vapor 用swift写服务端</a>
+	</h2>
+	<div class="entry-content">
+		<p>自从苹果官方发布了一个 Swift 的 Linux 开源版本之后，服务端 Swift 终于迎来了一个令人激动的前景。我的好奇心终于无法克制，是时候尝试一下服务端 Swift 了！</p>
+
+<p><a href="http://vapor.codes/">http://vapor.codes/</a></p>
+
+
+		
+		<a href="/blog/vapor-swift-server/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2016 年10 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -530,83 +567,6 @@ _propertyName是类似于self-&gt;_propertyName。
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/grape-on-rails/">
-		
-			使用 Grape 构建 RESTful API</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://blog.lanvige.com/uploads/ruby/grape-logo.png" alt="img" /></p>
-
-<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
-
-<h3 id="section">安装配置</h3>
-
-<p>首先确保安装：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">## Platform
-</span><span class="line">gem 'rails', '4.2.0'
-</span><span class="line">
-</span><span class="line">## RESTful API Engine
-</span><span class="line">gem 'grape'
-</span><span class="line">gem 'grape-entity'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h3 id="section-1">组织架构</h3>
-
-<h4 id="section-2">目录结构</h4>
-
-<pre><code>api
-├── api.rb
-└── v1
-	├── base.rb
-	├── entities
-	│   ├── base.rb
-	│   └── user_basic.rb
-	├── helpers
-	│   ├── page_helper.rb
-	│   └── user_helper.rb
-	├── base_api.rb
-	└── users_api.rb
-</code></pre>
-
-<p>base.rb 中定义着API的版本、输出格式，及挂载更多API。
-users_api.rb 就像controller，对每个resources都进行分开写，然后在base.rb中进行mount
-entities 使用grape-entity，控制输出中的对象及格式。
-helper 放置常用的helper，像分页，用户验证。</p>
-
-
-		
-		<a href="/blog/grape-on-rails/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年12 月4 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
 
 
 </div>

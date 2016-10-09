@@ -7,8 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="RubyMotion 是什么 统一的运行时环境
-在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java &hellip;">
+	<meta name="description" content="请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新 therubyracer &lt; 0.12.2 sidekiq &lt; 3.5.1 celluloid &gt; 0.16.0, &lt; 0.17.2 zipruby &lt;= 0.3.6 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -125,6 +124,63 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/ruby-gems-memory-leak/">
+		
+			Ruby Gems内存泄露</a>
+	</h2>
+	<div class="entry-content">
+		<p>请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新</p>
+
+<ul>
+  <li>
+    <p>therubyracer &lt; 0.12.2</p>
+  </li>
+  <li>
+    <p>sidekiq &lt; 3.5.1</p>
+  </li>
+  <li>
+    <p>celluloid &gt; 0.16.0, &lt; 0.17.2</p>
+  </li>
+  <li>
+    <p>zipruby &lt;= 0.3.6</p>
+  </li>
+  <li>
+    <p>redcarpet &lt; 3.3.3</p>
+  </li>
+  <li>
+    <p>grape &lt; 0.2.5</p>
+  </li>
+</ul>
+
+<p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月22 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -528,47 +584,6 @@
 
 
 2015 年9 月2 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/rails-image-size/">
-		
-			Rails 实时生成多尺寸图</a>
-	</h2>
-	<div class="entry-content">
-		<p>在开发网站时，同一张图片时常需要生成多张不同尺寸的缩略图片。</p>
-
-<p>一般有两种策略生成缩略图，一种在上传图片时，生成所有尺寸的缩略图，另一种是请求指定尺寸时再生成缩略图。</p>
-
-<p>前一种方式会有一些限制，当我们需要一种新的图片尺寸时，需要使用脚本重新生成。而后一种方式就比较灵活。（淘宝也是采用这个方案，只是淘宝使用ImageMagick。）</p>
-
-<p>网上有一种是借助 lua_nginx module 调用 GraphicsMagick 命令生成缩略图片，不过 nginx 默认发布版本是不包含 lua_nginx 模块，需要重新编译安装，这样太麻烦，实现方式并不灵活。我们需要一种更灵活的方式来实现。</p>
-
-
-		
-		<a href="/blog/rails-image-size/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月22 日</div>
 	<div class="tags">
 
 
