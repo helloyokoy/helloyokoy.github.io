@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>xcode plugin  - BryanFu Blog</title>
+	<title>NodeJS - BryanFu Blog</title>
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="新版 xcode 插件 不能用 解决方法 find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} &hellip;">
+	<meta name="description" content="https://github.com/nodejs/node/milestone/15?closed=1 We did change the naming of v6 from Stable to Current as well, so I am assuming that v7 will &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -126,27 +126,30 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">Xcode Plugin</h2>
-	<div class="entry-content"><p>新版 xcode 插件 不能用 解决方法</p>
+	<h2 class="title">NodeJS</h2>
+	<div class="entry-content"><p><a href="https://github.com/nodejs/node/milestone/15?closed=1">https://github.com/nodejs/node/milestone/15?closed=1</a></p>
 
-<pre><code>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
-</code></pre>
+<blockquote>
+  <p>We did change the naming of v6 from Stable to Current as well, so I am assuming that v7 will also be named as “Current” vs “Stable”</p>
+</blockquote>
 
-<p>xcode 插件管理器</p>
+<ul>
+  <li>已完成v8 5.4版本集成，也就是说支持async/await</li>
+  <li>koa 2.x也将随之发布，妈妈再也不担心我用bable的async/await调试了</li>
+  <li>upgrade libuv to 1.10.0</li>
+  <li>using openssl 1.1.0</li>
+</ul>
 
-<pre><code>Alcatraz
-</code></pre>
+<p>异步流程async/await终于落地了</p>
 
-<p>xcode 常用插件</p>
+<!--more-->
 
-<pre><code>xtodo 
-fuzzyautocompelte
-codepilot
-xcodeboost
-xalign
-KSimageNamed
-xcolors
-</code></pre>
+<p>以前
+<img src="https://dn-cnode.qbox.me/FmbZcLrkY4ThT1yQoV9vnyPfioDV" alt="https://dn-cnode.qbox.me/FmbZcLrkY4ThT1yQoV9vnyPfioDV" /></p>
+
+<p>现在</p>
+
+<p><img src="https://dn-cnode.qbox.me/FsP2jIneBIpGukP8pNW4ez7ps0qF" alt="https://dn-cnode.qbox.me/FsP2jIneBIpGukP8pNW4ez7ps0qF" /></p>
 </div>
 
 
@@ -156,11 +159,11 @@ xcolors
 
 
 
-2015 年12 月10 日</div>
+2016 年10 月27 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ios/'>ios</a>
+	<a class='category' href='/blog/categories/nodejs/'>nodejs</a>
 
 
 </div>
@@ -195,7 +198,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
   <section>
    <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="/blog/xcode-plugin" data-title="xcode plugin " data-url="http://helloyokoy.github.io/blog/xcode-plugin/"></div>
+<div class="ds-thread" data-thread-key="/blog/nodejs" data-title="NodeJS" data-url="http://helloyokoy.github.io/blog/nodejs/"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

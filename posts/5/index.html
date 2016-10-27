@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin! 概述 &hellip;">
+	<meta name="description" content="在大学的时候, 我脑海里时常都蹦出对计算机的许多问号, 尤其是计算机是如何工作的, 为什么它如此强大, 越来越显著地改变了我们的生活. 随着知识的积累, OS, 进程, 线程, 计算机网络, web 开发, 一个个知识孤岛在某一天终于连接了起来, 形成了一个极为清晰的信息流. 我相信, &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -69,6 +69,7 @@
 	<li><a href="/blog/categories/ios">iOS</a></li>
 	<li><a href="/blog/categories/android">Android</a></li>
 	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
 	<li><a href="/blog/categories/other">Other</a></li>
 	<li><a href="/about">关于</a></li>
 </ul>
@@ -82,6 +83,7 @@
 	<li><a href="/blog/categories/ios">iOS</a></li>
 	<li><a href="/blog/categories/android">Android</a></li>
 	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
 	<li><a href="/blog/categories/other">Other</a></li>
 	<li><a href="/about">关于</a></li>
 </ul>
@@ -124,6 +126,49 @@
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/what-happend-when-you-browse-my-blog/">
+		
+			当你浏览我的博客时计算机干了什么</a>
+	</h2>
+	<div class="entry-content">
+		<p>在大学的时候, 我脑海里时常都蹦出对计算机的许多问号, 尤其是计算机是如何工作的, 为什么它如此强大, 越来越显著地改变了我们的生活.</p>
+
+<p>随着知识的积累, OS, 进程, 线程, 计算机网络, web 开发, 一个个知识孤岛在某一天终于连接了起来, 形成了一个极为清晰的信息流.</p>
+
+<p>我相信, 作为读者的你, 也会非常想弄明白其中原理, 或者已经弄明白但可能还有些一些疑问, 于是乎, 我将一个很常见的操作, 进行信息流分析, 尝试分层分析它们的每一步.</p>
+
+<p>这个操作就是: 当你正在浏览我的这篇博客时, 计算机到底做了什么?</p>
+
+<p>为了叙述方便, 我限定使用了 chrome 浏览器, nginx, unicorn, rails 来描述它们, 实际上, 这些组件都是可以替换的.</p>
+
+
+		
+		<a href="/blog/what-happend-when-you-browse-my-blog/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年6 月27 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -581,79 +626,6 @@
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/afinaljie-shao/">
-		
-			Afinal介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
-
-<h3 id="afinal">Afinal简介</h3>
-<hr />
-<ul>
-  <li>
-    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
-  </li>
-  <li>
-    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
-  </li>
-  <li>
-    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
-  </li>
-</ul>
-
-<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
-<hr />
-
-<ul>
-  <li>
-    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
-  </li>
-  <li>
-    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
-  </li>
-  <li>
-    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
-  </li>
-  <li>
-    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
-  </li>
-</ul>
-
-<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
-
-<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
-&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
-</code></pre>
-
-
-		
-		<a href="/blog/afinaljie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年3 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

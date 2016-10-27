@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[分类：nodejs | BryanFu Blog]]></title>
+  <link href="http://helloyokoy.github.io/blog/categories/nodejs/atom.xml" rel="self"/>
+  <link href="http://helloyokoy.github.io/"/>
+  <updated>2016-10-27T12:38:35+08:00</updated>
+  <id>http://helloyokoy.github.io/</id>
+  <author>
+    <name><![CDATA[BryanFu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[NodeJS]]></title>
+    <link href="http://helloyokoy.github.io/blog/nodejs/"/>
+    <updated>2016-10-27T12:29:35+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/nodejs</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/nodejs/node/milestone/15?closed=1">https://github.com/nodejs/node/milestone/15?closed=1</a></p>
+
+<blockquote>
+  <p>We did change the naming of v6 from Stable to Current as well, so I am assuming that v7 will also be named as “Current” vs “Stable”</p>
+</blockquote>
+
+<ul>
+  <li>已完成v8 5.4版本集成，也就是说支持async/await</li>
+  <li>koa 2.x也将随之发布，妈妈再也不担心我用bable的async/await调试了</li>
+  <li>upgrade libuv to 1.10.0</li>
+  <li>using openssl 1.1.0</li>
+</ul>
+
+<p>异步流程async/await终于落地了</p>
+
+<!--more-->
+
+<p>以前
+<img src="https://dn-cnode.qbox.me/FmbZcLrkY4ThT1yQoV9vnyPfioDV" alt="https://dn-cnode.qbox.me/FmbZcLrkY4ThT1yQoV9vnyPfioDV" /></p>
+
+<p>现在</p>
+
+<p><img src="https://dn-cnode.qbox.me/FsP2jIneBIpGukP8pNW4ez7ps0qF" alt="https://dn-cnode.qbox.me/FsP2jIneBIpGukP8pNW4ez7ps0qF" /></p>
+]]></content>
+  </entry>
+  
+</feed>
