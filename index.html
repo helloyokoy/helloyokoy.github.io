@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="awesome-swift 其实这个系列的还有很多，极大的方便了开发者寻找自己需要的基础控件和工具。 本着记录和分享的态度，已下对本人觉得有必要深入了解，并可以使用在 swift 上的开源项目进行罗列。 Dollar github 地址： Dollar 推荐理由：操作数组的神器 简介： &hellip;">
+	<meta name="description" content="awesome-swift awesome-swift Dollar 操作数组的神器 SwiftyDate 处理 时间 SwiftyJSON 处理JSON ObjectMapper JSON 数据匹配 Alamofire AFNetworking swift 版本 SnapKit Masonry &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -133,225 +133,87 @@
 		
 		<a href="/blog/swift-3-dot-0/">
 		
-			Swift 3.0</a>
+			Swift 第三方库</a>
 	</h2>
 	<div class="entry-content">
-		<p><a href="https://github.com/matteocrippa/awesome-swift">awesome-swift</a></p>
+		<ul>
+  <li>awesome-swift</li>
+</ul>
 
-<p>其实这个系列的还有很多，极大的方便了开发者寻找自己需要的基础控件和工具。</p>
+<p><a href="https://github.com/matteocrippa/awesome-swift">awesome-swift</a></p>
 
-<p>本着记录和分享的态度，已下对本人觉得有必要深入了解，并可以使用在 swift 上的开源项目进行罗列。</p>
+<ul>
+  <li>Dollar</li>
+</ul>
 
-<p>Dollar</p>
+<blockquote>
+  <p>操作数组的神器</p>
+</blockquote>
 
-<p>github 地址： Dollar</p>
+<ul>
+  <li>SwiftyDate</li>
+</ul>
 
-<p>推荐理由：操作数组的神器</p>
+<blockquote>
+  <p>处理 时间</p>
+</blockquote>
 
-<p>简介：正如推荐的中所说，Dollar 是一个用来处理数组的工具集。
-Dollar 很强大，她优雅的为我们提供了解决数组，字典等对象的基本操作。比如将数组划分成若干个子集，如果我们自己动手做，那少不了for循环加各种判断。但使用 Dollar 一行代码就能搞定。具体接口可以去 github 上查阅。</p>
+<ul>
+  <li>SwiftyJSON</li>
+</ul>
 
-<p>主要包括以下中对象的操作</p>
+<blockquote>
+  <p>处理JSON</p>
+</blockquote>
 
-<p>Array
-Dictionary
-Object
-Function
-Chaining</p>
+<ul>
+  <li>ObjectMapper</li>
+</ul>
 
-<p>SwiftyJSON</p>
+<blockquote>
+  <p>JSON 数据匹配</p>
+</blockquote>
 
-<p>github 地址：SwiftyJSON</p>
+<ul>
+  <li>Alamofire</li>
+</ul>
 
-<p>推荐理由： 用过，因为是swift编写的所以性能和理解上不存在问题</p>
+<blockquote>
+  <p>AFNetworking swift 版本</p>
+</blockquote>
 
-<p>简介：是一个使用简单的处理 json 格式数据的工具
-详细的介绍和使用方法可参看 SwiftyJSON DOC 。这里多说一句，SwiftyJSON 的主要目的简化 JSON 数据的解析过程。但建模型的时候还是需要依次获取 JSON 里的数据赋值给模型。当 JSON 数据参数很多的时候，编写起来会费劲。所以推荐与 ObjectMapper 一起使用。</p>
+<ul>
+  <li>SnapKit</li>
+</ul>
 
-<p>ObjectMapper</p>
+<blockquote>
+  <p>Masonry swift 版本</p>
+</blockquote>
 
-<p>github 地址：ObjectMapper</p>
+<ul>
+  <li>Kingfisher</li>
+</ul>
 
-<p>推荐理由： 用过，很方便而且直观。只需要在 model 中引用 ObjectMapper 用法即可</p>
+<blockquote>
+  <p>图片下载</p>
+</blockquote>
 
-<p>简介：让数据模型的构造如此简单
-可能你会有疑问，竟然 ObjectMapper 能将 jsonString 直接转换成 model 那为什么还要使用上面的 SwiftyJSON . 这是因为我们的 JSON 数据中并不是所有内容都是我们需要的，我们可以通过 SwiftyJSON 先获取我们需要的数据块，然后在通过 ObjectMapper 获取 model。</p>
+<ul>
+  <li>HanekeSwift</li>
+</ul>
 
-<p>Alamofire</p>
+<blockquote>
+  <p>轻量级 cache</p>
+</blockquote>
 
-<p>github 地址：Alamofire</p>
+<ul>
+  <li>TransitionTreasury</li>
+</ul>
 
-<p>推荐理由：用过，OC 上广为流传的网络请求框架 AFNetworking 已经有20000+的star，但对于 swift 开发，个人理解还是要用 swift 的框架的工具比较合适。并且她有多个扩展的工具集，配合使用功能还是很强大的。</p>
+<blockquote>
+  <p>viewController navigation 动画</p>
+</blockquote>
 
-<p>简介：无</p>
-
-<p>Alamofire 扩展</p>
-
-<p>AlamofireImage – AlamofireImage is an image component library for Alamofire。（用过，使用简单，加载性能也还不错，只是没有深入了解其缓存数据的问题）
-AlamofireNetworkActivityIndicator – Controls the visibility of the network activity indicator on iOS using Alamofire
-AlamofireObjectMapper – An extension to Alamofire which automatically converts JSON response data into swift objects using ObjectMapper.(个人觉得不是很好用，除非网络返回的 JSON 数据格式单一，不需要任何截取操作)</p>
-
-<p>DEMO：</p>
-
-<p>// HttpManager.swift
-// 使用Alamfire网络请求
-// success: (json: JSON)-&gt;Void, errors: ()-&gt;Void 这两个闭包用来处理成功和错误的操作
-// url：访问地址；parameters；参数
-func requestForGetWithParameters(url: String, parameters params: [String:String], success: (json: JSON)-&gt;Void, errors: ()-&gt;Void) {</p>
-
-<pre><code>    // 使用 Alamofire 进行网络数据请求
-    Alamofire.request(.GET, url, parameters: params).responseJSON {response in
-        switch response.result {
-        case .Success:
-            if let value = response.result.value {
-                let json = JSON(value)
-                NSLog("JSON: \(json["result"])")
-                guard let result = json["result"].string where result == "SUCCESS" else {
-                    errors()
-                    return
-                }
-                success(json: json)
-            }
-            break
-        case .Failure(let error):
-            NSLog("error,failure: \(error)")
-            errors()
-            break
-        }
-    }
-}
-</code></pre>
-
-<p>// ViewController.swift 
- // 获取JSON数据，截取需要的数据，生成model
- func onLoadMore() {
-        HttpManager.sharedInstance.requestForGetWithPageIndex(
-            URL_HOME_ONE,
-            pageIndex: pageIndex,
-            success: { json in
-                // 这里很重要，是用来SwiftyJSON和ObjectMapper生成model
-                let home = Mapper<Home>().map(json["hpEntity"].rawValue)
-                self.apps.append(home!)
-                HomePageViewCell.layoutHeight(home!) //计算cell内容高度
-                self.pageIndex++
-                self.htv!.tableView?.reloadData()
-            },
-            error: {
-                ProgressHUD.showWarningWithStatus("没有更多内容可加载！")
-                // 滑动tableview到最后一个cell
-                self.htv!.tableView?.selectRowAtIndexPath(NSIndexPath(forRow: 9, inSection: 0), animated: false, scrollPosition: UITableViewScrollPosition.Bottom)
-        })
-    }
-就此，网络获取的请求、json 数据处理，model生成就完成了。其实还是挺方便的。</Home></p>
-
-<p>SnapKit</p>
-
-<p>github 地址：SnapKit</p>
-
-<p>简介：SnapKit is a DSL to make Auto Layout easy。
-doc：http://snapkit.io/docs/</p>
-
-<p>因为没有详细研究过，所以不好多说。只简单谈一谈对Auto Layout的理解。Auto Layout 是 Apple 专门用来配合 IB(Inerface Builder) 解决多拼适配问题的（这样说当然也有不合适的地方）。通过 IB 设置控件之间的约束，使控件在不同设备上相对距离和大小一致。然而不管是通过 IB 还是代码实现这些约束，都不是一件容易的事情。尤其代码实现，对经验不足的人来说，简直是地狱。SnapKit 则对代码实现约束做了封装，对布局的理解简单化，也更直观。
-SnapKit 虽然是利器，但用不好就会变凶器。试想一下如果布局复杂，那用代码实现会很恐怖。看过很多blog后，我有新的理解。那就是对布局模块化，简单化。尽量使用 IB 进行布局，对复杂的布局可以尝试 Container View 进行分割。SnapKit 则是用来微调和解决大视图模块之间无法用 IB 产生约束的情况。</p>
-
-<p>Demo：</p>
-
-<p>import SnapKit</p>
-
-<p>class MyViewController: UIViewController {</p>
-
-<pre><code>lazy var box = UIView()
-
-override func viewDidLoad() {
-    super.viewDidLoad()
-
-    self.view.addSubview(box)
-    box.snp_makeConstraints { (make) -&gt; Void in
-       make.width.height.equalTo(50)
-       make.center.equalTo(self.view)
-    }
-} }
-</code></pre>
-
-<p>Kingfisher</p>
-
-<p>github 地址：Kingfisher</p>
-
-<p>介绍：A lightweight and pure Swift implemented library for downloading and caching image from the web. 值得注意的是，他有良好的 Cache management。她是借鉴 SDWebImage 这个由 OC 编写的10000+star 图片加载框架。
-推荐理由：比AlamofireImage强大，有更好的 cache management 方案。
-Kingfisher 和 AlamofireImag 该如何选择？其实这是一个仁者见仁智者见智的问题。但说到功能强大当然是首选 Kingfisher。如果是简单图片展示不需要对图片进行过多操作 和 cache ， AlamofireImage 也是能解决问题。</p>
-
-<p>以下引用 Kingfisher Doc：</p>
-
-<p>Features</p>
-
-<p>Everything in Kingfisher is asynchronous, not only downloading, but also caching. That means you never need to worry about blocking your UI thread.
-Multiple-layer cache. Downloaded images will be cached in both memory and disk. So there is no need to download again, this could boost your app’s perceptual speed dramatically.
-Cache management. You can set the max duration or size the cache takes. From this, the cache will be cleaned automatically to prevent taking too many resources.
-Modern framework. Kingfisher uses NSURLSession and the latest technology of GCD, which makes it a strong and swift framework. It also provides you easy APIs to use.
-Cancelable processing task. You can cancel the downloading process if it is not needed anymore.
-Prefetching. You can prefetch and cache the images which might soon appear in the page. It will bring your users great experience.
-Independent components. You can use the downloader or caching system separately. Or even create your own cache based on Kingfisher’s code.
-Options to decompress the image in background before rendering it, which could improve the UI performance.
-Categories over UIImageView, NSImage and UIButton for setting image from an URL directly. Use the same code across all Apple platforms.
-Support GIF seamlessly. You could just download and set your GIF images as the same as you do for PNG/JPEG format.
-HanekeSwift
-github 地址：HanekeSwift
-简介：A lightweight generic cache for iOS written in Swift with extra love for images
-DEMO:</p>
-
-<p>let cache = Cache<JSON>(name: "github")
-let URL = NSURL(string: "https://api.github.com/users/haneke")!</JSON></p>
-
-<p>cache.fetch(URL: URL).onSuccess { JSON in
-    print(JSON.dictionary?[“bio”])
-}
-以下引用 HanekeSwift DOC:</p>
-
-<p>Generic cache with out-of-the-box support for UIImage, NSData, JSON and String
-First-level memory cache using NSCache
-Second-level LRU disk cache using the file system
-Asynchronous fetching of original values from network or disk
-All disk access is performed in background
-Thread-safe
-Automatic cache eviction on memory warnings or disk capacity reached
-Comprehensive unit tests
-Extensible by defining custom formats, supporting additional types or implementing custom fetchers
-Zero-config UIImageView and UIButton extensions to use the cache, optimized for UITableView and UICollectionView cell reuse
-Background image resizing and decompression
-可能你会问，HanekeSwift 和 Kingfisher 都是简化异步处理网络数据和图片的那该如何选择它们呢？首先从 star 数上看 HanekeSwift 3000+， Kingfisher 4000+ 其实差不多，毕竟到这个数量级看的已经不止是 star 数量，更多的是项目的活跃度。Kingfisher 更专注于 image 的加载和缓存，而 HanekeSwift 对 UIImage、NSData、JSON、String 都提供了很好的支持。所以如果是对多种数据希望通过统一的解决方案进行缓存管理， HanekeSwift 貌似会更合适。相反对 image 有较高的缓存管理要求，Kingfisher 则会更推荐。</p>
-
-<p>TransitionTreasury</p>
-
-<p>github地址：TransitionTreasury</p>
-
-<p>简介：A viewController transition framework in Swift。我是被她绚丽的切换方式和简单的使用方法而迷倒。</p>
-
-<p>使用说明：详细 Wiki
-ios ViewController 的切换可以通过代码实现，也可以通过在 IB 中给ViewController 链接 Segue 来实现。两种方式各有优劣，也是根据个人习惯和实际需要来选择。TransitionTreasury 是通过代码来管理 ViewController 的跳转，使用起来比较简单。</p>
-
-<p>作者提供的例子：</p>
-
-<p>/// FirstViewController.swift
-class FirstViewController: UIViewController {</p>
-
-<pre><code>func push() {
-    let vc = SecondViewController()
-    navigationController?.tr_pushViewController(vc, method: TRPushTransitionMethod.Fade, completion: {
-            print("Push finish")
-        })
-} }
-</code></pre>
-
-<p>/// SecondViewController.swift
-class SecondViewController: UIViewController, NavgationTransitionable {</p>
-
-<pre><code>var tr_pushTransition: TRNavgationTransitionDelegate?
-
-func pop() {
-    tr_popViewController()
-} } 而对于 IB 中链接 Segue 来控制跳转，被认为是推荐的方式。比较好的库有 IBAnimatable ，该库的作者推崇 IB 的使用，对绘制界面能少用代码尽量不用
-</code></pre>
 
 		
 		
