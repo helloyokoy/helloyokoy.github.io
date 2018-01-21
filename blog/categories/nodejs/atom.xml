@@ -4,7 +4,7 @@
   <title><![CDATA[分类：nodejs | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/nodejs/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-21T17:23:02+08:00</updated>
+  <updated>2018-01-21T17:32:46+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -32,28 +32,17 @@
 
 <p>在编辑器中输入缩写代码：ul&gt;li*5 ，然后按下拓展键（默认为 tab ），即可得到代码片段：</p>
 
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;ul>
-</span><span class='line'>    &lt;li>&lt;/li>
-</span><span class='line'>    &lt;li>&lt;/li>
-</span><span class='line'>    &lt;li>&lt;/li>
-</span><span class='line'>    &lt;li>&lt;/li>
-</span><span class='line'>    &lt;li>&lt;/li>
-</span><span class='line'>&lt;/ul>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+<p>{% codeblock %}</p>
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<p>{% endcodeblock %}</p>
 
 <!--more-->
 
@@ -96,16 +85,11 @@
   <li>粘贴以下代码到底部命令行并回车：</li>
 </ul>
 
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>import urllib2,os;pf=’Package Control.sublime-package’;ipp=sublime.installedpackagespath();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),’wb’).write(urllib2.urlopen(‘http://sublime.wbond.net/’+pf.replace(‘ ‘,’%20’)).read())&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+<p>{% codeblock %}</p>
+
+<p>import urllib2,os;pf=’Package Control.sublime-package’;ipp=sublime.installedpackagespath();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),’wb’).write(urllib2.urlopen(‘http://sublime.wbond.net/’+pf.replace(‘ ‘,’%20’)).read())</p>
+
+<p>{% endcodeblock %}</p>
 
 <ul>
   <li>重启 Sublime Text</li>
