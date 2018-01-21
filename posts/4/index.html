@@ -7,8 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="本文仅谈业余时间的技术学习，不谈工作中的要求。 技术固然要时时学习，因为更新快嘛，但对待技术上学什么，怎么花时间学，需要一个指导思想，否则浪费时间而且效果不好。 抓住主干，而非细节
-最近很火的一句话是“你不要用战术上的勤奋掩盖战略上的懒惰”。放到技术学习上就先主理解主干后关注枝叶，比如C++ &hellip;">
+	<meta name="description" content="objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -132,533 +131,6 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/tech-learn/">
-		
-			技术学习态度</a>
-	</h2>
-	<div class="entry-content">
-		<p>本文仅谈业余时间的技术学习，不谈工作中的要求。</p>
-
-<p>技术固然要时时学习，因为更新快嘛，但对待技术上学什么，怎么花时间学，需要一个指导思想，否则浪费时间而且效果不好。</p>
-
-<ol>
-  <li>
-    <p>抓住主干，而非细节
-最近很火的一句话是“你不要用战术上的勤奋掩盖战略上的懒惰”。放到技术学习上就先主理解主干后关注枝叶，比如C++的好书很多，《Effective C++》和《Inside C++ Object Model》是好书，但它们都不是用来入门的，为什么? 因为它们不是主干，语言实现细节和各种坑你都了解了，碰到实际问题依然用不好C++。</p>
-  </li>
-  <li>
-    <p>尽量不折腾
-不去折腾那些不成熟的技术，尽量用较为成熟的技术。在一年多之前，我用AngularJS，MongoDB的时候把我可给坑惨了，所以我下决心如果不因为工作坚决不碰Go语言，Node.js，要学不如学Erlang。新技术应用场景不清晰，前景不清晰，生态环境弱，类库少，坑多不容易跳出来。简而言之就是风险大于收益。同理我也不喜欢用Linux而喜欢Mac，Vim的包也是别人弄好了直接install的。</p>
-  </li>
-</ol>
-
-
-		
-		<a href="/blog/tech-learn/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年9 月3 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ruby-fast-learn/">
-		
-			Ruby on Rails 快速学习</a>
-	</h2>
-	<div class="entry-content">
-		<p>快速学习Ruby on Rails，这应该是个伪命题，没有什么事情是能够快速学习的，尤其是编程，而且是Rails这样极其复杂的框架，它由无数顶级高手成年累月的心血堆砌而成，融合了web开发领域内几乎全部的最佳实践。</p>
-
-<p>如果想快速入门，那么其他一些人提过的 Rails Tutorial，或者 Rails for Zombies 都是很好的选择，但相信我，即便你能快速做出简单的网站，依旧会对整个开发环境和知识体系一头雾水，在面临现实世界的需求时往往会捉襟见肘，花费更多的时间来补充缺失的知识。</p>
-
-<p>所以，我认为如果你的目的不是创业，而是学习的话，全面有效成体系地吸收知识是更好的选择，这方面，读书是最好的方式，不过市场上滥竽充数的书籍实在很多，对于新手来说，怎样用有限的时间读最合适的书，是很重要的。</p>
-
-<p>我在学习和使用Ruby与Rails的过程中，读过大部分在Amazon排名靠前的相关书籍，当然有些不错的书，随着技术的进化，已经略显陈旧。以下给出的阅读列表，是在现在依然有效的选择：</p>
-
-
-		
-		<a href="/blog/ruby-fast-learn/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年9 月2 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/rails-image-size/">
-		
-			Rails 实时生成多尺寸图</a>
-	</h2>
-	<div class="entry-content">
-		<p>在开发网站时，同一张图片时常需要生成多张不同尺寸的缩略图片。</p>
-
-<p>一般有两种策略生成缩略图，一种在上传图片时，生成所有尺寸的缩略图，另一种是请求指定尺寸时再生成缩略图。</p>
-
-<p>前一种方式会有一些限制，当我们需要一种新的图片尺寸时，需要使用脚本重新生成。而后一种方式就比较灵活。（淘宝也是采用这个方案，只是淘宝使用ImageMagick。）</p>
-
-<p>网上有一种是借助 lua_nginx module 调用 GraphicsMagick 命令生成缩略图片，不过 nginx 默认发布版本是不包含 lua_nginx 模块，需要重新编译安装，这样太麻烦，实现方式并不灵活。我们需要一种更灵活的方式来实现。</p>
-
-
-		
-		<a href="/blog/rails-image-size/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月22 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">
-		
-			Android Https请求no Peer Certificate解决方案</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">解决方案一</h3>
-<hr />
-
-<p>写了一个自定义类继承SSLSocketFactory：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
-</span><span class="line">import java.net.Socket;
-</span><span class="line">import java.net.UnknownHostException;
-</span><span class="line">import java.security.KeyManagementException;
-</span><span class="line">import java.security.KeyStore;
-</span><span class="line">import java.security.KeyStoreException;
-</span><span class="line">import java.security.NoSuchAlgorithmException;
-</span><span class="line">import java.security.UnrecoverableKeyException;
-</span><span class="line">
-</span><span class="line">import javax.net.ssl.SSLContext;
-</span><span class="line">import javax.net.ssl.TrustManager;
-</span><span class="line">import javax.net.ssl.X509TrustManager;
-</span><span class="line">
-</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
-</span><span class="line">
-</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
-</span><span class="line">        
-</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
-</span><span class="line">        
-</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
-</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
-</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
-</span><span class="line">                super(truststore);
-</span><span class="line">                
-</span><span class="line">   TrustManager tm = new X509TrustManager() {
-</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkClientTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkServerTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}
-</span><span class="line">        };  
-</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket() throws IOException {  
-</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
-</span><span class="line">}  
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-		
-		<a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月12 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/mjextensionjie-shao/">
-		
-			MJExtension介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/7fb40e923eeafbf4a699b9c8a54f53d88f2a70b9/687474703a2f2f696d616765732e636e6974626c6f672e636f6d2f626c6f67323031352f3439373237392f3230313530352f3035313030343331363733363634312e706e67" alt="icon" title="icon" /></p>
-
-<h2 id="mjextension">MJExtension</h2>
-
-<blockquote>
-  <p>The fastest, most convenient and most nonintrusive conversion between JSON and model.</p>
-</blockquote>
-
-<p>世界上转换速度最快、使用最简单方便的字典转模型框架</p>
-
-<h2 id="getting-started">Getting Started【开始使用】</h2>
-
-<h4 id="features">Features【能做什么】</h4>
-
-<ul>
-  <li>MJExtension是一套字典和模型之间互相转换的超轻量级框架</li>
-  <li>JSON –&gt; Model、Core Data Model</li>
-  <li>JSONString –&gt; Model、Core Data Model</li>
-  <li>Model、Core Data Model –&gt; JSON</li>
-  <li>JSON Array –&gt; Model Array、Core Data Model Array</li>
-  <li>JSONString –&gt; Model Array、Core Data Model Array</li>
-  <li>Model Array、Core Data Model Array –&gt; JSON Array</li>
-  <li>Coding all properties of model in one line code.</li>
-  <li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
-</ul>
-
-
-		
-		<a href="/blog/mjextensionjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/frescojie-shao/">
-		
-			Fresco介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
-
-<h3 id="fresco">关于 Fresco</h3>
-<p>Fresco 是一个强大的图片加载组件。</p>
-
-<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
-
-<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
-
-<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
-
-
-		
-		<a href="/blog/frescojie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/how-to-become-a-developer/">
-		
-			如何成为一个优秀的初级开发者</a>
-	</h2>
-	<div class="entry-content">
-		<p>原文: <a href="http://blog.newrelic.com/2014/04/23/better-junior-developer/">http://blog.newrelic.com/2014/04/23/better-junior-developer/</a></p>
-
-<p>翻译: <a href="https://ruby-china.org/mr_sun">@mr_sun</a></p>
-
-<p>在过去的几年中，New Relic聘请了许多接受过各种编程培训的或者“非传统”编程背景的毕业生，其中就包括我！事实上，在我获得我的学士学位以后，我想要进入一所医药大学做进一步的学习，但是这时我获得了Google提供的一份技术支持的工作。在四年多以后我利用一个休假的时间出席了Hackbright Academy，这是个教女性学员如何编程的学校，课程安排为十周（现在延长到了十二周）。在第一周教学即将结束的时候，我知道我终于找到了我想要专注一生去追求的事业和方向。</p>
-
-<p>不过，我的一个最大的忧虑是，我必须放弃我在其他领域已经积累起来的经验和技巧，去进入到一个全新的领域，在这个新领域里，我将面对的竞争对手都是拥有该领域几十年经验的资深工作者。幸运的是，在我真正进入到这样一个新角色以后，在共同工作的许多优秀的前辈的指导和帮助下，我总结出了一下一些自己的感悟：
-- 不断地学习是成为一个优秀开发者的必备基石
-- 有很多工程，是不是直接就开始写代码的</p>
-
-<p>要清晰的认识到，即便作为一个还有很多东西要学的初级开发者，也有很多方法来利用我已经在其他领域已具备的技能。因为自己已经经历过那样一段对自己很不确定的时期，这里我想要向大家传播以下两条信息：
-- 初级开发者：即使你还在学习关于编程的基本技巧，你也可以有很多方式为你的团队做出自己的贡献。
-- mentor：因材施教，换位思考，让你的指导更加符合初级开发者的学习需要，这样将使他们更有自信，使你的指导更具效率。</p>
-
-
-		
-		<a href="/blog/how-to-become-a-developer/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月24 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-screen-adaption/">
-		
-			Android Screen Adaption 屏幕适配</a>
-	</h2>
-	<div class="entry-content">
-		<p>众所周知，Android机型尺寸各种各样，于是屏幕适配就成了Android开发中很重要的一环。Android屏幕适配可能一些开发者都会遇到这样的问题，今天就来分享下屏幕适配，你会发现其实Android屏幕适配也可以很简单。</p>
-
-<h2 id="section">基本概念</h2>
-<p>Android屏幕适配必须要理解的一些概念，这部分可能比较枯燥，但是俗话说的好“工欲善其事，必先利器”，翻译过来就是“有什么样的枪，决定你打什么样的鸟”，一旦这些概念你理解掌握了，屏幕适配你自然而然就觉得简单多了。</p>
-
-<ul>
-  <li>
-    <p>px</p>
-
-    <p>是英文单词pixel的缩写，意为像素，屏幕上的点。我们通常所说的分辨率如480X800就是指的像素。</p>
-
-    <p>在设计领域中，像素是用来计算数码影像的最小单位。计算机中显示的图像并非连续的线条组成，而是由许多肉眼看不见的小点组成。如果把影像放大数倍，会发现这些连续色调其实是由许多色彩相近的小点所组成，这些小点就是构成影像的最小单位“像素”。由于是最小的独立显示单位，px均为整数，不会出现0.5px的情况。如：</p>
-  </li>
-</ul>
-
-
-		
-		<a href="/blog/android-screen-adaption/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月15 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/bundler/">
-		
-			Bundler 的作用以及原理</a>
-	</h2>
-	<div class="entry-content">
-		<p>原文：<a href="http://bundler.io/rationale.html">http://bundler.io/rationale.html</a></p>
-
-<p>首先，你要在你应用根目录下一个叫Gemfile文件里声明这些依赖，它看起来是这个样子的：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">source 'https://rubygems.org'
-</span><span class="line">
-</span><span class="line">gem 'rails', '4.1.0.rc2'
-</span><span class="line">gem 'rack-cache'
-</span><span class="line">gem 'nokogiri', '~&gt; 1.6.1'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这个Gemfile说明了这些事情：</p>
-
-<p>首先，他告诉 bundler 默认是在Gemfile里指定的https://rubygems.org上来找 gem。如果你的一些 gem 需要从一个私有的 gem 服务器上获取，那么你可以为这些 gem 覆盖掉这个默认的源设置。</p>
-
-<p>接着，你声明了一些依赖：</p>
-
-<ul>
-  <li>版本是4.1.0.rc2的rails</li>
-  <li>任意版本的rack-cache</li>
-  <li>版本是&gt;= 1.6.1但是&lt; 1.7.0的nokogiri</li>
-</ul>
-
-
-		
-		<a href="/blog/bundler/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月11 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
 		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
 		
 			iOS 依赖注入框架 Objection</a>
@@ -716,6 +188,445 @@
 
 
 	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/rubyzhao-pin/">
+		
+			Ruby招聘</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
+
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
+
+
+		
+		<a href="/blog/rubyzhao-pin/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年7 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/what-happend-when-you-browse-my-blog/">
+		
+			当你浏览我的博客时计算机干了什么</a>
+	</h2>
+	<div class="entry-content">
+		<p>在大学的时候, 我脑海里时常都蹦出对计算机的许多问号, 尤其是计算机是如何工作的, 为什么它如此强大, 越来越显著地改变了我们的生活.</p>
+
+<p>随着知识的积累, OS, 进程, 线程, 计算机网络, web 开发, 一个个知识孤岛在某一天终于连接了起来, 形成了一个极为清晰的信息流.</p>
+
+<p>我相信, 作为读者的你, 也会非常想弄明白其中原理, 或者已经弄明白但可能还有些一些疑问, 于是乎, 我将一个很常见的操作, 进行信息流分析, 尝试分层分析它们的每一步.</p>
+
+<p>这个操作就是: 当你正在浏览我的这篇博客时, 计算机到底做了什么?</p>
+
+<p>为了叙述方便, 我限定使用了 chrome 浏览器, nginx, unicorn, rails 来描述它们, 实际上, 这些组件都是可以替换的.</p>
+
+
+		
+		<a href="/blog/what-happend-when-you-browse-my-blog/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年6 月27 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/iosduo-xian-cheng/">
+		
+			iOS多线程详解</a>
+	</h2>
+	<div class="entry-content">
+		<blockquote>
+  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
+</blockquote>
+
+<h2 id="section">概述</h2>
+<hr />
+<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
+
+<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
+
+<ul>
+  <li>Pthreads</li>
+  <li>NSThread</li>
+  <li>GCD</li>
+  <li>NSOperation &amp; NSOperationQueue</li>
+</ul>
+
+<p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
+
+
+		
+		<a href="/blog/iosduo-xian-cheng/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年6 月18 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/android-push/">
+		
+			Android Push 方案</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="gcmgoogle-cloud-messaging">方案一：使用GCM服务（Google Cloud Messaging）</h2>
+<p>简介：</p>
+
+<p>Google在Android上标配了自己的推送GCM（Google Cloud Messageing），可以帮助开发人员给他们的Android应用程序发送数据。它是一个轻量级的消息，告诉Android应用程序有新的数据要获取从服务器，或者它可能是一个消息，其中包含了4KB的payload data（像即时通讯这类应用程序可以直接使用该payload消息）。GCM服务处理排队的消息，并把消息传递到目标设备上运行的Android应用程序。</p>
+
+<p>优点：</p>
+
+<p>Google提供的服务、原生、简单，无需实现和部署服务端。</p>
+
+<p>缺点：</p>
+
+<ol>
+  <li>
+    <p>GCM要求Android系统必须是2.2以上的版本，所以对于不少2.2以前的系统没法推送</p>
+  </li>
+  <li>
+    <p>国内服务不稳定。而且不少国内的终端厂商纷纷把Google的服务去掉，替换上自己的。</p>
+  </li>
+  <li>
+    <p>需要用户绑定Google账号，但不少国内用户没有Google账号。</p>
+  </li>
+</ol>
+
+
+		
+		<a href="/blog/android-push/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年6 月12 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/write-best-code/">
+		
+			如何编写更棒的代码</a>
+	</h2>
+	<div class="entry-content">
+		<p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
+
+<p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
+
+<ol>
+  <li>
+    <p>保持方法简短扼要</p>
+  </li>
+  <li>
+    <p>永远永远不要将同一个变量用于不同的目的</p>
+  </li>
+  <li>
+    <p>尽可能让变量和方法的名称能够描述要实现的功能</p>
+  </li>
+  <li>
+    <p>尽可能将变量定义在最靠近它们的地方</p>
+  </li>
+  <li>
+    <p>不要出现让人费解的数字</p>
+  </li>
+  <li>
+    <p>要像对待朋友一样对待你擅长的语言</p>
+  </li>
+  <li>
+    <p>不要逆常规而行</p>
+  </li>
+  <li>
+    <p>千万小心过早的优化代码</p>
+  </li>
+  <li>
+    <p>要常常重构经过测试的代码</p>
+  </li>
+  <li>
+    <p>不要沉溺于过度的设计技巧</p>
+  </li>
+  <li>
+    <p>随时随地学习新的知识</p>
+  </li>
+</ol>
+
+
+		
+		<a href="/blog/write-best-code/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年6 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/eventbusjie-shao/">
+		
+			Eventbus介绍</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
+
+<blockquote>
+  <p>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。</p>
+</blockquote>
+
+<h3 id="eventbus">1.下载EventBus的类库</h3>
+
+<p>源码：<a href="https://github.com/greenrobot/EventBus" title="url">https://github.com/greenrobot/EventBus</a></p>
+
+
+		
+		<a href="/blog/eventbusjie-shao/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年5 月10 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">
+		
+			Redis 缓存服务器配置</a>
+	</h2>
+	<div class="entry-content">
+		<p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
+
+<ol>
+  <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
+  <li>可以持久化到磁盘</li>
+  <li>支持cluster (3.0)</li>
+</ol>
+
+<p>它的性能和memcached不相上下，再加上流行的其他组件（比如队列）也会用到redis，从架构简单出发，已经没有必要混用redis和memcached了。</p>
+
+<p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
+
+
+		
+		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年5 月7 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/turn-around-stay-grace/">
+		
+			优雅转身</a>
+	</h2>
+	<div class="entry-content">
+		<p>编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分：</p>
+
+<p>在我第一次创业的时候我非常好斗。在我看来整个世界好像就是一个战场，我无时无刻不在准备着战斗。与房东斗，与债主斗，与董事会斗，与各个你所能想到的群体斗。但是随着我不断的成长，我越来越发现找到一个共同点比不断的斗争更有好处。</p>
+
+<p>有两个人经常在我身旁尽最大的努力让我冷却下来，他们是我的COO Stuart Lander和CFO David Lapter。Stuart也有些好斗因子，但是之前做过律师的他懂得谈判与和解比打一场持久的战斗要好的多。我记得我们经常达成的一条共识就是——如果一定要转身，那么就优雅的转身。于是我形成了自己的一个思想：如果我要去战斗，那么我会如虎如狼直至胜利；但是如果一定要转身，那么我也将优雅从容的转身。</p>
+
+
+		
+		<a href="/blog/turn-around-stay-grace/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年5 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/leakcannei-xie-lu-jian-ce/">
+		
+			LeakCanary内寸泄露检测</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="leakcanary">LeakCanary</h2>
+
+<p>Android 和 Java 内存泄露检测。</p>
+
+<blockquote>
+  <p>“A small leak will sink a great ship.” - Benjamin Franklin</p>
+</blockquote>
+
+<blockquote>
+  <p>千里之堤， 毁于蚁穴。 – 《韩非子·喻老》</p>
+</blockquote>
+
+<p><img src="https://raw.githubusercontent.com/liaohuqiu/leakcanary/master/assets/screenshot.png" alt="alt text" title="Title" /></p>
+
+<h4 id="demo">demo</h4>
+
+<p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
+
+
+		
+		<a href="/blog/leakcannei-xie-lu-jian-ce/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年4 月11 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

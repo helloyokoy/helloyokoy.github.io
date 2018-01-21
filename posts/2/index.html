@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="新版 xcode 插件 不能用 解决方法 find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write &hellip;">
+	<meta name="description" content="iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重… 那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -126,443 +126,6 @@
 		
 	
 	<div id="content" class="inner">
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/xcode-plugin/">
-		
-			Xcode Plugin</a>
-	</h2>
-	<div class="entry-content">
-		<p>新版 xcode 插件 不能用 解决方法</p>
-
-<pre><code>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
-</code></pre>
-
-<p>xcode 插件管理器</p>
-
-<pre><code>Alcatraz
-</code></pre>
-
-<p>xcode 常用插件</p>
-
-<pre><code>xtodo 
-fuzzyautocompelte
-codepilot
-xcodeboost
-xalign
-KSimageNamed
-xcolors
-</code></pre>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年12 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/ios-self/">
-		
-			iOS Self 和 下划线 _ 区别</a>
-	</h2>
-	<div class="entry-content">
-		<pre><code>@property (nonatomic,copy) NSString *propertyName;
-</code></pre>
-
-<p>self.propertyName是对属性的访问；使用_propertyName是对局部变量的访问。</p>
-
-<p>所有被声明为属性的成员，在iOS5 之前需要使用编译器指令@synthesize 来告诉编译器帮助生成属性的getter,setter方法。
-之后这个指令可以不用人为指定了，默认情况下编译器会帮我们生成。</p>
-
-<p>编译器在生成getter,setter方法时是有优先级的，它首先查找当前的类中用户是否已定义属性的getter,setter方法，如果有，则编译器会跳过，不会再生成，使用用户定义的方法。</p>
-
-<p>也就是说你在使用self.propertyName 时是在调用一个getter方法。</p>
-
-<pre><code>self.propertyName 会让计数器＋1;_propertyName却不会。  
-
-_propertyName是类似于self-&gt;_propertyName。
-</code></pre>
-
-<p>用self.propertyName 是更好的选择，因为这样可以兼容懒加载，同时也避免了使用下划线的时候忽视了self这个指针，后者容易在block中造成循环引用。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年12 月5 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/grape-on-rails/">
-		
-			使用 Grape 构建 RESTful API</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://blog.lanvige.com/uploads/ruby/grape-logo.png" alt="img" /></p>
-
-<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
-
-<h3 id="section">安装配置</h3>
-
-<p>首先确保安装：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">## Platform
-</span><span class="line">gem 'rails', '4.2.0'
-</span><span class="line">
-</span><span class="line">## RESTful API Engine
-</span><span class="line">gem 'grape'
-</span><span class="line">gem 'grape-entity'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h3 id="section-1">组织架构</h3>
-
-<h4 id="section-2">目录结构</h4>
-
-<pre><code>api
-├── api.rb
-└── v1
-	├── base.rb
-	├── entities
-	│   ├── base.rb
-	│   └── user_basic.rb
-	├── helpers
-	│   ├── page_helper.rb
-	│   └── user_helper.rb
-	├── base_api.rb
-	└── users_api.rb
-</code></pre>
-
-<p>base.rb 中定义着API的版本、输出格式，及挂载更多API。
-users_api.rb 就像controller，对每个resources都进行分开写，然后在base.rb中进行mount
-entities 使用grape-entity，控制输出中的对象及格式。
-helper 放置常用的helper，像分页，用户验证。</p>
-
-
-		
-		<a href="/blog/grape-on-rails/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年12 月4 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/charles/">
-		
-			Charles</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://blog.devtang.com/images/charles-promo.png" alt="ad" /></p>
-
-<p>Charles 正版<a href="http://item.taobao.com/item.htm?&amp;id=524230901640">五折优惠活动</a>（限时：2015 年 11 月 14 日 – 30 日），仅限中国区购买，点击购买。在活动期结束后，价格将从 169 元上涨到 199 元。</p>
-
-<h3 id="section">简介</h3>
-
-<p><img src="http://blog.devtang.com/images/charles-logo.png" alt="img" /></p>
-
-<p>Charles 是在 Mac 下常用的网络封包截取工具，在做 移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。</p>
-
-<p><a href="http://blog.devtang.com/images/charles-logo.png">Charles</a> 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。</p>
-
-<p>除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。</p>
-
-<p>Charles 是收费软件，可以免费试用 30 天。试用期过后，未付费的用户仍然可以继续使用，但是每次使用时间不能超过 30 分钟，并且启动时将会有 10 秒种的延时。因此，该付费方案对广大用户还是相当友好的，即使你长期不付费，也能使用完整的软件功能。只是当你需要长时间进行封包调试时，会因为 Charles 强制关闭而遇到影响。</p>
-
-<p>Charles 主要的功能包括：</p>
-
-<p>截取 Http 和 Https 网络封包。</p>
-
-<ol>
-  <li>支持重发网络请求，方便后端调试。</li>
-  <li>支持修改网络请求参数。</li>
-  <li>支持网络请求的截获并动态修改。</li>
-  <li>支持模拟慢速网络。</li>
-</ol>
-
-
-		
-		<a href="/blog/charles/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月26 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/nslog-and-lldb/">
-		
-			NSLog 和 LLDB</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">前言</h3>
-
-<p>打Log是我们debug时最简单朴素的方法，NSLog对于objc开发就像printf对于c一样重要。但在使用NSLog打印大量Log，尤其是在游戏开发时（如每一帧都打印数据），NSLog会明显的拖慢程序的运行速度（游戏帧速严重下滑）。本文探究了一下NSLog如此之慢的原因，并尝试使用lldb断点调试器替代NSLog进行debug log。</p>
-
-<h3 id="section-1">小测试</h3>
-
-<p>测试下分别使用NSLog和printf打印10000次耗费的时间。CFAbsoluteTimeGetCurrent()函数可以打印出当前的时间戳，精度还是很高的，于是乎测试代码如下：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">CFAbsoluteTime startNSLog = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
-</span><span class="line">    NSLog(@"%d", i); 
-</span><span class="line">} 
-</span><span class="line">CFAbsoluteTime endNSLog = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line"> 
-</span><span class="line">CFAbsoluteTime startPrintf = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
-</span><span class="line">    printf("%d\n", i); 
-</span><span class="line">} 
-</span><span class="line">CFAbsoluteTime endPrintf = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">
-</span><span class="line">NSLog(@"NSLog time: %lf, printf time: %lf", endNSLog - startNSLog, endPrintf - startPrintf);</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这个时间和机器肯定有关系，只看它们的差别就好。为了全面性，尝试了三种平台：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">NSLog time: 4.985445, printf time: 0.084193 // mac 
-</span><span class="line">NSLog time: 5.562460, printf time: 0.019408 // 模拟器 
-</span><span class="line">NSLog time: 10.471490, printf time: 0.090503 // 真机调试(iphone5)</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>可以发现，在mac上（模拟器其实也算是mac吧）速度差别达到了60倍左右，而真机调试甚至达到了离谱的100多倍。</p>
-
-<p>
-		
-		<a href="/blog/nslog-and-lldb/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月26 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/rails-perftest/">
-		
-			Rails-perftest 分析 Rails 引用的性能</a>
-	</h2>
-	<div class="entry-content">
-		<p>这个是 Rails 官方的 Gem，可以直接集成到 Rails 里面</p>
-
-<p>你可以写 Benchmark 的测试用例:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">require 'test_helper'
-</span><span class="line">require 'rails/performance_test_help'
-</span><span class="line">
-</span><span class="line">class HomepageTest &lt; ActionDispatch::PerformanceTest
-</span><span class="line">  # Refer to the documentation for all available options
-</span><span class="line">  # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
-</span><span class="line">  #                          output: 'tmp/performance', formats: [:flat] }
-</span><span class="line">
-</span><span class="line">  test "homepage" do
-</span><span class="line">    get '/'
-</span><span class="line">  end
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-		
-		<a href="/blog/rails-perftest/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月7 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/web-cache/">
-		
-			Web开发cache</a>
-	</h2>
-	<div class="entry-content">
-		<p>总结web应用中常用的各种cache</p>
-
-<p>cache是提高应用性能重要的一个环节，写篇文章总结一下用过的各种对于动态内容的cache。
-文章以Nginx，Rails，Mysql，Redis作为例子，换成其他web服务器，语言，数据库，缓存服务都是类似的。
-以下是3层的示意图，方便后续引用：</p>
-
-<pre><code>                      +-------+
-1                     | Nginx |
-                      +-+-+-+-+
-                        | | |
-        +---------------+ | +---------------+
-        |                 |                 |
-    +---+---+         +---+---+         +---+---+
-2   |Unicorn|         |Unicorn|         |Unicorn|
-    +---+---+         +---+---+         +---+---+
-        |                 |                 |
-        |                 |                 |
-        |             +---+---+             |
-3        +-------------+  D B  +-------------+
-                      +-------+
-</code></pre>
-
-
-		
-		<a href="/blog/web-cache/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月4 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
 
 
     <article class="post">
@@ -691,6 +254,336 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/wechat-gems/">
+		
+			微信开发 Gems</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近陆续有不少用Rails开发微信项目的朋友在Github上开始使用weixin_rails_middleware、weixin_authorize，也不少人谈到Ratchet，春节开始到现在，一直有做微信的开发，现在在论坛上发布出来，希望让更多人知道这些gem的存在，更快速的完成你们手中的任务。</p>
+
+<p>有问题可以前往：微信开发论坛：http://weixin-dev.com/</p>
+
+<p>代码写得不好，还请多多包涵，如果有任何问题，可以直接联系我。:)</p>
+
+
+		
+		<a href="/blog/wechat-gems/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月27 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/ruby-gems-memory-leak/">
+		
+			Ruby Gems内存泄露</a>
+	</h2>
+	<div class="entry-content">
+		<p>请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新</p>
+
+<ul>
+  <li>
+    <p>therubyracer &lt; 0.12.2</p>
+  </li>
+  <li>
+    <p>sidekiq &lt; 3.5.1</p>
+  </li>
+  <li>
+    <p>celluloid &gt; 0.16.0, &lt; 0.17.2</p>
+  </li>
+  <li>
+    <p>zipruby &lt;= 0.3.6</p>
+  </li>
+  <li>
+    <p>redcarpet &lt; 3.3.3</p>
+  </li>
+  <li>
+    <p>grape &lt; 0.2.5</p>
+  </li>
+</ul>
+
+<p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月22 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/rubymotion/">
+		
+			RubyMotion简介</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="rubymotion-">RubyMotion 是什么</h2>
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2015/aa191c47356e1b30b1f1a7d7e82fea3c.gif" alt="icon" /></p>
+
+<h2 id="section">统一的运行时环境</h2>
+<p>在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java Runtime，Dalvik 以及 ART 实现了 Ruby 语言。由于这种异常紧密的集成，Ruby 可以自如的调用各平台的接口而不会产生任何性能损失。你可以轻松自如的混编 Ruby 和 Objective-C 或者 Ruby 和 Java，自由的访问各平台提供的最新的 API，自由调用各种第三方库。</p>
+
+<h2 id="section-1">完全编译</h2>
+
+<p>RubyMotion 使用基于 LLVM 构建(参见原理)的革命性的、先进的预编译器（AOT Complier）将项目中的 Ruby 代码编译成经过优化的机器代码。在 iOS 以及 Android 项目，编译器可以生成 32 位和 64 位的 ARM 目标代码，在 OS X 项目则可以生成 32 位和 64 位的 Intel 目标代码。原始的 Ruby 代码不会出现在程序中，也不会在运行期间被解释执行。RubyMotion 的典型项目的程序包大小在 1MB 以下。</p>
+
+<h2 id="section-2">自动管理内存</h2>
+
+<p>在 Ruby 语言中，你无需考虑内存管理事宜。因为，RubyMotion 会自动释放内存中那些你创建的但是却不再会被使用的对象。针对 iOS 和 OS X 平台，我们提供了一个自定义的内存模型，在设计上类似 Objective-C 的 ARC 机制。这个模型无需再使用额外内存或者代码来处理不再使用的对象的声明和回收。针对 Android 平台，我们使用 Java 运行时环境的 GC 来管理内存。</p>
+
+
+		
+		<a href="/blog/rubymotion/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月15 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/anroi-asimplecache/">
+		
+			Android 轻量缓存框架 ASimpleCache</a>
+	</h2>
+	<div class="entry-content">
+		<p>做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些：</p>
+
+<ol>
+  <li>
+    <p>服务端控制缓存
+如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式，但是需要服务端配合，比较灵活。</p>
+  </li>
+  <li>
+    <p>客户端直接控制缓存</p>
+  </li>
+</ol>
+
+<p>有些时候不需要服务端来支持的话，客户端可以直接做一层缓存，思路就是请求之后把数据缓存在本地，最常见的是直接以文件缓存在本地就好了，当然你可以缓存在本地的sqlite，以sqlite文件的形式缓存数据处理更灵活点，然后客户端自己处理缓存的时间，过期则直接清除数据。对于一些不太经常变化的页面，采用这种缓存可以减少客户端流量，同时减少服务器并发量。</p>
+
+<p>对于一些新闻类或者timeline这种，数据变化是非常频繁的，针对这种情况可能就不太适合设置缓存时间，这种情况可以考虑让页面每次进来都会自动刷新一次以获取最新数据，如果网络不好或者断开时可以直接读取本地缓存，增加用户体验。当然如果想要更复杂的处理可以配合时间来判断当前页面要不要刷新。</p>
+
+
+		
+		<a href="/blog/anroi-asimplecache/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月14 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/android-mistake/">
+		
+			Android 开发遇到的坑</a>
+	</h2>
+	<div class="entry-content">
+		<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
+
+<ul>
+  <li>
+    <p>在Android library中不能使用switch-case语句访问资源ID：
+<a href="http://zmywly8866.github.io/2014/12/24/android-can-not-use-switch-to-load-resource-in-libproject-solution.html">在Android library中不能使用switch-case语句访问资源ID的原因分析及解决方案</a></p>
+  </li>
+  <li>
+    <p>不能在Activity没有完全显示时显示PopupWindow和Dialog：<a href="http://stackoverflow.com/questions/4187673/problems-creating-a-popup-window-in-android-activity">popupwindow - Problems creating a Popup Window in Android Activity</a></p>
+  </li>
+  <li>
+    <p>在多进程之间不要用SharedPreferences共享数据，虽然可以（MODE_MULTI_PROCESS），但极不稳定：<a href="http://stackoverflow.com/questions/22129717/mode-multi-process-for-sharedpreferences-isnt-working">android - MODE_MULTI_PROCESS for SharedPreferences isn’t working</a></p>
+  </li>
+</ul>
+
+
+		
+		<a href="/blog/android-mistake/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月12 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/rails-gems-recomend/">
+		
+			Rails Gems 推荐</a>
+	</h2>
+	<div class="entry-content">
+		<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
+
+<h4 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h4>
+
+<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
+
+<h4 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h4>
+
+<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
+
+<h4 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h4>
+
+<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
+
+<h4 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h4>
+
+<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
+
+
+		
+		<a href="/blog/rails-gems-recomend/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年10 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/full-stack-developer/">
+		
+			Full Stack Developer 全栈工程师</a>
+	</h2>
+	<div class="entry-content">
+		<p>做这样一个简单的 app:</p>
+
+<p>一个天气应用，干净清爽的界面，天气信息一目了然。它不仅可以精确预测未来 10 天的天气，还可以显示某地的历史天气信息。它具有自定义提醒功能，支持 web 版本， iOS 版， Android 版。</p>
+
+<p>为什么想要做这样一个 App ？因为你喜欢旅行，但没找到一个天气 App 可以提供你下个月或者某个特定月份的天气信息；因为你懒你没有每天看天气预报的习惯，你想要在第二天温度达到 30 度以上或者温差有 +/-7 度的时候，获得温馨提示；因为你要成为一个 Full Stack Engineer ，你必须不断训练每个 stack 的能力。</p>
+
+
+		
+		<a href="/blog/full-stack-developer/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年9 月15 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
 
 
 </div>

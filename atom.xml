@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-21T16:49:41+08:00</updated>
+  <updated>2018-01-21T17:23:02+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -14,396 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[swift 第三方库]]></title>
-    <link href="http://helloyokoy.github.io/blog/swift-3-dot-0/"/>
-    <updated>2016-11-01T23:03:06+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/swift-3-dot-0</id>
-    <content type="html"><![CDATA[<ul>
-  <li>awesome-swift</li>
-</ul>
-
-<p><a href="https://github.com/matteocrippa/awesome-swift">awesome-swift</a></p>
-
-<ul>
-  <li>Dollar</li>
-</ul>
-
-<blockquote>
-  <p>操作数组的神器</p>
-</blockquote>
-
-<ul>
-  <li>SwiftyDate</li>
-</ul>
-
-<blockquote>
-  <p>处理 时间</p>
-</blockquote>
-
-<ul>
-  <li>SwiftyJSON</li>
-</ul>
-
-<blockquote>
-  <p>处理JSON</p>
-</blockquote>
-
-<ul>
-  <li>ObjectMapper</li>
-</ul>
-
-<blockquote>
-  <p>JSON 数据匹配</p>
-</blockquote>
-
-<ul>
-  <li>Alamofire</li>
-</ul>
-
-<blockquote>
-  <p>AFNetworking swift 版本</p>
-</blockquote>
-
-<ul>
-  <li>SnapKit</li>
-</ul>
-
-<blockquote>
-  <p>Masonry swift 版本</p>
-</blockquote>
-
-<ul>
-  <li>Kingfisher</li>
-</ul>
-
-<blockquote>
-  <p>图片下载</p>
-</blockquote>
-
-<ul>
-  <li>HanekeSwift</li>
-</ul>
-
-<blockquote>
-  <p>轻量级 cache</p>
-</blockquote>
-
-<ul>
-  <li>TransitionTreasury</li>
-</ul>
-
-<blockquote>
-  <p>viewController navigation 动画</p>
-</blockquote>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[NodeJS 7.0]]></title>
-    <link href="http://helloyokoy.github.io/blog/nodejs/"/>
-    <updated>2016-10-27T12:29:35+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/nodejs</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/nodejs/node/milestone/15?closed=1">https://github.com/nodejs/node/milestone/15?closed=1</a></p>
-
-<blockquote>
-  <p>We did change the naming of v6 from Stable to Current as well, so I am assuming that v7 will also be named as “Current” vs “Stable”</p>
-</blockquote>
-
-<ul>
-  <li>已完成v8 5.4版本集成，也就是说支持async/await</li>
-  <li>koa 2.x也将随之发布，妈妈再也不担心我用bable的async/await调试了</li>
-  <li>upgrade libuv to 1.10.0</li>
-  <li>using openssl 1.1.0</li>
-</ul>
-
-<p>异步流程async/await终于落地了</p>
-
-<!--more-->
-
-<p>以前</p>
-
-<p><img src="https://dn-cnode.qbox.me/FmbZcLrkY4ThT1yQoV9vnyPfioDV" alt="https://dn-cnode.qbox.me/FmbZcLrkY4ThT1yQoV9vnyPfioDV" /></p>
-
-<p>现在</p>
-
-<p><img src="https://dn-cnode.qbox.me/FsP2jIneBIpGukP8pNW4ez7ps0qF" alt="https://dn-cnode.qbox.me/FsP2jIneBIpGukP8pNW4ez7ps0qF" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[vapor 用swift写服务端]]></title>
-    <link href="http://helloyokoy.github.io/blog/vapor-swift-server/"/>
-    <updated>2016-10-09T15:43:38+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/vapor-swift-server</id>
-    <content type="html"><![CDATA[<p><img src="https://cloud.githubusercontent.com/assets/1342803/15592871/46decfda-2375-11e6-9494-a9bf4e6aaebf.png" alt="vapor" /></p>
-
-<p>自从苹果官方发布了一个 Swift 的 Linux 开源版本之后，服务端 Swift 终于迎来了一个令人激动的前景。我的好奇心终于无法克制，是时候尝试一下服务端 Swift 了！</p>
-
-<p><a href="http://vapor.codes/">http://vapor.codes/</a></p>
-
-<!--more-->
-
-<p>官方教程如下</p>
-
-<p><a href="https://vapor.github.io/documentation/getting-started/hello-world.html">https://vapor.github.io/documentation/getting-started/hello-world.html</a></p>
-
-<p>GitHub</p>
-
-<p><a href="https://github.com/vapor/vapor">https://github.com/vapor/vapor</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[JSPatch 介绍]]></title>
-    <link href="http://helloyokoy.github.io/blog/jspatch/"/>
-    <updated>2016-06-12T18:30:02+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/jspatch</id>
-    <content type="html"><![CDATA[<h3 id="jspatch">什么是 JSPatch？</h3>
-
-<p>JSPatch 是一个开源项目(<a href="https://github.com/bang590/JSPatch">Github链接</a>)，只需要在项目里引入极小的引擎文件，就可以使用 JavaScript 调用任何 Objective-C 的原生接口，替换任意 Objective-C 原生方法。目前主要用于下发 JS 脚本替换原生 Objective-C 代码，实时修复线上 bug。</p>
-
-<!--more-->
-
-<p>例如线上 APP 有一段代码出现 bug 导致 crash：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">@implementation JPTableViewController
-</span><span class="line">...
-</span><span class="line">- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-</span><span class="line">{
-</span><span class="line">  NSString *content = self.dataSource[[indexPath row]];  //可能会超出数组范围导致crash
-</span><span class="line">  JPViewController *ctrl = [[JPViewController alloc] initWithContent:content];
-</span><span class="line">  [self.navigationController pushViewController:ctrl];
-</span><span class="line">}
-</span><span class="line">...
-</span><span class="line">@end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>可以通过下发这样一段 JS 代码，覆盖掉原方法，修复这个 bug：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">//JS
-</span><span class="line">defineClass("JPTableViewController", {
-</span><span class="line">  //instance method definitions
-</span><span class="line">  tableView_didSelectRowAtIndexPath: function(tableView, indexPath) {
-</span><span class="line">    var row = indexPath.row()
-</span><span class="line">    if (self.dataSource().length &gt; row) {  //加上判断越界的逻辑
-</span><span class="line">      var content = self.dataArr()[row];
-</span><span class="line">      var ctrl = JPViewController.alloc().initWithContent(content);
-</span><span class="line">      self.navigationController().pushViewController(ctrl);
-</span><span class="line">    }
-</span><span class="line">  }
-</span><span class="line">}, {})</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>除了修复 bug，JSPatch 也可以用于动态运营，实时修改线上 APP 行为，或动态添加功能。JSPatch 详细使用文档见 Github Wiki。</p>
-
-<h3 id="jspatch-">什么是 JSPatch 平台？</h3>
-
-<p>JSPatch 需要使用者有一个后台可以下发和管理脚本，并且需要处理传输安全等部署工作，JSPatch 平台帮你做了这些事，提供了脚本后台托管，版本管理，保证传输安全等功能，让你无需搭建一个后台，无需关心部署操作，只需引入一个 SDK 即可立即使用 JSPatch。</p>
-
-<h3 id="jspatch-sdk--github-">JSPatch SDK 与 github 上开源代码的关系？</h3>
-
-<p>Github 开源的是 JSPatch 核心代码，使用完全免费自由，若打算自己搭建后台下发 JSPatch 脚本，可以直接使用 github 上的核心代码，与 JSPatch 平台上的 SDK 无关。JSPatch 平台的 SDK 在核心代码的基础上增加了向平台请求脚本/传输解密/版本管理等功能，只用于这个平台。</p>
-
-<h3 id="jspatch--1">JSPatch 平台速度和稳定性如何？</h3>
-
-<p>通过 JSPatch 平台上传的脚本文件都会保存在七牛云存储上，客户端 APP 只跟七牛服务器通讯，支持高并发，CDN分布全国，速度和稳定性有保证。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[swift开发库]]></title>
-    <link href="http://helloyokoy.github.io/blog/swiftkai-fa-ku/"/>
-    <updated>2016-06-05T18:50:01+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/swiftkai-fa-ku</id>
-    <content type="html"><![CDATA[<ol>
-  <li>CryptoSwift</li>
-</ol>
-
-<p>swift加密库, 支持md5,sha1,sha224,sha256…</p>
-
-<p>github地址: <a href="https://github.com/krzyzanowskim/CryptoSwift">https://github.com/krzyzanowskim/CryptoSwift</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085348448948.jpg" alt="jpg" /></p>
-
-<!--more-->
-
-<ol>
-  <li>Kingfisher</li>
-</ol>
-
-<p>Kingfisher 是一个异步下载和缓存图片的库 类似于SDWebImage</p>
-
-<p>只不过它是纯Swift的实现</p>
-
-<p>github地址：<a href="https://github.com/onevcat/Kingfisher">https://github.com/onevcat/Kingfisher</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085373992263.jpg" alt="jpg" /></p>
-
-<ol>
-  <li>PeekPop</li>
-</ol>
-
-<p>3DTouch动画组件</p>
-
-<p>Peek和Pop是iPhone 6S和6S+上新增的一个很棒的iOS特性，可以很方便地使用3D touch来预览内容。</p>
-
-<p>github地址：<a href="https://github.com/marmelroy/PeekPop">https://github.com/marmelroy/PeekPop</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085502558697.jpg" alt="jpg" /></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085641814017.gif" alt="jpg" /></p>
-
-<ol>
-  <li>AlamofireObjectMapper</li>
-</ol>
-
-<p>将Alamofire JSON响应数据 转为swift对象</p>
-
-<p>github地址：<a href="https://github.com/tristanhimmelman/AlamofireObjectMapper">https://github.com/tristanhimmelman/AlamofireObjectMapper</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085537803735.jpg" alt="jpg" /></p>
-
-<ol>
-  <li>RxAlamofire</li>
-</ol>
-
-<p>为Alamofire提供 函数响应式（FRP）调用接口</p>
-
-<p>以优雅的方式使用Alamofire进行网络请求</p>
-
-<p>github地址：<a href="https://github.com/RxSwiftCommunity/RxAlamofire">https://github.com/RxSwiftCommunity/RxAlamofire</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085656633375.jpg" alt="jpg" /></p>
-
-<ol>
-  <li>PromiseKit</li>
-</ol>
-
-<p>异步编程类库 提供了很多实用的异步函数 让异步编程更简单</p>
-
-<p>github地址：<a href="https://github.com/mxcl/PromiseKit">https://github.com/mxcl/PromiseKit</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085675411831.jpg" alt="jpg" /></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085698363881.jpg" alt="jpg" /></p>
-
-<ol>
-  <li>EZSwiftExtensions</li>
-</ol>
-
-<p>对Swift标准库， Foundation， UIKit 提供了很多高级扩展函数</p>
-
-<p>包括以下内容：</p>
-
-<p>NSObject</p>
-
-<p>Bool</p>
-
-<p>Int</p>
-
-<p>Double</p>
-
-<p>String</p>
-
-<p>NSAttritedString</p>
-
-<p>Array</p>
-
-<p>Dictioanry</p>
-
-<p>NSDate</p>
-
-<p>NSTimer</p>
-
-<p>CGRect</p>
-
-<p>UIViewController</p>
-
-<p>UIView</p>
-
-<p>UITextView</p>
-
-<p>UILabel</p>
-
-<p>UIImageView</p>
-
-<p>UIImage</p>
-
-<p>Block Objects</p>
-
-<p>UIDevice</p>
-
-<p>NSUserDefauts</p>
-
-<p>NSURL</p>
-
-<p>EZ function and variables</p>
-
-<p>github地址：<a href="https://github.com/goktugyil/EZSwiftExtensions">https://github.com/goktugyil/EZSwiftExtensions</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085719198231.jpg" alt="jpg" /></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085745420071.jpg" alt="jpg" /></p>
-
-<ol>
-  <li>Aspects</li>
-</ol>
-
-<p>swift面向切面编程（AOP）库 【Method Swizzling】</p>
-
-<p>github地址：<a href="https://github.com/steipete/Aspects">https://github.com/steipete/Aspects</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085770599317.jpg" alt="jpg" /></p>
-
-<ol>
-  <li>PermissionScope</li>
-</ol>
-
-<p>权限管理库 提供申请权限授权操作</p>
-
-<p>githubd地址：<a href="https://github.com/nickoneill/PermissionScope">https://github.com/nickoneill/PermissionScope</a></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085793901381.jpg" alt="" /></p>
-
-<p><img src="http://cc.cocimg.com/api/uploads/20160524/1464085821147167.gif" alt="" /></p>
-
-<p>10、Alamofire</p>
-
-<p>网络操作库 基本都知道</p>
-
-<p>github地址：<a href="https://github.com/Alamofire/Alamofire">https://github.com/Alamofire/Alamofire</a></p>
-
-<hr />
-<p>转载自<a href="http://www.cocoachina.com/swift/20160525/16437.html">http://www.cocoachina.com/swift/20160525/16437.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[android frame]]></title>
-    <link href="http://helloyokoy.github.io/blog/android-frame/"/>
+    <title type="html"><![CDATA[android framework]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-framework/"/>
     <updated>2016-05-26T14:47:35+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/android-frame</id>
+    <id>http://helloyokoy.github.io/blog/android-framework</id>
     <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160524172058595" alt="img" /></p>
 
 <!--more-->
@@ -566,6 +180,7 @@ UiAutomator，Espresso等</p>
 <p>LeakCanary:	内存泄漏检测工具</p>
 
 <p>ACRA:	Android应用程序崩溃报告</p>
+
 ]]></content>
   </entry>
   
@@ -600,50 +215,11 @@ UiAutomator，Espresso等</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[PromiseKit: 同时支持Objective-C和Swift的Promise类库]]></title>
-    <link href="http://helloyokoy.github.io/blog/promisekit/"/>
-    <updated>2016-03-07T18:33:15+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/promisekit</id>
-    <content type="html"><![CDATA[<p>现代开发需要高度异步，开发工具所提供的异步编程功能是否强大、方便而又令人愉悦？PromiseKit是一款贴心的iOS异步开发类库，更同时支持Objective-C和Swift的promises完整实现。</p>
-
-<p><img src="http://img.blog.csdn.net/20160308094646006" alt="PromiseKit" /></p>
-
-<!--more-->
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-</span><span class="line">
-</span><span class="line">when(fetchImage(), getLocation()).then { image, location in
-</span><span class="line">    self.imageView.image = image;
-</span><span class="line">    self.label.text = "Buy your cat a house in \(location)"
-</span><span class="line">}.always {
-</span><span class="line">    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-</span><span class="line">}.error { error in
-</span><span class="line">    UIAlertView(…).show()
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>PromiseKit有几个版本，其作者Max Howell在README中表示，如果你正在编写一个库，那么使用PromiseKit 1.6；如果正在开发一款App，那么PromiseKit 3则是最好的选择。</p>
-
-<hr />
-<p>GitHub地址：<a href="https://github.com/mxcl/PromiseKit">https://github.com/mxcl/PromiseKit</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Emmet 学习]]></title>
     <link href="http://helloyokoy.github.io/blog/emmelearn/"/>
     <updated>2016-01-20T21:33:48+08:00</updated>
     <id>http://helloyokoy.github.io/blog/emmelearn</id>
-    <content type="html"><![CDATA[<h4 id="section">介绍</h4>
+    <content type="html"><![CDATA[<h3 id="section">介绍</h3>
 
 <p>Emmet (前身为 Zen Coding) 是一个能大幅度提高前端开发效率的一个工具:</p>
 
@@ -651,11 +227,11 @@ UiAutomator，Espresso等</p>
 
 <p>基本上，大多数的文本编辑器都会允许你存储和重用一些代码块，我们称之为“片段”。虽然片段能很好地推动你得生产力，但大多数的实现都有这样一个缺点：你必须先定义你得代码片段，并且不能再运行时进行拓展。</p>
 
-<p>Emmet把片段这个概念提高到了一个新的层次：你可以设置CSS形式的能够动态被解析的表达式，然后根据你所输入的缩写来得到相应的内容。Emmet是很成熟的并且非常适用于编写HTML/XML 和 CSS 代码的前端开发人员，但也可以用于编程语言。</p>
+<p>Emmet 把片段这个概念提高到了一个新的层次：你可以设置 CSS 形式的能够动态被解析的表达式，然后根据你所输入的缩写来得到相应的内容。Emmet 是很成熟的并且非常适用于编写 HTML/XML 和 CSS 代码的前端开发人员，但也可以用于编程语言。</p>
 
-<h4 id="section-1">使用示例：</h4>
+<h3 id="section-1">使用示例</h3>
 
-<p>在编辑器中输入缩写代码：ul&gt;li*5 ，然后按下拓展键（默认为tab），即可得到代码片段：</p>
+<p>在编辑器中输入缩写代码：ul&gt;li*5 ，然后按下拓展键（默认为 tab ），即可得到代码片段：</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -674,28 +250,9 @@ UiAutomator，Espresso等</p>
 
 <!--more-->
 
-<h4 id="section-2">下载和安装</h4>
+<h3 id="section-2">安装</h3>
 
-<p>Emmet为大部分流行的编辑器都提供了安装插件，下面是它们的下载链接：</p>
-
-<ul>
-  <li>Sublime Text</li>
-  <li>Eclipse/Aptana</li>
-  <li>TextMate</li>
-  <li>Coda</li>
-  <li>Espresso</li>
-  <li>Chocolat</li>
-  <li>Komodo Edit</li>
-  <li>Notepad++</li>
-  <li>PSPad</li>
-  <li>textarea</li>
-  <li>CodeMirror</li>
-  <li>Brackets</li>
-  <li>NetBeans</li>
-  <li>Adobe Dreamweaver</li>
-</ul>
-
-<p>在线编辑器的支持：</p>
+<p>在线编辑器的支持</p>
 
 <ul>
   <li>JSFiddle</li>
@@ -721,112 +278,36 @@ UiAutomator，Espresso等</p>
   <li>TinyMCE</li>
 </ul>
 
-<p>因为我也是Sublime Text的使用者，所以下面为大家介绍一下sublime text中Emmet的安装方法：</p>
+<p>因为我也是 Sublime Text的使用者，所以下面为大家介绍一下 sublime text 中 Emmet 的安装方法：</p>
 
-<p>步骤一：首先你需要为sublime text安装Package Control组件：</p>
+<ol>
+  <li>步骤一：首先你需要为 sublime text 安装 Package Control 组件：</li>
+</ol>
 
 <ul>
-  <li>按Ctrl+`调出sublime text的console</li>
+  <li>按 Ctrl + ` 调出 sublime text 的 console</li>
   <li>粘贴以下代码到底部命令行并回车：</li>
 </ul>
 
-<p>import urllib2,os;pf=’Package Control.sublime-package’;ipp=sublime.installedpackagespath();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),’wb’).write(urllib2.urlopen(‘http://sublime.wbond.net/’+pf.replace(‘ ‘,’%20’)).read())</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installedpackagespath();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-  <li>重启Sublime Text</li>
-  <li>在Perferences-&gt;package settings中看到package control，则表示安装成功</li>
+  <li>重启 Sublime Text</li>
+  <li>在 Perferences-&gt;package settings中 看到 package control，则表示安装成功</li>
 </ul>
 
-<p>步骤二：使用Package Control安装Emmet插件：</p>
+<ol>
+  <li>步骤二：使用 Package Control 安装 Emmet 插件：</li>
+</ol>
 
 <ul>
-  <li>按Ctrl+Shift+P命令板</li>
-  <li>输入install然后选择install Package，然后输入emmet找到 Emmet Css Snippets，点击就可以自动完成安装。</li>
+  <li>按 Ctrl+Shift+P 命令板</li>
+  <li>输入 install 然后选择 install Package，然后输入 emmet 找到 Emmet Css Snippets，点击就可以自动完成安装。</li>
 </ul>
 
 <p><a href="http://www.w3cplus.com/tools/emmet-cheat-sheet.html">语法介绍</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[wax 简介]]></title>
-    <link href="http://helloyokoy.github.io/blog/wax-profile/"/>
-    <updated>2016-01-06T11:47:10+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/wax-profile</id>
-    <content type="html"><![CDATA[<blockquote>
-  <p>开源Wax，Alibaba技术团队接力支持
-还在为iOS发版受伤吗，无需发布Ａｐｐ新版本，动态修复线上问题的解决方案来了！</p>
-</blockquote>
 
-<h3 id="section">发版的痛</h3>
-
-<p>去年无线Allin时每次手淘发版都需要经过个多月的煎熬，哪怕一个很小的需求改动也需要等待整个发版节奏。发版周期长、发版需求多、发版难是手淘这种超级app的特点，而审核时间长、升级速度慢、升级率低是App Store的通病，线上bug更是每个app都避免不了痛，而对于手淘亿级的UV来说，哪怕一个小小的bug都会影响成千上万的用户。对于这些困扰了多年的问题，急需一种无需发版即可动态修复线上问题的解决方案！</p>
-
-<p><img src="http://img3.tbcdn.cn/L1/461/1/02ca09b2d15db2db0de408395e0dba1788b969f2?spm=5176.blog1480.yqblogcon1.5.aDhNu5" alt="img" /></p>
-
-<p>Wax是什么？</p>
-
-<p><img src="http://img4.tbcdn.cn/L1/461/1/aae0800e99288ec9f9516877fe69af2ce665c215?spm=5176.blog1480.yqblogcon1.6.aDhNu5" alt="img" /></p>
-
-<p>还记得当年火爆无比的游戏《愤怒的小鸟》吗，它就是基于Wax框架编写的。Wax把Lua脚本语言与原生Objective-C底层runtime结合起来，使得你可以在Lua里面使用任何Objective-C类及框架。</p>
-
-<h3 id="wax">为什么选择Wax？</h3>
-<p><img src="http://img3.tbcdn.cn/L1/461/1/f1cbbd6b9c23b38ccd7783a9cf281d36033843a8?spm=5176.blog1480.yqblogcon1.7.aDhNu5" alt="logo" /></p>
-
-<p>Lua是一个简洁、轻量、可扩展的脚本语言，它的体积小、速度快，在大量的游戏中使用，以实现游戏的可配置和可更新。我们可以把这个思路借鉴到app的开发中，由于Lua需要预先绑定很多C函数才可在脚本中使用，所以单独使用Lua无法做到高复用性。而Wax连接了Lua与Objective-C runtime，使得我们可以在Lua里调用和替换任意类的方法，甚至新增类、方法。这样一来就能在app不发布新版的情况下，通过远程下载脚本的方式修复线上app里的bug、甚至新增一些功能。</p>
-
-<!--more-->
-
-<h3 id="wax-1">我们对Wax做了什么改造？</h3>
-
-<p>线程安全</p>
-
-<p>Wax本身的设计的场景是针对主线程的UI等逻辑，当我们去替换一个会多线程异步调用的方法时就会出现crash，这样一来就会削弱修复的场景，所以我们给Wax在合适的地方进行多线程保护使其具有线程安全特性。</p>
-
-<p>64位适配</p>
-
-<p>从iPhone5s开始，苹果推出了64位cpu架构，从今年2月份开始陆续要求app必须支持64位。
-Lua字节码也有32位与64位编译区分，所以原来的Wax stdlib库在64位无法运行，我们修改原有的Lua字节码打包逻辑使其能在64位正常运行。
-Wax的核心逻辑是替换函数，但原思路利用了32位函数入栈的特性，导致此方法在64位彻底失效。为此我们重新寻找新的函数替换思路，确保在64位也能正常运行。</p>
-
-<p>block传递、调用</p>
-
-<p>在Objective-C中，block以其简洁、易用的特性使用越来越普遍，而Wax虽有Lua的closure却没有支持Lua与OC 的block互通，这会使我们无法修复带有block的方法，为此我们对block的原理进行彻底的分析，同时绞尽脑汁利用32\64位函数参数入栈的特性，最终支持高达7个参数（当然，也可以支持更多）的block传递、调用。</p>
-
-<p>get/set私有成员变量</p>
-
-<p>Wax支持属性的get/set，但似乎忽略了私有成员变量，而我们的代码大量使用了私有成员变量，所以必须支持。庆幸的是Objective-C runtime有操作私有成员变量的API，因此我们在上层对NSObject扩展一些get/set的方法就可以支持私有成员变量的操作了。</p>
-
-<p>常用C函数</p>
-
-<p>要想在Lua里调用C函数，只需要在C代码里注册一下即可，所以看起来支持C函数很简单。但如果我们要把OC框架里的常用的几十、几百个函数都要支持呢？人肉一个个的写显然会显得乏力。所以我们将OC框架里的函数从文档拷贝出然后用脚本预处理，再使用tolua++进行自动代码生成、绑定，这样一来即使支持更多C函数也很简单了。</p>
-
-<p>Lua代码调试</p>
-
-<p>编写简单的Lua代码，只需要几个print打点日志就可以判断逻辑的执行是否正确。但如果是量多、复杂的代码时，只能打日志就会很痛苦了。所以我们将开源届比较强大的Lua调试器ZeroBraneStudio引进，再配合mobdebug远程调试脚本，适配到Wax，就实现了Lua代码在Wax框架中的调试，支持常用的断点、单步，当然还有更方便的观察变量、显示调用栈、控制台调用等</p>
-
-<p>bug修复</p>
-
-<p>由于Wax从2013年就不再维护，而我们的使用场景又多、又复杂，所以也会发现里面的不少bug，当然也做了修复。</p>
-
-<p>Hotpatch封装</p>
-
-<p>Wax提供了基础的Lua运行能力，但真正应用时，还需要很多准备工作。所以我们封装了TBHotaptchSDK提供Lua字节码编译、代码和资源打包、加密、签名、校验、运行等功能。同时还封装了TBHotaptchService提供patch包的版本控制、更新、下载等功能。</p>
-
-<h3 id="section-1">使用情况</h3>
-
-<p>iOS的Hotpatch从去年5月份研发上线以来共发布patch 180多次，意味着修复手淘线上bug 100多个。集团有天猫、聚划算、支付宝、闲鱼、UC等近20个app接入。足以证明Hotpatch的强烈需求以及Wax的价值。</p>
-
-<h3 id="section-2">为什么回馈开源？</h3>
-
-<p>Wax从2013年初就不再被原作者维护了，而64位的出现使得Wax完全不可用，业界也希望有人来解决Wax的众多问题。我们虽对Wax做了很多改造，但最初也是吸收开源届的贡献，秉承开源的奉献精神，将我们付出的劳动再回馈给开源，希望重新激活Wax社区，重新打造一个强大的Wax。
-很荣幸Wax的原作者在其github上改写了主页，将链接指向了Alibaba，这是对我们的一种莫大的肯定。</p>
-
-<p><img src="http://img2.tbcdn.cn/L1/461/1/6b96757c6dd225e1f36d033256a5e8665bce62ed?spm=5176.blog1480.yqblogcon1.8.aDhNu5" alt="img" /></p>
-
-<p>源码网址：<a href="https://github.com/alibaba/wax">https://github.com/alibaba/wax</a></p>
-
-<p>来源：阿里巴巴技术协会（ATA）</p>
 ]]></content>
   </entry>
   
@@ -1092,11 +573,7 @@ mount GrapeSwaggerRails::Engine +&gt; '/docs'
     <link href="http://helloyokoy.github.io/blog/charles/"/>
     <updated>2015-11-26T21:34:03+08:00</updated>
     <id>http://helloyokoy.github.io/blog/charles</id>
-    <content type="html"><![CDATA[<p><img src="http://blog.devtang.com/images/charles-promo.png" alt="ad" /></p>
-
-<p>Charles 正版<a href="http://item.taobao.com/item.htm?&amp;id=524230901640">五折优惠活动</a>（限时：2015 年 11 月 14 日 – 30 日），仅限中国区购买，点击购买。在活动期结束后，价格将从 169 元上涨到 199 元。</p>
-
-<h3 id="section">简介</h3>
+    <content type="html"><![CDATA[<h3 id="section">简介</h3>
 
 <p><img src="http://blog.devtang.com/images/charles-logo.png" alt="img" /></p>
 
@@ -1311,7 +788,8 @@ mount GrapeSwaggerRails::Engine +&gt; '/docs'
 <p>需要注意的是，使用 Breakpoints 功能将网络请求截获并修改过程中，整个网络请求的计时并不会暂停，所以长时间的暂停可能导致客户端的请求超时。</p>
 
 <hr />
-<p>文章装载自 <a href="http://blog.devtang.com/blog/2015/11/14/charles-introduction/">唐巧个人博客</a></p>
+<p>文章转载自 <a href="http://blog.devtang.com/blog/2015/11/14/charles-introduction/">唐巧个人博客</a></p>
+
 ]]></content>
   </entry>
   
@@ -2539,6 +2017,457 @@ Charles好了，下一步配置手机，确保你的手机网络和电脑在同�
 
 <hr />
 <p>转载自 <a href="https://ruby-china.org/topics/26443">ruby-china</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[微信开发 gems]]></title>
+    <link href="http://helloyokoy.github.io/blog/wechat-gems/"/>
+    <updated>2015-10-27T15:35:10+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/wechat-gems</id>
+    <content type="html"><![CDATA[<p>最近陆续有不少用Rails开发微信项目的朋友在Github上开始使用weixin_rails_middleware、weixin_authorize，也不少人谈到Ratchet，春节开始到现在，一直有做微信的开发，现在在论坛上发布出来，希望让更多人知道这些gem的存在，更快速的完成你们手中的任务。</p>
+
+<p>有问题可以前往：微信开发论坛：http://weixin-dev.com/</p>
+
+<p>代码写得不好，还请多多包涵，如果有任何问题，可以直接联系我。:)</p>
+
+<!--more-->
+
+<h4 id="rails">1:一（两）条命令搭建Rails微信版本</h4>
+
+<p>按照最简洁的速度，10分钟可以跑起一个微信的项目：
+https://github.com/lanrion/weixin_rails_middleware</p>
+
+<p>自动验证微信请求；
+一（两）条命令，一个配置，简练风格；
+支持Rails 3, Rails 4；
+支持多公众账号平台，例如类似微盟；
+支持单个用户，即一个账号，但又不想保存在数据库；
+提供回复消息辅助方法；
+提供所有微信消息类型的业务逻辑的回复处理；
+wiki 中提供自定义菜单中的实现案例；
+自动生成token；
+详细见：</p>
+
+<p>https://github.com/lanrion/weixin_rails_middleware/wiki/</p>
+
+<p>wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
+
+<p>https://github.com/lanrion/weixin_rails_middleware</p>
+
+<h4 id="api">2：微信高级API实现：</h4>
+
+<p>https://github.com/lanrion/weixin_authorize</p>
+
+<p>除 Oauth 2 未实现，其他API均已实现；
+支持Redis存储access_token；
+还是直接看wiki 吧：</p>
+
+<p>https://github.com/lanrion/weixin_authorize/wiki/Getting-Started
+wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
+
+<h4 id="ratchet-v201gem-twitterratchetrails">3：集成Ratchet v2.0.1的gem: twitter_ratchet_rails</h4>
+
+<p>即：http://goratchet.com/ 压缩后非常小，十分适合wap使用，但有一个不足之处在于，组件不够丰富，期待更丰富的实现
+没其他多余的好说，看官直接点击：</p>
+
+<p>https://github.com/lanrion/twitter_ratchet_rails</p>
+
+<p>小弟身材弱小，砖别拍的太猛，嘿，把我拍死了，就没人维护这三个gem了。:)</p>
+
+<h4 id="section">4：例子（可能没有及时更新上最新版本）</h4>
+
+<p>Rails 4: https://github.com/lanrion/weixin_rails_middleware_example</p>
+
+<p>Rails 3: https://github.com/lanrion/weixin_rails_3</p>
+
+<p>企业微信gem</p>
+
+<p>请稳步： https://ruby-china.org/topics/22479</p>
+
+<p>微信开发论坛：http://weixin-dev.com/</p>
+
+<hr />
+<p>转载自 <a href="https://ruby-china.org/topics/18439">ruby-china</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ruby gems内存泄露]]></title>
+    <link href="http://helloyokoy.github.io/blog/ruby-gems-memory-leak/"/>
+    <updated>2015-10-22T15:01:34+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/ruby-gems-memory-leak</id>
+    <content type="html"><![CDATA[<p>请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新</p>
+
+<ul>
+  <li>
+    <p>therubyracer &lt; 0.12.2</p>
+  </li>
+  <li>
+    <p>sidekiq &lt; 3.5.1</p>
+  </li>
+  <li>
+    <p>celluloid &gt; 0.16.0, &lt; 0.17.2</p>
+  </li>
+  <li>
+    <p>zipruby &lt;= 0.3.6</p>
+  </li>
+  <li>
+    <p>redcarpet &lt; 3.3.3</p>
+  </li>
+  <li>
+    <p>grape &lt; 0.2.5</p>
+  </li>
+</ul>
+
+<p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RubyMotion简介]]></title>
+    <link href="http://helloyokoy.github.io/blog/rubymotion/"/>
+    <updated>2015-10-15T15:52:38+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/rubymotion</id>
+    <content type="html"><![CDATA[<h2 id="rubymotion-">RubyMotion 是什么</h2>
+<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2015/aa191c47356e1b30b1f1a7d7e82fea3c.gif" alt="icon" /></p>
+
+<h2 id="section">统一的运行时环境</h2>
+<p>在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java Runtime，Dalvik 以及 ART 实现了 Ruby 语言。由于这种异常紧密的集成，Ruby 可以自如的调用各平台的接口而不会产生任何性能损失。你可以轻松自如的混编 Ruby 和 Objective-C 或者 Ruby 和 Java，自由的访问各平台提供的最新的 API，自由调用各种第三方库。</p>
+
+<h2 id="section-1">完全编译</h2>
+
+<p>RubyMotion 使用基于 LLVM 构建(参见原理)的革命性的、先进的预编译器（AOT Complier）将项目中的 Ruby 代码编译成经过优化的机器代码。在 iOS 以及 Android 项目，编译器可以生成 32 位和 64 位的 ARM 目标代码，在 OS X 项目则可以生成 32 位和 64 位的 Intel 目标代码。原始的 Ruby 代码不会出现在程序中，也不会在运行期间被解释执行。RubyMotion 的典型项目的程序包大小在 1MB 以下。</p>
+
+<h2 id="section-2">自动管理内存</h2>
+
+<p>在 Ruby 语言中，你无需考虑内存管理事宜。因为，RubyMotion 会自动释放内存中那些你创建的但是却不再会被使用的对象。针对 iOS 和 OS X 平台，我们提供了一个自定义的内存模型，在设计上类似 Objective-C 的 ARC 机制。这个模型无需再使用额外内存或者代码来处理不再使用的对象的声明和回收。针对 Android 平台，我们使用 Java 运行时环境的 GC 来管理内存。</p>
+
+<!--more-->
+
+<h2 id="section-3">支持并行</h2>
+
+<p>绝大斗数 Android 设备以及最新的 iOS 和 OS X 硬件都支持多核处理器。所以在设计应用程序时，考虑到支持并发是非常重要的。RubyMotion 被设计成没有全局锁且是可重入的（re-entrant），主要目的就是可以让代码并行的执行。针对 iOS 和 OS X 平台，RubyMotion 为 Grand Central Dispatch 提供了方便的接口，你可以自如的使用 CPU 核心来平衡需要大量计算的任务。</p>
+
+<h2 id="rubymotion">要不要选择 RubyMotion</h2>
+
+<p>如果你喜欢 Ruby，当然你需要来尝试 RubyMotion，并且你会爱上他。并且，选择 RubyMotion 意味着你可以像开发 Rails 应用一样使用 Rake 工具链，同时又不会放弃 AutoLayout 等原生开发时必须的技术。你可以使用来自人类希望的 JetBrains 出品的 RubyMine，也可以使用 SublimeText 或者 VIM(Emacs)。你会看到类似 Rails 的文件组织结构。作为一个 Rails 开发者，你会感到所有的开发环境都是如此的令人感到熟悉。一个人，凭借 Ruby 实现真正意义上的全端全栈，似乎指日可待啊～</p>
+
+<h2 id="section-4">社区发展</h2>
+
+<p>RubyMotion 存在已经第四个年头，所以目前是一个稳定的项目。由于之前没有提供免费试用版，所以造成好多人想去学习，却因为感觉到相对昂贵的价格而止步不前。现在不用了，快去 <a href="http://www.rubymotion.com/download/">http://www.rubymotion.com/download/</a> 下载免费版把玩吧……</p>
+
+<p>在社区发展方面，社区贡献了非常多的 Gems。得益于 Ruby 强大的 DSL 生成能力和元编程特性，非常多的 Gems 对原生开发冗余的编程模型和繁杂的 API 调用做了非常好的封装。<a href="http://motion-toolbox.com/">http://motion-toolbox.com/</a> 里面收录了绝大多数优质的 RubyMotion 的 Gems。</p>
+
+<h2 id="section-5">相关资料</h2>
+
+<p><a href="https://ruby-china.org/topics/22416">RubyMotion Workshop Beijing 资料总结</a></p>
+
+<p><a href="http://www.rubymotion.com/download/">RubyMotion 官网</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android 轻量缓存框架 ASimpleCache]]></title>
+    <link href="http://helloyokoy.github.io/blog/anroi-asimplecache/"/>
+    <updated>2015-10-14T20:28:27+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/anroi-asimplecache</id>
+    <content type="html"><![CDATA[<p>做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些：</p>
+
+<ol>
+  <li>
+    <p>服务端控制缓存
+如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式，但是需要服务端配合，比较灵活。</p>
+  </li>
+  <li>
+    <p>客户端直接控制缓存</p>
+  </li>
+</ol>
+
+<p>有些时候不需要服务端来支持的话，客户端可以直接做一层缓存，思路就是请求之后把数据缓存在本地，最常见的是直接以文件缓存在本地就好了，当然你可以缓存在本地的sqlite，以sqlite文件的形式缓存数据处理更灵活点，然后客户端自己处理缓存的时间，过期则直接清除数据。对于一些不太经常变化的页面，采用这种缓存可以减少客户端流量，同时减少服务器并发量。</p>
+
+<p>对于一些新闻类或者timeline这种，数据变化是非常频繁的，针对这种情况可能就不太适合设置缓存时间，这种情况可以考虑让页面每次进来都会自动刷新一次以获取最新数据，如果网络不好或者断开时可以直接读取本地缓存，增加用户体验。当然如果想要更复杂的处理可以配合时间来判断当前页面要不要刷新。</p>
+
+<!--more-->
+
+<p>今天就介绍一种简易的缓存框架，使用起来非常简单。</p>
+
+<h4 id="asimplecache">ASimpleCache</h4>
+
+<p>ASimpleCache 是一个为android制定的 轻量级的 开源缓存框架。轻量到只有一个java文件（由十几个类精简而来）。</p>
+
+<h4 id="section">它可以缓存什么东西？</h4>
+
+<p>普通的字符串、JsonObject、JsonArray、Bitmap、Drawable、序列化的java对象，和 byte数据。</p>
+
+<h4 id="asimplecache-1">如何使用 ASimpleCache？</h4>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">ACache mCache = ACache.get(this);
+</span><span class="line">mCache.put("test_key1", "test value");
+</span><span class="line">mCache.put("test_key2", "test value", 10);//保存10秒，如果超过10秒去获取这个key，将为null
+</span><span class="line">mCache.put("test_key3", "test value", 2 * ACache.TIME_DAY);//保存两天，如果超过两天去获取这个key，将为null</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>获取数据</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">ACache mCache = ACache.get(this);
+</span><span class="line">String value = mCache.getAsString("test_key1");</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>最后此项目的开源地址： <a href="https://github.com/yangfuhai/ASimpleCache">ASimpleCache</a></p>
+
+<hr />
+<p>转载自 <a href="http://stormzhang.com/android/2014/10/17/android-simple-cache/">strom博客</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android 开发遇到的坑]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-mistake/"/>
+    <updated>2015-10-12T14:21:57+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/android-mistake</id>
+    <content type="html"><![CDATA[<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
+
+<ul>
+  <li>
+    <p>在Android library中不能使用switch-case语句访问资源ID：
+<a href="http://zmywly8866.github.io/2014/12/24/android-can-not-use-switch-to-load-resource-in-libproject-solution.html">在Android library中不能使用switch-case语句访问资源ID的原因分析及解决方案</a></p>
+  </li>
+  <li>
+    <p>不能在Activity没有完全显示时显示PopupWindow和Dialog：<a href="http://stackoverflow.com/questions/4187673/problems-creating-a-popup-window-in-android-activity">popupwindow - Problems creating a Popup Window in Android Activity</a></p>
+  </li>
+  <li>
+    <p>在多进程之间不要用SharedPreferences共享数据，虽然可以（MODE_MULTI_PROCESS），但极不稳定：<a href="http://stackoverflow.com/questions/22129717/mode-multi-process-for-sharedpreferences-isnt-working">android - MODE_MULTI_PROCESS for SharedPreferences isn’t working</a></p>
+  </li>
+</ul>
+
+<!--more-->
+
+<ul>
+  <li>
+    <p>有些时候不能使用Application的Context，不然会报错（比如启动Activity，显示Dialog等）：
+<img src="https://pic3.zhimg.com/e3f3236cbd96c69cdea10d014bacbeae_b.png" alt="icon" /></p>
+  </li>
+  <li>
+    <p>同一个应用的JNI代码，不要轻易换NDK编译的版本，否则会有很多问题（主要是一些方法实现不一样，并且高版本对代码的检测更严格），比如r8没有问题，但到r9就有问题了，这是个大坑；</p>
+  </li>
+  <li>
+    <p>Android的JNI代码中，有返回类型的函数没有返回值编译的时候也不会报错；</p>
+  </li>
+  <li>
+    <p>当前Activity的onPause方法执行结束后才会执行下一个Activity的onCreate方法，所以在onPause方法中不适合做耗时较长的工作，这会影响到页面之间的跳转效率；</p>
+  </li>
+  <li>
+    <p>谨慎使用Android的透明主题，透明主题会导致很多问题，比如：如果新的Activity采用了透明主题，那么当前Activity的onStop方法不会被调用；在设置为透明主题的Activity界面按Home键时，可能会导致刷屏不干净的问题；进入主题为透明主题的界面会有明显的延时感；</p>
+  </li>
+  <li>
+    <p>不要在非UI线程中初始化ViewStub，否则会返回null；</p>
+  </li>
+  <li>
+    <p>公共接口一定要考虑到代码重入的情况，能设计为单例就尽量用单例；</p>
+  </li>
+  <li>
+    <p>不要通过Bundle传递大块的数据，否则会报TransactionTooLargeException异常：<a href="http://stackoverflow.com/questions/12819617/issue-passing-large-data-to-second-activity">java - Issue: Passing large data to second Activity</a></p>
+  </li>
+  <li>
+    <p>尽量不要通过Application缓存数据，这不稳定：
+<a href="http://zmywly8866.github.io/2014/12/26/android-do-not-store-data-in-the-application-object.html">不要在Android的Application对象中缓存数据!</a></p>
+  </li>
+  <li>
+    <p>尽量不要使用AnimationDrawable，它在初始化的时候就将所有图片加载到内存中，特别占内存，并且还不能释放，释放之后下次进入再次加载时会报错；</p>
+  </li>
+  <li>
+    <p>9图不能通过tinypng压缩，不然会有问题；</p>
+  </li>
+  <li>
+    <p>genymotion模拟器快是因为它是基于x86架构的，如果你的应用中用到了so，但没有x86架构的so，只能放弃使用它；Android Studio的模拟器也一样；</p>
+  </li>
+  <li>
+    <p>Eclipse的Android开发环境配置好后不要轻易升级ADT和build tools，不然会浪费你很多时间，还有就是一个workspace中的工程不要太多，不然每次启动都会很慢；</p>
+  </li>
+  <li>
+    <p>Android studio每个版本、gradle每个版本差别都比较大（我是这样认为的），对于jni代码的编译建议在Eclipse中进行，如果在Android studio中开发jni会浪费很多时间，主要是编译脚本的配置比较麻烦；</p>
+  </li>
+  <li>
+    <p>Eclipse中的Lint太不靠谱，特别是主工程中依赖library的时候，很多提示都是有问题的，建议使用Android Studio的工程清理工具，特别推荐；</p>
+  </li>
+  <li>
+    <p>AsyncTask默认自己维护一个静态的线程池，而该线程池只允许同时执行一个线程，也就是说，不管多少个AsyncTask,只要是调用execute()方法，都是共享这个默认进程池的，你的任务必须在之前的任务执行完以后，才能执行。<a href="http://zmywly8866.github.io/2015/09/29/android-call-asynctask-excute-not-run.html">调用AsyncTask的excute方法不能立即执行程序的原因分析及改善方案</a></p>
+  </li>
+</ul>
+
+<hr />
+<p>著作权归作者所有。</p>
+
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>作者：张明云</p>
+
+<p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
+
+<p>来源：知乎</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Gems 推荐]]></title>
+    <link href="http://helloyokoy.github.io/blog/rails-gems-recomend/"/>
+    <updated>2015-10-05T12:31:27+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/rails-gems-recomend</id>
+    <content type="html"><![CDATA[<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
+
+<h4 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h4>
+
+<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
+
+<h4 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h4>
+
+<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
+
+<h4 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h4>
+
+<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
+
+<h4 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h4>
+
+<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
+
+<!--more-->
+
+<h4 id="paperclippaperclip--rubygemsorg">5.Paperclip（paperclip | RubyGems.org）</h4>
+
+<p>paperclip基本上已经是rails的御用图片上传gem了，功能强大使用方便，但是唯一不太好的就是图片剪裁上面功能比较有限。paperclip依赖于ImageMagic，大部分linux包管理器（如apt yum portage等）中应该都能找到这个软件包。</p>
+
+<h4 id="rmagickrmagick--rubygemsorg">6.rmagick（rmagick | RubyGems.org）</h4>
+
+<p>这个gem弥补了paperclip在图片剪裁上的不足。功能十分十分十分的强大，文档也很齐全，只不过是全英文，中文资料比较少。如果项目有要开发头像剪裁上传，那么用rmagic剪裁，paperclip上传是比较好的解决方案。</p>
+
+<h4 id="friendlyidfriendlyid--rubygemsorg">7.friendly_id（friendly_id | RubyGems.org）</h4>
+
+<p>现在大部分网站都已经是友好的url地址了，如果你的rails项目还用数字作为id进行查询那就太low了。</p>
+
+<h4 id="willpaginatewillpaginate">8.will_paginate（will_paginate）</h4>
+
+<p>老版本的will_paginate分业是基于plugin方式的，新版本的will_paginate已经抛弃了这样的做法，转而使用gem的方式。这样一来安装和使用更加方便，配合一些前端的分页加载库，会让分页加载功能开发非常快捷。</p>
+
+<h4 id="ransackransack--rubygemsorg">9.ransack（ransack | RubyGems.org）</h4>
+
+<p>搜索功能一般分为分词和不分词的，如果你只想做用户和文章标题检索之类的功能，那么不分词的搜索gem比较合适，类似的gem挺多的，我常用的是这个。</p>
+
+<h4 id="sunspotsunspot--rubygemsorg">10.sunspot（sunspot | RubyGems.org）</h4>
+
+<p>接上面，全文搜索的gem也不少，sunspot对于小型项目的话，稍微有些重。如果没有那么多要求的话，sphinx也可以考虑，速度快，占用资源低。</p>
+
+<h4 id="gecodergeocoder--rubygemsorg">11.Gecoder（geocoder | RubyGems.org）</h4>
+
+<p>说实话在web上做定位确实比较乏力，尽量还是用手机客户端吧</p>
+
+<h4 id="pumapumapuma--github">12.puma（puma/puma · GitHub）</h4>
+
+<p>对于想要处理并发请求的web项目，Puma 是和 Unicorn相竞争的 Web 服务器，它能够处理并发请求。Puma 使用线程，以及工作者进程，能够更多的利用可用的 CPU。在 Puma 中，如果整个基础代码是线程安全的，那么你可用利用线程。否则，在使用 Puma 的时候，你只能使用工作者进程进行拓展。Puma的设置也比较简单，官方有详细的使用文档，RubyChina也使用Puma，个人推荐。</p>
+
+<h4 id="emojiwpetersonemoji--github">13.Emoji（wpeterson/emoji · GitHub）</h4>
+
+<p>现在只要涉及社交的项目估计很少有不用表情的了，Emoji是个集成度比较高的Emoji表情转码库，使用方便，当然大部分情况下还是要配合前端使用。</p>
+
+<p>暂时想到这么多，欢迎补充，待续。。。。</p>
+
+<hr />
+<p>著作权归作者所有。</p>
+
+<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>作者：孙笛</p>
+
+<p>链接：http://www.zhihu.com/question/31083216/answer/50654456</p>
+
+<p>来源：知乎</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Full Stack Developer 全栈工程师]]></title>
+    <link href="http://helloyokoy.github.io/blog/full-stack-developer/"/>
+    <updated>2015-09-15T16:18:48+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/full-stack-developer</id>
+    <content type="html"><![CDATA[<p>做这样一个简单的 app:</p>
+
+<p>一个天气应用，干净清爽的界面，天气信息一目了然。它不仅可以精确预测未来 10 天的天气，还可以显示某地的历史天气信息。它具有自定义提醒功能，支持 web 版本， iOS 版， Android 版。</p>
+
+<p>为什么想要做这样一个 App ？因为你喜欢旅行，但没找到一个天气 App 可以提供你下个月或者某个特定月份的天气信息；因为你懒你没有每天看天气预报的习惯，你想要在第二天温度达到 30 度以上或者温差有 +/-7 度的时候，获得温馨提示；因为你要成为一个 Full Stack Engineer ，你必须不断训练每个 stack 的能力。</p>
+
+<!--more-->
+
+<h3 id="web">Web版</h3>
+
+<p>你决定用 MySql 来存储用户数据，用 NoSql 存储历史天气数据。你用 Redis 作为 cache ，缓存一些最常请求的天气数据。你用 Python 写后台，功能简单，后台不复杂，用户注册登录，抓取返回某城市的天气数据，某地的历史天气数据，很快便搞定。</p>
+
+<p>后台开发并测试好了，接下来是 Web 前端。你十分清楚一个好的 UI 设计对一个 App 的重要性，你也明白 UI 的设计不只是为了美观，更重要的是提高信息的可读性和程序的可用性。幸好你平日的积累这次派上用场了。你把之前保存下来的上百个优秀的UI设计作品拿来研究，你从书架上拿出Norman 的那本经典 - The Design of Everyday Things 重新细读。最终你用白纸黑笔敲定了第一个版本的 UI，简洁直观，没有任何多余的设计，所有元素的排列间距 大小颜色都恰到好处。你相信即使天气不好，但用户只要使用这个 App 都会有着愉悦的心情。</p>
+
+<p>那么开始写前端吧。啊，别急，都忘了还有 Icon 和 Logo ，可是不会 PS ，不会 AI ，不会 Sketch 怎么办呢，学吧。你平日喜欢结交不同领域的朋友，正好几周前在一个活动上你认识一位朋友做设计的。她花一个下午的时间教你基本的 Sketch 的使用，并对你的 UI 设计给出了一些意见。你请她吃了顿晚饭表示感谢，然后立即回家根据她的一些建议重新调整了 UI ，这次你在 PS 里把 UI 画了出来，Icons 和 Logo 也顺道一起做了。</p>
+
+<p>接下来的一周，你学习 HTML，CSS，以及 Javascript，并漂亮地把前端搞定。</p>
+
+<h3 id="app">发布 App</h3>
+
+<p>在朋友圈发了个状态，找人帮你做 Beta 测试。他们都首先问你是什么 App，一开始你简单回答一个天气的 App。但你发现，这不能提起他们的兴趣。你觉得你需要用语言，用故事包装一下。不光是作为别人「是什么 App」提问的回答，也是成为 Full stack Engineer 道路上的一个重要技能。</p>
+
+<p>你去看了所有你喜欢的产品的主页，从他们的文案上获得一些灵感启发；你读了经典的 On Writing Well ，发现好的文案，好的设计，其实和好的代码很相似，都是重在交流，如何让他人毫不费劲地明白你要表达的内容。你的故事要吸引人，你的产品介绍要在1分钟内解释清楚，并确保你的父母可以毫无压力听明白。</p>
+
+<p>一切就绪，产品上线了。反响不错，用户持续增加。很多用户希望有移动版本，于是你立即投入到iOS 版本的开发上。</p>
+
+<h3 id="ios---">iOS 版 及 后台优化</h3>
+
+<p>你花一周不到时间学习了基本的语法和工具使用便投入到 App 的开发中。你知道 Learn by Doing 是最好也是最快的。由于之前学习了设计的基础，UI ，Icons 很快搞定，不久 iOS 版本便发布了。iOS 的发布带来了更多的用户增长，后台服务器的压力颇大，你知道是时候优化后台了。</p>
+
+<p>你在 AWS 上多开了 2 台服务器，并写了一个 Script 来自动化部署过程。你改用 uWSGi 协议，用 uwsgi 作为 Application Server。你使用 Nginx 来做并发，负载均衡 ……………</p>
+
+<h3 id="section">成立公司</h3>
+
+<p>用户持续增长，每天你都会收到十几二十封用户的邮件。你很感激这些愿意花时间给你写邮件的用户，你相信他们是你最重要的用户，是潜在的付费用户。如果你把他们像上帝一样对待，他们同样也会把你看作是上帝。所以除了睡觉时间的发来的邮件，每一封邮件，你都会在2小时内给予回复。</p>
+
+<p>果然这样的付出是收获巨大的，他们不仅惊讶且非常感谢你的快速回复，他们会在app store里给你★★★★★的评价，他们在社交网站上分享你的app，他们甚至会主动提出捐款给你。</p>
+
+<p>你从快速的用户增长中嗅到了商机，你开始思考如何赚钱。广告你是坚决不能允许的，你认为再精确的广告也会影响用户体验。你设计了 2 个不同的付费方案，你打算用 A/B 测试看哪个方案更好。你分别给 200 个用户发去邀请尝试付费的邮件，邮件内容你精心打磨过，并在最后写上：CEO &amp; Founder. 通过分析 2 种方案的用户行为，你决定将使用第一种方案。</p>
+
+<p>接下来，你相信差不多是时候成立个公司了。为了省时间，你花 2000 块钱找了个园区挂靠并帮你注册公司。公司的名字让你头疼了很久，你不想只是简单的用这个 App 的名字作为公司名字，你知道公司将来还会做出其他优秀的产品。你希望这个名字简单易记，同时其含义也是你公司文化的象征。</p>
+
+<p>公司注册下来了，但银行那边得自己跑。你联系了一些媒体编辑，邀请他们来试用你的产品；你重新设计了产品主页，并开始写产品的 Blog ；你在各大社交网络都给 App 注册了账号，即做社区客服也为宣传… 这些事大大压缩你写代码的时间。以往你都是以代码量作为衡量自己当天工作效率的指标，所以这些天你总感觉没做啥工作。</p>
+
+<p>这样的发展早已超过你的预期，这个 App 从一个 Side Project 几乎变成了你生活的全部。你跟你女朋友半个月才出去约会一次，她抱怨不断；你1个月没跟朋友出去玩耍喝酒了；你 2 个月都没锻炼过身体… 你意识到, YOU CAN NOT DO THIS ALONE，你需要帮手，你需要找人一起把这个做下去。但你不是要成为 Full Stack Engineer 么？你现在是了么？</p>
+
+<h3 id="full-stack-engineer">Full Stack Engineer</h3>
+
+<p>设计，后台开发，前端开发，移动开发，运营维护，PS，文案… 好像都会了，这算 Full Stack Engineer 了么？</p>
+
+<p>不，这只是踏上成为 Full Stack Engineer 的第一步。你知道目前只是每个 stack 都懂一点，离senior 或者 expert 还差得远，而要每个 stack 都做到极致，需要大量的时间和精力。精力有限，产品开发紧迫，力不从心啊，这条道路也太孤独，因为你不需要与任何人进行协作。难道要把一些stack的任务交给别人做么？这样算是放弃成为 Full Stack Engineer 么？</p>
+
+<p>不！这不是。</p>
+
+<p>什么是 Engineer？「Engineers are versatile minds who create links between science, technology, and society」。Engineer 的本质工作是设计，开发出应用于大众的产品。</p>
+
+<p>一个真正的 Full Stack Engineer ，他从生活中发现问题，洞察需求，他设计解决方案，并开发出初始版本的产品。为了达到目标，他愿意去学习任何领域的技能和知识。同时他不追求一个人完成所有工作，如果有人可以比他在某方面做得更出色，便会十分热情的邀请他们加入。</p>
+
+<p>最终他的职位也许不再是 Engineer ，他不再设计 UI ，不再写代码 … 他的工作不再是 design and building an app or product，因为他有更大更重要的任务要做 - design and building a team or a company which builds great products.</p>
+
+<p>而这时，社会给了他们另一个称呼 - 创业者。尽管众人已忘记他们 Engineer 的身份，但在他们骨子里，内心深处，自己始终都是一个 Engineer 。当他们需要从头再来时，他们毫不犹豫从设计开发产品做起。Nikola Tesla，Ferdinand Porsche，Henry Ford，Jack Dorsey，Mark zuckerberg，Elon Musk … 细数那些改变了或正改变世界的创业者，他们大多数是 Engineer 背景，热衷于设计创造。他们学习技能和知识，不是为了成为某个领域的专家；而是因为那些 是完成自己目标所需要的。</p>
+
+<p>以上，为我认可的 Full Stack Engineer</p>
+
+<hr />
+
+<p>著作权归作者所有。
+商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+<p>作者：顾鹏</p>
+
+<p>链接：http://www.zhihu.com/question/22420900/answer/21770992</p>
+
+<p>来源：知乎</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[分类：nodejs | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/nodejs/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-21T16:49:41+08:00</updated>
+  <updated>2018-01-21T17:23:02+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -14,34 +14,115 @@
 
   
   <entry>
-    <title type="html"><![CDATA[NodeJS 7.0]]></title>
-    <link href="http://helloyokoy.github.io/blog/nodejs/"/>
-    <updated>2016-10-27T12:29:35+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/nodejs</id>
-    <content type="html"><![CDATA[<p><a href="https://github.com/nodejs/node/milestone/15?closed=1">https://github.com/nodejs/node/milestone/15?closed=1</a></p>
+    <title type="html"><![CDATA[Emmet 学习]]></title>
+    <link href="http://helloyokoy.github.io/blog/emmelearn/"/>
+    <updated>2016-01-20T21:33:48+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/emmelearn</id>
+    <content type="html"><![CDATA[<h3 id="section">介绍</h3>
 
-<blockquote>
-  <p>We did change the naming of v6 from Stable to Current as well, so I am assuming that v7 will also be named as “Current” vs “Stable”</p>
-</blockquote>
+<p>Emmet (前身为 Zen Coding) 是一个能大幅度提高前端开发效率的一个工具:</p>
 
-<ul>
-  <li>已完成v8 5.4版本集成，也就是说支持async/await</li>
-  <li>koa 2.x也将随之发布，妈妈再也不担心我用bable的async/await调试了</li>
-  <li>upgrade libuv to 1.10.0</li>
-  <li>using openssl 1.1.0</li>
-</ul>
+<p><img src="http://cdn.w3cplus.com/cdn/farfuture/jXcuIfm_Jn4-aJO7c59GOzDUd1163lwYGIWK3PIX2oE/mtime:1421034939/sites/default/files/styles/print_image/public/baiyaimages/emmet-p1.jpg" alt="icon" /></p>
 
-<p>异步流程async/await终于落地了</p>
+<p>基本上，大多数的文本编辑器都会允许你存储和重用一些代码块，我们称之为“片段”。虽然片段能很好地推动你得生产力，但大多数的实现都有这样一个缺点：你必须先定义你得代码片段，并且不能再运行时进行拓展。</p>
+
+<p>Emmet 把片段这个概念提高到了一个新的层次：你可以设置 CSS 形式的能够动态被解析的表达式，然后根据你所输入的缩写来得到相应的内容。Emmet 是很成熟的并且非常适用于编写 HTML/XML 和 CSS 代码的前端开发人员，但也可以用于编程语言。</p>
+
+<h3 id="section-1">使用示例</h3>
+
+<p>在编辑器中输入缩写代码：ul&gt;li*5 ，然后按下拓展键（默认为 tab ），即可得到代码片段：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;ul>
+</span><span class='line'>    &lt;li>&lt;/li>
+</span><span class='line'>    &lt;li>&lt;/li>
+</span><span class='line'>    &lt;li>&lt;/li>
+</span><span class='line'>    &lt;li>&lt;/li>
+</span><span class='line'>    &lt;li>&lt;/li>
+</span><span class='line'>&lt;/ul>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <!--more-->
 
-<p>以前</p>
+<h3 id="section-2">安装</h3>
 
-<p><img src="https://dn-cnode.qbox.me/FmbZcLrkY4ThT1yQoV9vnyPfioDV" alt="https://dn-cnode.qbox.me/FmbZcLrkY4ThT1yQoV9vnyPfioDV" /></p>
+<p>在线编辑器的支持</p>
 
-<p>现在</p>
+<ul>
+  <li>JSFiddle</li>
+  <li>JS Bin</li>
+  <li>CodePen</li>
+  <li>ICEcoder</li>
+  <li>Divshot</li>
+  <li>Codio</li>
+</ul>
 
-<p><img src="https://dn-cnode.qbox.me/FsP2jIneBIpGukP8pNW4ez7ps0qF" alt="https://dn-cnode.qbox.me/FsP2jIneBIpGukP8pNW4ez7ps0qF" /></p>
+<p>第三方插件的支持</p>
+
+<p>下面这些编辑器的插件都是由第三方开发者所提供的，所以可能并不支持所有Emmet的功能和特性。</p>
+
+<ul>
+  <li>SynWrite</li>
+  <li>WebStorm</li>
+  <li>PhpStorm</li>
+  <li>Vim</li>
+  <li>HTML-Kit</li>
+  <li>HippoEDIT</li>
+  <li>CodeLobster PHP Edition</li>
+  <li>TinyMCE</li>
+</ul>
+
+<p>因为我也是 Sublime Text的使用者，所以下面为大家介绍一下 sublime text 中 Emmet 的安装方法：</p>
+
+<ol>
+  <li>步骤一：首先你需要为 sublime text 安装 Package Control 组件：</li>
+</ol>
+
+<ul>
+  <li>按 Ctrl + ` 调出 sublime text 的 console</li>
+  <li>粘贴以下代码到底部命令行并回车：</li>
+</ul>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import urllib2,os;pf=’Package Control.sublime-package’;ipp=sublime.installedpackagespath();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),’wb’).write(urllib2.urlopen(‘http://sublime.wbond.net/’+pf.replace(‘ ‘,’%20’)).read())&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<ul>
+  <li>重启 Sublime Text</li>
+  <li>在 Perferences-&gt;package settings中 看到 package control，则表示安装成功</li>
+</ul>
+
+<ol>
+  <li>步骤二：使用 Package Control 安装 Emmet 插件：</li>
+</ol>
+
+<ul>
+  <li>按 Ctrl+Shift+P 命令板</li>
+  <li>输入 install 然后选择 install Package，然后输入 emmet 找到 Emmet Css Snippets，点击就可以自动完成安装。</li>
+</ul>
+
+<p><a href="http://www.w3cplus.com/tools/emmet-cheat-sheet.html">语法介绍</a></p>
+
 ]]></content>
   </entry>
   

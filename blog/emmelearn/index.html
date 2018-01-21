@@ -127,7 +127,7 @@
 	
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Emmet 学习</h2>
-	<div class="entry-content"><h4 id="section">介绍</h4>
+	<div class="entry-content"><h3 id="section">介绍</h3>
 
 <p>Emmet (前身为 Zen Coding) 是一个能大幅度提高前端开发效率的一个工具:</p>
 
@@ -135,11 +135,11 @@
 
 <p>基本上，大多数的文本编辑器都会允许你存储和重用一些代码块，我们称之为“片段”。虽然片段能很好地推动你得生产力，但大多数的实现都有这样一个缺点：你必须先定义你得代码片段，并且不能再运行时进行拓展。</p>
 
-<p>Emmet把片段这个概念提高到了一个新的层次：你可以设置CSS形式的能够动态被解析的表达式，然后根据你所输入的缩写来得到相应的内容。Emmet是很成熟的并且非常适用于编写HTML/XML 和 CSS 代码的前端开发人员，但也可以用于编程语言。</p>
+<p>Emmet 把片段这个概念提高到了一个新的层次：你可以设置 CSS 形式的能够动态被解析的表达式，然后根据你所输入的缩写来得到相应的内容。Emmet 是很成熟的并且非常适用于编写 HTML/XML 和 CSS 代码的前端开发人员，但也可以用于编程语言。</p>
 
-<h4 id="section-1">使用示例：</h4>
+<h3 id="section-1">使用示例</h3>
 
-<p>在编辑器中输入缩写代码：ul&gt;li*5 ，然后按下拓展键（默认为tab），即可得到代码片段：</p>
+<p>在编辑器中输入缩写代码：ul&gt;li*5 ，然后按下拓展键（默认为 tab ），即可得到代码片段：</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -158,28 +158,9 @@
 
 <!--more-->
 
-<h4 id="section-2">下载和安装</h4>
+<h3 id="section-2">安装</h3>
 
-<p>Emmet为大部分流行的编辑器都提供了安装插件，下面是它们的下载链接：</p>
-
-<ul>
-  <li>Sublime Text</li>
-  <li>Eclipse/Aptana</li>
-  <li>TextMate</li>
-  <li>Coda</li>
-  <li>Espresso</li>
-  <li>Chocolat</li>
-  <li>Komodo Edit</li>
-  <li>Notepad++</li>
-  <li>PSPad</li>
-  <li>textarea</li>
-  <li>CodeMirror</li>
-  <li>Brackets</li>
-  <li>NetBeans</li>
-  <li>Adobe Dreamweaver</li>
-</ul>
-
-<p>在线编辑器的支持：</p>
+<p>在线编辑器的支持</p>
 
 <ul>
   <li>JSFiddle</li>
@@ -205,30 +186,36 @@
   <li>TinyMCE</li>
 </ul>
 
-<p>因为我也是Sublime Text的使用者，所以下面为大家介绍一下sublime text中Emmet的安装方法：</p>
+<p>因为我也是 Sublime Text的使用者，所以下面为大家介绍一下 sublime text 中 Emmet 的安装方法：</p>
 
-<p>步骤一：首先你需要为sublime text安装Package Control组件：</p>
+<ol>
+  <li>步骤一：首先你需要为 sublime text 安装 Package Control 组件：</li>
+</ol>
 
 <ul>
-  <li>按Ctrl+`调出sublime text的console</li>
+  <li>按 Ctrl + ` 调出 sublime text 的 console</li>
   <li>粘贴以下代码到底部命令行并回车：</li>
 </ul>
 
-<p>import urllib2,os;pf=’Package Control.sublime-package’;ipp=sublime.installedpackagespath();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),’wb’).write(urllib2.urlopen(‘http://sublime.wbond.net/’+pf.replace(‘ ‘,’%20’)).read())</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installedpackagespath();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
-  <li>重启Sublime Text</li>
-  <li>在Perferences-&gt;package settings中看到package control，则表示安装成功</li>
+  <li>重启 Sublime Text</li>
+  <li>在 Perferences-&gt;package settings中 看到 package control，则表示安装成功</li>
 </ul>
 
-<p>步骤二：使用Package Control安装Emmet插件：</p>
+<ol>
+  <li>步骤二：使用 Package Control 安装 Emmet 插件：</li>
+</ol>
 
 <ul>
-  <li>按Ctrl+Shift+P命令板</li>
-  <li>输入install然后选择install Package，然后输入emmet找到 Emmet Css Snippets，点击就可以自动完成安装。</li>
+  <li>按 Ctrl+Shift+P 命令板</li>
+  <li>输入 install 然后选择 install Package，然后输入 emmet 找到 Emmet Css Snippets，点击就可以自动完成安装。</li>
 </ul>
 
 <p><a href="http://www.w3cplus.com/tools/emmet-cheat-sheet.html">语法介绍</a></p>
+
 </div>
 
 
@@ -242,7 +229,7 @@
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/other/'>other</a>
+	<a class='category' href='/blog/categories/nodejs/'>nodejs</a>
 
 
 </div>

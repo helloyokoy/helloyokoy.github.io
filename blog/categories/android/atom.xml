@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-21T16:49:41+08:00</updated>
+  <updated>2018-01-21T17:23:02+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[android frame]]></title>
-    <link href="http://helloyokoy.github.io/blog/android-frame/"/>
+    <title type="html"><![CDATA[android framework]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-framework/"/>
     <updated>2016-05-26T14:47:35+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/android-frame</id>
+    <id>http://helloyokoy.github.io/blog/android-framework</id>
     <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160524172058595" alt="img" /></p>
 
 <!--more-->
@@ -180,6 +180,7 @@ UiAutomator，Espresso等</p>
 <p>LeakCanary:	内存泄漏检测工具</p>
 
 <p>ACRA:	Android应用程序崩溃报告</p>
+
 ]]></content>
   </entry>
   

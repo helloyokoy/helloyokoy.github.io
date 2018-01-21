@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content=" 阅读全文 2015 年7 月9 日 ruby ">
+	<meta name="description" content="前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。 原文：http://tosbourn.com/what-is-the-gemfile/ 作为Ruby开发者， &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -131,18 +131,24 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/rubyzhao-pin/">
+		<a href="/blog/gem-description/">
 		
-			Ruby招聘</a>
+			Gemfile 详解</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
+		<p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
 
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
+<p>原文：<a href="http://tosbourn.com/what-is-the-gemfile/">http://tosbourn.com/what-is-the-gemfile/</a></p>
+
+<p>作为Ruby开发者，我们一直在使用Gemfile，并且大部分人知道一些关于Gemfile的基础知识。在这篇文章里，我想更加深入到Gemfile里面去看看通过Gemfile所能做的一切。</p>
+
+<h2 id="gemfile">什么是Gemfile</h2>
+
+<p>Gemfile是我们创建的一个用于描述gem之间依赖的文件。gem是一堆Ruby代码的集合，它能够为我们提供调用。你的Gemfile必须放在项目的根目录下面， 这是Bundler的要求，对于任何的其他形式的包管理文件来说，这也是标准。这里值得注意的一点是Gemfile会被作为Ruby代码来执行。当在Bundler上下文环境中被执行的时能使我们访问一些方法，我们用这些方法来解释gem之间的require关系。</p>
 
 
 		
-		<a href="/blog/rubyzhao-pin/" class="more-link">阅读全文</a>
+		<a href="/blog/gem-description/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -152,7 +158,7 @@
 
 
 
-2015 年7 月9 日</div>
+2015 年4 月3 日</div>
 	<div class="tags">
 
 
@@ -168,24 +174,54 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/what-happend-when-you-browse-my-blog/">
+		<a href="/blog/afinaljie-shao/">
 		
-			当你浏览我的博客时计算机干了什么</a>
+			Afinal介绍</a>
 	</h2>
 	<div class="entry-content">
-		<p>在大学的时候, 我脑海里时常都蹦出对计算机的许多问号, 尤其是计算机是如何工作的, 为什么它如此强大, 越来越显著地改变了我们的生活.</p>
+		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
 
-<p>随着知识的积累, OS, 进程, 线程, 计算机网络, web 开发, 一个个知识孤岛在某一天终于连接了起来, 形成了一个极为清晰的信息流.</p>
+<h3 id="afinal">Afinal简介</h3>
+<hr />
+<ul>
+  <li>
+    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
+  </li>
+  <li>
+    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
+  </li>
+  <li>
+    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
+  </li>
+</ul>
 
-<p>我相信, 作为读者的你, 也会非常想弄明白其中原理, 或者已经弄明白但可能还有些一些疑问, 于是乎, 我将一个很常见的操作, 进行信息流分析, 尝试分层分析它们的每一步.</p>
+<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
+<hr />
 
-<p>这个操作就是: 当你正在浏览我的这篇博客时, 计算机到底做了什么?</p>
+<ul>
+  <li>
+    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
+  </li>
+  <li>
+    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
+  </li>
+  <li>
+    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
+  </li>
+  <li>
+    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
+  </li>
+</ul>
 
-<p>为了叙述方便, 我限定使用了 chrome 浏览器, nginx, unicorn, rails 来描述它们, 实际上, 这些组件都是可以替换的.</p>
+<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
+
+<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
+</code></pre>
 
 
 		
-		<a href="/blog/what-happend-when-you-browse-my-blog/" class="more-link">阅读全文</a>
+		<a href="/blog/afinaljie-shao/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -195,11 +231,11 @@
 
 
 
-2015 年6 月27 日</div>
+2015 年3 月10 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>
@@ -211,33 +247,183 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/iosduo-xian-cheng/">
+		<a href="/blog/magicrecordjie-shao/">
 		
-			iOS多线程详解</a>
+			MagicRecord介绍</a>
+	</h2>
+	<div class="entry-content">
+		<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
+
+<p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
+
+<p>也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。</p>
+
+<p>即使你会使用CoreData，每天重复性枯燥的使用CoreData也会变得很笨重，MagicalPanda创建的一个第三方库为这种工作带来了好消息。</p>
+
+<p>MagicalRecord 致力于更快捷和容易的使用CoreData。</p>
+
+<p>MagicalRecord 使用方便，特别流行。正如作者所说，MagicalRecord 致力于使CoreData的代码更简洁，更简单的获取数据，并且使用最优化的操作。</p>
+
+<p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
+
+
+		
+		<a href="/blog/magicrecordjie-shao/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年2 月10 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/android-skill/">
+		
+			Android 编程规范与常用技巧</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="android">一、Android编码规范</h3>
+
+<h4 id="java">1.java代码中不出现中文，最多注释中可以出现中文</h4>
+
+<h4 id="section">2.局部变量命名、静态成员变量命名</h4>
+<p>只能包含字母，单词首字母出第一个外，都为大写，其他字母都为小写</p>
+
+<h4 id="section-1">3.常量命名</h4>
+<p>只能包含字母和_，字母全部大写，单词之间用_隔开</p>
+
+<h4 id="layoutid">4.layout中的id命名</h4>
+<p>命名模式为：view缩写_模块名称_view的逻辑名称</p>
+
+<p>view的缩写详情如下</p>
+
+<pre><code>LayoutView：lv
+
+RelativeView:rv
+
+TextView:tv
+
+ImageView:iv
+
+ImageButton:im
+
+Button:btn
+</code></pre>
+
+
+		
+		<a href="/blog/android-skill/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年12 月21 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/java-reflection/">
+		
+			Java Reflection 反射</a>
+	</h2>
+	<div class="entry-content">
+		<p>Java 反射是Java语言的一个很重要的特征，它使得Java具体了“动态性”。</p>
+
+<p>在Java运行时环境中，对于任意一个类，能否知道这个类有哪些属性和方法？对于任意一个对象，能否调用它的任意一个方法？答案是肯定的。这种动态获取类的信息以及动态调用对象的方法的功能来自于Java 语言的反射（Reflection）机制。</p>
+
+<p>Java 反射机制主要提供了以下功能：</p>
+
+<ul>
+  <li>在运行时判断任意一个对象所属的类。</li>
+  <li>在运行时构造任意一个类的对象。</li>
+  <li>在运行时判断任意一个类所具有的成员变量和方法。</li>
+  <li>在运行时调用任意一个对象的方法。</li>
+</ul>
+
+
+		
+		<a href="/blog/java-reflection/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年11 月15 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/huan-jing-da-jian/">
+		
+			Rails 环境搭建</a>
 	</h2>
 	<div class="entry-content">
 		<blockquote>
-  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
+  <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
+次安装方法同样适用于产品环境！</p>
 </blockquote>
 
-<h2 id="section">概述</h2>
+<h3 id="section">系统需求</h3>
 <hr />
-<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
 
-<p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
+<p>首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用:</p>
 
-<ul>
-  <li>Pthreads</li>
-  <li>NSThread</li>
-  <li>GCD</li>
-  <li>NSOperation &amp; NSOperationQueue</li>
-</ul>
-
-<p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
+<p>Mac OS X
+任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux …)
+强烈新手使用 Ubuntu 省掉不必要的麻烦！
+以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $  符号）</p>
 
 
 		
-		<a href="/blog/iosduo-xian-cheng/" class="more-link">阅读全文</a>
+		<a href="/blog/huan-jing-da-jian/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -247,224 +433,7 @@
 
 
 
-2015 年6 月18 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-push/">
-		
-			Android Push 方案</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="gcmgoogle-cloud-messaging">方案一：使用GCM服务（Google Cloud Messaging）</h2>
-<p>简介：</p>
-
-<p>Google在Android上标配了自己的推送GCM（Google Cloud Messageing），可以帮助开发人员给他们的Android应用程序发送数据。它是一个轻量级的消息，告诉Android应用程序有新的数据要获取从服务器，或者它可能是一个消息，其中包含了4KB的payload data（像即时通讯这类应用程序可以直接使用该payload消息）。GCM服务处理排队的消息，并把消息传递到目标设备上运行的Android应用程序。</p>
-
-<p>优点：</p>
-
-<p>Google提供的服务、原生、简单，无需实现和部署服务端。</p>
-
-<p>缺点：</p>
-
-<ol>
-  <li>
-    <p>GCM要求Android系统必须是2.2以上的版本，所以对于不少2.2以前的系统没法推送</p>
-  </li>
-  <li>
-    <p>国内服务不稳定。而且不少国内的终端厂商纷纷把Google的服务去掉，替换上自己的。</p>
-  </li>
-  <li>
-    <p>需要用户绑定Google账号，但不少国内用户没有Google账号。</p>
-  </li>
-</ol>
-
-
-		
-		<a href="/blog/android-push/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年6 月12 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/write-best-code/">
-		
-			如何编写更棒的代码</a>
-	</h2>
-	<div class="entry-content">
-		<p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
-
-<p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
-
-<ol>
-  <li>
-    <p>保持方法简短扼要</p>
-  </li>
-  <li>
-    <p>永远永远不要将同一个变量用于不同的目的</p>
-  </li>
-  <li>
-    <p>尽可能让变量和方法的名称能够描述要实现的功能</p>
-  </li>
-  <li>
-    <p>尽可能将变量定义在最靠近它们的地方</p>
-  </li>
-  <li>
-    <p>不要出现让人费解的数字</p>
-  </li>
-  <li>
-    <p>要像对待朋友一样对待你擅长的语言</p>
-  </li>
-  <li>
-    <p>不要逆常规而行</p>
-  </li>
-  <li>
-    <p>千万小心过早的优化代码</p>
-  </li>
-  <li>
-    <p>要常常重构经过测试的代码</p>
-  </li>
-  <li>
-    <p>不要沉溺于过度的设计技巧</p>
-  </li>
-  <li>
-    <p>随时随地学习新的知识</p>
-  </li>
-</ol>
-
-
-		
-		<a href="/blog/write-best-code/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年6 月5 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/eventbusjie-shao/">
-		
-			Eventbus介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
-
-<blockquote>
-  <p>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。</p>
-</blockquote>
-
-<h3 id="eventbus">1.下载EventBus的类库</h3>
-
-<p>源码：<a href="https://github.com/greenrobot/EventBus" title="url">https://github.com/greenrobot/EventBus</a></p>
-
-
-		
-		<a href="/blog/eventbusjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">
-		
-			Redis 缓存服务器配置</a>
-	</h2>
-	<div class="entry-content">
-		<p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
-
-<ol>
-  <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
-  <li>可以持久化到磁盘</li>
-  <li>支持cluster (3.0)</li>
-</ol>
-
-<p>它的性能和memcached不相上下，再加上流行的其他组件（比如队列）也会用到redis，从架构简单出发，已经没有必要混用redis和memcached了。</p>
-
-<p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
-
-
-		
-		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月7 日</div>
+2014 年11 月9 日</div>
 	<div class="tags">
 
 
@@ -480,20 +449,53 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/turn-around-stay-grace/">
+		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">
 		
-			优雅转身</a>
+			知名 iOS 应用背后的第三方项目</a>
 	</h2>
 	<div class="entry-content">
-		<p>编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分：</p>
+		<blockquote>
+  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
+</blockquote>
 
-<p>在我第一次创业的时候我非常好斗。在我看来整个世界好像就是一个战场，我无时无刻不在准备着战斗。与房东斗，与债主斗，与董事会斗，与各个你所能想到的群体斗。但是随着我不断的成长，我越来越发现找到一个共同点比不断的斗争更有好处。</p>
+<h3 id="instagram">Instagram</h3>
+<hr />
+<ul>
+  <li>
+    <p>AFNetworking: 适用于iOS和OS X的网络框架。</p>
+  </li>
+  <li>
+    <p>Appirater: 提醒用户打分。</p>
+  </li>
+  <li>
+    <p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
+  </li>
+  <li>
+    <p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
+  </li>
+  <li>
+    <p>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</p>
+  </li>
+  <li>
+    <p>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</p>
+  </li>
+  <li>
+    <p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
+  </li>
+  <li>
+    <p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
+  </li>
+  <li>
+    <p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
+  </li>
+  <li>
+    <p>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</p>
+  </li>
+</ul>
 
-<p>有两个人经常在我身旁尽最大的努力让我冷却下来，他们是我的COO Stuart Lander和CFO David Lapter。Stuart也有些好斗因子，但是之前做过律师的他懂得谈判与和解比打一场持久的战斗要好的多。我记得我们经常达成的一条共识就是——如果一定要转身，那么就优雅的转身。于是我形成了自己的一个思想：如果我要去战斗，那么我会如虎如狼直至胜利；但是如果一定要转身，那么我也将优雅从容的转身。</p>
-
-
+<p>
 		
-		<a href="/blog/turn-around-stay-grace/" class="more-link">阅读全文</a>
+		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -503,11 +505,11 @@
 
 
 
-2015 年5 月5 日</div>
+2014 年10 月28 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/other/'>other</a>
+	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
 </div>
@@ -519,32 +521,31 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/leakcannei-xie-lu-jian-ce/">
+		<a href="/blog/android-volly/">
 		
-			LeakCanary内寸泄露检测</a>
+			Android Volley</a>
 	</h2>
 	<div class="entry-content">
-		<h2 id="leakcanary">LeakCanary</h2>
+		<h3 id="section">背景</h3>
+<p>Volley是Google I/O 2013推出的网络通信库，在volley推出之前我们一般会选择比较成熟的第三方网络通信库，如：</p>
 
-<p>Android 和 Java 内存泄露检测。</p>
+<ul>
+  <li>
+    <p>android-async-http</p>
+  </li>
+  <li>
+    <p>retrofit</p>
+  </li>
+  <li>
+    <p>okhttp</p>
+  </li>
+</ul>
 
-<blockquote>
-  <p>“A small leak will sink a great ship.” - Benjamin Franklin</p>
-</blockquote>
-
-<blockquote>
-  <p>千里之堤， 毁于蚁穴。 – 《韩非子·喻老》</p>
-</blockquote>
-
-<p><img src="https://raw.githubusercontent.com/liaohuqiu/leakcanary/master/assets/screenshot.png" alt="alt text" title="Title" /></p>
-
-<h4 id="demo">demo</h4>
-
-<p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
+<p>他们各有优劣，之前个人则比较喜欢用android-async-http, 如今Google推出了官方的针对Android平台上的网络通信库，能使网络通信更快，更简单，更健壮，Volley在提供了高性能网络通讯功能的同时，对网络图片加载也提供了良好的支持，完全可以满足简单REST客户端的需求, 我们没有理由不跟上时代的潮流。</p>
 
 
 		
-		<a href="/blog/leakcannei-xie-lu-jian-ce/" class="more-link">阅读全文</a>
+		<a href="/blog/android-volly/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -554,7 +555,7 @@
 
 
 
-2015 年4 月11 日</div>
+2014 年10 月17 日</div>
 	<div class="tags">
 
 
@@ -570,42 +571,59 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/ioszheng-tao-kuang-jia-easyios/">
+		<a href="/blog/ruby-rails-books/">
 		
-			iOS整体框架EasyiOS</a>
+			Ruby/Rails 书籍</a>
 	</h2>
 	<div class="entry-content">
-		<h3 id="easyios-">EasyIOS 以提升开发效率为宗旨</h3>
-<hr />
+		<p>开始</p>
+
+<p>早就相对现在Ruby/Rails的书做个总结。方便对Rails感兴趣的朋友查找。</p>
+
+<p>因为ruby on rails的书时效性很强，Ruby语言2007之前跟Rails两年以前的书都没加在这个列表里。</p>
+
+<p>有些特殊的跟设计相关的书例外。</p>
+
+<h3 id="ruby">Ruby:</h3>
+
+<h4 id="section">入门篇</h4>
 
 <ul>
   <li>
-    <p>代码分离 -Model-View-ViewModel- 分离ViewController中的大量逻辑代码，解决ViewController承担了过多角色而造成的代码质量低下。增加视图与模型的绑定特性。</p>
+    <p><a href="http://www.amazon.com/gp/product/0596516177/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596516177">The Ruby Programming Language</a></p>
+
+    <p>Ruby之父”Mats”参与写作的一本书。</p>
+
+    <p>很像Ruby的官方书，内容是Ruby每一部分的定义，简洁准确。稍微有点生涩，但是这类书大多是很好的的参考书。</p>
+
+    <p>如果你对Ruby有一定的了解，想要重新研究一下某一方面概念，比如Ruby里的Closure。 除了Google可能这本书就是最佳选择了。</p>
   </li>
   <li>
-    <p>自动持久化 -Model to Db– 我再也不想思考如何实现持久化了。在我的想法里，将模型对象直接扔到一个bucket里，然后它就能自动的对数据进行存储、缓存、合并以及唯一化。我应当关注于描述对象间的属性和联系，以及我希望它们分组的方式。其他的实现细节都应该是不可见的。</p>
+    <p><a href="http://www.amazon.com/gp/product/1934356085/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1934356085">Programming Ruby 1.9: The Pragmatic Programmers’ Guide</a></p>
+
+    <p>著名的斧头书，很多人把这本书作为Ruby入门的标准教材。内容覆盖很全面。</p>
+
+    <p>虽然这本书看上去很厚，但是后一半是Ruby API。语言上更为流畅，建议这本书入门，上面那本书速查。</p>
   </li>
   <li>
-    <p>自动RESTful API –Json to Model- 一旦我给程序发出指令，将一个API响应对应到一个数据对象，网络和JSON转换应该被自动完成。我只想关注如何将JSON中那些项目展示给用户。</p>
+    <p><a href="http://www.amazon.com/gp/product/1430223634/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1430223634">Beginning Ruby: From Novice to Professional</a></p>
+
+    <p>这本书分三部分，第一部分使一些基础知识，第二部分侧重Ruby语言，最后一部分简略介绍了ruby在web,网络，GUI方面的应用，以及一部分的Gem。</p>
+
+    <p>如果你第一次接触Ruby，可一看一下这本书，如果已经看了其他的ruby的书，这本书除了第三部分一些内容可能帮助不是特别大。</p>
   </li>
   <li>
-    <p>有表现力的触发器和响应 -ReactiveCocoa– 我想用源于响应意图（Intent）的语法来描述事件的响应和触发器，我不关心它们间的连接是如何实现的，并且这些连接也不应该在重构时出错。</p>
+    <p><a href="http://www.amazon.com/gp/product/1593272944/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593272944">The Book of Ruby: A Hands-On Guide for the Adventurous</a></p>
+
+    <p>这是一本2011年7月出的书，我看了他们免费的第十一章，关于Symbol的，给我的感觉是这本书的代码实例比较多。</p>
+
+    <p>喜欢通过代码学习的同学可以尝试一下这本书。</p>
   </li>
-  <li>
-    <p>简洁明了的网络请求 -Action and Request- 对于简单的GET、POST请求，可以进行对象化操作，我只想告诉程序，链接在哪里，有哪些参数，接下来就自动拉取到想要的数据，顺便帮我把缓存也做齐了，也是极好的。</p>
-  </li>
-  <li>
-    <p>便捷的UI布局 – FLKAutolayout-更加便捷的进行autolayout布局,不管你使用springs &amp; struts或者AutoLayout，每种方法都需要你明确相关视图如何排列。你需要花大量的时间编写和修正这些排列，特别是现在有这么多设备需要适配 的情况下。没有什么是自动写好的，UI布局依赖于对细节的不断调整。推荐开发期间Debug工具FLEX,pod ‘FLEX’, ‘~&gt; 1.1.1’需要手动集成，发布release版本时请删除。</p>
-  </li>
-  <li>友好的线程控制 -GCDObjC-</li>
-  <li>便捷的正则匹配</li>
-  <li>富文本的Label</li>
-  <li>and so on……</li>
 </ul>
 
 
 		
-		<a href="/blog/ioszheng-tao-kuang-jia-easyios/" class="more-link">阅读全文</a>
+		<a href="/blog/ruby-rails-books/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -615,11 +633,63 @@
 
 
 
-2015 年4 月10 日</div>
+2014 年9 月7 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ios/'>ios</a>
+	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/android-gradle/">
+		
+			Android Gradle</a>
+	</h2>
+	<div class="entry-content">
+		<p>Google I/O 2013发布了新的开发工具Android Studio和新的构建系统Gradle， Android Studio自不必说，这是Android IDE的未来。这篇文章就来学习下Gradle。</p>
+
+<h3 id="gradle">什么是Gradle？</h3>
+<p>Gradle 是以 Groovy 语言为基础，面向Java应用为主，基于DSL语法的自动化构建工具。说到Java的自动化构建工具，大家一定对Ant和Maven都不会陌生，对，Gradle就是这样一种类似的工具，不过它比Ant和Maven强大的多，而且使用起来更加方便简单并且兼容Maven。</p>
+
+<p>下面列举了一些使用Gradle构建Android项目的好处：</p>
+
+<ul>
+  <li>
+    <p>在IDE环境和命令行下使用同一个构建系统</p>
+  </li>
+  <li>
+    <p>改进的依赖关系管理</p>
+  </li>
+  <li>
+    <p>更容易地集成到自动化构建系统</p>
+  </li>
+</ul>
+
+
+		
+		<a href="/blog/android-gradle/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年8 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 
 </div>

@@ -7,7 +7,7 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。 原文：http://tosbourn.com/what-is-the-gemfile/ 作为Ruby开发者， &hellip;">
+	<meta name="description" content="前言 第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库 第三方库 CocoaPod CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具 在CocoaPod没有出现之前 第三方库的管理是非常痛苦的 尤其是一些大型的库( &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -131,97 +131,41 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/gem-description/">
+		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/">
 		
-			Gemfile 详解</a>
+			iOS第三方库和插件</a>
 	</h2>
 	<div class="entry-content">
-		<p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
-
-<p>原文：<a href="http://tosbourn.com/what-is-the-gemfile/">http://tosbourn.com/what-is-the-gemfile/</a></p>
-
-<p>作为Ruby开发者，我们一直在使用Gemfile，并且大部分人知道一些关于Gemfile的基础知识。在这篇文章里，我想更加深入到Gemfile里面去看看通过Gemfile所能做的一切。</p>
-
-<h2 id="gemfile">什么是Gemfile</h2>
-
-<p>Gemfile是我们创建的一个用于描述gem之间依赖的文件。gem是一堆Ruby代码的集合，它能够为我们提供调用。你的Gemfile必须放在项目的根目录下面， 这是Bundler的要求，对于任何的其他形式的包管理文件来说，这也是标准。这里值得注意的一点是Gemfile会被作为Ruby代码来执行。当在Bundler上下文环境中被执行的时能使我们访问一些方法，我们用这些方法来解释gem之间的require关系。</p>
-
-
-		
-		<a href="/blog/gem-description/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年4 月3 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/afinaljie-shao/">
-		
-			Afinal介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
-
-<h3 id="afinal">Afinal简介</h3>
-<hr />
-<ul>
-  <li>
-    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
-  </li>
-  <li>
-    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
-  </li>
-  <li>
-    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
-  </li>
-</ul>
-
-<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
+		<h2 id="section">前言</h2>
 <hr />
 
-<ul>
-  <li>
-    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
-  </li>
-  <li>
-    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
-  </li>
-  <li>
-    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
-  </li>
-  <li>
-    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
-  </li>
-</ul>
+<blockquote>
+  <p>第三方库是现在的程序员离不开的东西 不光是APP开发 基本上所有的商业项目 都会或多或少的使用到第三方库</p>
+</blockquote>
 
-<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
+<h2 id="section-1">第三方库</h2>
 
-<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
-&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
-</code></pre>
+<h4 id="cocoapod">CocoaPod</h4>
+
+<p>CocoaPod并不是iOS上的第三方库 而是大名鼎鼎的第三方库的管理工具</p>
+
+<p>在CocoaPod没有出现之前 第三方库的管理是非常痛苦的 尤其是一些大型的库(比如nimbus) 每次对库进行更新 都可能会非常的痛苦</p>
+
+<p>CocoaPod的出现解决了这些问题 以Framework的方式引入第三方库 极大的节约了集成的时间 而且通吃Objective-C和Swift(Swift上的Cathatage我没有实际用过 但是它的那种集成方式还是比CocoaPod麻烦点)</p>
+
+<h4 id="icarousel">iCarousel</h4>
+
+<p>在iOS 4.x的时代(我也是从4.0开始接触iOS开发的) Coverflow的效果可谓是风靡一时 初出茅庐的我当年对如何实现几乎是束手无策(当年所有的电影资讯类的APP 如布丁爱生活等 都需要实现Coverflow选片的效果 碰巧我也要做一个) iCarousel的出现替我解决了一个大的难题</p>
+
+<p>从此iCarousel成为了我每个项目的必备良药(也是我最喜欢的库) 不管是Coverflow还是轮播广告 都能轻描淡写的搞定 其内置的十来种显示类型 基本可以解决90%的UI需求 而其强大的自定义功能 则可以解决剩余的10% :)</p>
+
+<p>不熟悉的朋友可以尝试一下其精美的demo(pod try iCarousel) 所有的功能都在demo中一览无余</p>
+
+<p>作者nicklockwood也是一个高产的大神 同时维护着数量众多且优质的开源库(比如iVersion iRate) 大家不妨去看一看 淘一淘</p>
 
 
 		
-		<a href="/blog/afinaljie-shao/" class="more-link">阅读全文</a>
+		<a href="/blog/iosdi-san-fang-ku-he-cha-jian/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -231,54 +175,7 @@
 
 
 
-2015 年3 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/magicrecordjie-shao/">
-		
-			MagicRecord介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
-
-<p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
-
-<p>也就是说，即使对于一个精通IOS开发的人CoreData依旧使用起来很困难。</p>
-
-<p>即使你会使用CoreData，每天重复性枯燥的使用CoreData也会变得很笨重，MagicalPanda创建的一个第三方库为这种工作带来了好消息。</p>
-
-<p>MagicalRecord 致力于更快捷和容易的使用CoreData。</p>
-
-<p>MagicalRecord 使用方便，特别流行。正如作者所说，MagicalRecord 致力于使CoreData的代码更简洁，更简单的获取数据，并且使用最优化的操作。</p>
-
-<p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
-
-
-		
-		<a href="/blog/magicrecordjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年2 月10 日</div>
+2014 年7 月8 日</div>
 	<div class="tags">
 
 
@@ -294,42 +191,28 @@
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/android-skill/">
+		<a href="/blog/android-studio/">
 		
-			Android 编程规范与常用技巧</a>
+			Android Studio比Eclipse好在那里</a>
 	</h2>
 	<div class="entry-content">
-		<h3 id="android">一、Android编码规范</h3>
+		<h3 id="section">优点：</h3>
 
-<h4 id="java">1.java代码中不出现中文，最多注释中可以出现中文</h4>
+<h4 id="google">1、Google推出的</h4>
 
-<h4 id="section">2.局部变量命名、静态成员变量命名</h4>
-<p>只能包含字母，单词首字母出第一个外，都为大写，其他字母都为小写</p>
+<p>毫无疑问，这个是它的最大优势，Android Stuido是Google推出，专门为Android“量身订做”的，是Google大力支持的一款基于IntelliJ idea改造的IDE，google的工程师团队肯定会不断完善，上升空间非常大，这个应该能说明为什么它是Android的未来</p>
 
-<h4 id="section-1">3.常量命名</h4>
-<p>只能包含字母和_，字母全部大写，单词之间用_隔开</p>
+<h4 id="section-1">2、速度更快</h4>
 
-<h4 id="layoutid">4.layout中的id命名</h4>
-<p>命名模式为：view缩写_模块名称_view的逻辑名称</p>
+<p>Eclipse的启动速度、响应速度、内存占用一直被诟病，相信大家这点应该深有体会，而且经常遇到卡死状态。Studio不管哪一个方面都全面领先Eclipse。这点可能在windows上没有表现出来，win上运行studio同样会出现卡顿现象，但这只能说win平台还没优化好，毕竟还没有发布正式版，或者说windows系统本身就很卡顿，你还能指望它做什么呢。</p>
 
-<p>view的缩写详情如下</p>
+<h4 id="ui">3、UI更漂亮</h4>
 
-<pre><code>LayoutView：lv
-
-RelativeView:rv
-
-TextView:tv
-
-ImageView:iv
-
-ImageButton:im
-
-Button:btn
-</code></pre>
+<p>I/O上演示的那款黑色主题真是太棒了，极客范，Stuido自带的Darcula主题的炫酷黑界面实在是高大上，相比而言Eclipse下的黑色主题太low了</p>
 
 
 		
-		<a href="/blog/android-skill/" class="more-link">阅读全文</a>
+		<a href="/blog/android-studio/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -339,7 +222,7 @@ Button:btn
 
 
 
-2014 年12 月21 日</div>
+2014 年7 月4 日</div>
 	<div class="tags">
 
 
@@ -355,25 +238,80 @@ Button:btn
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/ctassetspickercontroller/">
+		<a href="/blog/git-flow/">
 		
-			iOS相册选择CTAssetsPickerController</a>
+			Git Flow管理开发流程</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="http://cdn.cocimg.com/bbs/attachment/Fid_19/19_98590_315f8ebbd058f7e.png" alt="img" title="image" /></p>
+		<p>我们都知道, 在 git 的分支功能相对 svn 确实方便许多，而且也非常推荐使用分支来做开发. 我的做法是每个项目都有2个分支, master 和 develop. master 分支是主分支, 保证程序有一个 稳定版本, develop 则是开发用的分支, 几乎所有的功能开发, bug 修复都在这个分支上, 完成后 再合并回 master.</p>
 
-<h3 id="section">特色</h3>
+<p>但是情况并不是这么简单. 有时当我们正在开发一个功能, 但程序突然出现 bug 需要及时去修复的时候, 这时要切回 master 分支, 并基于它创建一个 hotfix 分支. 有时我们在开发一个功能时, 需要停下来去开发另一个功能. 而且所有这些问题都出现 的时候, 发布也会成为比较棘手问题.</p>
+
+<p>也就是说, git branch 功能很强大，但是没有一套模型告诉我们应该怎样在开发的时候善用 这些分支。于是有人就整理出了一套比较好的方案 A successful Git branching model, 今天我们就一起来学习下这套方案.</p>
+
+
+		
+		<a href="/blog/git-flow/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2014 年4 月5 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/androidkai-yuan-kuang-jia/">
+		
+			Android第三方库</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="volley">1、volley</h3>
+
+<p>项目地址 <a href="https://github.com/smanikandan14/Volley-demo">https://github.com/smanikandan14/Volley-demo</a></p>
+
 <ol>
-  <li>用用户的相册中选择多张图片以及视频</li>
-  <li>有过滤的设置，只选择图片或只选择视频</li>
-  <li>可以设置选择图片以及视频的最大数量</li>
-  <li>平均5x fps</li>
-  <li>遵从UIAccessibility协议</li>
+  <li>JSON，图像等的异步下载；</li>
+  <li>网络请求的排序（scheduling）</li>
+  <li>网络请求的优先级处理</li>
+  <li>缓存</li>
+  <li>多级别取消请求</li>
+  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
 </ol>
 
+<h3 id="android-async-http">2、android-async-http</h3>
+
+<p>项目地址：<a href="https://github.com/loopj/android-async-http">https://github.com/loopj/android-async-http</a></p>
+
+<p>文档介绍：<a href="http://loopj.com/android-async-http/">http://loopj.com/android-async-http/</a></p>
+
+<ol>
+  <li>在匿名回调中处理请求结果</li>
+  <li>在UI线程外进行http请求</li>
+  <li>文件断点上传</li>
+  <li>智能重试</li>
+  <li>默认gzip压缩</li>
+  <li>支持解析成Json格式</li>
+  <li>可将Cookies持久化到SharedPreferences
 
 		
-		<a href="/blog/ctassetspickercontroller/" class="more-link">阅读全文</a>
+		<a href="/blog/androidkai-yuan-kuang-jia/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -383,53 +321,7 @@ Button:btn
 
 
 
-2014 年12 月3 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/java-reflection/">
-		
-			Java Reflection 反射</a>
-	</h2>
-	<div class="entry-content">
-		<p>Java 反射是Java语言的一个很重要的特征，它使得Java具体了“动态性”。</p>
-
-<p>在Java运行时环境中，对于任意一个类，能否知道这个类有哪些属性和方法？对于任意一个对象，能否调用它的任意一个方法？答案是肯定的。这种动态获取类的信息以及动态调用对象的方法的功能来自于Java 语言的反射（Reflection）机制。</p>
-
-<p>Java 反射机制主要提供了以下功能：</p>
-
-<ul>
-  <li>在运行时判断任意一个对象所属的类。</li>
-  <li>在运行时构造任意一个类的对象。</li>
-  <li>在运行时判断任意一个类所具有的成员变量和方法。</li>
-  <li>在运行时调用任意一个对象的方法。</li>
-</ul>
-
-
-		
-		<a href="/blog/java-reflection/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年11 月15 日</div>
+2013 年11 月9 日</div>
 	<div class="tags">
 
 
@@ -445,29 +337,37 @@ Button:btn
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/huan-jing-da-jian/">
+		<a href="/blog/git-command/">
 		
-			Rails 环境搭建</a>
+			Git 常用命令</a>
 	</h2>
 	<div class="entry-content">
-		<blockquote>
-  <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
-次安装方法同样适用于产品环境！</p>
-</blockquote>
+		<h3 id="git">Git配置</h3>
 
-<h3 id="section">系统需求</h3>
-<hr />
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git config --global user.name "storm"
+</span><span class="line">git config --global user.email "610540626@qq.com"
+</span><span class="line">git config --global color.ui true
+</span><span class="line">git config --global alias.co checkout  # 别名
+</span><span class="line">git config --global alias.ci commit
+</span><span class="line">git config --global alias.st status
+</span><span class="line">git config --global alias.br branch
+</span><span class="line">git config --global core.editor "vim"  # 设置Editor使用vim
+</span><span class="line">git config --global core.quotepath false # 设置显示中文文件名</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>首先确定操作系统环境，不建议在 Windows 上面搞，所以你需要用:</p>
-
-<p>Mac OS X
-任意 Linux 发行版本(Ubuntu,CentOS, Redhat, ArchLinux …)
-强烈新手使用 Ubuntu 省掉不必要的麻烦！
-以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $  符号）</p>
+<p>用户的git配置文件~/.gitconfig</p>
 
 
 		
-		<a href="/blog/huan-jing-da-jian/" class="more-link">阅读全文</a>
+		<a href="/blog/git-command/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -477,11 +377,11 @@ Button:btn
 
 
 
-2014 年11 月9 日</div>
+2013 年9 月25 日</div>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+	<a class='category' href='/blog/categories/other/'>other</a>
 
 
 </div>
@@ -493,53 +393,64 @@ Button:btn
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">
+		<a href="/blog/androidxue-xi-zi-liao/">
 		
-			知名 iOS 应用背后的第三方项目</a>
+			Android学习资源</a>
 	</h2>
 	<div class="entry-content">
-		<blockquote>
-  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
-</blockquote>
+		<h3 id="androidblog">Android网址或Blog</h3>
 
-<h3 id="instagram">Instagram</h3>
-<hr />
 <ul>
   <li>
-    <p>AFNetworking: 适用于iOS和OS X的网络框架。</p>
+    <p>博客</p>
+
+    <p><a href="http://stormzhang.com/">http://stormzhang.com/</a></p>
   </li>
   <li>
-    <p>Appirater: 提醒用户打分。</p>
+    <p>知乎回答</p>
+
+    <p><a href="http://www.zhihu.com/question/33993035">http://www.zhihu.com/question/33993035</a></p>
   </li>
   <li>
-    <p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
+    <p>StackOverflow  tag android</p>
+
+    <p><a href="http://stackoverflow.com/questions/tagged/android">http://stackoverflow.com/questions/tagged/android</a></p>
   </li>
   <li>
-    <p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
+    <p><a href="http://developer.android.com/index.html">Android官网</a></p>
+
+    <p>身为Android开发者不知道这个网站就太说不过去了，上面有你任何你需要的东西</p>
   </li>
   <li>
-    <p>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</p>
+    <p><a href="http://android-developers.blogspot.com/">Android Developers Blog</a></p>
+
+    <p>Android官网博客, 在上面可以关注Android最新的进展与最权威的博客(须翻墙)</p>
   </li>
   <li>
-    <p>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</p>
+    <p><a href="https://github.com/Trinea/android-open-project">Android开源项目汇总</a></p>
+
+    <p>整理的非常全面的GitHub开源项目汇总，不需要重复发明轮子，尽情遨游在开源世界里吧</p>
   </li>
   <li>
-    <p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
+    <p><a href="http://android-arsenal.com/">Android的开源库</a></p>
+
+    <p>国外整理的Android开源库汇总，和上面的比起来分类更明确，你总能很方便的找到你需要的开源库</p>
   </li>
   <li>
-    <p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
+    <p><a href="http://androidweekly.net/">Android Weekly</a></p>
+
+    <p>每周都会有一篇技术博文，介绍新技术、新潮点，可直接邮件订阅，让你时刻紧跟潮流</p>
   </li>
   <li>
-    <p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
-  </li>
-  <li>
-    <p>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</p>
+    <p><a href="http://www.androidviews.net/">Android Views</a></p>
+
+    <p>专注Android UI与效果的网站（不过目前貌似已经关站了…）</p>
   </li>
 </ul>
 
-<p>
+
 		
-		<a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/" class="more-link">阅读全文</a>
+		<a href="/blog/androidxue-xi-zi-liao/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -549,57 +460,7 @@ Button:btn
 
 
 
-2014 年10 月28 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-volly/">
-		
-			Android Volley</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">背景</h3>
-<p>Volley是Google I/O 2013推出的网络通信库，在volley推出之前我们一般会选择比较成熟的第三方网络通信库，如：</p>
-
-<ul>
-  <li>
-    <p>android-async-http</p>
-  </li>
-  <li>
-    <p>retrofit</p>
-  </li>
-  <li>
-    <p>okhttp</p>
-  </li>
-</ul>
-
-<p>他们各有优劣，之前个人则比较喜欢用android-async-http, 如今Google推出了官方的针对Android平台上的网络通信库，能使网络通信更快，更简单，更健壮，Volley在提供了高性能网络通讯功能的同时，对网络图片加载也提供了良好的支持，完全可以满足简单REST客户端的需求, 我们没有理由不跟上时代的潮流。</p>
-
-
-		
-		<a href="/blog/android-volly/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年10 月17 日</div>
+2013 年9 月11 日</div>
 	<div class="tags">
 
 
@@ -615,59 +476,30 @@ Button:btn
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/ruby-rails-books/">
+		<a href="/blog/markdownyu-fa/">
 		
-			Ruby/Rails 书籍</a>
+			MarkDown语法</a>
 	</h2>
 	<div class="entry-content">
-		<p>开始</p>
+		<h3 id="word">1. 标题设置（让字体变大，和word的标题意思一样）</h3>
 
-<p>早就相对现在Ruby/Rails的书做个总结。方便对Rails感兴趣的朋友查找。</p>
+<p>在Markdown当中设置标题，有两种方式：</p>
 
-<p>因为ruby on rails的书时效性很强，Ruby语言2007之前跟Rails两年以前的书都没加在这个列表里。</p>
+<p>第一种：通过在文字下方添加“=”和“-”，他们分别表示一级标题和二级标题。</p>
 
-<p>有些特殊的跟设计相关的书例外。</p>
+<p>第二种：在文字开头加上 “#”，通过“#”数量表示几级标题。（一共只有1~6级标题，1级标题字体最大）</p>
 
-<h3 id="ruby">Ruby:</h3>
+<h3 id="blockquote">2. 块注释（blockquote）</h3>
 
-<h4 id="section">入门篇</h4>
+<p>通过在文字开头添加“&gt;”表示块注释。（当&gt;和文字之间添加五个blank时，块注释的文字会有变化。）</p>
 
-<ul>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/0596516177/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0596516177">The Ruby Programming Language</a></p>
+<h3 id="section">3. 斜体</h3>
 
-    <p>Ruby之父”Mats”参与写作的一本书。</p>
-
-    <p>很像Ruby的官方书，内容是Ruby每一部分的定义，简洁准确。稍微有点生涩，但是这类书大多是很好的的参考书。</p>
-
-    <p>如果你对Ruby有一定的了解，想要重新研究一下某一方面概念，比如Ruby里的Closure。 除了Google可能这本书就是最佳选择了。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1934356085/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1934356085">Programming Ruby 1.9: The Pragmatic Programmers’ Guide</a></p>
-
-    <p>著名的斧头书，很多人把这本书作为Ruby入门的标准教材。内容覆盖很全面。</p>
-
-    <p>虽然这本书看上去很厚，但是后一半是Ruby API。语言上更为流畅，建议这本书入门，上面那本书速查。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1430223634/ref=as_li_tf_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1430223634">Beginning Ruby: From Novice to Professional</a></p>
-
-    <p>这本书分三部分，第一部分使一些基础知识，第二部分侧重Ruby语言，最后一部分简略介绍了ruby在web,网络，GUI方面的应用，以及一部分的Gem。</p>
-
-    <p>如果你第一次接触Ruby，可一看一下这本书，如果已经看了其他的ruby的书，这本书除了第三部分一些内容可能帮助不是特别大。</p>
-  </li>
-  <li>
-    <p><a href="http://www.amazon.com/gp/product/1593272944/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;tag=hiseame-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1593272944">The Book of Ruby: A Hands-On Guide for the Adventurous</a></p>
-
-    <p>这是一本2011年7月出的书，我看了他们免费的第十一章，关于Symbol的，给我的感觉是这本书的代码实例比较多。</p>
-
-    <p>喜欢通过代码学习的同学可以尝试一下这本书。</p>
-  </li>
-</ul>
+<p>将需要设置为斜体的文字两端使用1个“*”或者“_”夹起来</p>
 
 
 		
-		<a href="/blog/ruby-rails-books/" class="more-link">阅读全文</a>
+		<a href="/blog/markdownyu-fa/" class="more-link">阅读全文</a>
 	</div>
 
 
@@ -677,11 +509,126 @@ Button:btn
 
 
 
-2014 年9 月7 日</div>
+2013 年8 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/rubyyu-fa/">
+		
+			Ruby语法</a>
+	</h2>
+	<div class="entry-content">
+		<h3 id="section">语法</h3>
+<ul>
+  <li>
+    <p>Ruby中的类以class开始 以end结束，类名首字母的约定是大写。</p>
+  </li>
+  <li>
+    <p>Ruby中的方法以def开始 以end结束，方法名首字母的约定是小写。</p>
+  </li>
+  <li>
+    <p>Ruby中的局部变量名首字母的约定是小写。</p>
+  </li>
+  <li>
+    <p>Ruby中的构造函数名称为initialize。</p>
+  </li>
+  <li>
+    <p>Ruby中的成员变量(实例变量)前导@符，在initialize里进行声明与初始化。</p>
+  </li>
+  <li>
+    <p>Ruby中的属性用attr_writer和attr_reader声明，分别对应c#的set,get，使用了
+attr_accessor是可读也可写</p>
+  </li>
+  <li>
+    <p>Ruby中的全局变量前导$符。</p>
+  </li>
+  <li>
+    <p>Ruby中的常数（常量）用大写字母开头，约定是全部大写。</p>
+  </li>
+  <li>
+    <p>Ruby中任何的表达式都会返回值，</p>
+  </li>
+</ul>
+
+
+		
+		<a href="/blog/rubyyu-fa/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2013 年6 月12 日</div>
 	<div class="tags">
 
 
 	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/octopressda-jian-jiao-cheng/">
+		
+			Octopress搭建教程</a>
+	</h2>
+	<div class="entry-content">
+		<h4 id="octopress">1.安装Octopress</h4>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+cd octopress
+bundle update    # 安装依赖的组件
+rake install     # 安装默认的Octopress主题
+</code></pre>
+
+<h4 id="git">2.配置Git</h4>
+
+<p>值得注意的是这里git的origin已经存在，并且指向octopress的master分支的，这里为了方便进行了更改：</p>
+
+<pre><code>git remote rm origin
+git remote add origin git@github.io:helloyokoy/stormzhang.github.com.git
+git remote add octopress git://github.com/imathis/octopress.git  # 为了octopress的升级而添加
+</code></pre>
+
+
+		
+		<a href="/blog/octopressda-jian-jiao-cheng/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2013 年5 月8 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
 
 
 </div>
@@ -695,8 +642,6 @@ Button:btn
             <a href="/posts/5" class="prev">上一页</a>
         
     
-    
-        <a href="/posts/7" class="next">下一页</a>
     
     <div class="center"><a href="/blog/archives">文章列表</a></div>
 </nav>
