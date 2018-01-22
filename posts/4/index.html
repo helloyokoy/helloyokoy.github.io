@@ -7,12 +7,8 @@
 	<meta name="author" content="BryanFu">
 
 	
-	<meta name="description" content="原文：http://bundler.io/rationale.html 首先，你要在你应用根目录下一个叫Gemfile文件里声明这些依赖，它看起来是这个样子的： 1
-2
-3
-4
-5
-source 'https://rubygems.org' gem 'rails', '4.1.0.rc2' &hellip;">
+	<meta name="description" content="关于 Fresco
+Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。 Fresco 中设计有一个叫做 &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -131,6 +127,145 @@ source 'https://rubygems.org' gem 'rails', '4.1.0.rc2' &hellip;">
 		
 	
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/frescojie-shao/">
+		
+			Fresco介绍</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
+
+<h3 id="fresco">关于 Fresco</h3>
+<p>Fresco 是一个强大的图片加载组件。</p>
+
+<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
+
+<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
+
+<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
+
+
+		
+		<a href="/blog/frescojie-shao/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年8 月9 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/how-to-become-a-developer/">
+		
+			如何成为一个优秀的初级开发者</a>
+	</h2>
+	<div class="entry-content">
+		<p>原文: <a href="http://blog.newrelic.com/2014/04/23/better-junior-developer/">http://blog.newrelic.com/2014/04/23/better-junior-developer/</a></p>
+
+<p>翻译: <a href="https://ruby-china.org/mr_sun">@mr_sun</a></p>
+
+<p>在过去的几年中，New Relic聘请了许多接受过各种编程培训的或者“非传统”编程背景的毕业生，其中就包括我！事实上，在我获得我的学士学位以后，我想要进入一所医药大学做进一步的学习，但是这时我获得了Google提供的一份技术支持的工作。在四年多以后我利用一个休假的时间出席了Hackbright Academy，这是个教女性学员如何编程的学校，课程安排为十周（现在延长到了十二周）。在第一周教学即将结束的时候，我知道我终于找到了我想要专注一生去追求的事业和方向。</p>
+
+<p>不过，我的一个最大的忧虑是，我必须放弃我在其他领域已经积累起来的经验和技巧，去进入到一个全新的领域，在这个新领域里，我将面对的竞争对手都是拥有该领域几十年经验的资深工作者。幸运的是，在我真正进入到这样一个新角色以后，在共同工作的许多优秀的前辈的指导和帮助下，我总结出了一下一些自己的感悟：
+- 不断地学习是成为一个优秀开发者的必备基石
+- 有很多工程，是不是直接就开始写代码的</p>
+
+<p>要清晰的认识到，即便作为一个还有很多东西要学的初级开发者，也有很多方法来利用我已经在其他领域已具备的技能。因为自己已经经历过那样一段对自己很不确定的时期，这里我想要向大家传播以下两条信息：
+- 初级开发者：即使你还在学习关于编程的基本技巧，你也可以有很多方式为你的团队做出自己的贡献。
+- mentor：因材施教，换位思考，让你的指导更加符合初级开发者的学习需要，这样将使他们更有自信，使你的指导更具效率。</p>
+
+
+		
+		<a href="/blog/how-to-become-a-developer/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年7 月24 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/other/'>other</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/android-screen-adaption/">
+		
+			Android Screen Adaption 屏幕适配</a>
+	</h2>
+	<div class="entry-content">
+		<p>众所周知，Android机型尺寸各种各样，于是屏幕适配就成了Android开发中很重要的一环。Android屏幕适配可能一些开发者都会遇到这样的问题，今天就来分享下屏幕适配，你会发现其实Android屏幕适配也可以很简单。</p>
+
+<h2 id="section">基本概念</h2>
+<p>Android屏幕适配必须要理解的一些概念，这部分可能比较枯燥，但是俗话说的好“工欲善其事，必先利器”，翻译过来就是“有什么样的枪，决定你打什么样的鸟”，一旦这些概念你理解掌握了，屏幕适配你自然而然就觉得简单多了。</p>
+
+<ul>
+  <li>
+    <p>px</p>
+
+    <p>是英文单词pixel的缩写，意为像素，屏幕上的点。我们通常所说的分辨率如480X800就是指的像素。</p>
+
+    <p>在设计领域中，像素是用来计算数码影像的最小单位。计算机中显示的图像并非连续的线条组成，而是由许多肉眼看不见的小点组成。如果把影像放大数倍，会发现这些连续色调其实是由许多色彩相近的小点所组成，这些小点就是构成影像的最小单位“像素”。由于是最小的独立显示单位，px均为整数，不会出现0.5px的情况。如：</p>
+  </li>
+</ul>
+
+
+		
+		<a href="/blog/android-screen-adaption/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2015 年7 月15 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/android/'>android</a>
+
+
+</div>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -510,133 +645,6 @@ source 'https://rubygems.org' gem 'rails', '4.1.0.rc2' &hellip;">
 
 
 2015 年6 月5 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/eventbusjie-shao/">
-		
-			Eventbus介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
-
-<blockquote>
-  <p>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。</p>
-</blockquote>
-
-<h3 id="eventbus">1.下载EventBus的类库</h3>
-
-<p>源码：<a href="https://github.com/greenrobot/EventBus" title="url">https://github.com/greenrobot/EventBus</a></p>
-
-
-		
-		<a href="/blog/eventbusjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">
-		
-			Redis 缓存服务器配置</a>
-	</h2>
-	<div class="entry-content">
-		<p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
-
-<ol>
-  <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
-  <li>可以持久化到磁盘</li>
-  <li>支持cluster (3.0)</li>
-</ol>
-
-<p>它的性能和memcached不相上下，再加上流行的其他组件（比如队列）也会用到redis，从架构简单出发，已经没有必要混用redis和memcached了。</p>
-
-<p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
-
-
-		
-		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月7 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/turn-around-stay-grace/">
-		
-			优雅转身</a>
-	</h2>
-	<div class="entry-content">
-		<p>编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分：</p>
-
-<p>在我第一次创业的时候我非常好斗。在我看来整个世界好像就是一个战场，我无时无刻不在准备着战斗。与房东斗，与债主斗，与董事会斗，与各个你所能想到的群体斗。但是随着我不断的成长，我越来越发现找到一个共同点比不断的斗争更有好处。</p>
-
-<p>有两个人经常在我身旁尽最大的努力让我冷却下来，他们是我的COO Stuart Lander和CFO David Lapter。Stuart也有些好斗因子，但是之前做过律师的他懂得谈判与和解比打一场持久的战斗要好的多。我记得我们经常达成的一条共识就是——如果一定要转身，那么就优雅的转身。于是我形成了自己的一个思想：如果我要去战斗，那么我会如虎如狼直至胜利；但是如果一定要转身，那么我也将优雅从容的转身。</p>
-
-
-		
-		<a href="/blog/turn-around-stay-grace/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月5 日</div>
 	<div class="tags">
 
 

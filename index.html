@@ -498,6 +498,220 @@
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/ios-ble/">
+		
+			iOS BLE</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/94746767.jpg" alt="" /></p>
+
+<h2 id="ble">BLE</h2>
+
+<blockquote>
+  <p>BLE是蓝牙低能耗的简称（Bluetooh Low Energy）。蓝牙低能耗(BLE)技术是低成本、短距离、可互操作的鲁棒性无线技术，工作在免许可的2.4GHz ISM射频频段。它从一开始就设计为超低功耗(ULP)无线技术。它利用许多智能手段最大限度地降低功耗</p>
+</blockquote>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/47797739.jpg" alt="" /></p>
+
+<ul>
+  <li>GATT:Generic Attribute Profile</li>
+  <li>ATT: Attribute Protocol</li>
+  <li>L2CAP: Logical Link Control and Adaptation Protocol</li>
+</ul>
+
+
+		
+		<a href="/blog/ios-ble/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2017 年10 月22 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/ios-tdd-and-bdd/">
+		
+			iOS TDD&amp;BDD</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="tdd">TDD</h2>
+
+<p>Test Drive Development</p>
+
+<ul>
+  <li>有利于更加专注软件设计；</li>
+  <li>清晰地了解软件的需求；</li>
+  <li>很好的诠释了代码即文档。</li>
+</ul>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/95570113.jpg" alt="TDD" /></p>
+
+<blockquote>
+  <p>TDD是一种相对于普通思维的方式来说，比较极端的一种做法。我们一般能想到的是先编写业务代码，然后为其编写测试代码，用来验证产品方法是不是按照设计工作。而TDD的思想正好与之相反，在TDD的世界中，我们应该首先根据需求或者接口情况编写测试，然后再根据测试来编写业务代码，而这其实是违反传统软件开发中的先验认知的.</p>
+</blockquote>
+
+<p>我们可以举一个生活中类似的例子来说明TDD的必要性：有经验的砌砖师傅总是会先拉一条垂线，然后沿着线砌砖，因为有直线的保证，因此可以做到笔直整齐；而新入行的师傅往往二话不说直接开工，然后在一阶段完成后再用直尺垂线之类的工具进行测量和修补。</p>
+
+<p>TDD的好处不言自明，因为总是先测试，再编码，所以至少你的所有代码的public部分都应该含有必要的测试。另外，因为测试代码实际是要使用产品代码的，因此在编写产品代码前你将有一次深入思考和实践如何使用这些代码的机会，这对提高设计和可扩展性有很好的帮助，试想一下你测试都很难写的接口，别人（或者自己）用起来得多纠结。在测试的准绳下，你可以有目的有方向地编码；另外，因为有测试的保护，你可以放心对原有代码进行重构，而不必担心破坏逻辑。这些其实都指向了一个最终的目的：让我们快乐安心高效地工作。</p>
+
+
+		
+		<a href="/blog/ios-tdd-and-bdd/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2017 年6 月14 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/ios-runtime-and-libobjc/">
+		
+			iOS Runtime & libObjc</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="runtime">Runtime</h2>
+
+<blockquote>
+  <p>Objc是一门动态语言，所以它总是想办法把一些决定工作从编译连接推迟到运行时。也就是说只有编译器是不够的，还需要一个运行时系统(runtime system) 来执行编译后的代码。这就是 Objective-C Runtime.
+RunTime简称运行时。OC就是运行时机制，其中最主要的是消息机制。对于C语言，函数的调用在编译的时候会决定调用哪个函数。对于OC的函数，属于动态调用过程，在编译的时候并不能决定真正调用哪个函数，只有在真正运行的时候才会根据函数的名称找到对应的函数来调用。</p>
+</blockquote>
+
+<p>Runtime基本是用C和汇编写的，苹果和GNU各自维护一个开源的runtime版本，这两个版本之间都在努力的保持一致。</p>
+
+<ul>
+  <li><a href="https://opensource.apple.com/tarballs/objc4/">https://opensource.apple.com/tarballs/objc4/</a></li>
+  <li><a href="https://github.com/RetVal/objc-runtime">https://github.com/RetVal/objc-runtime</a></li>
+</ul>
+
+<h2 id="id--class">id &amp; Class</h2>
+
+<p>define id&amp;class</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	typedef struct objc_class *Class;
+</span><span class="line">	typedef struct objc_object *id;
+</span><span class="line">	struct objc_object {
+</span><span class="line">    	Class isa;
+</span><span class="line">	};
+</span><span class="line">	struct objc_class {
+</span><span class="line">    	Class isa;
+</span><span class="line">	}
+</span><span class="line">	/// 不透明结构体, selector
+</span><span class="line">	typedef struct objc_selector *SEL;
+</span><span class="line">	/// 函数指针, 用于表示对象方法的实现
+</span><span class="line">	typedef id (*IMP)(id, SEL, ...);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="define">Define</h2>
+
+<ul>
+  <li>对对象进行操作的方法一般以object_开头</li>
+  <li>对类进行操作的方法一般以class_开头</li>
+  <li>对类或对象的方法进行操作的方法一般以method_开头</li>
+  <li>对成员变量进行操作的方法一般以ivar_开头</li>
+  <li>对属性进行操作的方法一般以property_开头</li>
+  <li>对协议进行操作的方法一般以protocol_开头</li>
+</ul>
+
+<p>根据以上的函数的前缀 可以大致了解到层级关系。对于以objc_开头的方法，则是runtime最终的管家，可以获取内存中类的加载信息,类的列表，关联对象和关联属性等操作。</p>
+
+<h2 id="important-method">important method</h2>
+
+<pre><code>objc_copyClassList
+
+class_copyIvarList
+
+class_copyPropertyList
+</code></pre>
+
+<blockquote>
+  <p>ivarList可以获取到@property关键字定义的属性 ，而propertyList不可以获取到成员变量。使用ivarList是可以将所有的成员变量和属性都获取的。</p>
+</blockquote>
+
+<pre><code>+ (BOOL)resolveClassMethod:(SEL)sel 
++ (BOOL)resolveInstanceMethod:(SEL)sel
+
+class_addIvar
+
+class_addMethod
+</code></pre>
+
+
+		
+		<a href="/blog/ios-runtime-and-libobjc/" class="more-link">阅读全文</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2017 年5 月11 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/android-framework/">
 		
 			Android Framework</a>
@@ -800,203 +1014,6 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 
 2015 年12 月4 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/charles/">
-		
-			Charles</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">简介</h3>
-
-<p><img src="http://blog.devtang.com/images/charles-logo.png" alt="img" /></p>
-
-<p>Charles 是在 Mac 下常用的网络封包截取工具，在做 移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。</p>
-
-<p><a href="http://blog.devtang.com/images/charles-logo.png">Charles</a> 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。</p>
-
-<p>除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。</p>
-
-<p>Charles 是收费软件，可以免费试用 30 天。试用期过后，未付费的用户仍然可以继续使用，但是每次使用时间不能超过 30 分钟，并且启动时将会有 10 秒种的延时。因此，该付费方案对广大用户还是相当友好的，即使你长期不付费，也能使用完整的软件功能。只是当你需要长时间进行封包调试时，会因为 Charles 强制关闭而遇到影响。</p>
-
-<p>Charles 主要的功能包括：</p>
-
-<p>截取 Http 和 Https 网络封包。</p>
-
-<ol>
-  <li>支持重发网络请求，方便后端调试。</li>
-  <li>支持修改网络请求参数。</li>
-  <li>支持网络请求的截获并动态修改。</li>
-  <li>支持模拟慢速网络。</li>
-</ol>
-
-
-		
-		<a href="/blog/charles/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月26 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/nslog-and-lldb/">
-		
-			NSLog 和 LLDB</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="section">前言</h3>
-
-<p>打Log是我们debug时最简单朴素的方法，NSLog对于objc开发就像printf对于c一样重要。但在使用NSLog打印大量Log，尤其是在游戏开发时（如每一帧都打印数据），NSLog会明显的拖慢程序的运行速度（游戏帧速严重下滑）。本文探究了一下NSLog如此之慢的原因，并尝试使用lldb断点调试器替代NSLog进行debug log。</p>
-
-<h3 id="section-1">小测试</h3>
-
-<p>测试下分别使用NSLog和printf打印10000次耗费的时间。CFAbsoluteTimeGetCurrent()函数可以打印出当前的时间戳，精度还是很高的，于是乎测试代码如下：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">CFAbsoluteTime startNSLog = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
-</span><span class="line">    NSLog(@"%d", i); 
-</span><span class="line">} 
-</span><span class="line">CFAbsoluteTime endNSLog = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line"> 
-</span><span class="line">CFAbsoluteTime startPrintf = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
-</span><span class="line">    printf("%d\n", i); 
-</span><span class="line">} 
-</span><span class="line">CFAbsoluteTime endPrintf = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">
-</span><span class="line">NSLog(@"NSLog time: %lf, printf time: %lf", endNSLog - startNSLog, endPrintf - startPrintf);</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这个时间和机器肯定有关系，只看它们的差别就好。为了全面性，尝试了三种平台：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">NSLog time: 4.985445, printf time: 0.084193 // mac 
-</span><span class="line">NSLog time: 5.562460, printf time: 0.019408 // 模拟器 
-</span><span class="line">NSLog time: 10.471490, printf time: 0.090503 // 真机调试(iphone5)</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>可以发现，在mac上（模拟器其实也算是mac吧）速度差别达到了60倍左右，而真机调试甚至达到了离谱的100多倍。</p>
-
-<p>
-		
-		<a href="/blog/nslog-and-lldb/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月26 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/rails-perftest/">
-		
-			Rails-perftest 分析 Rails 引用的性能</a>
-	</h2>
-	<div class="entry-content">
-		<p>这个是 Rails 官方的 Gem，可以直接集成到 Rails 里面</p>
-
-<p>你可以写 Benchmark 的测试用例:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">require 'test_helper'
-</span><span class="line">require 'rails/performance_test_help'
-</span><span class="line">
-</span><span class="line">class HomepageTest &lt; ActionDispatch::PerformanceTest
-</span><span class="line">  # Refer to the documentation for all available options
-</span><span class="line">  # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
-</span><span class="line">  #                          output: 'tmp/performance', formats: [:flat] }
-</span><span class="line">
-</span><span class="line">  test "homepage" do
-</span><span class="line">    get '/'
-</span><span class="line">  end
-</span><span class="line">end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-		
-		<a href="/blog/rails-perftest/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年11 月7 日</div>
 	<div class="tags">
 
 

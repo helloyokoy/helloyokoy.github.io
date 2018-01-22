@@ -1,0 +1,514 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iOS TDD&amp;BDD - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="TDD Test Drive Development 有利于更加专注软件设计； 清晰地了解软件的需求； 很好的诠释了代码即文档。 TDD是一种相对于普通思维的方式来说，比较极端的一种做法。我们一般能想到的是先编写业务代码，然后为其编写测试代码，用来验证产品方法是不是按照设计工作。 &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">iOS TDD&amp;BDD</h2>
+	<div class="entry-content"><h2 id="tdd">TDD</h2>
+
+<p>Test Drive Development</p>
+
+<ul>
+  <li>有利于更加专注软件设计；</li>
+  <li>清晰地了解软件的需求；</li>
+  <li>很好的诠释了代码即文档。</li>
+</ul>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/95570113.jpg" alt="TDD" /></p>
+
+<blockquote>
+  <p>TDD是一种相对于普通思维的方式来说，比较极端的一种做法。我们一般能想到的是先编写业务代码，然后为其编写测试代码，用来验证产品方法是不是按照设计工作。而TDD的思想正好与之相反，在TDD的世界中，我们应该首先根据需求或者接口情况编写测试，然后再根据测试来编写业务代码，而这其实是违反传统软件开发中的先验认知的.</p>
+</blockquote>
+
+<p>我们可以举一个生活中类似的例子来说明TDD的必要性：有经验的砌砖师傅总是会先拉一条垂线，然后沿着线砌砖，因为有直线的保证，因此可以做到笔直整齐；而新入行的师傅往往二话不说直接开工，然后在一阶段完成后再用直尺垂线之类的工具进行测量和修补。</p>
+
+<p>TDD的好处不言自明，因为总是先测试，再编码，所以至少你的所有代码的public部分都应该含有必要的测试。另外，因为测试代码实际是要使用产品代码的，因此在编写产品代码前你将有一次深入思考和实践如何使用这些代码的机会，这对提高设计和可扩展性有很好的帮助，试想一下你测试都很难写的接口，别人（或者自己）用起来得多纠结。在测试的准绳下，你可以有目的有方向地编码；另外，因为有测试的保护，你可以放心对原有代码进行重构，而不必担心破坏逻辑。这些其实都指向了一个最终的目的：让我们快乐安心高效地工作。</p>
+
+<!--more-->
+
+<h2 id="bdd">BDD</h2>
+
+<blockquote>
+  <p>Behavior Drive Development</p>
+</blockquote>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/45991035.jpg" alt="DBB" /></p>
+
+<p>XCTest(作者注:苹果官方测试框架)是基于OCUnit的传统测试框架，在书写性和可读性上都不太好。在测试用例太多的时候，由于各个测试方法是割裂的，想在某个很长的测试文件中找到特定的某个测试并搞明白这个测试是在做什么并不是很容易的事情。所有的测试都是由断言完成的，而很多时候断言的意义并不是特别的明确，对于项目交付或者新的开发人员加入时，往往要花上很大成本来进行理解或者转换。另外，每一个测试的描述都被写在断言之后，夹杂在代码之中，难以寻找。使用XCTest测试另外一个问题是难以进行mock或者stub，而这在测试中是非常重要的一部分。</p>
+
+<blockquote>
+  <p>行为驱动开发（BDD）正是为了解决上述问题而生的，作为第二代敏捷方法，BDD提倡的是通过将测试语句转换为类似自然语言的描述，开发人员可以使用更符合大众语言的习惯来书写测试，这样不论在项目交接/交付，或者之后自己修改时，都可以顺利很多</p>
+</blockquote>
+
+<p>如果说作为开发者的我们日常工作是写代码，那么BDD其实就是在讲故事。一个典型的BDD的测试用例包活完整的三段式上下文，测试大多可以翻译为Given..When..Then的格式，读起来轻松惬意。BDD在其他语言中也已经有一些框架，包括最早的Java的JBehave和赫赫有名的Ruby的RSpec和Cucumber。而在objc社区中BDD框架也正在欣欣向荣地发展，得益于objc的语法本来就非常接近自然语言，再加上C语言宏的威力，我们是有可能写出漂亮优美的测试的。在objc中，现在比较流行的BDD框架有cedar，specta和Kiwi。</p>
+
+<h2 id="quick--nimble-in-swift">Quick + Nimble In Swift</h2>
+
+<p><a href="https://github.com/Quick/Quick">https://github.com/Quick/Quick</a></p>
+
+<pre><code>// Swift
+</code></pre>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import Quick
+</span><span class="line">	import Nimble
+</span><span class="line">
+</span><span class="line">	class TableOfContentsSpec: QuickSpec {
+</span><span class="line">  	override func spec() {
+</span><span class="line">    	describe("the 'Documentation' directory") {
+</span><span class="line">      it("has everything you need to get started") {
+</span><span class="line">        let sections = Directory("Documentation").sections
+</span><span class="line">        expect(sections).to(contain("Organized Tests with Quick 	Examples and Example Groups"))
+</span><span class="line">        expect(sections).to(contain("Installing Quick"))
+</span><span class="line">      }
+</span><span class="line">
+</span><span class="line">      context("if it doesn't have what you're looking for") {
+</span><span class="line">        it("needs to be updated") {
+</span><span class="line">          let you = You(awesome: true)
+</span><span class="line">          expect{you.submittedAnIssue}.toEventually(beTruthy())
+</span><span class="line">        }
+</span><span class="line">      	}
+</span><span class="line">    }
+</span><span class="line">  	}
+</span><span class="line">	}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="nimble">Nimble</h2>
+
+<p><a href="https://github.com/Quick/Nimble">https://github.com/Quick/Nimble</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Swift
+</span><span class="line">	expect(1 + 1).to(equal(2))
+</span><span class="line">	expect(1.2).to(beCloseTo(1.1, within: 0.1))
+</span><span class="line">	expect(3) &gt; 2
+</span><span class="line">	expect("seahorse").to(contain("sea"))
+</span><span class="line">	expect(["Atlantic", "Pacific"]).toNot(contain("Mississippi"))
+</span><span class="line">	expect(ocean.isClean).toEventually(beTruthy())</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="specta">Specta</h2>
+<p><a href="https://github.com/specta/specta">https://github.com/specta/specta</a></p>
+
+<p>A light-weight TDD / BDD framework for Objective-C.</p>
+
+<p>FEATURES</p>
+
+<ul>
+  <li>An Objective-C RSpec-like BDD DSL</li>
+  <li>Quick and easy set up</li>
+  <li>Built on top of XCTest</li>
+  <li>Excellent Xcode integration</li>
+</ul>
+
+<h2 id="specta-bdd-dsl">Specta BDD DSL</h2>
+
+<ol>
+  <li>SpecBegin 声明了一个测试类，SpecEnd 结束了类声明</li>
+  <li>describe (context) 块声明了一组实例</li>
+  <li>it (example/specify) 是一个单一的例子</li>
+  <li>beforeAll 是一个运行于所有同级块之前的块，只运行一次。afterAll 与beforeAll相反，是在所有同级块之后运行的块，只运行一次。</li>
+  <li>beforeEach/afterEach，在每个同级块运行的时候，都会运行一次，而beforeAll/afterAll只会运行一次</li>
+  <li>it/waitUntil/done()，异步调用，注意完成异步操作之后，必须调用done()函数，如下：</li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	     it(@"should do some stuff asynchronously", ^{
+</span><span class="line">        waitUntil(^(DoneCallback done) {
+</span><span class="line">        // Async example blocks need to invoke done()     callback.
+</span><span class="line">        done();
+</span><span class="line">        });
+</span><span class="line">  	     });</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="expecta">Expecta</h2>
+
+<p><a href="https://github.com/specta/expecta">https://github.com/specta/expecta</a></p>
+
+<p>A matcher framework for Objective-C and Cocoa.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	waitUntil(^(DoneCallback done) {
+</span><span class="line">            //query
+</span><span class="line">            [manager getSedentaryDataModels:^(NSArray &lt; DMSedentaryDataModel * &gt; *modelList) {
+</span><span class="line">                tempModel = modelList.firstObject;
+</span><span class="line">                expect(modelList.count).to.equal(1);
+</span><span class="line">                done();
+</span><span class="line">            }];
+</span><span class="line">        });
+</span><span class="line">        expect(tempModel).notTo.beNil();
+</span><span class="line">        expect(tempModel.prKey).notTo.equal(0);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="ocmock">OCMock</h2>
+<p><a href="http://ocmock.org/reference/#creating-mock-objects">http://ocmock.org/reference/#creating-mock-objects</a></p>
+
+<ul>
+  <li>Creating mock objects</li>
+  <li>Stubbing methods</li>
+  <li>Verifying interactions</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	      __block id mockConnection = nil;
+</span><span class="line">    
+</span><span class="line">        beforeAll(^{
+</span><span class="line">        
+</span><span class="line">        });
+</span><span class="line">    
+</span><span class="line">        afterAll(^{
+</span><span class="line">        
+</span><span class="line">        });
+</span><span class="line">    
+</span><span class="line">        beforeEach(^{
+</span><span class="line">        mockConnection = OCMClassMock([TwitterConnection class]);
+</span><span class="line">        });
+</span><span class="line">    
+</span><span class="line">        afterEach(^{
+</span><span class="line">        [mockConnection stopMocking];
+</span><span class="line">        });
+</span><span class="line">    
+</span><span class="line">        it(@"is should be success", ^{
+</span><span class="line">        
+</span><span class="line">        TwitterViewController *controller = [[TwitterViewController alloc] init];
+</span><span class="line">        controller.connection = mockConnection;
+</span><span class="line">        
+</span><span class="line">        //模拟fetchTweets方法返回预设值
+</span><span class="line">        Tweet *testTweet = [[Tweet alloc] init];
+</span><span class="line">        testTweet.userName = @"齐滇大圣";
+</span><span class="line">        Tweet *testTweet2 = [[Tweet alloc] init];
+</span><span class="line">        testTweet2.userName = @"美猴王";
+</span><span class="line">        NSArray *tweetArray = @[testTweet,testTweet2];
+</span><span class="line">        OCMStub([mockConnection fetchTweets]).andReturn(tweetArray);
+</span><span class="line">        
+</span><span class="line">        //模拟出来一个view类
+</span><span class="line">        id mockView = OCMClassMock([TweetView class]);
+</span><span class="line">        controller.tweetView = mockView;
+</span><span class="line">        
+</span><span class="line">        //这里执行updateTweetView之后，[mockView addTweet:]加入了testTweet和testTweet2
+</span><span class="line">        [controller updateTweetView];
+</span><span class="line">        
+</span><span class="line">        OCMVerify([mockView addTweet:testTweet]);
+</span><span class="line">        OCMVerify([mockView addTweet:testTweet2]);
+</span><span class="line">        OCMVerify([mockView addTweet:[OCMArg any]]);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="slather">Slather</h2>
+<p><a href="https://github.com/SlatherOrg/slather">https://github.com/SlatherOrg/slather</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	source ~/.bash_profile
+</span><span class="line">	cd ${SRCROOT}
+</span><span class="line">	rm -rf  ${SRCROOT}/slather-html
+</span><span class="line">	slather coverage --html --output-directory  ${SRCROOT}/slather-html --scheme DeviceManager --workspace ${SRCROOT}/DeviceManager.xcworkspace ${SRCROOT}/DeviceManager.xcodeproj
+</span><span class="line">	open 'slather-html/index.html'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2017 年6 月14 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/ios-tdd-and-bdd" data-title="iOS TDD&amp;BDD" data-url="http://helloyokoy.github.io/blog/ios-tdd-and-bdd/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2018
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

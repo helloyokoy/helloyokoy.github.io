@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-21T17:32:40+08:00</updated>
+  <updated>2018-01-22T11:11:23+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -323,6 +323,1351 @@
 </span><span class="line">        block(obj);
 </span><span class="line">    }];
 </span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS BLE]]></title>
+    <link href="http://helloyokoy.github.io/blog/ios-ble/"/>
+    <updated>2017-10-22T10:08:24+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/ios-ble</id>
+    <content type="html"><![CDATA[<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/94746767.jpg" alt="" /></p>
+
+<h2 id="ble">BLE</h2>
+
+<blockquote>
+  <p>BLE是蓝牙低能耗的简称（Bluetooh Low Energy）。蓝牙低能耗(BLE)技术是低成本、短距离、可互操作的鲁棒性无线技术，工作在免许可的2.4GHz ISM射频频段。它从一开始就设计为超低功耗(ULP)无线技术。它利用许多智能手段最大限度地降低功耗</p>
+</blockquote>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/47797739.jpg" alt="" /></p>
+
+<ul>
+  <li>GATT:Generic Attribute Profile</li>
+  <li>ATT: Attribute Protocol</li>
+  <li>L2CAP: Logical Link Control and Adaptation Protocol</li>
+</ul>
+
+<!--more-->
+
+<h2 id="corebluetooth">CoreBlueTooth</h2>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/79935884.jpg" alt="" /></p>
+
+<ul>
+  <li>CBCentralManager - 中心设备管理，用于搜索周边设备，对应CBPeripheral使用</li>
+  <li>
+    <p>CBPeripheralManager - 周边设备管理，用于作为周边设备，对应CBCentral使用</p>
+  </li>
+  <li>CBPeripheral - 周边设备</li>
+  <li>
+    <p>CBCentral - 中心设备</p>
+  </li>
+  <li>CBService - 设备 服务</li>
+  <li>CBCharacteristic - 设备 服务 特征</li>
+  <li>
+    <p>CBDescriptor - 设备 服务 特征 描述</p>
+  </li>
+  <li>CBError - 错误</li>
+  <li>CBUUID - 唯一码</li>
+  <li>CBAdvertisementData - 广播包</li>
+  <li>CBATTRequest - ATT请求</li>
+</ul>
+
+<h3 id="cbcentralmanager">CBCentralManager</h3>
+
+<p>初始化 manager</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">self.centerManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+</span><span class="line">    // [self.centerManager stopScan];  可以停止扫描
+</span><span class="line">
+</span><span class="line">    - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+</span><span class="line">    if (central.state == CBCentralManagerStatePoweredOn) {
+</span><span class="line">        NSLog(@"蓝牙 - 打开");
+</span><span class="line">        // 开始扫描，周边设备
+</span><span class="line">        [self.centerManager scanForPeripheralsWithServices:nil options:nil];
+</span><span class="line">    } else {
+</span><span class="line">        NSLog(@"蓝牙 异常,其他状态自行判断");
+</span><span class="line">    }
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary&lt;NSString *, id&gt; *)dict {
+</span><span class="line">        NSLog(@"%@",dict);
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary&lt;NSString *, id&gt; *)advertisementData RSSI:(NSNumber *)RSSI {
+</span><span class="line">    if (peripheral.name) {
+</span><span class="line">        NSLog(@"扫描到设备 %@",peripheral.name);
+</span><span class="line">    }
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>调用连接设备</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[self.centerManager connectPeripheral:currentPer options:nil];                       
+</span><span class="line">    currentPer.delegate = self;
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+</span><span class="line">        NSLog(@"链接成功");
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"链接失败");
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"设备断开链接");
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="cbperipheral">CBPeripheral</h3>
+
+<p>扫描 设备的某些 UUID 的服务</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[currentPer discoverServices:@[@"UUID"]];
+</span><span class="line">
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",service.UUID);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>扫描 设备的某服务的 UUID 服务</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[currentPer discoverIncludedServices:@[] forService:service];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(NSError *)error {
+</span><span class="line">        NSLog(@"%@",service.UUID);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>扫描 设备的某个服务中的 UUID 特性</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral discoverCharacteristics:@[] forService:peripheral.services.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",service.characteristics);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>扫描 设备的某个特征 UUID</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral discoverDescriptorsForCharacteristic:peripheral.services.lastObject.characteristics.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",characteristic);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>获取设备 蓝牙信号强度</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral readRSSI];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",RSSI.stringValue);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>读取 特征</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral readValueForCharacteristic:peripheral.services.lastObject.characteristics.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+</span><span class="line">        NSLog(@"%@",characteristic);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>写入 特征</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral writeValue:[NSData data] forCharacteristic:peripheral.services.lastObject.characteristics.lastObject type:CBCharacteristicWriteWithResponse];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",characteristic);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>读取 描述</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral readValueForDescriptor:peripheral.services.lastObject.characteristics.lastObject.descriptors.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",descriptor);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>写入描述</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral writeValue:[NSData data] forDescriptor:peripheral.services.lastObject.characteristics.lastObject.descriptors.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",descriptor);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>添加 监听</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral setNotifyValue:YES forCharacteristic:peripheral.services.lastObject.characteristics.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",characteristic);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>其他</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// 最大数据量？
+</span><span class="line">    NSLog(@"%zi",[peripheral maximumWriteValueLengthForType:CBCharacteristicWriteWithResponse]);
+</span><span class="line">    
+</span><span class="line">    // 修改 名称
+</span><span class="line">    - (void)peripheralDidUpdateName:(CBPeripheral *)peripheral {
+</span><span class="line">    NSLog(@"%@",peripheral);
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    // 修改 服务
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray&lt;CBService *&gt; *)invalidatedServices {
+</span><span class="line">    NSLog(@"%@",peripheral);
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    // 修改 RSSI
+</span><span class="line">    - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(nullable NSError *)error {
+</span><span class="line">    NSLog(@"%@",peripheral.RSSI.stringValue);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS TDD&amp;BDD]]></title>
+    <link href="http://helloyokoy.github.io/blog/ios-tdd-and-bdd/"/>
+    <updated>2017-06-14T10:37:14+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/ios-tdd-and-bdd</id>
+    <content type="html"><![CDATA[<h2 id="tdd">TDD</h2>
+
+<p>Test Drive Development</p>
+
+<ul>
+  <li>有利于更加专注软件设计；</li>
+  <li>清晰地了解软件的需求；</li>
+  <li>很好的诠释了代码即文档。</li>
+</ul>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/95570113.jpg" alt="TDD" /></p>
+
+<blockquote>
+  <p>TDD是一种相对于普通思维的方式来说，比较极端的一种做法。我们一般能想到的是先编写业务代码，然后为其编写测试代码，用来验证产品方法是不是按照设计工作。而TDD的思想正好与之相反，在TDD的世界中，我们应该首先根据需求或者接口情况编写测试，然后再根据测试来编写业务代码，而这其实是违反传统软件开发中的先验认知的.</p>
+</blockquote>
+
+<p>我们可以举一个生活中类似的例子来说明TDD的必要性：有经验的砌砖师傅总是会先拉一条垂线，然后沿着线砌砖，因为有直线的保证，因此可以做到笔直整齐；而新入行的师傅往往二话不说直接开工，然后在一阶段完成后再用直尺垂线之类的工具进行测量和修补。</p>
+
+<p>TDD的好处不言自明，因为总是先测试，再编码，所以至少你的所有代码的public部分都应该含有必要的测试。另外，因为测试代码实际是要使用产品代码的，因此在编写产品代码前你将有一次深入思考和实践如何使用这些代码的机会，这对提高设计和可扩展性有很好的帮助，试想一下你测试都很难写的接口，别人（或者自己）用起来得多纠结。在测试的准绳下，你可以有目的有方向地编码；另外，因为有测试的保护，你可以放心对原有代码进行重构，而不必担心破坏逻辑。这些其实都指向了一个最终的目的：让我们快乐安心高效地工作。</p>
+
+<!--more-->
+
+<h2 id="bdd">BDD</h2>
+
+<blockquote>
+  <p>Behavior Drive Development</p>
+</blockquote>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/45991035.jpg" alt="DBB" /></p>
+
+<p>XCTest(作者注:苹果官方测试框架)是基于OCUnit的传统测试框架，在书写性和可读性上都不太好。在测试用例太多的时候，由于各个测试方法是割裂的，想在某个很长的测试文件中找到特定的某个测试并搞明白这个测试是在做什么并不是很容易的事情。所有的测试都是由断言完成的，而很多时候断言的意义并不是特别的明确，对于项目交付或者新的开发人员加入时，往往要花上很大成本来进行理解或者转换。另外，每一个测试的描述都被写在断言之后，夹杂在代码之中，难以寻找。使用XCTest测试另外一个问题是难以进行mock或者stub，而这在测试中是非常重要的一部分。</p>
+
+<blockquote>
+  <p>行为驱动开发（BDD）正是为了解决上述问题而生的，作为第二代敏捷方法，BDD提倡的是通过将测试语句转换为类似自然语言的描述，开发人员可以使用更符合大众语言的习惯来书写测试，这样不论在项目交接/交付，或者之后自己修改时，都可以顺利很多</p>
+</blockquote>
+
+<p>如果说作为开发者的我们日常工作是写代码，那么BDD其实就是在讲故事。一个典型的BDD的测试用例包活完整的三段式上下文，测试大多可以翻译为Given..When..Then的格式，读起来轻松惬意。BDD在其他语言中也已经有一些框架，包括最早的Java的JBehave和赫赫有名的Ruby的RSpec和Cucumber。而在objc社区中BDD框架也正在欣欣向荣地发展，得益于objc的语法本来就非常接近自然语言，再加上C语言宏的威力，我们是有可能写出漂亮优美的测试的。在objc中，现在比较流行的BDD框架有cedar，specta和Kiwi。</p>
+
+<h2 id="quick--nimble-in-swift">Quick + Nimble In Swift</h2>
+
+<p><a href="https://github.com/Quick/Quick">https://github.com/Quick/Quick</a></p>
+
+<pre><code>// Swift
+</code></pre>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import Quick
+</span><span class="line">	import Nimble
+</span><span class="line">
+</span><span class="line">	class TableOfContentsSpec: QuickSpec {
+</span><span class="line">  	override func spec() {
+</span><span class="line">    	describe("the 'Documentation' directory") {
+</span><span class="line">      it("has everything you need to get started") {
+</span><span class="line">        let sections = Directory("Documentation").sections
+</span><span class="line">        expect(sections).to(contain("Organized Tests with Quick 	Examples and Example Groups"))
+</span><span class="line">        expect(sections).to(contain("Installing Quick"))
+</span><span class="line">      }
+</span><span class="line">
+</span><span class="line">      context("if it doesn't have what you're looking for") {
+</span><span class="line">        it("needs to be updated") {
+</span><span class="line">          let you = You(awesome: true)
+</span><span class="line">          expect{you.submittedAnIssue}.toEventually(beTruthy())
+</span><span class="line">        }
+</span><span class="line">      	}
+</span><span class="line">    }
+</span><span class="line">  	}
+</span><span class="line">	}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="nimble">Nimble</h2>
+
+<p><a href="https://github.com/Quick/Nimble">https://github.com/Quick/Nimble</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Swift
+</span><span class="line">	expect(1 + 1).to(equal(2))
+</span><span class="line">	expect(1.2).to(beCloseTo(1.1, within: 0.1))
+</span><span class="line">	expect(3) &gt; 2
+</span><span class="line">	expect("seahorse").to(contain("sea"))
+</span><span class="line">	expect(["Atlantic", "Pacific"]).toNot(contain("Mississippi"))
+</span><span class="line">	expect(ocean.isClean).toEventually(beTruthy())</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="specta">Specta</h2>
+<p><a href="https://github.com/specta/specta">https://github.com/specta/specta</a></p>
+
+<p>A light-weight TDD / BDD framework for Objective-C.</p>
+
+<p>FEATURES</p>
+
+<ul>
+  <li>An Objective-C RSpec-like BDD DSL</li>
+  <li>Quick and easy set up</li>
+  <li>Built on top of XCTest</li>
+  <li>Excellent Xcode integration</li>
+</ul>
+
+<h2 id="specta-bdd-dsl">Specta BDD DSL</h2>
+
+<ol>
+  <li>SpecBegin 声明了一个测试类，SpecEnd 结束了类声明</li>
+  <li>describe (context) 块声明了一组实例</li>
+  <li>it (example/specify) 是一个单一的例子</li>
+  <li>beforeAll 是一个运行于所有同级块之前的块，只运行一次。afterAll 与beforeAll相反，是在所有同级块之后运行的块，只运行一次。</li>
+  <li>beforeEach/afterEach，在每个同级块运行的时候，都会运行一次，而beforeAll/afterAll只会运行一次</li>
+  <li>it/waitUntil/done()，异步调用，注意完成异步操作之后，必须调用done()函数，如下：</li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	     it(@"should do some stuff asynchronously", ^{
+</span><span class="line">        waitUntil(^(DoneCallback done) {
+</span><span class="line">        // Async example blocks need to invoke done()     callback.
+</span><span class="line">        done();
+</span><span class="line">        });
+</span><span class="line">  	     });</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="expecta">Expecta</h2>
+
+<p><a href="https://github.com/specta/expecta">https://github.com/specta/expecta</a></p>
+
+<p>A matcher framework for Objective-C and Cocoa.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	waitUntil(^(DoneCallback done) {
+</span><span class="line">            //query
+</span><span class="line">            [manager getSedentaryDataModels:^(NSArray &lt; DMSedentaryDataModel * &gt; *modelList) {
+</span><span class="line">                tempModel = modelList.firstObject;
+</span><span class="line">                expect(modelList.count).to.equal(1);
+</span><span class="line">                done();
+</span><span class="line">            }];
+</span><span class="line">        });
+</span><span class="line">        expect(tempModel).notTo.beNil();
+</span><span class="line">        expect(tempModel.prKey).notTo.equal(0);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="ocmock">OCMock</h2>
+<p><a href="http://ocmock.org/reference/#creating-mock-objects">http://ocmock.org/reference/#creating-mock-objects</a></p>
+
+<ul>
+  <li>Creating mock objects</li>
+  <li>Stubbing methods</li>
+  <li>Verifying interactions</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	      __block id mockConnection = nil;
+</span><span class="line">    
+</span><span class="line">        beforeAll(^{
+</span><span class="line">        
+</span><span class="line">        });
+</span><span class="line">    
+</span><span class="line">        afterAll(^{
+</span><span class="line">        
+</span><span class="line">        });
+</span><span class="line">    
+</span><span class="line">        beforeEach(^{
+</span><span class="line">        mockConnection = OCMClassMock([TwitterConnection class]);
+</span><span class="line">        });
+</span><span class="line">    
+</span><span class="line">        afterEach(^{
+</span><span class="line">        [mockConnection stopMocking];
+</span><span class="line">        });
+</span><span class="line">    
+</span><span class="line">        it(@"is should be success", ^{
+</span><span class="line">        
+</span><span class="line">        TwitterViewController *controller = [[TwitterViewController alloc] init];
+</span><span class="line">        controller.connection = mockConnection;
+</span><span class="line">        
+</span><span class="line">        //模拟fetchTweets方法返回预设值
+</span><span class="line">        Tweet *testTweet = [[Tweet alloc] init];
+</span><span class="line">        testTweet.userName = @"齐滇大圣";
+</span><span class="line">        Tweet *testTweet2 = [[Tweet alloc] init];
+</span><span class="line">        testTweet2.userName = @"美猴王";
+</span><span class="line">        NSArray *tweetArray = @[testTweet,testTweet2];
+</span><span class="line">        OCMStub([mockConnection fetchTweets]).andReturn(tweetArray);
+</span><span class="line">        
+</span><span class="line">        //模拟出来一个view类
+</span><span class="line">        id mockView = OCMClassMock([TweetView class]);
+</span><span class="line">        controller.tweetView = mockView;
+</span><span class="line">        
+</span><span class="line">        //这里执行updateTweetView之后，[mockView addTweet:]加入了testTweet和testTweet2
+</span><span class="line">        [controller updateTweetView];
+</span><span class="line">        
+</span><span class="line">        OCMVerify([mockView addTweet:testTweet]);
+</span><span class="line">        OCMVerify([mockView addTweet:testTweet2]);
+</span><span class="line">        OCMVerify([mockView addTweet:[OCMArg any]]);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="slather">Slather</h2>
+<p><a href="https://github.com/SlatherOrg/slather">https://github.com/SlatherOrg/slather</a></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	source ~/.bash_profile
+</span><span class="line">	cd ${SRCROOT}
+</span><span class="line">	rm -rf  ${SRCROOT}/slather-html
+</span><span class="line">	slather coverage --html --output-directory  ${SRCROOT}/slather-html --scheme DeviceManager --workspace ${SRCROOT}/DeviceManager.xcworkspace ${SRCROOT}/DeviceManager.xcodeproj
+</span><span class="line">	open 'slather-html/index.html'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS runtime & libObjc]]></title>
+    <link href="http://helloyokoy.github.io/blog/ios-runtime-and-libobjc/"/>
+    <updated>2017-05-11T19:57:20+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/ios-runtime-and-libobjc</id>
+    <content type="html"><![CDATA[<h2 id="runtime">Runtime</h2>
+
+<blockquote>
+  <p>Objc是一门动态语言，所以它总是想办法把一些决定工作从编译连接推迟到运行时。也就是说只有编译器是不够的，还需要一个运行时系统(runtime system) 来执行编译后的代码。这就是 Objective-C Runtime.
+RunTime简称运行时。OC就是运行时机制，其中最主要的是消息机制。对于C语言，函数的调用在编译的时候会决定调用哪个函数。对于OC的函数，属于动态调用过程，在编译的时候并不能决定真正调用哪个函数，只有在真正运行的时候才会根据函数的名称找到对应的函数来调用。</p>
+</blockquote>
+
+<p>Runtime基本是用C和汇编写的，苹果和GNU各自维护一个开源的runtime版本，这两个版本之间都在努力的保持一致。</p>
+
+<ul>
+  <li><a href="https://opensource.apple.com/tarballs/objc4/">https://opensource.apple.com/tarballs/objc4/</a></li>
+  <li><a href="https://github.com/RetVal/objc-runtime">https://github.com/RetVal/objc-runtime</a></li>
+</ul>
+
+<h2 id="id--class">id &amp; Class</h2>
+
+<p>define id&amp;class</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	typedef struct objc_class *Class;
+</span><span class="line">	typedef struct objc_object *id;
+</span><span class="line">	struct objc_object {
+</span><span class="line">    	Class isa;
+</span><span class="line">	};
+</span><span class="line">	struct objc_class {
+</span><span class="line">    	Class isa;
+</span><span class="line">	}
+</span><span class="line">	/// 不透明结构体, selector
+</span><span class="line">	typedef struct objc_selector *SEL;
+</span><span class="line">	/// 函数指针, 用于表示对象方法的实现
+</span><span class="line">	typedef id (*IMP)(id, SEL, ...);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="define">Define</h2>
+
+<ul>
+  <li>对对象进行操作的方法一般以object_开头</li>
+  <li>对类进行操作的方法一般以class_开头</li>
+  <li>对类或对象的方法进行操作的方法一般以method_开头</li>
+  <li>对成员变量进行操作的方法一般以ivar_开头</li>
+  <li>对属性进行操作的方法一般以property_开头</li>
+  <li>对协议进行操作的方法一般以protocol_开头</li>
+</ul>
+
+<p>根据以上的函数的前缀 可以大致了解到层级关系。对于以objc_开头的方法，则是runtime最终的管家，可以获取内存中类的加载信息,类的列表，关联对象和关联属性等操作。</p>
+
+<h2 id="important-method">important method</h2>
+
+<pre><code>objc_copyClassList
+
+class_copyIvarList
+
+class_copyPropertyList
+</code></pre>
+
+<blockquote>
+  <p>ivarList可以获取到@property关键字定义的属性 ，而propertyList不可以获取到成员变量。使用ivarList是可以将所有的成员变量和属性都获取的。</p>
+</blockquote>
+
+<pre><code>+ (BOOL)resolveClassMethod:(SEL)sel 
++ (BOOL)resolveInstanceMethod:(SEL)sel
+
+class_addIvar
+
+class_addMethod
+</code></pre>
+
+<!--more-->
+
+<h2 id="nscoding-default-implement">NSCoding default implement</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	- (void)encodeWithCoder:(NSCoder *)aCoder {
+</span><span class="line">    unsigned int count = 0;
+</span><span class="line">    Ivar *ivars = class_copyIvarList(self.class, &amp;count);
+</span><span class="line">    for (int i = 0; i &lt; count; i++) {
+</span><span class="line">        const char *cname = ivar_getName(ivars[i]);
+</span><span class="line">        NSString *name = [NSString stringWithUTF8String:cname];
+</span><span class="line">        NSString *key = [name substringFromIndex:1];
+</span><span class="line">        
+</span><span class="line">        id value = [self valueForKey:key]; // KVC隐性数据转换
+</span><span class="line">        [aCoder encodeObject:value forKey:key]; // 编码
+</span><span class="line">    	}
+</span><span class="line">	}
+</span><span class="line">	- (id)initWithCoder:(NSCoder *)aDecoder {
+</span><span class="line">    if (self = [super init]) {
+</span><span class="line">        unsigned int count = 0;
+</span><span class="line">        Ivar *ivars = class_copyIvarList(self.class, &amp;count);
+</span><span class="line">        for (int i = 0; i &lt; count; i++) {
+</span><span class="line">            const char *cname = ivar_getName(ivars[i]);
+</span><span class="line">            NSString *name = [NSString stringWithUTF8String:cname];
+</span><span class="line">            NSString *key = [name substringFromIndex:1];
+</span><span class="line">            
+</span><span class="line">            id value = [aDecoder decodeObjectForKey:key]; // 解码
+</span><span class="line">            [self setValue:value forKey:key]; // KVC隐性数据转换
+</span><span class="line">        }
+</span><span class="line">    }
+</span><span class="line">    return self;    
+</span><span class="line">	}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="add-method-dynamic">Add method Dynamic</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	void abc(id self, SEL _cmd){
+</span><span class="line">    NSLog(@"%@说了hello", [self name]);
+</span><span class="line">	}
+</span><span class="line">
+</span><span class="line">	@implementation Person
+</span><span class="line">
+</span><span class="line">	//动态添加方法：在resolve中添加相应的方法，注意是类方法还是对象方法。
+</span><span class="line">	+ (BOOL)resolveInstanceMethod:(SEL)sel
+</span><span class="line">	{
+</span><span class="line">    if ([NSStringFromSelector(sel) isEqualToString:@"sayHi"]) {
+</span><span class="line">        class_addMethod(self, sel, abc, "v@:"); // 为sel指定实现为abc
+</span><span class="line">    }
+</span><span class="line">    return YES;
+</span><span class="line">	}
+</span><span class="line">	@end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="add-class-dynamic">Add Class Dynamic</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	// 添加一个NSString的变量，第四个参数是对其方式，第五个参数是参数类型
+</span><span class="line">    if (class_addIvar(classStudent, "schoolName", sizeof(NSString *), 0, "@")) {
+</span><span class="line">        NSLog(@"添加成员变量schoolName成功");
+</span><span class="line">    }
+</span><span class="line">    // 为Student类添加方法 "v@:"这种写法见参数类型连接
+</span><span class="line">    if (class_addMethod(classStudent, @selector(printSchool), (IMP)printSchool, "v@:")) {
+</span><span class="line">        NSLog(@"添加方法printSchool:成功");
+</span><span class="line">    }
+</span><span class="line">    // 注册这个类到runtime系统中就可以使用他了
+</span><span class="line">    objc_registerClassPair(classStudent); // 返回void
+</span><span class="line">    // 使用创建的类
+</span><span class="line">    id student = [[classStudent alloc] init];
+</span><span class="line">    NSString *schoolName = @"清华大学";
+</span><span class="line">    [student setValue:schoolName forKey:@"schoolName"];
+</span><span class="line">    [student performSelector:@selector(printSchool) withObject:nil]; // 动态调用未显式在类中声明的方法</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="associatedobjectcategory">AssociatedObject&amp;Category</h2>
+
+<ul>
+  <li>objc_setAssociatedObject</li>
+  <li>objc_getAssociatedObject</li>
+  <li>objc_removeAssociatedObjects</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">		enum {
+</span><span class="line">   		OBJC_ASSOCIATION_ASSIGN = 0,
+</span><span class="line">   		OBJC_ASSOCIATION_RETAIN_NONATOMIC = 1,
+</span><span class="line">   		OBJC_ASSOCIATION_COPY_NONATOMIC = 3,
+</span><span class="line">   		OBJC_ASSOCIATION_RETAIN = 01401,
+</span><span class="line">   		OBJC_ASSOCIATION_COPY = 01403
+</span><span class="line">		};</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Category       invoke order:   Category =&gt; self  =&gt; super</p>
+
+<blockquote>
+  <p>当同一个类的有多个Category时，调用同名方法，谁编译最后，谁就会被调用。最后编译的那个Category，其方法被放在了方法列表（无论是类里的实例方法列表还是元类里的类方法列表）的前面，当objc_msgSend查找方法时会优先找到了它。</p>
+</blockquote>
+
+<h2 id="message">message</h2>
+
+<pre><code>[receiver message];
+</code></pre>
+
+<p>向receiver发送名为message的消息。</p>
+
+<pre><code>clang -rewrite-objc MyClass.m
+</code></pre>
+
+<p>执行上面的命令，将这一句重写为C代码，是这样的：</p>
+
+<pre><code>((void (*)(id, SEL))(void *)objc_msgSend)((id)receiver, sel_registerName("message"));
+</code></pre>
+
+<p>去掉那些强制转换，最终[receiver message]会由编译器转化为以下的纯C调用。</p>
+
+<pre><code>objc_msgSend(receiver, @selector(message));
+</code></pre>
+
+<h2 id="method-forwarding">method forwarding</h2>
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/43880704.jpg" alt="" /></p>
+
+<p>_objc_msgForward消息转发做了如下几件事：</p>
+
+<p>1.调用resolveInstanceMethod:方法，允许用户在此时为该Class动态添加实现。如果有实现了，则调用并返回。如果仍没实现，继续下面的动作。</p>
+
+<p>2.调用forwardingTargetForSelector:方法，尝试找到一个能响应该消息的对象。如果获取到，则直接转发给它。如果返回了nil，继续下面的动作。</p>
+
+<p>3.调用methodSignatureForSelector:方法，尝试获得一个方法签名。如果获取不到，则直接调用doesNotRecognizeSelector抛出异常。</p>
+
+<p>4.调用forwardInvocation:方法，将地3步获取到的方法签名包装成Invocation传入，如何处理就在这里面了。</p>
+
+<p>上面这4个方法均是模板方法，开发者可以override，由runtime来调用。最常见的实现消息转发，就是重写方法3和4，吞掉一个消息或者代理给其他对象都是没问题的。</p>
+
+<p>如果直到NSObject，继承体系中的其它类都无法处理这个消息转发，就会由NSObject调用该方法，并在该方法中调用doesNotRecognizeSelector，以抛出异常。</p>
+
+<h2 id="method-swizzling">method swizzling</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	+ (void)load {
+</span><span class="line">    static dispatch_once_t onceToken;
+</span><span class="line">    dispatch_once(&amp;onceToken, ^{
+</span><span class="line">        Class class = [self class];
+</span><span class="line">        SEL originalSelector = @selector(viewWillAppear:);
+</span><span class="line">        SEL swizzledSelector = @selector(xxx_viewWillAppear:);
+</span><span class="line">        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+</span><span class="line">        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+</span><span class="line">        // 如果 swizzling 的是类方法, 采用如下的方式:
+</span><span class="line">        // Class class = object_getClass((id)self);
+</span><span class="line">        // ...
+</span><span class="line">        // Method originalMethod = class_getClassMethod(class, originalSelector);
+</span><span class="line">        // Method swizzledMethod = class_getClassMethod(class, swizzledSelector);
+</span><span class="line">        //交换实现
+</span><span class="line">        method_exchangeImplementations(originalMethod, swizzledMethod);
+</span><span class="line">    	});
+</span><span class="line">	}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="thirdparty">ThirdParty</h2>
+
+<p>Aspect</p>
+
+<ul>
+  <li><a href="https://github.com/steipete/Aspects">https://github.com/steipete/Aspects</a></li>
+</ul>
+
+<p>JsPatch</p>
+
+<ul>
+  <li><a href="https://github.com/bang590/JSPatch">https://github.com/bang590/JSPatch</a></li>
+</ul>
+
+<p>GYBootingProtection</p>
+
+<ul>
+  <li><a href="https://github.com/liuslevis/GYBootingProtection">https://github.com/liuslevis/GYBootingProtection</a></li>
+</ul>
+
+<h2 id="libextobjc">libExtObjc</h2>
+
+<p>source code</p>
+
+<ul>
+  <li><a href="https://github.com/jspahrsummers/libextobjc">https://github.com/jspahrsummers/libextobjc</a></li>
+  <li>Safe categories</li>
+  <li>Concrete protocols</li>
+  <li>Simpler and safer key paths</li>
+  <li>Easier use of weak variables in blocks</li>
+  <li>Scope-based resource cleanup</li>
+  <li>Algebraic data types</li>
+  <li>Block-based coroutines</li>
+  <li>EXTNil</li>
+  <li>Lots of extensions</li>
+</ul>
+
+<h2 id="swift-defer">swift defer</h2>
+
+<p>defer 是 Swift 在 2.0 时代加入的一个关键字，它提供了一种非常安全并且简单的方法声明一个在作用域结束时执行的代码块。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!swift
+</span><span class="line">	func hello() {
+</span><span class="line">    defer {
+</span><span class="line">        print("4")
+</span><span class="line">    }
+</span><span class="line">    if true {
+</span><span class="line">        defer {
+</span><span class="line">            print("2")
+</span><span class="line">        }
+</span><span class="line">        defer {
+</span><span class="line">            print("1")
+</span><span class="line">        }
+</span><span class="line">    }
+</span><span class="line">    print("3")
+</span><span class="line">	}
+</span><span class="line">
+</span><span class="line">	hello()
+</span><span class="line">	
+</span><span class="line">output
+</span><span class="line">   
+</span><span class="line">	1  2  3  4</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="objc-implement-of-defer">Objc implement of defer</h2>
+
+<p>libextobjc 实现的 defer 并没有基于 Objective-C 的动态特性，甚至也没有调用已有的任何方法，而是使用了 <a href="https://gcc.gnu.org/onlinedocs/gcc/Variable-Attributes.html">Variable Attributes</a> 这一特性。同样在 GCC 中也存在用于修饰函数的 <a href="https://gcc.gnu.org/onlinedocs/gcc/Function-Attributes.html">Function Attributes</a>.</p>
+
+<p>Variable Attributes 其实是 GCC 中用于描述变量的一种修饰符。我们可以使用 <strong>attribute</strong> 来修饰一些变量来参与静态分析等编译过程；而在 Cocoa Touch 中很多的宏其实都是通过 <strong>attribute</strong> 来实现的，例如：</p>
+
+<pre><code>#define NS_ROOT_CLASS __attribute__((objc_root_class))
+</code></pre>
+
+<p>而 <a href="https://gcc.gnu.org/onlinedocs/gcc/Common-Variable-Attributes.html#Common-Variable-Attributes#cleanup">cleanup</a> 就是在这里会使用的变量属性：
+&gt;The cleanup attribute runs a function when the variable goes out of scope. This attribute can only be applied to auto function scope variables; it may not be applied to parameters or variables with static storage duration. The function must take one parameter, a pointer to a type compatible with the variable. The return value of the function (if any) is ignored.</p>
+
+<p>GCC 文档中对 Cleanup 属性的介绍告诉我们，在 cleanup 中必须传入只有一个参数的函数并且这个参数需要与变量的类型兼容。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!c
+</span><span class="line">	void cleanup_block(int *a) {
+</span><span class="line">    printf("%d\n", *a);
+</span><span class="line">	}
+</span><span class="line">
+</span><span class="line">	int variable __attribute__((cleanup(cleanup_block))) = 2;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="onexit">onExit</h2>
+
+<p>libextobjc 中并没有使用 defer 这个名字，而是使用了 onExit（表示代码是在退出作用域时执行</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	#define onExit \
+</span><span class="line">    ext_keywordify \
+</span><span class="line">    __strong ext_cleanupBlock_t metamacro_concat(ext_exitBlock_, __LINE__) __attribute__((cleanup(ext_executeCleanupBlock), unused)) = ^</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>既然它只是一个宏，那么上面的代码其实是可以展开的</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">autoreleasepool {}
+</span><span class="line">	__strong ext_cleanupBlock_t ext_exitBlock_19 	__attribute__((cleanup(ext_executeCleanupBlock), unused)) = ^ {
+</span><span class="line">    NSLog("Log when out of scope.");
+</span><span class="line">	};</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>ext_keywordify 也是一个宏定义，它通过添加在宏之前添加 autoreleasepool {} 强迫 onExit 前必须加上 @ 符号</p>
+
+<pre><code>#define ext_keywordify autoreleasepool {}
+</code></pre>
+
+<p>ext_cleanupBlock_t 是一个类型：</p>
+
+<pre><code>typedef void (^ext_cleanupBlock_t)(); metamacro_concat(ext_exitBlock_, __LINE__) 会将 ext_exitBlock 和当前行号拼接成一个临时的的变量名，例如：ext_exitBlock_19。
+
+__attribute__((cleanup(ext_executeCleanupBlock), unused))  将 cleanup 函数设置为 ext_executeCleanupBlock；并将当前变量 ext_exitBlock_19 标记为 unused 来抑制 Unused variable 警告。
+</code></pre>
+
+<p>变量 ext_exitBlock_19 的值为 ^{ NSLog(“Log when out of scope.”); }，是一个类型为 ext_cleanupBlock_t 的 block。</p>
+
+<p>在这个变量离开作用域时，会把上面的 block 的指针传入 cleanup 函数，也就是 ext_executeCleanupBlock：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">void ext_executeCleanupBlock (__strong ext_cleanupBlock_t *block) 	{
+</span><span class="line">    	(*block)();
+</span><span class="line">	}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="corutinesyield">Corutines&amp;Yield</h2>
+
+<p>TestCase</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	__block int i;
+</span><span class="line">    int (^myCoroutine)(void) = coroutine(void)({
+</span><span class="line">         for (i = 0;i &lt; 3;++i) {
+</span><span class="line">                yield i;
+</span><span class="line">            }
+</span><span class="line">        });
+</span><span class="line">    XCTAssertEqual(myCoroutine(), 0, @"expected first coroutine call to yield 0");
+</span><span class="line">    XCTAssertEqual(myCoroutine(), 1, @"expected second coroutine call to yield 1");
+</span><span class="line">    XCTAssertEqual(myCoroutine(), 2, @"expected third coroutine call to yield 2");
+</span><span class="line">    XCTAssertEqual(myCoroutine(), 0, @"expected restarted coroutine call to yield 0");
+</span><span class="line">    XCTAssertEqual(myCoroutine(), 1, @"expected second coroutine call to yield 1");
+</span><span class="line">        
+</span><span class="line">     myCoroutine = coroutine(void)({
+</span><span class="line">            NSLog(@"invoke step 1");
+</span><span class="line">            yield 5;
+</span><span class="line">            NSLog(@"invoke step 2");
+</span><span class="line">            yield 18;
+</span><span class="line">            NSLog(@"invoke step 3");
+</span><span class="line">     });
+</span><span class="line">     XCTAssertEqual(myCoroutine(), 5, @"expected first coroutine call to yield 5");
+</span><span class="line">     XCTAssertEqual(myCoroutine(), 18, @"expected second coroutine call to yield 18");
+</span><span class="line">     XCTAssertEqual(myCoroutine(), 5, @"expected restarted coroutine call to yield 5");</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="corutinesyield-implement">Corutines&amp;Yield Implement</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	#define coroutine(...) \
+</span><span class="line">    ^{ \
+</span><span class="line">        __block unsigned long ext_coroutine_line_ = 0; \
+</span><span class="line">        \
+</span><span class="line">        return [ \
+</span><span class="line">            ^(__VA_ARGS__) coroutine_body
+</span><span class="line">            
+</span><span class="line">    #define yield \
+</span><span class="line">    if ((ext_coroutine_line_ = __LINE__) == 0) \
+</span><span class="line">        case __LINE__: \
+</span><span class="line">            ; \
+</span><span class="line">    else \
+</span><span class="line">        return
+</span><span class="line">    #define coroutine_body(STATEMENT) \
+</span><span class="line">            { \
+</span><span class="line">                for (;; ext_coroutine_line_ = 0) \
+</span><span class="line">                    switch (ext_coroutine_line_) \
+</span><span class="line">                        default: \
+</span><span class="line">                            STATEMENT \
+</span><span class="line">            } \
+</span><span class="line">        copy]; \
+</span><span class="line">    }()</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="concrete-protocols">Concrete protocols</h2>
+
+<p>TestCase</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	@protocol MyProtocol &lt;NSObject&gt;
+</span><span class="line">	@concrete
+</span><span class="line">	+ (NSUInteger)meaningfulNumber;
+</span><span class="line">	- (NSString *)getSomeString;
+</span><span class="line">	@end
+</span><span class="line">	@protocol SubProtocol &lt;MyProtocol&gt;
+</span><span class="line">	@concrete
+</span><span class="line">	- (void)additionalMethod;
+</span><span class="line">	@end
+</span><span class="line">	@concreteprotocol(MyProtocol)
+</span><span class="line">	+ (void)initialize {
+</span><span class="line">    NSLog(@"  MyProtocol  +initialize should only be invoked once per 	concrete protocol");
+</span><span class="line">	}
+</span><span class="line">	+ (NSUInteger)meaningfulNumber {
+</span><span class="line">    return 42;
+</span><span class="line">	}
+</span><span class="line">	- (NSString *)getSomeString {
+</span><span class="line">    return @"MyProtocol";
+</span><span class="line">	}
+</span><span class="line">	@end
+</span><span class="line">	/*** SubProtocol ***/
+</span><span class="line">	@concreteprotocol(SubProtocol)
+</span><span class="line">	+ (void)initialize {
+</span><span class="line">    NSLog(@"SubProtocol +initialize should only be invoked once per 		concrete protocol");
+</span><span class="line">	}
+</span><span class="line">	- (void)additionalMethod {}
+</span><span class="line">	// this should take precedence over the implementation in MyProtocol
+</span><span class="line">	- (NSString *)getSomeString {
+</span><span class="line">    return @"SubProtocol";
+</span><span class="line">	}
+</span><span class="line">	@end
+</span><span class="line">	@interface TestClass : NSObject &lt;MyProtocol&gt; {}
+</span><span class="line">	@end
+</span><span class="line">	@implementation TestClass
+</span><span class="line">	+ (NSUInteger)meaningfulNumber {
+</span><span class="line">    return 0;
+</span><span class="line">	}
+</span><span class="line">	@end
+</span><span class="line">	@interface TestClass5 : TestClass &lt;SubProtocol&gt; {}
+</span><span class="line">	@end
+</span><span class="line">	@implementation TestClass5
+</span><span class="line">	@end</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">    TestClass *obj = [[TestClass alloc] init];
+</span><span class="line">    XCTAssertNotNil(obj, @"could not allocate concreteprotocol'd class");
+</span><span class="line">        XCTAssertEqualObjects([obj getSomeString], @"MyProtocol", @"TestClass should be using protocol implementation of getSomeString");
+</span><span class="line">        
+</span><span class="line">        obj = [[TestClass5 alloc] init];
+</span><span class="line">        XCTAssertNotNil(obj, @"could not allocate concreteprotocol'd class");
+</span><span class="line">        XCTAssertTrue([obj respondsToSelector:@selector(additionalMethod)], @"TestClass5 should have protocol implementation of additionalMethod");
+</span><span class="line">        XCTAssertEqualObjects([obj getSomeString], @"SubProtocol", @"TestClass5 should be using SubProtocol implementation of getSomeString");
+</span><span class="line">        
+</span><span class="line">        XCTAssertEqual([TestClass5 meaningfulNumber], (NSUInteger)0, @"TestClass5 should not be using protocol implementation of meaningfulNumber");</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="concrete-protocols-implement">Concrete protocols implement</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">!Objc
+</span><span class="line">	#define concreteprotocol(NAME) \
+</span><span class="line">    /*
+</span><span class="line">     * create a class used to contain all the methods used in this protocol
+</span><span class="line">     */ \
+</span><span class="line">    interface NAME ## _ProtocolMethodContainer : NSObject &lt; NAME &gt; {} \
+</span><span class="line">    @end \
+</span><span class="line">    \
+</span><span class="line">    @implementation NAME ## _ProtocolMethodContainer \
+</span><span class="line">    /*
+</span><span class="line">     * when this class is loaded into the runtime, add the concrete protocol
+</span><span class="line">     * into the list we have of them
+</span><span class="line">     */ \
+</span><span class="line">    + (void)load { \
+</span><span class="line">        /*
+</span><span class="line">         * passes the actual protocol as the first parameter, then this class as
+</span><span class="line">         * the second
+</span><span class="line">         */ \
+</span><span class="line">        if (!ext_addConcreteProtocol(objc_getProtocol(metamacro_stringify(NAME)), self)) \
+</span><span class="line">            fprintf(stderr, "ERROR: Could not load concrete protocol %s\n", metamacro_stringify(NAME)); \
+</span><span class="line">    } \
+</span><span class="line">    \
+</span><span class="line">    /*
+</span><span class="line">     * using the "constructor" function attribute, we can ensure that this
+</span><span class="line">     * function is executed only AFTER all the Objective-C runtime setup (i.e.,
+</span><span class="line">     * after all +load methods have been executed)
+</span><span class="line">     */ \
+</span><span class="line">    __attribute__((constructor)) \
+</span><span class="line">    static void ext_ ## NAME ## _inject (void) { \
+</span><span class="line">        /*
+</span><span class="line">         * use this injection point to mark this concrete protocol as ready for
+</span><span class="line">         * loading
+</span><span class="line">         */ \
+</span><span class="line">        ext_loadConcreteProtocol(objc_getProtocol(metamacro_stringify(NAME))); \
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 ]]></content>
   </entry>
@@ -2478,228 +3823,6 @@ wiki中也有不少关于开发上的建议与经验，还有自己遇到一些�
 <p><a href="https://ruby-china.org/topics/22416">RubyMotion Workshop Beijing 资料总结</a></p>
 
 <p><a href="http://www.rubymotion.com/download/">RubyMotion 官网</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android 轻量缓存框架 ASimpleCache]]></title>
-    <link href="http://helloyokoy.github.io/blog/anroi-asimplecache/"/>
-    <updated>2015-10-14T20:28:27+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/anroi-asimplecache</id>
-    <content type="html"><![CDATA[<p>做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些：</p>
-
-<ol>
-  <li>
-    <p>服务端控制缓存
-如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式，但是需要服务端配合，比较灵活。</p>
-  </li>
-  <li>
-    <p>客户端直接控制缓存</p>
-  </li>
-</ol>
-
-<p>有些时候不需要服务端来支持的话，客户端可以直接做一层缓存，思路就是请求之后把数据缓存在本地，最常见的是直接以文件缓存在本地就好了，当然你可以缓存在本地的sqlite，以sqlite文件的形式缓存数据处理更灵活点，然后客户端自己处理缓存的时间，过期则直接清除数据。对于一些不太经常变化的页面，采用这种缓存可以减少客户端流量，同时减少服务器并发量。</p>
-
-<p>对于一些新闻类或者timeline这种，数据变化是非常频繁的，针对这种情况可能就不太适合设置缓存时间，这种情况可以考虑让页面每次进来都会自动刷新一次以获取最新数据，如果网络不好或者断开时可以直接读取本地缓存，增加用户体验。当然如果想要更复杂的处理可以配合时间来判断当前页面要不要刷新。</p>
-
-<!--more-->
-
-<p>今天就介绍一种简易的缓存框架，使用起来非常简单。</p>
-
-<h4 id="asimplecache">ASimpleCache</h4>
-
-<p>ASimpleCache 是一个为android制定的 轻量级的 开源缓存框架。轻量到只有一个java文件（由十几个类精简而来）。</p>
-
-<h4 id="section">它可以缓存什么东西？</h4>
-
-<p>普通的字符串、JsonObject、JsonArray、Bitmap、Drawable、序列化的java对象，和 byte数据。</p>
-
-<h4 id="asimplecache-1">如何使用 ASimpleCache？</h4>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">ACache mCache = ACache.get(this);
-</span><span class="line">mCache.put("test_key1", "test value");
-</span><span class="line">mCache.put("test_key2", "test value", 10);//保存10秒，如果超过10秒去获取这个key，将为null
-</span><span class="line">mCache.put("test_key3", "test value", 2 * ACache.TIME_DAY);//保存两天，如果超过两天去获取这个key，将为null</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>获取数据</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">ACache mCache = ACache.get(this);
-</span><span class="line">String value = mCache.getAsString("test_key1");</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>最后此项目的开源地址： <a href="https://github.com/yangfuhai/ASimpleCache">ASimpleCache</a></p>
-
-<hr />
-<p>转载自 <a href="http://stormzhang.com/android/2014/10/17/android-simple-cache/">strom博客</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android 开发遇到的坑]]></title>
-    <link href="http://helloyokoy.github.io/blog/android-mistake/"/>
-    <updated>2015-10-12T14:21:57+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/android-mistake</id>
-    <content type="html"><![CDATA[<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
-
-<ul>
-  <li>
-    <p>在Android library中不能使用switch-case语句访问资源ID：
-<a href="http://zmywly8866.github.io/2014/12/24/android-can-not-use-switch-to-load-resource-in-libproject-solution.html">在Android library中不能使用switch-case语句访问资源ID的原因分析及解决方案</a></p>
-  </li>
-  <li>
-    <p>不能在Activity没有完全显示时显示PopupWindow和Dialog：<a href="http://stackoverflow.com/questions/4187673/problems-creating-a-popup-window-in-android-activity">popupwindow - Problems creating a Popup Window in Android Activity</a></p>
-  </li>
-  <li>
-    <p>在多进程之间不要用SharedPreferences共享数据，虽然可以（MODE_MULTI_PROCESS），但极不稳定：<a href="http://stackoverflow.com/questions/22129717/mode-multi-process-for-sharedpreferences-isnt-working">android - MODE_MULTI_PROCESS for SharedPreferences isn’t working</a></p>
-  </li>
-</ul>
-
-<!--more-->
-
-<ul>
-  <li>
-    <p>有些时候不能使用Application的Context，不然会报错（比如启动Activity，显示Dialog等）：
-<img src="https://pic3.zhimg.com/e3f3236cbd96c69cdea10d014bacbeae_b.png" alt="icon" /></p>
-  </li>
-  <li>
-    <p>同一个应用的JNI代码，不要轻易换NDK编译的版本，否则会有很多问题（主要是一些方法实现不一样，并且高版本对代码的检测更严格），比如r8没有问题，但到r9就有问题了，这是个大坑；</p>
-  </li>
-  <li>
-    <p>Android的JNI代码中，有返回类型的函数没有返回值编译的时候也不会报错；</p>
-  </li>
-  <li>
-    <p>当前Activity的onPause方法执行结束后才会执行下一个Activity的onCreate方法，所以在onPause方法中不适合做耗时较长的工作，这会影响到页面之间的跳转效率；</p>
-  </li>
-  <li>
-    <p>谨慎使用Android的透明主题，透明主题会导致很多问题，比如：如果新的Activity采用了透明主题，那么当前Activity的onStop方法不会被调用；在设置为透明主题的Activity界面按Home键时，可能会导致刷屏不干净的问题；进入主题为透明主题的界面会有明显的延时感；</p>
-  </li>
-  <li>
-    <p>不要在非UI线程中初始化ViewStub，否则会返回null；</p>
-  </li>
-  <li>
-    <p>公共接口一定要考虑到代码重入的情况，能设计为单例就尽量用单例；</p>
-  </li>
-  <li>
-    <p>不要通过Bundle传递大块的数据，否则会报TransactionTooLargeException异常：<a href="http://stackoverflow.com/questions/12819617/issue-passing-large-data-to-second-activity">java - Issue: Passing large data to second Activity</a></p>
-  </li>
-  <li>
-    <p>尽量不要通过Application缓存数据，这不稳定：
-<a href="http://zmywly8866.github.io/2014/12/26/android-do-not-store-data-in-the-application-object.html">不要在Android的Application对象中缓存数据!</a></p>
-  </li>
-  <li>
-    <p>尽量不要使用AnimationDrawable，它在初始化的时候就将所有图片加载到内存中，特别占内存，并且还不能释放，释放之后下次进入再次加载时会报错；</p>
-  </li>
-  <li>
-    <p>9图不能通过tinypng压缩，不然会有问题；</p>
-  </li>
-  <li>
-    <p>genymotion模拟器快是因为它是基于x86架构的，如果你的应用中用到了so，但没有x86架构的so，只能放弃使用它；Android Studio的模拟器也一样；</p>
-  </li>
-  <li>
-    <p>Eclipse的Android开发环境配置好后不要轻易升级ADT和build tools，不然会浪费你很多时间，还有就是一个workspace中的工程不要太多，不然每次启动都会很慢；</p>
-  </li>
-  <li>
-    <p>Android studio每个版本、gradle每个版本差别都比较大（我是这样认为的），对于jni代码的编译建议在Eclipse中进行，如果在Android studio中开发jni会浪费很多时间，主要是编译脚本的配置比较麻烦；</p>
-  </li>
-  <li>
-    <p>Eclipse中的Lint太不靠谱，特别是主工程中依赖library的时候，很多提示都是有问题的，建议使用Android Studio的工程清理工具，特别推荐；</p>
-  </li>
-  <li>
-    <p>AsyncTask默认自己维护一个静态的线程池，而该线程池只允许同时执行一个线程，也就是说，不管多少个AsyncTask,只要是调用execute()方法，都是共享这个默认进程池的，你的任务必须在之前的任务执行完以后，才能执行。<a href="http://zmywly8866.github.io/2015/09/29/android-call-asynctask-excute-not-run.html">调用AsyncTask的excute方法不能立即执行程序的原因分析及改善方案</a></p>
-  </li>
-</ul>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：张明云</p>
-
-<p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
-
-<p>来源：知乎</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails Gems 推荐]]></title>
-    <link href="http://helloyokoy.github.io/blog/rails-gems-recomend/"/>
-    <updated>2015-10-05T12:31:27+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/rails-gems-recomend</id>
-    <content type="html"><![CDATA[<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
-
-<h4 id="bootstrapbootstrap-sass">1.bootstrap（bootstrap-sass）</h4>
-
-<p>这个不用解释了吧，对于没有专业前端小伙伴的项目和团队是福音。而且对于想要学习前端技术的同学，bootstrap的源码非常值得进行深入的学习和理解。当然，缺点也是有的，就是大家的网站做出来都比较像，建议有条件的小伙伴使用的时候还是多进行一些个性化修改。</p>
-
-<h4 id="capistranocapistrano--rubygemsorg">2.Capistrano（capistrano | RubyGems.org）</h4>
-
-<p>Capistrano最初就是用来向服务器部署ruby应用的，当然现在也开始支持其他类型项目的部署。Capistrano是一种在多台服务器上运行脚本的开源工具，它主要用于部署web应用。它自动完成多台服务器上新版本的同步更新，包括数据库的改变。使用起来非常方便，基本也是Rails应用开发必备。</p>
-
-<h4 id="bcryptbcrypt--rubygemsorg">3.bcrypt（bcrypt | RubyGems.org）</h4>
-
-<p>bcrypt是一个跨平台的文件加密工具。由它加密的文件可在所有支持的操作系统和处理器上进行转移。它的口令必须是8至56个字符，并将在内部被转化为448位的密钥。在rails上使用起来相当简便，web开发一般是少不了的。</p>
-
-<h4 id="sprocketssprockets--rubygemsorg">4.sprockets（sprockets | RubyGems.org）</h4>
-
-<p>Sprockets 是一个 Ruby 库，用来检查 JavaScript 文件的相互依赖关系，用以优化网页中引入的js文件，以避免加载不必要的js文件，加快网页访问速度。这个现在貌似是rails工程默认自带gem，记不太清了，足见重要性。但是我在使用中发现有时候会跟bootstrap的js库发生冲突，主要是版本问题，有使用的小伙伴需要注意一下。</p>
-
-<!--more-->
-
-<h4 id="paperclippaperclip--rubygemsorg">5.Paperclip（paperclip | RubyGems.org）</h4>
-
-<p>paperclip基本上已经是rails的御用图片上传gem了，功能强大使用方便，但是唯一不太好的就是图片剪裁上面功能比较有限。paperclip依赖于ImageMagic，大部分linux包管理器（如apt yum portage等）中应该都能找到这个软件包。</p>
-
-<h4 id="rmagickrmagick--rubygemsorg">6.rmagick（rmagick | RubyGems.org）</h4>
-
-<p>这个gem弥补了paperclip在图片剪裁上的不足。功能十分十分十分的强大，文档也很齐全，只不过是全英文，中文资料比较少。如果项目有要开发头像剪裁上传，那么用rmagic剪裁，paperclip上传是比较好的解决方案。</p>
-
-<h4 id="friendlyidfriendlyid--rubygemsorg">7.friendly_id（friendly_id | RubyGems.org）</h4>
-
-<p>现在大部分网站都已经是友好的url地址了，如果你的rails项目还用数字作为id进行查询那就太low了。</p>
-
-<h4 id="willpaginatewillpaginate">8.will_paginate（will_paginate）</h4>
-
-<p>老版本的will_paginate分业是基于plugin方式的，新版本的will_paginate已经抛弃了这样的做法，转而使用gem的方式。这样一来安装和使用更加方便，配合一些前端的分页加载库，会让分页加载功能开发非常快捷。</p>
-
-<h4 id="ransackransack--rubygemsorg">9.ransack（ransack | RubyGems.org）</h4>
-
-<p>搜索功能一般分为分词和不分词的，如果你只想做用户和文章标题检索之类的功能，那么不分词的搜索gem比较合适，类似的gem挺多的，我常用的是这个。</p>
-
-<h4 id="sunspotsunspot--rubygemsorg">10.sunspot（sunspot | RubyGems.org）</h4>
-
-<p>接上面，全文搜索的gem也不少，sunspot对于小型项目的话，稍微有些重。如果没有那么多要求的话，sphinx也可以考虑，速度快，占用资源低。</p>
-
-<h4 id="gecodergeocoder--rubygemsorg">11.Gecoder（geocoder | RubyGems.org）</h4>
-
-<p>说实话在web上做定位确实比较乏力，尽量还是用手机客户端吧</p>
-
-<h4 id="pumapumapuma--github">12.puma（puma/puma · GitHub）</h4>
-
-<p>对于想要处理并发请求的web项目，Puma 是和 Unicorn相竞争的 Web 服务器，它能够处理并发请求。Puma 使用线程，以及工作者进程，能够更多的利用可用的 CPU。在 Puma 中，如果整个基础代码是线程安全的，那么你可用利用线程。否则，在使用 Puma 的时候，你只能使用工作者进程进行拓展。Puma的设置也比较简单，官方有详细的使用文档，RubyChina也使用Puma，个人推荐。</p>
-
-<h4 id="emojiwpetersonemoji--github">13.Emoji（wpeterson/emoji · GitHub）</h4>
-
-<p>现在只要涉及社交的项目估计很少有不用表情的了，Emoji是个集成度比较高的Emoji表情转码库，使用方便，当然大部分情况下还是要配合前端使用。</p>
-
-<p>暂时想到这么多，欢迎补充，待续。。。。</p>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：孙笛</p>
-
-<p>链接：http://www.zhihu.com/question/31083216/answer/50654456</p>
-
-<p>来源：知乎</p>
 ]]></content>
   </entry>
   

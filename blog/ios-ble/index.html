@@ -1,0 +1,501 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iOS BLE - BryanFu Blog</title>
+	<meta name="author" content="BryanFu">
+
+	
+	<meta name="description" content="BLE BLE是蓝牙低能耗的简称（Bluetooh Low Energy）。蓝牙低能耗(BLE)技术是低成本、短距离、可互操作的鲁棒性无线技术，工作在免许可的2.4GHz ISM射频频段。它从一开始就设计为超低功耗(ULP)无线技术。它利用许多智能手段最大限度地降低功耗 GATT:Generic &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66019285-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">首页</a></li>
+	<li><a href="/blog/archives">文章列表</a></li>
+	<li><a href="/blog/categories/ios">iOS</a></li>
+	<li><a href="/blog/categories/android">Android</a></li>
+	<li><a href="/blog/categories/ruby">Ruby</a></li>
+	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
+	<li><a href="/blog/categories/other">Other</a></li>
+	<li><a href="/about">关于</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:helloyokoy.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		
+		
+		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+    
+	</div>
+	<form class="search" action="https://www.google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:helloyokoy.github.io">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">iOS BLE</h2>
+	<div class="entry-content"><p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/94746767.jpg" alt="" /></p>
+
+<h2 id="ble">BLE</h2>
+
+<blockquote>
+  <p>BLE是蓝牙低能耗的简称（Bluetooh Low Energy）。蓝牙低能耗(BLE)技术是低成本、短距离、可互操作的鲁棒性无线技术，工作在免许可的2.4GHz ISM射频频段。它从一开始就设计为超低功耗(ULP)无线技术。它利用许多智能手段最大限度地降低功耗</p>
+</blockquote>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/47797739.jpg" alt="" /></p>
+
+<ul>
+  <li>GATT:Generic Attribute Profile</li>
+  <li>ATT: Attribute Protocol</li>
+  <li>L2CAP: Logical Link Control and Adaptation Protocol</li>
+</ul>
+
+<!--more-->
+
+<h2 id="corebluetooth">CoreBlueTooth</h2>
+
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/79935884.jpg" alt="" /></p>
+
+<ul>
+  <li>CBCentralManager - 中心设备管理，用于搜索周边设备，对应CBPeripheral使用</li>
+  <li>
+    <p>CBPeripheralManager - 周边设备管理，用于作为周边设备，对应CBCentral使用</p>
+  </li>
+  <li>CBPeripheral - 周边设备</li>
+  <li>
+    <p>CBCentral - 中心设备</p>
+  </li>
+  <li>CBService - 设备 服务</li>
+  <li>CBCharacteristic - 设备 服务 特征</li>
+  <li>
+    <p>CBDescriptor - 设备 服务 特征 描述</p>
+  </li>
+  <li>CBError - 错误</li>
+  <li>CBUUID - 唯一码</li>
+  <li>CBAdvertisementData - 广播包</li>
+  <li>CBATTRequest - ATT请求</li>
+</ul>
+
+<h3 id="cbcentralmanager">CBCentralManager</h3>
+
+<p>初始化 manager</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">self.centerManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+</span><span class="line">    // [self.centerManager stopScan];  可以停止扫描
+</span><span class="line">
+</span><span class="line">    - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+</span><span class="line">    if (central.state == CBCentralManagerStatePoweredOn) {
+</span><span class="line">        NSLog(@"蓝牙 - 打开");
+</span><span class="line">        // 开始扫描，周边设备
+</span><span class="line">        [self.centerManager scanForPeripheralsWithServices:nil options:nil];
+</span><span class="line">    } else {
+</span><span class="line">        NSLog(@"蓝牙 异常,其他状态自行判断");
+</span><span class="line">    }
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary&lt;NSString *, id&gt; *)dict {
+</span><span class="line">        NSLog(@"%@",dict);
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary&lt;NSString *, id&gt; *)advertisementData RSSI:(NSNumber *)RSSI {
+</span><span class="line">    if (peripheral.name) {
+</span><span class="line">        NSLog(@"扫描到设备 %@",peripheral.name);
+</span><span class="line">    }
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>调用连接设备</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[self.centerManager connectPeripheral:currentPer options:nil];                       
+</span><span class="line">    currentPer.delegate = self;
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral {
+</span><span class="line">        NSLog(@"链接成功");
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"链接失败");
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"设备断开链接");
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="cbperipheral">CBPeripheral</h3>
+
+<p>扫描 设备的某些 UUID 的服务</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[currentPer discoverServices:@[@"UUID"]];
+</span><span class="line">
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",service.UUID);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>扫描 设备的某服务的 UUID 服务</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[currentPer discoverIncludedServices:@[] forService:service];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didDiscoverIncludedServicesForService:(CBService *)service error:(NSError *)error {
+</span><span class="line">        NSLog(@"%@",service.UUID);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>扫描 设备的某个服务中的 UUID 特性</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral discoverCharacteristics:@[] forService:peripheral.services.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",service.characteristics);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>扫描 设备的某个特征 UUID</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral discoverDescriptorsForCharacteristic:peripheral.services.lastObject.characteristics.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didDiscoverDescriptorsForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",characteristic);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>获取设备 蓝牙信号强度</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral readRSSI];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didReadRSSI:(NSNumber *)RSSI error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",RSSI.stringValue);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>读取 特征</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral readValueForCharacteristic:peripheral.services.lastObject.characteristics.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+</span><span class="line">        NSLog(@"%@",characteristic);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>写入 特征</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral writeValue:[NSData data] forCharacteristic:peripheral.services.lastObject.characteristics.lastObject type:CBCharacteristicWriteWithResponse];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",characteristic);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>读取 描述</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral readValueForDescriptor:peripheral.services.lastObject.characteristics.lastObject.descriptors.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",descriptor);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>写入描述</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral writeValue:[NSData data] forDescriptor:peripheral.services.lastObject.characteristics.lastObject.descriptors.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didWriteValueForDescriptor:(CBDescriptor *)descriptor error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",descriptor);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>添加 监听</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[peripheral setNotifyValue:YES forCharacteristic:peripheral.services.lastObject.characteristics.lastObject];
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error {
+</span><span class="line">        NSLog(@"%@",characteristic);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>其他</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">// 最大数据量？
+</span><span class="line">    NSLog(@"%zi",[peripheral maximumWriteValueLengthForType:CBCharacteristicWriteWithResponse]);
+</span><span class="line">    
+</span><span class="line">    // 修改 名称
+</span><span class="line">    - (void)peripheralDidUpdateName:(CBPeripheral *)peripheral {
+</span><span class="line">    NSLog(@"%@",peripheral);
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    // 修改 服务
+</span><span class="line">    - (void)peripheral:(CBPeripheral *)peripheral didModifyServices:(NSArray&lt;CBService *&gt; *)invalidatedServices {
+</span><span class="line">    NSLog(@"%@",peripheral);
+</span><span class="line">    }
+</span><span class="line">
+</span><span class="line">    // 修改 RSSI
+</span><span class="line">    - (void)peripheralDidUpdateRSSI:(CBPeripheral *)peripheral error:(nullable NSError *)error {
+</span><span class="line">    NSLog(@"%@",peripheral.RSSI.stringValue);
+</span><span class="line">    }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+2017 年10 月22 日</div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/ios/'>ios</a>
+
+
+</div>
+	
+</div>
+</article>
+
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+		
+		
+		
+		
+
+		
+			<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+		
+ 		
+	</div>
+	
+</div>
+
+
+
+
+
+  <section>
+   <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/blog/ios-ble" data-title="iOS BLE" data-url="http://helloyokoy.github.io/blog/ios-ble/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"helloyokoy"};
+    (function() {
+
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+     })();
+ </script>
+ <!-- 多说公共JS代码 end -->
+  </section>
+ </div>
+	<footer id="footer" class="inner">Copyright &copy; 2018
+
+    BryanFu
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-66019285-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+
+</body>
+</html>

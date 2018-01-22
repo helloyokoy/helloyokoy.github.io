@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-21T17:32:46+08:00</updated>
+  <updated>2018-01-22T11:11:23+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -26,16 +26,26 @@
 
 <p>首先确保安装：</p>
 
-<p>{% codeblock %}</p>
-
-<h2 id="platform">Platform</h2>
-<p>gem ‘rails’, ‘4.2.0’</p>
-
-<h2 id="restful-api-engine">RESTful API Engine</h2>
-<p>gem ‘grape’
-gem ‘grape-entity’</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2 id="platform">Platform&lt;/h2>
+</span><span class='line'>&lt;p>gem ‘rails’, ‘4.2.0’&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2 id="restful-api-engine">RESTful API Engine&lt;/h2>
+</span><span class='line'>&lt;p>gem ‘grape’
+</span><span class='line'>gem ‘grape-entity’&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h3 id="section-1">组织架构</h3>
 
@@ -64,43 +74,77 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 <p>entities/user_basic.rb</p>
 
-<p>{% codeblock %}</p>
-
-<p>module V1
-  module Entities
-    class UserBasic &lt; Entities::Base
-      format_with(:iso8601) { |dt| dt.iso8601 }</p>
-
-<pre><code>  expose :id
-  expose :name
-  # 如果需要输出层级对象，可以按这种方式
-  # expose :company, using: Entities::Company
-
-  # 日期、时间一律使用ISO 8601
-  expose :created_at, format_with: :iso8601
-
-  # with_options(format_with: :iso8601) do
-  #   expose :created_at
-  # end
-end   end end
-</code></pre>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>module V1
+</span><span class='line'>  module Entities
+</span><span class='line'>    class UserBasic &lt; Entities::Base
+</span><span class='line'>      format_with(:iso8601) { |dt| dt.iso8601 }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  expose :id
+</span><span class='line'>  expose :name
+</span><span class='line'>  # 如果需要输出层级对象，可以按这种方式
+</span><span class='line'>  # expose :company, using: Entities::Company
+</span><span class='line'>
+</span><span class='line'>  # 日期、时间一律使用ISO 8601
+</span><span class='line'>  expose :created_at, format_with: :iso8601
+</span><span class='line'>
+</span><span class='line'>  # with_options(format_with: :iso8601) do
+</span><span class='line'>  #   expose :created_at
+</span><span class='line'>  # end
+</span><span class='line'>end   end end
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>base.rb</p>
 
-<p>{% codeblock %}</p>
-
-<p>module V1
-  class Base &lt; Grape::API
-    version      ‘v1’
-    format       :json</p>
-
-<pre><code># Mount the APIs
-mount UsersApi   end end
-</code></pre>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>module V1
+</span><span class='line'>  class Base &lt; Grape::API
+</span><span class='line'>    version      ‘v1’
+</span><span class='line'>    format       :json&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code># Mount the APIs
+</span><span class='line'>mount UsersApi   end end
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="section-3">挂载</h4>
 
@@ -126,18 +170,30 @@ mount UsersApi   end end
 
 <p>routes.rb</p>
 
-<p>{% codeblock %}</p>
-
-<p>gem ‘grape-swagger’
-routes.rb</p>
-
-<p>add_swagger_documentation
-./config/initializers/swagger.rb</p>
-
-<p>GrapeSwaggerRails.options.url      = ‘/swagger_doc.json’
-GrapeSwaggerRails.options.app_url  = ‘http://swagger.wordnik.com’</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>gem ‘grape-swagger’
+</span><span class='line'>routes.rb&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>add_swagger_documentation
+</span><span class='line'>./config/initializers/swagger.rb&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>GrapeSwaggerRails.options.url      = ‘/swagger_doc.json’
+</span><span class='line'>GrapeSwaggerRails.options.app_url  = ‘http://swagger.wordnik.com’&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p><a href="http://localhost:3000/swagger_doc.json">http://localhost:3000/swagger_doc.json</a></p>
 
@@ -195,79 +251,138 @@ mount GrapeSwaggerRails::Engine +&gt; '/docs'
 
 <p>你可以写 Benchmark 的测试用例:</p>
 
-<p>{% codeblock %}</p>
-
-<p>require ‘test_helper’
-require ‘rails/performance_test_help’</p>
-
-<p>class HomepageTest &lt; ActionDispatch::PerformanceTest
-  # Refer to the documentation for all available options
-  # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
-  #                          output: ‘tmp/performance’, formats: [:flat] }</p>
-
-<p>test “homepage” do
-    get ‘/’
-  end
-end</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>require ‘test_helper’
+</span><span class='line'>require ‘rails/performance_test_help’&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class HomepageTest &lt; ActionDispatch::PerformanceTest
+</span><span class='line'>  # Refer to the documentation for all available options
+</span><span class='line'>  # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
+</span><span class='line'>  #                          output: ‘tmp/performance’, formats: [:flat] }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>test “homepage” do
+</span><span class='line'>    get ‘/’
+</span><span class='line'>  end
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <!--more-->
 
 <p>然后可以执行</p>
 
-<p>{% codeblock %}</p>
-
-<p>$ rake test:benchmark
-HomepageTest#test_homepage (31 ms warmup)
-           wall_time: 6 ms
-              memory: 437.27 KB
-             objects: 5,514
-             gc_runs: 0
-             gc_time: 19 ms</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake test:benchmark
+</span><span class='line'>HomepageTest#test_homepage (31 ms warmup)
+</span><span class='line'>           wall_time: 6 ms
+</span><span class='line'>              memory: 437.27 KB
+</span><span class='line'>             objects: 5,514
+</span><span class='line'>             gc_runs: 0
+</span><span class='line'>             gc_time: 19 ms&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>你可以直接在命令行使用</p>
 
-<p>{% codeblock %}</p>
-
-<p>$ perftest profiler ‘User.first’ –runs 3
-ProfilerTest#test_user_first (3 ms warmup)
-        process_time: 4 ms
-              memory: 289 Bytes
-             objects: 551</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ perftest profiler ‘User.first’ –runs 3
+</span><span class='line'>ProfilerTest#test_user_first (3 ms warmup)
+</span><span class='line'>        process_time: 4 ms
+</span><span class='line'>              memory: 289 Bytes
+</span><span class='line'>             objects: 551&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>你还可以用 Helper 在 View, Controler, Model 里面打点统计</p>
 
-<p>{% codeblock %}</p>
-
-<h1 id="appcontrollerstopicscontrollerrb">app/controllers/topics_controller.rb</h1>
-<p>class TopicsController &lt; ApplicationController
-  def index
-    benchmark(“  Benchmark: topics/index/suggest_topics”) do
-      @suggest_topics = Topic.without_hide_nodes.suggest.limit(3)
-    end
-    …
-  end
-end</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="appcontrollerstopicscontrollerrb">app/controllers/topics_controller.rb&lt;/h1>
+</span><span class='line'>&lt;p>class TopicsController &lt; ApplicationController
+</span><span class='line'>  def index
+</span><span class='line'>    benchmark(“  Benchmark: topics/index/suggest_topics”) do
+</span><span class='line'>      @suggest_topics = Topic.without_hide_nodes.suggest.limit(3)
+</span><span class='line'>    end
+</span><span class='line'>    …
+</span><span class='line'>  end
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>Rails log 将会输出</p>
 
-<p>{% codeblock %}</p>
-
-<h1 id="developmentlog">development.log</h1>
-<p>Started GET “/topics” for 127.0.0.1 at 2015-01-01 00:50:19 +0800
-  …
-  Benchmark:  topics/index/suggest_topics (1.4ms)
-  …
-Completed 200 OK in 121ms (Views: 108.1ms)</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="developmentlog">development.log&lt;/h1>
+</span><span class='line'>&lt;p>Started GET “/topics” for 127.0.0.1 at 2015-01-01 00:50:19 +0800
+</span><span class='line'>  …
+</span><span class='line'>  Benchmark:  topics/index/suggest_topics (1.4ms)
+</span><span class='line'>  …
+</span><span class='line'>Completed 200 OK in 121ms (Views: 108.1ms)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>还有更多功能待你发现哦!</p>
 
@@ -314,16 +429,26 @@ Completed 200 OK in 121ms (Views: 108.1ms)</p>
 <p>一个客户端经常会访问同一个资源，比如用浏览器访问网站首页或查看同一篇文章，或用app访问同一个api，如果该资源和他之前访问过的没有任何改变，就可以利用http规范中的304 Not Modified 响应头( http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.3.5 )，直接用客户端的缓存，而无需在服务器端再生成一次内容。
 在Rails里面内置了fresh_when这个方法，一行代码就可以完成：</p>
 
-<p>{% codeblock %}</p>
-
-<p>class ArticlesController
-  def show
-    @article = Article.find(params[:id])
-    fresh_when :last_modified =&gt; @article.updated_at.utc, :etag =&gt; @article
-  end
-end</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class ArticlesController
+</span><span class='line'>  def show
+</span><span class='line'>    @article = Article.find(params[:id])
+</span><span class='line'>    fresh_when :last_modified =&gt; @article.updated_at.utc, :etag =&gt; @article
+</span><span class='line'>  end
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>下次用户再访问的时候，会对比request header里面的If-Modified-Since和If-None-Match，如果相符合，就直接返回304，而不再生成response body。</p>
 
@@ -337,23 +462,35 @@ fresh_when :etag =&gt; [@article.cache_key, current_user_favorited] 另外提一
 config.middleware.use Rack::Deflater 除了在controller里面指定fresh_when以外，rails框架默认使用Rack::ETag middleware，它会自动给无etag的response加上etag，但是和fresh_when相比，自动etag能够节省的只是客户端时间，服务器端还是一样会执行所有的代码，用curl来对比一下。 Rack::ETag自动加入etag：
 </code></pre>
 
-<p>{% codeblock %}
-curl -v http://localhost:3000/articles/1
-&lt; Etag: “bf328447bcb2b8706193a50962035619”
-&lt; X-Runtime: 0.286958
-curl -v http://localhost:3000/articles/1 –header ‘If-None-Match: “bf328447bcb2b8706193a50962035619”’
-&lt; X-Runtime: 0.293798</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -v http://localhost:3000/articles/1
+</span><span class='line'>&lt; Etag: “bf328447bcb2b8706193a50962035619”
+</span><span class='line'>&lt; X-Runtime: 0.286958
+</span><span class='line'>curl -v http://localhost:3000/articles/1 –header ‘If-None-Match: “bf328447bcb2b8706193a50962035619”’
+</span><span class='line'>&lt; X-Runtime: 0.293798&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>用fresh_when：</p>
 
-<p>{% codeblock %}</p>
-
-<p>curl -v http://localhost:3000/articles/1 –header ‘If-None-Match: “bf328447bcb2b8706193a50962035619”’
-&lt; X-Runtime: 0.033884</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>curl -v http://localhost:3000/articles/1 –header ‘If-None-Match: “bf328447bcb2b8706193a50962035619”’
+</span><span class='line'>&lt; X-Runtime: 0.033884&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <ol>
   <li>
@@ -366,77 +503,126 @@ curl -v http://localhost:3000/articles/1 –header ‘If-None-Match: “bf328447
 ####A. 动态请求静态文件化
 在rails请求完成以后，将结果保存成静态文件，后续请求就会直接由nginx提供静态文件内容，用after_filter来实现一下：</p>
 
-<p>{% codeblock %}</p>
-
-<p>class CategoriesController &lt; ActionController::Base
-  after_filter :generate_static_file, :only =&gt; [:index]</p>
-
-<p>def index
-    @categories = Category.all
-  end</p>
-
-<p>def generate_static_file
-    File.open(Rails.root.join(‘public’, ‘categories’), ‘w’) do |f|
-      f.write response.body
-    end
-  end
-end</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class CategoriesController &lt; ActionController::Base
+</span><span class='line'>  after_filter :generate_static_file, :only =&gt; [:index]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def index
+</span><span class='line'>    @categories = Category.all
+</span><span class='line'>  end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def generate_static_file
+</span><span class='line'>    File.open(Rails.root.join(‘public’, ‘categories’), ‘w’) do |f|
+</span><span class='line'>      f.write response.body
+</span><span class='line'>    end
+</span><span class='line'>  end
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>另外我们需要在任何分类更新的时候，删除掉这个文件，避免缓存不刷新的问题：</p>
 
-<p>{% codeblock %}
-class Category &lt; ActiveRecord::Base
-  after_save :delete_static_file
-  after_destroy :delete_static_file</p>
-
-<p>def delete_static_file
-    File.delete Rails.root.join(‘public’, ‘categories’)
-  end
-end
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class Category &lt; ActiveRecord::Base
+</span><span class='line'>  after_save :delete_static_file
+</span><span class='line'>  after_destroy :delete_static_file&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def delete_static_file
+</span><span class='line'>    File.delete Rails.root.join(‘public’, ‘categories’)
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Rails 4之前，处理这种生成静态文件缓存可以用内置的caches_page， rails 4之后变成了一个独立gem actionpack-page_caching，和手工代码对比一下，</p>
 
-<p>{% codeblock %}
-class CategoriesController &lt; ActionController::Base
-  caches_page :index</p>
-
-<p>def update
-    #…
-    expire_page action: ‘index’
-  end
-end
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>class CategoriesController &lt; ActionController::Base
+</span><span class='line'>  caches_page :index&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def update
+</span><span class='line'>    #…
+</span><span class='line'>    expire_page action: ‘index’
+</span><span class='line'>  end
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure></p>
 
 <p>如果只有一台服务器，这个方法简单又实用，但是如果有多台服务器，就会出现更新分类只能刷新自己本身这台服务器缓存的问题，可以用nfs来共享静态资源目录解决，或者用第2种：</p>
 
 <h4 id="b-">B. 静态化到集中缓存服务</h4>
 <p>首先我们得让Nginx有直接访问缓存的能力：</p>
 
-<p>{% codeblock %}
-  upstream redis {
-    server redis_server_ip:6379;
-  }</p>
-
-<p>upstream ruby_backend {
-    server unicorn_server_ip1 fail_timeout=0;
-    server unicorn_server_ip2 fail_timeout=0;
-  }</p>
-
-<p>location /categories {
-    set $redis_key $uri;
-    default_type   text/html;
-    redis_pass redis;
-    error_page 404 = @httpapp;
-  }</p>
-
-<p>location @httpapp {
-    proxy_pass http://ruby_backend;
-  }</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>upstream redis {
+</span><span class='line'>    server redis_server_ip:6379;
+</span><span class='line'>  }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>upstream ruby_backend {
+</span><span class='line'>    server unicorn_server_ip1 fail_timeout=0;
+</span><span class='line'>    server unicorn_server_ip2 fail_timeout=0;
+</span><span class='line'>  }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>location /categories {
+</span><span class='line'>    set $redis_key $uri;
+</span><span class='line'>    default_type   text/html;
+</span><span class='line'>    redis_pass redis;
+</span><span class='line'>    error_page 404 = @httpapp;
+</span><span class='line'>  }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>location @httpapp {
+</span><span class='line'>    proxy_pass http://ruby_backend;
+</span><span class='line'>  }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>Nginx首先会用请求的uri作为key去redis里面获取，如果获取不到（404）就转发给unicorn进行处理，然后改写generate_static_file和delete_static_file方法：</p>
 
@@ -487,34 +673,49 @@ end
 
 <p>我们需要在每个页面一段广告代码，用来显示不同广告，如果没有使用片段缓存，那么每个页面都会要去查询广告的代码，并且花费一定时间去生成html代码：</p>
 
-<p>{% codeblock %}
-- if advert = Advert.where(:name =&gt; request.controller_name + request.action_name, :enable =&gt; true).first
-  div.ad
-    = advert.content
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- if advert = Advert.where(:name =&gt; request.controller_name + request.action_name, :enable =&gt; true).first
+</span><span class='line'>  div.ad
+</span><span class='line'>    = advert.content</span></code></pre></td></tr></table></div></figure></p>
 
 <p>加了片段缓存以后，就可以少去这个查询：</p>
 
-<p>{% codeblock %}
-- cache “adverts/#{request.controller_name}/#{request.action_name}”, :expires_in =&gt; 1.day do
-  - if advert = Advert.where(:name =&gt; request.controller_name + request.action_name, :enable =&gt; true).first
-    div.ad
-      = advert.content</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>- cache “adverts/#{request.controller_name}/#{request.action_name}”, :expires_in =&gt; 1.day do
+</span><span class='line'>  - if advert = Advert.where(:name =&gt; request.controller_name + request.action_name, :enable =&gt; true).first
+</span><span class='line'>    div.ad
+</span><span class='line'>      = advert.content&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="section-4">场景2：</h4>
 <p>阅读文章，文章的内容可能比较长时间都不会改变，经常变化可能是文章评论，就可以对文章主体部分加上片段缓存：</p>
 
-<p>{% codeblock %}</p>
-
-<ul>
-  <li>cache “articles/#{@article.id}/#{@article.updated_at.to_i}” do
-div.article
-  = @article.content.markdown2html</li>
-</ul>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;ul>
+</span><span class='line'>  &lt;li>cache “articles/#{@article.id}/#{@article.updated_at.to_i}” do
+</span><span class='line'>div.article
+</span><span class='line'>  = @article.content.markdown2html&lt;/li>
+</span><span class='line'>&lt;/ul>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>节约了生成markdown语法转换到html时间，这里用文章最后更新时间作为cache key的一部分，文章内容如果有改变，缓存自动失效，默认activerecord的cache_key方法也是用updated_at，你也可以加入更多的参数，比如article上有评论数的counter cache，更新评论数的时候不会更新文章时间，可以将这个counter也加入到key的一部分</p>
 
@@ -525,68 +726,117 @@ div.article
 
 <p>需要获取天气数据，照片数据，文本数据等，同时还要生成meta，keyword等seo数据，而这些内容又是和其他动态内容交叉，片段缓存就可以分开多个：</p>
 
-<p>{% codeblock %}</p>
-
-<ul>
-  <li>cache “trips/show/seo/#{@trip.fragment_cache_key}”, :expires_in =&gt; 1.day do
-title #{trip_name @trip}
-meta name=”description” content=”…”
-meta name=”keywords” content=”…”</li>
-</ul>
-
-<p>body
-  div
-    …
-- cache “trips/show/viewer/#{@trip.fragment_cache_key}”, :expires_in =&gt; 1.day do
-  - @trip.eager_load_all</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;ul>
+</span><span class='line'>  &lt;li>cache “trips/show/seo/#{@trip.fragment_cache_key}”, :expires_in =&gt; 1.day do
+</span><span class='line'>title #{trip_name @trip}
+</span><span class='line'>meta name=”description” content=”…”
+</span><span class='line'>meta name=”keywords” content=”…”&lt;/li>
+</span><span class='line'>&lt;/ul>
+</span><span class='line'>
+</span><span class='line'>&lt;p>body
+</span><span class='line'>  div
+</span><span class='line'>    …
+</span><span class='line'>- cache “trips/show/viewer/#{@trip.fragment_cache_key}”, :expires_in =&gt; 1.day do
+</span><span class='line'>  - @trip.eager_load_all&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>小贴士，我在trip对象里面加了一个eager_load_all方法，缓存没有命中的时候，查询的时候避免出现n+1问题：</p>
 
-<p>{% codeblock %}</p>
-
-<p>def eager_load_all
-    ActiveRecord::Associations::Preloader.new([self], {:trip_days =&gt; [:weather_station_data, :nodes =&gt; [:entry, :notes =&gt; [:photo, :video, :audio]]]}).run
-  end</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def eager_load_all
+</span><span class='line'>    ActiveRecord::Associations::Preloader.new([self], {:trip_days =&gt; [:weather_station_data, :nodes =&gt; [:entry, :notes =&gt; [:photo, :video, :audio]]]}).run
+</span><span class='line'>  end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="section-6">小技巧1：带条件的片段缓存</h4>
 
 <p>和caches_action不同，rails自带的片段缓存是不支持条件的，比如说我们想未登陆用户给他用片段缓存，而登陆用户不使用，写起来就很麻烦，我们可以改写一下helper就可以了：</p>
 
-<p>{% codeblock %}</p>
-
-<p>def cache_if (condition, name = {}, cache_options = {}, &amp;block)
-    if condition
-      cache(name, cache_options, &amp;block)
-    else
-      yield
-    end
-  end</p>
-
-<ul>
-  <li>cache_if !user_signed_in?, “xxx”, :expires_in =&gt; 1.day do</li>
-</ul>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>def cache_if (condition, name = {}, cache_options = {}, &amp;block)
+</span><span class='line'>    if condition
+</span><span class='line'>      cache(name, cache_options, &amp;block)
+</span><span class='line'>    else
+</span><span class='line'>      yield
+</span><span class='line'>    end
+</span><span class='line'>  end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;ul>
+</span><span class='line'>  &lt;li>cache_if !user_signed_in?, “xxx”, :expires_in =&gt; 1.day do&lt;/li>
+</span><span class='line'>&lt;/ul>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <h4 id="section-7">小技巧2：关联对象的自动更新</h4>
 
 <p>常使用对象update_at时间戳来作为cache key，可以在关联对象上加上touch选项，自动更新关联对象时间戳，比如我们可以在更新或者删除文章评论的时候，自动个更新：</p>
 
-<p>{% codeblock %}</p>
-
-<p>class Article
-  has_many :comments
-end</p>
-
-<p>class Comment
-  belongs_to :article, :touch =&gt; true
-end</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class Article
+</span><span class='line'>  has_many :comments
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class Comment
+</span><span class='line'>  belongs_to :article, :touch =&gt; true
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <ol>
   <li>
@@ -601,21 +851,36 @@ end</p>
 
 <p>举一个显示文章列表的例子，输出文章标题和文章类别，对应代码如下</p>
 
-<p>{% codeblock %}</p>
-
-<h1 id="controller">controller</h1>
-<p>def index
-    @articles = Article.first(10)
-  end</p>
-
-<h1 id="view">view</h1>
-<ul>
-  <li>@articles.each do |article|
-h1 = article.name
-span = article.category.name</li>
-</ul>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="controller">controller&lt;/h1>
+</span><span class='line'>&lt;p>def index
+</span><span class='line'>    @articles = Article.first(10)
+</span><span class='line'>  end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="view">view&lt;/h1>
+</span><span class='line'>&lt;ul>
+</span><span class='line'>  &lt;li>@articles.each do |article|
+</span><span class='line'>h1 = article.name
+</span><span class='line'>span = article.category.name&lt;/li>
+</span><span class='line'>&lt;/ul>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>会发生10条类似的sql查询：</p>
 
@@ -632,11 +897,16 @@ span = article.category.name</li>
 
 <p><a href="http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations">http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations</a></p>
 
-<p>{% codeblock %}</p>
-
-  	def index
-<pre><code>	@articles = Article.includes(:category).first(10)
-  	end {% endcodeblock %}
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>  	def index
+</span><span class='line'>&lt;pre>&lt;code>	@articles = Article.includes(:category).first(10)
+</span><span class='line'>  	end</span></code></pre></td></tr></table></div></figure>
 </code></pre>
 
 <p>查询语句会变成</p>
@@ -652,22 +922,38 @@ span = article.category.name</li>
 
 <p><a href="https://github.com/Shopify/identity_cache">https://github.com/Shopify/identity_cache</a></p>
 
-<p>{% codeblock %}</p>
-
-<p>class User &lt; ActiveRecord::Base
-  include IdentityCache
-end</p>
-
-<p>class Article &lt; ActiveRecord::Base
-  include IdentityCache
-  cached_belongs_to :user
-end</p>
-
-<h1 id="section-9">都会命中缓存</h1>
-<p>User.fetch(1)
-Article.find(2).user</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class User &lt; ActiveRecord::Base
+</span><span class='line'>  include IdentityCache
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class Article &lt; ActiveRecord::Base
+</span><span class='line'>  include IdentityCache
+</span><span class='line'>  cached_belongs_to :user
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="section-9">都会命中缓存&lt;/h1>
+</span><span class='line'>&lt;p>User.fetch(1)
+</span><span class='line'>Article.find(2).user&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>这个gem的优点是代码实现简单，cache设置灵活，也方便扩展，缺点是需要用不同的查询方法名（fetch），以及额外的关系定义。</p>
 
@@ -675,18 +961,30 @@ Article.find(2).user</p>
 
 <p><a href="https://github.com/hooopo/second_level_cache">https://github.com/hooopo/second_level_cache</a></p>
 
-<p>{% codeblock %}</p>
-
-<p>class User &lt; ActiveRecord::Base
-  acts_as_cached(:version =&gt; 1, :expires_in =&gt; 1.week)
-end</p>
-
-<h1 id="find">还是使用find方法，就会命中缓存</h1>
-<p>User.find(1)
-#无需额外用不一样的belongs_to定义
-Article.find(2).user</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>class User &lt; ActiveRecord::Base
+</span><span class='line'>  acts_as_cached(:version =&gt; 1, :expires_in =&gt; 1.week)
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1 id="find">还是使用find方法，就会命中缓存&lt;/h1>
+</span><span class='line'>&lt;p>User.find(1)
+</span><span class='line'>#无需额外用不一样的belongs_to定义
+</span><span class='line'>Article.find(2).user&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
 
 <p>实现原理是扩展了active record底层arel sql ast处理</p>
 
@@ -746,29 +1044,53 @@ Charles好了，下一步配置手机，确保你的手机网络和电脑在同�
 
 <p>配置Nginx</p>
 
-<p>{% codeblock lang:ruby %}</p>
-
-<p>server {
-      listen 80;
-      server_name playmonkey.me;
-      charset utf-8;
-      location / {
-        proxy_pass          http://monkey_servers;
-        proxy_redirect      default;
-        proxy_set_header    X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header    X-Real-IP $remote_addr;
-        proxy_set_header    Host $http_host;
-        proxy_next_upstream http_502 http_504 error timeout invalid_header;</p>
-
-<pre><code>  }
-
-}
-upstream palymonkey_servers{
-  server 127.0.0.1:3000;
-}
-</code></pre>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;server {</span>
+</span><span class='line'><span class="sr">      listen 80;</span>
+</span><span class='line'><span class="sr">      server_name playmonkey.me;</span>
+</span><span class='line'><span class="sr">      charset utf-8;</span>
+</span><span class='line'><span class="sr">      location /</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">proxy_pass</span>          <span class="ss">http</span><span class="p">:</span><span class="sr">//mon</span><span class="n">key_servers</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_redirect</span>      <span class="n">default</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Forwarded</span><span class="o">-</span><span class="no">For</span> <span class="vg">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="n">X</span><span class="o">-</span><span class="no">Real</span><span class="o">-</span><span class="no">IP</span> <span class="vg">$remote_addr</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_set_header</span>    <span class="no">Host</span> <span class="vg">$http_host</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">proxy_next_upstream</span> <span class="n">http_502</span> <span class="n">http_504</span> <span class="n">error</span> <span class="n">timeout</span> <span class="n">invalid_header</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;  }</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'><span class="sr">upstream palymonkey_servers{</span>
+</span><span class='line'><span class="sr">  server 127.0.0.1:3000;</span>
+</span><span class='line'><span class="sr">}</span>
+</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>再用手机访问http://playmonkey.me ，Nice….这回看到页面了。
 到此我们可以在微信上用playmonkey.me访问本地的dev server，可以愉快地调用JSAPI &amp; 微信oauth登陆 &amp; 发起支付。</p>
@@ -783,13 +1105,21 @@ upstream palymonkey_servers{
 
 <p>localtunnel 是node写的，用起来非常简单</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<p>$ npm install -g localtunnel
-$ lt –port 3000
-your url is: https://gqgh.localtunnel.me</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>npm install -g localtunnel
+</span><span class='line'><span class="nv">$ </span>lt –port 3000
+</span><span class='line'>your url is: https://gqgh.localtunnel.me&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>这样外网打开https://gqgh.localtunnel.me 就可以访问到本地的3000端口</p>
 
@@ -805,51 +1135,89 @@ your url is: https://gqgh.localtunnel.me</p>
 
 <p>NGROK_DOMAIN 设置为您自己拥有的域名，并指向Ngrok server运行的服务器</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<p>NGROK_DOMAIN=”my.domain.com”
-git clone https://github.com/inconshreveable/ngrok.git
-cd ngrok</p>
-
-<p>openssl genrsa -out rootCA.key 2048
-openssl req -x509 -new -nodes -key rootCA.key -subj “/CN=$NGROK_DOMAIN” -days 5000 -out rootCA.pem
-openssl genrsa -out device.key 2048
-openssl req -new -key device.key -subj “/CN=$NGROK_DOMAIN” -out device.csr
-openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000</p>
-
-<p>cp rootCA.pem assets/client/tls/ngrokroot.crt
-# make clean
-make release-server release-client</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;NGROK_DOMAIN<span class="o">=</span>”my.domain.com”
+</span><span class='line'>git clone https://github.com/inconshreveable/ngrok.git
+</span><span class='line'><span class="nb">cd </span>ngrok&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;openssl genrsa -out rootCA.key 2048
+</span><span class='line'>openssl req -x509 -new -nodes -key rootCA.key -subj “/CN<span class="o">=</span><span class="nv">$NGROK_DOMAIN</span>” -days <span class="m">5000</span> -out rootCA.pem
+</span><span class='line'>openssl genrsa -out device.key 2048
+</span><span class='line'>openssl req -new -key device.key -subj “/CN<span class="o">=</span><span class="nv">$NGROK_DOMAIN</span>” -out device.csr
+</span><span class='line'>openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cp rootCA.pem assets/client/tls/ngrokroot.crt
+</span><span class='line'><span class="c"># make clean</span>
+</span><span class='line'>make release-server release-client&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>编译完有两个可执行文件 bin/ngrok &amp; bin/ngrokd 
 将bin/ngrok copy到你本机
 在服务器上开启ngrok server</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<p>bin/ngrokd -tlsKey=device.key -tlsCrt=device.crt -domain=”$NGROK_DOMAIN” -httpAddr=”:8000” -httpsAddr=”:8001”</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;bin/ngrokd -tlsKey<span class="o">=</span>device.key -tlsCrt<span class="o">=</span>device.crt -domain<span class="o">=</span>”<span class="nv">$NGROK_DOMAIN</span>” -httpAddr<span class="o">=</span>”:8000” -httpsAddr<span class="o">=</span>”:8001”&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>本地端</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<p>NGROK_DOMAIN=”my.domain.com”
-echo -e “server_addr: $NGROK_DOMAIN:4443\ntrust_host_root_certs: false” &gt; ngrok-config
-./ngrok -config=ngrok-config -subdomain=playmonkey 3000 // 配置subdomain到本地3000端口，这样外网通过playmonkey.NGROK_DOMAIN 就可以访问到本地dev server的3000端口</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;NGROK_DOMAIN<span class="o">=</span>”my.domain.com”
+</span><span class='line'><span class="nb">echo</span> -e “server_addr: <span class="nv">$NGROK_DOMAIN</span>:4443<span class="se">\n</span>trust_host_root_certs: <span class="nb">false</span>” <span class="p">&amp;</span>gt<span class="p">;</span> ngrok-config
+</span><span class='line'>./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span>playmonkey <span class="m">3000</span> // 配置subdomain到本地3000端口，这样外网通过playmonkey.NGROK_DOMAIN 就可以访问到本地dev server的3000端口&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>或者用SSH forwarding</p>
 
-<p>{% codeblock lang:bash %}</p>
-
-<p>./ngrok -config=ngrok-config -subdomain=3000 –proto=tcp 22</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;./ngrok -config<span class="o">=</span>ngrok-config -subdomain<span class="o">=</span><span class="m">3000</span> –proto<span class="o">=</span>tcp 22&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>以上Ngrok编译&amp;配置出自 <a href="https://gist.github.com/lyoshenka/002b7fbd801d0fd21f2f">How to setup Ngrok with a self-signed SSL cert</a></p>
 
