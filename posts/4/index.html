@@ -109,148 +109,6 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-11T17:25:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月11 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/bundler/" itemprop="url">Bundler 的作用以及原理</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>原文：<a href="http://bundler.io/rationale.html">http://bundler.io/rationale.html</a></p>
-
-<p>首先，你要在你应用根目录下一个叫Gemfile文件里声明这些依赖，它看起来是这个样子的：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">source 'https://rubygems.org'
-</span><span class="line">
-</span><span class="line">gem 'rails', '4.1.0.rc2'
-</span><span class="line">gem 'rack-cache'
-</span><span class="line">gem 'nokogiri', '~&gt; 1.6.1'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这个Gemfile说明了这些事情：</p>
-
-<p>首先，他告诉 bundler 默认是在Gemfile里指定的https://rubygems.org上来找 gem。如果你的一些 gem 需要从一个私有的 gem 服务器上获取，那么你可以为这些 gem 覆盖掉这个默认的源设置。</p>
-
-<p>接着，你声明了一些依赖：</p>
-
-<ul>
-  <li>版本是4.1.0.rc2的rails</li>
-  <li>任意版本的rack-cache</li>
-  <li>版本是&gt;= 1.6.1但是&lt; 1.7.0的nokogiri</li>
-</ul>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/bundler/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-10T21:52:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月10 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" itemprop="url">iOS 依赖注入框架 Objection</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><blockquote>
-  <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
-</blockquote>
-
-<p>假设有以下场景：ViewControllerA.view里有一个button，点击之后push一个ViewControllerB，最简单的写法类似这样：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">- (void)viewDidLoad
-</span><span class="line">{
-</span><span class="line">    [super viewDidLoad];
-</span><span class="line">    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-</span><span class="line">    button.frame = CGRectMake(100, 100, 100, 30);
-</span><span class="line">    [self.view addSubview:button];
-</span><span class="line">}
-</span><span class="line"> 
-</span><span class="line">- (void)buttonTapped
-</span><span class="line">{
-</span><span class="line">    ViewControllerB *vc = [[ViewControllerB alloc] init];
-</span><span class="line">    [self.navigationController pushViewController:vc animated:YES];
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-27T16:58:31+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月27 日</time>
         
       </p>
@@ -705,6 +563,154 @@ attr_accessor是可读也可写</p>
   
     <footer>
       <a class="read-more btn btn-default" href="/blog/gem-description/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-10T11:38:38+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年3 月10 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/afinaljie-shao/" itemprop="url">Afinal介绍</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
+
+<h3 id="afinal">Afinal简介</h3>
+<hr />
+<ul>
+  <li>
+    <p>Afinal 是一个android的sqlite orm 和 ioc 框架。同时封装了android中的http框架，使其更加简单易用；</p>
+  </li>
+  <li>
+    <p>使用finalBitmap，无需考虑bitmap在android中加载的时候oom的问题和快速滑动的时候图片加载位置错位等问题。</p>
+  </li>
+  <li>
+    <p>Afinal的宗旨是简洁，快速。约定大于配置的方式。尽量一行代码完成所有事情。</p>
+  </li>
+</ul>
+
+<h3 id="afinal-1">目前Afinal主要有四大模块：</h3>
+<hr />
+
+<ul>
+  <li>
+    <p>FinalDB模块：android中的orm框架，一行代码就可以进行增删改查。支持一对多，多对一等查询。</p>
+  </li>
+  <li>
+    <p>FinalActivity模块：android中的ioc框架，完全注解方式就可以进行UI绑定和事件绑定。无需findViewById和setClickListener等。</p>
+  </li>
+  <li>
+    <p>FinalHttp模块：通过httpclient进行封装http数据请求，支持ajax方式加载。</p>
+  </li>
+  <li>
+    <p>FinalBitmap模块：通过FinalBitmap，imageview加载bitmap的时候无需考虑bitmap加载过程中出现的oom和android容器快速滑动时候出现的图片错位等现象。FinalBitmap可以配置线程加载线程数量，缓存大小，缓存路径，加载显示动画等。FinalBitmap的内存管理使用lru算法，没有使用弱引用（android2.3以后google已经不建议使用弱引用，android2.3后强行回收软引用和弱引用，详情查看android官方文档），更好的管理bitmap内存。FinalBitmap可以自定义下载器，用来扩展其他协议显示网络图片，比如ftp等。同时可以自定义bitmap显示器，在imageview显示图片的时候播放动画等（默认是渐变动画显示）。</p>
+  </li>
+</ul>
+
+<h4 id="afinal-2">使用afinal快速开发框架需要有以下权限：</h4>
+
+<pre><code>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/afinaljie-shao/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-21T13:46:47+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年12 月21 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/android-skill/" itemprop="url">Android 编程规范与常用技巧</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="android">一、Android编码规范</h3>
+
+<h4 id="java">1.java代码中不出现中文，最多注释中可以出现中文</h4>
+
+<h4 id="section">2.局部变量命名、静态成员变量命名</h4>
+<p>只能包含字母，单词首字母出第一个外，都为大写，其他字母都为小写</p>
+
+<h4 id="section-1">3.常量命名</h4>
+<p>只能包含字母和_，字母全部大写，单词之间用_隔开</p>
+
+<h4 id="layoutid">4.layout中的id命名</h4>
+<p>命名模式为：view缩写_模块名称_view的逻辑名称</p>
+
+<p>view的缩写详情如下</p>
+
+<pre><code>LayoutView：lv
+
+RelativeView:rv
+
+TextView:tv
+
+ImageView:iv
+
+ImageButton:im
+
+Button:btn
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/android-skill/">阅读全文</a>
     </footer>
   
 

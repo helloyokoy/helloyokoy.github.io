@@ -4,7 +4,7 @@
   <title><![CDATA[分类：android | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T15:58:40+08:00</updated>
+  <updated>2018-01-22T16:44:03+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -215,184 +215,21 @@ UiAutomator，Espresso等</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Android 轻量缓存框架 ASimpleCache]]></title>
-    <link href="http://helloyokoy.github.io/blog/anroi-asimplecache/"/>
-    <updated>2015-10-14T20:28:27+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/anroi-asimplecache</id>
-    <content type="html"><![CDATA[<p>做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些：</p>
-
-<ol>
-  <li>
-    <p>服务端控制缓存
-如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式，但是需要服务端配合，比较灵活。</p>
-  </li>
-  <li>
-    <p>客户端直接控制缓存</p>
-  </li>
-</ol>
-
-<p>有些时候不需要服务端来支持的话，客户端可以直接做一层缓存，思路就是请求之后把数据缓存在本地，最常见的是直接以文件缓存在本地就好了，当然你可以缓存在本地的sqlite，以sqlite文件的形式缓存数据处理更灵活点，然后客户端自己处理缓存的时间，过期则直接清除数据。对于一些不太经常变化的页面，采用这种缓存可以减少客户端流量，同时减少服务器并发量。</p>
-
-<p>对于一些新闻类或者timeline这种，数据变化是非常频繁的，针对这种情况可能就不太适合设置缓存时间，这种情况可以考虑让页面每次进来都会自动刷新一次以获取最新数据，如果网络不好或者断开时可以直接读取本地缓存，增加用户体验。当然如果想要更复杂的处理可以配合时间来判断当前页面要不要刷新。</p>
-
-<!--more-->
-
-<p>今天就介绍一种简易的缓存框架，使用起来非常简单。</p>
-
-<h4 id="asimplecache">ASimpleCache</h4>
-
-<p>ASimpleCache 是一个为android制定的 轻量级的 开源缓存框架。轻量到只有一个java文件（由十几个类精简而来）。</p>
-
-<h4 id="section">它可以缓存什么东西？</h4>
-
-<p>普通的字符串、JsonObject、JsonArray、Bitmap、Drawable、序列化的java对象，和 byte数据。</p>
-
-<h4 id="asimplecache-1">如何使用 ASimpleCache？</h4>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>ACache mCache = ACache.get(this);
-</span><span class='line'>mCache.put(“test_key1”, “test value”);
-</span><span class='line'>mCache.put(“test_key2”, “test value”, 10);//保存10秒，如果超过10秒去获取这个key，将为null
-</span><span class='line'>mCache.put(“test_key3”, “test value”, 2 * ACache.TIME_DAY);//保存两天，如果超过两天去获取这个key，将为null&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>获取数据</p>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>ACache mCache = ACache.get(this);
-</span><span class='line'>String value = mCache.getAsString(“test_key1”);&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
-
-<p>最后此项目的开源地址： <a href="https://github.com/yangfuhai/ASimpleCache">ASimpleCache</a></p>
-
-<hr />
-<p>转载自 <a href="http://stormzhang.com/android/2014/10/17/android-simple-cache/">strom博客</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android 开发遇到的坑]]></title>
-    <link href="http://helloyokoy.github.io/blog/android-mistake/"/>
-    <updated>2015-10-12T14:21:57+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/android-mistake</id>
-    <content type="html"><![CDATA[<p>作为一个有三、四年Android应用开发经验的码农，自然会遇到很多坑，下面是我能够想起的一些坑（实践证明不记笔记可不是个好习惯），后面有想到其它坑会陆续补上。</p>
-
-<ul>
-  <li>
-    <p>在Android library中不能使用switch-case语句访问资源ID：
-<a href="http://zmywly8866.github.io/2014/12/24/android-can-not-use-switch-to-load-resource-in-libproject-solution.html">在Android library中不能使用switch-case语句访问资源ID的原因分析及解决方案</a></p>
-  </li>
-  <li>
-    <p>不能在Activity没有完全显示时显示PopupWindow和Dialog：<a href="http://stackoverflow.com/questions/4187673/problems-creating-a-popup-window-in-android-activity">popupwindow - Problems creating a Popup Window in Android Activity</a></p>
-  </li>
-  <li>
-    <p>在多进程之间不要用SharedPreferences共享数据，虽然可以（MODE_MULTI_PROCESS），但极不稳定：<a href="http://stackoverflow.com/questions/22129717/mode-multi-process-for-sharedpreferences-isnt-working">android - MODE_MULTI_PROCESS for SharedPreferences isn’t working</a></p>
-  </li>
-</ul>
-
-<!--more-->
-
-<ul>
-  <li>
-    <p>有些时候不能使用Application的Context，不然会报错（比如启动Activity，显示Dialog等）：
-<img src="https://pic3.zhimg.com/e3f3236cbd96c69cdea10d014bacbeae_b.png" alt="icon" /></p>
-  </li>
-  <li>
-    <p>同一个应用的JNI代码，不要轻易换NDK编译的版本，否则会有很多问题（主要是一些方法实现不一样，并且高版本对代码的检测更严格），比如r8没有问题，但到r9就有问题了，这是个大坑；</p>
-  </li>
-  <li>
-    <p>Android的JNI代码中，有返回类型的函数没有返回值编译的时候也不会报错；</p>
-  </li>
-  <li>
-    <p>当前Activity的onPause方法执行结束后才会执行下一个Activity的onCreate方法，所以在onPause方法中不适合做耗时较长的工作，这会影响到页面之间的跳转效率；</p>
-  </li>
-  <li>
-    <p>谨慎使用Android的透明主题，透明主题会导致很多问题，比如：如果新的Activity采用了透明主题，那么当前Activity的onStop方法不会被调用；在设置为透明主题的Activity界面按Home键时，可能会导致刷屏不干净的问题；进入主题为透明主题的界面会有明显的延时感；</p>
-  </li>
-  <li>
-    <p>不要在非UI线程中初始化ViewStub，否则会返回null；</p>
-  </li>
-  <li>
-    <p>公共接口一定要考虑到代码重入的情况，能设计为单例就尽量用单例；</p>
-  </li>
-  <li>
-    <p>不要通过Bundle传递大块的数据，否则会报TransactionTooLargeException异常：<a href="http://stackoverflow.com/questions/12819617/issue-passing-large-data-to-second-activity">java - Issue: Passing large data to second Activity</a></p>
-  </li>
-  <li>
-    <p>尽量不要通过Application缓存数据，这不稳定：
-<a href="http://zmywly8866.github.io/2014/12/26/android-do-not-store-data-in-the-application-object.html">不要在Android的Application对象中缓存数据!</a></p>
-  </li>
-  <li>
-    <p>尽量不要使用AnimationDrawable，它在初始化的时候就将所有图片加载到内存中，特别占内存，并且还不能释放，释放之后下次进入再次加载时会报错；</p>
-  </li>
-  <li>
-    <p>9图不能通过tinypng压缩，不然会有问题；</p>
-  </li>
-  <li>
-    <p>genymotion模拟器快是因为它是基于x86架构的，如果你的应用中用到了so，但没有x86架构的so，只能放弃使用它；Android Studio的模拟器也一样；</p>
-  </li>
-  <li>
-    <p>Eclipse的Android开发环境配置好后不要轻易升级ADT和build tools，不然会浪费你很多时间，还有就是一个workspace中的工程不要太多，不然每次启动都会很慢；</p>
-  </li>
-  <li>
-    <p>Android studio每个版本、gradle每个版本差别都比较大（我是这样认为的），对于jni代码的编译建议在Eclipse中进行，如果在Android studio中开发jni会浪费很多时间，主要是编译脚本的配置比较麻烦；</p>
-  </li>
-  <li>
-    <p>Eclipse中的Lint太不靠谱，特别是主工程中依赖library的时候，很多提示都是有问题的，建议使用Android Studio的工程清理工具，特别推荐；</p>
-  </li>
-  <li>
-    <p>AsyncTask默认自己维护一个静态的线程池，而该线程池只允许同时执行一个线程，也就是说，不管多少个AsyncTask,只要是调用execute()方法，都是共享这个默认进程池的，你的任务必须在之前的任务执行完以后，才能执行。<a href="http://zmywly8866.github.io/2015/09/29/android-call-asynctask-excute-not-run.html">调用AsyncTask的excute方法不能立即执行程序的原因分析及改善方案</a></p>
-  </li>
-</ul>
-
-<hr />
-<p>著作权归作者所有。</p>
-
-<p>商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
-<p>作者：张明云</p>
-
-<p>链接：http://www.zhihu.com/question/27818921/answer/70279930</p>
-
-<p>来源：知乎</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Android Genymotion模拟器]]></title>
     <link href="http://helloyokoy.github.io/blog/android-genymotion/"/>
     <updated>2015-09-04T19:48:35+08:00</updated>
     <id>http://helloyokoy.github.io/blog/android-genymotion</id>
-    <content type="html"><![CDATA[<p>相信很多Android开发者一定受够了速度慢、体验差效率及其地下的官方模拟器了,自己在平时的开发中几乎是不会用模拟器的，等的时间太久了，但是在一些尺寸适配或是兼容性测试的时候没有足够多的机器进行测试，这个时候就必须得用模拟器来代替了。用的久了真的不堪忍受那龟速般的模拟器，好在今天发现了一款神级模拟器Genymotion，就像发现新大陆般喜爱，下面就来介绍下。</p>
-
-<h4 id="genymotion">Genymotion简介</h4>
+    <content type="html"><![CDATA[<h4 id="genymotion">Genymotion简介</h4>
 <p>Genymotion是一套完整的工具，它提供了Android虚拟环境。如果你没有物理机器，又不想忍受官方模拟器的折磨，Genymotion会是你非常不错的选择， 它简直就是开发者、测试人员、推销者甚至是游戏玩家的福音。</p>
 
 <!--more-->
 
-<p><img src="http://a1.jikexueyuan.com/home/201501/16/5bbe/54b88953518c6.jpg" alt="icon" /></p>
+<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/69740245.jpg" alt="icon" /></p>
 
 <p>Genymotion支持Windows、Linux和Mac OS，容易安装和使用，下面就然我们一起来体验神器给我们带来的快感吧。</p>
 
 <h4 id="genymotion-1">Genymotion特性</h4>
+
 <p>最好的Android模拟体验</p>
 
 <ul>
@@ -469,6 +306,395 @@ UiAutomator，Espresso等</p>
 
 <p>接下来跟安装adt的流程一样，指导完成
 最后附上官网地址：<a href="http://www.genymotion.com/">http://www.genymotion.com/</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android Https请求no Peer Certificate解决方案]]></title>
+    <link href="http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/"/>
+    <updated>2015-08-12T16:30:44+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an</id>
+    <content type="html"><![CDATA[<h3 id="section">解决方案一</h3>
+<hr />
+
+<p>写了一个自定义类继承SSLSocketFactory：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import java.io.IOException;
+</span><span class='line'>import java.net.Socket;
+</span><span class='line'>import java.net.UnknownHostException;
+</span><span class='line'>import java.security.KeyManagementException;
+</span><span class='line'>import java.security.KeyStore;
+</span><span class='line'>import java.security.KeyStoreException;
+</span><span class='line'>import java.security.NoSuchAlgorithmException;
+</span><span class='line'>import java.security.UnrecoverableKeyException;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import javax.net.ssl.SSLContext;
+</span><span class='line'>import javax.net.ssl.TrustManager;
+</span><span class='line'>import javax.net.ssl.X509TrustManager;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>import org.apache.http.conn.ssl.SSLSocketFactory;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>public class SSLSocketFactoryEx extends SSLSocketFactory {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>SSLContext sslContext = SSLContext.getInstance(“TLS”);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>public SSLSocketFactoryEx(KeyStore truststore) 
+</span><span class='line'>                        throws NoSuchAlgorithmException, KeyManagementException,
+</span><span class='line'>                        KeyStoreException, UnrecoverableKeyException {
+</span><span class='line'>                super(truststore);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>TrustManager tm = new X509TrustManager() {
+</span><span class='line'>                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@Override&lt;br />
+</span><span class='line'>public void checkClientTrusted(
+</span><span class='line'>   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class='line'>                                            throws java.security.cert.CertificateException {}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@Override&lt;br />
+</span><span class='line'>public void checkServerTrusted(
+</span><span class='line'>   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class='line'>                                            throws java.security.cert.CertificateException {}
+</span><span class='line'>        };&lt;br />
+</span><span class='line'>        sslContext.init(null, new TrustManager[] { tm }, null);&lt;br />
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@Override&lt;br />
+</span><span class='line'>public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {&lt;br />
+</span><span class='line'>  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);&lt;br />
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>@Override&lt;br />
+</span><span class='line'>public Socket createSocket() throws IOException {&lt;br />
+</span><span class='line'>    return sslContext.getSocketFactory().createSocket();&lt;br />
+</span><span class='line'>}&lt;br />
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<!--more-->
+
+<p>再来看看如何做回调：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>public static HttpClient getNewHttpClient() {&lt;br />
+</span><span class='line'> try {&lt;br />
+</span><span class='line'>  KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());&lt;br />
+</span><span class='line'>  trustStore.load(null, null);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>SSLSocketFactory sf = new SSLSocketFactoryEx(trustStore);&lt;br />
+</span><span class='line'>  sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>HttpParams params = new BasicHttpParams();&lt;br />
+</span><span class='line'>  HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);&lt;br />
+</span><span class='line'>  HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>SchemeRegistry registry = new SchemeRegistry();&lt;br />
+</span><span class='line'>  registry.register(new Scheme(“http”, PlainSocketFactory.getSocketFactory(), 80));&lt;br />
+</span><span class='line'>  registry.register(new Scheme(“https”, sf, 443));&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry); &lt;br />
+</span><span class='line'>   return new DefaultHttpClient(ccm, params);&lt;br />
+</span><span class='line'>  } catch (Exception e) {&lt;br />
+</span><span class='line'>   return new DefaultHttpClient();&lt;br />
+</span><span class='line'>  }&lt;br />
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>现在就可以拿这个HTTPClient去请求数据了</p>
+
+<h3 id="section-1">解决方案二</h3>
+<hr />
+
+<p><a href="http://www.cnblogs.com/P_Chou/archive/2010/12/27/https-ssl-certification.html" title="Title">http://www.cnblogs.com/P_Chou/archive/2010/12/27/https-ssl-certification.html</a>讲的非常清楚https-ssl的认证过程，膜拜下该作者</p>
+
+<p>1.浏览器访问https地址，保存提示的证书到本地，放到android项目中的assets目录。</p>
+
+<p>2.导入证书，代码如下。</p>
+
+<p>3.把证书添加为信任。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>String requestHTTPSPage(String mUrl) {
+</span><span class='line'>  InputStream ins = null;
+</span><span class='line'>  String result = “”;
+</span><span class='line'>  try {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ins = context.getAssets().open(“app_pay.cer”); //下载的证书放到项目中的assets目录中
+</span><span class='line'>   CertificateFactory cerFactory = CertificateFactory
+</span><span class='line'>                    .getInstance(“X.509”);
+</span><span class='line'>   Certificate cer = cerFactory.generateCertificate(ins);
+</span><span class='line'>   KeyStore keyStore = KeyStore.getInstance(“PKCS12”, “BC”);
+</span><span class='line'>   keyStore.load(null, null);
+</span><span class='line'>   keyStore.setCertificateEntry(“trust”, cer);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>SSLSocketFactory socketFactory = new SSLSocketFactory(keyStore);
+</span><span class='line'>   Scheme sch = new Scheme(“https”, socketFactory, 443);
+</span><span class='line'>   HttpClient mHttpClient = new DefaultHttpClient();
+</span><span class='line'>   mHttpClient.getConnectionManager().getSchemeRegistry()
+</span><span class='line'>                    .register(sch);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>BufferedReader reader = null;
+</span><span class='line'>     try {
+</span><span class='line'>         Log.d(TAG, “executeGet is in,murl:” + mUrl);
+</span><span class='line'>         HttpGet request = new HttpGet();
+</span><span class='line'>         request.setURI(new URI(mUrl));
+</span><span class='line'>         HttpResponse response = mHttpClient.execute(request);
+</span><span class='line'>         if (response.getStatusLine().getStatusCode() != 200) {
+</span><span class='line'>            request.abort();
+</span><span class='line'>            return result;
+</span><span class='line'>         }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>reader = new BufferedReader(new InputStreamReader(response
+</span><span class='line'>                        .getEntity().getContent()));
+</span><span class='line'>  StringBuffer buffer = new StringBuffer();
+</span><span class='line'>  String line = null;
+</span><span class='line'>  while ((line = reader.readLine()) != null) {
+</span><span class='line'>                    buffer.append(line);
+</span><span class='line'>  }
+</span><span class='line'>  result = buffer.toString();
+</span><span class='line'>  Log.d(TAG, “mUrl=” + mUrl + “\nresult = “ + result);
+</span><span class='line'>  } catch (Exception e) {
+</span><span class='line'>    e.printStackTrace();
+</span><span class='line'>  } finally {
+</span><span class='line'>     if (reader != null) {
+</span><span class='line'>        reader.close();
+</span><span class='line'>     }
+</span><span class='line'> }
+</span><span class='line'> } catch (Exception e) {
+</span><span class='line'>   // TODO: handle exception
+</span><span class='line'> } finally {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>try {
+</span><span class='line'>    if (ins != null)
+</span><span class='line'>       ins.close();
+</span><span class='line'>  } catch (IOException e) {
+</span><span class='line'>     e.printStackTrace();
+</span><span class='line'>  }
+</span><span class='line'>  }
+</span><span class='line'>  return result;
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fresco介绍]]></title>
+    <link href="http://helloyokoy.github.io/blog/frescojie-shao/"/>
+    <updated>2015-08-09T17:09:42+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/frescojie-shao</id>
+    <content type="html"><![CDATA[<p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
+
+<h3 id="fresco">关于 Fresco</h3>
+<p>Fresco 是一个强大的图片加载组件。</p>
+
+<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
+
+<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
+
+<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
+
+<!--more-->
+
+<h3 id="section">特性</h3>
+
+<h4 id="section-1">内存管理</h4>
+
+<p>解压后的图片，即Android中的Bitmap，占用大量的内存。大的内存占用势必引发更加频繁的GC。在5.0以下，GC将会显著地引发界面卡顿。</p>
+
+<p>在5.0以下系统，Fresco将图片放到一个特别的内存区域。当然，在图片不显示的时候，占用的内存会自动被释放。这会使得APP更加流畅，减少因图片内存占用而引发的OOM。</p>
+
+<p>Fresco 在低端机器上表现一样出色，你再也不用因图片内存占用而思前想后。</p>
+
+<h4 id="section-2">图片的渐进式呈现</h4>
+<p>渐进式的JPEG图片格式已经流行数年了，渐进式图片格式先呈现大致的图片轮廓，然后随着图片下载的继续，呈现逐渐清晰的图片，这对于移动设备，尤其是慢网络有极大的利好，可带来更好的用户体验。</p>
+
+<p>Android 本身的图片库不支持此格式，但是Fresco支持。使用时，和往常一样，仅仅需要提供一个图片的URI即可，剩下的事情，Fresco会处理。</p>
+
+<h4 id="gifwebp">Gif图和WebP格式</h4>
+<p>是的，支持加载Gif图，支持WebP格式。</p>
+
+<h4 id="section-3">图像的呈现</h4>
+<p>Fresco 的 Drawees 设计，带来一些有用的特性：</p>
+
+<ul>
+  <li>自定义居中焦点(对人脸等图片显示非常有帮助)</li>
+  <li>圆角图，当然圆圈也行。</li>
+  <li>下载失败之后，点击重现下载</li>
+  <li>自定义占位图，自定义overlay, 或者进度条</li>
+  <li>指定用户按压时的overlay</li>
+</ul>
+
+<h4 id="section-4">图像的加载</h4>
+<p>Fresco 的 image pipeline 设计，允许用户在多方面控制图片的加载：</p>
+
+<ul>
+  <li>为同一个图片指定不同的远程路径，或者使用已经存在本地缓存中的图片</li>
+  <li>先显示一个低解析度的图片，等高清图下载完之后再显示高清图</li>
+  <li>加载完成回调通知</li>
+  <li>对于本地图，如有EXIF缩略图，在大图加载完成之前，可先显示缩略图</li>
+  <li>缩放或者旋转图片</li>
+  <li>处理已下载的图片</li>
+  <li>WebP 支持</li>
+</ul>
+
+<h3 id="section-5">了解更多</h3>
+<ul>
+  <li>相关博客: <a href="https://code.facebook.com/posts/366199913563917" title="Title">Fresco的发布</a></li>
+  <li><a href="http://www.fresco-cn.org/docs/download-fresco.html" title="Title">下载</a>Fresco</li>
+  <li><a href="http://www.fresco-cn.org/docs/index.html" title="Title">文档</a></li>
+  <li><a href="https://github.com/facebook/fresco" title="Title">GitHub</a>的源码</li>
+</ul>
 ]]></content>
   </entry>
   
