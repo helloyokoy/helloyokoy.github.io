@@ -108,116 +108,6 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-15T15:52:38+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月15 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/rubymotion/" itemprop="url">RubyMotion简介</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h2 id="rubymotion-">RubyMotion 是什么</h2>
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2015/aa191c47356e1b30b1f1a7d7e82fea3c.gif" alt="icon" /></p>
-
-<h2 id="section">统一的运行时环境</h2>
-<p>在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java Runtime，Dalvik 以及 ART 实现了 Ruby 语言。由于这种异常紧密的集成，Ruby 可以自如的调用各平台的接口而不会产生任何性能损失。你可以轻松自如的混编 Ruby 和 Objective-C 或者 Ruby 和 Java，自由的访问各平台提供的最新的 API，自由调用各种第三方库。</p>
-
-<h2 id="section-1">完全编译</h2>
-
-<p>RubyMotion 使用基于 LLVM 构建(参见原理)的革命性的、先进的预编译器（AOT Complier）将项目中的 Ruby 代码编译成经过优化的机器代码。在 iOS 以及 Android 项目，编译器可以生成 32 位和 64 位的 ARM 目标代码，在 OS X 项目则可以生成 32 位和 64 位的 Intel 目标代码。原始的 Ruby 代码不会出现在程序中，也不会在运行期间被解释执行。RubyMotion 的典型项目的程序包大小在 1MB 以下。</p>
-
-<h2 id="section-2">自动管理内存</h2>
-
-<p>在 Ruby 语言中，你无需考虑内存管理事宜。因为，RubyMotion 会自动释放内存中那些你创建的但是却不再会被使用的对象。针对 iOS 和 OS X 平台，我们提供了一个自定义的内存模型，在设计上类似 Objective-C 的 ARC 机制。这个模型无需再使用额外内存或者代码来处理不再使用的对象的声明和回收。针对 Android 平台，我们使用 Java 运行时环境的 GC 来管理内存。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/rubymotion/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-14T20:28:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月14 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/anroi-asimplecache/" itemprop="url">Android 轻量缓存框架 ASimpleCache</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>做Android应用开发的同学们相信对“缓存”这个词不陌生，缓存可能有多方面的概念，这里大概列举下程序开发的缓存大概有哪些：</p>
-
-<ol>
-  <li>
-    <p>服务端控制缓存
-如volley请求库，便是通过服务端的“Cache-Control”和“max-age”来告诉客户端有没有缓存以及缓存的时间，也是推荐的使用方式，但是需要服务端配合，比较灵活。</p>
-  </li>
-  <li>
-    <p>客户端直接控制缓存</p>
-  </li>
-</ol>
-
-<p>有些时候不需要服务端来支持的话，客户端可以直接做一层缓存，思路就是请求之后把数据缓存在本地，最常见的是直接以文件缓存在本地就好了，当然你可以缓存在本地的sqlite，以sqlite文件的形式缓存数据处理更灵活点，然后客户端自己处理缓存的时间，过期则直接清除数据。对于一些不太经常变化的页面，采用这种缓存可以减少客户端流量，同时减少服务器并发量。</p>
-
-<p>对于一些新闻类或者timeline这种，数据变化是非常频繁的，针对这种情况可能就不太适合设置缓存时间，这种情况可以考虑让页面每次进来都会自动刷新一次以获取最新数据，如果网络不好或者断开时可以直接读取本地缓存，增加用户体验。当然如果想要更复杂的处理可以配合时间来判断当前页面要不要刷新。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/anroi-asimplecache/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-12T14:21:57+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月12 日</time>
         
       </p>
@@ -607,6 +497,203 @@
   
     <footer>
       <a class="read-more btn btn-default" href="/blog/rails-image-size/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-12T16:30:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月12 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" itemprop="url">Android Https请求no Peer Certificate解决方案</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="section">解决方案一</h3>
+<hr />
+
+<p>写了一个自定义类继承SSLSocketFactory：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
+</span><span class="line">import java.net.Socket;
+</span><span class="line">import java.net.UnknownHostException;
+</span><span class="line">import java.security.KeyManagementException;
+</span><span class="line">import java.security.KeyStore;
+</span><span class="line">import java.security.KeyStoreException;
+</span><span class="line">import java.security.NoSuchAlgorithmException;
+</span><span class="line">import java.security.UnrecoverableKeyException;
+</span><span class="line">
+</span><span class="line">import javax.net.ssl.SSLContext;
+</span><span class="line">import javax.net.ssl.TrustManager;
+</span><span class="line">import javax.net.ssl.X509TrustManager;
+</span><span class="line">
+</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
+</span><span class="line">
+</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
+</span><span class="line">        
+</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
+</span><span class="line">        
+</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
+</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
+</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
+</span><span class="line">                super(truststore);
+</span><span class="line">                
+</span><span class="line">   TrustManager tm = new X509TrustManager() {
+</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkClientTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkServerTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}
+</span><span class="line">        };  
+</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
+</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket() throws IOException {  
+</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
+</span><span class="line">}  
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-09T17:09:42+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月9 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/frescojie-shao/" itemprop="url">Fresco介绍</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
+
+<h3 id="fresco">关于 Fresco</h3>
+<p>Fresco 是一个强大的图片加载组件。</p>
+
+<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
+
+<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
+
+<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/frescojie-shao/">阅读全文</a>
     </footer>
   
 

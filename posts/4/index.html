@@ -108,203 +108,6 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-12T16:30:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月12 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" itemprop="url">Android Https请求no Peer Certificate解决方案</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="section">解决方案一</h3>
-<hr />
-
-<p>写了一个自定义类继承SSLSocketFactory：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
-</span><span class="line">import java.net.Socket;
-</span><span class="line">import java.net.UnknownHostException;
-</span><span class="line">import java.security.KeyManagementException;
-</span><span class="line">import java.security.KeyStore;
-</span><span class="line">import java.security.KeyStoreException;
-</span><span class="line">import java.security.NoSuchAlgorithmException;
-</span><span class="line">import java.security.UnrecoverableKeyException;
-</span><span class="line">
-</span><span class="line">import javax.net.ssl.SSLContext;
-</span><span class="line">import javax.net.ssl.TrustManager;
-</span><span class="line">import javax.net.ssl.X509TrustManager;
-</span><span class="line">
-</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
-</span><span class="line">
-</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
-</span><span class="line">        
-</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
-</span><span class="line">        
-</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
-</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
-</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
-</span><span class="line">                super(truststore);
-</span><span class="line">                
-</span><span class="line">   TrustManager tm = new X509TrustManager() {
-</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkClientTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public void checkServerTrusted(
-</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
-</span><span class="line">                                            throws java.security.cert.CertificateException {}
-</span><span class="line">        };  
-</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
-</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
-</span><span class="line">}  
-</span><span class="line">    
-</span><span class="line">@Override  
-</span><span class="line">public Socket createSocket() throws IOException {  
-</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
-</span><span class="line">}  
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-09T17:09:42+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月9 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/frescojie-shao/" itemprop="url">Fresco介绍</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
-
-<h3 id="fresco">关于 Fresco</h3>
-<p>Fresco 是一个强大的图片加载组件。</p>
-
-<p>Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。</p>
-
-<p>Fresco 中设计有一个叫做 Drawees 模块，方便地显示loading图，当图片不再显示在屏幕上时，及时地释放内存和空间占用。</p>
-
-<p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/frescojie-shao/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-24T16:49:15+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月24 日</time>
         
       </p>
@@ -556,50 +359,6 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-09T16:24:29+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月9 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/rubyzhao-pin/" itemprop="url">Ruby招聘</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
-
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/rubyzhao-pin/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-27T16:58:31+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月27 日</time>
         
       </p>
@@ -747,6 +506,184 @@
   
     <footer>
       <a class="read-more btn btn-default" href="/blog/android-push/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-05T12:46:03+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月5 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/write-best-code/" itemprop="url">如何编写更棒的代码</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
+
+<p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
+
+<ol>
+  <li>
+    <p>保持方法简短扼要</p>
+  </li>
+  <li>
+    <p>永远永远不要将同一个变量用于不同的目的</p>
+  </li>
+  <li>
+    <p>尽可能让变量和方法的名称能够描述要实现的功能</p>
+  </li>
+  <li>
+    <p>尽可能将变量定义在最靠近它们的地方</p>
+  </li>
+  <li>
+    <p>不要出现让人费解的数字</p>
+  </li>
+  <li>
+    <p>要像对待朋友一样对待你擅长的语言</p>
+  </li>
+  <li>
+    <p>不要逆常规而行</p>
+  </li>
+  <li>
+    <p>千万小心过早的优化代码</p>
+  </li>
+  <li>
+    <p>要常常重构经过测试的代码</p>
+  </li>
+  <li>
+    <p>不要沉溺于过度的设计技巧</p>
+  </li>
+  <li>
+    <p>随时随地学习新的知识</p>
+  </li>
+</ol>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/write-best-code/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-07T15:14:36+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月7 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" itemprop="url">Redis 缓存服务器配置</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
+
+<ol>
+  <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
+  <li>可以持久化到磁盘</li>
+  <li>支持cluster (3.0)</li>
+</ol>
+
+<p>它的性能和memcached不相上下，再加上流行的其他组件（比如队列）也会用到redis，从架构简单出发，已经没有必要混用redis和memcached了。</p>
+
+<p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-05T13:20:11+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月5 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/turn-around-stay-grace/" itemprop="url">优雅转身</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分：</p>
+
+<p>在我第一次创业的时候我非常好斗。在我看来整个世界好像就是一个战场，我无时无刻不在准备着战斗。与房东斗，与债主斗，与董事会斗，与各个你所能想到的群体斗。但是随着我不断的成长，我越来越发现找到一个共同点比不断的斗争更有好处。</p>
+
+<p>有两个人经常在我身旁尽最大的努力让我冷却下来，他们是我的COO Stuart Lander和CFO David Lapter。Stuart也有些好斗因子，但是之前做过律师的他懂得谈判与和解比打一场持久的战斗要好的多。我记得我们经常达成的一条共识就是——如果一定要转身，那么就优雅的转身。于是我形成了自己的一个思想：如果我要去战斗，那么我会如虎如狼直至胜利；但是如果一定要转身，那么我也将优雅从容的转身。</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/turn-around-stay-grace/">阅读全文</a>
     </footer>
   
 

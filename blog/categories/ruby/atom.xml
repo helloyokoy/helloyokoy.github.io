@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T14:39:46+08:00</updated>
+  <updated>2018-01-22T14:48:18+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -1233,74 +1233,34 @@ Charles好了，下一步配置手机，确保你的手机网络和电脑在同�
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[微信开发 Gems]]></title>
-    <link href="http://helloyokoy.github.io/blog/wechat-gems/"/>
-    <updated>2015-10-27T15:35:10+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/wechat-gems</id>
-    <content type="html"><![CDATA[<p>最近陆续有不少用Rails开发微信项目的朋友在Github上开始使用weixin_rails_middleware、weixin_authorize，也不少人谈到Ratchet，春节开始到现在，一直有做微信的开发，现在在论坛上发布出来，希望让更多人知道这些gem的存在，更快速的完成你们手中的任务。</p>
+    <title type="html"><![CDATA[Ruby Gems内存泄露]]></title>
+    <link href="http://helloyokoy.github.io/blog/ruby-gems-memory-leak/"/>
+    <updated>2015-10-22T15:01:34+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/ruby-gems-memory-leak</id>
+    <content type="html"><![CDATA[<p>请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新</p>
 
-<p>有问题可以前往：微信开发论坛：http://weixin-dev.com/</p>
+<ul>
+  <li>
+    <p>therubyracer &lt; 0.12.2</p>
+  </li>
+  <li>
+    <p>sidekiq &lt; 3.5.1</p>
+  </li>
+  <li>
+    <p>celluloid &gt; 0.16.0, &lt; 0.17.2</p>
+  </li>
+  <li>
+    <p>zipruby &lt;= 0.3.6</p>
+  </li>
+  <li>
+    <p>redcarpet &lt; 3.3.3</p>
+  </li>
+  <li>
+    <p>grape &lt; 0.2.5</p>
+  </li>
+</ul>
 
-<p>代码写得不好，还请多多包涵，如果有任何问题，可以直接联系我。:)</p>
-
-<!--more-->
-
-<h4 id="rails">1:一（两）条命令搭建Rails微信版本</h4>
-
-<p>按照最简洁的速度，10分钟可以跑起一个微信的项目：
-https://github.com/lanrion/weixin_rails_middleware</p>
-
-<p>自动验证微信请求；
-一（两）条命令，一个配置，简练风格；
-支持Rails 3, Rails 4；
-支持多公众账号平台，例如类似微盟；
-支持单个用户，即一个账号，但又不想保存在数据库；
-提供回复消息辅助方法；
-提供所有微信消息类型的业务逻辑的回复处理；
-wiki 中提供自定义菜单中的实现案例；
-自动生成token；
-详细见：</p>
-
-<p>https://github.com/lanrion/weixin_rails_middleware/wiki/</p>
-
-<p>wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
-
-<p>https://github.com/lanrion/weixin_rails_middleware</p>
-
-<h4 id="api">2：微信高级API实现：</h4>
-
-<p>https://github.com/lanrion/weixin_authorize</p>
-
-<p>除 Oauth 2 未实现，其他API均已实现；
-支持Redis存储access_token；
-还是直接看wiki 吧：</p>
-
-<p>https://github.com/lanrion/weixin_authorize/wiki/Getting-Started
-wiki中也有不少关于开发上的建议与经验，还有自己遇到一些奇葩的问题</p>
-
-<h4 id="ratchet-v201gem-twitterratchetrails">3：集成Ratchet v2.0.1的gem: twitter_ratchet_rails</h4>
-
-<p>即：http://goratchet.com/ 压缩后非常小，十分适合wap使用，但有一个不足之处在于，组件不够丰富，期待更丰富的实现
-没其他多余的好说，看官直接点击：</p>
-
-<p>https://github.com/lanrion/twitter_ratchet_rails</p>
-
-<p>小弟身材弱小，砖别拍的太猛，嘿，把我拍死了，就没人维护这三个gem了。:)</p>
-
-<h4 id="section">4：例子（可能没有及时更新上最新版本）</h4>
-
-<p>Rails 4: https://github.com/lanrion/weixin_rails_middleware_example</p>
-
-<p>Rails 3: https://github.com/lanrion/weixin_rails_3</p>
-
-<p>企业微信gem</p>
-
-<p>请稳步： https://ruby-china.org/topics/22479</p>
-
-<p>微信开发论坛：http://weixin-dev.com/</p>
-
-<hr />
-<p>转载自 <a href="https://ruby-china.org/topics/18439">ruby-china</a></p>
+<p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
 ]]></content>
   </entry>
   
