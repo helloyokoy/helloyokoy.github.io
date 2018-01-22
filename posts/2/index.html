@@ -109,6 +109,116 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-12-10T16:17:52+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年12 月10 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/xcode-plugin/" itemprop="url">Xcode Plugin</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>新版 xcode 插件 不能用 解决方法</p>
+
+<pre><code>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
+</code></pre>
+
+<p>xcode 插件管理器</p>
+
+<pre><code>Alcatraz
+</code></pre>
+
+<p>xcode 常用插件</p>
+
+<pre><code>xtodo 
+fuzzyautocompelte
+codepilot
+xcodeboost
+xalign
+KSimageNamed
+xcolors
+</code></pre>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-12-05T15:48:50+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年12 月5 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/ios-self/" itemprop="url">iOS Self 和 下划线 _ 区别</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><pre><code>@property (nonatomic,copy) NSString *propertyName;
+</code></pre>
+
+<p>self.propertyName是对属性的访问；使用_propertyName是对局部变量的访问。</p>
+
+<p>所有被声明为属性的成员，在iOS5 之前需要使用编译器指令@synthesize 来告诉编译器帮助生成属性的getter,setter方法。
+之后这个指令可以不用人为指定了，默认情况下编译器会帮我们生成。</p>
+
+<p>编译器在生成getter,setter方法时是有优先级的，它首先查找当前的类中用户是否已定义属性的getter,setter方法，如果有，则编译器会跳过，不会再生成，使用用户定义的方法。</p>
+
+<p>也就是说你在使用self.propertyName 时是在调用一个getter方法。</p>
+
+<pre><code>self.propertyName 会让计数器＋1;_propertyName却不会。  
+
+_propertyName是类似于self-&gt;_propertyName。
+</code></pre>
+
+<p>用self.propertyName 是更好的选择，因为这样可以兼容懒加载，同时也避免了使用下划线的时候忽视了self这个指针，后者容易在block中造成循环引用。</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-12-04T11:32:56+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年12 月4 日</time>
         
       </p>
@@ -387,54 +497,6 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-02T11:24:57+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月2 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/surge/" itemprop="url">Surge</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>iOS 9 有个激动人心的新特性 Network Extension 弥补了 iOS 长久以来无法定制底层网络 app 的不足。APN 代理不安全，成本高；虚拟专网速度不佳，爱掉线，阻塞问题严重…</p>
-
-<p><img src="http://owx2ayke3.bkt.clouddn.com/18-1-22/93867584.jpg" alt="surge" /></p>
-
-<p>那么对于专业用户来说比较完美的方案必须是安全的，可低成本的，最大网络速度，无连接状态，国内外分流完美的 iOS 方案，那么现在这个堕落的愿望已经实现了，感谢苹果公司这么给(chi)力(dao)的 API 和 app 开发大牛。</p>
-
-<p>Surge.app （App Store）是一款给专业用户使用的网络调试工具，使用比较复杂。它的工作原理是使用 packet tunnel provider，然后给系统套上一个代理，后端转发支持 http 代理，SSL 代理，和 Socks 代理。如果 app 尊重系统代理，就会走这个代理，如果不尊重，我们也可以通过规则强制流量走系统 tun 设备达到支持全部 app 的目的。用代理的好处是可以跟踪和调试网络，容易分流，ACL 功能更多，弹性更大更方便。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/surge/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-01T19:58:52+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月1 日</time>
         
       </p>
@@ -628,58 +690,6 @@ helper 放置常用的helper，像分页，用户验证。</p>
   
     <footer>
       <a class="read-more btn btn-default" href="/blog/full-stack-developer/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-09-11T15:14:36+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年9 月11 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" itemprop="url">Redis 缓存服务器配置</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
-
-<ol>
-  <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
-  <li>可以持久化到磁盘</li>
-  <li>支持cluster (3.0)</li>
-</ol>
-
-<p>它的性能和memcached不相上下，再加上流行的其他组件（比如队列）也会用到redis，从架构简单出发，已经没有必要混用redis和memcached了。</p>
-
-<p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">阅读全文</a>
     </footer>
   
 
