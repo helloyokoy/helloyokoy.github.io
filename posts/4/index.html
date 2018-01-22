@@ -1,143 +1,124 @@
-
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>BryanFu Blog</title>
-	<meta name="author" content="BryanFu">
+  <meta charset="utf-8">
+  <title>BryanFu Blog</title>
+  <meta name="author" content="BryanFu">
 
-	
-	<meta name="description" content="关于 Fresco
-Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 image pipeline 的模块。它负责从网络，从本地文件系统，本地资源加载图片。为了最大限度节省空间和CPU时间，它含有3级缓存设计（2级内存，1级文件）。 Fresco 中设计有一个叫做 &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="The Blog of BryanFu"> 
+  
 
-	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<!-- MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+  <link rel="canonical" href="http://helloyokoy.github.io/posts/4/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
 
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://helloyokoy.github.io/posts/4/">
+  <meta property="og:title" content="BryanFu Blog">
+  <meta property="og:description" content="The Blog of BryanFu">
 
-  ga('create', 'UA-66019285-2', 'auto');
-  ga('send', 'pageview');
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
 
-</script>
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-66019285-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
 
 </head>
 
-
-<body>
-	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">首页</a></li>
-	<li><a href="/blog/archives">文章列表</a></li>
-	<li><a href="/blog/categories/ios">iOS</a></li>
-	<li><a href="/blog/categories/android">Android</a></li>
-	<li><a href="/blog/categories/ruby">Ruby</a></li>
-	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
-	<li><a href="/blog/categories/other">Other</a></li>
-	<li><a href="/about">关于</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">首页</a></li>
-	<li><a href="/blog/archives">文章列表</a></li>
-	<li><a href="/blog/categories/ios">iOS</a></li>
-	<li><a href="/blog/categories/android">Android</a></li>
-	<li><a href="/blog/categories/ruby">Ruby</a></li>
-	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
-	<li><a href="/blog/categories/other">Other</a></li>
-	<li><a href="/about">关于</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="https://www.google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:helloyokoy.github.io">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		
-		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
-		
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      
+      <div id="banner-image">
+        <div class="layer">
+          <div id="banner-text">
+            <h1 class="page-title">BryanFu Blog</h1>
+            <p class="page-desc">
+              Less is More ~<br>
+            </p>
+            <br>
+            <br>
+            <div class="page-links center">
+              <ul class="index-nav">
+                  <li ><a href="/projects">Projects</a></li>
+<li ><a href="/blog/archives">Archives</a></li>
+<li ><a href="/blog/categories/ios/">iOS</a></li>
+<li ><a href="/blog/categories/android/">Android</a></li>
+<li ><a href="/blog/categories/nodejs/">NodeJS</a></li>
+<li ><a href="/blog/categories/ruby/">Ruby</a></li>
+<li ><a href="/about">About</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content">
+    <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="BryanFu Blog" />
+    <meta itemprop="description" content="The Blog of BryanFu" />
+    <meta itemprop="url" content="http://helloyokoy.github.io" />
+      
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
     
-		
-		
-		
-		
-		
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-09T17:09:42+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月9 日</time>
+        
+      </p>
     
-	</div>
-	<form class="search" action="https://www.google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:helloyokoy.github.io">
-	</form>
-</nav>
-
-</header>
-	
-		
-	
-	<div id="content" class="inner">
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/frescojie-shao/" itemprop="url">Fresco介绍</a></h2>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/frescojie-shao/">
-		
-			Fresco介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://frescolib.org/static/fresco-logo.png" alt="icon" title="icon" /></p>
 
 <h3 id="fresco">关于 Fresco</h3>
 <p>Fresco 是一个强大的图片加载组件。</p>
@@ -148,40 +129,47 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
 
 <p>Fresco 支持 Android2.3(API level 9) 及其以上系统。</p>
 
-
-		
-		<a href="/blog/frescojie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年8 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/frescojie-shao/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/how-to-become-a-developer/">
-		
-			如何成为一个优秀的初级开发者</a>
-	</h2>
-	<div class="entry-content">
-		<p>原文: <a href="http://blog.newrelic.com/2014/04/23/better-junior-developer/">http://blog.newrelic.com/2014/04/23/better-junior-developer/</a></p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-24T16:49:15+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月24 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/how-to-become-a-developer/" itemprop="url">如何成为一个优秀的初级开发者</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>原文: <a href="http://blog.newrelic.com/2014/04/23/better-junior-developer/">http://blog.newrelic.com/2014/04/23/better-junior-developer/</a></p>
 
 <p>翻译: <a href="https://ruby-china.org/mr_sun">@mr_sun</a></p>
 
@@ -195,40 +183,47 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
 - 初级开发者：即使你还在学习关于编程的基本技巧，你也可以有很多方式为你的团队做出自己的贡献。
 - mentor：因材施教，换位思考，让你的指导更加符合初级开发者的学习需要，这样将使他们更有自信，使你的指导更具效率。</p>
 
-
-		
-		<a href="/blog/how-to-become-a-developer/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月24 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/how-to-become-a-developer/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-screen-adaption/">
-		
-			Android Screen Adaption 屏幕适配</a>
-	</h2>
-	<div class="entry-content">
-		<p>众所周知，Android机型尺寸各种各样，于是屏幕适配就成了Android开发中很重要的一环。Android屏幕适配可能一些开发者都会遇到这样的问题，今天就来分享下屏幕适配，你会发现其实Android屏幕适配也可以很简单。</p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-15T12:18:16+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月15 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/android-screen-adaption/" itemprop="url">Android Screen Adaption 屏幕适配</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>众所周知，Android机型尺寸各种各样，于是屏幕适配就成了Android开发中很重要的一环。Android屏幕适配可能一些开发者都会遇到这样的问题，今天就来分享下屏幕适配，你会发现其实Android屏幕适配也可以很简单。</p>
 
 <h2 id="section">基本概念</h2>
 <p>Android屏幕适配必须要理解的一些概念，这部分可能比较枯燥，但是俗话说的好“工欲善其事，必先利器”，翻译过来就是“有什么样的枪，决定你打什么样的鸟”，一旦这些概念你理解掌握了，屏幕适配你自然而然就觉得简单多了。</p>
@@ -243,40 +238,47 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
   </li>
 </ul>
 
-
-		
-		<a href="/blog/android-screen-adaption/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月15 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/android-screen-adaption/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/bundler/">
-		
-			Bundler 的作用以及原理</a>
-	</h2>
-	<div class="entry-content">
-		<p>原文：<a href="http://bundler.io/rationale.html">http://bundler.io/rationale.html</a></p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-11T17:25:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月11 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/bundler/" itemprop="url">Bundler 的作用以及原理</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>原文：<a href="http://bundler.io/rationale.html">http://bundler.io/rationale.html</a></p>
 
 <p>首先，你要在你应用根目录下一个叫Gemfile文件里声明这些依赖，它看起来是这个样子的：</p>
 
@@ -303,40 +305,47 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
   <li>版本是&gt;= 1.6.1但是&lt; 1.7.0的nokogiri</li>
 </ul>
 
-
-		
-		<a href="/blog/bundler/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月11 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/bundler/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">
-		
-			iOS 依赖注入框架 Objection</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-10T21:52:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月10 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" itemprop="url">iOS 依赖注入框架 Objection</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><blockquote>
   <p>objection 是一个轻量级的依赖注入框架，受Guice的启发，Google Wallet 也是使用的该项目。「依赖注入」是面向对象编程的一种设计模式，用来减少代码之间的耦合度。通常基于接口来实现，也就是说不需要new一个对象，而是通过相关的控制器来获取对象。2013年最火的PHP框架 laravel 就是其中的典型。</p>
 </blockquote>
 
@@ -371,77 +380,91 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
 
 <p>这样写的一个问题是，ViewControllerA需要import ViewControllerB，也就是对ViewControllerB产生了依赖。依赖的东西越多，维护起来就越麻烦，也容易出现循环依赖的问题，而objection正好可以处理这些问题。</p>
 
-
-		
-		<a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/rubyzhao-pin/">
-		
-			Ruby招聘</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-09T16:24:29+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月9 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/rubyzhao-pin/" itemprop="url">Ruby招聘</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/a490df4656f969d72b2f560c411d9b64.jpg" alt="alt text" title="logo" /></p>
 
 <p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2014/f5046f117c0bc0081ee8b7431f150cea.jpg" alt="alt text" title="Title" /></p>
 
-
-		
-		<a href="/blog/rubyzhao-pin/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年7 月9 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/rubyzhao-pin/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/what-happend-when-you-browse-my-blog/">
-		
-			当你浏览我的博客时计算机干了什么</a>
-	</h2>
-	<div class="entry-content">
-		<p>在大学的时候, 我脑海里时常都蹦出对计算机的许多问号, 尤其是计算机是如何工作的, 为什么它如此强大, 越来越显著地改变了我们的生活.</p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-27T16:58:31+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月27 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/what-happend-when-you-browse-my-blog/" itemprop="url">当你浏览我的博客时计算机干了什么</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>在大学的时候, 我脑海里时常都蹦出对计算机的许多问号, 尤其是计算机是如何工作的, 为什么它如此强大, 越来越显著地改变了我们的生活.</p>
 
 <p>随着知识的积累, OS, 进程, 线程, 计算机网络, web 开发, 一个个知识孤岛在某一天终于连接了起来, 形成了一个极为清晰的信息流.</p>
 
@@ -451,40 +474,47 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
 
 <p>为了叙述方便, 我限定使用了 chrome 浏览器, nginx, unicorn, rails 来描述它们, 实际上, 这些组件都是可以替换的.</p>
 
-
-		
-		<a href="/blog/what-happend-when-you-browse-my-blog/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年6 月27 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/what-happend-when-you-browse-my-blog/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/iosduo-xian-cheng/">
-		
-			iOS多线程详解</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-18T22:25:55+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月18 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/iosduo-xian-cheng/" itemprop="url">iOS多线程详解</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><blockquote>
   <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
 </blockquote>
 
@@ -503,40 +533,47 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
 
 <p>所以接下来，我会一一讲解这些方案的使用方法和一些案例。在将这些内容的时候，我也会顺带说一些多线程周边产品。比如： 线程同步、 延时执行、 单例模式 等等。</p>
 
-
-		
-		<a href="/blog/iosduo-xian-cheng/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年6 月18 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/iosduo-xian-cheng/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-push/">
-		
-			Android Push 方案</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="gcmgoogle-cloud-messaging">方案一：使用GCM服务（Google Cloud Messaging）</h2>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-12T12:11:15+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月12 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/android-push/" itemprop="url">Android Push 方案</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h2 id="gcmgoogle-cloud-messaging">方案一：使用GCM服务（Google Cloud Messaging）</h2>
 <p>简介：</p>
 
 <p>Google在Android上标配了自己的推送GCM（Google Cloud Messageing），可以帮助开发人员给他们的Android应用程序发送数据。它是一个轻量级的消息，告诉Android应用程序有新的数据要获取从服务器，或者它可能是一个消息，其中包含了4KB的payload data（像即时通讯这类应用程序可以直接使用该payload消息）。GCM服务处理排队的消息，并把消息传递到目标设备上运行的Android应用程序。</p>
@@ -559,40 +596,47 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
   </li>
 </ol>
 
-
-		
-		<a href="/blog/android-push/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年6 月12 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/android-push/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/write-best-code/">
-		
-			如何编写更棒的代码</a>
-	</h2>
-	<div class="entry-content">
-		<p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-05T12:46:03+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月5 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/write-best-code/" itemprop="url">如何编写更棒的代码</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
 
 <p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
 
@@ -632,72 +676,57 @@ Fresco 是一个强大的图片加载组件。 Fresco 中设计有一个叫做 i
   </li>
 </ol>
 
-
-		
-		<a href="/blog/write-best-code/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/write-best-code/">阅读全文</a>
+    </footer>
+  
 
 
+        </article>
+      
+    </div>
 
-2015 年6 月5 日</div>
-	<div class="tags">
+    <ul class="pager">
+      
+        <li class="previous"><a href="/posts/5">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+        <li class="next"><a href="/posts/3">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+</div>
 
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2018 - BryanFu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/bhrigu123/abacus">abacus theme</a></span>.
+  </small>
+</p>
 
 </div>
-	
-</div>
-</article>
-
-<nav id="pagenavi">
+</footer>
     
-        
-            <a href="/posts/3" class="prev">上一页</a>
-        
-    
-    
-        <a href="/posts/5" class="next">下一页</a>
-    
-    <div class="center"><a href="/blog/archives">文章列表</a></div>
-</nav>
-</div>
-	<footer id="footer" class="inner">Copyright &copy; 2018
-
-    BryanFu
-
-
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
 
 
 
 
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-66019285-2']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
 
 
 
-</body>
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
 </html>

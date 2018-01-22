@@ -1,1394 +1,2323 @@
-
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Blog Archives - BryanFu Blog</title>
-	<meta name="author" content="BryanFu">
+  <meta charset="utf-8">
+  <title>Blog Archive - BryanFu Blog</title>
+  <meta name="author" content="BryanFu">
 
-	
-	<meta name="description" content="2018 Objc 高阶函数 01 月 21 日 ios 2017 iOS BLE 10 月 22 日 ios iOS TDD&amp;BDD 06 月 14 日 ios iOS runtime & libObjc 05 月 11 日 ios 2016 android framework 05 &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="The Blog of BryanFu"> 
+  
 
-	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<!-- MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+  <link rel="canonical" href="http://helloyokoy.github.io/blog/archives/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
 
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://helloyokoy.github.io/blog/archives/">
+  <meta property="og:title" content="Blog Archive - BryanFu Blog">
+  
 
-  ga('create', 'UA-66019285-2', 'auto');
-  ga('send', 'pageview');
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
 
-</script>
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-66019285-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
 
 </head>
 
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      
+        <header role="banner">
+          <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">BryanFu Blog</a>
+        </div>
 
-<body>
-	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">首页</a></li>
-	<li><a href="/blog/archives">文章列表</a></li>
-	<li><a href="/blog/categories/ios">iOS</a></li>
-	<li><a href="/blog/categories/android">Android</a></li>
-	<li><a href="/blog/categories/ruby">Ruby</a></li>
-	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
-	<li><a href="/blog/categories/other">Other</a></li>
-	<li><a href="/about">关于</a></li>
-</ul>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li ><a href="/projects">Projects</a></li>
+<li class="active"><a href="/blog/archives">Archives</a></li>
+<li ><a href="/blog/categories/ios/">iOS</a></li>
+<li ><a href="/blog/categories/android/">Android</a></li>
+<li ><a href="/blog/categories/nodejs/">NodeJS</a></li>
+<li ><a href="/blog/categories/ruby/">Ruby</a></li>
+<li ><a href="/about">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="helloyokoy.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
 </nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">首页</a></li>
-	<li><a href="/blog/archives">文章列表</a></li>
-	<li><a href="/blog/categories/ios">iOS</a></li>
-	<li><a href="/blog/categories/android">Android</a></li>
-	<li><a href="/blog/categories/ruby">Ruby</a></li>
-	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
-	<li><a href="/blog/categories/other">Other</a></li>
-	<li><a href="/about">关于</a></li>
-</ul>
+
+
+        </header>
+      
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content">
+    <article role="article">
+      
+        <header class="page-header">
+          
+          
+            <h1 class="entry-title">
+              Blog Archive
+              
+            </h1>
+          
+        </header>
+      
+      <div class="entry-content">
+        <div id="blog-archives" itemscope itemtype="http://schema.org/Blog">
+<meta itemprop="name" content="BryanFu Blog" />
+<meta itemprop="description" content="The Blog of BryanFu" />
+<meta itemprop="url" content="http://helloyokoy.github.io" />
+
+
+
+  
+  <h2 class="year">2018</h2>
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/objc-higher-order-function/" itemprop="url">Objc 高阶函数</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2018-01-21T17:27:29+08:00"  data-updated="true" itemprop="datePublished dateCreated">2018 年1 月21 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+  
+  <h2 class="year">2017</h2>
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/ios-ble/" itemprop="url">iOS BLE</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-10-22T10:08:24+08:00"  data-updated="true" itemprop="datePublished dateCreated">2017 年10 月22 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/ios-tdd-and-bdd/" itemprop="url">iOS TDD&amp;BDD</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-06-14T10:37:14+08:00"  data-updated="true" itemprop="datePublished dateCreated">2017 年6 月14 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/ios-runtime-and-libobjc/" itemprop="url">iOS Runtime & libObjc</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-05-11T19:57:20+08:00"  data-updated="true" itemprop="datePublished dateCreated">2017 年5 月11 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+  
+  <h2 class="year">2016</h2>
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-framework/" itemprop="url">Android Framework</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-05-26T14:47:35+08:00"  data-updated="true" itemprop="datePublished dateCreated">2016 年5 月26 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/facebook-redex/" itemprop="url">Facebook Redex</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-04-15T17:08:14+08:00"  data-updated="true" itemprop="datePublished dateCreated">2016 年4 月15 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/emmelearn/" itemprop="url">Emmet 学习</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-01-20T21:33:48+08:00"  data-updated="true" itemprop="datePublished dateCreated">2016 年1 月20 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/nodejs/'>nodejs</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+  
+  <h2 class="year">2015</h2>
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/xcode-plugin/" itemprop="url">Xcode Plugin</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-12-10T16:17:52+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年12 月10 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/ios-self/" itemprop="url">iOS Self 和 下划线 _ 区别</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-12-05T15:48:50+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年12 月5 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/grape-on-rails/" itemprop="url">使用 Grape 构建 RESTful API</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-12-04T11:32:56+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年12 月4 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/charles/" itemprop="url">Charles</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-26T21:34:03+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月26 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/nslog-and-lldb/" itemprop="url">NSLog 和 LLDB</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-26T18:38:31+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月26 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/rails-perftest/" itemprop="url">Rails-perftest 分析 Rails 引用的性能</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-07T15:04:49+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月7 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/web-cache/" itemprop="url">Web开发cache</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-04T16:55:48+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月4 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/surge/" itemprop="url">Surge</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-02T11:24:57+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月2 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/sublime-text-2-plugin/" itemprop="url">Sublime Text 2 Plugin</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-01T19:58:52+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月1 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/wechat-develop-environment/" itemprop="url">WeChat 开发环境搭建</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-29T15:46:09+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月29 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/wechat-gems/" itemprop="url">微信开发 Gems</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-27T15:35:10+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月27 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/ruby-gems-memory-leak/" itemprop="url">Ruby Gems内存泄露</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-22T15:01:34+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月22 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/rubymotion/" itemprop="url">RubyMotion简介</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-15T15:52:38+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月15 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/anroi-asimplecache/" itemprop="url">Android 轻量缓存框架 ASimpleCache</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-14T20:28:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月14 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-mistake/" itemprop="url">Android 开发遇到的坑</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-12T14:21:57+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月12 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/rails-gems-recomend/" itemprop="url">Rails Gems 推荐</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-05T12:31:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月5 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/full-stack-developer/" itemprop="url">Full Stack Developer 全栈工程师</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-09-15T16:18:48+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年9 月15 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/sketch/" itemprop="url">为什么要用Sketch</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-09-11T20:38:24+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年9 月11 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-genymotion/" itemprop="url">Android Genymotion模拟器</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-09-04T19:48:35+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年9 月4 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/tech-learn/" itemprop="url">技术学习态度</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-09-03T15:23:49+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年9 月3 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/ruby-fast-learn/" itemprop="url">Ruby on Rails 快速学习</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-09-02T12:07:16+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年9 月2 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/rails-image-size/" itemprop="url">Rails 实时生成多尺寸图</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-22T17:46:39+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月22 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" itemprop="url">Android Https请求no Peer Certificate解决方案</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-12T16:30:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月12 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/frescojie-shao/" itemprop="url">Fresco介绍</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-09T17:09:42+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月9 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/how-to-become-a-developer/" itemprop="url">如何成为一个优秀的初级开发者</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-24T16:49:15+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月24 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-screen-adaption/" itemprop="url">Android Screen Adaption 屏幕适配</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-15T12:18:16+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月15 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/bundler/" itemprop="url">Bundler 的作用以及原理</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-11T17:25:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月11 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/" itemprop="url">iOS 依赖注入框架 Objection</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-10T21:52:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月10 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/rubyzhao-pin/" itemprop="url">Ruby招聘</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-07-09T16:24:29+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年7 月9 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/what-happend-when-you-browse-my-blog/" itemprop="url">当你浏览我的博客时计算机干了什么</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-27T16:58:31+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月27 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/iosduo-xian-cheng/" itemprop="url">iOS多线程详解</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-18T22:25:55+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月18 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-push/" itemprop="url">Android Push 方案</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-12T12:11:15+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月12 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/write-best-code/" itemprop="url">如何编写更棒的代码</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-05T12:46:03+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月5 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/eventbusjie-shao/" itemprop="url">Eventbus介绍</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-10T21:37:33+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月10 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" itemprop="url">Redis 缓存服务器配置</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-07T15:14:36+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月7 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/turn-around-stay-grace/" itemprop="url">优雅转身</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-05T13:20:11+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月5 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/leakcannei-xie-lu-jian-ce/" itemprop="url">LeakCanary内寸泄露检测</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-11T17:53:41+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年4 月11 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/gem-description/" itemprop="url">Gemfile 详解</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-03T16:05:02+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年4 月3 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/afinaljie-shao/" itemprop="url">Afinal介绍</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-10T11:38:38+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年3 月10 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/magicrecordjie-shao/" itemprop="url">MagicRecord介绍</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-10T10:26:16+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年2 月10 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+  
+  <h2 class="year">2014</h2>
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-skill/" itemprop="url">Android 编程规范与常用技巧</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-21T13:46:47+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年12 月21 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/java-reflection/" itemprop="url">Java Reflection 反射</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-15T13:37:57+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年11 月15 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/huan-jing-da-jian/" itemprop="url">Rails 环境搭建</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-09T16:05:07+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年11 月9 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/" itemprop="url">知名 iOS 应用背后的第三方项目</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-28T22:17:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年10 月28 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-volly/" itemprop="url">Android Volley</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-17T14:46:20+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年10 月17 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/ruby-rails-books/" itemprop="url">Ruby/Rails 书籍</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-09-07T16:30:57+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年9 月7 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-gradle/" itemprop="url">Android Gradle</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-08-05T14:14:14+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年8 月5 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/iosdi-san-fang-ku-he-cha-jian/" itemprop="url">iOS第三方库和插件</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-07-08T22:04:09+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年7 月8 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/android-studio/" itemprop="url">Android Studio比Eclipse好在那里</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-07-04T20:12:40+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年7 月4 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/git-flow/" itemprop="url">Git Flow管理开发流程</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-04-05T10:18:10+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年4 月5 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+  
+  <h2 class="year">2013</h2>
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/androidkai-yuan-kuang-jia/" itemprop="url">Android第三方库</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-11-09T17:42:35+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年11 月9 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/git-command/" itemprop="url">Git 常用命令</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-09-25T13:26:53+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年9 月25 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/androidxue-xi-zi-liao/" itemprop="url">Android学习资源</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-09-11T17:30:37+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年9 月11 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/markdownyu-fa/" itemprop="url">MarkDown语法</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-08-09T15:07:14+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年8 月9 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/rubyyu-fa/" itemprop="url">Ruby语法</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-06-12T14:08:03+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年6 月12 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
+
+
+<article class="page-header" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  
+<h2 class="post-title" itemprop="name headline"><a href="/blog/octopressda-jian-jiao-cheng/" itemprop="url">Octopress搭建教程</a></h2>
+<p class="meta text-muted">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-05-08T21:00:18+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年5 月8 日</time>
+  
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/other/'>other</a>
+  
+</span>
+
+
+</p>
+
+</article>
+
 </div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="https://www.google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:helloyokoy.github.io">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		
-		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
-		
+
+      </div>
+      
+    </article>
     
-		
-		
-		
-		
-		
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2018 - BryanFu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/bhrigu123/abacus">abacus theme</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
     
-	</div>
-	<form class="search" action="https://www.google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:helloyokoy.github.io">
-	</form>
-</nav>
 
-</header>
-	
-		
-	
-	<div id="content" class="inner">
-	
 
 
-	
-	
-	<section class="archives"><h1 class="year">2018</h1>
 
-<article>
-	<h2 class="title"><a href="/blog/objc-higher-order-function/">Objc 高阶函数</a></h2>
-	<div class="meta">
-		<div class="date">01 月 21 日</div>
-		<div class="tags">
 
 
-	<a class='category' href='/blog/categories/ios/'>ios</a>
 
 
-</div>
-	    
-	</div>
-</article>
-	
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
 
-	
 
-
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2017</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/ios-ble/">iOS BLE</a></h2>
-	<div class="meta">
-		<div class="date">10 月 22 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ios-tdd-and-bdd/">iOS TDD&amp;BDD</a></h2>
-	<div class="meta">
-		<div class="date">06 月 14 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ios-runtime-and-libobjc/">iOS runtime & libObjc</a></h2>
-	<div class="meta">
-		<div class="date">05 月 11 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2016</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/android-framework/">android framework</a></h2>
-	<div class="meta">
-		<div class="date">05 月 26 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/facebook-redex/">facebook redex</a></h2>
-	<div class="meta">
-		<div class="date">04 月 15 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/emmelearn/">Emmet 学习</a></h2>
-	<div class="meta">
-		<div class="date">01 月 20 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/nodejs/'>nodejs</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2015</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/xcode-plugin/">xcode plugin </a></h2>
-	<div class="meta">
-		<div class="date">12 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ios-self/">iOS self 和 下划线 _ 区别</a></h2>
-	<div class="meta">
-		<div class="date">12 月 05 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/grape-on-rails/">使用 Grape 构建 RESTful API</a></h2>
-	<div class="meta">
-		<div class="date">12 月 04 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/charles/">Charles</a></h2>
-	<div class="meta">
-		<div class="date">11 月 26 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/nslog-and-lldb/">NSLog 和 LLDB</a></h2>
-	<div class="meta">
-		<div class="date">11 月 26 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/rails-perftest/">Rails-perftest 分析 Rails 引用的性能</a></h2>
-	<div class="meta">
-		<div class="date">11 月 07 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/web-cache/">Web开发cache</a></h2>
-	<div class="meta">
-		<div class="date">11 月 04 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/surge/">Surge</a></h2>
-	<div class="meta">
-		<div class="date">11 月 02 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/sublime-text-2-plugin/">Sublime Text 2 Plugin</a></h2>
-	<div class="meta">
-		<div class="date">11 月 01 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/wechat-develop-environment/">WeChat 开发环境搭建</a></h2>
-	<div class="meta">
-		<div class="date">10 月 29 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/wechat-gems/">微信开发 gems</a></h2>
-	<div class="meta">
-		<div class="date">10 月 27 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ruby-gems-memory-leak/">ruby gems内存泄露</a></h2>
-	<div class="meta">
-		<div class="date">10 月 22 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/rubymotion/">RubyMotion简介</a></h2>
-	<div class="meta">
-		<div class="date">10 月 15 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/anroi-asimplecache/">Android 轻量缓存框架 ASimpleCache</a></h2>
-	<div class="meta">
-		<div class="date">10 月 14 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/android-mistake/">Android 开发遇到的坑</a></h2>
-	<div class="meta">
-		<div class="date">10 月 12 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/rails-gems-recomend/">Rails Gems 推荐</a></h2>
-	<div class="meta">
-		<div class="date">10 月 05 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/full-stack-developer/">Full Stack Developer 全栈工程师</a></h2>
-	<div class="meta">
-		<div class="date">09 月 15 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/sketch/">为什么要用Sketch</a></h2>
-	<div class="meta">
-		<div class="date">09 月 11 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/android-genymotion/">Android Genymotion模拟器</a></h2>
-	<div class="meta">
-		<div class="date">09 月 04 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/tech-learn/">技术学习态度</a></h2>
-	<div class="meta">
-		<div class="date">09 月 03 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ruby-fast-learn/">Ruby On Rails 快速学习</a></h2>
-	<div class="meta">
-		<div class="date">09 月 02 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/rails-image-size/">Rails 实时生成多尺寸图</a></h2>
-	<div class="meta">
-		<div class="date">08 月 22 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">Android https请求no peer certificate解决方案</a></h2>
-	<div class="meta">
-		<div class="date">08 月 12 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/frescojie-shao/">Fresco介绍</a></h2>
-	<div class="meta">
-		<div class="date">08 月 09 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/how-to-become-a-developer/">如何成为一个优秀的初级开发者</a></h2>
-	<div class="meta">
-		<div class="date">07 月 24 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/android-screen-adaption/">Android Screen Adaption 屏幕适配</a></h2>
-	<div class="meta">
-		<div class="date">07 月 15 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/bundler/">Bundler 的作用以及原理</a></h2>
-	<div class="meta">
-		<div class="date">07 月 11 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosyi-lai-zhu-ru-kuang-jia-objection/">iOS 依赖注入框架 Objection</a></h2>
-	<div class="meta">
-		<div class="date">07 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/rubyzhao-pin/">Ruby招聘</a></h2>
-	<div class="meta">
-		<div class="date">07 月 09 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/what-happend-when-you-browse-my-blog/">当你浏览我的博客时计算机干了什么</a></h2>
-	<div class="meta">
-		<div class="date">06 月 27 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosduo-xian-cheng/">iOS多线程详解</a></h2>
-	<div class="meta">
-		<div class="date">06 月 18 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/android-push/">Android Push 方案</a></h2>
-	<div class="meta">
-		<div class="date">06 月 12 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/write-best-code/">如何编写更棒的代码</a></h2>
-	<div class="meta">
-		<div class="date">06 月 05 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/eventbusjie-shao/">Eventbus介绍</a></h2>
-	<div class="meta">
-		<div class="date">05 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">Redis 缓存服务器配置</a></h2>
-	<div class="meta">
-		<div class="date">05 月 07 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/turn-around-stay-grace/">优雅转身</a></h2>
-	<div class="meta">
-		<div class="date">05 月 05 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/leakcannei-xie-lu-jian-ce/">LeakCanary内寸泄露检测</a></h2>
-	<div class="meta">
-		<div class="date">04 月 11 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/gem-description/">Gemfile 详解</a></h2>
-	<div class="meta">
-		<div class="date">04 月 03 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/afinaljie-shao/">Afinal介绍</a></h2>
-	<div class="meta">
-		<div class="date">03 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/magicrecordjie-shao/">MagicRecord介绍</a></h2>
-	<div class="meta">
-		<div class="date">02 月 10 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2014</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/android-skill/">Android 编程规范与常用技巧</a></h2>
-	<div class="meta">
-		<div class="date">12 月 21 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/java-reflection/">Java Reflection 反射</a></h2>
-	<div class="meta">
-		<div class="date">11 月 15 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/huan-jing-da-jian/">Rails 环境搭建</a></h2>
-	<div class="meta">
-		<div class="date">11 月 09 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">知名 iOS 应用背后的第三方项目</a></h2>
-	<div class="meta">
-		<div class="date">10 月 28 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/android-volly/">Android Volley</a></h2>
-	<div class="meta">
-		<div class="date">10 月 17 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/ruby-rails-books/">Ruby/Rails 书籍</a></h2>
-	<div class="meta">
-		<div class="date">09 月 07 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/android-gradle/">Android Gradle</a></h2>
-	<div class="meta">
-		<div class="date">08 月 05 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/iosdi-san-fang-ku-he-cha-jian/">iOS第三方库和插件</a></h2>
-	<div class="meta">
-		<div class="date">07 月 08 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/android-studio/">Android Studio比Eclipse好在那里</a></h2>
-	<div class="meta">
-		<div class="date">07 月 04 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/git-flow/">Git Flow管理开发流程</a></h2>
-	<div class="meta">
-		<div class="date">04 月 05 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2013</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/androidkai-yuan-kuang-jia/">Android第三方库</a></h2>
-	<div class="meta">
-		<div class="date">11 月 09 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/git-command/">Git 常用命令</a></h2>
-	<div class="meta">
-		<div class="date">09 月 25 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/androidxue-xi-zi-liao/">Android学习资源</a></h2>
-	<div class="meta">
-		<div class="date">09 月 11 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/markdownyu-fa/">MarkDown语法</a></h2>
-	<div class="meta">
-		<div class="date">08 月 09 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/rubyyu-fa/">Ruby语法</a></h2>
-	<div class="meta">
-		<div class="date">06 月 12 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/octopressda-jian-jiao-cheng/">Octopress搭建教程</a></h2>
-	<div class="meta">
-		<div class="date">05 月 08 日</div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
-</div>
-	    
-	</div>
-</article>
-	
-	</section>
-	
-</div>
-	<footer id="footer" class="inner">Copyright &copy; 2018
-
-    BryanFu
-
-
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
-
-
-
-
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-66019285-2']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-
-
-
-</body>
+  </body>
 </html>

@@ -1,142 +1,124 @@
-
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>BryanFu Blog</title>
-	<meta name="author" content="BryanFu">
+  <meta charset="utf-8">
+  <title>BryanFu Blog</title>
+  <meta name="author" content="BryanFu">
 
-	
-	<meta name="description" content="EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。 1.下载EventBus的类库 源码： &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="The Blog of BryanFu"> 
+  
 
-	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<!-- MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+  <link rel="canonical" href="http://helloyokoy.github.io/posts/5/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
 
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://helloyokoy.github.io/posts/5/">
+  <meta property="og:title" content="BryanFu Blog">
+  <meta property="og:description" content="The Blog of BryanFu">
 
-  ga('create', 'UA-66019285-2', 'auto');
-  ga('send', 'pageview');
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
 
-</script>
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-66019285-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
 
 </head>
 
-
-<body>
-	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">首页</a></li>
-	<li><a href="/blog/archives">文章列表</a></li>
-	<li><a href="/blog/categories/ios">iOS</a></li>
-	<li><a href="/blog/categories/android">Android</a></li>
-	<li><a href="/blog/categories/ruby">Ruby</a></li>
-	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
-	<li><a href="/blog/categories/other">Other</a></li>
-	<li><a href="/about">关于</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">首页</a></li>
-	<li><a href="/blog/archives">文章列表</a></li>
-	<li><a href="/blog/categories/ios">iOS</a></li>
-	<li><a href="/blog/categories/android">Android</a></li>
-	<li><a href="/blog/categories/ruby">Ruby</a></li>
-	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
-	<li><a href="/blog/categories/other">Other</a></li>
-	<li><a href="/about">关于</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="https://www.google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:helloyokoy.github.io">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		
-		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
-		
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      
+      <div id="banner-image">
+        <div class="layer">
+          <div id="banner-text">
+            <h1 class="page-title">BryanFu Blog</h1>
+            <p class="page-desc">
+              Less is More ~<br>
+            </p>
+            <br>
+            <br>
+            <div class="page-links center">
+              <ul class="index-nav">
+                  <li ><a href="/projects">Projects</a></li>
+<li ><a href="/blog/archives">Archives</a></li>
+<li ><a href="/blog/categories/ios/">iOS</a></li>
+<li ><a href="/blog/categories/android/">Android</a></li>
+<li ><a href="/blog/categories/nodejs/">NodeJS</a></li>
+<li ><a href="/blog/categories/ruby/">Ruby</a></li>
+<li ><a href="/about">About</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content">
+    <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="BryanFu Blog" />
+    <meta itemprop="description" content="The Blog of BryanFu" />
+    <meta itemprop="url" content="http://helloyokoy.github.io" />
+      
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
     
-		
-		
-		
-		
-		
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-10T21:37:33+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月10 日</time>
+        
+      </p>
     
-	</div>
-	<form class="search" action="https://www.google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:helloyokoy.github.io">
-	</form>
-</nav>
-
-</header>
-	
-		
-	
-	<div id="content" class="inner">
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/eventbusjie-shao/" itemprop="url">Eventbus介绍</a></h2>
+    
+  </header>
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/eventbusjie-shao/">
-		
-			Eventbus介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="https://github.com/greenrobot/EventBus/raw/master/EventBus-Publish-Subscribe.png" alt="icon" title="icon" /></p>
 
 <blockquote>
   <p>EventBus是一款针对Android优化的发布/订阅事件总线。主要功能是替代Intent,Handler,BroadCast在Fragment，Activity，Service，线程之间传递消息.优点是开销小，代码更优雅。以及将发送者和接收者解耦。</p>
@@ -146,40 +128,47 @@
 
 <p>源码：<a href="https://github.com/greenrobot/EventBus" title="url">https://github.com/greenrobot/EventBus</a></p>
 
-
-		
-		<a href="/blog/eventbusjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/eventbusjie-shao/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">
-		
-			Redis 缓存服务器配置</a>
-	</h2>
-	<div class="entry-content">
-		<p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-07T15:14:36+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月7 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" itemprop="url">Redis 缓存服务器配置</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
 
 <ol>
   <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
@@ -191,79 +180,93 @@
 
 <p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
 
-
-		
-		<a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月7 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/turn-around-stay-grace/">
-		
-			优雅转身</a>
-	</h2>
-	<div class="entry-content">
-		<p>编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分：</p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-05T13:20:11+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月5 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/turn-around-stay-grace/" itemprop="url">优雅转身</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分：</p>
 
 <p>在我第一次创业的时候我非常好斗。在我看来整个世界好像就是一个战场，我无时无刻不在准备着战斗。与房东斗，与债主斗，与董事会斗，与各个你所能想到的群体斗。但是随着我不断的成长，我越来越发现找到一个共同点比不断的斗争更有好处。</p>
 
 <p>有两个人经常在我身旁尽最大的努力让我冷却下来，他们是我的COO Stuart Lander和CFO David Lapter。Stuart也有些好斗因子，但是之前做过律师的他懂得谈判与和解比打一场持久的战斗要好的多。我记得我们经常达成的一条共识就是——如果一定要转身，那么就优雅的转身。于是我形成了自己的一个思想：如果我要去战斗，那么我会如虎如狼直至胜利；但是如果一定要转身，那么我也将优雅从容的转身。</p>
 
-
-		
-		<a href="/blog/turn-around-stay-grace/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年5 月5 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/other/'>other</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/turn-around-stay-grace/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/leakcannei-xie-lu-jian-ce/">
-		
-			LeakCanary内寸泄露检测</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="leakcanary">LeakCanary</h2>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-11T17:53:41+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年4 月11 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/leakcannei-xie-lu-jian-ce/" itemprop="url">LeakCanary内寸泄露检测</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h2 id="leakcanary">LeakCanary</h2>
 
 <p>Android 和 Java 内存泄露检测。</p>
 
@@ -281,40 +284,47 @@
 
 <p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
 
-
-		
-		<a href="/blog/leakcannei-xie-lu-jian-ce/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年4 月11 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/leakcannei-xie-lu-jian-ce/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/gem-description/">
-		
-			Gemfile 详解</a>
-	</h2>
-	<div class="entry-content">
-		<p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-03T16:05:02+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年4 月3 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/gem-description/" itemprop="url">Gemfile 详解</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
 
 <p>原文：<a href="http://tosbourn.com/what-is-the-gemfile/">http://tosbourn.com/what-is-the-gemfile/</a></p>
 
@@ -324,40 +334,47 @@
 
 <p>Gemfile是我们创建的一个用于描述gem之间依赖的文件。gem是一堆Ruby代码的集合，它能够为我们提供调用。你的Gemfile必须放在项目的根目录下面， 这是Bundler的要求，对于任何的其他形式的包管理文件来说，这也是标准。这里值得注意的一点是Gemfile会被作为Ruby代码来执行。当在Bundler上下文环境中被执行的时能使我们访问一些方法，我们用这些方法来解释gem之间的require关系。</p>
 
-
-		
-		<a href="/blog/gem-description/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年4 月3 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/gem-description/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/afinaljie-shao/">
-		
-			Afinal介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-10T11:38:38+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年3 月10 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/afinaljie-shao/" itemprop="url">Afinal介绍</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="https://camo.githubusercontent.com/c6e3b3f79af58e45555a754cf0814f0e5eb32b9a/687474703a2f2f636f64652e676f6f676c652e636f6d2f702f6166696e616c2f6c6f676f3f6363743d31333531353136353335" alt="icon" title="icon" /></p>
 
 <h3 id="afinal">Afinal简介</h3>
 <hr />
@@ -397,40 +414,47 @@
 &lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt; * 第一个是访问网络 * 第二个是访问sdcard * 访问网络是请求网络图片的时候需要或者是http数据请求时候需要，访问sdcard是图片缓存的需要。
 </code></pre>
 
-
-		
-		<a href="/blog/afinaljie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年3 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/afinaljie-shao/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/magicrecordjie-shao/">
-		
-			MagicRecord介绍</a>
-	</h2>
-	<div class="entry-content">
-		<p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-10T10:26:16+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年2 月10 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/magicrecordjie-shao/" itemprop="url">MagicRecord介绍</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>CoreData作为Mac OS 和IOS开发数据持久化和用户数据检索的不可缺少的一部分已经好几年了。</p>
 
 <p>为了使API对开发者更容易使用，也为了App的整体化，苹果也在不间断的更新CoreData的API。</p>
 
@@ -444,40 +468,47 @@
 
 <p>他是怎么做到的呢？它提供了方便的方法，包含了CoreData使用的查询更新等的公用模板。它的设计受到了Ruby on Rails’sActiveRecord 持续性系统的影响。</p>
 
-
-		
-		<a href="/blog/magicrecordjie-shao/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2015 年2 月10 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/ios/'>ios</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/magicrecordjie-shao/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/android-skill/">
-		
-			Android 编程规范与常用技巧</a>
-	</h2>
-	<div class="entry-content">
-		<h3 id="android">一、Android编码规范</h3>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-21T13:46:47+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年12 月21 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/android-skill/" itemprop="url">Android 编程规范与常用技巧</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="android">一、Android编码规范</h3>
 
 <h4 id="java">1.java代码中不出现中文，最多注释中可以出现中文</h4>
 
@@ -505,40 +536,47 @@ ImageButton:im
 Button:btn
 </code></pre>
 
-
-		
-		<a href="/blog/android-skill/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年12 月21 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/android-skill/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/java-reflection/">
-		
-			Java Reflection 反射</a>
-	</h2>
-	<div class="entry-content">
-		<p>Java 反射是Java语言的一个很重要的特征，它使得Java具体了“动态性”。</p>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-15T13:37:57+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年11 月15 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/java-reflection/" itemprop="url">Java Reflection 反射</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Java 反射是Java语言的一个很重要的特征，它使得Java具体了“动态性”。</p>
 
 <p>在Java运行时环境中，对于任意一个类，能否知道这个类有哪些属性和方法？对于任意一个对象，能否调用它的任意一个方法？答案是肯定的。这种动态获取类的信息以及动态调用对象的方法的功能来自于Java 语言的反射（Reflection）机制。</p>
 
@@ -551,40 +589,47 @@ Button:btn
   <li>在运行时调用任意一个对象的方法。</li>
 </ul>
 
-
-		
-		<a href="/blog/java-reflection/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-2014 年11 月15 日</div>
-	<div class="tags">
-
-
-	<a class='category' href='/blog/categories/android/'>android</a>
-
-
 </div>
-	
-</div>
-</article>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/java-reflection/">阅读全文</a>
+    </footer>
+  
 
 
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/huan-jing-da-jian/">
-		
-			Rails 环境搭建</a>
-	</h2>
-	<div class="entry-content">
-		<blockquote>
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-11-09T16:05:07+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年11 月9 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/huan-jing-da-jian/" itemprop="url">Rails 环境搭建</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><blockquote>
   <p>对于新入门的开发者，如何安装 Ruby, Ruby Gems 和 Rails 的运行环境可能会是个问题，本页主要介绍如何用一条靠谱的路子快速安装 Ruby 开发环境。
 次安装方法同样适用于产品环境！</p>
 </blockquote>
@@ -599,72 +644,57 @@ Button:btn
 强烈新手使用 Ubuntu 省掉不必要的麻烦！
 以下代码区域，带有 $ 打头的表示需要在控制台（终端）下面执行（不包括 $  符号）</p>
 
-
-		
-		<a href="/blog/huan-jing-da-jian/" class="more-link">阅读全文</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/huan-jing-da-jian/">阅读全文</a>
+    </footer>
+  
 
 
+        </article>
+      
+    </div>
 
-2014 年11 月9 日</div>
-	<div class="tags">
+    <ul class="pager">
+      
+        <li class="previous"><a href="/posts/6">&larr;&nbsp;Older</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+        <li class="next"><a href="/posts/4">Newer&nbsp;&rarr;</a></li>
+      
+    </ul>
+  </div>
+</div>
 
-
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
-
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2018 - BryanFu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/bhrigu123/abacus">abacus theme</a></span>.
+  </small>
+</p>
 
 </div>
-	
-</div>
-</article>
-
-<nav id="pagenavi">
+</footer>
     
-        
-            <a href="/posts/4" class="prev">上一页</a>
-        
-    
-    
-        <a href="/posts/6" class="next">下一页</a>
-    
-    <div class="center"><a href="/blog/archives">文章列表</a></div>
-</nav>
-</div>
-	<footer id="footer" class="inner">Copyright &copy; 2018
-
-    BryanFu
-
-
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
 
 
 
 
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-66019285-2']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
 
 
 
-</body>
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
 </html>

@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T11:11:23+08:00</updated>
+  <updated>2018-01-22T14:27:42+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -170,6 +170,8 @@
 </span><span class='line'>&lt;/ul>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<!--more-->
 
 <p>下面这个是 筛选 nsarray 对象类型</p>
 
@@ -1127,7 +1129,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iOS runtime & libObjc]]></title>
+    <title type="html"><![CDATA[iOS Runtime & libObjc]]></title>
     <link href="http://helloyokoy.github.io/blog/ios-runtime-and-libobjc/"/>
     <updated>2017-05-11T19:57:20+08:00</updated>
     <id>http://helloyokoy.github.io/blog/ios-runtime-and-libobjc</id>
@@ -2059,7 +2061,7 @@ __attribute__((cleanup(ext_executeCleanupBlock), unused))  将 cleanup 函数设
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[xcode plugin ]]></title>
+    <title type="html"><![CDATA[Xcode Plugin]]></title>
     <link href="http://helloyokoy.github.io/blog/xcode-plugin/"/>
     <updated>2015-12-10T16:17:52+08:00</updated>
     <id>http://helloyokoy.github.io/blog/xcode-plugin</id>

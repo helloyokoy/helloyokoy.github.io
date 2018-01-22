@@ -1,133 +1,145 @@
-
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Gemfile 详解 - BryanFu Blog</title>
-	<meta name="author" content="BryanFu">
+  <meta charset="utf-8">
+  <title>Gemfile 详解 - BryanFu Blog</title>
+  <meta name="author" content="BryanFu">
 
-	
-	<meta name="description" content="前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。 原文：http://tosbourn.com/what-is-the-gemfile/ 作为Ruby开发者， &hellip;">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="The Blog of BryanFu"> 
+  
 
-	<link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script async="true" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<!-- MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<script type="text/javascript"
-   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+  <link rel="canonical" href="http://helloyokoy.github.io/blog/gem-description/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="" rel="alternate" title="BryanFu Blog" type="application/atom+xml">
 
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://helloyokoy.github.io/blog/gem-description/">
+  <meta property="og:title" content="Gemfile 详解 - BryanFu Blog">
+  
 
-  ga('create', 'UA-66019285-2', 'auto');
-  ga('send', 'pageview');
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
 
-</script>
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+   <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-66019285-2', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
 
 </head>
 
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      
+        <header role="banner">
+          <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">BryanFu Blog</a>
+        </div>
 
-<body>
-	<header id="header" class="inner"><h1><a href="/">BryanFu Blog</a></h1>
-<nav id="main-nav"><ul class="main">
-	<li><a href="/">首页</a></li>
-	<li><a href="/blog/archives">文章列表</a></li>
-	<li><a href="/blog/categories/ios">iOS</a></li>
-	<li><a href="/blog/categories/android">Android</a></li>
-	<li><a href="/blog/categories/ruby">Ruby</a></li>
-	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
-	<li><a href="/blog/categories/other">Other</a></li>
-	<li><a href="/about">关于</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul class="main">
-	<li><a href="/">首页</a></li>
-	<li><a href="/blog/archives">文章列表</a></li>
-	<li><a href="/blog/categories/ios">iOS</a></li>
-	<li><a href="/blog/categories/android">Android</a></li>
-	<li><a href="/blog/categories/ruby">Ruby</a></li>
-	<li><a href="/blog/categories/nodejs">NodeJS</a></li>
-	<li><a href="/blog/categories/other">Other</a></li>
-	<li><a href="/about">关于</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="https://www.google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:helloyokoy.github.io">
-			</form>
-		</div>
-	</div>
-</nav>
-<nav id="sub-nav" class="alignright">
-	<div class="social">
-		
-		
-		
-		
-		<a class="github" href="https://github.com/helloyokoy" title="GitHub">GitHub</a>
-		
-    
-		
-		
-		
-		
-		
-    
-	</div>
-	<form class="search" action="https://www.google.com/search" method="get">
-		<input class="alignright" type="text" name="q" results="0">
-		<input type="hidden" name="q" value="site:helloyokoy.github.io">
-	</form>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li ><a href="/projects">Projects</a></li>
+<li ><a href="/blog/archives">Archives</a></li>
+<li ><a href="/blog/categories/ios/">iOS</a></li>
+<li ><a href="/blog/categories/android/">Android</a></li>
+<li ><a href="/blog/categories/nodejs/">NodeJS</a></li>
+<li ><a href="/blog/categories/ruby/">Ruby</a></li>
+<li ><a href="/about">About</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="helloyokoy.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
 </nav>
 
-</header>
-	
-		
-	
-	<div id="content" class="inner"><article class="post">
-	<h2 class="title">Gemfile 详解</h2>
-	<div class="entry-content"><p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
+
+        </header>
+      
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="BryanFu Blog" />
+    <meta itemprop="description" content="The Blog of BryanFu" />
+    <meta itemprop="url" content="http://helloyokoy.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-03T16:05:02+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年4 月3 日</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Gemfile 详解
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
 
 <p>原文：<a href="http://tosbourn.com/what-is-the-gemfile/">http://tosbourn.com/what-is-the-gemfile/</a></p>
 
@@ -455,99 +467,157 @@ gem "rails", bitbucket: "rails"
 </div>
 
 
-<div class="meta">
-	<div class="date">
+      <footer class="post-footer">
+        <p class="meta text-muted">
+          
+  
+
+
+
+<figure class="author-image">
+    <span class="img" href="/about" style="background-image: url(/images/avatar.jpg)"><span class="hidden">Picture</span></span>
+</figure>
+
+<section class="author">
+    <h4><span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="fn" itemprop="name">BryanFu</span></span></h4>
+
+    <div class="author-meta">
+        <span class="author-link icon-link"><i class="fa fa-link" aria-hidden="true"></i> <a href="http://helloyokoy.github.io">http://helloyokoy.github.io</a></span>
+    </div>
+</section>
+
+<hr>
+
+<section class="share">
+    
+    <h4>Share this post</h4>
+    
+    <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?url=http://helloyokoy.github.io/blog/gem-description/;" 
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="fa fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://helloyokoy.github.io/blog/gem-description/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="fa fa-google-plus" href="https://plus.google.com/share?url=http://helloyokoy.github.io/blog/gem-description/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+    
+</section>
 
 
 
 
-2015 年4 月3 日</div>
-	<div class="tags">
+<!--
+<footer class="post-footer">
 
 
-	<a class='category' href='/blog/categories/ruby/'>ruby</a>
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Instant%20Movie%20Streamer%20v3%20Release&amp;url=http://iyask.me/instant-movie-streamer-v3-release/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://iyask.me/instant-movie-streamer-v3-release/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://iyask.me/instant-movie-streamer-v3-release/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
 
+
+        </footer>
+
+
+-->
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-03T16:05:02+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年4 月3 日</time>
+          <br>
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="pager">
+            
+            
+              
+                <a href="/blog/afinaljie-shao/" class="col-xs-12 col-md-4 btn btn-default" title="Previous Post: Afinal介绍"> 
+                  <div class="text-muted">
+                    <small>Previous Post</small>
+                  </div>
+                  <div class="pager-title">
+                    <h4>Afinal介绍</h4>
+                  </div>
+                </a>
+              
+            
+            
+            
+              
+              <a href="/blog/leakcannei-xie-lu-jian-ce/" class="col-xs-12 col-md-4 btn btn-default pull-right" title="Next Post: LeakCanary内寸泄露检测">
+                <div class="text-muted">
+                  <small>Next Post</small>
+                </div>
+                <div class="pager-title">
+                  <h4>LeakCanary内寸泄露检测</h4>
+                </div>
+              </a>
+              
+            
+            
+          </div>
+        
+      </footer>
+    </article>
+    
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2018 - BryanFu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/bhrigu123/abacus">abacus theme</a></span>.
+  </small>
+</p>
 
 </div>
-	
-</div>
-</article>
-
-
-	<div class="share">
-	<div class="addthis_toolbox addthis_default_style ">
-		
-		
-		
-		
-
-		
-			<!-- JiaThis Button BEGIN -->
-<script type="text/javascript">
-var jiathis_config = {data_track_clickback:'true'};
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?move=0&amp;uid=2053348" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-		
- 		
-	</div>
-	
-</div>
+</footer>
+    
 
 
 
 
 
-  <section>
-   <!-- 多说评论框 start -->
-<div class="ds-thread" data-thread-key="/blog/gem-description" data-title="Gemfile 详解" data-url="http://helloyokoy.github.io/blog/gem-description/"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    var duoshuoQuery = {short_name:"helloyokoy"};
-    (function() {
-
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-     })();
- </script>
- <!-- 多说公共JS代码 end -->
-  </section>
- </div>
-	<footer id="footer" class="inner">Copyright &copy; 2018
-
-    BryanFu
-
-
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256015915'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256015915%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
 
 
 
-
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-66019285-2']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
 
 
-
-</body>
+  </body>
 </html>

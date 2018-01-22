@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T11:11:23+08:00</updated>
+  <updated>2018-01-22T14:27:42+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -148,6 +148,8 @@
 </span><span class="line">        block(obj);
 </span><span class="line">    }];
 </span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<!--more-->
 
 <p>下面这个是 筛选 nsarray 对象类型</p>
 
@@ -903,7 +905,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iOS runtime & libObjc]]></title>
+    <title type="html"><![CDATA[iOS Runtime & libObjc]]></title>
     <link href="http://helloyokoy.github.io/blog/ios-runtime-and-libobjc/"/>
     <updated>2017-05-11T19:57:20+08:00</updated>
     <id>http://helloyokoy.github.io/blog/ios-runtime-and-libobjc</id>
@@ -1673,7 +1675,7 @@ __attribute__((cleanup(ext_executeCleanupBlock), unused))  将 cleanup 函数设
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[android framework]]></title>
+    <title type="html"><![CDATA[Android Framework]]></title>
     <link href="http://helloyokoy.github.io/blog/android-framework/"/>
     <updated>2016-05-26T14:47:35+08:00</updated>
     <id>http://helloyokoy.github.io/blog/android-framework</id>
@@ -1844,7 +1846,7 @@ UiAutomator，Espresso等</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[facebook redex]]></title>
+    <title type="html"><![CDATA[Facebook Redex]]></title>
     <link href="http://helloyokoy.github.io/blog/facebook-redex/"/>
     <updated>2016-04-15T17:08:14+08:00</updated>
     <id>http://helloyokoy.github.io/blog/facebook-redex</id>
@@ -1971,7 +1973,7 @@ UiAutomator，Espresso等</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[xcode plugin ]]></title>
+    <title type="html"><![CDATA[Xcode Plugin]]></title>
     <link href="http://helloyokoy.github.io/blog/xcode-plugin/"/>
     <updated>2015-12-10T16:17:52+08:00</updated>
     <id>http://helloyokoy.github.io/blog/xcode-plugin</id>
@@ -1999,7 +2001,7 @@ xcolors
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iOS self 和 下划线 _ 区别]]></title>
+    <title type="html"><![CDATA[iOS Self 和 下划线 _ 区别]]></title>
     <link href="http://helloyokoy.github.io/blog/ios-self/"/>
     <updated>2015-12-05T15:48:50+08:00</updated>
     <id>http://helloyokoy.github.io/blog/ios-self</id>
@@ -3680,7 +3682,7 @@ Charles好了，下一步配置手机，确保你的手机网络和电脑在同�
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[微信开发 gems]]></title>
+    <title type="html"><![CDATA[微信开发 Gems]]></title>
     <link href="http://helloyokoy.github.io/blog/wechat-gems/"/>
     <updated>2015-10-27T15:35:10+08:00</updated>
     <id>http://helloyokoy.github.io/blog/wechat-gems</id>
@@ -3752,7 +3754,7 @@ wiki中也有不少关于开发上的建议与经验，还有自己遇到一些�
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[ruby gems内存泄露]]></title>
+    <title type="html"><![CDATA[Ruby Gems内存泄露]]></title>
     <link href="http://helloyokoy.github.io/blog/ruby-gems-memory-leak/"/>
     <updated>2015-10-22T15:01:34+08:00</updated>
     <id>http://helloyokoy.github.io/blog/ruby-gems-memory-leak</id>
