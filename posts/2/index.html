@@ -256,92 +256,6 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-26T18:38:31+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月26 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/nslog-and-lldb/" itemprop="url">NSLog 和 LLDB</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="section">前言</h3>
-
-<p>打Log是我们debug时最简单朴素的方法，NSLog对于objc开发就像printf对于c一样重要。但在使用NSLog打印大量Log，尤其是在游戏开发时（如每一帧都打印数据），NSLog会明显的拖慢程序的运行速度（游戏帧速严重下滑）。本文探究了一下NSLog如此之慢的原因，并尝试使用lldb断点调试器替代NSLog进行debug log。</p>
-
-<h3 id="section-1">小测试</h3>
-
-<p>测试下分别使用NSLog和printf打印10000次耗费的时间。CFAbsoluteTimeGetCurrent()函数可以打印出当前的时间戳，精度还是很高的，于是乎测试代码如下：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">CFAbsoluteTime startNSLog = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
-</span><span class="line">    NSLog(@"%d", i); 
-</span><span class="line">} 
-</span><span class="line">CFAbsoluteTime endNSLog = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line"> 
-</span><span class="line">CFAbsoluteTime startPrintf = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">for (int i = 0; i &lt; 10000; i++) { 
-</span><span class="line">    printf("%d\n", i); 
-</span><span class="line">} 
-</span><span class="line">CFAbsoluteTime endPrintf = CFAbsoluteTimeGetCurrent(); 
-</span><span class="line">
-</span><span class="line">NSLog(@"NSLog time: %lf, printf time: %lf", endNSLog - startNSLog, endPrintf - startPrintf);</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>这个时间和机器肯定有关系，只看它们的差别就好。为了全面性，尝试了三种平台：</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">NSLog time: 4.985445, printf time: 0.084193 // mac 
-</span><span class="line">NSLog time: 5.562460, printf time: 0.019408 // 模拟器 
-</span><span class="line">NSLog time: 10.471490, printf time: 0.090503 // 真机调试(iphone5)</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>可以发现，在mac上（模拟器其实也算是mac吧）速度差别达到了60倍左右，而真机调试甚至达到了离谱的100多倍。</p>
-
-<p></div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/nslog-and-lldb/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-07T15:04:49+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月7 日</time>
         
       </p>
@@ -574,7 +488,7 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-22T15:01:34+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月22 日</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-25T15:01:34+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月25 日</time>
         
       </p>
     
@@ -608,6 +522,7 @@ helper 放置常用的helper，像分页，用户验证。</p>
 </ul>
 
 <p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
+
 </div>
   
   
@@ -634,7 +549,7 @@ helper 放置常用的helper，像分页，用户验证。</p>
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-05T12:31:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月5 日</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-09T12:31:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月9 日</time>
         
       </p>
     
@@ -713,6 +628,58 @@ helper 放置常用的helper，像分页，用户验证。</p>
   
     <footer>
       <a class="read-more btn btn-default" href="/blog/full-stack-developer/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-09-11T15:14:36+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年9 月11 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/" itemprop="url">Redis 缓存服务器配置</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>随着redis的发展，越来越多的架构用它取代了memcached作为缓存服务器的角色，它有几个很突出的特点：</p>
+
+<ol>
+  <li>除了Hash，还提供了Sorted Set, List等数据结构</li>
+  <li>可以持久化到磁盘</li>
+  <li>支持cluster (3.0)</li>
+</ol>
+
+<p>它的性能和memcached不相上下，再加上流行的其他组件（比如队列）也会用到redis，从架构简单出发，已经没有必要混用redis和memcached了。</p>
+
+<p>写篇短文介绍一下用redis作为缓存服务器配置时候需要注意几个点。</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/redis-huan-cun-fu-wu-qi-pei-zhi/">阅读全文</a>
     </footer>
   
 

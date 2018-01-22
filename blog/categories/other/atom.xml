@@ -4,7 +4,7 @@
   <title><![CDATA[分类：other | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/other/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T16:44:03+08:00</updated>
+  <updated>2018-01-22T17:07:24+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -545,7 +545,7 @@ ps: 这篇文章信息量巨大, 我理解有限, 如果你发现任何错误或
   <entry>
     <title type="html"><![CDATA[如何编写更棒的代码]]></title>
     <link href="http://helloyokoy.github.io/blog/write-best-code/"/>
-    <updated>2015-06-05T12:46:03+08:00</updated>
+    <updated>2015-06-16T12:46:03+08:00</updated>
     <id>http://helloyokoy.github.io/blog/write-best-code</id>
     <content type="html"><![CDATA[<p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
 
@@ -761,6 +761,7 @@ inputLength &lt; MAX_INPUT_LENGTH
 <p>最好的方式是你先用jQuery学着写一些简单的例子，把你项目中要用到的技术都学会。比如说你想要用AJAX？就先在项目之外写一些关于AJAX的简单例子，等到完全掌握了，就可以将老代码从项目中移除。</p>
 
 <p>如果你热衷于编程，我强烈推荐你阅读Steve McConnell编写的《Code Complete》，它将永远改变你的编程思维。</p>
+
 ]]></content>
   </entry>
   

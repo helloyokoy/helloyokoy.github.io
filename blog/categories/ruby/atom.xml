@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ruby | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T16:44:03+08:00</updated>
+  <updated>2018-01-22T17:07:24+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -1010,7 +1010,7 @@ end
   <entry>
     <title type="html"><![CDATA[Ruby Gems内存泄露]]></title>
     <link href="http://helloyokoy.github.io/blog/ruby-gems-memory-leak/"/>
-    <updated>2015-10-22T15:01:34+08:00</updated>
+    <updated>2015-10-25T15:01:34+08:00</updated>
     <id>http://helloyokoy.github.io/blog/ruby-gems-memory-leak</id>
     <content type="html"><![CDATA[<p>请大家检查下 Gemfile.lock，若在使用如下版本的gem包，那么请及时更新</p>
 
@@ -1036,13 +1036,14 @@ end
 </ul>
 
 <p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails Gems 推荐]]></title>
     <link href="http://helloyokoy.github.io/blog/rails-gems-recomend/"/>
-    <updated>2015-10-05T12:31:27+08:00</updated>
+    <updated>2015-10-09T12:31:27+08:00</updated>
     <id>http://helloyokoy.github.io/blog/rails-gems-recomend</id>
     <content type="html"><![CDATA[<p>Rails社区的gem库，按我感觉质量普遍比较高，这跟Rails社区的氛围有关，以下推荐的是我个人在项目中时常用到的并且比较主流的gem，想到哪儿写到哪儿，挂一漏万。</p>
 
