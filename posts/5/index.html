@@ -72,6 +72,7 @@
 <li ><a href="/blog/categories/android/">Android</a></li>
 <li ><a href="/blog/categories/nodejs/">NodeJS</a></li>
 <li ><a href="/blog/categories/ruby/">Ruby</a></li>
+<li ><a href="/blog/categories/other/">Other</a></li>
 <li ><a href="/about">About</a></li>
               </ul>
             </div>
@@ -88,160 +89,6 @@
     <meta itemprop="description" content="The Blog of BryanFu" />
     <meta itemprop="url" content="http://helloyokoy.github.io" />
       
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-05T13:20:11+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年5 月5 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/turn-around-stay-grace/" itemprop="url">优雅转身</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>编者按：本文由著名VC GRP合伙人Mark Suster撰写，非常值得一读，以下为正文部分：</p>
-
-<p>在我第一次创业的时候我非常好斗。在我看来整个世界好像就是一个战场，我无时无刻不在准备着战斗。与房东斗，与债主斗，与董事会斗，与各个你所能想到的群体斗。但是随着我不断的成长，我越来越发现找到一个共同点比不断的斗争更有好处。</p>
-
-<p>有两个人经常在我身旁尽最大的努力让我冷却下来，他们是我的COO Stuart Lander和CFO David Lapter。Stuart也有些好斗因子，但是之前做过律师的他懂得谈判与和解比打一场持久的战斗要好的多。我记得我们经常达成的一条共识就是——如果一定要转身，那么就优雅的转身。于是我形成了自己的一个思想：如果我要去战斗，那么我会如虎如狼直至胜利；但是如果一定要转身，那么我也将优雅从容的转身。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/turn-around-stay-grace/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-11T17:53:41+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年4 月11 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/leakcannei-xie-lu-jian-ce/" itemprop="url">LeakCanary内寸泄露检测</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h2 id="leakcanary">LeakCanary</h2>
-
-<p>Android 和 Java 内存泄露检测。</p>
-
-<blockquote>
-  <p>“A small leak will sink a great ship.” - Benjamin Franklin</p>
-</blockquote>
-
-<blockquote>
-  <p>千里之堤， 毁于蚁穴。 – 《韩非子·喻老》</p>
-</blockquote>
-
-<p><img src="https://raw.githubusercontent.com/liaohuqiu/leakcanary/master/assets/screenshot.png" alt="alt text" title="Title" /></p>
-
-<h4 id="demo">demo</h4>
-
-<p>一个非常简单的 LeakCanary demo: <a href="https://github.com/liaohuqiu/leakcanary-demo" title="Title">https://github.com/liaohuqiu/leakcanary-demo</a></p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/leakcannei-xie-lu-jian-ce/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-04-03T16:05:02+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年4 月3 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/gem-description/" itemprop="url">Gemfile 详解</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>前几天读到的一篇博客，觉得内容很详实，就翻译了下给大家分享下。绝大部分为直译，极少数地方加了点自己的注释，若有不周到地方，还望大家指出。如果有排版方面的问题，也请指出。</p>
-
-<p>原文：<a href="http://tosbourn.com/what-is-the-gemfile/">http://tosbourn.com/what-is-the-gemfile/</a></p>
-
-<p>作为Ruby开发者，我们一直在使用Gemfile，并且大部分人知道一些关于Gemfile的基础知识。在这篇文章里，我想更加深入到Gemfile里面去看看通过Gemfile所能做的一切。</p>
-
-<h2 id="gemfile">什么是Gemfile</h2>
-
-<p>Gemfile是我们创建的一个用于描述gem之间依赖的文件。gem是一堆Ruby代码的集合，它能够为我们提供调用。你的Gemfile必须放在项目的根目录下面， 这是Bundler的要求，对于任何的其他形式的包管理文件来说，这也是标准。这里值得注意的一点是Gemfile会被作为Ruby代码来执行。当在Bundler上下文环境中被执行的时能使我们访问一些方法，我们用这些方法来解释gem之间的require关系。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/gem-description/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
       
       
         <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -463,85 +310,6 @@ Button:btn
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-28T22:17:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年10 月28 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/" itemprop="url">知名 iOS 应用背后的第三方项目</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><blockquote>
-  <p>知名应用程序的设计和技术一直都是开发者需要学习的，同样这些应用所使用的开源框架也是不可忽视的一部分。此前《iOS第三方开源库的吐槽和备忘》中作者ibireme列举了国内多款知名应用所使用的开源框架，并对其中一些框架进行了分析，同样国外开发者@iOSCowboy也在博客中给我们列出了国外多款知名应用使用的开源框架。另外txx’s blog中详细介绍了Facebook Paper使用的第三方库。</p>
-</blockquote>
-
-<h3 id="instagram">Instagram</h3>
-<hr />
-<ul>
-  <li>
-    <p>AFNetworking: 适用于iOS和OS X的网络框架。</p>
-  </li>
-  <li>
-    <p>Appirater: 提醒用户打分。</p>
-  </li>
-  <li>
-    <p>ASIHTTPRequest：简单使用CFNetwork API封装进行HTTP网络请求，用Objective-C编写，可应用在Mac OSX和iOS开发中。</p>
-  </li>
-  <li>
-    <p>CocoaHTTPServer: 用于Mac OS X和iOS应用程序的轻量级、可嵌入的HTTP服务器框架。</p>
-  </li>
-  <li>
-    <p>Cocoa Lumberjack:适用于Mac和iOS的日志框架，集简单、快速、强大以及灵活于一身。</p>
-  </li>
-  <li>
-    <p>MBProgressHUD: 用多种样式展示半透明的HUD，并带有指示器和标签，自定义功能强大。</p>
-  </li>
-  <li>
-    <p>PLCrashReporter (Github mirror): 进程内崩溃报告框架。</p>
-  </li>
-  <li>
-    <p>QSUtilities: 实用工具、控件以及其他辅助类的集合。</p>
-  </li>
-  <li>
-    <p>SocketRocket: Objective-C WebSocket客户端库。 https://github.com/square/SocketRocket</p>
-  </li>
-  <li>
-    <p>XBImageFilters:允许实时过滤摄像头拍摄的照片，使用OpenGL ES 2 来快速处理各种图片效果。</p>
-  </li>
-</ul>
-
-<p></div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/zhi-ming-iosying-yong-bei-hou-de-di-san-fang-xiang-mu/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-10-17T14:46:20+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年10 月17 日</time>
         
       </p>
@@ -700,6 +468,272 @@ Button:btn
   
     <footer>
       <a class="read-more btn btn-default" href="/blog/iosdi-san-fang-ku-he-cha-jian/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-04-05T10:18:10+08:00"  data-updated="true" itemprop="datePublished dateCreated">2014 年4 月5 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/git-flow/" itemprop="url">Git Flow管理开发流程</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>我们都知道, 在 git 的分支功能相对 svn 确实方便许多，而且也非常推荐使用分支来做开发. 我的做法是每个项目都有2个分支, master 和 develop. master 分支是主分支, 保证程序有一个 稳定版本, develop 则是开发用的分支, 几乎所有的功能开发, bug 修复都在这个分支上, 完成后 再合并回 master.</p>
+
+<p>但是情况并不是这么简单. 有时当我们正在开发一个功能, 但程序突然出现 bug 需要及时去修复的时候, 这时要切回 master 分支, 并基于它创建一个 hotfix 分支. 有时我们在开发一个功能时, 需要停下来去开发另一个功能. 而且所有这些问题都出现 的时候, 发布也会成为比较棘手问题.</p>
+
+<p>也就是说, git branch 功能很强大，但是没有一套模型告诉我们应该怎样在开发的时候善用 这些分支。于是有人就整理出了一套比较好的方案 A successful Git branching model, 今天我们就一起来学习下这套方案.</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/git-flow/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-11-09T17:42:35+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年11 月9 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/androidkai-yuan-kuang-jia/" itemprop="url">Android第三方库</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="volley">1、volley</h3>
+
+<p>项目地址 <a href="https://github.com/smanikandan14/Volley-demo">https://github.com/smanikandan14/Volley-demo</a></p>
+
+<ol>
+  <li>JSON，图像等的异步下载；</li>
+  <li>网络请求的排序（scheduling）</li>
+  <li>网络请求的优先级处理</li>
+  <li>缓存</li>
+  <li>多级别取消请求</li>
+  <li>和Activity和生命周期的联动（Activity结束时同时取消所有网络请求）</li>
+</ol>
+
+<h3 id="android-async-http">2、android-async-http</h3>
+
+<p>项目地址：<a href="https://github.com/loopj/android-async-http">https://github.com/loopj/android-async-http</a></p>
+
+<p>文档介绍：<a href="http://loopj.com/android-async-http/">http://loopj.com/android-async-http/</a></p>
+
+<ol>
+  <li>在匿名回调中处理请求结果</li>
+  <li>在UI线程外进行http请求</li>
+  <li>文件断点上传</li>
+  <li>智能重试</li>
+  <li>默认gzip压缩</li>
+  <li>支持解析成Json格式</li>
+  <li>可将Cookies持久化到SharedPreferences
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/androidkai-yuan-kuang-jia/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-09-25T13:26:53+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年9 月25 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/git-command/" itemprop="url">Git 常用命令</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="git">Git配置</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git config --global user.name "storm"
+</span><span class="line">git config --global user.email "610540626@qq.com"
+</span><span class="line">git config --global color.ui true
+</span><span class="line">git config --global alias.co checkout  # 别名
+</span><span class="line">git config --global alias.ci commit
+</span><span class="line">git config --global alias.st status
+</span><span class="line">git config --global alias.br branch
+</span><span class="line">git config --global core.editor "vim"  # 设置Editor使用vim
+</span><span class="line">git config --global core.quotepath false # 设置显示中文文件名</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>用户的git配置文件~/.gitconfig</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/git-command/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2013-09-11T17:30:37+08:00"  data-updated="true" itemprop="datePublished dateCreated">2013 年9 月11 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/androidxue-xi-zi-liao/" itemprop="url">Android学习资源</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="androidblog">Android网址或Blog</h3>
+
+<ul>
+  <li>
+    <p>博客</p>
+
+    <p><a href="http://stormzhang.com/">http://stormzhang.com/</a></p>
+  </li>
+  <li>
+    <p>知乎回答</p>
+
+    <p><a href="http://www.zhihu.com/question/33993035">http://www.zhihu.com/question/33993035</a></p>
+  </li>
+  <li>
+    <p>StackOverflow  tag android</p>
+
+    <p><a href="http://stackoverflow.com/questions/tagged/android">http://stackoverflow.com/questions/tagged/android</a></p>
+  </li>
+  <li>
+    <p><a href="http://developer.android.com/index.html">Android官网</a></p>
+
+    <p>身为Android开发者不知道这个网站就太说不过去了，上面有你任何你需要的东西</p>
+  </li>
+  <li>
+    <p><a href="http://android-developers.blogspot.com/">Android Developers Blog</a></p>
+
+    <p>Android官网博客, 在上面可以关注Android最新的进展与最权威的博客(须翻墙)</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/Trinea/android-open-project">Android开源项目汇总</a></p>
+
+    <p>整理的非常全面的GitHub开源项目汇总，不需要重复发明轮子，尽情遨游在开源世界里吧</p>
+  </li>
+  <li>
+    <p><a href="http://android-arsenal.com/">Android的开源库</a></p>
+
+    <p>国外整理的Android开源库汇总，和上面的比起来分类更明确，你总能很方便的找到你需要的开源库</p>
+  </li>
+  <li>
+    <p><a href="http://androidweekly.net/">Android Weekly</a></p>
+
+    <p>每周都会有一篇技术博文，介绍新技术、新潮点，可直接邮件订阅，让你时刻紧跟潮流</p>
+  </li>
+  <li>
+    <p><a href="http://www.androidviews.net/">Android Views</a></p>
+
+    <p>专注Android UI与效果的网站（不过目前貌似已经关站了…）</p>
+  </li>
+</ul>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/androidxue-xi-zi-liao/">阅读全文</a>
     </footer>
   
 

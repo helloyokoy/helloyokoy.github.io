@@ -75,6 +75,7 @@
 <li ><a href="/blog/categories/android/">Android</a></li>
 <li ><a href="/blog/categories/nodejs/">NodeJS</a></li>
 <li ><a href="/blog/categories/ruby/">Ruby</a></li>
+<li ><a href="/blog/categories/other/">Other</a></li>
 <li ><a href="/about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -139,13 +140,8 @@
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><blockquote>
-  <p>在这篇文章中，我将为你整理一下 iOS 开发中几种多线程方案，以及其使用方法和注意事项。当然也会给出几种多线程的案例，在实际使用中感受它们的区别。还有一点需要说明的是，这篇文章将会使用 Swift 和 Objective-c 两种语言讲解，双语幼儿园。OK，let’t begin!</p>
-</blockquote>
-
-<h2 id="section">概述</h2>
+<div class="entry-content clearfix" itemprop="articleBody description"><h2 id="section">概述</h2>
 <hr />
-<p>这篇文章中，我不会说多线程是什么、线程和进程的区别、多线程有什么用，当然我也不会说什么是串行、什么是并行等问题，这些我们应该都知道的。</p>
 
 <p>在 iOS 中其实目前有 4 套多线程方案，他们分别是：</p>
 
@@ -1295,6 +1291,7 @@ dispatch_async 异步执行，所以当前线程不会被阻塞，于是有了�
 </span><span class="line">//Swift
 </span><span class="line">NSOperationQueue.mainQueue().addOperationWithBlock { () -&gt; Void in
 </span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 </div>
 
 

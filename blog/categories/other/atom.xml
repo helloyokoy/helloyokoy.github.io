@@ -4,7 +4,7 @@
   <title><![CDATA[分类：other | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/other/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T15:05:44+08:00</updated>
+  <updated>2018-01-22T15:54:14+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -165,8 +165,6 @@
 <h4 id="git">Git</h4>
 <p>一个整合GIT和Sublime Text的插件，执行了很多你需要使用的命令。</p>
 
-<hr />
-<p>转载自 <a href="http://stormzhang.com/devtools/2012/12/30/sublime-plugin/">stormzhang博客</a></p>
 ]]></content>
   </entry>
   
@@ -241,14 +239,10 @@
 
 <hr />
 
-<p>著作权归作者所有。
-商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>转载自知乎:</p>
 
-<p>作者：顾鹏</p>
+<p><a href="http://www.zhihu.com/question/22420900/answer/21770992">http://www.zhihu.com/question/22420900/answer/21770992</a></p>
 
-<p>链接：http://www.zhihu.com/question/22420900/answer/21770992</p>
-
-<p>来源：知乎</p>
 ]]></content>
   </entry>
   
@@ -290,91 +284,6 @@
 
 <hr />
 <p>转载自 <a href="http://liusihao.com/post/64854832920/%E6%88%91%E5%AF%B9%E5%BE%85%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%80%81%E5%BA%A6">我对技术的态度</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[如何成为一个优秀的初级开发者]]></title>
-    <link href="http://helloyokoy.github.io/blog/how-to-become-a-developer/"/>
-    <updated>2015-07-24T16:49:15+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/how-to-become-a-developer</id>
-    <content type="html"><![CDATA[<p>原文: <a href="http://blog.newrelic.com/2014/04/23/better-junior-developer/">http://blog.newrelic.com/2014/04/23/better-junior-developer/</a></p>
-
-<p>翻译: <a href="https://ruby-china.org/mr_sun">@mr_sun</a></p>
-
-<p>在过去的几年中，New Relic聘请了许多接受过各种编程培训的或者“非传统”编程背景的毕业生，其中就包括我！事实上，在我获得我的学士学位以后，我想要进入一所医药大学做进一步的学习，但是这时我获得了Google提供的一份技术支持的工作。在四年多以后我利用一个休假的时间出席了Hackbright Academy，这是个教女性学员如何编程的学校，课程安排为十周（现在延长到了十二周）。在第一周教学即将结束的时候，我知道我终于找到了我想要专注一生去追求的事业和方向。</p>
-
-<p>不过，我的一个最大的忧虑是，我必须放弃我在其他领域已经积累起来的经验和技巧，去进入到一个全新的领域，在这个新领域里，我将面对的竞争对手都是拥有该领域几十年经验的资深工作者。幸运的是，在我真正进入到这样一个新角色以后，在共同工作的许多优秀的前辈的指导和帮助下，我总结出了一下一些自己的感悟：
-- 不断地学习是成为一个优秀开发者的必备基石
-- 有很多工程，是不是直接就开始写代码的</p>
-
-<p>要清晰的认识到，即便作为一个还有很多东西要学的初级开发者，也有很多方法来利用我已经在其他领域已具备的技能。因为自己已经经历过那样一段对自己很不确定的时期，这里我想要向大家传播以下两条信息：
-- 初级开发者：即使你还在学习关于编程的基本技巧，你也可以有很多方式为你的团队做出自己的贡献。
-- mentor：因材施教，换位思考，让你的指导更加符合初级开发者的学习需要，这样将使他们更有自信，使你的指导更具效率。</p>
-
-<!--more-->
-
-<h2 id="section">有很多要学</h2>
-
-<p>作为一个初级开发者，你将面临有太多东西要学的挑战，这时，重要的是不要试图所有东西都靠自己去解决，这里有三种方法可以采用：</p>
-
-<ol>
-  <li>
-    <p>找到想要帮助你的人</p>
-
-    <p>通过在你所在的团队或者结识其他编程团队，你可以扩展在你遇到问题时能为你提供帮助的网络人群。为了充分的利用网络资源，有一点很重要，就是面对一个问题，你需要先尽自己努力去探究，如此而不解，再去询问别人，这也是珍惜别人时间的一种表现。对于一个初级开发者，如果你在遇到问题时先自己做很多研究，那么你将会更快的学到更多的东西（这个过程中Google and StackOverflow将成为你的好朋友，为你提供很多的帮助）。这也会让你那些经验丰富的同事觉得他们对你的指导更有帮助，让他们更相信在下一次你遇到同样问题时你会充分利用他们给予你的建议和指导。</p>
-  </li>
-  <li>
-    <p>让别人更容易帮助到你</p>
-
-    <p>当你自己找不到合适的方式来描述你遇到的问题时，将更难于让别人理解你到底困惑在哪里。以下是一些我在遇到问题时喜欢使用的提问格式：</p>
-
-    <p>我在尝试__<strong>，这样我就可以</strong>__</p>
-
-    <p>我在____遇到了问题</p>
-
-    <p>我已经查看了__<strong>并且试过了</strong>__</p>
-
-    <p>举个例子，这是我最近一次用以上格式提问：“我试图要理解为什么这个账号登录时会出现这个banner，这样我就能告诉客户他们是否需要关注该警告。我在查看一个问题时找到了这个记录，我检查过了模型，并试图在本地将问题重现”。</p>
-  </li>
-  <li>
-    <p>缩小你要学习的范围</p>
-
-    <p>这就像在你解决一个棘手的技术问题时，你应该尽量将可能存在问题的范围缩小，以使的问题不至于过于繁杂。可能你想要弄明白的问题有太多太多，但是有经验的指导者可以告诉你哪些重要哪些不重要，给你分析这些问题的优先顺序（我的个人目标：真正自己独立的创建一个Rails App）。</p>
-  </li>
-</ol>
-
-<h2 id="section-1">帮助你的团队</h2>
-
-<p>作为一个初级开发者，你很自然会这样问自己：我本还需要这么多的帮助，又该怎样为我的团队贡献自己的力量呢？要记住，这世界上，开发的岗位永远要比开发人员多。所以并不需要在高效（高级开发人员）和低效（初级开发人员）做出选择，而是在于是否有相应的应用需要开发人员来做。记住以下这些策略将有助于反馈，调整你所写的代码</p>
-
-<ol>
-  <li>
-    <p>提出好的问题</p>
-
-    <p>我喜欢站在初级开发者的角度开考虑问题，提出好的问题，比如“我们是否在做一件正确的事？”这样可以帮助团队尽早发现错误的引导和假设。这样将避免在开发后期发现这些问题所将浪费大量的时间，所以要尽早提出好的问题。</p>
-  </li>
-  <li>
-    <p>给出好的反馈</p>
-
-    <p>将有用的反馈在合适的场合合适的时间给到正确的人，这对很对人来说并非易事。但是所有的公司都有其专门的反馈部门，因而即使初级开发者也有可能有机会获得大量参与反馈工作的机会。你也可以帮助预测来自于销售或者技术支持部门的关于产品新版本或产品更新的一些冲突。</p>
-  </li>
-  <li>
-    <p>使你的团队面对其他团队表现的更好</p>
-
-    <p>通过对你们所合作的团队投入更多的回应与热情，将使你的团队走的更远。有一种很好的方式来使你的团队在其他合作团队面前表现的更好，就是尽可能的向他们展示你们公司的产品特点。你可以有机会展示你的团队已经充分考虑了一些方面对其他团队的影响，比如可靠性。我几乎总是提前写好脚本并对整个流程作好足够的练习，以此来确保我的演示更加高效同时在演示过程中尽可能少的出错。</p>
-  </li>
-</ol>
-
-<h2 id="section-2">指导者要怎样才能更好的帮助初级开发者</h2>
-
-<p>以上的建议是专门针对初级开发者的，而对于导师来说，要更好的帮助初级开发者，使他们感觉到自己的价值和意识到自己为团队做出贡献的能力，也有很多事情可做。我很感兴趣于探讨如何让初级开发者的学习风格与有经验者的指导更好的磨合和匹配，以达到更好的效果。以此来保证每个人的时间都能被充分高效的利用，无论开发者还是指导者。举个例子，你可以探讨一个初级开发者希望以怎样的频率收到反馈和指示，以及高级开发者在什么时间什么情况下愿意被问题打断。</p>
-
-<p>同时，作为一个高级开发者也就是mentor，如果你想让初级开发者在一个问题上自己思考更多以此来让他学习更多东西，那么你需要让他知道你的目的。这样是为了避免初级开发者出现过多不自信的消极情绪，因为他们会误以为他们所提出的是一个很简单的问题，但事实上尽管那本是个很复杂的问题，这种误解会让他们怀疑自己的能力，而变得不自信。</p>
-
-<h2 id="section-3">结论</h2>
-
-<p>一个初级开发者在第一份工作中就如同一张白纸。有许多机会可以通过共同工作的高级开发者的一些技术指导来使他们可以快速提升并且让他们感觉到从第一天工作就能创造价值。</p>
 ]]></content>
   </entry>
   
@@ -630,6 +539,228 @@ ps: 这篇文章信息量巨大, 我理解有限, 如果你发现任何错误或
 
 <p>转载自 <a href="http://yafeilee.me/blogs/54db6c7b6c69341204140000">http://yafeilee.me/blogs/54db6c7b6c69341204140000</a></p>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何编写更棒的代码]]></title>
+    <link href="http://helloyokoy.github.io/blog/write-best-code/"/>
+    <updated>2015-06-05T12:46:03+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/write-best-code</id>
+    <content type="html"><![CDATA[<p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
+
+<p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
+
+<ol>
+  <li>
+    <p>保持方法简短扼要</p>
+  </li>
+  <li>
+    <p>永远永远不要将同一个变量用于不同的目的</p>
+  </li>
+  <li>
+    <p>尽可能让变量和方法的名称能够描述要实现的功能</p>
+  </li>
+  <li>
+    <p>尽可能将变量定义在最靠近它们的地方</p>
+  </li>
+  <li>
+    <p>不要出现让人费解的数字</p>
+  </li>
+  <li>
+    <p>要像对待朋友一样对待你擅长的语言</p>
+  </li>
+  <li>
+    <p>不要逆常规而行</p>
+  </li>
+  <li>
+    <p>千万小心过早的优化代码</p>
+  </li>
+  <li>
+    <p>要常常重构经过测试的代码</p>
+  </li>
+  <li>
+    <p>不要沉溺于过度的设计技巧</p>
+  </li>
+  <li>
+    <p>随时随地学习新的知识</p>
+  </li>
+</ol>
+
+<!--more-->
+
+<p>下面我们来对每一点详细展开介绍。</p>
+
+<h3 id="section">1、保持方法简短扼要</h3>
+
+<p>尽管很多人都遵循这条规则，但是它依然很重要。总的来说，编写的方法最好能在首屏完全显示。试想，如果你需要滚动页面才能看到整一个方法，那是一件多么分散注意力的事情。一个方法最好能保持在5 – 20行之间，当然，你也要视具体情况而定，并不是一概而论的。对于getter和setter方法，通常只需一行代码，所以它们看起来更像是类成员的存取访问器。</p>
+
+<h3 id="section-1">2、远永远不要将同一个变量用于不同的目的</h3>
+<p>一个变量应该只能被用于一个目的，我们可以通过使用常量（C++中用const标识，Java中用final标识），帮助编译器优化代码编译，也可以向程序标识“这个变量是不能被改变的”，这样我们编写的代码就有更好的可读性。</p>
+
+<h3 id="section-2">3、尽可能让变量和方法的名称能够描述要实现的功能</h3>
+<p>一段通俗易懂的程序代码，应该是任何人只要看了代码，就能明白程序是用来干嘛的。所以我建议大家尽量少用缩写，除非是程序界公认的简写习惯，像下面的简写习惯：</p>
+
+<pre><code>src - source
+pos - position
+prev - previous
+</code></pre>
+
+<p>如果你觉得描述性的简写方式没有价值，你可以比较一下n, ns, nsisd和numTeamMembers, seatCount, numSeatsInStadium。</p>
+
+<h3 id="section-3">4、尽可能将变量定义在最靠近它们的地方</h3>
+<p>当你在盖房子的时候，总不希望把锤子放在别人家的院子里吧，相反，你会把盖房的工具放得尽可能近，定义变量也是同样的道理。</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int foo = 3;
+</span><span class='line'>int bar = 5;
+</span><span class='line'>// bunch of code that uses “bar”
+</span><span class='line'>// but doesn’t care about “foo”
+</span><span class='line'>// …&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>baz(foo);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>我们可以这样重构代码：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int bar = 5;
+</span><span class='line'>// bunch of code that use “bar”
+</span><span class='line'>// but doesn’t care about “foo”
+</span><span class='line'>// …&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>int foo = 3;
+</span><span class='line'>baz(foo);&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>当你把变量的声明跟使用它的地方相隔太远的时候（甚至是超过一屏），那的确会给你带来很大的麻烦。你会经常滚动页面去寻找这个变量，导致你很难在大脑中保持代码之间的连贯性。</p>
+
+<h3 id="section-4">5、不要出现让人费解的数字</h3>
+<p>任何时候，你要比较一些常量时，都要将它们定义成constant类型。团队之间调试代码时最让人头疼是出现下面的代码：</p>
+
+<pre><code>il &lt; 4384 把它替换成下面的代码该多好：
+
+inputLength &lt; MAX_INPUT_LENGTH
+</code></pre>
+
+<h3 id="section-5">6、要像对待朋友一样对待你擅长的语言</h3>
+
+<p>学习一种新的编程语言是一件很有趣的事情，从中你可以用很酷的方式学到新东西。还有就是让一个对某种语言很专业的人去学另外一种语言，很多时候会让人心有余而力不足。举个例子，你让一个Java大牛去学Ruby，他应该会用Ruby的方式去解决问题，而不是继续沿用Java的解决问题的思想。</p>
+
+<p>当你需要循环输出5遍”Hello World“时，Java代码应该会是这样：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>for (int i = 0; i &lt; 5; i++) {
+</span><span class='line'>    System.out.println(“Hello world!”);
+</span><span class='line'>}&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>但是用Ruby，你也许会这样写：</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>for i in (0..5)
+</span><span class='line'>  	puts “Hello world!”
+</span><span class='line'>end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<p>这些看上去都很不错，但是最完美的方式可能是下面这样：
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>5.times { puts “Hello world!” }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></p>
+
+<h3 id="section-6">7、不要逆常规而行</h3>
+<p>每一种编程语言都有自己的约束习惯，总的来说，大家对Java的编程习惯可能会了解得比较多，我们一起来看看其中的一些习惯：</p>
+
+<p>方法名以小写字母开头，后面紧跟的是大写字母开头的单词，比如veryLongVariableName。
+类名一般都是大写字母开头的单词组合。
+常量的命名都是大写字母的单词，之间用下划线隔开，比如MY_CONSTANT
+左大括号应该跟if在同一行
+只有在迫不得已的时候才能打破这种规则，千万不要因为不喜欢这种做法而违背已经约定好的编码习俗。如果你身为团队一员，想改变一些编码规则的话，那也可以，不过当你把自己的代码分享给没有你这种习惯的队友的时候，棘手的问题会迎面而来。</p>
+
+<h3 id="section-7">8、千万小心过早的优化代码</h3>
+
+<p>过早的优化是所有问题的根源，至少电视上是这么说的…你的首要任务是编写容易理解的代码，而不要求你能很快写出来。除非你的程序运行很慢，否则谈优化都是为时太早。如果你想优化你的程序，那么得先找出程序的问题，这就是我们需要profilers这个工具的原因。</p>
+
+<p>在没有找到问题源头就去优化代码，这样做你所要付出的代价就是破坏了程序的结构，至少会丧失程序的可读性。如果你发现程序运行缓慢了，也不要盲目地重构代码，要先找到导致运行慢的根本原因。</p>
+
+<p>千万不要傻乎乎地去解决根本不存在的问题。</p>
+
+<h3 id="section-8">9、要常常重构经过测试的代码</h3>
+
+<p>世上没有绝对完美的事情。尽管你认为自己的代码已经写得非常完美了，过一段时间也要经常去看看它，也许那时你会对自己大骂：”怎么会那么傻！”</p>
+
+<p>有一种提高代码质量的方法，那就是经常重构通过测试的代码。所谓通过测试，我指的是程序要能正常工作，你可以通过自动化测试或者手动测试来确保这一点。</p>
+
+<p>首先你要确保程序能够正常运行，第一次我们并不需要写出多么完美的程序，能用就行，接下来我们可以慢慢重构，让它逐渐变得完美。这种开发方式很有TDD的味道，关键在于你需要熟悉重构的每一个环节。如果你熟练使用一些高级的IDE，像IntelliJ IDEA，那你的重构工作将会简单很多。</p>
+
+<p>重构完以后，也许你会碰到很多这样那样的问题，甚至会破坏正常的程序，这就是我们要利用自动化测试的原因了。当你重构完以后，跑一遍单元测试就能避免这些令人头疼的问题了。</p>
+
+<h3 id="section-9">10、不要沉溺于过度的设计技巧</h3>
+
+<p>当我第一次接触到设计模式这一概念时，我觉得自己找到了“圣杯”。这些精妙的设计思想可以让你工作更加顺利，也可以让你的设计浅显易懂，因为你可以简单的说“我使用了观察者模式”，而不同大费周章的解释一通。然而问题来了，由于有些问题看起来太自然太简单了，你会把那些设计模式的思想应用到任何地方，为什么不把这个类设计成单例模式（singleton）？干嘛不去创建一些工厂类呢？</p>
+
+<p>于是用80行代码就能完成的脚本，结果你用了10个类，15个接口和一堆泛型和注释，这其中的97%代码并没有做实质上的事情。设计模式虽然非常有用，可以帮助你简化设计，但是这并不是说你可以到处使用它们。你可以使用设计模式，但是不能将它滥用了。</p>
+
+<h3 id="section-10">11、随时随地学习新的知识</h3>
+
+<p>编程就是一项随时学习新事物的工作，当你学到了新的类库或者编程语言时，你会迫不及待地丢掉老的代码，进而去重写它们。然而有很多理由说明你不该这么做。</p>
+
+<p>将一个新的类库或者框架应用到现有的项目中就会出现类似的问题。比如说你正在为一个Web项目写Javascript，但是中间你发现了jQuery，这时候你会迫不及待想把jQuery应用进去，而丢掉原来的Javascript代码，即便你根本没用jQuery写过任何项目。</p>
+
+<p>最好的方式是你先用jQuery学着写一些简单的例子，把你项目中要用到的技术都学会。比如说你想要用AJAX？就先在项目之外写一些关于AJAX的简单例子，等到完全掌握了，就可以将老代码从项目中移除。</p>
+
+<p>如果你热衷于编程，我强烈推荐你阅读Steve McConnell编写的《Code Complete》，它将永远改变你的编程思维。</p>
 ]]></content>
   </entry>
   
