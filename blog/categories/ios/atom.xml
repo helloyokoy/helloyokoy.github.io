@@ -4,7 +4,7 @@
   <title><![CDATA[分类：ios | BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T14:27:42+08:00</updated>
+  <updated>2018-01-22T14:39:46+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -2061,30 +2061,44 @@ __attribute__((cleanup(ext_executeCleanupBlock), unused))  将 cleanup 函数设
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Xcode Plugin]]></title>
-    <link href="http://helloyokoy.github.io/blog/xcode-plugin/"/>
-    <updated>2015-12-10T16:17:52+08:00</updated>
-    <id>http://helloyokoy.github.io/blog/xcode-plugin</id>
-    <content type="html"><![CDATA[<p>新版 xcode 插件 不能用 解决方法</p>
+    <title type="html"><![CDATA[Lottie &amp; BodyMovin]]></title>
+    <link href="http://helloyokoy.github.io/blog/lottie-and-bodymovin/"/>
+    <updated>2017-04-21T14:37:36+08:00</updated>
+    <id>http://helloyokoy.github.io/blog/lottie-and-bodymovin</id>
+    <content type="html"><![CDATA[<h2 id="svg">SVG</h2>
+<ul>
+  <li>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</li>
+  <li>SVG 用来定义用于网络的基于矢量的图形</li>
+  <li>SVG 使用 XML 格式定义图形</li>
+  <li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失</li>
+  <li>SVG 是万维网联盟的标准</li>
+  <li>SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体</li>
+</ul>
 
-<pre><code>find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info.plist DVTPlugInCompatibilityUUID`
-</code></pre>
+<h2 id="json-file">JSON File</h2>
+<p><img src="http://owx2ayke3.bkt.clouddn.com/15083136240610.jpg" alt="" /></p>
 
-<p>xcode 插件管理器</p>
+<!--more-->
 
-<pre><code>Alcatraz
-</code></pre>
+<h2 id="decode-json">Decode JSON</h2>
+<p><img src="http://owx2ayke3.bkt.clouddn.com/15083136587789.jpg" alt="" /></p>
 
-<p>xcode 常用插件</p>
+<h2 id="bodymovin">BodyMovin</h2>
+<ul>
+  <li>Github:  https://github.com/bodymovin/bodymovin</li>
+  <li>AffterEffects: <a href="https://creative.adobe.com/addons/products/12557#.WTev0nWGOi4">https://creative.adobe.com/addons/products/12557#.WTev0nWGOi4</a></li>
+  <li>http://ivweb.io/topic/592864df09439b0640aefbb9</li>
+</ul>
 
-<pre><code>xtodo 
-fuzzyautocompelte
-codepilot
-xcodeboost
-xalign
-KSimageNamed
-xcolors
-</code></pre>
+<h2 id="bodymovinjs">BodyMovin.js</h2>
+<p><img src="http://owx2ayke3.bkt.clouddn.com/15083136848623.jpg" alt="" /></p>
+
+<h2 id="lottie-for-ios">Lottie for iOS</h2>
+<p><img src="http://owx2ayke3.bkt.clouddn.com/15083137419971.jpg" alt="" /></p>
+
+<h2 id="lottie-for-android">Lottie for Android</h2>
+<p><img src="http://owx2ayke3.bkt.clouddn.com/15083137617672.jpg" alt="" /></p>
+
 ]]></content>
   </entry>
   

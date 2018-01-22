@@ -108,6 +108,152 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-12T16:30:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月12 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/" itemprop="url">Android Https请求no Peer Certificate解决方案</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3 id="section">解决方案一</h3>
+<hr />
+
+<p>写了一个自定义类继承SSLSocketFactory：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">import java.io.IOException;
+</span><span class="line">import java.net.Socket;
+</span><span class="line">import java.net.UnknownHostException;
+</span><span class="line">import java.security.KeyManagementException;
+</span><span class="line">import java.security.KeyStore;
+</span><span class="line">import java.security.KeyStoreException;
+</span><span class="line">import java.security.NoSuchAlgorithmException;
+</span><span class="line">import java.security.UnrecoverableKeyException;
+</span><span class="line">
+</span><span class="line">import javax.net.ssl.SSLContext;
+</span><span class="line">import javax.net.ssl.TrustManager;
+</span><span class="line">import javax.net.ssl.X509TrustManager;
+</span><span class="line">
+</span><span class="line">import org.apache.http.conn.ssl.SSLSocketFactory;
+</span><span class="line">
+</span><span class="line">public class SSLSocketFactoryEx extends SSLSocketFactory {
+</span><span class="line">        
+</span><span class="line">   SSLContext sslContext = SSLContext.getInstance("TLS");
+</span><span class="line">        
+</span><span class="line">   public SSLSocketFactoryEx(KeyStore truststore) 
+</span><span class="line">                        throws NoSuchAlgorithmException, KeyManagementException,
+</span><span class="line">                        KeyStoreException, UnrecoverableKeyException {
+</span><span class="line">                super(truststore);
+</span><span class="line">                
+</span><span class="line">   TrustManager tm = new X509TrustManager() {
+</span><span class="line">                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {return null;}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkClientTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public void checkServerTrusted(
+</span><span class="line">   java.security.cert.X509Certificate[] chain, String authType)
+</span><span class="line">                                            throws java.security.cert.CertificateException {}
+</span><span class="line">        };  
+</span><span class="line">        sslContext.init(null, new TrustManager[] { tm }, null);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket(Socket socket, String host, int port,boolean autoClose) throws IOException, UnknownHostException {  
+</span><span class="line">  return sslContext.getSocketFactory().createSocket(socket, host, port,autoClose);  
+</span><span class="line">}  
+</span><span class="line">    
+</span><span class="line">@Override  
+</span><span class="line">public Socket createSocket() throws IOException {  
+</span><span class="line">    return sslContext.getSocketFactory().createSocket();  
+</span><span class="line">}  
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/android-httpsqing-qiu-no-peer-certificatejie-jue-fang-an/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-08-09T17:09:42+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年8 月9 日</time>
         
       </p>
@@ -601,86 +747,6 @@
   
     <footer>
       <a class="read-more btn btn-default" href="/blog/android-push/">阅读全文</a>
-    </footer>
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-05T12:46:03+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年6 月5 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/write-best-code/" itemprop="url">如何编写更棒的代码</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>作为一个合格的程序员，有太多的理由促使你去编写干净利落且可读性强的代码。最重要的是因为你编写的代码，将来会有很多人一次次地阅读。当你有一天回过头来看自己的代码时，你就会明白编写优雅的代码是多么的重要。另外，如果别人来阅读你编写的代码，你是否想知道别人看到那些烂代码无比抓狂的感受。因此，花多一点的时间去编写优雅的代码，将来说不定会给你节省更多的时间。</p>
-
-<p>那么，如何编写更棒的代码，下面是11条基本规则：</p>
-
-<ol>
-  <li>
-    <p>保持方法简短扼要</p>
-  </li>
-  <li>
-    <p>永远永远不要将同一个变量用于不同的目的</p>
-  </li>
-  <li>
-    <p>尽可能让变量和方法的名称能够描述要实现的功能</p>
-  </li>
-  <li>
-    <p>尽可能将变量定义在最靠近它们的地方</p>
-  </li>
-  <li>
-    <p>不要出现让人费解的数字</p>
-  </li>
-  <li>
-    <p>要像对待朋友一样对待你擅长的语言</p>
-  </li>
-  <li>
-    <p>不要逆常规而行</p>
-  </li>
-  <li>
-    <p>千万小心过早的优化代码</p>
-  </li>
-  <li>
-    <p>要常常重构经过测试的代码</p>
-  </li>
-  <li>
-    <p>不要沉溺于过度的设计技巧</p>
-  </li>
-  <li>
-    <p>随时随地学习新的知识</p>
-  </li>
-</ol>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/write-best-code/">阅读全文</a>
     </footer>
   
 

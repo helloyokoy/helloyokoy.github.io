@@ -108,6 +108,90 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-12-04T11:32:56+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年12 月4 日</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/grape-on-rails/" itemprop="url">使用 Grape 构建 RESTful API</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://blog.lanvige.com/uploads/ruby/grape-logo.png" alt="img" /></p>
+
+<p>Rails中构建API的方式有很多种，Grape因性能而被推荐，其可构建于任何Rack上，仍建议使用Rails作为载体，来构建Grape，会非常省心。</p>
+
+<h3 id="section">安装配置</h3>
+
+<p>首先确保安装：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">## Platform
+</span><span class="line">gem 'rails', '4.2.0'
+</span><span class="line">
+</span><span class="line">## RESTful API Engine
+</span><span class="line">gem 'grape'
+</span><span class="line">gem 'grape-entity'</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-1">组织架构</h3>
+
+<h4 id="section-2">目录结构</h4>
+
+<pre><code>api
+├── api.rb
+└── v1
+	├── base.rb
+	├── entities
+	│   ├── base.rb
+	│   └── user_basic.rb
+	├── helpers
+	│   ├── page_helper.rb
+	│   └── user_helper.rb
+	├── base_api.rb
+	└── users_api.rb
+</code></pre>
+
+<p>base.rb 中定义着API的版本、输出格式，及挂载更多API。
+users_api.rb 就像controller，对每个resources都进行分开写，然后在base.rb中进行mount
+entities 使用grape-entity，控制输出中的对象及格式。
+helper 放置常用的helper，像分页，用户验证。</p>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default" href="/blog/grape-on-rails/">阅读全文</a>
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-11-26T21:34:03+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年11 月26 日</time>
         
       </p>
@@ -625,60 +709,6 @@
 <p><a href="https://github.com/ASoftCo/leaky-gems">https://github.com/ASoftCo/leaky-gems</a></p>
 </div>
   
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-10-15T15:52:38+08:00"  data-updated="true" itemprop="datePublished dateCreated">2015 年10 月15 日</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/rubymotion/" itemprop="url">RubyMotion简介</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h2 id="rubymotion-">RubyMotion 是什么</h2>
-<p><img src="https://ruby-china-files.b0.upaiyun.com/photo/2015/aa191c47356e1b30b1f1a7d7e82fea3c.gif" alt="icon" /></p>
-
-<h2 id="section">统一的运行时环境</h2>
-<p>在 iOS 以及 OS X 系统之上，RubyMotion 基于 Objective-C Runtime 和 Foundation 类实现了 Ruby 语言。 在 Andorid 系统之上，RubyMotion 基于 Android Java Runtime，Dalvik 以及 ART 实现了 Ruby 语言。由于这种异常紧密的集成，Ruby 可以自如的调用各平台的接口而不会产生任何性能损失。你可以轻松自如的混编 Ruby 和 Objective-C 或者 Ruby 和 Java，自由的访问各平台提供的最新的 API，自由调用各种第三方库。</p>
-
-<h2 id="section-1">完全编译</h2>
-
-<p>RubyMotion 使用基于 LLVM 构建(参见原理)的革命性的、先进的预编译器（AOT Complier）将项目中的 Ruby 代码编译成经过优化的机器代码。在 iOS 以及 Android 项目，编译器可以生成 32 位和 64 位的 ARM 目标代码，在 OS X 项目则可以生成 32 位和 64 位的 Intel 目标代码。原始的 Ruby 代码不会出现在程序中，也不会在运行期间被解释执行。RubyMotion 的典型项目的程序包大小在 1MB 以下。</p>
-
-<h2 id="section-2">自动管理内存</h2>
-
-<p>在 Ruby 语言中，你无需考虑内存管理事宜。因为，RubyMotion 会自动释放内存中那些你创建的但是却不再会被使用的对象。针对 iOS 和 OS X 平台，我们提供了一个自定义的内存模型，在设计上类似 Objective-C 的 ARC 机制。这个模型无需再使用额外内存或者代码来处理不再使用的对象的声明和回收。针对 Android 平台，我们使用 Java 运行时环境的 GC 来管理内存。</p>
-
-</div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default" href="/blog/rubymotion/">阅读全文</a>
-    </footer>
   
 
 
