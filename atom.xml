@@ -4,7 +4,7 @@
   <title><![CDATA[BryanFu Blog]]></title>
   <link href="http://helloyokoy.github.io/atom.xml" rel="self"/>
   <link href="http://helloyokoy.github.io/"/>
-  <updated>2018-01-22T17:52:43+08:00</updated>
+  <updated>2018-01-23T09:20:05+08:00</updated>
   <id>http://helloyokoy.github.io/</id>
   <author>
     <name><![CDATA[BryanFu]]></name>
@@ -1900,7 +1900,7 @@ inputLength &lt; MAX_INPUT_LENGTH
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[iOS多线程详解]]></title>
+    <title type="html"><![CDATA[iOS 多线程]]></title>
     <link href="http://helloyokoy.github.io/blog/iosduo-xian-cheng/"/>
     <updated>2016-07-18T22:25:55+08:00</updated>
     <id>http://helloyokoy.github.io/blog/iosduo-xian-cheng</id>
